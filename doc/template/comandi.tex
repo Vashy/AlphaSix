@@ -1,0 +1,142 @@
+%Generali
+\newcommand{\progetto}{Butterfly}
+\newcommand{\gruppo}{AlphaSix}
+\newcommand{\gruppoLink}{\href{mailto:alhpa.six.unipd@gmail.com}{AlphaSix}}
+\newcommand{\email}{\href{mailto:alhpa.six.unipd@gmail.com}{alpha.six.unipd@gmail.com}}
+
+%Documenti
+\newcommand{\AdR}{Analisi dei Requisiti}
+\newcommand{\AdRvDue}{AnalisiDeiRequisiti\_v\_2\_0\_0}
+\newcommand{\NdP}{Norme di Progetto}
+\newcommand{\PdP}{Piano di Progetto}
+\newcommand{\SdF}{Studio di Fattibilità}
+\newcommand{\PdQ}{Piano di Qualifica}
+\newcommand{\VI}{Verbale Interno}
+\newcommand{\VE}{Verbale Esterno}
+\newcommand{\ST}{Specifica Tecnica}
+\newcommand{\DDP}{Definizione di Prodotto}
+\newcommand{\MU}{Manuale Utente}
+\newcommand{\G}{Glossario}
+\newcommand{\LdP}{Lettera di Presentazione}
+\newcommand{\NdPv}{NormeDiProgetto\_v\_4\_0\_0}
+\newcommand{\PdPv}{PianoDiProgetto\_v\_5\_0\_0}
+\newcommand{\PdQv}{PianoDiQualifica\_v\_5\_0\_0}
+\newcommand{\SdFv}{StudioDiFattibilità\_v\_1\_0\_0}
+\newcommand{\DdPv}{DefinizioneDiprodotto\_v\_3\_0\_0}
+
+%Componenti del gruppo
+\newcommand{\LC}{Laura Cameran}
+\newcommand{\TG}{Timoty Granziero}
+\newcommand{\CV}{Ciprian Voinea}
+\newcommand{\SG}{Samuele Gardin}
+\newcommand{\NC}{Nicola Carlesso}
+\newcommand{\MM}{Matteo Marchiori}
+
+%Ruoli
+\newcommand{\RdP}{Responsabile di Progetto}
+\newcommand{\Res}{Responsabile}
+\newcommand{\Amm}{Amministratore}
+\newcommand{\Ver}{Verificatore}
+\newcommand{\Prog}{Progettista}
+\newcommand{\Progr}{Programmatore}
+\newcommand{\Ana}{Analista}
+\newcommand{\RdPs}{Responsabili di Progetto}
+\newcommand{\Ress}{Responsabile}
+\newcommand{\Amms}{Amministratori}
+\newcommand{\Vers}{Verificatori}
+\newcommand{\Progs}{Progettisti}
+\newcommand{\Progrs}{Programmatori}
+\newcommand{\Anas}{Analisti}
+
+%Professori e proponente
+\newcommand{\TV}{Prof. Tullio Vardanega}
+\newcommand{\RC}{Prof. Riccardo Cardin}
+\newcommand{\II}{Imola Informatica}
+\newcommand{\proponente}{Imola Informatica}
+
+\newcommand{\diaryEntry}[5]{#2 & \emph{#4} & #3 & #5 & #1\\ \hline}
+
+%comando per una nuova riga nella tabella del diario delle modifiche
+\newcommand{\specialcell}[2][c]{%
+	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\renewcommand*\sectionmark[1]{\markboth{#1}{}}
+\renewcommand*\subsectionmark[1]{\markright{#1}}
+
+%Pediodi di lavoro 
+\newcommand{\AR}{Analisi dei Requisiti}
+\newcommand{\AD}{Analisi dei Requisiti in Dettaglio}
+\newcommand{\PA}{Progettazione Architetturale}
+\newcommand{\PD}{Progettazione di Dettaglio}
+\newcommand{\CO}{Codifica}
+\newcommand{\VV}{Validazione}
+
+% Revisioni
+\newcommand{\RR}{Revisione dei Requisiti}
+\newcommand{\RP}{Revisione di Progettazione}
+\newcommand{\RQ}{Revisione di Qualifica}
+\newcommand{\RA}{Revisione di Accettazione}
+
+% Comandi analisi dei requisiti
+\newcommand{\uau}{utente autenticato}
+\newcommand{\uaus}{utenti autenticati}
+\newcommand{\uaupro}{utente autenticato pro}
+\newcommand{\uauspro}{utenti autenticati pro}
+
+\newcommand{\myincludegraphics}[2][]{%
+	\setbox0=\hbox{\phantom{X}}%
+	\vtop{
+		\hbox{\phantom{X}}
+		\vskip-\ht0
+		\hbox{\includegraphics[#1]{#2}}}}
+
+\renewcommand\footnoterule{\rule{\linewidth}{1pt}}
+
+\newcommand{\nogloxy}[1]{#1} % comando da usare per evitare di metttere il mark del glossario
+\newcommand{\gloxy}[1]{\emph{#1}$_G$}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+\lstdefinelanguage{json}{
+	basicstyle=\small\ttfamily,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=lines,
+	backgroundcolor=\color{background},
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+}
+\lstset{language=json}
+\lstset{literate=%
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{é}{{\"s}}1
+	{è}{{\"e}}1
+	{à}{{\"a}}1
+	{ö}{{\"o}}1
+}
+
+\newcommand{\impl}{\textcolor{Green}{Implementato}}
+\newcommand{\implno}{\textcolor{Red}{Non Implementato}}

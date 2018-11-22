@@ -1,0 +1,49 @@
+%Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\SdF}
+\newcommand{\nomedocumentofisico}{StudioDiFattibilit\`a\_v1\_0\_0.pdf}
+\newcommand{\redazione}{\LC\\ & \TG\\ & \CV\\ & \SG\\ & \NC\\ & \MM}
+\newcommand{\verifica}{\LC\\ & \TG}
+\newcommand{\approvazione}{\CV}
+\newcommand{\uso}{Interno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+
+\newcommand{\datacreazione}{22 novembre 2018}
+\newcommand{\datamodifica}{07 Gennaio 2016}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	%abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	%abilita - disabilita l'indice delle figure
+
+%Layout del documento 
+\input{../template/layout}
+%\input{sections/diario}
+
+%Comandi generali
+\input{../template/comandi}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\begin{document}
+	
+	%inclusione template HomePage
+	\input{../template/HomePage}
+	
+	%Registro delle modifiche e indice 
+	%si usa la numerazione romana per gli indici e la tabella delle modifiche
+	\pagenumbering{Roman}
+	%\input{../template/diario}
+	%\input{../template/index.tex}
+	\section{Sezione 1}
+	ABC
+	\subsection{Sottosezione}
+	DEF
+	%sezioni documento
+	%\input{sections/Introduzione} 
+	%\input{sections/CapitolatoScelto}
+	%\input{sections/CapitolatoC1}
+	%\input{sections/CapitolatoC2}
+	%\input{sections/CapitolatoC3}
+	%\input{sections/CapitolatoC4}
+	%\input{sections/CapitolatoC6}
+	
+\end{document}
