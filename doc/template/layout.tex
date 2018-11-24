@@ -37,33 +37,33 @@
 
 
 
-%***STILE PAGINA***
+% ***STILE PAGINA***
 \pagestyle{fancy}
 
-%no indentazione paragrafo
-%\setlength{\parindent}{0pt}
+% no indentazione paragrafo
+% \setlength{\parindent}{0pt}
 
-%***INTESTAZIONE***
+% ***INTESTAZIONE***
 \rhead{\Large{\progetto} \\ \footnotesize{\documento}}
 \lhead{\includegraphics[keepaspectratio = true, width = 25px] {../template/icons/fianco.png}}
-\renewcommand{\headrulewidth}{0.4pt}  %Linea sotto l'intestazione
+\renewcommand{\headrulewidth}{0.4pt}  % Linea sotto l'intestazione
 
-%***PIÈ DI PAGINA***
+% ***PIÈ DI PAGINA***
 \lfoot{\textit{\gruppoLink}\\ \footnotesize{\email}}
 \rfoot{\thepage} %per le prime pagine: mostra solo il numero romano
 \cfoot{}
-\renewcommand{\footrulewidth}{0.4pt}   %Linea sopra il piè di pagina
+\renewcommand{\footrulewidth}{0.4pt}   % Linea sopra il piè di pagina
 
-%***INSERIMENTO DI NUOVE SOTTOSEZIONI
+% ***INSERIMENTO DI NUOVE SOTTOSEZIONI
 \setcounter{secnumdepth}{7}		% mostra nel documento fino al livello 8 (1.2.3.4.5.6.7.8)
 \setcounter{tocdepth}{7}			% mostra nell'indice fino al livello 8 (1.2.3.4.5.6.7.8)
 
 %***LA SOTTOSEZIONE PARAGRAPH VIENE VISUALIZZATA COME UNA SECTION
-\titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% \titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+% \titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-\titleformat{\subparagraph}{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
-\titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% \titleformat{\subparagraph}{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+% \titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 \makeatletter
 \newcounter{subsubparagraph}[subparagraph]

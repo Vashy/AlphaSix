@@ -30,12 +30,18 @@
 	% Registro delle modifiche e indice 
 	% si usa la numerazione romana per gli indici e la tabella delle modifiche
 	\pagenumbering{Roman}
+	\setcounter{page}{1}
+
 	\input{../template/diario}
-	% \input{../template/index.tex} % TODO ?
+	% \input{../template/index} % TODO ?
 
 	\tableofcontents
+	\newpage
 
-	%sezioni documento
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+
+	% Sezioni documento
 	\include{sections/introduzione}
 	\include{sections/c1}
 	\include{sections/c2}
