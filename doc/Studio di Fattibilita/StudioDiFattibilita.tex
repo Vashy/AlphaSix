@@ -1,4 +1,4 @@
-%Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
 \newcommand{\documento}{\SdF}
 \newcommand{\nomedocumentofisico}{StudioDiFattibilit\`a\_v1\_0\_0.pdf}
 \newcommand{\redazione}{\LC\\ & \TG\\ & \CV\\ & \SG\\ & \NC\\ & \MM}
@@ -11,144 +11,37 @@
 \newcommand{\datamodifica}{07 Gennaio 2016}
 \newcommand{\stato}{Approvato}
 
-\def\TABELLE{false}	%abilita - disabilita l'indice delle tabelle
-\def\FIGURE{false} 	%abilita - disabilita l'indice delle figure
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
-%Layout del documento 
+% Layout del documento 
 \input{../template/layout}
-%\input{sections/diario}
+\input{sections/diario}
 
-%Comandi generali
+% Comandi generali
 \input{../template/comandi}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
 \begin{document}
 	
-	%inclusione template HomePage
+	% inclusione template HomePage
 	\input{../template/HomePage}
-	
-	%Registro delle modifiche e indice 
-	%si usa la numerazione romana per gli indici e la tabella delle modifiche
+	% Registro delle modifiche e indice 
+	% si usa la numerazione romana per gli indici e la tabella delle modifiche
 	\pagenumbering{Roman}
-	%\input{../template/diario}
-	%\input{../template/index.tex}
-	\section{Sezione 1}
-	ABC
-	\subsection{Sottosezione}
-	DEF
+	\input{../template/diario}
+	% \input{../template/index.tex} % TODO ?
+
+	\tableofcontents
+
 	%sezioni documento
-	%\input{sections/Introduzione} 
-	%\input{sections/CapitolatoScelto}
-	%\input{sections/CapitolatoC1}
-	%\input{sections/CapitolatoC2}
-	%\input{sections/CapitolatoC3}
-	%\input{sections/CapitolatoC4}
-	%\input{sections/CapitolatoC6}
-	
-	
-	\section{Introduzione} \label{introduzione}
-		\subsection{Scopo del documento}
-		Riempire
-		
-		\subsection{Scopo del prodotto}
-		Riempire
-		
-		\subsection{Glossario}
-		Riempire
-		
-		\subsection{Riferimenti}
-		Riempire
-			
-			\subsubsection{Riferimenti normativi}
-			Riempire
-			
-			\subsubsection{Riferimenti informativi}
-			Riempire
-	
-	
-	\section{Butterfly - C1} \label{c1}
-		\subsection{Descrizione generale}
-		Riempire
-		
-		\subsection{Obiettivo finale}
-		Riempire
-		
-		\subsection{Tecnologie coinvolte}
-		Riempire
-		
-		\subsection{Valutazione conclusiva}
-		Riempire
-		
-	
-	\section{Colletta - C2} \label{c2}
-		\subsection{Descrizione generale}
-		Riempire
-		
-		\subsection{Obiettivo finale}
-		Riempire
-		
-		\subsection{Tecnologie coinvolte}
-		Riempire
-		
-		\subsection{Valutazione conclusiva}
-		Riempire
-		
-	
-	\section{G\&B - C3} \label{c3}
-		\subsection{Descrizione generale}
-		Riempire
-		
-		\subsection{Obiettivo finale}
-		Riempire
-		
-		\subsection{Tecnologie coinvolte}
-		Riempire
-		
-		\subsection{Valutazione conclusiva}
-		Riempire
-		
-	
-	\section{MegaAlexa - C4} \label{c4}
-		\subsection{Descrizione generale}
-		Riempire
-		
-		\subsection{Obiettivo finale}
-		Riempire
-		
-		\subsection{Tecnologie coinvolte}
-		Riempire
-		
-		\subsection{Valutazione conclusiva}
-		Riempire
-	
-	
-	\section{P2PCS - C5} \label{c5}
-		\subsection{Descrizione generale}
-		Riempire
-		
-		\subsection{Obiettivo finale}
-		Riempire
-		
-		\subsection{Tecnologie coinvolte}
-		Riempire
-		
-		\subsection{Valutazione conclusiva}
-		Riempire
-	
-	
-	\section{Soldino - C6} \label{c6}
-		\subsection{Descrizione generale}
-		Riempire
-		
-		\subsection{Obiettivo finale}
-		Riempire
-		
-		\subsection{Tecnologie coinvolte}
-		Riempire
-		
-		\subsection{Valutazione conclusiva}
-		Riempire
-		
-	
+	\include{sections/introduzione}
+	\include{sections/c1}
+	\include{sections/c2}
+	\include{sections/c3}
+	\include{sections/c4}
+	\include{sections/c5}
+	\include{sections/c6}
+
 \end{document}
