@@ -1,12 +1,44 @@
 \section{Butterfly - C1} \label{c1}
     \subsection{Descrizione generale}
-    Riempire
+	Il capitolato C1 prevede lo sviluppo di Butterfly, un applicativo di supporto alle figure coinvolte nella produzione di un prodotto software che utilizzano strumenti con interfacce individuali che non comunicano fra di loro.
+	Questo progetto nasce dalla necessità di accentrare e standardizzare queste segnalazioni oltre a permetterne una gestione automatizzata e personalizzabile.
 
     \subsection{Obiettivo finale}
-    Riempire
+    Butterfly si presenta come un insieme di componenti che si interfacciano con gli strumenti di sviluppo in modo da recuperare o intercettare le segnalazioni che questi mandano e riportarle all'utente nella forma che quest'ultimo sceglie (telegram, mail, slack).\\
+    Quest'applicativo deve essere in grado di incanalare le notifiche di ciascuno strumento coinvolto nella pipeline di produzione in un singolo broker che gestisce l'inoltro verso un gestore interno all'azienda oppure alla persona interessata tramite applicazioni di messaggistica (o email) in base al topic con cui sono queste notifiche contrassegnate.\\
+    Queste componenti si collegano fra loro in un pattern Pubblisher / Subscriber e andranno ad essere configurate tramite un'interfaccia web che permette all'utente di impostare 
 
     \subsection{Tecnologie coinvolte}
-    Riempire
+	Come scritto precedentemente si richiede l'utilizzo di un pattern Pubblisher / Subscriber per la gestione dei messaggi:
+
+	\begin{itemize}
+		\item Publisher: strumenti che generano i messaggi
+		\begin{itemize}
+			\item Redmine: applicazione web di project managment
+			\item GitLab: servizio di hosting per progetti software che implementa lo strumento di controllo di sviluppo git
+			\item SonarQube: applicazione di Continuous Inspection che permette di ispezionare il codice ed analizzare il codice in maniera statica e dinamica da remoto
+		\end{itemize}
+		\item Broker: interfaccia che raccoglie i messaggi e li incanala verso l'utente
+		\begin{itemize}
+			\item Apache Kafka: piattaforma online per la gestione dei feed di dati in tempo reale
+		\end{itemize}
+		\item Subscriber: mezzi su cui i messaggi arrivano all'utente
+		\begin{itemize}
+			\item Telegram
+			\item Slack
+			\item E-mail
+		\end{itemize}
+	\end{itemize}
+
+	I linguaggi indicati nel capitolato in cui l'applicativo può essere sviluppato sono: Java, Python, NodeJS.
+	Sono inoltre richeste:
+	\begin{itemize}
+		\item API REST per interfacciarsi con i componenti dell'applicativo
+		\item Dockerfile contenente le configurazioni necessarie per il container sul quale si andrà ad eseguire l'applicativo
+		\item test unitari d'integrazione per ciascun componente in modo singolo e sull'intero sistema
+	\end{itemize}
 
     \subsection{Valutazione conclusiva}
-    Riempire
+	La scelta di sviluppare il progetto presentato in questo capitolato sta nell'utilizzo di tecnolgie richeste sul mercato come Docker e Apache Kafka.\\
+	La possibilità di creare un prodotto concreto e utilizzabile giornalmente dai developer.\\
+	Ha inoltre attirato l'attenzione del gruppo la consegna chiara e i vincoli precisi posti dall'azienda.
