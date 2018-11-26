@@ -1,0 +1,20 @@
+% Inserisce il link all'indice
+% \addcontentsline{toc}{section}{Indice}
+
+\tableofcontents
+\clearpage 
+
+% Se è stata impostata a true la variabile per la lista delle tabelle, la mostra
+\ifthenelse{\equal{\TABELLE}{true}} 
+{\listoftables \newpage}{}
+
+% Se è stata impostata a true la variabile per la lista delle figure, la mostra
+\ifthenelse{\equal{\FIGURE}{true}}
+{\listoffigures \newpage}{}
+
+% Da qui comincia la numerazione normale
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Imposta il formato di visualizzazione
+\rfoot{\thepage~di~\pageref{TotPages}}

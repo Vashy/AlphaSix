@@ -1,4 +1,4 @@
-%Generazione delle variabili che andranno a sostituire quelle del template 'HomePage.tex'
+% Generazione delle variabili che andranno a sostituire quelle del template 'HomePage.tex'
 \newcommand{\documento}{\Gl}
 \newcommand{\nomedocumentofisico}{Glossario\_v1\_0\_0.pdf}
 \newcommand{\redazione}{\TG}
@@ -10,12 +10,11 @@
 \newcommand{\datamodifica}{26 novembre 2018}
 \newcommand{\stato}{Approvato}
 
-\def\TABELLE{false}	%abilita - disabilita l'indice delle tabelle
-\def\FIGURE{false} 	%abilita - disabilita l'indice delle figure
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
 \input{../template/layout.tex}
 \input{../template/comandi.tex}
-
 
 \input{sections/diario.tex}
 
@@ -24,17 +23,14 @@
 \setcounter{tocdepth}{7}
 \begin{document}
 
-%inclusione template HomePage
+% Inclusione template HomePage
 \input{../template/HomePage.tex}
 
 % Registro delle modifiche e indice 
 % si usa la numerazione romana per gli indici e la tabella delle modifiche
 \pagenumbering{Roman}
 \input{../template/diario.tex}
-% \input{../template/index.tex}
-
-\pagenumbering{arabic}
-\setcounter{page}{1}
+\input{../template/index.tex}
 
 % \newpage
 % \input{sections/A.tex}

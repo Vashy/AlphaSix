@@ -25,21 +25,16 @@
 
 \begin{document}
 	
-	% inclusione template HomePage
+	% Inclusione template HomePage
 	\input{../template/HomePage}
+
 	% Registro delle modifiche e indice 
 	% si usa la numerazione romana per gli indici e la tabella delle modifiche
 	\pagenumbering{Roman}
 	\setcounter{page}{1}
 
 	\input{../template/diario}
-	% \input{../template/index} % TODO ?
-
-	\tableofcontents
-	\newpage
-
-	\pagenumbering{arabic}
-	\setcounter{page}{1}
+	\input{../template/index}
 
 	% Sezioni documento
 	\include{sections/introduzione}
