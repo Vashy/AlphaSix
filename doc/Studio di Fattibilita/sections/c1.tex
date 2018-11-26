@@ -5,11 +5,10 @@
 
     \subsection{Obiettivo finale}
     Butterfly si presenta come un insieme di componenti che si interfacciano con gli strumenti di sviluppo in modo da recuperare o intercettare le segnalazioni che questi mandano e riportarle all'utente nella forma che quest'ultimo sceglie (telegram, mail, slack).\\
-    Quest'applicativo deve essere in grado di incanalare le notifiche di ciascuno strumento coinvolto nella pipeline di produzione in un singolo broker che gestisce l'inoltro verso un gestore interno all'azienda oppure alla persona interessata tramite applicazioni di messaggistica (o email) in base al topic con cui sono queste notifiche contrassegnate.\\
-    Queste componenti si collegano fra loro in un pattern Pubblisher / Subscriber e andranno ad essere configurate tramite un'interfaccia web che permette all'utente di impostare 
+    Quest'applicativo deve essere in grado di incanalare le notifiche di ciascuno strumento coinvolto nella pipeline di produzione in un singolo broker che gestisce l'inoltro verso un gestore interno all'azienda oppure alla persona interessata tramite applicazioni di messaggistica o email in base al topic con cui sono queste notifiche contrassegnate.
 
     \subsection{Tecnologie coinvolte}
-	Come scritto precedentemente si richiede l'utilizzo di un pattern Pubblisher / Subscriber per la gestione dei messaggi:
+	Si richiede l'utilizzo di un pattern Publisher / Subscriber per la gestione dei messaggi:
 
 	\begin{itemize}
 		\item Publisher: strumenti che generano i messaggi
@@ -29,16 +28,16 @@
 			\item E-mail
 		\end{itemize}
 	\end{itemize}
-
-	I linguaggi indicati nel capitolato in cui l'applicativo può essere sviluppato sono: Java, Python, NodeJS.
+	I linguaggi indicati nel capitolato in cui l'applicativo può essere sviluppato sono: Java, Python, NodeJS.\\
 	Sono inoltre richeste:
 	\begin{itemize}
 		\item API REST per interfacciarsi con i componenti dell'applicativo
 		\item Dockerfile contenente le configurazioni necessarie per il container sul quale si andrà ad eseguire l'applicativo
-		\item test unitari d'integrazione per ciascun componente in modo singolo e sull'intero sistema
 	\end{itemize}
 
     \subsection{Valutazione conclusiva}
-	La scelta di sviluppare il progetto presentato in questo capitolato sta nell'utilizzo di tecnolgie richeste sul mercato come Docker e Apache Kafka.\\
-	La possibilità di creare un prodotto concreto e utilizzabile giornalmente dai developer.\\
-	Ha inoltre attirato l'attenzione del gruppo la consegna chiara e i vincoli precisi posti dall'azienda.
+	La scelta di sviluppare il progetto presentato in questo capitolato permette al team di lavorare con un ampio ventaglio di tecnologie richieste sul mercato come Docker e Apache Kafka e questo ha motivato il gruppo a prenderne parte.\\
+	Ha colpito molto la possibilità di creare un prodotto concreto e impiegato giornalmente dai developer che possa facilitarne il lavoro e automatizzare una parte del processo di sviluppo.\\
+	Ha inoltre attirato l'attenzione del gruppo la consegna chiara e i vincoli precisi posti dall'azienda.\\
+	D'altra parte l'impiego di numerose tecnologie richiede un impegno non indifferente e potrebbe risultare complesso.
+	
