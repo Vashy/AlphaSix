@@ -1,0 +1,42 @@
+
+%Generazione delle variabili che andranno a sostituire quelle del template 'HomePage.tex'
+\newcommand{\documento}{\AdR}
+\newcommand{\nomedocumentofisico}{AnalisiDeiRequisiti\_v1\_0\_0.pdf}
+\newcommand{\redazione}{\TG \\ & \LC \\ & \CV \\ & \MM \\ & \SG \\ & \NC}
+\newcommand{\verifica}{\MM\\ & \SG\\ & \NC}
+\newcommand{\approvazione}{\CV}
+\newcommand{\uso}{Esterno}
+\newcommand{\datacreazione}{27 novembre 2018}
+\newcommand{\datamodifica}{27 novembre 2018}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+\input{../template/layout.tex}
+\input{../template/comandi.tex}
+
+\input{sections/diario.tex}
+\setcounter{secnumdepth}{7}
+\setcounter{tocdepth}{7}
+\begin{document}
+
+% Inclusione template HomePage
+\input{../template/HomePage.tex}
+
+% Registro delle modifiche e indice 
+% si usa la numerazione romana per gli indici e la tabella delle modifiche
+\pagenumbering{Roman}
+\input{../template/diario.tex}
+% \input{../template/diario_per_piu_pagine.tex}
+\input{../template/index.tex}
+
+% \input{sections/Introduzione.tex}
+% \input{sections/DescrizioneGenerale.tex}
+% \input{sections/CasiD'uso.tex}
+% \input{sections/Requisiti.tex}
+% \appendix
+% \input{sections/Appendice.tex}
+
+\end{document}

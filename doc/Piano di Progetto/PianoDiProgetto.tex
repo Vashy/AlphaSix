@@ -1,0 +1,52 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\PdP}
+\newcommand{\nomedocumentofisico}{PianoDiProgetto\_v1\_0\_0.pdf}
+\newcommand{\redazione}{\TG \\ & \LC}
+\newcommand{\verifica}{\NC \\ & \SG \\ & \MM}
+\newcommand{\approvazione}{\CV}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{28 novembre 2018}
+\newcommand{\datamodifica}{28 novembre 2018}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+%Layout del documento 
+\input{../template/layout.tex}
+\input{sections/diario.tex}
+
+
+%Comandi generali
+\input{../template/comandi.tex}
+
+\begin{document}
+	
+%inclusione template HomePage
+\input{../template/HomePage.tex}
+
+% Registro delle modifiche e indice 
+% si usa la numerazione romana per gli indici e la tabella delle modifiche
+\pagenumbering{Roman}
+\input{../template/diario.tex}
+\input{../template/index.tex}
+% \newpage
+% \listoffigures
+% \newpage
+% \listoftables
+% \newpage
+
+% Sezioni documento
+% \input{sections/Introduzione.tex} 
+% \input{sections/AnalisiDeiRischi.tex}
+% \input{sections/Pianificazione.tex}
+% \input{sections/CalendarioAttivita.tex}
+% \input{sections/SuddivisioneDelLavoro.tex}
+% \input{sections/ProspettoEconomico.tex}
+% \input{sections/ControlloERendicontazione.tex}
+
+% \appendix
+% \input{sections/Organigramma.tex}
+
+\end{document}
