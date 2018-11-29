@@ -2,14 +2,22 @@
 
 %***IMPORTAZIONE PACKAGE ***
 \usepackage{ifthen}
-\usepackage[italian]{babel}
+\usepackage[english,italian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{float}
 \usepackage{chapterbib}
 \usepackage{graphicx}
 \usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
-\usepackage[colorlinks=true, urlcolor=black, citecolor=black, linkcolor=black]{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{%
+	colorlinks=true,
+	citecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
 \usepackage{booktabs}
 \usepackage{fancyhdr}
 \usepackage{totpages}
@@ -30,12 +38,8 @@
 \usepackage{placeins}
 \usepackage{color}
 \usepackage[table,usenames,dvipsnames]{xcolor}
-\usepackage{hyperref}
 \usepackage{makecell}
-\usepackage{breakurl}
-\usepackage{hyperref}
-
-
+% \usepackage{breakurl}
 
 % ***STILE PAGINA***
 \pagestyle{fancy}
@@ -49,14 +53,16 @@
 \renewcommand{\headrulewidth}{0.4pt}  % Linea sotto l'intestazione
 
 % ***PIÈ DI PAGINA***
-\lfoot{\textit{\gruppoLink}\\ \footnotesize{\email}}
-\rfoot{\thepage} %per le prime pagine: mostra solo il numero romano
+\lfoot{\textit{\gruppoLink} \\
+\footnotesize{\email}}
+
+\rfoot{\thepage} % per le prime pagine: mostra solo il numero romano
 \cfoot{}
 \renewcommand{\footrulewidth}{0.4pt}   % Linea sopra il piè di pagina
 
 % ***INSERIMENTO DI NUOVE SOTTOSEZIONI
-\setcounter{secnumdepth}{7}		% mostra nel documento fino al livello 8 (1.2.3.4.5.6.7.8)
-\setcounter{tocdepth}{7}			% mostra nell'indice fino al livello 8 (1.2.3.4.5.6.7.8)
+\setcounter{secnumdepth}{7} %mostra nel documento fino al livello 8 (1.2.3.4.5.6.7.8)
+\setcounter{tocdepth}{7}    % mostra nell'indice fino al livello 8 (1.2.3.4.5.6.7.8)
 
 %***LA SOTTOSEZIONE PARAGRAPH VIENE VISUALIZZATA COME UNA SECTION
 % \titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}

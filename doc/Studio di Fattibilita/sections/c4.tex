@@ -1,34 +1,39 @@
-\section{MegaAlexa - C4} \label{c4}
+\section{MegAlexa - C4} \label{c4}
+
     \subsection{Descrizione generale}
-    Il \textit{capitolato}\G propone lo sviluppo di una piattaforma
-    dedita alla creazione di una routine, in grado di eseguire una sequenza
-    di skill per \textit{Alexa}\GAlt, l'assistente vocale di Amazon.
+    Il capitolato\G propone lo sviluppo di una piattaforma
+    dedita alla creazione di una routine\G in grado di eseguire una sequenza
+    di skill\G per Alexa\GAlt, l'assistente vocale di Amazon.
 
     \subsection{Obiettivo finale}
-    Nello specifico, \`e richiesto lo sviluppo di una piattaforma multilingue web e
-    mobile (iOS o Android) che sia in grado di 
-    creare workflow personalizzati per Alexa creati dagli utenti.
+    Nello specifico, \`e richiesto lo sviluppo di una piattaforma multilingua web e
+    mobile (iOS o Android) che sia in grado di
+    creare workflow\G personalizzati per Alexa creati dagli utenti. Ogni utente
+    deve aver la possibilit\`a di poter nominare i propri workflow senza collidere con
+    quelli di altri utenti (e.g. un workflow chiamato ``Buongiorno'' dell'utente A \`e
+    diverso dal workflow ``Buongiorno'' dell'utente B).
 
     \subsection{Tecnologie coinvolte}
     L'azienda consiglia di utilizzare:
     \begin{itemize}
     	\item Linguaggi per la piattaforma web:
     	\begin{itemize}
-    		\item Bootstrap
+            \item \textbf{HTML5}\GAlt, \textbf{CSS3}\GAlt (\textbf{Bootstrap}\GAlt), \textbf{Javscript}\G
+                per il frontend;
+            \item \textbf{Node.js}\G per il backend;
     	\end{itemize}
-        \item \textit{\textbf{HTML5}}\GAlt, \textit{\textbf{CSS3}}\GAlt, \textit{\textbf{Javscript}}\GAlt:
-        \item \textit{\textbf{Node.js}}\GAlt:
-        \item \textit{\textbf{Kotlin}}\GAlt \textit{\textbf{Swift}}\GAlt:
-        \item \textit{\textbf{Amazon Web Services}}\GAlt
+        \item \textit{\textbf{Kotlin}}\GAlt /\textit{\textbf{Swift}}\GAlt: linguaggi per lo sviluppo delle app
+            rispettivamente per Android e iOS;
+        \item \textit{\textbf{Amazon Web Services}}\GAlt (AWS): servizio scelto per l'hosting del software e del database.
+            Nello specifico, saranno utilizzati:
             \begin{itemize}
-                \item \textit{\textbf{API Gateway}}\GAlt;
-                \item \textit{\textbf{Lambda}}\GAlt;
-                \item \textit{\textbf{Aurora Serverless}}\GAlt.
+                \item \textit{\textbf{API Gateway}}\GAlt
+                \item \textit{\textbf{Lambda}}\GAlt
+                \item \textit{\textbf{Aurora Serverless}}\GAlt
             \end{itemize}
     \end{itemize}
 
     \subsection{Valutazione conclusiva}
-    Dall'analisi fatta dal team è stato deciso di non sviluppare questo capitolato per la mole di lavoro elevata.
+    Dall'analisi fatta dal team è stato deciso di non sviluppare questo capitolato per l'elevata mole di lavoro prevista.
     Non è semplice inoltre gestire le varie routine per gli utenti oltre che sviluppare un'applicazione web e mobile nativa multilingua.
     Nonostante questo le tecnologie di AWS e di workflow di assistenti vocali risultano interessanti.
-
