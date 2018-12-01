@@ -1,42 +1,42 @@
 \section{Butterfly - C1} \label{c1}
     \subsection{Descrizione generale}
-	Il capitolato C1 prevede lo sviluppo di Butterfly, un applicativo di supporto alle figure coinvolte nella produzione di un prodotto software che utilizzano strumenti con interfacce individuali che non comunicano fra di loro.
-	Questo progetto nasce dalla necessità di accentrare e standardizzare queste segnalazioni oltre a permetterne una gestione automatizzata e personalizzabile.
+	Il capitolato C1 prevede lo sviluppo di Butterfly, un applicativo di supporto alle figure coinvolte nella produzione di un prodotto software che utilizzano strumenti con interfacce individuali che non sono in grado di comunicare fra di loro.
+	Questo progetto è stato pensato viste le necessità di raggruppare queste notifiche e di fornire degli standard per interfacciarcisi oltre a permetterne una gestione automatizzata e personalizzabile per chi lo usa.
 
     \subsection{Obiettivo finale}
-    Butterfly si presenta come un insieme di componenti che si interfacciano con gli strumenti di sviluppo in modo da recuperare o intercettare le segnalazioni che questi mandano e riportarle all'utente nella forma che quest'ultimo sceglie (telegram, mail, slack).\\
-    Quest'applicativo deve essere in grado di incanalare le notifiche di ciascuno strumento coinvolto nella pipeline di produzione in un singolo broker che gestisce l'inoltro verso un gestore interno all'azienda oppure alla persona interessata tramite applicazioni di messaggistica o email in base al topic con cui sono queste notifiche contrassegnate.
+    Butterfly si presenta come un insieme di componenti che si interfacciano con gli strumenti di sviluppo in modo da recuperare o intercettare le segnalazioni che questi mandano e riportarle all'utente nella forma che quest'ultimo sceglie.\\
+    Quest'applicativo deve essere in grado di incanalare le notifiche (contraddistinte da topic in base alla loro provenienza) di questi strumenti in un singolo broker che ne contolla l'inoltro verso un gestore\footnote{applicazione web richiesta dall'azienda che si interfaccia con butterfly} interno all'azienda oppure direttamente alla persona interessata tramite applicazioni di messaggistica o email in base al topic con cui sono queste notifiche contrassegnate.
 
     \subsection{Tecnologie coinvolte}
-	Si richiede l'utilizzo di un pattern Publisher / Subscriber per la gestione dei messaggi:
+	Si richiede l'utilizzo di un pattern Publisher / Subscriber\G per la gestione dei messaggi:
 
 	\begin{itemize}
-		\item Publisher: strumenti che generano i messaggi
+		\item \textbf{Producers}\GAlt:
 		\begin{itemize}
-			\item Redmine: applicazione web di project managment
-			\item GitLab: servizio di hosting per progetti software che implementa lo strumento di controllo di sviluppo git
-			\item SonarQube: applicazione di Continuous Inspection che permette di ispezionare il codice ed analizzare il codice in maniera statica e dinamica da remoto
+			\item \textbf{Redmine}\GAlt
+			\item \textbf{GitLab}\GAlt
+			\item \textbf{SonarQube}\GAlt
 		\end{itemize}
-		\item Broker: interfaccia che raccoglie i messaggi e li incanala verso l'utente
+		\item \textbf{Broker}\GAlt:
 		\begin{itemize}
-			\item Apache Kafka: piattaforma online per la gestione dei feed di dati in tempo reale
+			\item \textbf{Apache Kafka}\GAlt
 		\end{itemize}
-		\item Subscriber: mezzi su cui i messaggi arrivano all'utente
+		\item \textbf{Consumers}\GAlt:
 		\begin{itemize}
-			\item Telegram
-			\item Slack
+			\item \textbf{Telegram}\GAlt
+			\item \textbf{Slack}\GAlt
 			\item E-mail
 		\end{itemize}
 	\end{itemize}
-	I linguaggi indicati nel capitolato in cui l'applicativo può essere sviluppato sono: Java, Python, NodeJS.\\
+	I linguaggi indicati nel capitolato in cui l'applicativo può essere sviluppato sono: \textbf{Java}\GAlt, \textbf{Python}\GAlt, \textbf{NodeJS}\GAlt.\\
 	Sono inoltre richeste:
 	\begin{itemize}
-		\item API REST per interfacciarsi con i componenti dell'applicativo
-		\item Dockerfile contenente le configurazioni necessarie per il container sul quale si andrà ad eseguire l'applicativo
+		\item \textbf{API REST}\GAlt per interfacciarsi con i componenti dell'applicativo
+		\item \textbf{Dockerfile}\GAlt contenente le configurazioni necessarie per il container sul quale si andrà ad eseguire l'applicativo
 	\end{itemize}
 
     \subsection{Valutazione conclusiva}
-	La scelta di sviluppare il progetto presentato in questo capitolato permette al team di lavorare con un ampio ventaglio di tecnologie richieste sul mercato come Docker e Apache Kafka e questo ha motivato il gruppo a prenderne parte.\\
+	La scelta di sviluppare il progetto presentato in questo capitolato permette al team di lavorare con un ampio ventaglio di tecnologie richieste sul mercato come \textbf{Docker}\GAlt e Apache Kafka e questo ha motivato il gruppo a prenderne parte.\\
 	Ha colpito molto la possibilità di creare un prodotto concreto e impiegato giornalmente dai developer che possa facilitarne il lavoro e automatizzare una parte del processo di sviluppo.\\
 	Ha inoltre attirato l'attenzione del gruppo la consegna chiara e i vincoli precisi posti dall'azienda.\\
 	D'altra parte l'impiego di numerose tecnologie richiede un impegno non indifferente e potrebbe risultare complesso.
