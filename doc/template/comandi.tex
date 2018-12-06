@@ -78,12 +78,6 @@
 \newcommand{\RQ}{Revisione di Qualifica}
 \newcommand{\RA}{Revisione di Accettazione}
 
-% Comandi analisi dei requisiti
-% \newcommand{\uau}{utente autenticato}
-% \newcommand{\uaus}{utenti autenticati}
-% \newcommand{\uaupro}{utente autenticato pro}
-% \newcommand{\uauspro}{utenti autenticati pro}
-
 \newcommand{\myincludegraphics}[2][]{%
 	\setbox0=\hbox{\phantom{X}}%
 	\vtop{
@@ -91,7 +85,12 @@
 		\vskip-\ht0
 		\hbox{\includegraphics[#1]{#2}}}}
 
-\renewcommand\footnoterule{\rule{\linewidth}{1pt}}
+% Ridefinizione linea per le note a piè di pagina
+\renewcommand{\footnoterule}{%
+  \kern -3pt
+  \hrule width \textwidth height 0.4pt
+  \kern 2pt
+}
 
 \colorlet{punct}{red!60!black}
 \definecolor{background}{HTML}{EEEEEE}

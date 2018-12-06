@@ -44,14 +44,9 @@
 % ***STILE PAGINA***
 \pagestyle{fancy}
 
-% no indentazione paragrafo
-\setlength{\parindent}{0pt}
-
 % ***INTESTAZIONE***
 \rhead{\Large{\progetto} \\ \footnotesize{\documento}}
-%\lhead{\includegraphics[keepaspectratio = true, width = 25px] {../template/icons/fianco.png}}
-\lhead{\includegraphics[keepaspectratio = true, width = 25px] {../template/icons/a6(1).png}}
-\renewcommand{\headrulewidth}{0.4pt}  % Linea sotto l'intestazione
+\lhead{\includegraphics[keepaspectratio = true, width = 25px]{../template/icons/a6(1).png}}
 
 % ***PIÈ DI PAGINA***
 \lfoot{\textit{\gruppoLink} \\
@@ -60,6 +55,7 @@
 \rfoot{\thepage} % per le prime pagine: mostra solo il numero romano
 \cfoot{}
 \renewcommand{\footrulewidth}{0.4pt}   % Linea sopra il piè di pagina
+\renewcommand{\headrulewidth}{0.4pt}  % Linea sotto l'intestazione
 
 % ***INSERIMENTO DI NUOVE SOTTOSEZIONI
 \setcounter{secnumdepth}{7} %mostra nel documento fino al livello 8 (1.2.3.4.5.6.7.8)
