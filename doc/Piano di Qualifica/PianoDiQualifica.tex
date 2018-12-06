@@ -13,35 +13,30 @@
 \def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
 \def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
-\input{../template/layout.tex}
-\input{../template/comandi.tex}
-\input{sections/diario.tex}
+\input{../template/layout}
+\input{../template/comandi}
+\input{sections/diario}
 
 \begin{document}
 
-% Inclusione template HomePage
-\input{../template/HomePage.tex}
+    % Inclusione template HomePage
+    \input{../template/HomePage}
 
-% Registro delle modifiche e indice 
-% si usa la numerazione romana per gli indici e la tabella delle modifiche
-\pagenumbering{Roman}
-\input{../template/diario.tex}
-\input{../template/index.tex}
+    % Registro delle modifiche e indice 
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{../template/diario}
+    \input{../template/index}
 
-% \newpage
-% %\listoffigures
-% %\newpage
-% \listoftables
-% \newpage
+    % Sezioni documento
 
-% sezioni documento
+    \include{sections/introduzione}
+    \include{sections/qualita_processo}
+    \include{sections/qualita_prodotto}
+    \include{sections/sintesi_metriche}
+    \include{sections/specifica_test}
 
-% \input{sections/Introduzione.tex}
-% \input{sections/QualitaProcesso.tex}
-% \input{sections/QualitaProdotto.tex}
-% \input{sections/SpecificaTest.tex}
-% \input{sections/TracciamentoTest.tex}
-% \appendix
-% \input{sections/ResocontoAttivitaVerifica.tex}
+    \appendix
+    \include{sections/resoconto_attivita_verifica}
 
 \end{document}
