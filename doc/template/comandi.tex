@@ -79,10 +79,10 @@
 \newcommand{\RA}{Revisione di Accettazione}
 
 % Comandi analisi dei requisiti
-\newcommand{\uau}{utente autenticato}
-\newcommand{\uaus}{utenti autenticati}
-\newcommand{\uaupro}{utente autenticato pro}
-\newcommand{\uauspro}{utenti autenticati pro}
+% \newcommand{\uau}{utente autenticato}
+% \newcommand{\uaus}{utenti autenticati}
+% \newcommand{\uaupro}{utente autenticato pro}
+% \newcommand{\uauspro}{utenti autenticati pro}
 
 \newcommand{\myincludegraphics}[2][]{%
 	\setbox0=\hbox{\phantom{X}}%
@@ -92,9 +92,6 @@
 		\hbox{\includegraphics[#1]{#2}}}}
 
 \renewcommand\footnoterule{\rule{\linewidth}{1pt}}
-
-\newcommand{\nogloxy}[1]{#1} % comando da usare per evitare di metttere il mark del glossario
-\newcommand{\gloxy}[1]{\emph{#1}$_G$}
 
 \colorlet{punct}{red!60!black}
 \definecolor{background}{HTML}{EEEEEE}
@@ -145,3 +142,16 @@
 % G di glossario a pedice, con e senza spazio
 \newcommand{\GAlt}{\ped{\tiny{G}}}
 \newcommand{\G}{\ped{\tiny{G }}}
+
+% Le sottosezioni paragraph, subparagraph ecc.. vengono visualizzate come section
+\titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subparagraph}{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subsubparagraph}{\normalfont\normalsize\bfseries}{\thesubsubparagraph}{1em}{}
+\titlespacing*{\subsubparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\titleformat{\subsubsubparagraph}{\normalfont\normalsize\bfseries}{\thesubsubsubparagraph}{1em}{}
+\titlespacing*{\subsubsubparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
