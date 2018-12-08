@@ -1,6 +1,5 @@
 \documentclass[a4paper,11pt]{article}
 
-%***IMPORTAZIONE PACKAGE ***
 \usepackage{ifthen}
 \usepackage[english,italian]{babel}
 \usepackage[utf8]{inputenc}
@@ -37,7 +36,23 @@
 \usepackage{multirow}
 \usepackage{placeins}
 \usepackage{color}
+
 \usepackage[table,usenames,dvipsnames]{xcolor}
+% Definizione di nuovi colori da poter usare per le tabelle
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}
+
+% Ridefinizione dell'env tabularx. Il vecchio è utilizzabile con l'env oldtabularx
+\let\oldtabularx\tabularx
+\let\endoldtabularx\endtabularx
+\renewenvironment{tabularx}{\rowcolors{2}{white}{lightgray}\oldtabularx}{\endoldtabularx}
+
+% Ridefinizione dell'env tabular. Il vecchio è utilizzabile con l'env oldtabular
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+\renewenvironment{tabular}{\rowcolors{2}{white}{lightgray}\oldtabular}{\endoldtabular}
+
+
 \usepackage{makecell}
 % \usepackage{breakurl}
 
