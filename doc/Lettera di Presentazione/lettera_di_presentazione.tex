@@ -43,7 +43,7 @@
 
 
 % TABELLE
-\usepackage{tabularx, booktabs}
+\usepackage{tabularx,booktabs}
 \usepackage[table,usenames,dvipsnames]{xcolor}
 % Definizione di nuovi colori da poter usare per le tabelle
 \definecolor{lightgray}{gray}{0.9}
@@ -55,6 +55,11 @@
 \let\endoldtabular\endtabular
 \renewenvironment{tabular}{\rowcolors{2}{white}{lightgray}\oldtabular}{\endoldtabular}
 
+% Ridefinizione dell'env tabular. Il vecchio è utilizzabile con l'env oldtabular
+\let\oldtabularx\tabularx
+\let\endoldtabularx\endtabularx
+\renewenvironment{tabularx}{\rowcolors{2}{white}{lightgray}\oldtabularx}{\endoldtabularx}
+\renewcommand{\arraystretch}{1.4}
 
 % \date{inseirre-la-data} % comment to show today date
 
@@ -72,48 +77,68 @@
 	%	INDIRIZZO
 	%----------------------------------------------------------------------------------------
 
-	\begin{letter}{Professore Tullio Vardanega \\ Università degli studi di Padova \\ Dipartimento di Matematica "Tullio Levi-Civita" \\ Via Trieste 63 \\ 35121 Padova} % Name/title of the addressee
+		
+	\begin{letter}{%
+		Alla cortese attenzione di
+		\\Professor Tullio Vardanega
+		\\Professor Riccardo Cardin
+		\vspace{0.7em}
+		\\Università degli Studi di Padova
+		\\Dipartimento di Matematica "Tullio Levi-Civita"
+		\\Via Trieste, 63
+		\\35121 Padova (PD)
+	} % Name/title of the addressee		
 
 	\begin{center}
-		\includegraphics[width=6cm]{../template/icons/a6.png}
+		\includegraphics[width=5cm]{../template/icons/a6.png}
 		\\ alpha.six.unipd@gmail.com
 	\end{center}
 
 	%----------------------------------------------------------------------------------------
 	%	CONTENUTO
 	%----------------------------------------------------------------------------------------
-	\opening{\textbf{Egregio Professor Tullio Vardanega,}}
+	\opening{%
+		Egregi professori,
+	}
 
 	\begin{addmargin}[2em]{2em}
 		\hspace{1cm} % add indetation	
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non elit blandit, imperdiet nisi ut, congue nibh. Curabitur euismod elit id tortor imperdiet consequat. Donec quis lectus in ante tempor suscipit id eget sapien. Nulla id ligula nulla. Cras sodales, ex imperdiet laoreet auctor, leo ipsum convallis tortor, ut finibus augue ipsum in augue. Duis fringilla nibh eu diam venenatis, eget posuere diam pellentesque. Maecenas congue, sem id venenatis gravida, eros purus euismod massa, ac dignissim ligula ligula nec sem. Integer ultricies diam ac orci vestibulum, sit amet vehicula massa porta. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus nec mauris interdum, mollis dolor et, blandit metus. Vestibulum dictum eros id mollis egestas. Integer convallis, leo vel mattis facilisis, nulla est bibendum sapien, id dictum orci arcu non est. Proin semper metus diam, ut dapibus sapien maximus sed. Suspendisse vitae mauris id est ullamcorper dignissim. Morbi non iaculis libero. Phasellus nulla lacus, volutpat in metus at, consectetur egestas mi.
-
-		In allegato troverà i seguenti documenti:
+		Con la presente lettera, il gruppo AlphaSix intende comunicarVi ufficialmente l'impegno preso
+		per la realizzazione del prodotto da Voi commissionato, denominato:
+		\begin{center}
+			\textbf{\textit{Butterfly}: monitor per processi CI/CD}
+		\end{center}
+		In allegato saranno inclusi i seguenti documenti:
 		\begin{itemize}
-			\item \emph{Analisi dei Requisiti v1.0.0};
-			\item \emph{Piano di Qualifica v1.0.0};
-			\item \emph{Piano di Progetto v1.0.0};
-			\item \emph{Norme di Progetto v1.0.0};
-			\item \emph{Glossario v1.0.0};
-			\item \emph{Studio di Fattibilità v1.0.0};
+			\item \emph{Analisi dei Requisiti v1.0.0}\ped{D};
+			\item \emph{Piano di Qualifica v1.0.0}\ped{D};
+			\item \emph{Piano di Progetto v1.0.0}\ped{D};
+			\item \emph{Norme di Progetto v1.0.0}\ped{D};
+			\item \emph{Glossario v1.0.0}\ped{D};
+			\item \emph{Studio di Fattibilità v1.0.0}\ped{D};
       	\end{itemize}
 
-		  Il gruppo stima di consegnare il prodotto commissionato entro il 17/05/2019. Il costo preventivato è di ~11.540,00 \euro.
-		  \par Siamo a sua completa disposizione per eventuali chiarimenti.
-
+		Il gruppo stima di consegnare il prodotto commissionato entro il 17/05/2019. Il costo preventivato è di \mbox{\euro11 890.00},
+		come è propriamente riportato nel documento \textit{Piano di Progetto v1.0.0}.
+		
+		\clearpage
+		Si riportano qui i componenti del gruppo AlphaSix:
 		\begin{center}
-			\begin{tabular}{c | l}
-				\textbf{Nome} & \textbf{Matricola} \\
+			% \renewcommand{\arraystretch}{1.4}
+			\begin{tabularx}{0.4\textwidth}{Xc}
+				\textbf{Nominativo} & \textbf{Matricola} \\
 				\toprule
-				Laura Cameran & 111111 \\
+				Laura Cameran & 1123442 \\
 				Nicola Carlesso & 1123442 \\
 				Samuele Gardin & 1123442 \\
 				Timoty Granziero & 1123442 \\
 				Matteo Marchiori & 1123442 \\
 				Ciprian Voinea & 1123442 \\
 				\bottomrule
-			\end{tabular}
+			\end{tabularx}
 		\end{center}
+
+		\par Siamo a Vostra completa disposizione per eventuali chiarimenti.
 	\end{addmargin}
 
 	%\vspace{2\parskip} % Extra whitespace for aesthetics
