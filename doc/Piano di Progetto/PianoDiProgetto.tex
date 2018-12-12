@@ -14,42 +14,42 @@
 \def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
 \def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
-%Layout del documento 
+% Layout del documento 
 \input{../template/layout.tex}
 \input{sections/diario.tex}
 
 
-%Comandi generali
+% Comandi generali
 \input{../template/comandi.tex}
 
 \begin{document}
 	
-%inclusione template HomePage
-\input{../template/HomePage.tex}
+    % Inclusione template HomePage
+    \input{../template/HomePage.tex}
 
-% Registro delle modifiche e indice
-% si usa la numerazione romana per gli indici e la tabella delle modifiche
-\pagenumbering{Roman}
-\input{../template/diario.tex}
-\input{../template/index.tex}
-% \newpage
-% \listoffigures
-% \newpage
-% \listoftables
-% \newpage
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{../template/diario.tex}
+    \input{../template/index.tex}
+    % \newpage
+    % \listoffigures
+    % \newpage
+    % \listoftables
+    % \newpage
 
-% Sezioni documento
-\input{sections/Introduzione.tex} 
-\input{sections/AnalisiDeiRischi.tex}
-\input{sections/Pianificazione.tex}
-% Secondo me da togliere, cade sotto pianificazione (CV)
-% \input{sections/CalendarioAttivita.tex}
-\input{sections/SuddivisioneDelLavoro.tex}
-\input{sections/ProspettoEconomico.tex}
-\input{sections/ConsuntivoAFinire.tex}
-\input{sections/ControlloERendicontazione.tex}
+    % Sezioni documento
+    \input{sections/Introduzione.tex} 
+    \input{sections/AnalisiDeiRischi.tex}
+    \input{sections/Pianificazione.tex}
+    % Secondo me da togliere, cade sotto pianificazione (CV)
+    % \input{sections/CalendarioAttivita.tex}
+    \input{sections/SuddivisioneDelLavoro.tex}
+    \input{sections/ProspettoEconomico.tex}
+    \input{sections/ConsuntivoAFinire.tex}
+    \input{sections/ControlloERendicontazione.tex}
 
-% \appendix
-\input{sections/Organigramma.tex}
+    % \appendix
+    \input{sections/Organigramma.tex}
 
 \end{document}
