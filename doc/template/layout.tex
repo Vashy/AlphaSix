@@ -1,6 +1,5 @@
 \documentclass[a4paper,11pt]{article}
 
-%***IMPORTAZIONE PACKAGE ***
 \usepackage{ifthen}
 \usepackage[english,italian]{babel}
 \usepackage[utf8]{inputenc}
@@ -37,21 +36,48 @@
 \usepackage{multirow}
 \usepackage{placeins}
 \usepackage{color}
-\usepackage[table,usenames,dvipsnames]{xcolor}
 \usepackage{makecell}
-% \usepackage{breakurl}
+
+\usepackage[table,usenames,dvipsnames]{xcolor}
+% Definizione di nuovi colori da poter usare per le tabelle
+\definecolor{lightgray}{gray}{0.92}
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}
+\definecolor{headgray}{gray}{0.88}
+
+% Ridefinizione dell'env tabularx. Il vecchio è utilizzabile con l'env oldtabularx
+\let\oldtabularx\tabularx
+\let\endoldtabularx\endtabularx
+\renewenvironment{tabularx}{\rowcolors{2}{white}{lightgray}\oldtabularx}{\endoldtabularx}
+
+% Per tabularx con padding, parametro tra [], eg [1.3]
+\newenvironment{paddedtablex}[1][1]{%
+	\renewcommand*{\arraystretch}{#1}%
+	\renewcommand\theadfont{\bfseries}%
+	\tabularx%
+}{%
+	\endtabularx
+}
+
+% Ridefinizione dell'env tabular. Il vecchio è utilizzabile con l'env oldtabular
+\let\oldtabular\tabular
+\let\endoldtabular\endtabular
+\renewenvironment{tabular}{\rowcolors{2}{lightgray}{white}\oldtabular}{\endoldtabular}
+
+% Per tabular con padding, parametro tra [], eg [1.3]
+\newenvironment{paddedtable}[1][1]{%
+	\renewcommand*{\arraystretch}{#1}%
+	\renewcommand\theadfont{\bfseries}%
+	\tabular%
+}{%
+	\endtabular
+}
 
 % ***STILE PAGINA***
 \pagestyle{fancy}
 
-% no indentazione paragrafo
-\setlength{\parindent}{0pt}
-
 % ***INTESTAZIONE***
 \rhead{\Large{\progetto} \\ \footnotesize{\documento}}
-%\lhead{\includegraphics[keepaspectratio = true, width = 25px] {../template/icons/fianco.png}}
-\lhead{\includegraphics[keepaspectratio = true, width = 25px] {../template/icons/a6(1).png}}
-\renewcommand{\headrulewidth}{0.4pt}  % Linea sotto l'intestazione
+\lhead{\includegraphics[keepaspectratio = true, width = 25px]{../template/icons/a6(1).png}}
 
 % ***PIÈ DI PAGINA***
 \lfoot{\textit{\gruppoLink} \\
@@ -60,6 +86,7 @@
 \rfoot{\thepage} % per le prime pagine: mostra solo il numero romano
 \cfoot{}
 \renewcommand{\footrulewidth}{0.4pt}   % Linea sopra il piè di pagina
+\renewcommand{\headrulewidth}{0.4pt}  % Linea sotto l'intestazione
 
 % ***INSERIMENTO DI NUOVE SOTTOSEZIONI
 \setcounter{secnumdepth}{7} %mostra nel documento fino al livello 8 (1.2.3.4.5.6.7.8)
