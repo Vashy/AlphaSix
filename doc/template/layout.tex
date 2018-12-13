@@ -17,6 +17,7 @@
 	urlcolor=black
 }
 
+\usepackage{eurosym}
 \usepackage{booktabs}
 \usepackage{fancyhdr}
 \usepackage{totpages}
@@ -71,6 +72,29 @@
 }{%
 	\endtabular
 }
+
+% ***TABELLA ANALISI RISCHI PDP***
+
+\newenvironment{risktable}[1][1]{%
+	\centering%
+	\renewcommand*{\arraystretch}{1.4}%
+	\renewcommand\theadfont{\bfseries}%
+	\oldtabularx%
+}{%
+	\endoldtabularx
+}
+
+% DA SPOSTARE SU COMANDI
+% ***DOUBLE LINE***
+
+\def\mydoublerule#1#2#3{%%
+	\hrule width#1 height#2 \vskip#2
+	\hrule width#1 height#3 
+}
+
+% ***NUOVO TIPO DI CELLA CENTRATA***
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 % ***STILE PAGINA***
 \pagestyle{fancy}
