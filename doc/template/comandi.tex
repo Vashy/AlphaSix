@@ -142,6 +142,15 @@
 \newcommand{\GAlt}{\ped{\tiny{G}}}
 \newcommand{\G}{\ped{\tiny{G }}}
 
+% e.g. \gloss{progetto}
+\newcommand{\gloss}[1]{%
+    \textsc{#1}\GAlt%
+}
+
+% D di documento a pedice, con e senza spazio
+\newcommand{\DAlt}{\ped{\tiny{D}}}
+\newcommand{\D}{\ped{\tiny{D }}}
+
 % Le sottosezioni paragraph, subparagraph ecc.. vengono visualizzate come section
 \titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
@@ -154,3 +163,10 @@
 
 \titleformat{\subsubsubparagraph}{\normalfont\normalsize\bfseries}{\thesubsubsubparagraph}{1em}{}
 \titlespacing*{\subsubsubparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+% Indentazione paragrafi rimossa. Per metterla manualmente, precedere il paragrafo con il comando /indent
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}

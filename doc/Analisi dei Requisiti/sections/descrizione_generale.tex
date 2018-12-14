@@ -1,20 +1,37 @@
 \section{Descrizione generale}
-testo
 
 	\subsection{Intento del prodotto}
-	testo
+    
+    L'obiettivo del prodotto è di fornire uno strumento standard per gestione delle notifiche generate da software utilizzati nella \textit{CI/CD}\GAlt.
+    Per ottenere questo verrà usato un pattern publisher/subscriber, di modo da contribuire alla scalabilità del sistema e ottenere una miglior suddivisione logica dei componenti.
 	
 	\subsection{Funzioni del prodotto}
-	testo
+	
+    Le funzioni offerte dal prodotto sono:
+    \begin{itemize}
+		\item fornire ai software di CI/CD dei Topic a cui è possibile iscriversi e inviare messaggi;
+		\item gestione dei topic tramite un broker;
+        \item ricezione dei messaggi da parte di un consumer iscritto a un Topic (Slack,Telegram,E-mail...);
+        \item filtri aggiuntivi per la gestione dei messaggi (ad esempio, reindirizzamento verso una persona).
+	\end{itemize}
 
 	\subsection{Caratteristiche degli utenti}
-	testo
+    
+    Gli utenti che useranno il prodotto saranno team di sviluppatori software che lavorano abitualmente usando gli strumenti per realizzare la CI/CD.
+    Tramite il prodotto potranno configurare il proprio ambiente di sviluppo di modo da ottenere le notifiche in tempo reale alla fine di ogni fase principale del ciclo di sviluppo, direttamente sul proprio smartphone.
 	
 	\subsection{Vincoli del progetto}
-		testo
 	
 		\subsubsection{Requisiti minimi}
-		testo
+            \begin{itemize}
+                \item ogni componente del software rispetterà, per quanto applicabile, i fattori esposti nel documento "The Twelve-Factor App";
+                \item ogni componente sarà istanziabile in un container docker;
+                \item verranno esposti API Rest ed eventuali altri protocolli dei componenti per l'uso dell'applicativo;
+                \item verranno rilasciati tutti i test necessari a garantire la qualità del software sviluppato.
+            \end{itemize}
 	
-		\subsubsection{Requisiti desiderabili}
-		testo
+		\subsubsection{Requisiti opzionali}
+		    \begin{itemize}
+                \item verrà usato ... per lo sviluppo dei componenti applicativi;
+                \item verrà usato Apache Kafka come broker.
+            \end{itemize}
