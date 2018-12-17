@@ -1,0 +1,29 @@
+VERBALE 12/12/2018
+
+STESURA DOCUMENTO 15/12/2018
+
+INFORMAZIONI GENERALI
+
+ORDINE DEL GIORNO: recap punto della situazione, lettura tutti insieme dell'analisi dei rischi del PdP, discussione su altre regole da inserire nelle norme del progetto.
+
+LUOGO E DATA: lab036 Paolotti. Mercoledì 12/12/2018 dalle 13:30 alle 16:10 circa (prima dell'incontro con Imola Informatica) .
+
+PARTECIPANTI DEL GRUPPO ALPHA6:
+- Ciprian Voinea
+- Laura Cameran
+- Matteo Marchiori
+- Nicola Carlesso
+- Timoty Granziero
+- Samuele Gardin
+
+RESOCONTO:
+Revisione tutti insieme del PdP di Ciprian. 
+
+Decisa forma delle tabelle dei rischi (quale ID - Nome // Descrizione // Mitigazione // Probabilità - Gravità - Classe).
+
+Presa in considerazione del modello a componenti come modello di sviluppo da adottare.
+
+Accenno dell'introduzione dell'AdR di Nicola e Matteo.
+
+IN PREVSIONE AL PROSSIMO INCONTRO:
+Discutere delle altre norme da decidere insieme per inserirle nelle norme di progetto e parlare dell'incontro con Imola Informatica.
