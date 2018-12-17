@@ -6,33 +6,41 @@
 	All'interno vengono illustrate le strategie, le suddivisioni dei compiti, l'utilizzo delle risorse, la gestione dei rischi e le attività secondo le quali il gruppo ha intenzione di lavorare.
 	
 	\subsection{Scopo del prodotto}	
-	Il prodotto che AlphaSix si incarica di realizzare è composto da ... tool per prendere i messaggi , tool per analizzarli e mandarli verso gestore interno o direttamente alle perosne interessate tramite canale di informazione che è stato scelto ...
+	Il prodotto che AlphaSix si incarica di realizzare è Butterfly: un tool di supporto alle figure di sviluppo di aziende di software (non solamente quella committente).
+	Questo applicativo permette di incanalare le notifiche dei vari strumenti utilizzati nel percorso di CI e CD (come Redmine, GitLab, ecc.) di un software e, tramite un broker (Apache Kafka in questo caso), spedirli alla persona interessata tramite canale di comunicazione
+	preferito scelto da quest'ultimo (email, Telegram, Slack, ecc.).
 	
 	\subsection{Glossario}
 		\subsubsection{Riferimenti Normativi}
 			\begin{itemize}
-				\item Capitolato d'appalto C1 (aggiungere link)
-				\item Vincoli di organigramma (aggiungere link a sito di tullio)
-				\item Norme di progetto interne di AlphaSsix 
-				\item The twelve factor app, https://12factor.net/, consigliato fortemente dall'azienda
+				\item Capitolato d'appalto C1: presentazione del capitolato C1\\
+				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1.pdf}
+				\item Vincoli di organigramma e specfiche economiche:\\
+				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/RO.html}
+				\item Norme di progetto interne di AlphaSix: Norme di progetto v1.0
+				\item The twelve factor app: norme per lo sviluppo di un prodotto software consigliate dall'azienda:\\
+				\url{https://12factor.net/}
 			\end{itemize}
 		
 		\subsubsection{Riferimenti Informativi}
 			\begin{itemize}
-				\item Software engineering di sommerville
-				\item slide di tullio
+				\item Software Engineering - Ian Sommerville - 10 th Edition (2016)
+				\item Slide dell’insegnamento Ingegneria del Software:\\
+				\url{http://www.math.unipd.it/~tullio/IS-1/2018/}
 			\end{itemize}
 		
 	\subsection{Scadenze}
 	Il gruppo ha deciso di rispettare le scadenze indicate dal professor Vardanega e riportate di seguito:
 	\begin{itemize}
-		\item Revisione dei Requisiti: 2012-12-21;
-		\item Revisione di Progetto: 2013-02-03;
-		\item Revisione di Qualifica: 2013-03-06;
-		\item Revisione di Accettazione: 2013-03-16.
+		\item Revisione dei Requisiti: 21-01-2019 ;
+		\item Revisione di Progetto: 15-03-2019 ;
+		\item Revisione di Qualifica: 19-04-2019 ;
+		\item Revisione di Accettazione: 17-05-2019 .
 	\end{itemize}
 	
 	\subsection{Ciclo di vita}
+	%TODO rivedere: trovare sinonimo deciso
+	%TODO inserire immagine modello incrementale
 	Il gruppo ha deciso di adottare il modello incrementale come ciclo di vita da adottare per i processi in quanto si adatta particolarmente per questo progetto.
 	Ogni ripetizione del ciclo identifica un "ciclo di incremento": questo verrà ripetuto fino a quando il prodotto non arriverà a soddisfare interamente i requisiti richiesti dal cliente.
 	Questa decisione è stata presa in quanto:
