@@ -39,19 +39,20 @@
 	\end{itemize}
 	
 	\subsection{Ciclo di vita}
-	%TODO rivedere: trovare sinonimo deciso
-	%TODO inserire immagine modello incrementale
-	Il gruppo ha deciso di adottare il modello incrementale come ciclo di vita da adottare per i processi in quanto si adatta particolarmente per questo progetto.
-	Ogni ripetizione del ciclo identifica un "ciclo di incremento": questo verrà ripetuto fino a quando il prodotto non arriverà a soddisfare interamente i requisiti richiesti dal cliente.
-	Questa decisione è stata presa in quanto:
+	Data la natura del progetto, composto da più parti modulari, il gruppo ha stabilito di adottare un ciclo di vita con modello ibrido tra quello a componenti e quello incrementale.
+	Questi modelli si adattano particolarmente a questo tipo di progetto in quanto:
 	\begin{itemize}
-		\item le richieste presentate nel capitolato sono facilmente scomponibili in sottoproblemi categorizzabili in base alla loro importanza e di conseguenza possono essere soddisfatti partendo da quelli più critici a quelli meno critici anche parallelamente
-		\item il passaggio da un incremento ad un altro consolida il processo appena concluso riducendo il rischio di fallimento e facilitando la verifica parziale del prodotto
-		\item la ripartizione in cicli permette un controllo più efficente delle risorse pianificandone l'uso
+		\item il modello incrementale prevede ripetizioni identificate come "cicli di incremento" che verranno ripetute fino a quando il prodotto non arriverà a soddisfare i requisiti richiesti dal cliente: questo si adatta particolarmente per lo sviluppo della documentazione
+		\item il modello a componenti prevede invece che venga riutilizzata una base per lo sviluppo dei vari pezzi che formano il progetto. In questo caso si tratta degli algoritmi che indicano il funzionamento dei moduli dell'applicativo.
 	\end{itemize}
-	Addottando questa modalità il gruppo può rilasciare al committente un prototipo (funzionale) che soddisfa requisiti più importanti fra quelli presentati nel capitolato.
+	Inizialmente quindi si potranno spendere le risorse nella realizzazione di una base di partenza per i componenti, che verrà successivamente sviluppata per ciascun requisito richiesto rappresentando il core del prodotto finale.
+	A tale milestone si potranno integrare le funzionalità secondarie richieste dal cliente insieme ai possibili requisiti impliciti presenti nel capitolato e in base alla pianificazione svolta le risorse disponibili saranno ridistribuite in modo da garantire lo sviluppo completo del prodotto.
 	
-	Inizialmente quindi si potranno spendere le risorse nella realizzazione di una base (baseline) che possa presentare il core del prodotto finale.
+	%TODO aggiungere spiegazione
 	
-	A tale base(line) saranno successivamente integrate le funzionalità secondarie richieste dal cliente nel capitolato e secondo la pianificazione e le risorse disponibili potranno essere aggiunte altre funzionalità opzionali e desidarabili che possono sorgere nello svuiluppo del prodotto o nel durante delle analisi dei requisiti (da rivedere tutto il paragrafo)
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6]{img/modello_incrementale.png}\\
+		\caption{Rappresentazione del moodello incrementale}
+	\end{figure}
 	
