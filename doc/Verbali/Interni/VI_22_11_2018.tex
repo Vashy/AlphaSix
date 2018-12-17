@@ -11,7 +11,7 @@
 % - "INSERT DOMANDE E RISPOSTE" (intanto lo strutturiamo così, con domande e rispose, se servono altri tipi di struttura cambieremo)
 
 % - "INSERT TITOLO" (verosimilmente sarà una cosa tipo "Verbale Esterno/Interno del xx/yy") 
-\newcommand{\Titolo}{Template}
+\newcommand{\Titolo}{Verbale Interno del 22/11/2018}
 
 \newcommand{\Gruppo}{AlphaSix}
 
@@ -19,7 +19,7 @@
 
 \newcommand{\Redazione}{Timoty Granziero, Laura Cameran, Matteo Marchiori, Samuele Gardin, Nicola Carlesso, Ciprian Voinea}
 
-\newcommand{\ACapoRedazione}{Timoty Granziero \\ & Laura Cameran \\ & Matteo Marchiori \\ & Samuele Gardin \\ & Nicola Carlesso \\ & Ciprian Voinea}
+\newcommand{\ACapoRedazione}{Matteo Marchiori}
 
 \newcommand{\Verifica}{XXX}
 
@@ -30,10 +30,10 @@
 \newcommand{\InformazioniDocumento}{Informazioni sul documento}
 
 % - "INSERT USO (INTERNO/ESTERNO)"
-\newcommand{\Uso}{Interno/Esterno}
+\newcommand{\Uso}{Interno}
 
 % - "INSERT DATA"
-\newcommand{\Data}{TODO}
+\newcommand{\Data}{22 novembre 2018}
 
 % - "INSERT DESCRIZIONE"
 \newcommand{\DescrizioneDoc}{Questo documento riporta informalmente il riassunto della rinuione tenutasi nella data sopra riportata.}
@@ -98,10 +98,8 @@
 
 % package utili per tabelle(\thead in particolare)
 \usepackage{array, booktabs, caption}
-
 \usepackage{makecell}
 \renewcommand\theadfont{\bfseries}
-
 \usepackage{boldline}
 
 \usepackage{listings} % permette di inserire degli spezzoni di codice
@@ -206,7 +204,6 @@ backgroundcolor=\color{lbcolor},
   stringstyle=\color{red}
 }
 
-
 \newgeometry{top=4cm}
 
 \begin{document}
@@ -262,21 +259,30 @@ backgroundcolor=\color{lbcolor},
 		\subsection{Informazioni incontro}
 			% - INSERT INFORMAZIONI INCONTRO
 			\begin{itemize}
-				\item { \textbf{Luogo}: }
-				\item { \textbf{Data}: }
-				\item { \textbf{Ora inizio}: }
-				\item { \textbf{Ora fine}: }
-				\item { \textbf{Partecipanti del gruppo}: }
-				\item { \textbf{Partecipanti esterni}: }
-				\item { \textbf{Ordine del giorno}: }
+				\item { \textbf{Luogo}:  Torre Archimede}
+				\item { \textbf{Data}: \Data}
+				\item { \textbf{Ora inizio}: 13:00}
+				\item { \textbf{Ora fine}: 16:00}
+				\item { \textbf{Partecipanti del gruppo}: gruppo al completo}
+				\item { \textbf{Partecipanti esterni}: Nessuno}
+				\item { \textbf{Ordine del giorno}: Parlare della fattibilità dei vari capitolati.}
 			\end{itemize}
 
         \subsection{Argomenti}
             % - INSERT ARGOMENTI
-            Contenuto
+            \paragraph{Studio di fattibilità}
+            Ogni membro ha espresso con ordine i suoi punti a favore e a sfavore di ogni capitolato.\par
+            È fatta una valutazione in base a complessità, ore di studio stimate richieste per il team, interessi personali e
+            quanto potrebbe influire la scelta di un capitolato rispetto a un altro per C.V.\par
+            La scelta ricade sul capitolato numero 1 perché tutti i membri dimostrano interesse per l'obiettivo del capitolato
+            e per le tecnologie interessate.\par
+            Viene valutato positivamente come progetto per i motivi esposti nello studio di fattibilità.
 
-	\section{Domande e Risposte}
-			% - INSERT DOMANDE E RISPOSTE
-            Contenuto
-
+            \paragraph{Nome e logo}
+            È stata inoltre discussa la scelta del nome del team e del conseguente logo. A fine consultazione, il nome scelto
+            per il gruppo è \textit{Alpha Six}.\par
+            Esso deriva dalla composizione dei sei membri del team, il quale è anche il gruppo identificato dal numero 1.\par
+            Viene denotata una certa predisposizione iniziale di tutto il gruppo a includere nel nome una lettera dell'alfabeto greco,
+            e dopo una valutazione di suono e significato è stato deciso che alpha è l'opzione migliore: inoltre, Alpha ($\alpha$) è
+            la prima lettera di tale alfabeto.
 \end{document}
