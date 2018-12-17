@@ -15,23 +15,23 @@
 \def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
 % Layout del documento 
-\input{../template/layout.tex}
-\input{sections/diario.tex}
+\input{../template/layout}
+\input{sections/diario}
 
 
 % Comandi generali
-\input{../template/comandi.tex}
+\input{../template/comandi}
 
 \begin{document}
 	
     % Inclusione template HomePage
-    \input{../template/HomePage.tex}
+    \input{../template/HomePage}
 
     % Registro delle modifiche e indice
     % si usa la numerazione romana per gli indici e la tabella delle modifiche
     \pagenumbering{Roman}
-    \input{../template/diario.tex}
-    \input{../template/index.tex}
+    \input{../template/diario}
+    \input{../template/index}
     % \newpage
     % \listoffigures
     % \newpage
@@ -39,17 +39,17 @@
     % \newpage
 
     % Sezioni documento
-    \input{sections/Introduzione.tex} 
-    \input{sections/AnalisiDeiRischi.tex}
-    \input{sections/Pianificazione.tex}
+    \include{sections/introduzione} 
+    \include{sections/analisi_dei_rischi}
+    \include{sections/pianificazione}
     % Secondo me da togliere, cade sotto pianificazione (\CV)
-    % \input{sections/CalendarioAttivita.tex}
-    \input{sections/SuddivisioneDelLavoro.tex}
-    \input{sections/ProspettoEconomico.tex}
-    \input{sections/ConsuntivoAFinire.tex}
-    \input{sections/ControlloERendicontazione.tex}
+    % \include{sections/CalendarioAttivita}
+    \include{sections/suddivisione_del_lavoro}
+    \include{sections/prospetto_economico}
+    \include{sections/consuntivo_a_finire}
+    \include{sections/controllo_e_rendicontazione}
 
     % \appendix
-    \input{sections/Organigramma.tex}
+    \include{sections/organigramma}
 
 \end{document}
