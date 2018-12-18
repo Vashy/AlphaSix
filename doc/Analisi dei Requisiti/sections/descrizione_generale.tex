@@ -2,16 +2,16 @@
 
 	\subsection{Intento del prodotto}
     
-    L'obiettivo del prodotto è di fornire uno strumento standard per gestione delle notifiche generate da software utilizzati nella \textit{CI/CD}\GAlt.
+    L'obiettivo del prodotto è di fornire uno strumento standard per la gestione delle notifiche generate da software utilizzati nella \textit{CI/CD}\G.
     Per ottenere questo verrà usato un pattern publisher/subscriber, di modo da contribuire alla scalabilità del sistema e ottenere una miglior suddivisione logica dei componenti.
 	
 	\subsection{Funzioni del prodotto}
 	
     Le funzioni offerte dal prodotto sono:
     \begin{itemize}
-		\item fornire ai software di CI/CD dei Topic a cui è possibile iscriversi e inviare messaggi;
-		\item gestione dei topic tramite un broker;
-        \item ricezione dei messaggi da parte di un consumer iscritto a un Topic (Slack,Telegram,E-mail...);
+		\item fornire ai software di CI/CD dei topic a cui è possibile iscriversi e inviare messaggi;
+		\item gestione dei topic tramite un \textit{broker}\G;
+        \item ricezione dei messaggi da parte di un \textit{consumer}\GAlt iscritto a un topic (Slack,Telegram,E-mail...);
         \item filtri aggiuntivi per la gestione dei messaggi (ad esempio, reindirizzamento verso una persona).
 	\end{itemize}
 
@@ -25,8 +25,8 @@
 		\subsubsection{Requisiti minimi}
             \begin{itemize}
                 \item ogni componente del software rispetterà, per quanto applicabile, i fattori esposti nel documento "The Twelve-Factor App";
-                \item ogni componente sarà istanziabile in un container docker;
-                \item verranno esposti API Rest ed eventuali altri protocolli dei componenti per l'uso dell'applicativo;
+                \item ogni componente sarà istanziabile in un container \textit{docker}\G;
+                \item verranno esposti \textit{API Rest}\GAlt ed eventuali altri protocolli dei componenti per l'uso dell'applicativo;
                 \item verranno rilasciati tutti i test necessari a garantire la qualità del software sviluppato.
             \end{itemize}
 	

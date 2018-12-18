@@ -1,12 +1,8 @@
 \lettera{P}\label{P}
 
-	%Copiato da wikipedia, va rivisto (cv)
 	\parola{Pattern Publisher / Subscriber}{%
 		Design pattern utilizzato per la comunicazione asincrona fra diversi processi, oggetti o altri agenti.
-		Per la sua natura di integrazione tra diverse sorgenti software, il pattern publish/subscribe può essere considerato un middleware.
 		In questo schema, mittenti e destinatari di messaggi dialogano attraverso un tramite, che può essere detto dispatcher o broker. Il mittente di un messaggio (detto publisher) non deve essere consapevole dell'identità dei destinatari (detti subscriber); esso si limita a "pubblicare" (in inglese to publish) il proprio messaggio al dispatcher. I destinatari si rivolgono a loro volta al dispatcher "abbonandosi" (in inglese to subscribe) alla ricezione di messaggi. Il dispatcher quindi inoltra ogni messaggio inviato da un publisher a tutti i subscriber interessati a quel messaggio.
-		In genere, il meccanismo di sottoscrizione consente ai subscriber di precisare nel modo più specifico possibile a quali messaggi sono interessati. Per esempio, un subscriber potrebbe "abbonarsi" solo alla ricezione di messaggi da determinati publisher, oppure aventi certe caratteristiche.
-		Questo schema implica che ai publisher non sia noto quanti e quali siano i subscriber e viceversa. Questo può contribuire alla scalabilità del sistema
 	}\label{Pattern Publisher / Subscriber}
 	
     \parola{Peer to Peer}{%
