@@ -7,42 +7,81 @@ testo
 	\subsection{Attori}
 	\begin{itemize}
 		\item Producer
-		\item Broker
-		\item Consumer
-		\item Utente finale che vede sul gestore personale i report.
-		\item Utente specializzato a configurare tutto il nostro SW (sistemista).
+		\item Utente che interagisce con il gestore personale
+		\item Consumer (secondario)
 	\end{itemize}
 	
 	\subsection{Elenco casi d'uso}
 	Messaggio - tecnologia che invia il messaggio - tipo di messaggio di quella tecnologia.
 	Classificazioni in base al topic.
-	
-		\subsubsection{UC 1}
-		 Producer genera un messaggio 
-		
-			\paragraph{UC 1.1}
-			Analisi di chi è il Producer che ha eseguito l'azione.
-			
-			\subparagraph{UC 1.1.1}
-			Se il Producer..
-		
-		\subsubsection{UC 2}
-		Broker che riceve messaggio.
-		
-		\subsubsection{UC 3}
-		Broker invia un messaggio al Consumer.
-			
-			\paragraph{UC 3.1}
-			Reindirizzamento alla persona sostitutiva più adatta (vedere di dare una priorità).
-		
-		\subsubsection{UC 4}
-		Consumer riceve messaggio dal Broker.
-		
-		\subsubsection{UC 5}
-		Utente che va sul gestore personale e vede i report creati.
-		
-		\subsubsection{UC 6}
-		Configurazione del container platform.
+
+\subsubsection{UC 1}
+producer genera un messaggio
+	\paragraph{UC1.1}
+	api gitlab
+		\subparagraph{UC1.1.1}
+		aggiornamento issue tracking system (apertura issue / chiusura)
+		\subparagraph{UC1.1.1}
+		analisi tag:
+			se non presente {si aggiunge alla lista dei tag} --> estensione / scenario alternativo
+		\subparagraph{UC1.1.1}
+		cambio stato repository (commit)
+
+	\paragraph{UC1.1}
+	api redmine
+		\subparagraph{UC1.1.1}
+		aggiornamento issue tracking system (apertura issue / chiusura / avviso ritardo)
+
+	\paragraph{UC1.1}
+	api sonarqube
+		\subparagraph{UC1.1.1}
+		esecuzione build
+
+
+\subsubsection{UC 2}
+autenticazione dell'utente nel sistema
+	\paragraph{UC1.1}
+	inserimento username
+	\paragraph{UC1.1}
+	inserimento password
+
+
+\subsubsection{UC 3}
+configurazione delle preferenze dell'utente nel sistema
+
+	\paragraph{UC1.1}
+	aggiunta preferenza
+		\subparagraph{UC1.1}:
+		iscrizione topic
+			data la lista di topic presenti l'utente seleziona quelli a cui è interessato ricevere notifica (suddiviso per tecnologia e per tag [BUG, FIX, ISSUE, ecc.] )
+		\subparagraph{UC1.1}:
+		prima selezione dei giorni in calendario:
+			dato il calendario lavorativo l'utente selezionerà i giorni in cui sarà assente
+		\subparagraph{UC1.1}
+		piattaforma di messaggistica:
+			telegram: aggiunta nickname
+			slack: aggiunta nickname
+			mail: aggiunta email
+	\paragraph{UC1.1}
+	aggiornamento delle preferenze
+		\subparagraph{UC1.1}
+		modifica calendario:
+			dato il calendario lavorativo l'utente modifica i giorni disponibili
+		\subparagraph{UC1.1}
+		cambio piattaforma di messaggistica
+			telegram: modifica nickname
+			slack: modifica nickname
+			mail: modifica email
+	\paragraph{UC1.1}
+	rimozione preferenza
+		\subparagraph{UC1.1}
+		disiscrizione topic
+			data la lista di topic a cui è iscritto l'utente elimina quelli a cui non è più interessato ricevere notifica
+		\subparagraph{UC1.1}
+		rimozione piattaforma di messaggistica
+			telegram: modifica nickname
+			slack: modifica nickname
+			mail: modifica email		
 		
 		%Possibilità di aggiungere funzionalità specifiche di Gitlab, di Sonar, di Redmine ecc
 		
