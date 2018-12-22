@@ -15,13 +15,24 @@
 			\begin{itemize}
 				\item Layout delle pagine
 				\item \gloss{Macro} personalizzate volte a semplificare l'utilizzo di strutture o comandi ricorrenti
-				\item Codice per la generazione della prima pagina per tutti i documenti
+				\item Codice per la generazione della prima pagina
 					(struttura definita in \S\ref{PS:Documentazione:Struttura:Frontespizio})
 				\item Diario delle modifiche
 			\end{itemize}
 
-			\paragraph{Ciclo di vita}\label{PS:Documentazione:Implementazione:CicloVita}
-			Contenuto
+			\paragraph{Ciclo di vita dei documenti}\label{PS:Documentazione:Implementazione:CicloVita}
+			Durante il suo ciclo di vita, ogni documento potrà trovarsi in una delle seguenti fasi:
+			\begin{itemize}
+				\item \textbf{Redazione}: fase che inizia con la creazione del documento e dura fino alla sua ultima approvazione.
+					Il \Res\ assegna ai \gloss{redattori} le varie sezioni di ogni documento da redarre, i quali aggiorneranno la versione nel diario delle modifiche
+					come normato in \S\ref{Versionamento}.
+				\item \textbf{Verifica}: il documento entra in questa fase nel momento in cui i redattori hanno terminato la stesura del lavoro loro assegnato
+					segnalandolo al \Res, il quale assegnerà ai Verificatori la verifica della qualità del prodotto, secondo quanto riportato nelle norme di verifica.
+					Essi potranno approvare il documento oppure notificare il \Res\ su eventuali errori o incongruenze emerse durante la fase di verifica, che provvederà
+					a riassegnare il lavoro.
+				\item \textbf{Approvazione}: fase che inizia dall'accettazione del documento da parte dei Verificatori nella fase di verifica. Spetta al \Res\
+					l'approvazione ufficiale del documento, seguita dal rilascio di una \gloss{major release}. 
+			\end{itemize}
 
 		\subsubsection{Struttura}\label{PS:Documentazione:Struttura}
 
@@ -124,7 +135,7 @@
 
 		\subsubsection{Mantenimento}
 
-			\paragraph{Versionamento}
+			\paragraph{Versionamento} \label{Versionamento}
 			v[..].[..].[..]
 
 			\paragraph{Nomenclatura}
