@@ -173,8 +173,15 @@
 \setlength{\parindent}{0pt}
 \renewcommand{\indent}{\hspace*{\tindent}}
 
+
+% Generazione automatica dei numeri per le versioni
+\newcounter{vZ} % valore Z in X.Y.Z
+\newcommand{\decrvZ}{\addtocounter{vZ}{-1}} % Comando per il decremento automatico del counter vZ 
+\newcommand{\addToDiary}[4]{0.0.\thevZ & #1 & #2 & #3 & #4 \decrvZ \\} % Comando per generare una riga di diario delle modifiche (\addToDiary{desc}{ruolo}{nominativo}{data})
+
+
 % Stile liste
-\renewcommand\labelitemi{$\circ$} % Bullet, primo livello
+% \renewcommand\labelitemi{$\circ$} % Bullet, primo livello
 % \renewcommand\labelitemii{$\diamond$} % Bullet, primo livello
 % \renewcommand\labelitemii{\normalfont\bfseries \textendash} % --, secondo livello
 % \renewcommand\labelitemiii{\textasteriskcentered} % *, terzo livello
