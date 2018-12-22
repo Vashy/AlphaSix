@@ -8,9 +8,17 @@
 		Contenuto
 
 			\paragraph{Template}\label{PS:Documentazione:Implementazione:Template}
-			Prima di iniziare a redarre i documenti, è stato creato un template per \LaTeX \
-			contenente tutte le impostazioni grafiche che vengono condivise tra i vari documenti, per sfruttare il riutilizzo
-			del codice e semplificare enormemente la manutenzione.
+			Prima di iniziare a redarre i documenti, è stato creato un template per \LaTeX \ (\S\ref{LaTeX})
+			contenente tutte le impostazioni grafiche condivise tra i vari documenti, per sfruttare il riutilizzo
+			del codice e semplificare enormemente la manutenzione dei \gloss{sorgenti}.\par
+			Nello specifico, è presente un file per ognuna delle seguenti utilità:
+			\begin{itemize}
+				\item Layout delle pagine
+				\item \gloss{Macro} personalizzate volte a semplificare l'utilizzo di strutture o comandi ricorrenti
+				\item Codice per la generazione della prima pagina per tutti i documenti
+					(struttura definita in \S\ref{PS:Documentazione:Struttura:Frontespizio})
+				\item Diario delle modifiche
+			\end{itemize}
 
 			\paragraph{Ciclo di vita}\label{PS:Documentazione:Implementazione:CicloVita}
 			Contenuto
@@ -98,7 +106,7 @@
 
 			\paragraph{Strumenti di supporto}
 
-			\subparagraph{\LaTeX}
+			\subparagraph{\LaTeX} \label{LaTeX}
 			È stato scelto \LaTeX \ perché presenta molti vantaggi quali:
 
 			\subparagraph{TexStudio}
