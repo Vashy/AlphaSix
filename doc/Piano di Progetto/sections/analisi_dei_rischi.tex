@@ -23,11 +23,11 @@
 	\subsection{Tipologia}
 	Le tipologie in cui suddividere i rischi sono state prese dal libro Software Engineering\footnote{10° edizione, Pagina 648, Capitolo 22: Project management} e sono:
 	\begin{itemize}
- 		\item Organizzativo: ;
-		\item Personale: ;
-		\item Requisiti: ;
-		\item Strumentale: ;
-		\item Tecnologico: ;
+ 		\item \textbf{Organizzativo}: dovuto alla gestione di persone che hanno diverse responsabilità all'interno progetto.
+		\item \textbf{Personale}: riguarda le conoscenze, i tempi e la formazione personali.
+		\item \textbf{Requisiti}: ha a che fare con il grande numero di requisiti.
+		\item \textbf{Strumentale}: per la performance degli strumenti.
+		\item \textbf{Tecnologico}: per guasti nelle tecnologie.
 	\end{itemize}
 	\subsection{Classificazione}
 	A ciascun rischio viene assegnato un codice identificativo in modo da essere facilmente riconoscibile e da comprenderne le generalità (come classe, probabilità e severità) senza andare a cercarle nelle tabelle che comprendono tutti i rischi del progetto analizzati.
@@ -72,7 +72,7 @@
 	
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{X00-000} & 
+			\thead{P00-111} & 
 			Inesperienza del team a livello tecnico\\
 			\hline
 			\rowcolor{gray!15}
@@ -95,7 +95,7 @@
 
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{X00-000} & 
+			\thead{P01-122} & 
 			Impreparazione del team a livello gestionale \\
 			\hline
 			\rowcolor{gray!15}
@@ -120,21 +120,21 @@
 		%TODO rivedere
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
 			\rowcolor{red}			
-			\thead{X00-000} & 
-			Mancata consegna del materiale ad una scadenza \\
+			\thead{O00-201} & 
+			Ritardo consegna del materiale per una revisione oltre la scadenza \\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				È possibile che uno o più compoonenti non riescano a gestire i compiti assegnati e quindi arrivare a una scadenza senza aver finito il proprio lavoro e obbligando l'intero gruppo a saltare la consegna.
+				È possibile che uno o più componenti del gruppo non riescano a gestire i compiti assegnati e quindi arrivare a una scadenza senza aver finito il proprio lavoro, obbligando l'intero gruppo rinviare la consegna.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Sarà compito del responsabile (o dell'amministratore, o entrambi?) assicurarsi che il lavoro proceda in maniera lineare ponendo scadenze intermedie, monitorando il lavoro del gruppo, organizzando riunioni ed aggiornarsi sullo stato dei vari compiti assegnati secondo il way of working scelto.
+				Sarà compito del responsabile assicurarsi che il lavoro proceda in maniera lineare ponendo scadenze intermedie, monitorando il lavoro del gruppo, organizzando riunioni e aggiornandosi sullo stato dei vari compiti assegnati secondo il way of working scelto.
 			}\\
 			\hline
 			\rowcolor{gray!15}			
 			\multicolumn{2}{X}{
-				Ciascun membro si impegna a gestire il proprio tempo in maniera coerente con gli altri impegni universitari senza tralasciare il suo ruolo nello sviluppo del progetto. In caso di impegni che possano ostacolare ciò, si prenderà cura di avvisare per tempo giustificandosi adeguatamente.
+				Ciascun membro si impegna a gestire il proprio tempo adeguatamente in rapporto con gli altri impegni universitari senza tralasciare il suo ruolo nello sviluppo del progetto. In caso di impegni che possano ostacolare ciò, si prenderà cura di avvisare gli altri componenti del gruppo per tempo.
 			}\\
 		\end{risktable}
 	\end{table}
@@ -143,7 +143,7 @@
 	
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{X00-000} & 
+			\thead{P02-100} & 
 			Approvazione errata di documenti \\
 			\hline
 			\rowcolor{gray!15}
@@ -158,7 +158,7 @@
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Chi al momento svolge il ruolo di responsabile deve assicurarsi che i documenti approvati siano effettivamente validi e in caso di sviste il verificatore deve saper trovare e correggere gli eventiali errori.
+				Chi al momento svolge il ruolo di responsabile deve assicurarsi che i documenti approvati siano effettivamente validi e in caso di sviste il verificatore deve saper trovare e correggere gli eventuali errori.
 			}\\
 		\end{risktable}
 	\end{table}
@@ -168,7 +168,7 @@
 	\begin{table}[H]
 		
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{X00-000} & 
+			\thead{P03-100} & 
 			Cattiva gestione dell'archivio di documentazione di progetto\\
 			\hline
 			\rowcolor{gray!15}			
@@ -177,7 +177,7 @@
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				L'amministratore deve aver predisposto una repository comune in cui ciascun componente potrà caricare il proprio lavoro e ciascun altra persona deve saperla utilizzare in maniera tale da non andare a modificare quel che è stato caricato dagli altri.
+				L'amministratore deve aver predisposto una repository comune in cui ciascun componente potrà caricare il proprio lavoro e dovrà saperla utilizzare in maniera tale da non andare a modificare quel che è stato caricato dagli altri.
 			}\\
 			\hline
 			\rowcolor{gray!15}			
@@ -194,29 +194,30 @@
 		%TODO rivedere
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
 			\rowcolor{red}			
-			\thead{X00-000} & 
-			Non conoscenza totale o parziale da parte dei membri \\
+			\thead{P04-021} & 
+			Non conoscenza totale o parziale tra i membri\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Il gruppo è formato principalmente da persone che non si conoscevano o che hanno avuto poche interazioni fra di loro fino ad ora, questo implica che non ci si conosce a livello di metodologie di lavoro.
+				Il gruppo è formato principalmente da persone che precedentemente non si conoscevano o che hanno avuto poche interazioni fra di loro fino al momento della creazione di quest'ultimo. Ciò può comportare una cattiva gestione del lavoro e dell'assegnazione dei compiti, poiché non si conoscono le competenze altrui.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Il gruppo si impegna a conoscersi tramite riunioni e strumenti di comunicazione come chat su Telegram o Slack.
-				Si parla e si decide insieme di usare un way of working che possa andare bene a tutti e che possa soddisfare le metodologie di lavoro di tutti i componenti.
-				È possibile che ci siano dibattiti e non ci si riesca a mettere d'accordo sulle cose, in questo caso vince la maggioranza o comunque per questo viene definito un way of working comune.
+				Tra incontri faccia a faccia e strumenti di comunicazione quali chat su Telegram o Slack, ci si confronta e si realizzano i diversi modi di lavorare di ognuno.
 			}\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				In caso ci fossero dubbi sul lavoro svolto da un componente del gruppo gli altri si impegneranno a chiedere chiarimenti.
-				In caso ci fossero dibattiti, per non ricorrere alle lame, gli altri componenti andranno a calmare le acque senza che ci siano morti.
+				Il gruppo si impegna a conoscersi nel corso delle riunioni e ritrovi. Si discute inoltre insieme di un way of working comune che possa soddisfare le metodologie di lavoro di tutti i componenti.
+				È possibile che ci siano dibattiti e non ci si riesca a mettere d'accordo su argomenti vari; in questo caso vince l'opinione della maggioranza.
+				%In caso ci fossero dibattiti, per non ricorrere alle lame, gli altri componenti andranno a calmare le acque senza che ci siano morti.
+				%LOOOL
 			}\\
 		\end{risktable}
 		
 	\end{table}
 	
+	%TODO LAURA: COINCIDE CON Ritardo consegna del materiale per una revisione oltre la scadenza 
 	\mydoublerule{\linewidth}{0pt}{2pt}
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
@@ -245,7 +246,7 @@
 	
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{X00-000} & 
+			\thead{S00-100} & 
 			Problematiche hardware \\
 			\hline
 			\rowcolor{gray!15}			
@@ -254,7 +255,8 @@
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Ciascun membro avrà cura degli stumenti a sua disposizione in modo tale che non sorgano problemi che possano ostacolare il proprio lavoro.
+				%TODO LAURA: da mettere in mitigazione?
+				Ciascun membro avrà cura degli strumenti a sua disposizione in modo tale che non sorgano problemi che possano ostacolare il proprio lavoro.
 			}\\
 			\hline
 			\rowcolor{gray!15}			
@@ -270,21 +272,21 @@
 		
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
 			\rowcolor{red}
-			\thead{X00-000} & 
+			\thead{R00-122} & 
 			Aggiunta o modifica di requisiti in corso di sviluppo \\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				È possibile che nel corso dello sviluppo del progetto vengano aggiunti requisiti da parte del committente o scoperti requisiti secondari impliciti che necessitano di essere sviluppati.
+				Durante il progetto, dopo aver effettuato una prima analisi di tutti i requisiti, può nascere il bisogno di modificare un requisito già fissato o aggiungerne uno non identificato in precedenza.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Data la natura modulare del progetto, ciascun requisito verrà sviluppato dal più al meno importante in modo da poter avere compiti facilmente monitorabili e testati.
+				È possibile che nel corso dello sviluppo del progetto vengano scoperti requisiti secondari impliciti non precedentemente valutati che necessitano di essere sviluppati.
 			}\\
 			\hline
 			\rowcolor{gray!15}			
 			\multicolumn{2}{X}{
-				In caso dovessero sorgere necessità di sviluppare requisiti inaspettati, questi andranno analizzati per capire di che risorse hanno bisogno e saranno inseriti nella scaletta dello sviluppo del progetto in modo adeguato.
+				In caso dovessero sorgere necessità di sviluppare requisiti inaspettati, questi andranno analizzati per capire di che risorse hanno bisogno e saranno inseriti nella scaletta dello sviluppo del progetto in modo adeguato. Data la natura modulare del progetto, ciascun requisito verrà sviluppato dal più al meno importante in modo da poter avere compiti facilmente monitorabili e testati.
 			}\\
 		\end{risktable}
 		
@@ -296,12 +298,12 @@
 		
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
 			\rowcolor{red}
-			\thead{X00-000} & 
+			\thead{T00-100} & 
 			Problematiche software\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Il gruppo fa affidamento a strumenti di terze parti per l'integrazione del codice e dei documenti. Eventuali guasti possono causare gravi perdite di dati.
+				Il gruppo fa affidamento a prodotti software per l'integrazione del codice e dei documenti. Eventuali guasti possono causare gravi perdite di dati.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
@@ -310,7 +312,7 @@
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Ciascun componente si impegna a mantenere una copia, aggiornata periodicamente, della repository contentente il lavoro sul proprio computer ed eventualmente una memoria esterna.
+				Ciascun componente si impegna a mantenere una copia, aggiornata periodicamente, della repository contenente il proprio lavoro, su computer o eventualmente una memoria esterna.
 			}\\
 		\end{risktable}
 		
@@ -318,6 +320,7 @@
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
 	
+	%TODO LAURA: tratta le stesse cose di: Aggiunta o modifica di requisiti in corso di sviluppo 
 	\begin{table}[H]
 		
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
@@ -336,7 +339,7 @@
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				In caso dovessero sorgere problemi sull'implementazione errata di un requisito, questo verrà fuori alla prossima riunione in cui si discute dei progressi di ciascun componente e in caso ci fossero dubbi, questi verrannno discussi con il resto del gruppo e se necessario con i rappresentanti dell'azienda.
+				In caso dovessero sorgere problemi sull'implementazione errata di un requisito, questo verrà fuori alla prossima riunione in cui si discute dei progressi di ciascun componente e in caso ci fossero dubbi, questi verranno discussi con il resto del gruppo e se necessario con i rappresentanti dell'azienda.
 			}\\
 		\end{risktable}
 		
@@ -345,9 +348,9 @@
 	\mydoublerule{\linewidth}{0pt}{2pt}
 
 	\begin{table}[H]
-		
+		%rischio organizzativo?!
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{X00-000} & 
+			\thead{O01-010} & 
 			Mancanza di comunicazione con l'azienda \\
 			\hline
 			\rowcolor{gray!15}
@@ -372,7 +375,7 @@
 	\begin{table}[H]
 		
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{X00-000} & 
+			\thead{P05-122} & 
 			Cattiva amministrazione delle risorse \\
 			\hline
 			\rowcolor{gray!15}

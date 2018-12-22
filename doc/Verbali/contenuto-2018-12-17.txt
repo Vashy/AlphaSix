@@ -1,0 +1,29 @@
+VERBALE 17/12/2018
+
+STESURA DOCUMENTO 18/12/2018
+
+INFORMAZIONI GENERALI
+
+ORDINE DEL GIORNO: discussione sulle norme di progetto, discussione sui casi d'uso e sull'analisi dei requisiti.
+
+LUOGO E DATA: lab036 Paolotti. Lunedì 17/12/2018 dalle 14:30 alle 17:10 circa.
+
+PARTECIPANTI DEL GRUPPO ALPHA6:
+- Ciprian Voinea
+- Laura Cameran
+- Matteo Marchiori
+- Nicola Carlesso
+- Timoty Granziero
+- Samuele Gardin
+
+RESOCONTO:
+Grazie all'incontro con i proponenti di Imola Informatica sono stati delineati più chiaramente i requisiti richiesti dal progetto.
+
+Casi d'uso generali per l'applicazione.
+
+Norme di progetto relative alla documentazione.
+
+Rotazione dei ruoli e continuazione delle attività richieste per la RR.
+
+IN PREVSIONE AL PROSSIMO INCONTRO:
+Sistemare alcune imprecisioni sui documenti, continuare con norme di progetto e piano di qualifica.
