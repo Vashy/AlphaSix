@@ -49,39 +49,51 @@ autenticazione dell'utente nel sistema
 \subsubsection{UC 3}
 configurazione delle preferenze dell'utente nel sistema
 
-	\paragraph{UC1.1}
+	\paragraph{UC3.1}
 	aggiunta preferenza
-		\subparagraph{UC1.1}:
+		\subparagraph{UC3.1.1}:
 		iscrizione topic
 			data la lista di topic presenti l'utente seleziona quelli a cui è interessato ricevere notifica (suddiviso per tecnologia e per tag [BUG, FIX, ISSUE, ecc.] )
-		\subparagraph{UC1.1}:
+		\subparagraph{UC3.1.2}:
 		prima selezione dei giorni in calendario:
 			dato il calendario lavorativo l'utente selezionerà i giorni in cui sarà assente
-		\subparagraph{UC1.1}
+		\subparagraph{UC3.1.3}
 		piattaforma di messaggistica:
 			telegram: aggiunta nickname
 			slack: aggiunta nickname
 			mail: aggiunta email
-	\paragraph{UC1.1}
-	aggiornamento delle preferenze
-		\subparagraph{UC1.1}
-		modifica calendario:
-			dato il calendario lavorativo l'utente modifica i giorni disponibili
-		\subparagraph{UC1.1}
-		cambio piattaforma di messaggistica
-			telegram: modifica nickname
-			slack: modifica nickname
-			mail: modifica email
-	\paragraph{UC1.1}
+
+	\paragraph{UC3.2}
 	rimozione preferenza
-		\subparagraph{UC1.1}
+		\subparagraph{UC3.2.1}
 		disiscrizione topic
 			data la lista di topic a cui è iscritto l'utente elimina quelli a cui non è più interessato ricevere notifica
-		\subparagraph{UC1.1}
+		\subparagraph{UC3.2.2}
+		rimozione giorno di calendario
+			data una lista dei giorni in cui non si è reperibili, vengono rimossi uno o più di questi giorni
+		\subparagraph{UC3.2.3}
 		rimozione piattaforma di messaggistica
 			telegram: modifica nickname
 			slack: modifica nickname
-			mail: modifica email		
+			mail: modifica email
+			
+	\paragraph{UC3.3}
+	applico le modifiche fatte
+	
+	\paragraph{UC3.4}
+	Annullo le modifiche fatte
+\iffalse %inizio paragrafo commentato
+\paragraph{UC3.2}
+aggiornamento delle preferenze
+\subparagraph{UC1.2.1}
+modifica calendario:
+dato il calendario lavorativo l'utente modifica i giorni disponibili
+\subparagraph{UC1.2.2}
+cambio piattaforma di messaggistica
+telegram: modifica nickname
+slack: modifica nickname
+mail: modifica email
+\fi
 		
 		%Possibilità di aggiungere funzionalità specifiche di Gitlab, di Sonar, di Redmine ecc
 		
