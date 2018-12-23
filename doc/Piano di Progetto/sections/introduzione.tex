@@ -39,20 +39,20 @@
 	\end{itemize}
 	
 	\subsection{Ciclo di vita}
-	Data la natura del progetto, composto da più parti modulari, il gruppo ha stabilito di adottare un ciclo di vita con modello ibrido tra quello a componenti e quello incrementale.
+	Data la natura del progetto, composto da più parti modulari e quindi con un valore basso di accoppiamento, il gruppo ha stabilito di adottare un ciclo di vita con modello ibrido tra quello a componenti e quello incrementale.
 	Questi modelli si adattano particolarmente a questo tipo di progetto in quanto:
 	\begin{itemize}
-		\item il modello incrementale prevede ripetizioni identificate come "cicli di incremento" che verranno ripetute fino a quando il prodotto non arriverà a soddisfare i requisiti richiesti dal cliente: questo si adatta particolarmente per lo sviluppo della documentazione
-		\item il modello a componenti prevede invece che venga riutilizzata una base per lo sviluppo dei vari pezzi che formano il progetto. In questo caso si tratta degli algoritmi che indicano il funzionamento dei moduli dell'applicativo.
+		\item il modello incrementale prevede ripetizioni identificate come cicli di incremento che verranno ripetute fino a quando il prodotto non arriverà a soddisfare i requisiti richiesti dal cliente
+		\item il modello a componenti è basato sul riuso di quello che è già stato fatto e prevede che venga riutilizzata una base per lo sviluppo dei vari pezzi che formano il progetto, fra loro indipendenti
 	\end{itemize}
 	Inizialmente quindi si potranno spendere le risorse nella realizzazione di una base di partenza per i componenti, che verrà successivamente sviluppata per ciascun requisito richiesto rappresentando il core del prodotto finale.
 	A tale milestone si potranno integrare le funzionalità secondarie richieste dal cliente insieme ai possibili requisiti impliciti presenti nel capitolato e in base alla pianificazione svolta le risorse disponibili saranno ridistribuite in modo da garantire lo sviluppo completo del prodotto.
-	
-	%TODO aggiungere spiegazione
-	
+	L'immagine che segue rappresenta il modello incrementale e come il progetto viene composto da componenti ciascuno sviluppato secondo cicli con fasi ben definite.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.6]{img/modello_incrementale.png}\\
-		\caption{Rappresentazione del moodello incrementale}
+		\includegraphics[scale=0.5]{img/modello_incrementale.png}
+		\caption{Rappresentazione del modello incrementale \protect\footnotemark}
 	\end{figure}
+
+	\footnotetext{Fonte: \url{https://it.wikipedia.org/wiki/Modello_incrementale}}
 	
