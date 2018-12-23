@@ -54,8 +54,6 @@
 \newcommand{\II}{Imola Informatica}
 \newcommand{\proponente}{Imola Informatica}
 
-\newcommand{\diaryEntry}[5]{#2 & \emph{#4} & #3 & #5 & #1\\ \hline}
-
 % Comando per una nuova riga nella tabella del diario delle modifiche
 \newcommand{\specialcell}[2][c]{%
 	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
@@ -176,9 +174,10 @@
 
 % Generazione automatica dei numeri per le versioni
 \newcounter{vZ} % valore Z in X.Y.Z
-\newcommand{\decrvZ}{\addtocounter{vZ}{-1}} % Comando per il decremento automatico del counter vZ 
-\newcommand{\addToDiary}[4]{0.0.\thevZ & #1 & #2 & #3 & #4 \decrvZ \\} % Comando per generare una riga di diario delle modifiche (\addToDiary{desc}{ruolo}{nominativo}{data})
-
+\newcounter{vY} % valore per Y in X.Y.Z
+\newcommand{\decrvZ}{\addtocounter{vZ}{-1}} % Comando per il decremento automatico del counter vZ
+\newcommand{\decrvY}{\addtocounter{vY}{-1}}
+\newcommand{\addToDiary}[4]{0.\thevY.\thevZ & #1 & #2 & #3 & #4 \decrvZ\\} % Comando per generare una riga di diario delle modifiche (\addToDiary{desc}{ruolo}{nominativo}{data})
 
 % Stile liste
 % \renewcommand\labelitemi{$\circ$} % Bullet, primo livello
