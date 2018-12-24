@@ -64,8 +64,8 @@
     		\paragraph{Riportare lo stato di avanzamento del progetto}
     		
     		
-    	\subsubsection{Chiusura dei processi}	
-    	
+		\subsubsection{Chiusura dei processi}
+		
     		\paragraph{Archiviazione dei prodotti}
     		Repository..
     		
@@ -75,13 +75,45 @@
     	\subsubsection{Strumenti di pianificazione e coordinamento}
     	
     		\paragraph{Slack} %da Telegram, trasferirsi
-    		Strumento di collaborazione..
-    		Scrivere i vari canali che abbiamo e come lo usiamo.
-    		
+			\emph{Slack} è uno strumento di collaborazione sviluppato appositamente per coordinare il lavoro tra i team, permettendo la comunicazione in tempo
+			reale, e mettendo a disposizione molte altre utilità indispensabili. Tra queste, c'è la possibilità di dividere il \gloss{workspace} in vari canali
+			specifici, marcare parole o frasi importanti con diversi stili (grassetto, corsivo, codice, barrato), fissare i messaggi importanti, aprire un \gloss{thread}
+			sotto ogni messaggio per non creare \gloss{spam} sul canale, ecc \dots
+
+			Il workspace usato dal team è stato suddiviso in diversi canali, in base alle esigenze del periodo di lavoro. Nel periodo attuale, i vari canali sono:
+			\begin{itemize}
+				\item \textbf{\# general}: canale in cui verranno discusse tematiche generali riguardanti il progetto e le sue attività.
+				\item \textbf{\# Analisi dei Requisiti}: discussioni inerenti alla stesura del documento \Doc{Analisi dei Requisiti}. Nello specifico verranno discussi
+					 i requisiti e i casi d'uso.
+				\item \textbf{\# Piano di Progetto}: discussioni inerenti la pianificazione, la suddivisione del lavoro, la valutazione dei rischi, la consuntivazione e
+					altre attività volte alla redazione del documento \Doc{Piano di Progetto}.
+				\item \textbf{\# Piano di Qualifica}: discussioni inerenti principalmente la qualità di processo e di prodotto, riportate nel documento \Doc{Piano di Qualifica}.
+				\item \textbf{\# Norme di Progetto}: discussioni riguardanti le norme che il gruppo adotterà e che ogni membro sarà tenuto a rispettare. Esse
+					saranno riportate nel documento \Doc{Norme di Progetto}.
+				\item \textbf{\# Studio di Fattibilità}: canale in cui verrà discussa la fattibilità di ogni capitolato proposto, convergenti nel documento
+					\Doc{Studio di Fattiblità}.
+				\item \textbf{\# git}: canale in cui un bot correttamente configurato manderà una notifica ogni volta che verrà effettuato un commit o aperta una issue
+					nella repository principale.
+				\item \textbf{\# latex}: discussioni riguardanti gli aspetti tecnici di \LaTeX.
+				\item \textbf{\# random}: discussioni \gloss{off-topic} del team.
+			\end{itemize}
+
     		\paragraph{GitHub}
-    		Offer servizio di tracking delle issues..
+			\emph{Github} fornisce un servizio di tracking delle \emph{issue} per ogni repository che ospita. Questo strumento offre più funzionalità di quanto potrebbe
+			sembrare, poichè permette anche di trattare le issue come delle \gloss{task}, marcandole con una opportuna label. Infatti, l'issue tracker offre le seguenti 
+			funzionalità:
+			\begin{itemize}
+				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID che verrà automaticamente generato (e.g. \texttt{\#32}),
+					al quale sarà possibile fare riferimento nei messaggi di commit.
+				\item Creare delle \gloss{milestone}, e aggregare ad esse le issue.
+				\item Assegnare delle \emph{label} alle issue, per marcarne la natura. Ad esempio, una issue marcata come \emph{bug} sarà un problema da risolvere,
+					una issue marcata come \emph{enhancement} sarà un miglioramento o una task. È possibile inoltre creare delle label personalizzate.
+				\item Assegnare le issue a un collaboratore, che sarà tenuto a correggerla.
+				\item Supporto di \gloss{markdown} esteso, che permette di formare delle pagine per le issue di aspetto delizioso e allo stesso tempo estremamente funzionali.
+			\end{itemize}
     		
-    		%\paragraph{Redmine} %? da vedere piu avanti
+			%\paragraph{Redmine} % ? da vedere piu avanti. 
+			% Per ora Github per issue-task tracker ~Tim
 
 			
 	
