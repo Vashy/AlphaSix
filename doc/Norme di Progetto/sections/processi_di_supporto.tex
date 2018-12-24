@@ -31,13 +31,13 @@
 					Essi potranno approvare il documento oppure notificare il \Res\ su eventuali errori o incongruenze emerse durante la fase di verifica, che provvederà
 					a riassegnare il lavoro.
 				\item \textbf{Approvazione}: fase che inizia dall'accettazione del documento da parte dei Verificatori nella fase di verifica. Spetta al \Res\
-					l'approvazione ufficiale del documento, seguita dal rilascio di una \gloss{major release}. 
+					l'approvazione ufficiale del documento, seguita dal rilascio di una \gloss{major release}.
 			\end{itemize}
 
 		\subsubsection{Struttura}\label{PS:Documentazione:Struttura}
 
 			\paragraph{Frontespizio}\label{PS:Documentazione:Struttura:Frontespizio}
-				
+
 
 			\paragraph{Storico delle versioni}\label{PS:Documentazione:Struttura:StoricoVersioni}
 			Contenuto
@@ -92,7 +92,7 @@
 			\paragraph{Elementi grafici}
 
 			\subparagraph{Figure}
-			 Sempre caption che descrive 
+			 Sempre caption che descrive
 
 			\subparagraph{Tabelle}
 			Contenuto
@@ -122,31 +122,66 @@
 
 			\subparagraph{TexStudio}
 			Fornisce scorciatoie...
-			
+
 			\subparagraph{Visual Studio Code}
-			
+
 
 			\subparagraph{GanttProject}
-			
-			
+
+
 			\subparagraph{Gulpease}
-			
-			
+
+
 
 		\subsubsection{Mantenimento}
 
 			\paragraph{Versionamento} \label{Versionamento}
-			v[..].[..].[..]
+			Tutti i documenti redatti supporteranno il versionamento, in modo da essere univoci e rendere disponibile la possibilità di consultare versioni precedenti
+			in qualsiasi fase del loro ciclo di vita.
+			Il modello di versionamento adottato segue lo schema \gloss{change significance}. La versione di un file è espressa secondo la notazione
+			\begin{center}
+				\texttt{X.Y.Z}
+			\end{center}
+			\indent dove:
+			\begin{itemize}
+				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento, determinando
+					una \emph{major release}.
+				\item \texttt{Y} indica il numero di versione che indica una versione che ha superato la fase di verifica, effettuata dal \Ver. Inizia da 0. Viene riportato a zero ad
+					ogni incremento della \texttt{X}.
+				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, quale l'aggiunta di una sezione
+					o correzioni grammaticali/sintattiche di un certo peso. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}.
+			\end{itemize}
+
+			\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
+
+			\paragraph{Continuous Integration}
+			Per quanto riguarda la stesura dei documenti, verrà adottato il principio di \gloss{continuous integration}, che sarà tuttavia limitato in questo periodo
+			a sincronizzarsi il prima possibile con il repository remoto (non essendoci
+			una vera e propria \emph{build} o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per quanto riguarda il \gloss{push}.
+
+			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{integration hell}.
+
 
 			\paragraph{Nomenclatura}
 
 			\subparagraph{Verbali}
-			Per interni		VI\_[DATA]
-			per esterni		VE\_[DATA]
+			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II.
+			Il nominativo del file in cui sono formalizzati sarà univoco:
+			\begin{itemize}
+				\item \texttt{VI\_dd-mm-yyyy.pdf} per i verbali interni
+				\item \texttt{VE\_dd-mm-yyyy.pdf} per i verbali esterni
+			\end{itemize}
+			dove dd-mm-yyyy è la data in cui sono stati tenuti, nel formato giorno-mese-anno.
 
 			\subparagraph{Documenti vari}
-			snake\_case per i sotto documenti (sezioni)
-			NomeDocumento\_v.NUMERO
+			Saranno presenti due tipologie di file: file interni al gruppo e file esterni.
+			\begin{itemize}
+				\item La prima categoria include moduli di \LaTeX\ contenenti le varie sezioni, che non verranno mai esposti esternamente. Questi file verranno
+					denominati usando la convenzione \texttt{snake\_case.tex}, dove snake\_case è il nome della sezione o modulo.
+				\item La seconda categoria include i file \texttt{.tex} principali che produrranno i PDF da consegnare al committente. Essi verranno denominati
+					con la convenzione \texttt{CamelCase\_vX.Y.X.tex} / \texttt{CamelCase\_vX.Y.Z.pdf}, dove CamelCase sarà il nome del documento generico mentre
+					\texttt{X.Y.Z} sarà la versione che identifica univocamente il documento.
+			\end{itemize}
 
 	\subsection{Verifica}
 
@@ -160,7 +195,7 @@
 		\subsubsection{Metriche}
 
 			\paragraph{Metriche per i documenti}
-			
+
 			\paragraph{Metriche per i processi}
 
 			%\paragraph{Analisi statica e dinamica?}
@@ -176,4 +211,3 @@
 			Integrazione di TexStudio
 
 			%\subparagraph{Integrazione continua} % Jenkins? Più avanti?
-
