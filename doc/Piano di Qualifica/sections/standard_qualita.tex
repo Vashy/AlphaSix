@@ -1,2 +1,106 @@
 \newpage
 \section{Standard di qualità}
+Il team di sviluppo prende come riferimento per gli obiettivi di qualità del prodotto i seguenti standard.
+
+In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invece come questi saranno applicati e nel \PdQ~gli obiettivi che il team di sviluppo si è dato per seguendo gli standard scelti.
+
+\subsection{ISO/IEC 15504 (SPICE)}
+Lo standard ISO/IEC 15504 è stato creato per unire in un unico standard le caratteristiche principali di CMMI\G e SPY\G; entrambi standard riguardanti la qualità di processi software.
+
+ISO/IEC 15504 è chiamato anche SPICE\G come acronimo di \textit{Software Process Improvement and Capability Determination}, dando importanza al termine \textit{Capability} inteso come la capacità di un processo di essere cognitivamente capace di raggiungere il suo scopo. Un processo con un'alta \textit{capability} è osservato da tutto il team di sviluppo in modo disciplinato e sistematico, al contrario il processo viene effettuato in modo opportunistico e disorganizzato.
+
+SPICE mette a disposizione una metrica per valutare diversi attributi per ogni processo ed assegna un valore quantitativo ad ognuno di questi in modo tale da rendere esplicito come poter migliorare tale processo. Ogni valutazione in questo modo può essere ripetibile, oggettiva e comparabile.
+
+I processi vengono classificati in:
+
+\begin{itemize}
+	\item \textbf{Customer/Supplier}
+	\item \textbf{Engineering}
+	\item \textbf{Support}
+	\item \textbf{Management}
+	\item \textbf{Organization}
+\end{itemize}
+
+Gli attributi per valutare i processi classificati per livelli sono:
+
+\begin{itemize}
+	\item \textbf{0 Incomplete}: il processo è caotico perché con risultati e performance incomplete;
+
+	\item \textbf{1 Performed}: il processo inizia ad essere eseguito mettendo a disposizione degli input ed output.
+	
+	Attributi:
+	
+	\begin{itemize}
+		\item \textbf{Execution of processes}: indica quantitativamente il numero di obiettivi raggiunti;
+	\end{itemize}
+
+	\item \textbf{2 Managed}: le responsabilità e la gestione del progetto sono definite.
+	
+	Attributi:
+	
+	\begin{itemize}
+		\item \textbf{Management of process}: indica quanto sono organizzati gli obiettivi fissati;
+		\item \textbf{Management of products}: indica quanto sono organizzati o gestiti i prodotti rilasciati;
+	\end{itemize}
+
+	\item \textbf{3 Established}: il processo è pronto per diventare un processo standard ed essere rilasciato.
+	
+	Attributi:
+	
+	\begin{itemize}
+		\item \textbf{Definition of process}: indica quanto il processo aderisce agli standard;
+		\item \textbf{Distribution of process}: indica in che misura il processo possa essere rilasciato potendo restituire sempre lo stesso risultato;
+	\end{itemize}
+
+	\item \textbf{4 Predictable}: il processo è in grado di essere sottoposto a metriche e valutazioni quantitative. Spesso i risultati sono predicibili.
+	
+	Attributi:
+	
+	\begin{itemize}
+		\item \textbf{Measurements of process}: indica quanto le metriche possono essere applicate al processo;
+		\item \textbf{Controll of process}: indica quanto i risultati delle valutazioni siano predicibili;
+	\end{itemize}
+
+	\item \textbf{5 Optimizing}: il processo attua miglioramenti qualitativi e quantitativi.
+	
+	Attributi:
+	
+	\begin{itemize}
+		\item \textbf{Process innovation}: indica quanto i cambiamenti attuati nel processo risultino innovativi e positivi grazie ad una fase di analisi;
+		\item \textbf{Optimization of process}: indica quanto la curva di miglioramento del processo sia lineare;
+	\end{itemize}
+\end{itemize}
+
+Ad ogni attributo viene data una valutazione assegnata in base alla percentuale di soddisfacimento dell'attributo:
+
+\begin{itemize}
+	\item \textbf{N}: il processo non è implementato e non svolge niente di significativo (0\%-15\%);
+	\item \textbf{P}: il processo è parzialmente implementato (15\%-50\%);
+	\item \textbf{L}: il processo è largamente implementato (50\%-85\%);
+	\item \textbf{F}: il processo è completamente implementato (85\%-100\%); 
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccc}
+	
+	\toprule
+	\multirow{2}{*}{Attributi} & \multicolumn{4}{c}{Valutazioni}\\
+	\cmidrule(lr){2-5} & N & P & L & F\\
+	\midrule Execution of processes & \multicolumn{4}{c}{[0-1]}\\
+	\midrule Management of process & \multicolumn{4}{c}{\multirow{2}{*}{[1-2]}}\\
+	Management of products\\
+	\midrule Definition of process & \multicolumn{4}{c}{\multirow{2}{*}{[2-3]}}\\
+	Distribution of process\\
+	\midrule Measurements of process & \multicolumn{4}{c}{\multirow{2}{*}{[3-4]}}\\
+	Controll of process\\
+	\midrule Process innovation & \multicolumn{4}{c}{\multirow{2}{*}{[4-5]}}\\
+	Optimization of process\\
+	\bottomrule
+	
+	
+	
+\end{tabular}
+\label{tab:spice}
+\caption{Schema degli attributi di ISO/IEC 15504}
+\end{table}
