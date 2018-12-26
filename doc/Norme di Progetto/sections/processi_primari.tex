@@ -6,10 +6,10 @@
 		La sezione corrente ha lo scopo di riportare le  attività principali del fornitore in rapporto con il cliente. 
 		
 		\subsubsection{Ricerca delle tecnologie}
-		Il gruppo approfondisce la propria conoscenza su tecnologie e framework vari, in modo da discutere insieme quali sono quelle di interesse comune e di utilità per il progetto. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo per averne una buona padronanza.
+		Il gruppo approfondisce la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono quelle di interesse comune e di utilità per il progetto. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo per averne una buona padronanza.
 
         \subsubsection{Studio di Fattibilità}\label{PP:Fornitura:SdF} 
-        In quest'attività viene prodotto il documento \DAlt{\textit{Studio di Fattibilità v1.0}} al fine di analizzare ogni capitolato e scegliere quale contratto accettare. 
+        In quest'attività viene prodotto il documento \textit{Studio di Fattibilità v1.0}\DAlt al fine di analizzare ogni capitolato e scegliere quale contratto accettare. 
         Nello specifico, il documento in ogni sezione contiene:
         	\begin{itemize}
         		\item \textbf{Descrizione generale}: breve descrizione del capitolato.
@@ -39,41 +39,64 @@
 	
 		 \paragraph{Casi d'uso}\label{PP:Sviluppo:AdR:CasiUso}
 		 %descrivere cos'è?
-		 La denominazione scelta per i casi d'uso è la seguente
+		 Un \gloss{caso d'uso} è una tecnica per identificare i requisiti funzionali che descrive le interazioni tra il sistema di riferimento e un utente ad esso esterno. \\
+		 Ogni caso d'uso che si vuol descrivere presenta:
 		 \begin{itemize}
-		 	\item UC[NUMERO] per uno principale (ad esempio, per il primo caso d'uso UC1)
-		 	\item UC[NUMERO].[NUMERO] per un sotto caso (ad esempio, per il primo sotto caso del primo caso d'uso UC1.1)	
+		 	\item \textbf{Codice}: d'identificazione.
+		 	\item \textbf{Titolo}: breve per dare una breve denominazione. 
+		 	\item \textbf{Attori}: tutti quelli coinvolti, sia primari che secondari.
+		 	\item \textbf{Descrizione}: per spiegare più nel dettaglio le azioni.
+		 	\item \textbf{Precondizione}: per rappresentare l'istante prima.
+		 	\item \textbf{Postcondizione}: per rappresentare l'istante successivo.
+		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute. 
+		 	\item \textbf{Estensioni}: per azioni inerenti a scenari alternativi (d'eccezione o errore).
+		 \end{itemize}
+		 La rappresentazione scelta per il codice dei casi d'uso è:
+		 \begin{itemize}
+		 	\item \textbf{UC[Numero]}: per un caso principale (ad esempio, per il primo caso d'uso avremo UC1)
+		 	\item \textbf{UC[Numero].[Numero]}: per un sotto caso (ad esempio, per il primo figlio del primo caso d'uso avremo UC1.1)	
 		 \end{itemize}
 	 	 %ecc..
-		        
-	        %\subparagraph{Gerarchie di casi d'uso}\label{PP:Sviluppo:AdR:CasiDUso:GerarchieCasiDUso}	% SOLO SE UTILE
-	        %Contenuto
-
+		     
 
         %\subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}	%PIÙ AVANTI
         %Contenuto generico
-        
-
+       
 		 %\paragraph{Obiettivi}\label{PP:Sviluppo:Progettazione:Obiettivi}
 		 %Contenuto
 
 
 
-		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML}	
+		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML}	%SOLO di attività e sequenza PIÙ AVANTI
+		
+		
+		\paragraph{Diagrammi dei casi d'uso}	\label{DiagrammiCasiUso}
+		Per i diagrammi dei casi d'uso viene utilizzato il linguaggio UML 2.0. Essi descrivono la visione di un utente esterno al sistema e non danno nessun dettaglio implementativo. I componenti di questo tipo di diagrammi sono:
+		\begin{itemize}
+			\item Attore
+			\item Use case
+			\item Relazioni, che possono essere di:
+			\begin{itemize}
+				\item Associazione
+				\item Inclusione
+				\item Estensione
+				\item Generalizzazione
+			\end{itemize}
+		\end{itemize}
+		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
 		
 		
         %\paragraph{Codifica}\label{PP:Sviluppo:Codifica} %PIÙ AVANTI
 
         
-        \subsubsection{Strumenti}\label{PP:Sviluppo:Strumenti}
+        \subsubsection{Strumenti di base}\label{PP:Sviluppo:Strumenti}
         
 	    \paragraph{Ambiente di sviluppo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo}
 	    Vengono qui riportate le componenti software utilizzate da ogni membro del gruppo per lo sviluppo del progetto.
 	         	
 	        	
 	    \subparagraph{Sistema operativo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:SistemaOperativo}
-	    
-	    Ubuntu 18.
+	    Il sistema operativo scelto da tutti è Ubuntu, in particolare ognuno ha una versione di Ubuntu 18. 
 	        		
 	    %\subparagraph{IDE}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:IDE}
 	    %Atom - Intellij?

@@ -5,7 +5,6 @@
 
 
 		\subsubsection{Implementazione}\label{PS:Documentazione:Implementazione}
-		Contenuto
 
 			\paragraph{Template}\label{PS:Documentazione:Implementazione:Template}
 			Prima di iniziare a redarre i documenti, è stato creato un template per \LaTeX \ (\S\ref{LaTeX})
@@ -37,7 +36,7 @@
 		\subsubsection{Struttura}\label{PS:Documentazione:Struttura}
 
 			\paragraph{Frontespizio}\label{PS:Documentazione:Struttura:Frontespizio}
-
+			Descrivere la prima pagina..
 
 			\paragraph{Storico delle versioni}\label{PS:Documentazione:Struttura:StoricoVersioni}
 			Contenuto
@@ -67,24 +66,35 @@
 
 			\subparagraph{Stile del testo}\label{PS:Documentazione:Design:NormeT:StileTesto}
 			\begin{itemize}
-				\item Corsivo: nomi documenti.
-				\item Maiuscolo: nomi documenti tranne articoli, nomi di ruoli
+				\item \textbf{Corsivo}: solo per i nomi dei documenti citati.
+				\item \textbf{Maiuscolo}: la prima lettera per 
+				\begin{itemize}
+					\item tutte le parole appartenenti ai nomi dei documenti tranne gli articoli
+					\item i nomi dei ruoli 
+				\end{itemize}
 			\end{itemize}
 
 			\subparagraph{Elenchi puntati}\label{PS:Documentazione:Design:NormeT:ElenchiPuntati}
 			\begin{itemize}
-				\item Simboli di livello:
-				\item Punteggiatura: nessuna punteggiatura alla fine di una frase, tranne nel caso in cui sia presente una descrizione. In quel caso si finisce con un punto ".".
-				\item Grassetto: solo se è presente una descrizione, allora è in grassetto tutta la parte prima dei due punti ":".
+				\item \textbf{Simboli di livello}: un pallino nero per il primo livello, un trattino per il secondo livello. 
+				\item \textbf{Punteggiatura}: nessuna punteggiatura alla fine di una frase, tranne nel caso in cui sia presente una descrizione. In quel caso la descrizione è preceduta dai due punti ":" e termina con un punto ".".
+				\item \textbf{Grassetto}: solo se è presente una descrizione, allora sono in grassetto tutte le parole prima dei due punti ":".
 			\end{itemize}
 
-			\subparagraph{Altri formati testuali comuni} %"testuali" o "di scrittura"?
+			\subparagraph{Altri formati testuali comuni} \label{PS:Documentazione:Design:NormeT:AltriFormati} 
 			\begin{itemize}
-				\item Orari:  :
-				\item Date:		-
-				\item Nomi propri:
-				\item Nomi documenti: tutto in maiuscolo tranne articoli
-				\item Nomi ruoli: con maiuscola
+				\item \textbf{Orari}: [HH]:[MM] secondo la norma ISO 8601 nel formato 24 ore dove:
+				\begin{itemize}
+					\item HH indica le ore, da 00 a 23
+					\item MM i minuti, da 00 a 59 
+				\end{itemize}  
+				\item \textbf{Date}: [DD]-[MM]-[YYYY] formato adottato in Europa dove:
+				\begin{itemize}
+					\item DD indica il numero del giorno, da 01 a 31
+					\item MM del mese, da 01 a 12
+					\item YYYY dell'anno
+				\end{itemize}
+				\item \textbf{Nota a piè pagina}: serve ad inserire elementi aggiuntivi, come osservazioni o riferimenti a parti interne al documento, che sono utili alla comprensione del testo, ma se inseriti all'interno del discorso ne interromperebbero la lettura rendendola meno scorrevole.
 			\end{itemize}
 
 
@@ -92,7 +102,7 @@
 			\paragraph{Elementi grafici}
 
 			\subparagraph{Figure}
-			 Sempre caption che descrive
+			Ogni immagine inserita nei documenti deve sempre essere centrata rispetto al foglio e adeguatamente separata dal testo. Deve inoltre essere accompagnata da una breve \gloss{caption} che permette al lettore di capire esattamente che cosa sta guardando.
 
 			\subparagraph{Tabelle}
 			Contenuto
@@ -104,15 +114,21 @@
 			\paragraph{Suddivisione dei documenti}
 
 			\subparagraph{Documenti interni}
-			Quelli interni..
+			Sono considerati interni documenti quali \textit{Studio di Fattibilità v1.0.0}\DAlt e \textit{Norme di Progetto v1.0.0}\DAlt che non sono visibili ad entità esterne, ma solo ad AplhaSix.
 
 			\subparagraph{Documenti esterni}
-			Quelli esterni..
+			Questi documenti sono ufficiali e approvati direttamento dal \Res e comprendono per esempio: \textit{Piano di Progetto v1.0.0}\DAlt, \textit{Piano di Qualifica v1.0.0}\DAlt e \textit{Analisi dei Requisiti v1.0.0}\DAlt. Si chiamano esterni perché accessibili al committente.
 
 			\subparagraph{Glossario}
+			Il documento denominato \textit{Glossario v1.0.0}\DAlt raccoglie in ordine alfabetico tutti i termini utilizzati che necessitano di una spiegazione più approfondita. Sono identificabili all'interno degli altri documenti da un font differente e una G a pedice la prima volta che appaiono. 
 
 			\subparagraph{Verbali}
-
+			Questi documenti vengono redatti quando AlphaSix tiene delle riunioni o ci sono incontri esterni, per esempio con \II. Vengono redatti da una singola persona e presentano tutti le stesse sezioni:
+			\begin{itemize}
+				\item \textbf{Informazioni incontro}: lista delle informazioni principali riguardanti la riunione quali luogo, data, orario, ecc.
+				\item \textbf{Argomenti}: lista dei principali argomenti trattati con descrizione di cosa si è discusso nel dettaglio.
+				%TODO da riempire se viene aggiunto altro
+			\end{itemize}
 
 
 			\paragraph{Strumenti di supporto}
@@ -140,7 +156,7 @@
 			in qualsiasi fase del loro ciclo di vita.
 			Il modello di versionamento adottato segue lo schema \gloss{change significance}. La versione di un file è espressa secondo la notazione
 			\begin{center}
-				\texttt{X.Y.Z}
+				\texttt{vX.Y.Z}
 			\end{center}
 			\indent dove:
 			\begin{itemize}
@@ -164,14 +180,14 @@
 
 			\paragraph{Nomenclatura}
 
-			\subparagraph{Verbali}
+			\subparagraph{Verbali}	\label{NomenclaturaVerbali}
 			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II.
 			Il nominativo del file in cui sono formalizzati sarà univoco:
 			\begin{itemize}
 				\item \texttt{VI\_dd-mm-yyyy.pdf} per i verbali interni
 				\item \texttt{VE\_dd-mm-yyyy.pdf} per i verbali esterni
 			\end{itemize}
-			dove dd-mm-yyyy è la data in cui sono stati tenuti, nel formato giorno-mese-anno.
+			dove dd-mm-yyyy è la data in cui sono stati tenuti, nel formato descritto nel paragrafo \S\ref{PS:Documentazione:Design:NormeT:AltriFormati}.
 
 			\subparagraph{Documenti vari}
 			Saranno presenti due tipologie di file: file interni al gruppo e file esterni.
@@ -180,7 +196,7 @@
 					denominati usando la convenzione \texttt{snake\_case.tex}, dove snake\_case è il nome della sezione o modulo.
 				\item La seconda categoria include i file \texttt{.tex} principali che produrranno i PDF da consegnare al committente. Essi verranno denominati
 					con la convenzione \texttt{CamelCase\_vX.Y.X.tex} / \texttt{CamelCase\_vX.Y.Z.pdf}, dove CamelCase sarà il nome del documento generico mentre
-					\texttt{X.Y.Z} sarà la versione che identifica univocamente il documento.
+					\texttt{vX.Y.Z} sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}.
 			\end{itemize}
 
 	\subsection{Verifica}
