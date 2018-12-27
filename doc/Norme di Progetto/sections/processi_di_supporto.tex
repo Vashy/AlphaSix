@@ -85,18 +85,19 @@
 
 			\subparagraph{Altri formati testuali comuni} \label{PS:Documentazione:Design:NormeT:AltriFormati}
 			\begin{itemize}
-				\item \textbf{Orari}: [HH]:[MM] secondo la norma ISO 8601 nel formato 24 ore dove:
+				% \item \textbf{Orari}: [HH]:[MM] secondo la norma ISO 8601 nel formato 24 ore dove:
+				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601 nel formato 24 ore dove:
 				\begin{itemize}
-					\item HH indica le ore, da 00 a 23
-					\item MM i minuti, da 00 a 59
+					\item \texttt{HH} indica le ore, da 00 a 23
+					\item \texttt{MM} i minuti, da 00 a 59
 				\end{itemize}
-				\item \textbf{Date}: [DD]-[MM]-[YYYY] formato adottato in Europa dove:
-				\item \textbf{Date}: \texttt{[DD]-[MM]-[YYYY]} formato adottato in Europa dove:
+				% \item \textbf{Date}: [DD]-[MM]-[YYYY] formato adottato in Europa dove:
+				% \item \textbf{Date}: \texttt{[DD]-[MM]-[YYYY]} formato adottato in Europa dove:
 				\item \textbf{Date}: \texttt{DD-MM-YYYY} formato adottato in Europa dove:
 				\begin{itemize}
-					\item DD indica il numero del giorno, da 01 a 31
-					\item MM del mese, da 01 a 12
-					\item YYYY dell'anno
+					\item \texttt{DD} indica il numero del giorno, da 01 a 31
+					\item \texttt{MM} il mese, da 01 a 12
+					\item \texttt{YYYY} l'anno
 				\end{itemize}
 				\item \textbf{Nota a piè pagina}: serve ad inserire elementi aggiuntivi, come osservazioni o riferimenti a parti interne al documento,
 				che sono utili alla comprensione del testo, ma se inseriti all'interno del discorso ne interromperebbero la lettura rendendola meno scorrevole.
@@ -151,18 +152,31 @@
 			\paragraph{Strumenti di supporto}
 
 			\subparagraph{\LaTeX} \label{LaTeX}
-			È stato scelto \LaTeX \ perché presenta molti vantaggi quali:
+			Per la stesura della documentazione è stato scelto di usare il linguaggio di markup \LaTeX \ perché presenta molti vantaggi, tra i quali:
+			\begin{itemize}
+				\item Supporta nativamente il versionamento, essendo un linguaggio compilato
+				\item Supporta la modularità, rendendo più facile organizzare un documento dividendone logicamente i vari moduli
+				\item Permette il riutilizzo del codice tramite l'uso di macro già pronte o personalizzate, oppure includendo lo stesso sorgente in punti diversi
+					(ad esempio come fatto in \S\ref{PS:Documentazione:Implementazione:Template})
+				\item Gestisce automaticamente indici e riferimenti
+			\end{itemize}
 
-			\subparagraph{TexStudio}
-			Fornisce scorciatoie...
-
-			\subparagraph{Visual Studio Code}
-
+			\subparagraph{TexStudio/Visual Studio Code}
+			TexStudio e Visual Studio Code sono i due ambienti di sviluppo scelti dal team per stilare la documentazione.
+			TexStudio è un \gloss{IDE} nativo per l'utilizzo di \LaTeX. Visual Studio Code è un editor intelligente moderno (praticamente al pari di un IDE) che, tramite
+			estensioni, permette il supporto di praticamente ogni linguaggio, tra cui \LaTeX.
+			Entrambi permettono una rapida compilazione e un'istantanea visualizzazione dell'anteprima del PDF prodotto, oltre agli altri vantaggi che ogni IDE offre,
+			tra cui: suggerimenti e completamenti automatici delle parole chiave, ricerca intelligente (eventualmente tramite \gloss{regexp}) controllo ortografico della
+			lingua italiana o inglese e così via. Più informazioni sono reperibili sui rispettivi siti ufficiali, i cui link sono presenti in \S\ref{rifinfo}.
+			% \subparagraph{Visual Studio Code}
 
 			\subparagraph{GanttProject}
+			GanttProject è un programma gratuito dedito alla formazione dei \gloss{diagrammi di Gantt}. Permette di creare task e milestone, organizzare le task
+			in lavoro strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità.
+			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}), RIVEDERE
 
-
-			\subparagraph{Gulpease}
+			\subparagraph{Indice di Gulpease}
+			Per il calcolo dell'\gloss{Indice di Gulpease}, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease. 
 
 
 
