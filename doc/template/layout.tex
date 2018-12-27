@@ -9,7 +9,7 @@
 \usepackage{graphicx}
 \usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
 
-\usepackage[hyperfootnotes=false]{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage[hyperfootnotes=false]{hyperref}
 \hypersetup{%
 	colorlinks=true,
 	citecolor=black,
@@ -17,6 +17,7 @@
 	urlcolor=blue
 }
 
+\usepackage{enumitem}
 \usepackage{eurosym}
 \usepackage{booktabs}
 \usepackage{fancyhdr}

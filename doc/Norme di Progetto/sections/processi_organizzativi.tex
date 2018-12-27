@@ -1,13 +1,13 @@
 \section{Processi Organizzativi}
 
-	
+
     \subsection{Gestione del progetto}
 
 	    \subsubsection{Scopo}
-	    Questa sezione ha lo scopo di delineare in cosa consiste l'attività di gestione del progetto.  
-	    
-	    %\subsubsection{Istanziazione dei processi}	%da rivedere
-		%Derivano dagli standard...
+	    Questa sezione ha lo scopo di delineare in cosa consiste l'attività di gestione del progetto.
+
+	    % \subsubsection{Istanziazione dei processi}	%da rivedere
+		% Derivano dagli standard...
 
 		\subsubsection{Pianificazione delle attività}
 
@@ -33,11 +33,10 @@
 			\paragraph{Procedura}
 			Procedura generale per l’organizzazione della pianificazione.
 			con politiche di gestione dei rischi..
-			
-			\paragraph{Ruoli di progetto}
-			I ruoli \footnote{Per la descrizione completa, vedere "Descrizione dei ruoli di progetto" in \S\ref{rifinfo}.} presenti in questo progetto sono:
 
-			\begin{itemize}
+			\paragraph{Ruoli di progetto}
+			I ruoli\footnote{Per la descrizione completa, vedere ``Descrizione dei ruoli di progetto'' in \S\ref{rifinfo}.} scelti per lo sviluppo del progetto sono:
+			\begin{itemize}[noitemsep]
 				\item Analista
 				\item Progettista
 				\item Responsabile
@@ -45,8 +44,8 @@
 				\item Programmatore
 				\item Verificatore
 			\end{itemize}
-			
-			 
+
+
 		\subsubsection{Pianificazione della qualità}
 		Citare Norme di prog e Piano di qualifica
 		Ricordarsi di adattare il paragrafo alla figura del verificatore.
@@ -59,7 +58,7 @@
 			Ogni processo verrà controllato periodicamente durante tutta la sua esecuzione in modo da non intralciare il way of working,
 			mediante misurazioni associate a metriche descritte dai processi di verifica, controllate tramite l'utilizzo di strumenti automatizzati.
 			Le metriche adottate sono, per il processo considerato, indicatori di efficacia dei prodotti rispetto ai requisiti di funzionalità e qualità,
-			stabiliti nel \Doc{\PdQ} e nell'\Doc{\AdR}. Risultano validi indicatori, per la valutazione di:
+			stabiliti nel \Doc{\PdQ\ v1.0.0} e nell'\Doc{\AdR v1.0.0}. Risultano validi indicatori per la valutazione di:
 			\begin{itemize}
 				\item Aderenza al way of working
 				\item Stato di avanzamento del processo rispetto alla pianificazione
@@ -68,14 +67,14 @@
 			\end{itemize}
 
 			\subparagraph{Procedure di comunicazione}
-			Per coordinare il team e il committente sullo stato del progetto sono state stabilite le seguenti norme: 
+			Per coordinare il team e il committente sullo stato del progetto sono state stabilite le seguenti norme:
 			\begin{itemize}
 				\item Per le comunicazioni interne verranno utilizzati gli strumenti segnalati in \S\ref{pianificazione e coordinamento}, in particolare
 					con l'utilizzo di \gloss{Slack} e, all'occorrenza, verranno fissate riunioni per le questioni più importanti:
 					\begin{itemize}
 						\item concordare data, ora e luogo;
 						\item stabilire un ordine del giorno da discutere;
-						\item appuntare il contenuto della riunione per poter poi redigere formalmente il verbale.
+						\item appuntare il contenuto della riunione per poter poi redigere formalmente il verbale della riunione
 					\end{itemize}
 				\item Per le comuncazioni esterne verrà utilizzata prevalentemente la comunicazione via email. % HELP WANTED fissare riunioni con l'azienda?
 			\end{itemize}
@@ -92,7 +91,7 @@
 
     		\paragraph{Archiviazione dei prodotti}
 			I prodotti che, una volta terminate le attività e processi per completarli, soddisfano le aspettative in termini di qualità,
-			verranno archiviati in apposite \gloss{repository}. Alla versione attuale di questo documento,
+			verranno archiviati in apposite \gloss{repository}. Alla versione attuale di questo documento, RIVEDERE
 
     		\paragraph{Archiviazione delle misurazioni} % TODO
     		necessario archiviare le misurazioni effettuate attraverso le metriche definite nel presente documento..
@@ -117,8 +116,8 @@
 					saranno riportate nel documento \Doc{\NdP}.
 				\item \textbf{\# Studio di Fattibilità}: canale in cui verrà discussa la fattibilità di ogni capitolato proposto, convergenti nel documento
 					\Doc{\SdF}.
-				\item \textbf{\# git}: canale in cui un bot correttamente configurato manderà una notifica ogni volta che verrà effettuato un commit o aperta una issue
-					nella repository principale.
+				\item \textbf{\# git}: canale in cui un bot correttamente configurato manderà una notifica ogni volta che verrà effettuato un commit, oppure alla chiusura o apertura
+					di una issue nel repository principale.
 				\item \textbf{\# latex}: discussioni riguardanti gli aspetti tecnici di \LaTeX.
 				\item \textbf{\# random}: discussioni \gloss{off-topic} del team.
 			\end{itemize}
@@ -131,21 +130,21 @@
 				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID che verrà automaticamente generato (e.g. \texttt{\#32}),
 					al quale sarà possibile fare riferimento nei messaggi di commit.
 				\item Creare delle \gloss{milestone}, e aggregare ad esse le issue.
-				\item Assegnare delle \emph{label} alle issue, per marcarne la natura. Ad esempio, una issue marcata come \emph{bug} sarà un problema da risolvere,
-					una issue marcata come \emph{enhancementVersionamento} sarà un miglioramento o una task. È possibile inoltre creare delle label personalizzate.
-				\item Assegnare le issue a un collaboratore, che sarà tenuto a correggerla.
+				\item Assegnare delle label alle issue, per marcarne la natura. Ad esempio, una issue marcata come bug sarà un problema da risolvere,
+					una issue marcata come enhancement sarà un miglioramento o una task. È possibile inoltre creare delle label personalizzate.
+				\item Assegnare un issue a un collaboratore, che sarà tenuto a correggerla.
 				\item Supporto di \gloss{markdown} esteso, che permette di formare delle pagine per le issue di aspetto delizioso e allo stesso tempo estremamente funzionali.
 			\end{itemize}
 
 			%\paragraph{Redmine} % ? da vedere piu avanti.
 			% Per ora Github per issue-task tracker ~Tim
 
-			
-	
-	\subsection{Formazione}		
-	
-		La formazione di ogni membro del gruppo avviene tramite studio autonomo dei \gloss{framework} menzionati da \II durante la presentazione del progetto e incontri con AlphaSix.
-		
+
+
+	\subsection{Formazione}
+
+		La formazione di ogni membro del gruppo avviene tramite studio autonomo dei \gloss{framework} menzionati da \II\ durante la presentazione del progetto e incontri con AlphaSix.
+
 		\subsubsection{Piano di formazione}
 		Il piano di formazione prevede:
 		\begin{itemize}
@@ -163,4 +162,4 @@
 			\end{itemize}
 			\item Lo studio delle possibilità d'integrazione tra di esse
 		\end{itemize}
-		
+
