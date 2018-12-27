@@ -2,7 +2,7 @@
 \section{Standard di qualità}
 Il team di sviluppo prende come riferimento per gli obiettivi di qualità del prodotto i seguenti standard.
 
-In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invece come questi saranno applicati e nel \PdQ~gli obiettivi che il team di sviluppo si è dato per seguendo gli standard scelti.
+In questa appendice verranno descritti gli standard adottati nelle loro parti più rilevanti ai fini del progetto. Nelle \NdP\D viene indicati in che misura questi standard saranno applicati e nel \PdQ~gli obiettivi che il team di sviluppo si è dato per rispettarli.
 
 	\subsection{ISO/IEC 15504 (SPICE)}
 	Lo standard ISO/IEC 15504 è stato creato per unire in un unico standard le caratteristiche principali di \gloss{CMMI} e \gloss{SPY}; entrambi standard riguardanti la qualità di processi software.
@@ -105,7 +105,7 @@ In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invec
 	\caption{Schema degli attributi di ISO/IEC 15504}
 	\end{table}
 
-	\subsection{IEC/ISO 9126:2001}
+	\subsection{ISO/IEC 9126:2001}
 	ISO/IEC 9126 è uno standard inerente alla qualità del software. Esso è strutturato in modo tale che si possa migliorare l'insieme dei processi.
 	
 	La sua struttura prevede tre tipi di qualità, ognuna delle quali possiede determinate caratteristiche:
@@ -167,7 +167,7 @@ In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invec
 				\item \textbf{Sostiuibilità}: essere capace di sostituire un software con gli stessi scopi;
 			\end{itemize}
 		
-			\item \textbf{Funzionalità}: il software deve mettere a disposizione le funzionalità richieste in rapporto all'ambinete d'esecuzione.
+			\item \textbf{Funzionalità}: il software deve mettere a disposizione le funzionalità richieste in rapporto all'ambiente d'esecuzione.
 			
 			Nello specifico si prevede:
 			
@@ -175,7 +175,7 @@ In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invec
 				\item \textbf{Appropriatezza}: le funzionalità del software sono appropriate ai requisiti richiesti;
 				\item \textbf{Accuratezza}: in che misura le funzionalità aderiscono ai requisiti richiesti;
 				\item \textbf{Interoperabilità}: la capacità di interagire coi sistemi specificati;
-				\item \textbf{Security}: preteggere le informazioni da agenti esterni;
+				\item \textbf{Security}: proteggere le informazioni da agenti esterni;
 			\end{itemize}
 		
 			\item \textbf{Efficienza}: misura della capacità di raggiungere gli obiettivi stabiliti cercando di usare meno risorse possibili.
@@ -218,7 +218,7 @@ In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invec
 			\item \textbf{Safety}: il software deve possedere adeguati livelli di sicurezza per il tipo di utente che ne usufruisce;
 		\end{itemize}
 	
-	\begin{figure}[h]
+	\begin{figure}[H]
 		\includegraphics[width=\textwidth]{img/ISO9126.png}
 		\label{fig:iso9126}
 		\caption[Schema ISO 9126]{Schema ISO 9126 (tratto da Wikipedia)}
@@ -226,7 +226,7 @@ In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invec
 
 	
 	
-	\begin{figure}[h]
+	\begin{figure}[H]
 		\includegraphics[width=\textwidth]{img/Ciclo_di_vita_9126.png}
 		\label{fig:ciclo_di_vita}
 		\caption[Ciclo di vita con l'ISO 0126]{Ciclo di vita applicando l'ISO 9126 (tratto da Wikipedia)}
@@ -244,8 +244,60 @@ In questa appendice verranno descritti gli standard adottati, nelle \NdP\D invec
 		\item \textbf{Act}: le modifiche, se risultano essere delle migliorie vengono applicate al processo o al prodotto;
 	\end{itemize}
 
-	\begin{figure}[h]
+	\begin{figure}[H]
 		\includegraphics[width=\textwidth]{img/PDCA}
 		\label{fig:PDCA}
 		\caption[Ciclo di Deming]{Ciclo di Deming (tratto da Wikipedia)}
 	\end{figure}
+
+	\subsection{ISO/IEC 90003:2004}
+	Lo standard ISO/IEC 90003 consiste nello standard ISO 9001:2008 applicato al software. Quest'ultimo si tratta di uno standard sulla qualità dei sistemi aziendali che in sostanza segue il ciclo di Deming descritto in precedenza.
+	
+	L'ISO/IEC 90003:2004 si suddivide in otto capitoli che sono:
+	
+	\begin{enumerate}
+		\item \textbf{Scopo}
+		\item \textbf{Riferimenti normativi}
+		\item \textbf{Ternimi e definizioni}
+		\item \textbf{Sistema di gestione della qualità}
+		\item \textbf{Gestione delle responsabilità}
+		\item \textbf{Gestione delle risorse}
+		\item \textbf{Realizzazione del prodotto}
+		\item \textbf{Misurazione, analisi e miglioramento}
+	\end{enumerate}
+
+	A causa delle capacità e dell'esperienza del team di sviluppo verranno presi in considerazione solo alcuni punti del quarto capitolo, in particolar modo quelli riguardante la documentazione, non potendo ancora stabilire metriche sul software.
+	
+	\subsubsection{Capitolo 4. dell'ISO 90003: Requisiti di Sistema e Linee guida}
+	
+	\begin{enumerate}
+		\item \textbf{Requisiti e linee guida sull'organizzazione}
+		\begin{enumerate}
+			\item \textbf{Stabilire la gestione del sistema di qualità (QMS)}
+			\begin{itemize}
+				\item \textbf{Identificare i requisiti di cui il QMS ha bisogno}: attraverso il \PdQ~osservando i processi interni ed esterni;
+				\item \textbf{Assicurarsi che ogni processo sia efficacie}: attraverso una verifica continua sui processi e prodotti;
+			\end{itemize}
+			\item \textbf{Documentare il proprio QMS}: riportare le relazioni tra i vari processi e come essi vengano gestiti e verificati;
+			\item \textbf{Cercare di migliorare il proprio QMS}: applicando il ciclo di Deming;
+			\item \textbf{Mantenere la qualità del QMS}
+		\end{enumerate} 
+		
+		\item \textbf{Requisiti e linee guida sulla documentazione}
+		\begin{enumerate}
+			\item \textbf{Documentare la qualità}
+			\begin{itemize}
+				\item \textbf{Pianificare la documentazione del QMS}: assicurandosi che quello che verrà scritto rispecchi gli obiettivi e la gestione dei processi;
+				\item \textbf{Stabilire la documentazione del QMS}: stabilendo la qualità delle diverse parti del QMS;
+				\item \textbf{Mantenere la documentazione nel tempo}
+			\end{itemize}
+			
+			\item \textbf{Controllare la qualità dei documenti}
+			\begin{itemize}
+				\item \textbf{Stabilire una procedura per controllare i documenti}: documentare la stessa procedura di controllo che dovrebbe contenere la fase di approvazione del documento, un suo versionamento e continuo aggiornamento;
+				\item \textbf{Mantenere ed aggiornare la procedura di controllo del documento}
+			\end{itemize}
+		\end{enumerate}
+	\end{enumerate}
+	
+	
