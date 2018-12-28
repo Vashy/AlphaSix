@@ -66,8 +66,70 @@
 				Nel fase migliorativa del processo sarà data particolare attenzione nel non iniziale una fase del ciclo di Deming senza aver finito completamente le fasi precedenti.
 			
 			\paragraph{Classificazione degli obiettivi}
+			Gli obiettivi per la qualità (Q) concordati dall'\Amm~e dal \Ver~ descritti nel \PdQ~avranno il seguente codice identificativo:
+			
+			\begin{center}
+				Q[Tipo][ID]: Nome
+			\end{center}
+		
+			\begin{itemize}
+				\item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene valutata la qualità, e questa può essere:
+				\begin{itemize}
+					\item \textbf{PR}: processi;
+					\item \textbf{PD}: prodotti che risultano essere documenti;
+					\item \textbf{PS}: prodotti software;
+				\end{itemize}
+			
+				\item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre;
+				\item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase;
+			\end{itemize}
+		
+			Ad esempio:
+			
+			\begin{itemize}
+				\item \textbf{QPD001: Leggibilità del testo}
+			\end{itemize}
+			
 			
 			\paragraph{Classificazione delle metriche}
+			Ogni obiettivo della qualità deve per quanto possibile essere collegato ad una metrica, anch'essa scelta dall'\Amm~e dal \Ver. Questo per valutare quantitativamente il raggiungimento o meno degli obiettivi stabiliti.
+			
+			Le metriche (M) verranno classificate nel seguente modo:
+			
+			\begin{center}
+				M[Tipo][ID]: Nome
+			\end{center}
+			
+			\begin{itemize}
+				\item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene applicata la metrica, e questa può essere:
+				\begin{itemize}
+					\item \textbf{PR}: processi;
+					\item \textbf{PD}: prodotti che risultano essere documenti;
+					\item \textbf{PS}: prodotti software;
+				\end{itemize}
+				
+				\item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre;
+				\item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase;
+			\end{itemize}
+		
+			Ad esempio:
+			
+			\begin{itemize}
+				\item \textbf{MPD001: Indice Gulpease}
+			\end{itemize}
+		
+			Quando sarà possibile, la metrica e l'obiettivo di qualità collegati fra loro avranno lo stesso Tipo e ID.
+			
+			Ad esempio:
+		
+			\begin{table}[H]
+				\begin{detailtable}{\columnwidth}{YYYY}
+					\thead{ID} & 
+					\thead{Nome} &
+					\thead{Descrizione} &
+					\thead{Metrica}\\\hline\rowcolor{gray!15}
+					QPD001 &Leggibilità del documento &La lettura del documento deve essere comprensibile &MPD001: Gulpease				\end{detailtable}
+			\end{table}
 			
 		\subsubsection{Controllo del progetto}
 
