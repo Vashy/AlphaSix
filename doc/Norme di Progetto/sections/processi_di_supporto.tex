@@ -233,15 +233,35 @@
 	\subsection{Verifica}
 
 		\subsubsection{Scopo}
-		Verificare che le metriche vengano rispettate..
+		Questa sezione vuole descrivere come il team di sviluppo esegue la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci si attende. Se ciò accede il team precederà alla fase successiva del progetto, in caso contrario sarà necessario il ritorno ad una fase stabile del progetto e da lì ripartire prendendo in considerazione i risultati della precedente verifica. 
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
 		\subsubsection{Descrizione}
+		Ogni processo e prodotto deve essere valutato in modo quantificabile inserendoli in delle metriche apposite quando possibile e stabilendo il risultato che si vuole raggiungere.
+		
+		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} alla \textit{Appendice A}, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore, servirà come "base" per alzare il livello di qualità di quel processo o prodotto.
 
 		\subsubsection{Metriche}
-
+		La denominazione delle metriche è già stata descritta in §3.1.3.3, qui vengono descritte.
 			\paragraph{Metriche per i documenti}
+			\subparagraph{MPD001: Indice di Gulpease}
+			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo basa sulla lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
+			
+			\[89+\dfrac{300*n_{frasi}-10*n_{lettere}}{n_{parole}}\]
+			
+			\textbf{Metrica}: il risultato della formula che deve essere interpretata nel seguente modo
+			
+			\begin{itemize}
+				\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare;
+				\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media;
+				\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore;
+			\end{itemize}
+			
+			\subparagraph{MPD002: Correttezza ortografica}
+			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
+			
+			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 
 			\paragraph{Metriche per i processi}
 
@@ -254,7 +274,7 @@
 			%\subparagraph{Verifica di documentazione}
 			%Google Docs?
 
-			\subparagraph{Verifica ortografica}
-			Integrazione di TexStudio
+			%\subparagraph{Verifica ortografica}
+			%Integrazione di TexStudio
 
 			%\subparagraph{Integrazione continua} % Jenkins? Più avanti?
