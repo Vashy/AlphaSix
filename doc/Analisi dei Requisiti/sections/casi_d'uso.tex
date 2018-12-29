@@ -21,20 +21,20 @@ producer genera un messaggio
 	api gitlab
 		\subparagraph{UC1.1.1}
 		aggiornamento issue tracking system (apertura issue / chiusura)
-		\subparagraph{UC1.1.1}
+		\subparagraph{UC1.1.2}
 		analisi tag:
 			se non presente {si aggiunge alla lista dei tag} --> estensione / scenario alternativo
-		\subparagraph{UC1.1.1}
+		\subparagraph{UC1.1.3}
 		cambio stato repository (commit)
 
-	\paragraph{UC1.1}
+	\paragraph{UC1.2}
 	api redmine
-		\subparagraph{UC1.1.1}
+		\subparagraph{UC1.2.1}
 		aggiornamento issue tracking system (apertura issue / chiusura / avviso ritardo)
 
-	\paragraph{UC1.1}
+	\paragraph{UC1.3}
 	api sonarqube
-		\subparagraph{UC1.1.1}
+		\subparagraph{UC1.3.1}
 		esecuzione build
 
 \subsubsection{UC 2}
@@ -69,13 +69,13 @@ configurazione delle preferenze dell'utente nel sistema
 	\paragraph{UC3.2}
 	rimozione preferenza
 		\subparagraph{UC3.2.1}
-		disiscrizione topic
+		disiscrizione topic %si può non essere iscritti a nessun topic?
 			data la lista di topic a cui è iscritto l'utente elimina quelli a cui non è più interessato ricevere notifica
 		\subparagraph{UC3.2.2}
 		rimozione giorno di calendario
 			data una lista dei giorni in cui non si è reperibili, vengono rimossi uno o più di questi giorni
 		\subparagraph{UC3.2.3}
-		rimozione piattaforma di messaggistica
+		rimozione piattaforma di messaggistica %dire che bisogna lasciarne almeno una?
 			telegram: modifica nickname
 			slack: modifica nickname
 			mail: modifica email

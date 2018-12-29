@@ -2,19 +2,40 @@
 Ai requisiti viene dato un codice identificativo univoco secondo quanto dichiarato nelle \Doc{Norme di Progetto v1.0.0}. 
 
 	\subsection{Requisiti di funzionalità}
-	
-		
-		\begin{tabular}{ l c r }
-			R1 & L'utente può autenticarsi & Interno UC2 \\ \hline
-			R2 & 5 & 6 \\ \hline
-			R3 & 8 & 9 \\ \hline
-		\end{tabular}
+		\begin{tabularx}{\textwidth}{ c X c } %0 opz  2 obb
+			Codice & Requisito & Fonte	\\ \hline
+			R1F0 & L'utente può autenticarsi & Interno UC2 \\ \hline
+			R2F2 & Lo stato dell'issue tracking system può cambiare & Interno UC1 \\ \hline
+			R3F0 & Il sistema fa apparire un messaggio di errore se l'autenticazione non è andata a buon fine & Interno UC2 \\ \hline
+			R4F0 & L'utente può iscriversi a un topic & Interno UC3.1.1	\\ \hline
+			R5F0 & L'utente può selezionare i giorni in cui non è disponibile  & Interno UC3.1.2 \\ \hline
+			R6F0 & L'utente può scegliere la piattaforma di messaggistica preferita tra Telegram, Mail e Slack & Interno UC3.1.3 \\ \hline
+			R7F0 & L'utente può disiscriversi a un topic & Interno UC3.2.1 \\ \hline
+			R8F0 & L'utente può modificare i giorni in cui è disponibile & Interno UC3.2.2  \\ \hline
+			R9F0 & L'utente può modificare la piattaforma di messaggistica & Interno UC3.2.3 \\ \hline
+		\end{tabularx}
 	
 	\subsection{Requisiti di qualità}
-	testo
+		\begin{tabularx}{\textwidth}{ c X c }
+			R1Q0  & nnn & nnn \\ \hline
+		\end{tabularx}
 	
 	\subsection{Requisiti di vincolo}
-	testo
+		\begin{tabularx}{\textwidth}{ c X c }
+			R1V1 & Per lo sviluppo dei componenti applicativi è possibile usare Java, Python o Node.js & Capitolato \\ \hline
+			R2V2 & Le applicazioni sviluppate devono rispettare i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato	\\ \hline
+			R3V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\ \hline
+			R4V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutti i componenti & Capitolato \\ \hline
+			R5V2 & I componenti devono esporre delle API Rest per le interazioni con le altre componenti & Capitolato \\ \hline
+			R6V2 & È necessario fornire test unitari e test d'integrazione per ogni componente applicativa & Capitolato \\ \hline
+			R7V2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\ \hline
+			R8V2 & Devono esserci due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\ \hline
+			R9V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\ \hline
+			R10V2 & Devono esserci due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\ \hline
+			R11V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\ \hline
+		\end{tabularx}
+	
+			
 	
 	\subsection{Tracciamento}
 	testo
