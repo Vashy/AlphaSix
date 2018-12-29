@@ -36,25 +36,57 @@
 		\subsubsection{Struttura}\label{PS:Documentazione:Struttura}
 
 			\paragraph{Frontespizio}\label{PS:Documentazione:Struttura:Frontespizio}
-			Descrivere la prima pagina..
+			La prima pagina di ogni documento, eccezione fatta per i verbali (in cui saranno presenti informazioni ridotte), sarà caratterizzata da:
+			\begin{itemize}
+				\item Logo e nome del gruppo
+				\item Titolo del documento
+				\item Informazioni sul documento:
+					\begin{itemize}
+						\item Versione documento
+						\item Data di creazione e ultima modifica
+						\item Nominativo dei Redattori
+						\item Nominativo dei Verificatori
+						\item Nominativo del \Res
+						\item Destinazione d'uso
+						\item Destinatari del documento
+						\item Contatto del gruppo
+					\end{itemize}
+				\item Breve descrizione del documento
+			\end{itemize}
 
 			\paragraph{Storico delle versioni}\label{PS:Documentazione:Struttura:StoricoVersioni}
-			Contenuto
+			La pagina che segue il frontespizio contiene lo storico delle versioni del documento, in cui ogni aggiunta o modifica significativa ha
+			comportato un incremento di versione. Ogni riga contiene, a partire da sinistra:
+			\begin{itemize}
+				\item Il numero della versione nel formato espresso in \S\ref{Versionamento}
+				\item Una breve descrizione delle modifiche apportate
+				\item Il ruolo dell'autore che ha apportato la modifica
+				\item Il nominativo dell'autore
+				\item La data di modifica
+			\end{itemize}
+			La chiave primaria della tabella è il numero di versione ordinata in senso decrescente, in modo che la versione più vecchia sia
+			l'ultima riga della tabella.
 
 			\paragraph{Indice}\label{PS:Documentazione:Struttura:Indice}
+			In ogni documento, esclusi i verbali, è presente un indice contenente tutte le sezioni, sottosezioni e paragrafi. I numeri di sezioni, sottosezioni,
+			e paragrafi sottostanti saranno separati da un punto.\par  
+			Saranno presenti inoltre un indice delle
+			figure e un indice delle tabelle, i quali saranno presenti solo in caso siano effettivamente presenti rispettivamente
+			figure e tabelle.\par
+			I valori degli indici partono da 1.
 
 			\paragraph{Contenuto}\label{PS:Documentazione:Struttura:Contenuto}
 			La struttura di ogni pagina presenta:
 			\begin{itemize}
 				\item Intestazione con:
 				\begin{itemize}
-					\item a sinistra: logo di \emph{AlphaSix}
-					\item a destra: nome del capitolato e documento corrente
+					\item A sinistra, logo di \emph{AlphaSix}
+					\item A destra, nome del capitolato e documento corrente
 				\end{itemize}
 				\item Piè pagina con:
 				\begin{itemize}
-					\item a sinistra: nome del gruppo e mail di riferimento del gruppo
-					\item a destra: numero della pagina corrente
+					\item A sinistra, nome del gruppo e mail di riferimento del gruppo
+					\item A destra, numero della pagina corrente
 				\end{itemize}
 			\end{itemize}
 
