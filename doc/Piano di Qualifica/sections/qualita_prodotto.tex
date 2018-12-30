@@ -1,13 +1,34 @@
 \section{Qualità di prodotto}
 
 \subsection{Scopo}
-testo
+Per raggiungere la qualità desiderata nei prodotti, il team di sviluppo prende come modello gli standard ISO 9126 e 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per essere di qualità.
 
 \subsection{Prodotti}
-testo
-
+Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile. Nel caso del nostro progetto i prodotti sono documenti e software.
 	\subsubsection{Documenti}
-	testo
+	I documenti rilasciati devono presentarsi leggibili e comprensibili già ad una prima lettura, con contenuti che rispecchino le premesse del documento.
+
+		\paragraph{Metriche}
+		Tra le metriche elencate nelle \Doc{\NdP} in  §4.2.3.1, quelle utilizzate per verificare i documenti sono:
+		
+		\begin{itemize}
+			\item \textbf{MPD001 Indice Gulpease}
+			\item \textbf{MPD002 Correttezza ortografica}
+			%questi sono i nomi della metrica, perciò dovrebbe essere corretto tenere tutto in grassetto
+		\end{itemize} 
+		
+		\paragraph{Obiettivi}
+		Gli obiettivi per ottenere la qualità desiderata per i documenti sono classificati come descritto nel \Doc{\NdP} in §3.1.3.1 e quando possibile saranno affiancate ad una metrica per valutarne il grado di soddisfacimento.
+		
+		Le caratteristiche di un documento che vengono analizzate sono:
+		
+		\begin{itemize}
+			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido , evitando perciò periodo troppo lunghi o un alto numero di subordinate;
+			\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici;
+			\item \textbf{QPD003 Correttezza contenuti}: i contenuti devono rispecchiare ciò che vogliono far intendere i titoli dei paragrafi e dover portare un valore aggiunto al documento;
+			\item \textbf{QPD004 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati;
+			\item \textbf{QPD005 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato;
+		\end{itemize}
 
 \subsection{The Twelve-Factor App}
 The Twelve-Factor App è presente tra i requisiti dell'\Doc{Analisi dei Requisiti} ed è una serie di dodici regole destinate ad chi vuole sviluppare \gloss{software-as-a-service} (SaaS).
@@ -35,5 +56,33 @@ In accordo col cliente \textit{Imola Informatica} e da quanto concerne il capito
 	\item \textbf{11}: dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente;
 \end{itemize}
 
-\subsection{Eventuali tabelle}
-testo
+\subsection{Tabella qualità di prodotto}
+
+\begin{table}[H]
+	\rowcolors{2}{gray!15}{white}
+	\begin{tabularx}{\textwidth}{YYY}
+		\rowcolor{gray!50}
+		\textbf{Obiettivo} &
+		\textbf{Metrica} &
+		\textbf{Valore desiderato}\\
+		\hline
+		\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Documenti}} \\
+		\hline
+		QPD001 Leggibilità del testo &MPD001 Indice Gulpease &50 - 60\\
+		\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver} \\
+		\hline
+		QPD002 Correttezza ortografica &MPD002 Correttezza ortografica &0\\
+		\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico} \\
+		\hline
+		QPD003 Correttezza contenuti &&\\
+		\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver} \\
+		\hline
+		QPD004 Organizzazione del documento &&\\
+		\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm} \\
+		\hline
+		QPD005 Manutenibilità del documento &&\\
+		\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento} \\
+		\bottomrule
+	\end{tabularx}
+\caption{Obiettivi di qualità e metriche per i prodotti}
+\end{table}

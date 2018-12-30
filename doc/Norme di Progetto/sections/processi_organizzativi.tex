@@ -58,7 +58,7 @@
 			Gli obiettivi per la qualità (Q) concordati dall'\Amm~e dal \Ver~ descritti nel \PdQ~avranno il seguente codice identificativo:
 			
 			\begin{center}
-				Q[Tipo][ID]: Nome
+				Q[Tipo][ID] Nome
 			\end{center}
 		
 			\begin{itemize}
@@ -76,7 +76,7 @@
 			Ad esempio:
 			
 			\begin{itemize}
-				\item \textbf{QPD001: Leggibilità del testo}
+				\item \textbf{QPD001 Leggibilità del testo}
 			\end{itemize}
 			
 			
@@ -86,7 +86,7 @@
 			Le metriche (M) verranno classificate nel seguente modo:
 			
 			\begin{center}
-				M[Tipo][ID]: Nome
+				M[Tipo][ID] Nome
 			\end{center}
 			
 			\begin{itemize}
@@ -104,7 +104,7 @@
 			Ad esempio:
 			
 			\begin{itemize}
-				\item \textbf{MPD001: Indice Gulpease}
+				\item \textbf{MPD001 Indice Gulpease}
 			\end{itemize}
 		
 			Quando sarà possibile, la metrica e l'obiettivo di qualità collegati fra loro avranno lo stesso Tipo e ID.
@@ -112,12 +112,14 @@
 			Ad esempio:
 		
 			\begin{table}[H]
-				\begin{detailtable}{\columnwidth}{YYYY}
-					\thead{ID} & 
-					\thead{Nome} &
-					\thead{Descrizione} &
-					\thead{Metrica}\\\hline\rowcolor{gray!15}
-					QPD001 &Leggibilità del documento &La lettura del documento deve essere comprensibile &MPD001: Gulpease				\end{detailtable}
+				\begin{detailtable}{\columnwidth}{YYY}
+					\thead{Obiettivo} &
+					\thead{Metrica} &
+					\thead{Valore desiderato}\\
+					\hline\rowcolor{gray!15}
+					QPD001 Leggibilità del testo &MPD001 Indice Gulpease &55-60\\
+					\hline\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver}
+				\end{detailtable}
 			\end{table}
 			
 		\subsubsection{Controllo del progetto}

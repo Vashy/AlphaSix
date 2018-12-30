@@ -206,8 +206,8 @@
 			in lavoro strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità.
 			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}), RIVEDERE
 
-			\subparagraph{Indice di Gulpease}
-			Per il calcolo dell'\gloss{Indice di Gulpease}, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease. 
+			\subparagraph{Indice Gulpease}
+			Per il calcolo dell'\gloss{Indice Gulpease}, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice Gulpease. 
 			È stato scelto un indice con un valore che sia compreso tra 50 e 60 per i documenti che seguiranno le norme qui definite.
 
 		\subsubsection{Mantenimento}
@@ -281,24 +281,34 @@
 		\subsubsection{Metriche}
 		La denominazione delle metriche è già stata descritta in §3.1.3.3, qui viene descritto il loro funzionamento.
 			\paragraph{Metriche per i documenti}
-				\subparagraph{MPD001: Indice di Gulpease}
+				\subparagraph{MPD001 Indice Gulpease}
 				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo basa sulla
 				lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
 				
 				\[89+\dfrac{300*n_{frasi}-10*n_{lettere}}{n_{parole}}\]
 				
-				\textbf{Metrica}: il risultato della formula che deve essere interpretata nel seguente modo
+				\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
 				
 				\begin{itemize}
 					\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare;
 					\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media;
 					\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore;
 				\end{itemize}
+			
+				Nella momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in pdf per valutarne l'indice Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.  
 				
-				\subparagraph{MPD002: Correttezza ortografica}
+				\subparagraph{MPD002 Correttezza ortografica}
 				Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
 				
 				\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
+				
+				\subparagraph{MPR001 Varianza della programmazione}
+				Nella sezione (sezione con l'organigramma) nel \Doc{\PdP} con l'organigramma sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti. Nonostante il tempo di \gloss{slack} che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo che sono analizzati nella sezione (sezione dell'analisi dei rischi) del \Doc{\PdP}.
+				
+				\textbf{Metrica}: vengono contati i giorni di ritardo nel rispettare una scadenza.
+				
+				\subparagraph{MPR002 Varianza dei costi}
+				Ogni
 	
 			\paragraph{Metriche per i processi}
 				Per misurare e verificare i processi sono stati scelti degli standard di qualità descritti nel \Doc{\PdQ} che possono offrire una valutazione quantitativa.
