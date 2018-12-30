@@ -7,12 +7,12 @@
 		\subsubsection{Implementazione}\label{PS:Documentazione:Implementazione}
 
 			\paragraph{Template}\label{PS:Documentazione:Implementazione:Template}
-			Prima di iniziare a redigere i documenti, è stato creato un template per \LaTeX \ (\S\ref{LaTeX})
+			Prima di iniziare a redigere i documenti, è stato creato un \gloss{template} per \LaTeX \ (\S\ref{LaTeX})
 			contenente tutte le impostazioni grafiche condivise tra i vari documenti, per sfruttare il riutilizzo
 			del codice e semplificare enormemente la manutenzione dei \gloss{sorgenti}.\par
 			Nello specifico, è presente un file per ognuna delle seguenti utilità:
 			\begin{itemize}
-				\item Layout delle pagine
+				\item \gloss{Layout} delle pagine
 				\item \gloss{Macro} personalizzate volte a semplificare l'utilizzo di strutture o comandi ricorrenti
 				\item Codice per la generazione della prima pagina
 					(struttura definita in \S\ref{PS:Documentazione:Struttura:Frontespizio})
@@ -26,7 +26,7 @@
 					Il \Res\ assegna ai \gloss{redattori} le varie sezioni di ogni documento da redigere, i quali aggiorneranno la versione nel diario delle modifiche
 					come normato in \S\ref{Versionamento}.
 				\item \textbf{Verifica}: il documento entra in questa fase nel momento in cui i redattori hanno terminato la stesura del lavoro loro assegnato
-					segnalandolo al \Res, il quale assegnerà ai Verificatori la verifica della qualità del prodotto, secondo quanto riportato nelle norme di verifica.
+					segnalandolo al \Res, che a sua volta assegnerà ai Verificatori la verifica della qualità del prodotto, secondo quanto riportato nelle norme di verifica.
 					Essi potranno approvare il documento oppure notificare il \Res\ su eventuali errori o incongruenze emerse durante la fase di verifica, che provvederà
 					a riassegnare il lavoro.
 				\item \textbf{Approvazione}: fase che inizia dall'accettazione del documento da parte dei Verificatori nella fase di verifica. Spetta al \Res\
@@ -70,9 +70,8 @@
 			\paragraph{Indice}\label{PS:Documentazione:Struttura:Indice}
 			In ogni documento, esclusi i verbali, è presente un indice contenente tutte le sezioni, sottosezioni e paragrafi. I numeri di sezioni, sottosezioni,
 			e paragrafi sottostanti saranno separati da un punto.\par  
-			Saranno presenti inoltre un indice delle
-			figure e un indice delle tabelle, i quali saranno presenti solo in caso siano effettivamente presenti rispettivamente
-			figure e tabelle.\par
+			Saranno eventualmente presenti un indice delle
+			figure e un indice delle tabelle, assenti in caso non ci siano tabelle o figure nel documento.\par
 			I valori degli indici partono da 1.
 
 			\paragraph{Contenuto}\label{PS:Documentazione:Struttura:Contenuto}
@@ -140,18 +139,18 @@
 
 			\subparagraph{Figure}
 			Ogni immagine inserita nei documenti deve sempre essere centrata rispetto al foglio e adeguatamente separata dal testo. Deve inoltre essere
-			accompagnata da una breve \gloss{caption} che permetta al lettore di capire esattamente che cosa sta guardando. È presente nell'indice l'Elenco
-			delle Figure che raccoglie la lista di tutte le immagini presenti.
+			accompagnata da una breve \gloss{caption} che permetta al lettore di capire esattamente che cosa sta guardando. È presente nell'indice l'elenco
+			delle figure che raccoglie la lista di tutte le immagini presenti.
 
 			\subparagraph{Tabelle}
 			Come per le figure, ogni tabella sarà accompagnata da una caption e sarà della dimensione del testo, o se più piccola, centrata.
-			Tutte le tabelle saranno raccolte nell'Elenco delle tabelle.\par
+			Tutte le tabelle saranno raccolte nell'elenco delle tabelle.\par
 			Saranno presenti due tipologie di tabelle:
 			\begin{itemize}
 				\item \textbf{Semplici}: tabelle standard senza uno stile particolare, in cui le celle sono separate da bordi neri.
 				\item \textbf{Complesse}: tabelle con un'alternanza di colori tra le righe delle celle (grigio e bianco) e senza bordi verticali.
 					Le celle sono separate orizzontalmente da una corretta spaziatura e allineamento e verticalmente dall'alternanza dei due colori.
-					La riga dell'header può essere bianca o di un grigio più scuro in base al contesto, con il testo che può essere in grassetto.
+					La riga dell'\gloss{header} può essere bianca o di un grigio più scuro in base al contesto, con il testo che può essere in grassetto.
 			\end{itemize}
 
 
@@ -167,7 +166,7 @@
 			Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \Doc{Piano di Progetto v1.0.0},
 			\Doc{Piano di Qualifica v1.0.0} e \Doc{Analisi dei Requisiti v1.0.0}. Si chiamano esterni perché accessibili al committente.
 
-			\subparagraph{Glossario}
+			\subparagraph{Glossario} % TODO già scritto nell'introduzione, eliminare?
 			Il documento denominato \Doc{Glossario v1.0.0} raccoglie in ordine alfabetico tutti i termini utilizzati che necessitano di una spiegazione più approfondita.
 			Sono identificabili all'interno degli altri documenti da un font differente e una G a pedice la prima volta che appaiono.
 
@@ -202,15 +201,14 @@
 			lingua italiana o inglese e così via. Più informazioni sono reperibili sui rispettivi siti ufficiali, i cui link sono presenti in \S\ref{rifinfo}.
 			% \subparagraph{Visual Studio Code}
 
-			\subparagraph{GanttProject}
+			\subparagraph{GanttProject} % TODO Rivedere
 			GanttProject è un programma gratuito dedito alla formazione dei \gloss{diagrammi di Gantt}. Permette di creare task e milestone, organizzare le task
 			in lavoro strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità.
 			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}), RIVEDERE
 
 			\subparagraph{Indice di Gulpease}
 			Per il calcolo dell'\gloss{Indice di Gulpease}, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease. 
-
-
+			È stato scelto un indice con un valore che sia compreso tra 50 e 60 per i documenti che seguiranno le norme qui definite.
 
 		\subsubsection{Mantenimento}
 
@@ -224,7 +222,7 @@
 			\indent dove:
 			\begin{itemize}
 				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento, determinando
-					una \gloss{major release}.
+					una major release.
 				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente. Inizia da 0. Viene riportato a zero ad
 					ogni incremento della \texttt{X}.
 				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, quale l'aggiunta di una sezione
@@ -265,22 +263,27 @@
 	\subsection{Verifica}
 
 		\subsubsection{Scopo}
-		Questa sezione vuole descrivere come il team di sviluppo esegue la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci si attende. La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile  sarà necessario il ritorno ad una fase stabile del progetto per poi da lì ripartire prendendo in considerazione i risultati della precedente verifica.
+		Questa sezione vuole descrivere come il team di sviluppo esegue la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci si attende.
+		La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il
+		ritorno ad una fase stabile del progetto per poi da lì ripartire prendendo in considerazione i risultati della precedente verifica.
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
 		\subsubsection{Descrizione}
 		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole raggiungere.
 		
-		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} alla appendice §A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore, servirà come "base" per alzare il livello di qualità di quel processo o prodotto.
+		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} alla appendice §A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
+		servirà come "base" per alzare il livello di qualità di quel processo o prodotto.
 		
-		I risultati ottenuti nella fase di verifica sono riportati all'appendice §B del \Doc{\PdQ}, in questo modo, confrontandoli con gli esiti attesi, è possibile valutare un miglioramento per i vari processi e prodotti che viene riportato nell'appendice §C sempre del \PdQ. 
+		I risultati ottenuti nella fase di verifica sono riportati all'appendice §B del \Doc{\PdQ}, in questo modo, confrontandoli con gli esiti attesi,
+		è possibile valutare un miglioramento per i vari processi e prodotti che viene riportato nell'appendice §C sempre del \PdQ. 
 
 		\subsubsection{Metriche}
 		La denominazione delle metriche è già stata descritta in §3.1.3.3, qui viene descritto il loro funzionamento.
 			\paragraph{Metriche per i documenti}
 				\subparagraph{MPD001: Indice di Gulpease}
-				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo basa sulla lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
+				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo basa sulla
+				lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
 				
 				\[89+\dfrac{300*n_{frasi}-10*n_{lettere}}{n_{parole}}\]
 				
@@ -310,10 +313,12 @@
 				\subparagraph*{ISO/IEC 15504}
 				Ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità.
 				
-				Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
+				Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine
+				capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
 				
 				\subparagraph*{Ciclo di Deming}
-				Nel fase migliorativa del processo sarà data particolare attenzione nel non iniziale una fase del ciclo di Deming senza aver finito completamente le fasi precedenti.
+				Nel fase migliorativa del processo sarà data particolare attenzione nel non iniziale una fase del ciclo di Deming senza aver
+				finito completamente le fasi precedenti.
 	
 			\paragraph{Analisi statica}
 				L'analisi statica verifica solo i prodotti che non sono o non possono essere eseguiti, come i documenti.
