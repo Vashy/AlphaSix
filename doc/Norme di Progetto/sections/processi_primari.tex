@@ -20,23 +20,44 @@
         	\end{itemize}
 
         \subsubsection{Preparazione in vista della revisione}
-        In questa parte il gruppo prepara tutto il materiale necessario al buon superamento della revisione, come per esempio lettera di presentazione, documentazione e slide per l'esposizione.
+		In questa parte il gruppo prepara tutto il materiale necessario al buon superamento della revisione, come per esempio lettera di presentazione,
+		documentazione e slide per l'esposizione.
 
 
     \subsection{Processo di sviluppo}\label{PP:Sviluppo}
 
-        \subsubsection{Scopo}\label{PP:Sviluppo:Scopo}
-        Cont
+		\subsubsection{Scopo}\label{PP:Sviluppo:Scopo}
+		Lo sviluppo consiste nell'affrontare le attività volte a sviluppare il software richiesto dal proponente. Per una corretta implementazione di tale processo è
+		necessario:
+		\begin{itemize}
+			\item Fissare degli obiettivi di sviluppo
+			\item Realizzare un prodotto che sia conforme:
+			\begin{itemize}
+				\item ai requisiti definiti dal proponente
+				\item ai test di definiti nelle norme di qualità
+			\end{itemize}
+		\end{itemize}
+		Lo standard ISO/IEC 12207:1995\footnote{Fonte in \S\ref{rifinfo}} definisce il processo di sviluppo quel processo
+		contenente tutte le attività relative al prodotto finale, quali:
+		\begin{itemize} % [noitemsep]
+			\item Analisi dei requisiti
+			\item Progettazione
+			\item Codifica
+			\item Integrazione ed installazione
+		\end{itemize}
 
 
         \subsubsection{Analisi dei Requisiti}\label{PP:Sviluppo:AdR}
-        Contenuto generico
+		Gli Analisti si occupano di redigere l'\Doc{Analisi dei Requisiti v1.0.0}, composta dal seguente contenuto:
+		\begin{itemize}
+			\item Descrizione generale del prodotto
+			\item Modellazione concettuale del sistema tramite la definizione dei vari casi d'uso
+			\item Classificazione e tracciamento dei requisiti
+		\end{itemize}
 
-
-
-		 \paragraph{Denominazione dei requisiti}\label{PP:Sviluppo:AdR:DenominazioneRequisiti}
-		 Ogni requisito che è stato individuato duranti l'analisi, presenta il seguente identificativo univoco \texttt{R[Numero][Tipo][Priorità]} in cui:
-		 \begin{itemize}
+		\paragraph{Denominazione dei requisiti}\label{PP:Sviluppo:AdR:DenominazioneRequisiti}
+		Ogni requisito che è stato individuato duranti l'analisi, presenta il seguente identificativo univoco \texttt{R[Numero][Tipo][Priorità]}, in cui:
+		\begin{itemize}
 		 	\item \textbf{Numero}: corrisponde ad un numero progressivo.
 		 	\item \textbf{Tipo}: segnala la tipologia di requisito che può essere:
 		 	\begin{itemize}
@@ -50,13 +71,13 @@
 	 			\item \textbf{1}: desiderabile, di medio livello quindi non necessario.
 	 			\item \textbf{2}: obbligatorio, di grado alto quindi importante per il committente e impossibile da tralasciare.
 	 		\end{itemize}
-		 \end{itemize}
+		\end{itemize}
 
-		 \paragraph{Casi d'uso}\label{PP:Sviluppo:AdR:CasiUso}
-		 %descrivere cos'è?
-		 Un \gloss{caso d'uso} è una tecnica per identificare i requisiti funzionali che descrive le interazioni tra il sistema di riferimento e un utente ad esso esterno. \\
-		 Ogni caso d'uso che si vuol descrivere presenta:
-		 \begin{itemize}
+		\paragraph{Casi d'uso}\label{PP:Sviluppo:AdR:CasiUso}
+		% descrivere cos'è?
+		Un \gloss{caso d'uso} è una tecnica per identificare i requisiti funzionali che descrive le interazioni tra il sistema di riferimento e un utente ad esso esterno. \\
+		Ogni caso d'uso che si vuol descrivere presenta:
+		\begin{itemize}
 		 	\item \textbf{Codice}: d'identificazione.
 		 	\item \textbf{Titolo}: breve per dare una breve denominazione.
 		 	\item \textbf{Attori}: tutti quelli coinvolti, sia primari che secondari.
@@ -65,12 +86,12 @@
 		 	\item \textbf{Postcondizione}: per rappresentare l'istante successivo.
 		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute.
 		 	\item \textbf{Estensioni}: per azioni inerenti a scenari alternativi (d'eccezione o errore).
-		 \end{itemize}
-		 La rappresentazione scelta per il codice dei casi d'uso è:
-		 \begin{itemize}
+		\end{itemize}
+		La rappresentazione scelta per il codice dei casi d'uso è:
+		\begin{itemize}
 		 	\item \textbf{UC[Numero]}: per un caso principale (ad esempio, per il primo caso d'uso avremo UC1)
-		 	\item \textbf{UC[Numero].[Numero]}: per un sotto caso (ad esempio, per il primo figlio del primo caso d'uso avremo UC1.1)
-		 \end{itemize}
+			\item \textbf{UC[Numero].[Numero]}: per un sotto caso (ad esempio, per il primo figlio del primo caso d'uso avremo UC1.1)
+		\end{itemize}
 	 	 %ecc..
 
 
