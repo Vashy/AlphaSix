@@ -265,48 +265,86 @@
 	\subsection{Verifica}
 
 		\subsubsection{Scopo}
-		Questa sezione vuole descrivere come il team di sviluppo esegue la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci si attende. Se ciò accede il team precederà alla fase successiva del progetto, in caso contrario sarà necessario il ritorno ad una fase stabile del progetto e da lì ripartire prendendo in considerazione i risultati della precedente verifica. 
+		Questa sezione vuole descrivere come il team di sviluppo esegue la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci si attende. La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile  sarà necessario il ritorno ad una fase stabile del progetto per poi da lì ripartire prendendo in considerazione i risultati della precedente verifica.
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
 		\subsubsection{Descrizione}
-		Ogni processo e prodotto deve essere valutato in modo quantificabile inserendoli in delle metriche apposite quando possibile e stabilendo il risultato che si vuole raggiungere.
+		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole raggiungere.
 		
-		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} alla \textit{Appendice A}, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore, servirà come "base" per alzare il livello di qualità di quel processo o prodotto.
+		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} alla appendice §A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore, servirà come "base" per alzare il livello di qualità di quel processo o prodotto.
+		
+		I risultati ottenuti nella fase di verifica sono riportati all'appendice §B del \Doc{\PdQ}, in questo modo, confrontandoli con gli esiti attesi, è possibile valutare un miglioramento per i vari processi e prodotti che viene riportato nell'appendice §C sempre del \PdQ. 
 
 		\subsubsection{Metriche}
-		La denominazione delle metriche è già stata descritta in §3.1.3.3, qui vengono descritte.
+		La denominazione delle metriche è già stata descritta in §3.1.3.3, qui viene descritto il loro funzionamento.
 			\paragraph{Metriche per i documenti}
-			\subparagraph{MPD001: Indice di Gulpease}
-			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo basa sulla lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
-			
-			\[89+\dfrac{300*n_{frasi}-10*n_{lettere}}{n_{parole}}\]
-			
-			\textbf{Metrica}: il risultato della formula che deve essere interpretata nel seguente modo
-			
-			\begin{itemize}
-				\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare;
-				\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media;
-				\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore;
-			\end{itemize}
-			
-			\subparagraph{MPD002: Correttezza ortografica}
-			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
-			
-			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
-
+				\subparagraph{MPD001: Indice di Gulpease}
+				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo basa sulla lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
+				
+				\[89+\dfrac{300*n_{frasi}-10*n_{lettere}}{n_{parole}}\]
+				
+				\textbf{Metrica}: il risultato della formula che deve essere interpretata nel seguente modo
+				
+				\begin{itemize}
+					\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare;
+					\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media;
+					\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore;
+				\end{itemize}
+				
+				\subparagraph{MPD002: Correttezza ortografica}
+				Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
+				
+				\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
+	
 			\paragraph{Metriche per i processi}
-
-			%\paragraph{Analisi statica e dinamica?}
-
-			%\paragraph{...Tutti i test}	%UTILE??
-
-			\paragraph{Strumenti}
-
-			%\subparagraph{Verifica di documentazione}
-			%Google Docs?
-
-			%\subparagraph{Verifica ortografica}
-			%Integrazione di TexStudio
-
-			%\subparagraph{Integrazione continua} % Jenkins? Più avanti?
+				Per misurare e verificare i processi sono stati scelti degli standard di qualità descritti nel \Doc{\PdQ} che possono offrire una valutazione quantitativa.
+				
+				Gli standard scelti sono:
+				
+				\begin{itemize}
+					\item \textbf{ISO/IEC 15504}
+					\item \textbf{Ciclo di Deming}
+				\end{itemize}
+			
+				\subparagraph*{ISO/IEC 15504}
+				Ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità.
+				
+				Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
+				
+				\subparagraph*{Ciclo di Deming}
+				Nel fase migliorativa del processo sarà data particolare attenzione nel non iniziale una fase del ciclo di Deming senza aver finito completamente le fasi precedenti.
+	
+			\paragraph{Analisi statica}
+				L'analisi statica verifica solo i prodotti che non sono o non possono essere eseguiti, come i documenti.
+				
+				\subparagraph*{Analisi dei documenti}
+				L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
+				
+				Per questo verranno utilizzate:
+				
+				\begin{itemize}
+					\item \textbf{MPD001}
+					\item \textbf{MPD002}
+				\end{itemize}
+			
+			\paragraph{Analisi dinamica}
+				L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
+				
+				Vengono presi in esame i prodotti software e i processi.
+				
+				\subparagraph*{Analisi dei processi}
+				Per analizzare i processi vengono usati gli standard sopra elencati. Ad ogni fase del processo verranno valutati gli attributi richiesti dall'ISO 15504 e in che misura questi sono stati rispettati, e in che fase del \textit{Ciclo di Deming} il processo si trova.
+			
+	
+				%\paragraph{...Tutti i test}	%UTILE??
+	
+				%\paragraph{Strumenti}
+	
+				%\subparagraph{Verifica di documentazione}
+				%Google Docs?
+	
+				%\subparagraph{Verifica ortografica}
+				%Integrazione di TexStudio
+	
+				%\subparagraph{Integrazione continua} % Jenkins? Più avanti?
