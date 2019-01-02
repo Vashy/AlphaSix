@@ -37,18 +37,55 @@ producer genera un messaggio
 	api sonarqube
 		\subparagraph{UC1.3.1}
 		esecuzione build
-
 \subsubsection{UC 2}
-	Autenticazione dell'utente nel sistema
-	\paragraph{UC2.1}
-		Autenticazione
-			\subparagraph{UC2.1.1}
-				Inserimento username
-			\subparagraph{UC2.1.2}
-				Inserimento password
-	\paragraph{UC2.2}
-		Visualizzazione errore autenticazione fallita
 
+	\begin{itemize}
+		\item \textbf{Titolo}: autenticazione dell'utente nel sistema
+		\item \textbf{Attori}: utente non autenticato
+		\item \textbf{Descrizione}: l'utente richiede di autenticarsi al sistema attraverso un
+		form php dove inserisce username e password
+		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non autenticato
+		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore come utente autenticato
+		\item \textbf{Scenario Principale}: l'utente non ancora riconosciuto dal sistema effettua l'autenticazione
+	\end{itemize}
+	
+	\paragraph{UC2.1}
+		\begin{itemize}
+			\item \textbf{Titolo}: autenticazione
+			\item \textbf{Attori}: utente non autenticato
+			\item \textbf{Descrizione}: l'utente attende l'autenticazione da parte del sistema
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non autenticato
+			\item \textbf{Postcondizione}: il sistema riconosce l'utente come autenticato
+			\item \textbf{Scenario Principale}: l’utente non ancora riconosciuto dal sistema richiede l'autenticazione
+	\end{itemize}
+		\subparagraph{UC2.1.1}
+			\begin{itemize}
+			\item \textbf{Titolo}: inserimento username
+			\item \textbf{Attori}: utente non autenticato
+			\item \textbf{Descrizione}: l'utente inserisce l'username
+			\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento dell'username
+			\item \textbf{Postcondizione}: l'utente ha inserito l'username desiderato
+			\item \textbf{Scenario Principale}: l'utente inserisce l'username per autenticarsi
+		\end{itemize}
+		\subparagraph{UC2.1.2}
+			\begin{itemize}
+			\item \textbf{Titolo}: inserimento password
+			\item \textbf{Attori}: utente non autenticato
+			\item \textbf{Descrizione}: l'utente inserisce la password
+			\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento della password
+			\item \textbf{Postcondizione}: l'utente ha inserito la password desiderata
+			\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi
+		\end{itemize}
+	\paragraph{UC2.2}
+		\begin{itemize}
+			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita
+			\item \textbf{Attori}: utente non autenticato
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username o password sbagliate
+			\item \textbf{Precondizione}: il sistema riceve una richiesta di autenticazione da parte di un utente che
+			fornisce username o password sbagliate
+			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore
+			\item \textbf{Scenario Principale}: l'utente visualizza il messaggio d'errore
+		\end{itemize}
 
 \subsubsection{UC 3}
 configurazione delle preferenze dell'utente nel sistema
