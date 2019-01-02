@@ -78,7 +78,11 @@
 		Un \gloss{caso d'uso} è una tecnica per identificare i requisiti funzionali che descrive le interazioni tra il sistema di riferimento e un utente ad esso esterno. \\
 		Ogni caso d'uso che si vuol descrivere presenta:
 		\begin{itemize}
-		 	\item \textbf{Codice}: d'identificazione.
+		 	\item \textbf{Codice}: per l'identificazione del tipo:
+		 	\begin{itemize}
+		 		\item \textbf{UC[Numero]}: per un caso principale (ad esempio, per il primo caso d'uso avremo UC1)
+		 		\item \textbf{UC[Numero].[Numero]}: per un sotto caso (ad esempio, per il primo figlio del primo caso d'uso avremo UC1.1)
+		 	\end{itemize}
 		 	\item \textbf{Titolo}: breve per dare una breve denominazione.
 		 	\item \textbf{Attori}: tutti quelli coinvolti, sia primari che secondari.
 		 	\item \textbf{Descrizione}: per spiegare più nel dettaglio le azioni.
@@ -87,12 +91,7 @@
 		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute.
 		 	\item \textbf{Estensioni}: per azioni inerenti a scenari alternativi (d'eccezione o errore).
 		\end{itemize}
-		La rappresentazione scelta per il codice dei casi d'uso è:
-		\begin{itemize}
-		 	\item \textbf{UC[Numero]}: per un caso principale (ad esempio, per il primo caso d'uso avremo UC1)
-			\item \textbf{UC[Numero].[Numero]}: per un sotto caso (ad esempio, per il primo figlio del primo caso d'uso avremo UC1.1)
-		\end{itemize}
-	 	 %ecc..
+	 	 
 
 
         %\subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}	%PIÙ AVANTI
@@ -114,10 +113,10 @@
 			\item Use case
 			\item Relazioni, che possono essere di:
 			\begin{itemize}
-				\item Associazione
-				\item Inclusione
-				\item Estensione
-				\item Generalizzazione
+				\item \textbf{Associazione}: è sempre presente e rappresenta una comunicazione diretta dell'attore con lo use case.
+				\item \textbf{Inclusione}: è una funzionalità comune che coinvolge più use case, in cui ogni istanza del primo esegue necessariamente il secondo use case. L'attore esegue sempre tutte le inclusioni.
+				\item \textbf{Estensione}: aumenta le funzionalità di un use case coinvolgendone un altro. L'esecuzione di quest'ultimo interrompe il precedente, ma non è necessariamente detto che tutte le estensioni vengano eseguite.
+				\item \textbf{Generalizzazione}: avviene tra use case o tra attori e rappresenta delle modifiche alle caratteristiche di base.
 			\end{itemize}
 		\end{itemize}
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
