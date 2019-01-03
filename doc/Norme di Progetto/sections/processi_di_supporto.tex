@@ -301,34 +301,43 @@
 				Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
 				
 				\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
-				
+	
+			\paragraph{Metriche per i processi}				
 				\subparagraph{MPR001 Varianza della programmazione}
 				Nella sezione (sezione con l'organigramma) nel \Doc{\PdP} con l'organigramma sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti. Nonostante il tempo di \gloss{slack} che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo che sono analizzati nella sezione (sezione dell'analisi dei rischi) del \Doc{\PdP}.
 				
 				\textbf{Metrica}: vengono contati i giorni di ritardo nel rispettare una scadenza.
 				
 				\subparagraph{MPR002 Varianza dei costi}
-				Ogni
-	
-			\paragraph{Metriche per i processi}
-				Per misurare e verificare i processi sono stati scelti degli standard di qualità descritti nel \Doc{\PdQ} che possono offrire una valutazione quantitativa.
+				All'interno della sezione (sezione preventivo) nel \Doc{\PdP} è indicato il costo approssimativo del progetto. In corso d'opera possono presentarsi dei problemi che richiedano un aggiunta di costo in termini di $\frac{tempo}{persona}$. Lo scopo del preventivo infatti è quello di fare una stima non definitiva dei costi. Per verificare se il preventivo viene rispettato viene fatto periodicamente un consuntivo di periodo.
 				
-				Gli standard scelti sono:
+				\textbf{Metrica}: viene misurata la differenza conteggiata in € tra il costo finale e il preventivo. Viene seguito tale schema per la tariffa oraria dei vari ruoli del team di sviluppo:
 				
 				\begin{itemize}
-					\item \textbf{ISO/IEC 15504}
-					\item \textbf{Ciclo di Deming}
+					\item \textbf{Responsabile}: 30€;
+					\item \textbf{Amministratore}: 20€;
+					\item \textbf{Analista}: 25€;
+					\item \textbf{Progettista}: 22€;
+					\item \textbf{Programmatore}: 15€;
+					\item \textbf{Verificatore}: 15€;
 				\end{itemize}
-			
-				\subparagraph*{ISO/IEC 15504}
-				Ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità.
 				
-				Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine
-				capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
-				
-				\subparagraph*{Ciclo di Deming}
-				Nel fase migliorativa del processo sarà data particolare attenzione nel non iniziale una fase del ciclo di Deming senza aver
-				finito completamente le fasi precedenti.
+				\subparagraph{MPR003 Aderenza agli standard}
+				 Per misurare e verificare i processi sono stati scelti degli standard di qualità descritti nel \Doc{\PdQ} che possono offrire una valutazione quantitativa.
+				 
+				 Gli standard scelti sono:
+				 
+				 \begin{itemize}
+				 	\item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità. Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità;
+				 	\item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziale una fase del ciclo di Deming senza aver finito completamente le fasi precedenti;
+				 \end{itemize}
+			 
+				 \textbf{Metrica}: il livello di maturità descritto nell'ISO/IEC 15504 alla appendice §A del \Doc{\PdQ}.
+				 
+				 \subparagraph{MPR004 Frequenza commit nella repository}
+				 Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro del team effettui un \gloss{commit} ad ogni sua modifica significativa. Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
+				 
+				 \textbf{Metrica}: numero di commit effettuati in un giorno lavorativo dall'intero team di sviluppo.
 	
 			\paragraph{Analisi statica}
 				L'analisi statica verifica solo i prodotti che non sono o non possono essere eseguiti, come i documenti.
