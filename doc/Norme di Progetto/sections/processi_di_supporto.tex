@@ -338,14 +338,52 @@
 				 Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro del team effettui un \gloss{commit} ad ogni sua modifica significativa. Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
 				 
 				 \textbf{Metrica}: numero di commit effettuati in un giorno lavorativo dall'intero team di sviluppo.
-	
+				 
+				 
+				 \subparagraph*{Metriche sui requisiti e i rischi}
+				 Dato che non è fisso il numero dei requisiti di un progetto è stato scelta una serie di metriche dove il valore ottimale da raggiungere è sempre uguale, lo zero, per questo è stato scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto riguarda i rischi che possono verificarsi nel corso del progetto.
+				 
+				 Gli obiettivi che si vogliono raggiungere attraverso tali metriche possono essere stabiliti solo a progetto concluso.
+				 
+				 \subparagraph{MPR005 Requisiti obbligatori non soddisfatti}
+				 Per adempire completamente alla richiesta del cliente serve individuare tutti i requisiti presenti nella sua richiesta, impliciti, espliciti, diretti e derivati. Alcuni sono imprescindibili, detti obbligatori e il loro soddisfacimento determina la buona riuscita del progetto.
+				 
+				 \textbf{Metrica}: numero dei requisiti obbligatori non soddisfatti.
+				 
+				 \subparagraph{MPR006 Requisiti desiderabili non soddisfatti}
+				 I requisiti desiderabili non sono necessari, ma offrono un valore aggiunto al progetto.
+				 
+				 \textbf{Metrica}: numero dei requisiti desiderabili non soddisfatti.
+				 
+				 \subparagraph{MPR007 Requisiti opzionali non soddisfatti}
+				 Tali requisiti devono essere adempiuti sono nel momento in cui tutti i requisiti obbligatori saranno soddisfatti. Possono essere concordati col cliente in corso d'opera.
+				 
+				 \textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
+				 
+				 \subparagraph{MPR008 Rischi non previsti avvenuti}
+				 Nell'analisi dei rischi presente alla sezione §2 del \Doc{\PdP} sono presenti i rischi ritenuti possibili e di essi è proposta una soluzione. Possono presentarsi anche rischi non previsti in tale analisi, questi devono essere il meno possibile perché non la loro soluzione sarà decisa al momento causando ritardi all'interno della programmazione.
+				 
+				 \textbf{Metrica}: numero di rischi non previsti avvenuti nel corso dell'intero progetto.
+				 
+				 \paragraph{MPR009 Frequenza controllo prodotti}
+				 I documenti e i prodotti software hanno bisogno di una verifica frequente commisurata in base al numero di modifiche che vengono apportate.
+				 
+				 Chi esegue la modifica deve controllare prima di poterla ufficializzare, ma la verifica fatta dal \Ver~deve essere fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
+				 
+				 \textbf{Metrica}: numero massimo di modifiche apportate ai prodotti prima che vengono effettuate senza una verifica dal parte del \Ver.
+				 
+				 \paragraph{MPR010 Norme di progetto non seguite}
+				 Per produrre documenti e prodotti software il team possiede delle norme di sviluppo, il non rispettarle complica la coordinazione tra i membri del team e compromette la qualità di questi ultimi. \'E compito del \Res~assicurarsi che tali regole descritte nelle \NdP siano rispettate.
+				 
+				 \textbf{Metrica}: numero di norme non rispettate lungo il corso di ogni \gloss{baseline}.
+				 
 			\paragraph{Analisi statica}
 				L'analisi statica verifica solo i prodotti che non sono o non possono essere eseguiti, come i documenti.
 				
 				\subparagraph*{Analisi dei documenti}
 				L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
 				
-				Per questo verranno utilizzate:
+				Per l'analisi dei documenti vengono utilizzate:
 				
 				\begin{itemize}
 					\item \textbf{MPD001}
@@ -359,6 +397,16 @@
 				
 				\subparagraph*{Analisi dei processi}
 				Per analizzare i processi vengono usati gli standard sopra elencati. Ad ogni fase del processo verranno valutati gli attributi richiesti dall'ISO 15504 e in che misura questi sono stati rispettati, e in che fase del \textit{Ciclo di Deming} il processo si trova.
+				
+				Per l'analisi dei processi vengono utilizzate:
+				
+				\begin{itemize}
+					\item \textbf{MPR001 Varianza della programmazione}
+					\item \textbf{MPR002 Varianza dei costi}
+					\item \textbf{MPR004 Frequenza commit nella repository}
+					\item \textbf{MPR009 Frequenza controllo prodotti}
+					\item \textbf{MPR010 Norme di progetto non seguite}
+				\end{itemize}
 			
 	
 				%\paragraph{...Tutti i test}	%UTILE??
