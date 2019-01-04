@@ -24,8 +24,8 @@
 			L'attività è importante per...
 			Struttura generale del PdP:
 			\begin{itemize}
-				\item Introduzione e scopo;
-				\item Analisi;
+				\item Introduzione e scopo
+				\item Analisi
 				\item Modello di sviluppo adottato..
 				..
 			\end{itemize}
@@ -46,27 +46,27 @@
 			\end{itemize}
 
 
-		\subsubsection{Pianificazione della qualità}
+		\subsubsection{Pianificazione della qualità}\label{Pianificazione qualita}
 		Per cercare la qualità nei prodotti è necessario che vengano misurate diverse caratteristiche di questi ultimi.
 		Per ogni caratteristica deve essere fissato un livello minimo è un livello ottimale che questa deve avere.
 		
 		In tale sezione viene descritto il modo di utilizzo di metriche e strumenti utili ad ottenere qualità nei processi, nei documenti e nei prodotti.
-		Gli strumenti utilizzati possono essere software o standard di qualità descritti nel \Doc{\PdQ}.
-		Gli obiettivi che ci si pone di raggiungere con questi strumenti sono descritti invece nel \Doc{\PdQ}.
+		Gli strumenti utilizzati possono essere software o standard di qualità descritti nel \Doc{\PdQv}.
+		Gli obiettivi che ci si pone di raggiungere con questi strumenti sono descritti invece nel \Doc{\PdQv}.
 			
 			\paragraph{Classificazione degli obiettivi}
-			Gli obiettivi per la qualità (Q) concordati dall'\Amm~e dal \Ver~ descritti nel \PdQ~avranno il seguente codice identificativo:
-			
+			Gli obiettivi per la qualità (Q) concordati dall'\Amm\ e dal \Ver\ descritti nel \PdQ\ avranno il seguente codice identificativo:
+
 			\begin{center}
-				Q[Tipo][ID] Nome
+				\texttt{Q[Tipo][ID] Nome}
 			\end{center}
 		
 			\begin{itemize}
 				\item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene valutata la qualità, e questa può essere:
 				\begin{itemize}
-					\item \textbf{PR}: processi;
-					\item \textbf{PD}: prodotti che risultano essere documenti;
-					\item \textbf{PS}: prodotti software;
+					\item \texttt{PR}: processi;
+					\item \texttt{PD}: prodotti che risultano essere documenti;
+					\item \texttt{PS}: prodotti software;
 				\end{itemize}
 			
 				\item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre;
@@ -80,45 +80,50 @@
 			\end{itemize}
 			
 			
-			\paragraph{Classificazione delle metriche}
-			Ogni obiettivo della qualità deve per quanto possibile essere collegato ad una metrica, anch'essa scelta dall'\Amm~e dal \Ver. Questo per valutare quantitativamente il raggiungimento o meno degli obiettivi stabiliti.
-			
+			\paragraph{Classificazione delle metriche}\label{Classificazione metriche}
+			Ogni obiettivo della qualità deve, per quanto possibile, essere collegato ad una metrica, anch'essa scelta dall'\Amm\ e dai Verificatori. Questo per valutare
+			quantitativamente il raggiungimento o meno degli obiettivi stabiliti.
+
 			Le metriche (M) verranno classificate nel seguente modo:
-			
+
 			\begin{center}
-				M[Tipo][ID] Nome
+				\texttt{M[Tipo][ID] Nome}
 			\end{center}
-			
+
 			\begin{itemize}
-				\item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene applicata la metrica, e questa può essere:
+				\item \textbf{Tipo}: indica il la tipologia dell'oggetto su cui viene applicata la metrica, e questa può essere:
 				\begin{itemize}
-					\item \textbf{PR}: processi;
-					\item \textbf{PD}: prodotti che risultano essere documenti;
-					\item \textbf{PS}: prodotti software;
+					\item \texttt{PR}: processi;
+					\item \texttt{PD}: prodotti che risultano essere documenti;
+					\item \texttt{PS}: prodotti software;
 				\end{itemize}
-				
+
 				\item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre;
 				\item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase;
 			\end{itemize}
-		
+
 			Ad esempio:
-			
+
 			\begin{itemize}
 				\item \textbf{MPD001 Indice Gulpease}
 			\end{itemize}
-		
+
 			Quando sarà possibile, la metrica e l'obiettivo di qualità collegati fra loro avranno lo stesso Tipo e ID.
-			
+
 			Ad esempio:
-		
+
 			\begin{table}[H]
-				\begin{detailtable}{\columnwidth}{YYY}
+				\begin{detailtable}{\textwidth}{YYY}
+					\rowcolor{gray!30}
 					\thead{Obiettivo} &
 					\thead{Metrica} &
 					\thead{Valore desiderato}\\
-					\hline\rowcolor{gray!15}
-					QPD001 Leggibilità del testo &MPD001 Indice Gulpease &55-60\\
-					\hline\multicolumn{3}{>{\centering\setlength\hsize{3\hsize} }X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver}
+					\hline
+					QPD001 Leggibilità del testo & MPD001 Indice Gulpease & 55-60\\
+					\hline
+					\rowcolor{gray!15}
+					\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto
+					il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver}
 				\end{detailtable}
 			\end{table}
 			
@@ -130,7 +135,7 @@
 			Ogni processo verrà controllato periodicamente durante tutta la sua esecuzione in modo da non intralciare il way of working,
 			mediante misurazioni associate a metriche descritte dai processi di verifica, controllate tramite l'utilizzo di strumenti automatizzati.
 			Le metriche adottate sono, per il processo considerato, indicatori di efficacia dei prodotti rispetto ai requisiti di funzionalità e qualità,
-			stabiliti nel \Doc{\PdQ\ v1.0.0} e nell'\Doc{\AdR v1.0.0}. Risultano validi indicatori per la valutazione di:
+			stabiliti nel \Doc{\PdQv} e nell'\Doc{\AdRv}. Risultano validi indicatori per la valutazione di:
 			\begin{itemize}
 				\item Aderenza al way of working
 				\item Stato di avanzamento del processo rispetto alla pianificazione
@@ -144,9 +149,9 @@
 				\item Per le comunicazioni interne verranno utilizzati gli strumenti segnalati in \S\ref{pianificazione e coordinamento}, in particolare
 					con l'utilizzo di \gloss{Slack} e, all'occorrenza, verranno fissate riunioni per le questioni più importanti:
 					\begin{itemize}
-						\item concordare data, ora e luogo;
-						\item stabilire un ordine del giorno da discutere;
-						\item appuntare il contenuto della riunione per poter poi redigere formalmente il verbale della riunione
+						\item Concordare data, ora e luogo
+						\item Stabilire un ordine del giorno da discutere
+						\item Appuntare il contenuto della riunione per poter poi redigere formalmente il verbale della riunione
 					\end{itemize}
 				\item Per le comuncazioni esterne verrà utilizzata prevalentemente la comunicazione via email. % HELP WANTED fissare riunioni con l'azienda?
 			\end{itemize}
@@ -171,10 +176,10 @@
     	\subsubsection{Strumenti di pianificazione e coordinamento}\label{pianificazione e coordinamento}
 
     		\paragraph{Slack}
-			Slack è uno strumento di collaborazione sviluppato appositamente per coordinare il lavoro tra i team, permettendo la comunicazione in tempo
+			Slack è uno strumento di collaborazione nato appositamente per coordinare il lavoro tra i team, permettendo la comunicazione in tempo
 			reale, e mettendo a disposizione molte altre utilità indispensabili. Tra queste, c'è la possibilità di dividere il \gloss{workspace} in vari canali
 			specifici, marcare parole o frasi importanti con diversi stili (grassetto, corsivo, codice, barrato), fissare i messaggi importanti, aprire una discussione
-			sotto ogni messaggio per non creare ingorghi sul canale, ecc \dots
+			sotto ogni messaggio per non creare troppi messaggi sul canale, ecc \dots
 
 			Il workspace usato dal team è stato suddiviso in diversi canali, in base alle esigenze del periodo di lavoro. Nel periodo attuale, i vari canali sono:
 			\begin{itemize}
@@ -182,29 +187,28 @@
 				\item \textbf{\# Analisi dei Requisiti}: discussioni inerenti alla stesura del documento \Doc{\AdR}. Nello specifico verranno discussi
 					 i requisiti e i casi d'uso.
 				\item \textbf{\# Piano di Progetto}: discussioni inerenti la pianificazione, la suddivisione del lavoro, la valutazione dei rischi, la consuntivazione e
-					altre attività volte alla redazione del documento \Doc{\PdP}.
+					altre attività volte alla redazione del \Doc{\PdP}.
 				\item \textbf{\# Piano di Qualifica}: discussioni inerenti principalmente la qualità di processo e di prodotto, riportate nel documento \Doc{\PdQ}.
 				\item \textbf{\# Norme di Progetto}: discussioni riguardanti le norme che il gruppo adotterà e che ogni membro sarà tenuto a rispettare. Esse
-					saranno riportate nel documento \Doc{\NdP}.
+					saranno riportate nelle \Doc{\NdP}.
 				\item \textbf{\# Studio di Fattibilità}: canale in cui verrà discussa la fattibilità di ogni capitolato proposto, convergenti nel documento
 					\Doc{\SdF}.
-				\item \textbf{\# git}: canale in cui un bot correttamente configurato manderà una notifica ogni volta che verrà effettuato un commit, oppure alla chiusura o apertura
-					di una issue nel repository principale.
+				\item \textbf{\# git}: canale in cui un bot correttamente configurato manderà una notifica ogni volta che verrà effettuato un commit, oppure alla chiusura o apertura di una issue nel repository principale.
 				\item \textbf{\# latex}: discussioni riguardanti gli aspetti tecnici di \LaTeX.
 				\item \textbf{\# random}: discussioni off-topic del team.
 			\end{itemize}
 
     		\paragraph{GitHub}\label{Github}
 			Github fornisce un servizio di tracking delle issue per ogni repository che ospita. Questo strumento offre più funzionalità di quanto potrebbe
-			sembrare, poichè permette anche di trattare le issue come delle \gloss{task}, marcandole con una opportuna label. Infatti, l'issue tracker offre le seguenti
+			sembrare, poich\'e permette anche di trattare le issue come delle \gloss{task}, marcandole con una opportuna label. Infatti, l'issue tracker offre le seguenti
 			funzionalità:
 			\begin{itemize}
-				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID che verrà automaticamente generato (e.g. \texttt{\#32}),
+				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID che verrà automaticamente generato (e.g. \texttt{\#32}), 
 					al quale sarà possibile fare riferimento nei messaggi di commit.
 				\item Creare delle \gloss{milestone}, e aggregare ad esse le issue.
 				\item Assegnare delle label alle issue, per marcarne la natura. Ad esempio, una issue marcata come bug sarà un problema da risolvere,
 					una issue marcata come enhancement sarà un miglioramento o una task. È possibile inoltre creare delle label personalizzate.
-				\item Assegnare un issue a un collaboratore, che sarà tenuto a correggerla.
+				\item Assegnare una issue a un collaboratore, che sarà tenuto a correggerla.
 				\item Supporto di \gloss{markdown} esteso, che permette di formare delle pagine per le issue di aspetto delizioso e allo stesso tempo estremamente funzionali.
 			\end{itemize}
 
@@ -234,4 +238,3 @@
 			\end{itemize}
 			\item Lo studio delle possibilità d'integrazione tra di esse
 		\end{itemize}
-

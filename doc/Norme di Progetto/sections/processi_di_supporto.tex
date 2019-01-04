@@ -69,7 +69,7 @@
 
 			\paragraph{Indice}\label{PS:Documentazione:Struttura:Indice}
 			In ogni documento, esclusi i verbali, è presente un indice contenente tutte le sezioni, sottosezioni e paragrafi. I numeri di sezioni, sottosezioni,
-			e paragrafi sottostanti saranno separati da un punto.\par  
+			e paragrafi sottostanti saranno separati da un punto (ad esempio, 1.4.1).\par
 			Saranno eventualmente presenti un indice delle
 			figure e un indice delle tabelle, assenti in caso non ci siano tabelle o figure nel documento.\par
 			I valori degli indici partono da 1.
@@ -116,14 +116,11 @@
 
 			\subparagraph{Altri formati testuali comuni} \label{PS:Documentazione:Design:NormeT:AltriFormati}
 			\begin{itemize}
-				% \item \textbf{Orari}: [HH]:[MM] secondo la norma ISO 8601 nel formato 24 ore dove:
 				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601 nel formato 24 ore dove:
 				\begin{itemize}
 					\item \texttt{HH} indica le ore, da 00 a 23
 					\item \texttt{MM} i minuti, da 00 a 59
 				\end{itemize}
-				% \item \textbf{Date}: [DD]-[MM]-[YYYY] formato adottato in Europa dove:
-				% \item \textbf{Date}: \texttt{[DD]-[MM]-[YYYY]} formato adottato in Europa dove:
 				\item \textbf{Date}: \texttt{DD-MM-YYYY} formato adottato in Europa dove:
 				\begin{itemize}
 					\item \texttt{DD} indica il numero del giorno, da 01 a 31
@@ -147,7 +144,8 @@
 			Tutte le tabelle saranno raccolte nell'elenco delle tabelle.\par
 			Saranno presenti due tipologie di tabelle:
 			\begin{itemize}
-				\item \textbf{Semplici}: tabelle standard senza uno stile particolare, in cui le celle sono separate da bordi neri.
+				\item \textbf{Semplici}: tabelle standard senza uno stile particolare, in cui le celle sono separate da bordi neri (evitare, ove non risulta necessario,
+					le righe verticali).
 				\item \textbf{Complesse}: tabelle con un'alternanza di colori tra le righe delle celle (grigio e bianco) e senza bordi verticali.
 					Le celle sono separate orizzontalmente da una corretta spaziatura e allineamento e verticalmente dall'alternanza dei due colori.
 					La riga dell'\gloss{header} può essere bianca o di un grigio più scuro in base al contesto, con il testo che può essere in grassetto.
@@ -159,15 +157,15 @@
 			\paragraph{Suddivisione dei documenti}
 
 			\subparagraph{Documenti interni}
-			Sono considerati interni documenti quali \Doc{Studio di Fattibilità v1.0.0} e \Doc{Norme di Progetto v1.0.0} che non sono visibili ad entità esterne,
+			Sono considerati interni documenti quali \Doc{\SdF} e \Doc{\NdP} che non sono visibili ad entità esterne,
 			ma solo ad AlphaSix.
 
 			\subparagraph{Documenti esterni}
-			Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \Doc{Piano di Progetto v1.0.0},
-			\Doc{Piano di Qualifica v1.0.0} e \Doc{Analisi dei Requisiti v1.0.0}. Si chiamano esterni perché accessibili al committente.
+			Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \Doc{\PdP},
+			\Doc{\PdQ} e \Doc{\AdR}. Si chiamano esterni perché accessibili al committente.
 
 			\subparagraph{Glossario} % TODO già scritto nell'introduzione, eliminare?
-			Il documento denominato \Doc{Glossario v1.0.0} raccoglie in ordine alfabetico tutti i termini utilizzati che necessitano di una spiegazione più approfondita.
+			Il documento denominato \Doc{\Gl} raccoglie in ordine alfabetico tutti i termini utilizzati che necessitano di una spiegazione più approfondita.
 			Sono identificabili all'interno degli altri documenti da un font differente e una G a pedice la prima volta che appaiono.
 
 			\subparagraph{Verbali}
@@ -207,7 +205,7 @@
 			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}), RIVEDERE
 
 			\subparagraph{Indice Gulpease}
-			Per il calcolo dell'\gloss{Indice Gulpease}, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice Gulpease. 
+			Per il calcolo dell'\gloss{Indice Gulpease}, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice Gulpease.
 			È stato scelto un indice con un valore che sia compreso tra 50 e 60 per i documenti che seguiranno le norme qui definite.
 
 		\subsubsection{Mantenimento}
@@ -223,8 +221,8 @@
 			\begin{itemize}
 				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento, determinando
 					una major release.
-				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente. Inizia da 0. Viene riportato a zero ad
-					ogni incremento della \texttt{X}.
+				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente. Inizia da 0.
+					Viene riportato a zero ad ogni incremento della \texttt{X}.
 				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, quale l'aggiunta di una sezione
 					o correzioni grammaticali/sintattiche di un certo peso. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}.
 			\end{itemize}
@@ -271,135 +269,155 @@
 
 		\subsubsection{Descrizione}
 		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole raggiungere.
-		
-		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} alla appendice §A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
-		servirà come "base" per alzare il livello di qualità di quel processo o prodotto.
-		
-		I risultati ottenuti nella fase di verifica sono riportati all'appendice §B del \Doc{\PdQ}, in questo modo, confrontandoli con gli esiti attesi,
-		è possibile valutare un miglioramento per i vari processi e prodotti che viene riportato nell'appendice §C sempre del \PdQ. 
+
+		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} all'appendice \S A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
+		servirà come ``base'' per alzare il livello di qualità di quel processo o prodotto.
+
+		I risultati ottenuti nella fase di verifica sono riportati all'appendice \S B del \Doc{\PdQ}, in questo modo, confrontandoli con gli esiti attesi,
+		è possibile valutare un miglioramento per i vari processi e prodotti che viene riportato nell'appendice §C sempre del \PdQ.
 
 		\subsubsection{Metriche}
-		La denominazione delle metriche è già stata descritta in §3.1.3.3, qui viene descritto il loro funzionamento.
+		La denominazione delle metriche è già stata descritta in \S\ref{Classificazione metriche}, qui viene descritto il loro funzionamento.
 			\paragraph{Metriche per i documenti}
 				\subparagraph{MPD001 Indice Gulpease}
-				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo basa sulla
+				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla
 				lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
-				
-				\[89+\dfrac{300*n_{frasi}-10*n_{lettere}}{n_{parole}}\]
-				
+
+				\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
+
 				\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
-				
+
 				\begin{itemize}
 					\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare;
 					\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media;
 					\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore;
 				\end{itemize}
-			
-				Nella momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in pdf per valutarne l'indice Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.  
-				
+
+				Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in pdf
+				per valutarne l'indice Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
+
 				\subparagraph{MPD002 Correttezza ortografica}
 				Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
-				
+
 				\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
-	
-			\paragraph{Metriche per i processi}				
-				\subparagraph{MPR001 Varianza della programmazione}
-				Nella sezione (sezione con l'organigramma) nel \Doc{\PdP} con l'organigramma sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti. Nonostante il tempo di \gloss{slack} che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo che sono analizzati nella sezione (sezione dell'analisi dei rischi) del \Doc{\PdP}.
-				
+
+			\paragraph{Metriche per i processi}
+				\subparagraph{MPR001 Varianza della programmazione} % TODO (sezione con l'organigramma) -> ?
+				Nella sezione (sezione con l'organigramma) nel \Doc{\PdP} con l'organigramma sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
+				Nonostante il tempo di \gloss{slack} che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo che sono
+				analizzati nella sezione (sezione dell'analisi dei rischi) del \Doc{\PdP}.
+
 				\textbf{Metrica}: vengono contati i giorni di ritardo nel rispettare una scadenza.
-				
-				\subparagraph{MPR002 Varianza dei costi}
-				All'interno della sezione (sezione preventivo) nel \Doc{\PdP} è indicato il costo approssimativo del progetto. In corso d'opera possono presentarsi dei problemi che richiedano un aggiunta di costo in termini di $\frac{tempo}{persona}$. Lo scopo del preventivo infatti è quello di fare una stima non definitiva dei costi. Per verificare se il preventivo viene rispettato viene fatto periodicamente un consuntivo di periodo.
-				
-				\textbf{Metrica}: viene misurata la differenza conteggiata in € tra il costo finale e il preventivo. Viene seguito tale schema per la tariffa oraria dei vari ruoli del team di sviluppo:
-				
+
+				\subparagraph{MPR002 Varianza dei costi} % TODO (sezione preventivo) -> ?
+				All'interno della sezione (sezione preventivo) nel \Doc{\PdPv} è indicato il costo approssimativo del progetto.
+				In corso d'opera possono presentarsi dei problemi che richiedano un aggiunta di costo in termini di $\frac{\text{tempo}}{\text{persona}}$.
+				Lo scopo del preventivo infatti è quello di fare una stima non definitiva dei costi. Per verificare se il preventivo viene
+				rispettato viene fatto periodicamente un consuntivo di periodo.
+
+				\textbf{Metrica}: viene misurata la differenza conteggiata in \euro\ tra il costo finale e il preventivo.
+				Viene seguito tale schema per la tariffa oraria dei vari ruoli del team di sviluppo:
+
 				\begin{itemize}
-					\item \textbf{Responsabile}: 30€;
-					\item \textbf{Amministratore}: 20€;
-					\item \textbf{Analista}: 25€;
-					\item \textbf{Progettista}: 22€;
-					\item \textbf{Programmatore}: 15€;
-					\item \textbf{Verificatore}: 15€;
+					\item \textbf{Responsabile}: 30 \euro;
+					\item \textbf{Amministratore}: 20 \euro;
+					\item \textbf{Analista}: 25 \euro;
+					\item \textbf{Progettista}: 22 \euro;
+					\item \textbf{Programmatore}: 15 \euro;
+					\item \textbf{Verificatore}: 15 \euro;
 				\end{itemize}
-				
+
 				\subparagraph{MPR003 Aderenza agli standard}
-				 Per misurare e verificare i processi sono stati scelti degli standard di qualità descritti nel \Doc{\PdQ} che possono offrire una valutazione quantitativa.
-				 
-				 Gli standard scelti sono:
-				 
-				 \begin{itemize}
-				 	\item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità. Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità;
-				 	\item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziale una fase del ciclo di Deming senza aver finito completamente le fasi precedenti;
-				 \end{itemize}
-			 
-				 \textbf{Metrica}: il livello di maturità descritto nell'ISO/IEC 15504 alla appendice §A del \Doc{\PdQ}.
-				 
-				 \subparagraph{MPR004 Frequenza commit nella repository}
-				 Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro del team effettui un \gloss{commit} ad ogni sua modifica significativa. Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
-				 
-				 \textbf{Metrica}: numero di commit effettuati in un giorno lavorativo dall'intero team di sviluppo.
-				 
-				 
-				 \subparagraph*{Metriche sui requisiti e i rischi}
-				 Dato che non è fisso il numero dei requisiti di un progetto è stato scelta una serie di metriche dove il valore ottimale da raggiungere è sempre uguale, lo zero, per questo è stato scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto riguarda i rischi che possono verificarsi nel corso del progetto.
-				 
-				 Gli obiettivi che si vogliono raggiungere attraverso tali metriche possono essere stabiliti solo a progetto concluso.
-				 
-				 \subparagraph{MPR005 Requisiti obbligatori non soddisfatti}
-				 Per adempire completamente alla richiesta del cliente serve individuare tutti i requisiti presenti nella sua richiesta, impliciti, espliciti, diretti e derivati. Alcuni sono imprescindibili, detti obbligatori e il loro soddisfacimento determina la buona riuscita del progetto.
-				 
-				 \textbf{Metrica}: numero dei requisiti obbligatori non soddisfatti.
-				 
-				 \subparagraph{MPR006 Requisiti desiderabili non soddisfatti}
-				 I requisiti desiderabili non sono necessari, ma offrono un valore aggiunto al progetto.
-				 
-				 \textbf{Metrica}: numero dei requisiti desiderabili non soddisfatti.
-				 
-				 \subparagraph{MPR007 Requisiti opzionali non soddisfatti}
-				 Tali requisiti devono essere adempiuti sono nel momento in cui tutti i requisiti obbligatori saranno soddisfatti. Possono essere concordati col cliente in corso d'opera.
-				 
-				 \textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
-				 
-				 \subparagraph{MPR008 Rischi non previsti avvenuti}
-				 Nell'analisi dei rischi presente alla sezione §2 del \Doc{\PdP} sono presenti i rischi ritenuti possibili e di essi è proposta una soluzione. Possono presentarsi anche rischi non previsti in tale analisi, questi devono essere il meno possibile perché non la loro soluzione sarà decisa al momento causando ritardi all'interno della programmazione.
-				 
-				 \textbf{Metrica}: numero di rischi non previsti avvenuti nel corso dell'intero progetto.
-				 
-				 \paragraph{MPR009 Frequenza controllo prodotti}
-				 I documenti e i prodotti software hanno bisogno di una verifica frequente commisurata in base al numero di modifiche che vengono apportate.
-				 
-				 Chi esegue la modifica deve controllare prima di poterla ufficializzare, ma la verifica fatta dal \Ver~deve essere fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
-				 
-				 \textbf{Metrica}: numero massimo di modifiche apportate ai prodotti prima che vengono effettuate senza una verifica dal parte del \Ver.
-				 
-				 \paragraph{MPR010 Norme di progetto non seguite}
-				 Per produrre documenti e prodotti software il team possiede delle norme di sviluppo, il non rispettarle complica la coordinazione tra i membri del team e compromette la qualità di questi ultimi. \'E compito del \Res~assicurarsi che tali regole descritte nelle \NdP siano rispettate.
-				 
-				 \textbf{Metrica}: numero di norme non rispettate lungo il corso di ogni \gloss{baseline}.
-				 
+				Per misurare e verificare i processi sono stati scelti degli standard di qualità descritti nel \Doc{\PdQv} che possono offrire una valutazione quantitativa.
+
+				Gli standard scelti sono:
+
+				\begin{itemize}
+				\item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità.
+					Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto
+					quel processo riesca a superare un dato livello di maturità;
+				\item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziare una fase del ciclo di Deming
+					senza aver finito completamente le fasi precedenti;
+				\end{itemize}
+
+				\textbf{Metrica}: il livello di maturità descritto nell'ISO/IEC 15504 alla appendice §A del \Doc{\PdQv}.
+
+				\subparagraph{MPR004 Frequenza commit nella repository}
+				Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro del team effettui un \gloss{commit} ad ogni sua modifica significativa.
+				Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
+
+				\textbf{Metrica}: numero di commit effettuati in un giorno lavorativo dall'intero team di sviluppo.
+
+
+				\subparagraph*{Metriche sui requisiti e i rischi}
+				Dato che non è fisso il numero dei requisiti di un progetto, sono state scelte una serie di metriche dove il valore ottimale da raggiungere è sempre uguale,
+				lo zero. È stato scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto
+				riguarda i rischi che possono verificarsi nel corso del progetto.
+
+				Gli obiettivi che si vogliono raggiungere attraverso tali metriche possono essere stabiliti solo a progetto concluso.
+
+				\subparagraph{MPR005 Requisiti obbligatori non soddisfatti}
+				Per adempire completamente alla richiesta del cliente, serve individuare tutti i requisiti presenti nella sua richiesta, impliciti, espliciti, diretti e
+				derivati. Alcuni sono imprescindibili, detti obbligatori, e il loro soddisfacimento determina la buona riuscita del progetto.
+
+				\textbf{Metrica}: numero dei requisiti obbligatori non soddisfatti.
+
+				\subparagraph{MPR006 Requisiti desiderabili non soddisfatti}
+				I requisiti desiderabili non sono necessari, ma offrono un valore aggiunto al progetto.
+
+				\textbf{Metrica}: numero dei requisiti desiderabili non soddisfatti.
+
+				\subparagraph{MPR007 Requisiti opzionali non soddisfatti}
+				Tali requisiti devono essere adempiuti sono nel momento in cui tutti i requisiti obbligatori saranno soddisfatti.
+				Possono essere concordati col cliente in corso d'opera.
+
+				\textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
+
+				\subparagraph{MPR008 Rischi non previsti avvenuti} % TODO Rivedere l'ultima frase
+				Nell'analisi dei rischi presente nella sezione §2 del \Doc{\PdPv}, sono presenti i rischi ritenuti possibili per i quali è proposta una soluzione.
+				Possono presentarsi anche rischi non previsti in tale analisi. Devono essere il meno possibile, perché la loro soluzione sarà decisa
+				al momento causando ritardi all'interno della programmazione.
+
+				\textbf{Metrica}: numero di rischi non previsti avvenuti nel corso dell'intero progetto.
+
+				\paragraph{MPR009 Frequenza controllo prodotti}
+				I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
+
+				Chi esegue la modifica deve controllare ciò che ha fatto prima di poter ufficializzare, mentre la verifica fatta dal \Ver\ deve essere fattasolo nel momento in cui è
+				stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
+
+				\textbf{Metrica}: numero massimo di modifiche apportate ai prodotti prima che vengono effettuate senza una verifica dal parte del \Ver.
+
+				\paragraph{MPR010 Norme di progetto non seguite}
+				Per produrre documenti e prodotti software il team possiede delle norme di sviluppo: il non rispettarle complica la coordinazione tra i membri del
+				team e compromette la qualità di questi ultimi. \`E compito del \Res\ assicurarsi che tali regole descritte nelle \NdP\ siano rispettate.
+
+				\textbf{Metrica}: numero di norme non rispettate lungo il corso di ogni baseline.
+
 			\paragraph{Analisi statica}
-				L'analisi statica verifica solo i prodotti che non sono o non possono essere eseguiti, come i documenti.
-				
-				\subparagraph*{Analisi dei documenti}
+			L'analisi statica verifica solo i prodotti che non sono o non possono essere eseguiti, come i documenti.
+
+				\subparagraph{Analisi dei documenti}
 				L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
-				
-				Per l'analisi dei documenti vengono utilizzate:
-				
+
+				Per l'analisi dei documenti, vengono utilizzate:
+
 				\begin{itemize}
 					\item \textbf{MPD001}
 					\item \textbf{MPD002}
 				\end{itemize}
-			
+
 			\paragraph{Analisi dinamica}
-				L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
-				
-				Vengono presi in esame i prodotti software e i processi.
-				
-				\subparagraph*{Analisi dei processi}
-				Per analizzare i processi vengono usati gli standard sopra elencati. Ad ogni fase del processo verranno valutati gli attributi richiesti dall'ISO 15504 e in che misura questi sono stati rispettati, e in che fase del \textit{Ciclo di Deming} il processo si trova.
-				
+			L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
+
+			Vengono presi in esame i prodotti software e i processi.
+
+				\subparagraph{Analisi dei processi}
+				Per analizzare i processi vengono usati gli standard sopra elencati. Ad ogni fase del processo verranno valutati gli attributi richiesti secondo l'ISO 15504
+				e in che misura questi sono stati rispettati, e in che fase del Ciclo di Deming il processo si trova.
+
 				Per l'analisi dei processi vengono utilizzate:
-				
+
 				\begin{itemize}
 					\item \textbf{MPR001 Varianza della programmazione}
 					\item \textbf{MPR002 Varianza dei costi}
@@ -407,16 +425,16 @@
 					\item \textbf{MPR009 Frequenza controllo prodotti}
 					\item \textbf{MPR010 Norme di progetto non seguite}
 				\end{itemize}
-			
-	
+
+
 				%\paragraph{...Tutti i test}	%UTILE??
-	
+
 				%\paragraph{Strumenti}
-	
+
 				%\subparagraph{Verifica di documentazione}
 				%Google Docs?
-	
+
 				%\subparagraph{Verifica ortografica}
 				%Integrazione di TexStudio
-	
+
 				%\subparagraph{Integrazione continua} % Jenkins? Più avanti?
