@@ -1,0 +1,60 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_17\_12\_2018.pdf}
+\newcommand{\redazione}{\LC}
+\newcommand{\verifica}{\CV}
+\newcommand{\approvazione}{\MM}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{18 dicembre 2018}
+\newcommand{\datamodifica}{19 dicembre 2018}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{../template/layout} % Layout del documento 
+\input{../template/comandi} % Comandi generali
+
+\input{VE_12-12-2018/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{../template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{../template/diario}
+    \input{../template/index}
+	
+    
+    \section{Informazioni generali}
+		\subsection{Informazioni incontro}
+			% - INSERT INFORMAZIONI INCONTRO
+			\begin{itemize}
+				\item { \textbf{Luogo}: Lab036 Paolotti}
+				\item { \textbf{Data}: 17-12-2018}
+				\item { \textbf{Ora inizio}: 14:30}
+				\item { \textbf{Ora fine}: 17:15}
+				\item { \textbf{Partecipanti del gruppo}: gruppo al completo}
+				\item { \textbf{Partecipanti esterni}: nessuno}
+				\item { \textbf{Ordine del giorno}: controllo Analisi dei Rischi, nuove Norme di Progetto, discussione sull'Analisi dei Requisiti}
+			\end{itemize}
+
+        \subsection{Argomenti}
+            % - INSERT ARGOMENTI
+            \subsubsection{Revisione del Piano di Progetto}
+            Decisa la forma definitiva delle tabelle di Analisi dei Rischi.\par
+            Viene preso in considerazione il modello a componenti come possibile modello di sviluppo da adottare.\par
+            
+            \subsubsection{Analisi dei Requisiti}
+            Grazie al precedente incontro con la proponente {\II} alcuni dubbi sono stati chiariti.\par
+            Pertanto vengono ridiscussi i casi d'uso generali dell'applicazione e inizia il delineamento dei sottocasi d'uso.
+            
+            \subsubsection{Norme di Progetto}
+            Vengono discusse altre norme di progetto relative alla documentazione.
+\end{document}

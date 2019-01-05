@@ -1,0 +1,66 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_12\_12\_2018.pdf}
+\newcommand{\redazione}{\NC}
+\newcommand{\verifica}{\MM}
+\newcommand{\approvazione}{\SG}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{15 dicembre 2018}
+\newcommand{\datamodifica}{17 dicembre 2018}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{../template/layout} % Layout del documento 
+\input{../template/comandi} % Comandi generali
+
+\input{VE_12-12-2018/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{../template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{../template/diario}
+    \input{../template/index}
+	
+    
+    \section{Informazioni generali}
+		\subsection{Informazioni incontro}
+			% - INSERT INFORMAZIONI INCONTRO
+			\begin{itemize}
+				\item { \textbf{Luogo}:  Lab2 Torre Archimede}
+				\item { \textbf{Data}: 12-12-2018}
+				\item { \textbf{Ora inizio}: 16:30}
+				\item { \textbf{Ora fine}: 18:15}
+				\item { \textbf{Partecipanti del gruppo}: gruppo al completo}
+				\item { \textbf{Partecipanti esterni}: {\LuC}, {\DZ}}
+				\item { \textbf{Ordine del giorno}: Discutere con il proponente per il chiarimento dei dubbi emersi}
+			\end{itemize}
+
+        \subsection{Argomenti}
+            % - INSERT ARGOMENTI
+            \subsubsection{Strumenti di sviluppo}
+            La proponente fornisce al gruppo l'accesso agli strumenti tecnici necessari in fase di Progettazione della Base Tecnologica, inclusi esempi di possibili configurazioni con Redmine.
+
+            \subsubsection{Metriche dei test}
+            Ricapitolazione sui test unitari e test di integrazione. Non vengono richiesti test di performance da parte del proponente, in quanto il progetto rimarrà in uso internamente alla proponente.
+            
+            \subsubsection{Topic}
+            Discussione su come i topic devono essere registrati nel broker, entità da cui estrapolare i topic.\par
+            I topic hanno preferibilmente una corrispondenza diretta con le entità che li generano.            
+            
+            \subsubsection{Altro}
+            Il sistema deve fornire API REST per interfacciarsi con esso.\par
+            L'autenticazione viene considerato un requisito opzionale del sistema.\par
+            Usare preferibilmente uno o due linguaggi per lo sviluppo dei microservizi richiesti, in modo da mantenere la manutenibilità.\par
+            Viene discusso un possibile uso del sistema con il tool Redmine e su come potrebbe comportarsi.
+
+\end{document}

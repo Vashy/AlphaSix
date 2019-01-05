@@ -1,266 +1,43 @@
-% - PER STILARE QUESTO DOCUMENTO VANNO INSERITI I DATI.
-% - VISTO CHE IL FILE È LUNGO ED INTRICATO PER SEMPLIFICARE HO MESSO DEI COMMENTI
-% - CHE INDICANO I PUNTI DOVE INSERIRE LE INFORMAZIONI CHE MANCANO.
-% - INSERISCILI IN CORRISPONDENZA DEI COMMENTI:
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VI}
+\newcommand{\nomedocumentofisico}{VI\_22\_11\_2018.pdf}
+\newcommand{\redazione}{\MM \\ & \TG}
+\newcommand{\verifica}{\LC}
+\newcommand{\approvazione}{\CV}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Interno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \gruppo}
+\newcommand{\datacreazione}{25 novembre 2018}
+\newcommand{\datamodifica}{26 novembre 2018}
+\newcommand{\stato}{Approvato}
 
-% - "INSERT TITOLO"
-% - "INSERT USO"
-% - "INSERT DATA"
-% - "INSERT DESCRIZIONE"
-% - "INSERT INFORMAZIONI INCONTRO"
-% - "INSERT DOMANDE E RISPOSTE" (intanto lo strutturiamo così, con domande e rispose, se servono altri tipi di struttura cambieremo)
-
-% - "INSERT TITOLO" (verosimilmente sarà una cosa tipo "Verbale Esterno/Interno del xx/yy") 
-\newcommand{\Titolo}{Verbale Interno del 22/11/2018}
-
-\newcommand{\Gruppo}{AlphaSix}
-
-\newcommand{\Versione}{1.0.0}
-
-\newcommand{\Redazione}{Timoty Granziero, Laura Cameran, Matteo Marchiori, Samuele Gardin, Nicola Carlesso, Ciprian Voinea}
-
-\newcommand{\ACapoRedazione}{Matteo Marchiori}
-
-\newcommand{\Verifica}{XXX}
-
-\newcommand{\Approvazione}{YYY}
-
-\newcommand{\Distribuzione}{Prof.Tullio Vardanega \\ & Prof.Riccardo Cardin  \\ & AlphaSix}
-
-\newcommand{\InformazioniDocumento}{Informazioni sul documento}
-
-% - "INSERT USO (INTERNO/ESTERNO)"
-\newcommand{\Uso}{Interno}
-
-% - "INSERT DATA"
-\newcommand{\Data}{22 novembre 2018}
-
-% - "INSERT DESCRIZIONE"
-\newcommand{\DescrizioneDoc}{Questo documento riporta informalmente il riassunto della rinuione tenutasi nella data sopra riportata.}
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
 
+\input{../template/layout} % Layout del documento 
+\input{../template/comandi} % Comandi generali
 
-\documentclass[a4paper, oneside, openany]{article}
-
-\usepackage{graphbox}
-
-% Permette di modificare i margini
-\usepackage[top=3.1cm, bottom=3.1cm, left=2.2cm, right=2.2cm]{geometry}
-
-\usepackage{lastpage} % info sul # dell'ultima pagina del documento
-
-% Stile pagina
-\usepackage{fancyhdr} % per modificare dimensioni, margini, intestazioni e righe a piè di pagina
-\fancypagestyle{plain}{
-    % Cancella tutti i campi di intestazione e piè di pagina
-    \fancyhf{}
-
-    \lhead{\includegraphics[keepaspectratio = true, width = 25px]{../../template/icons/a6(1).png}}
-
-    \rhead{ %
-        {\Titolo} \ - \textit{{\Gruppo}}
-    }
-
-    % Piè di pagina
-    \lfoot{alpha.six@gmail.com}
-
-    \rfoot{Pagina \thepage{} di \pageref{LastPage}} % es: pag: 4 di 10
-
-    % Linea orizzontale alle posizioni top e bottom della pagina
-    \renewcommand{\headrulewidth}{0.4pt}  
-    \renewcommand{\footrulewidth}{0.4pt}
-}
-\pagestyle{plain}
-
-%\usepackage{calc} %introduce la notazione infissa per le op. aritmetiche interne a LaTeX
-
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[english,italian]{babel} % il documento è in italiano
-%\usepackage{textcomp} %The pack­age sup­ports the Text Com­pan­ion fonts, which pro­vide many text sym­bols
-%(such as baht, bul­let, copy­right, mu­si­cal­note, onequar­ter, sec­tion, and yen), in the TS1 en­cod­ing.
-
-\usepackage{graphicx}       % permette di inserire delle immagini
-\usepackage{caption}        % numerazione figure e loro descrizione testuale
-\usepackage{subcaption}     % sottofigure numerabili
-\usepackage{float}          % permette di inserire un # qualsiasi di figure fluttuanti
-\usepackage{xcolor}
-\usepackage{rotating}       % permette di ruotare le immagini
-%\usepackage{changepage}    % utile se c'è bisogno di aggiustare margini per centrare figure
-
-%package utili per la math mode ( $ ... $ o \[ ... \] )
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-%\usepackage{euler}    % font 'ams euler', lo stesso di 'Concrete Mathematics' di Knuth
-\usepackage{amsthm}
-\usepackage{mathtools}
-
-% package utili per tabelle(\thead in particolare)
-\usepackage{array, booktabs, caption}
-\usepackage{makecell}
-\renewcommand\theadfont{\bfseries}
-\usepackage{boldline}
-
-\usepackage{listings} % permette di inserire degli spezzoni di codice
-
-\usepackage{tikz} % disegno di immagini vettoriali a schermo. Utile per grafi
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{graphs}
-\usetikzlibrary{arrows}
-%\usepackage{tikz-uml} % serve per disgnare l'UML, fantastica guida:
-%https://perso.ensta-paristech.fr/~kielbasi/tikzuml/var/files/doc/tikzumlmanual.pdf
-%download package: http://perso.ensta-paristech.fr/~kielbasi/tikzuml/
-
-% package per le tabelle
-\usepackage{booktabs}  % permette di poter usare delle liste nelle tabelle
-\usepackage{tabularx} 
-\usepackage{longtable} % una tabella può continuare su più pagine
-\usepackage{multirow}  % utile per visualizzare una cella su più righe
-%\usepackage{multicolumn} % cella su più colonne
-%\usepackage[table]{xcolor} % rende disponibile l'utilizzo di un colore per lo sfondo
-                            % delle celle di una tabella
-
-% crea una cella per le tabelle in grado di andare a capo con \newline
-% https://tex.stackexchange.com/questions/12703/how-to-create-fixed-width-table-columns-with-text-raggedright-centered-raggedlef
-\usepackage{array}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
-
-% indice con i puntini
-\usepackage{tocloft}
-\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
-
-%http://ctan.mirror.garr.it/mirrors/CTAN/macros/latex/contrib/appendix/appendix.pdf
-\usepackage{appendix}   % aggiunge dei comandi per l'appendice
-% \usepackage{parskip}    % aiuta LaTeX a trovare il miglior stile per i page break
-
-\setlength{\parindent}{0pt}
-\setcounter{secnumdepth}{5} % numera i sottoparagrafi
-\setcounter{tocdepth}{5} % aggiunge all'indice i sottoparagrafi
-%\usepackage{titlesec} % \begin{paragraph} si può usare come subsubsubsection!
-
-\definecolor{Maroon}{cmyk}{0, 0.87, 0.68, 0.32}
-
-% Setup dei links
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black, % colore dei link interni
-    urlcolor=Maroon  % colore dei link interniesterni
-}
-
-%impostazioni per il codice che deve finire dentro a
-%\begin{lstlisting}
-
-\definecolor{listinggray}{gray}{0.9}
-\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
-\lstset{
-backgroundcolor=\color{lbcolor},
-    tabsize=4,    
-%   rulecolor=,
-    language=[GNU]C++,
-    basicstyle=\scriptsize,
-    upquote=true,
-    aboveskip={1.5\baselineskip},
-    columns=fixed,
-    showstringspaces=false,
-    extendedchars=true,
-    inputencoding=utf8,
-    breaklines=true,
-    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    frame=single,
-    numbers=left,
-    showtabs=false,
-    showspaces=false,
-    showstringspaces=false,
-    identifierstyle=\ttfamily,
-    keywordstyle=\color[rgb]{0,0,1},
-    commentstyle=\color[rgb]{0.026,0.112,0.095},
-    stringstyle=\color[rgb]{0.627,0.126,0.941},
-    numberstyle=\color[rgb]{0.205, 0.142, 0.73},
-%        \lstdefinestyle{C++}{language=C++,style=numbers}’.
-}
-\lstset{
-  backgroundcolor=\color{lbcolor},
-  tabsize=4,
-  language=C++,
-  captionpos=b,
-  tabsize=3,
-  frame=lines,
-  numbers=left,
-  numberstyle=\tiny,
-  numbersep=5pt,
-  breaklines=true,
-  showstringspaces=false,
-  basicstyle=\footnotesize,
-  identifierstyle=\color{magenta},
-  keywordstyle=\color[rgb]{0,0,1},
-  commentstyle=\color{orange},
-  stringstyle=\color{red}
-}
-
-\newgeometry{top=4cm}
+\input{VI_22-11-2018/diario} % Entries diario
 
 \begin{document}
-\begin{titlepage}
-	\begin{center}
-		
-		\begin{center}
-			% Icona del gruppo
-			\centerline{\includegraphics[scale=0.24]{../../template/icons/a6.png}}
-		\end{center}
-		
-		\vspace{1cm}
-		
-		\begin{Huge}
-			\textbf{\Titolo} \\
-		\end{Huge}
-		
-		\vspace{9pt}  
-		
-		\begin{large}
-			\Gruppo \ - \Data
-		\end{large}	  
-		
-		\vspace{15pt}
-		
-		\bgroup
-		\def\arraystretch{1.3}
-		\centering
-		\begin{tabular}{c|L{5cm}}
-			\multicolumn{2}{c}{\textbf{\InformazioniDocumento}} \\ \hline
-			Versione &  \Versione \\
-			Redazione & \ACapoRedazione \\
-			% Verifica & \Verifica \\ 
-			% Approvazione & \Approvazione \\
-			Uso & \Uso \\
-			Distribuzione & \Distribuzione
-		\end{tabular}
-		\egroup
-		
-        \vspace{1cm}
 
-		\begin{center}
-			\textbf{Descrizione\\}
-			\DescrizioneDoc
-		\end{center}
-		
-	\end{center}
-\end{titlepage}
+	 % Inclusione template HomePage
+    \input{../template/HomePage}
 
-\restoregeometry
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{../template/diario}
+    \input{../template/index}
 	
-	\section{Informazioni generali}
+    
+    \section{Informazioni generali}
 		\subsection{Informazioni incontro}
 			% - INSERT INFORMAZIONI INCONTRO
 			\begin{itemize}
 				\item { \textbf{Luogo}:  Torre Archimede}
-				\item { \textbf{Data}: \Data}
+				\item { \textbf{Data}: 22-11-2018}
 				\item { \textbf{Ora inizio}: 13:00}
 				\item { \textbf{Ora fine}: 16:00}
 				\item { \textbf{Partecipanti del gruppo}: gruppo al completo}
@@ -276,7 +53,7 @@ backgroundcolor=\color{lbcolor},
             quanto potrebbe influire la scelta di un capitolato rispetto a un altro per C.V.\par
             La scelta ricade sul capitolato numero 1 perché tutti i membri dimostrano interesse per l'obiettivo del capitolato
             e per le tecnologie interessate.\par
-            Viene valutato positivamente come progetto per i motivi esposti nello studio di fattibilità.
+            Viene valutato positivamente come progetto per i motivi esposti nello \Doc{\SdFv}.
 
             \subsubsection{Nome e logo}
             È stata inoltre discussa la scelta del nome del team e del conseguente logo. A fine consultazione, il nome scelto
@@ -285,4 +62,5 @@ backgroundcolor=\color{lbcolor},
             Viene denotata una certa predisposizione iniziale di tutto il gruppo a includere nel nome una lettera dell'alfabeto greco,
             e dopo una valutazione di suono e significato è stato deciso che alpha è l'opzione migliore: inoltre, Alpha ($\alpha$) è
             la prima lettera di tale alfabeto.
+
 \end{document}
