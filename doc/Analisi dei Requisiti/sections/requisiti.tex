@@ -1,6 +1,7 @@
 \section{Requisiti}
 Ai requisiti viene dato un codice identificativo univoco secondo quanto dichiarato nelle \Doc{Norme di Progetto v1.0.0}. 
 
+	%TODO: fare una roba tipo setcounter per il numero progressivo del codice dei requisiti
 	\subsection{Requisiti di funzionalità}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
@@ -16,39 +17,108 @@ Ai requisiti viene dato un codice identificativo univoco secondo quanto dichiara
 			\\\bottomrule
 		\end{paddedtablex}
 	
-	\subsection{Requisiti di qualità}
-		\begin{tabularx}{\textwidth}{ c X c }
-			R1Q0  & nnn & nnn \\
-		\end{tabularx}
 	
+	%TODO: I test sono requisiti di qualità?
+	\subsection{Requisiti di qualità}
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+			\toprule
+			R1Q1  & L'\gloss{indice di Gulpease} di ogni documento ha indice circa 55 & Interno \\
+			R2Q2 & Le applicazioni sviluppate devono rispettare (quasi tutti) i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
+			R3Q2 & È necessario fornire test unitari per ogni componente applicativa & Capitolato \\
+			R4Q2 & È necessario fornire test d'integrazione per ogni componente applicativa & Capitolato \\
+			R5Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			R6Q2 & È necessario presentare il bug reporting per ogni componente & Capitolato \\
+			R7Q2 & Deve essere redatta documentazione sulle scelte implementative effettuate & Capitolato \\
+			R8Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
+			R9Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle proprie motivazioni & Capitolato \\
+			R10Q2 & Tutte le norme inserite in \NdPv\ devono essere rispettate & Interno \\
+			R11Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettare & Interno \\
+			
+			\\\bottomrule
+		\end{paddedtablex}
+	
+	
+	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			R1V1 & Per lo sviluppo dei componenti applicativi è possibile usare Java, Python o Node.js & Capitolato \\
-			R2V2 & Le applicazioni sviluppate devono rispettare i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato	\\
-			R3V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
-			R4V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutti i componenti & Capitolato \\
-			R5V2 & I componenti devono esporre delle API Rest per le interazioni con le altre componenti & Capitolato \\
-			R6V2 & È necessario fornire test unitari e test d'integrazione per ogni componente applicativa & Capitolato \\
-			R7V2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			R1V2 & Le componenti Producer devono riuscire a recuperare le segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
+			R2V2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi nel giusto Topic & Capitolato \\
+			R3V2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
+			R4V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
+			R5V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
+			R6V2 & Nel sistema deve essere presente un Broker che instanzia e gestisce i Topic & Capitolato \\
+			R7V2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic più adeguati & Capitolato \\
 			R8V2 & Devono esserci due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\
 			R9V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
 			R10V2 & Devono esserci due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
-			R11V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato 
+			R11V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
+			R12V0 & Come meccanismo di estensione per GitHub è possibile fare uso di \gloss{web hook} & Capitolato \\
+			R13V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio Java(8 o più), Python o Node.js & Capitolato \\
+			
+			%R14V
+			
+			R15V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
+			R16V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
+			R17V2 & Deve essere redatta documentazione su eventuali problemi riscontrati ancora aperti & Capitolato \\
+			R18V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato \\
+			
+			%R19V
+			
+			R20V2 & Le componenti Consumer devono essere in grado di recuperare i messaggi da un Topic & Capitolato \\ 
+			R21V2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
+			R22V2 & È necessario presentare codice sorgente versionato su repository pubblico, con una delle licenze OpenSource proposte, per ogni componente & Capitolato \\
+			
+			%R23V
+			
+			R24V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
+			R25V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
+			R26V2 & I file README delle componenti applicative devono contenere la documentazione delle API esposte dal servizio & Capitolato \\
+			R27V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
+			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
+			R28V2 & È necessario presentare un file README per il DockerFile & Capitolato \\
+			R29V2 & Il file README per il DockerFile deve contenere le istruzioni per l'avvio & Capitolato \\
+			R30V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
+			
+			
 			\\\bottomrule
 		\end{paddedtablex}
 	
 			
 	
 	\subsection{Tracciamento}
-	testo
 	
 		\subsubsection{Tracciamento fonti-requisiti}
-		testo
+		
+		\begin{paddedtablex}[1.7]{\textwidth}{XX}
+			\textbf{Fonte} & \textbf{Requisito} \\\toprule
+			Interno & R1F0 \\
+			
+			\\\bottomrule
+		\end{paddedtablex}
+		
 		
 		\subsubsection{Tracciamento requisiti-fonte}
-		testo
+		
+		\begin{paddedtablex}[1.7]{\textwidth}{XX}
+			\textbf{Requisito} & \textbf{Fonte} \\\toprule
+			R1F0 & Interno \\
+			
+			\\\bottomrule
+		\end{paddedtablex}
+		
+		
 		
 	\subsection{Riepilogo}
-	testo
+	
+		\begin{paddedtablex}[1.7]{\textwidth}{XXXX}
+			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
+			Di funzionalità & 0 & 0 & 0 \\
+			Di qualità & 0 & 0 & 0 \\
+			Di vincolo & 0 & 0 & 0 			
+			\\\bottomrule
+		\end{paddedtablex}
+		
+	
