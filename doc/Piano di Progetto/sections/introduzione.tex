@@ -41,27 +41,27 @@
 	\end{itemize}
 	
 	\subsection{Ciclo di vita} % Usare modello di sviluppo come termine al posto di Ciclo di vita in questo contesto. Vedere #26
-	Data la natura del progetto, composto da più parti modulari e quindi con un valore basso di accoppiamento, il team di sviluppo ha stabilito di adottare un ciclo di vita con modello ibrido tra quello a componenti e quello incrementale.
+	Data la natura del progetto, composto da più parti modulari e quindi con un valore basso di accoppiamento, il team di sviluppo ha stabilito di adottare un ciclo di vita con un modello ibrido tra quello a componenti e quello incrementale.
 	Questi modelli si adattano particolarmente a questo tipo di progetto in quanto:
 	\begin{itemize}
 		\item il modello incrementale prevede ripetizioni identificate come cicli di incremento che verranno ripetute fino a quando il prodotto non arriverà a soddisfare i requisiti richiesti dal cliente;
 		\item il modello a componenti è basato sul riuso di unità software che possono avere diverse dimensione:
 		\begin{itemize}
-			\item \textbf{System reuse}: un intero sistema, composto da più applicazioni, può essere riusato come parte di un sistema di tanti sistemi.
-			\item \textbf{Application reuse}: un'applicazione può essere riusata incorporandola in altri sistemi senza fare cambiamenti, oppure configurandola.
-			\item \textbf{Component reuse}: componenti di un'applicazione (da sotto-sistemi a singoli oggetti).Queste componenti possono risiedere in un cloud o in server privati e possono essere accessibili tramite Application Programming Interface (API). 
-			\item \textbf{Object and function reuse}: componenti software che implementano una singola funzione o una classe oggetto. Molte librerie di funzioni e classi sono liberamente disponibili. Si riusano classi e funzioni in queste librerie collegandole con lo sviluppo di nuovo codice.
+			\item \textbf{System reuse}: un intero sistema, composto da più applicazioni, può essere riusato come parte di un sistema di tanti sistemi;
+			\item \textbf{Application reuse}: un'applicazione può essere riusata incorporandola in altri sistemi senza apportare cambiamenti, oppure configurandola;
+			\item \textbf{Component reuse}: i componenti di un'applicazione, che possono essere dai da sotto-sistemi ai singoli oggetti, risiedono in un cloud o in server privati e possono essere accessibili tramite Application Programming Interface (API); 
+			\item \textbf{Object and function reuse}: componenti software che implementano una singola funzione o una classe oggetto si possono riusare collegandole con lo sviluppo di nuovo codice. Molte di queste sono liberamente disponibili; 
 		\end{itemize}
-		Oppure, nel caso in cui le componenti siano così specifiche da essere molto costosa modificarle per una nuova situazione, è possibile fare "concept reuse", ovvero riusare le idee che stanno alla base del software (e.g. riusare un \gloss{way of working} o un algoritmo). \par
+		Oppure, nel caso in cui le componenti siano così specifiche da essere molto costoso adattarle ad una nuova situazione, è possibile fare "concept reuse", ovvero riusare le idee che stanno alla base del componente (e.g. riusare un \gloss{way of working} o un algoritmo). \par
 		In particolare i benefici che si possono trarre dal riuso sono:
 		\begin{itemize}
-			\item Costo complessivo di sviluppo più basso, perché meno componenti software devono essere progettate, implementate e validate
-			\item Sviluppo accelerato
-			\item Aumento di affidabilità, perché software che è stato provato e testato in altri sistemi funzionanti è più affidabile di un nuovo software. I suoi difetti di progettazione e implementazione dovrebbero già esser stati trovati e risolti.
+			\item \textbf{Costo complessivo di sviluppo più basso}: perché il numero di componenti software che devono essere progettati, implementati e validati è minore;
+			\item \textbf{Sviluppo accelerato}
+			\item \textbf{Aumento dell'affidabilità}: un software che è stato provato e testato in altri sistemi risulta più affidabile di un software appena implementato. I suoi difetti di progettazione e implementazione dovrebbero già esser stati individuati e risolti;
 			%\item  Ridotto rischio di processo, vero specialmente per grandi componenti software riusate come sottosistemi. È un fattore importante per il Project Manager perché riduce il margine di errore nella stima dei costi di un progetto.
-			\item Conformità con gli standard, perché alcuni standard
+			\item \textbf{Conformità con gli standard}: alcuni standard
 			%, come gli interface standard, 
-			possono essere implementati come set di componenti riusabili
+			possono essere implementati come set di componenti riusabili;
 		\end{itemize}
 		%e prevede che venga riutilizzata una base per lo sviluppo dei vari pezzi che formano il progetto, fra loro indipendenti;
 	\end{itemize}
