@@ -1,45 +1,86 @@
 
 \newpage
 \section{Analisi dei rischi} \label{AnalisiDeiRischi}
-	Per svolgere il progetto in maniera efficiente ed efficace, viene effettuata un'analisi preliminare dei rischi che possono ostacolare il processo di sviluppo.
-	È quindi fondamentale avere un sistema che ne permetta la gestione per poter agire immediatamente e con un piano ben definito in caso dovessero presentarsi.\\
+	Per svolgere un progetto in maniera \gloss{efficiente} ed \gloss{efficace}, viene effettuata un'analisi preliminare dei rischi che possono ostacolare il processo di sviluppo.
+	È quindi fondamentale avere un sistema che ne permetta la gestione per poter reagire immediatamente e un piano di gestione ben definito in caso dovessero presentarsi.\\
 	I seguenti punti rappresentano come è stato deciso di trattare i rischi:
 	\begin{itemize}
-		\item Identificazione: individuare i potenziali rischi che possono presentarsi
-		\item Analisi: determinarne la probabilità di occorrenza e comprenderne la criticità
-		\item Pianificazione: definire strategie che possono evitare i rischi precedentemente trovati
-		\item Controllo: si monitorano e revisionano i rischi finché nel corso del progetto
-		\item Revisione: in caso dovessero presentarsi, dopo averli risolti, si rivede la strategia utilizzata e in caso ci siano migliorie possibili si rivede (e in caso non fosse stata definita una strategia per tale rischio se ne definisce una)
+		\item \textbf{Identificazione}: individuare i potenziali rischi che possono presentarsi;
+		\item \textbf{Analisi}: determinarne la probabilità di occorrenza e comprenderne la criticità;
+		\item \textbf{Pianificazione}: definire strategie che possono evitare i rischi precedentemente trovati;
+		\item \textbf{Controllo}: si monitorano e revisionano i rischi affinché non si realizzino nel corso del progetto;
+		\item \textbf{Revisione}: in caso dovessero presentarsi, dopo averli risolti, si rivede la strategia utilizzata e in caso ci siano migliorie possibili si rivede. Nel caso non fosse stata definita una strategia per tale rischio se ne definisce una;
 	\end{itemize}
 	\subsection{Valutazione}
-	Per la valutazione dei rischi viene utilizzato uno strumento di misura chiamato qualitative risk assessment, che ne considera i criteri quantitativi e qualitativi assegnando a ciascuno un valore di gravità determinato dalla probabilità che possa avvenire e dalla gravità che pone al progetto.
+	Per la valutazione dei rischi viene utilizzato uno strumento di misura chiamato \textit{Qualitative Risk Assessment}, che ne considera i criteri quantitativi e qualitativi assegnando a ciascuno un valore di gravità determinato dalla probabilità che il rischio possa avvenire e dalla gravità che esso pone al progetto.
 	% VEDI : https://www2.deloitte.com/content/dam/Deloitte/it/Documents/risk/Board%20Academy%20Corso%20C6%2020%20dic%202012%20SDA%20Bocconi.pdf
-	Dato il numero non elevato di rischi, si è scelto di mettere solamente tre livelli di gravità e probabilità producendo quindi una matrice con nove elementi in grado assegnare classi con valori basso, medio o alto.
+	Dato il numero non elevato di rischi, si è scelto di mettere solamente tre livelli di gravità e probabilità producendo quindi una matrice con nove. In questo modo i rischi possono essere classificati in tre livelli di importanza:
+	
+	\begin{itemize}
+		\item \textbf{Basso}
+		\item \textbf{Medio}
+		\item \textbf{Alto}
+	\end{itemize}
+
 	\begin{figure}[H]
 		\centering
-		\includegraphics[scale=0.6]{img/risk_assessment_table.png}\\
-		\caption{Matrice del qualitative risk assessment}
+		\includegraphics[scale=0.5]{img/risk_assessment_table.png}\\
+		\caption{Matrice del Qualitative Risk Assessment}
 	\end{figure}
 	\subsection{Tipologia}
-	Le tipologie in cui suddividere i rischi sono state prese dal libro Software Engineering\footnote{10° edizione, Pagina 648, Capitolo 22: Project management} e sono:
+	Le tipologie in cui suddividere i rischi sono state prese dal libro Software Engineering\footnote{Software Engineering, 10° edizione, Pagina 648, Capitolo 22: Project management} e sono,:
 	\begin{itemize}
- 		\item \textbf{Organizzativo}: dovuto alla gestione di persone che hanno diverse responsabilità all'interno progetto.
-		\item \textbf{Personale}: riguarda le conoscenze, i tempi e la formazione personali.
-		\item \textbf{Requisiti}: ha a che fare con il numero potenzialmente variabile di requisiti.
-		\item \textbf{Strumentale}: per la performance degli strumenti.
-		\item \textbf{Tecnologico}: per guasti nelle tecnologie.
+ 		\item \textbf{Organizzativo}: dovuto alla gestione di persone che hanno diverse responsabilità all'interno progetto;
+		\item \textbf{Personale}: riguarda le conoscenze, i tempi e la formazione personale;
+		\item \textbf{Requisiti}: ha a che fare con il numero di requisiti che può variare nel corso del tempo;
+		\item \textbf{Strumentale}: per la performance degli strumenti;
+		\item \textbf{Tecnologico}: per problemi riguardanti le tecnologici;
 	\end{itemize}
 	\subsection{Classificazione}
-	A ciascun rischio viene assegnato un codice identificativo in modo da essere facilmente riconoscibile e da comprenderne le generalità (come classe, probabilità e severità) senza andare a cercarle nelle tabelle che comprendono tutti i rischi del progetto analizzati.
+	A ciascun rischio viene assegnato un codice identificativo in modo da essere facilmente riconoscibile e per comprenderne le generalità (classe, probabilità e severità), per poi non doverle cercare nelle tabelle che comprendono tutti i rischi del progetto analizzati.
+	
 	Questo codice è composto da:
+	
+	\begin{center}
+		[Tipologia][ID]-[Gravità][Probabilità][Classe]
+	\end{center}
+
+	I valori che possono assumere sono:
+	
 	\begin{itemize}
-		\item Iniziale della tipologia (O, P, R, S, T)
-		\item Numero progressivo di due cifre (00 - 99)
-		\item Valore di gravità (0 - Accettabile, 1 - Tollerabile, 2 - Inaccettabile)
-		\item Valore di probabilità (0 - Bassa, 1 - Media, 2 - Alta)
-		\item Valore della classe (0 - Basso, 1 - Medio, 2 - Alto)
+		\item \textbf{Tipologia}:
+			\begin{itemize}
+				\item \textbf{O}: organizzativo;
+				\item \textbf{P}: personale;
+				\item \textbf{R}: requisiti;
+				\item \textbf{S}: strumentale;
+				\item \textbf{T}: tecnologico;
+			\end{itemize}
+		
+		\item \textbf{ID}: numero progressivo di tre cifre che inizia da uno (001 - 999);
+		\item \textbf{Gravità}:
+			\begin{itemize}
+				\item \textbf{0}: accettabile;
+				\item \textbf{1}: tollerabile;
+				\item \textbf{2}: inaccettabile;
+			\end{itemize}
+		
+		\item \textbf{Probabilità}:
+			\begin{itemize}
+				\item \textbf{0}: bassa;
+				\item \textbf{1}: media;
+				\item \textbf{2}: alta;
+			\end{itemize}
+		
+		\item \textbf{Classe}:
+			\begin{itemize}
+				\item \textbf{0}: basso;
+				\item \textbf{1}: medio;
+				\item \textbf{2}: alto;
+			\end{itemize}
 	\end{itemize}
-	Ad esempio da un codice come P01-021 si può immediatamente capire, sapendo cosa rappresenta ciascun simbolo, che è si tratta di un rischio del personale, con un numero progressivo 01, di gravità accettabile, probabilità alta e un valore di classe medio
+
+	Ad esempio con P01-021 si può intuitivamente capire, conoscendo la legenda, che si tratta di un rischio del personale, con un numero progressivo 01, di gravità accettabile, probabilità alta e un valore di classe medio.
 	
 	\subsection{Lista rischi possibili}
 	Per elencare i rischi viene la seguente struttura tabellare:
@@ -62,31 +103,31 @@
 				\thead{Contromisure e mitigazione}
 			}\\
 		\end{risktable}
-		\caption{Struttura tabella analisi rischio}
+		\caption[Analisi dei rischi]{Struttura della tabella dell'analisi dei rischi}
 	\end{table}
 
 	\noindent
-	Dopo un'attenta analisi del capitolato e dopo alcuni incontri da parte dei componenti del gruppo, è stato deciso di catalogare i seguenti rischi, elencati in maniera crescente rispetto all'ID:\\
+	Dopo un'attenta analisi del capitolato e alcuni incontri da parte dei componenti del gruppo, è stato deciso di catalogare i seguenti rischi elencati in maniera crescente rispetto all'ID:\\
 	
 	\mydoublerule{\linewidth}{0pt}{2pt}
 	
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{P00-111} & 
+			\thead{P001-111} & 
 			Inesperienza del team a livello tecnico\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Non tutti i componenti del gruppo hanno le conoscenze di ambienti di sviluppo, linguaggi di programmazione e strumenti richiesti dall'azienda allo stesso livello.
+				\textbf{Descrizione}: non tutti i componenti del gruppo hanno le conoscenze di ambienti di sviluppo, linguaggi di programmazione e strumenti richiesti dall'azienda allo stesso livello.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Sarà compito del responsabile di progetto parlare con il resto del gruppo e capire ciascuno che conoscenze ha delle tecnologie da utilizzare per sviluppare il progetto.
+				\textbf{Strategia}: sarà compito del \Res\ di progetto parlare con il resto del gruppo e capire ciascuno che conoscenze ha delle tecnologie da utilizzare per sviluppare il progetto.
 			}\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Ciascun componente si impegna a sanare le proprie lacune e portarsi ad un livello comune concordato in modo da poter lavorare autonomamente e potersi prendere impegni risolvibili senza dover usare tempo ulteriore per imparare la tecnologia.
+				\textbf{Mitigazione}: ciascun componente si impegna a sanare le proprie lacune e portarsi ad un livello comune concordato in modo da poter lavorare autonomamente e potersi prendere impegni risolvibili senza dover usare tempo ulteriore per imparare la tecnologia.
 			}\\
 		\end{risktable}
 	\end{table}
@@ -95,67 +136,46 @@
 
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{P01-122} & 
+			\thead{P002-122} & 
 			Impreparazione del team a livello gestionale \\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Non avendo affrontato progetti del genere prima d'ora, i componenti del gruppo non conoscono bene i ruoli che devono intraprendere e i compiti da svolgere.				
+				\textbf{Descrizione}: non avendo affrontato progetti del genere prima d'ora, i componenti del gruppo non conoscono bene i ruoli che devono intraprendere e i compiti da svolgere.				
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Sarà compito del componente che fa da responsabile assicurarsi che non ci siano perplessità da parte degli altri membri sui ruoli ricoperti e sui compiti che assegnati.
+				\textbf{Strategia}: sarà compito del componente che fa da \Res\ assicurarsi che non ci siano perplessità da parte degli altri membri sui ruoli ricoperti e sui compiti assegnati.
 			}\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Durante le ore di studio personale, ciascun componente si impegna a studiare la gerarchia dei ruoli\footnote{Consultabile nel materiale fornito dal professore e sul libro di testo Software Engineering}, in caso di dubbi ne potrà parlare con il gruppo oppure direttamente con chi fa da responsabile.
+				\textbf{Mitigazione}: durante le ore di studio personale, ciascun componente si impegna a studiare la gerarchia dei ruoli\protect\footnotemark e in caso di dubbi ne potrà parlare con il gruppo oppure direttamente con chi fa da \Res\.
 			}\\
 		\end{risktable}
 	\end{table}
+
+	\footnotetext{Nei Riferimenti informativi - Vincoli di organigramma e specifiche economiche}
 	
 	\mydoublerule{\linewidth}{0pt}{2pt}
 		
 	\begin{table}[H]
-		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}		
-			\thead{O00-201} & 
-			Ritardo consegna del materiale per una revisione oltre la scadenza \\
-			\hline
-			\rowcolor{gray!15}
-			\multicolumn{2}{X}{
-				È possibile che uno o più componenti del gruppo, per impegni legati alla propria vita privata e all'università, non riescano a gestire i compiti assegnati e quindi arrivare a una scadenza senza aver finito il proprio lavoro, obbligando l'intero gruppo rinviare la consegna.
-			}\\
-			\hline
-			\multicolumn{2}{X}{
-				Sarà compito del responsabile assicurarsi che il lavoro proceda in maniera lineare ponendo scadenze intermedie, monitorando il lavoro del gruppo, organizzando riunioni e aggiornandosi sullo stato dei vari compiti assegnati secondo il way of working scelto.
-			}\\
-			\hline
-			\rowcolor{gray!15}			
-			\multicolumn{2}{X}{
-				Ciascun membro si impegna a gestire il proprio tempo adeguatamente in rapporto con gli altri impegni universitari senza tralasciare il suo ruolo nello sviluppo del progetto: distinguendo le priorità in modo da non influenzare negativamente lo sviluppo del progetto. In caso di impegni che possano ostacolare ciò, si prenderà cura di avvisare gli altri componenti del gruppo per tempo.
-			}\\
-		\end{risktable}
-	\end{table}
-	
-	\mydoublerule{\linewidth}{0pt}{2pt}
-	
-	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{P02-100} & 
+			\thead{P003-100} & 
 			Approvazione errata di documenti \\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				È possibile che il responsabile commetta errori nella fase di approvazione dei documenti che possono portare alla consegna di documentazione errata o fatta male, causando quindi disguidi con il cliente (oltre a lasciare un'impressione negativa) e necessità di rivedere tali sviste, andando quindi a sprecare risorse investibili in altri compiti.
+				\textbf{Descrizione}: è possibile che il \Res\ commetta errori nella fase di approvazione dei documenti che possono portare alla consegna di documentazione errata o scadente, causando quindi disguidi con il cliente, oltre che a lasciare un'impressione negativa. \'E necessario correggere tali sviste, andando quindi a sprecare risorse investibili in altri compiti.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Colui che svolge il ruolo di responsabile deve avere modo di controllare il lavoro prodotto dal proprio team in modo costante e graduale.
+				\textbf{Strategia}: colui che svolge il ruolo di \Res\ deve avere modo di controllare il lavoro prodotto dal proprio team in modo costante e graduale.
 			}\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Chi al momento svolge il ruolo di responsabile deve assicurarsi che i documenti approvati siano effettivamente validi e in caso di sviste il verificatore deve saper trovare e correggere gli eventuali errori.
+				\textbf{Mitigazione}: chi svolge il ruolo di \Res\ deve assicurarsi che i documenti approvati siano effettivamente validi e in caso di sviste il \Ver\ deve saper trovare e correggere gli eventuali errori.
 			}\\
 		\end{risktable}
 	\end{table}
@@ -165,21 +185,21 @@
 	\begin{table}[H]
 		
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{P03-100} & 
-			Cattiva gestione dell'archivio di documentazione di progetto\\
+			\thead{P004-100} & 
+			Cattiva gestione dell'archivio per la documentazione del progetto\\
 			\hline
 			\rowcolor{gray!15}			
 			\multicolumn{2}{X}{
-				Data la poca esperienza dei componenti del gruppo con progetti di questo genere dove la documentazione è una delle parti principali, gestirla può risultare una cosa nuova e potrebbe presentare difficoltà.
+				\textbf{Descrizione}: data la poca esperienza dei componenti del gruppo con progetti di questo calibro, dove la documentazione è una delle parti principali, gestirla può risultare una novità e potrebbe presentare difficoltà nella gestione.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				L'amministratore deve aver predisposto una repository comune in cui ciascun componente potrà caricare il proprio lavoro e dovrà saperla utilizzare in maniera tale da non andare a modificare quel che è stato caricato dagli altri.
+				\textbf{Strategia}: l'\Amm\ deve aver predisposto una repository comune in cui ciascun componente potrà caricare il proprio lavoro e dovrà saperla utilizzare in maniera tale da non andare a modificare quel che è stato caricato dagli altri.
 			}\\
 			\hline
 			\rowcolor{gray!15}			
 			\multicolumn{2}{X}{
-				In caso di erorri di gestione della repository l'amministratore deve saperli risolvere in maniera tempestiva in modo da evitare che chi la andrà ad utilizzare successivamente scarichi file errati e di conseguenza vada a propagare l'errore anche sul proprio sistema.
+				\textbf{Mitigazione}: in caso di errori nella gestione della repository, l'\Amm\ deve saperli risolvere in maniera tempestiva in modo da evitare che chi andrà ad utilizzare successivamente la repository scarichi file errati propagando l'errore anche sul proprio sistema.
 			}\\
 		\end{risktable}
 		
@@ -189,22 +209,23 @@
 	
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}			
-			\thead{P04-021} & 
-			Non conoscenza totale o parziale tra i membri\\
+			\thead{P005-021} & 
+			Intesa parziale tra i membri del gruppo\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Il gruppo è formato principalmente da persone che precedentemente non si conoscevano o che hanno avuto poche interazioni fra di loro fino al momento della creazione di quest'ultimo. Ciò può comportare una cattiva gestione del lavoro e dell'assegnazione dei compiti, poiché non si conoscono le competenze altrui.
+				\textbf{Descrizione}: il gruppo è formato principalmente da persone che precedentemente non si conoscevano o che hanno avuto poche interazioni tra di loro fino al momento della creazione di quest'ultimo. Poiché non si conoscono le competenze altrui, ciò può comportare un'errata gestione del lavoro e assegnazione dei compiti.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				Tra incontri faccia a faccia e strumenti di comunicazione quali chat su Telegram o Slack, ci si confronta e si realizzano i diversi modi di lavorare di ognuno.
+				\textbf{Strategia}: attraverso gli incontri diretti o con strumenti di chat quali Telegram o Slack, ci si confronta e si realizzano i diversi modi di lavorare per ognuno.
 			}\\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Il gruppo si impegna a conoscersi nel corso delle riunioni e ritrovi. Si discute inoltre insieme di un way of working comune che possa soddisfare le metodologie di lavoro di tutti i componenti.
-				È possibile che ci siano dibattiti e non ci si riesca a mettere d'accordo su argomenti vari; in questo caso vince l'opinione della maggioranza.
+				\textbf{Mitigazione}: il gruppo si impegna a conoscersi nel corso delle riunioni e ritrovi. Si discute inoltre insieme di un \gloss{way of working} comune che possa soddisfare le metodologie di lavoro di tutti i componenti.
+				Nel caso in cui nascano dibattiti o sia difficile raggiungere un punto d'intesa, la decisione è presa dalla maggioranza.
+				%e democrazia sia... purtroppo
 				%In caso ci fossero dibattiti, per non ricorrere alle lame, gli altri componenti andranno a calmare le acque senza che ci siano morti.
 				%LOOOL
 			}\\
@@ -212,132 +233,151 @@
 		
 	\end{table}
 				
-	
 	\mydoublerule{\linewidth}{0pt}{2pt}
-	
-	\begin{table}[H]
-		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{S00-100} & 
-			Problematiche hardware \\
-			\hline
-			\rowcolor{gray!15}			
-			\multicolumn{2}{X}{
-				È possibile che i computer e altri strumenti hardware che possono essere utilizzati dai membri del gruppo possano difettarsi e smettere di funzionare.
-			}\\
-			\hline
-			\multicolumn{2}{X}{
-				Ciascun membro avrà cura degli strumenti a sua disposizione in modo tale che non sorgano problemi che possano ostacolare il proprio lavoro.
-			}\\
-			\hline
-			\rowcolor{gray!15}			
-			\multicolumn{2}{X}{
-				I guasti di natura hardware non sono facilmente prevedibili e in caso dovesse succedere è possibile utilizzare temporaneamente i computer forniti dai laboratori dell'università fino a quando non si ripara, o se necessario sostituisce, la propria macchina.
-			}\\
-		\end{risktable}
-	\end{table}
-	
-	
-	\mydoublerule{\linewidth}{0pt}{2pt}
-	
+		
 	\begin{table}[H]
 		
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{R00-122} & 
-			Interpretazione errata dei requisiti: aggiunta o modifica di requisiti in corso di sviluppo \\
-			\hline
-			\rowcolor{gray!15}
-			\multicolumn{2}{X}{
-				Durante il progetto, dopo aver effettuato una prima analisi di tutti i requisiti, può nascere il bisogno di modificare un requisito già fissato o aggiungerne uno non identificato in precedenza.
-			}\\
-			\hline
-			\multicolumn{2}{X}{
-				È possibile che nel corso dello sviluppo del progetto vengano scoperti requisiti secondari impliciti non precedentemente valutati che necessitano di essere sviluppati.
-				A ciascuna milestone, anche intermedia, è utile controllare che la lista dei requisiti da svolgere sia coerente con quelli richiesti dall'azienda nel documento che presenta il loro capitolato.
-			}\\
-			\hline
-			\rowcolor{gray!15}			
-			\multicolumn{2}{X}{
-				In caso dovessero sorgere necessità di sviluppare requisiti inaspettati, questi andranno analizzati per capire di che risorse hanno bisogno e saranno inseriti nella scaletta dello sviluppo del progetto in modo adeguato. Data la natura modulare del progetto, ciascun requisito verrà sviluppato dal più al meno importante in modo da poter avere compiti facilmente monitorabili e testati.
-			}\\
-		\end{risktable}
-		
-	\end{table}
-	
-	
-	\mydoublerule{\linewidth}{0pt}{2pt}
-	
-	\begin{table}[H]
-		
-		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{T00-100} & 
-			Problematiche software\\
-			\hline
-			\rowcolor{gray!15}
-			\multicolumn{2}{X}{
-				Il gruppo fa affidamento a prodotti software per l'integrazione del codice e dei documenti. Eventuali guasti possono causare gravi perdite di dati.
-			}\\
-			\hline
-			\multicolumn{2}{X}{
-				Siccome ci si affida a servizi di terze parti, i malfunzionamenti che possono capitare sono imprevedibili, ma data la nota affidabilità di questi strumenti la probabilità che questo rischio accada è molto bassa.
-			}\\
-			\hline
-			\rowcolor{gray!15}
-			\multicolumn{2}{X}{
-				Ciascun componente si impegna a mantenere una copia, aggiornata periodicamente, della repository contenente il proprio lavoro, su computer o eventualmente una memoria esterna.
-			}\\
-		\end{risktable}
-		
-	\end{table}
-
-	
-	\mydoublerule{\linewidth}{0pt}{2pt}
-
-	\begin{table}[H]
-		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{O01-010} & 
-			Mancanza di comunicazione con l'azienda \\
-			\hline
-			\rowcolor{gray!15}
-			\multicolumn{2}{X}{
-				 Durante lo sviluppo del progetto è possibile che il gruppo non contatti i rappresentanti dell'azienda e che questi quindi non siano al corrente dei progressi fatti, dei requisiti completati e del modo in cui si è lavorato.
-			}\\
-			\hline
-			\multicolumn{2}{X}{
-				È opportuno che il responsabile si metta in comunicazione con l'azienda (Telegram, Skype on incontri di persona) e riferisca il progresso svolto dal gruppo in modo da avere feedback e critiche costruttive che possano migliorare lo sviluppo successivo.
-			}\\
-			\hline
-			\rowcolor{gray!15}			
-			\multicolumn{2}{X}{
-				In caso di mancata comunicazione per un lungo arco di tempo è opportuno che alla prima scadenza di revisione utile posta dal professore il gruppo si impegni a contattare l'azienda per avere un suo feedback.
-			}\\
-		\end{risktable}
-		
-	\end{table} 	
-
-	\mydoublerule{\linewidth}{0pt}{2pt}
-	
-	\begin{table}[H]
-		
-		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
-			\thead{P05-122} & 
+			\thead{P006-122} & 
 			Cattiva amministrazione delle risorse \\
 			\hline
 			\rowcolor{gray!15}
 			\multicolumn{2}{X}{
-				Data l'inesperienza del gruppo con progetti di questa natura è possibile che ci sorgano errori nell'amministrazione delle risorse come tempo, costi e suddivisione persone / ruoli.
+				\textbf{Descrizione}: data l'inesperienza del gruppo con progetti di questa natura è possibile che sorgano errori nell'amministrazione delle risorse come tempo, costi e suddivisione dei ruoli.
 			}\\
 			\hline
 			\multicolumn{2}{X}{
-				A ciascun incontro con il gruppo si controllerà se il lavoro svolto finora è pertinente a quanto è stato preventivato modificando di conseguenza il consuntivo e il preventivo a finire.
-				Tramite strumenti come diagrammi di Gantt dinamici (dove ciascun componente può aggiornare i tempi previsiti per completare l'attività assegnata) è possibile monitorare costantemente il progresso del progetto in modo tale da evitare situazioni di zero laxity.
+				\textbf{Strategia}: a ciascun incontro con il gruppo si controllerà se il lavoro svolto finora è pertinente a quanto è stato preventivato, modificando di conseguenza il consuntivo e il preventivo a finire.
+				Tramite strumenti come diagrammi di Gantt dinamici, dove ciascun componente può aggiornare i tempi previsti per completare l'attività assegnata, è possibile monitorare costantemente il progresso del progetto in modo tale da evitare situazioni di \gloss{zero laxity}.
 			}\\
 			\hline
 			\rowcolor{gray!15}			
 			\multicolumn{2}{X}{
-				In caso dovessero sorgere problemi di questa natura il gruppo si impegnerà a ridistribuire le risorse in modo da arrivare corretti alla prossima consegna posta dal professore tenendo conto di consegnare comunque un lavoro di qualità.
+				\textbf{Mitigazione}: in caso dovessero sorgere problemi di questa natura il gruppo si impegnerà a ridistribuire le risorse in modo da rispettare la tabella di marcia e in particol modo le scadenze, tenendo conto di consegnare comunque un prodotto di qualità.
 			}\\
 		\end{risktable}
 		
 	\end{table} 
 
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}		
+			\thead{O001-201} & 
+			Ritardo consegna del materiale per una revisione oltre la scadenza \\
+			\hline
+			\rowcolor{gray!15}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: è possibile che uno o più componenti del gruppo, per impegni legati alla propria vita privata e universitaria, non riescano a gestire i compiti assegnati e quindi arrivare ad una scadenza senza aver finito il proprio lavoro, obbligando l'intero gruppo rinviare la consegna.
+			}\\
+			\hline
+			\multicolumn{2}{X}{
+				\textbf{Strategia}: sarà compito del \Res\ assicurarsi che il lavoro proceda in maniera lineare ponendo scadenze intermedie, monitorando il lavoro del gruppo, organizzando riunioni e aggiornandosi sullo stato dei vari compiti assegnati secondo il way of working scelto.
+			}\\
+			\hline
+			\rowcolor{gray!15}			
+			\multicolumn{2}{X}{
+				\textbf{Mitigazione}: ciascun membro si impegna a gestire il proprio tempo adeguatamente in rapporto con gli altri impegni universitari senza tralasciare il suo ruolo nel gruppo: distinguendo le priorità in modo da non influenzare negativamente lo sviluppo del progetto. In caso di impegni che possano ostacolare ciò, ci si prenderà cura di avvisare gli altri componenti del gruppo per tempo.
+			}\\
+		\end{risktable}
+	\end{table}
+	
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
+			\thead{O002-010} & 
+			Mancanza di comunicazione con l'azienda \\
+			\hline
+			\rowcolor{gray!15}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: durante lo sviluppo del progetto è possibile che il gruppo non contatti i rappresentanti dell'azienda e che questi quindi non siano al corrente dei progressi fatti, dei requisiti completati e del modo in cui si ha lavorato.
+			}\\
+			\hline
+			\multicolumn{2}{X}{
+				\textbf{Strategia}: è opportuno che il \Res\ si metta in comunicazione con l'azienda, attraverso Telegram, Skype o tramite incontri di persona, e riferisca il progresso svolto dal gruppo in modo da avere feedback e critiche costruttive che possano migliorare lo sviluppo del progetto.
+			}\\
+			\hline
+			\rowcolor{gray!15}			
+			\multicolumn{2}{X}{
+				\textbf{Mitigazione}: in caso di mancata comunicazione per un lungo arco di tempo è opportuno che alla prima scadenza di revisione utile il gruppo si impegni a contattare l'azienda per avere un suo feedback.
+			}\\
+		\end{risktable}
+		
+	\end{table} 	
+	
+	\mydoublerule{\linewidth}{0pt}{2pt}
+		
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
+			\thead{S001-100} & 
+			Problematiche hardware \\
+			\hline
+			\rowcolor{gray!15}			
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: è possibile che i computer e altri strumenti hardware che possono essere utilizzati dai membri del gruppo risultino difettosi o smettano di funzionare.
+			}\\
+			\hline
+			\multicolumn{2}{X}{
+				\textbf{Strategia}: ciascun membro avrà cura degli strumenti a sua disposizione in modo tale che non sorgano problemi che possano ostacolare il lavoro.
+			}\\
+			\hline
+			\rowcolor{gray!15}			
+			\multicolumn{2}{X}{
+				\textbf{Mitigazione}: i guasti di natura hardware non sono facilmente prevedibili e in caso dovessero presentarsi è possibile utilizzare temporaneamente i computer forniti dai laboratori dell'università fino a quando la macchina difettosa non venga riparata o, se necessario, sostituita.
+			}\\
+		\end{risktable}
+	\end{table}	
+	
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		
+		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
+			\thead{R001-122} & 
+			Interpretazione errata dei requisiti: aggiunta o modifica di requisiti in corso di sviluppo \\
+			\hline
+			\rowcolor{gray!15}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: durante il progetto, dopo aver effettuato una prima analisi di tutti i requisiti, può nascere il bisogno di modificare un requisito già fissato o aggiungerne uno non identificato in precedenza.
+			}\\
+			\hline
+			\multicolumn{2}{X}{
+				\textbf{Strategia}: è possibile che nel corso dello sviluppo del progetto vengano scoperti requisiti secondari impliciti non precedentemente valutati che necessitano di essere sviluppati.
+				A ciascuna milestone, anche intermedia, è utile controllare che la lista dei requisiti da svolgere sia coerente con quella richiesta dall'azienda analizzando il documento che presenta il loro capitolato.
+			}\\
+			\hline
+			\rowcolor{gray!15}			
+			\multicolumn{2}{X}{
+				\textbf{Mitigazione}: nel caso dovesse sorgere la necessità di sviluppare requisiti inaspettati, questi andranno analizzati per capire di che risorse hanno bisogno e come andranno inseriti nella scaletta di sviluppo del progetto in modo adeguato. Data la natura modulare del progetto, ciascun requisito verrà sviluppato dal più al meno importante in modo da dover svolgere compiti facilmente monitorabili e testabili.
+			}\\
+		\end{risktable}
+		
+	\end{table}
+	
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		
+		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
+			\thead{T001-100} & 
+			Problematiche software\\
+			\hline
+			\rowcolor{gray!15}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: il gruppo fa affidamento a prodotti software per l'integrazione del codice e dei documenti. Eventuali problemi possono causare gravi perdite di dati.
+			}\\
+			\hline
+			\multicolumn{2}{X}{
+				\textbf{Strategia}: siccome ci si affida a servizi di terze parti, i malfunzionamenti che possono capitare sono imprevedibili, ma data la nota affidabilità di questi strumenti la probabilità che questo rischio accada è molto bassa.
+			}\\
+			\hline
+			\rowcolor{gray!15}
+			\multicolumn{2}{X}{
+				\textbf{Mitigazione}: ciascun componente si impegna a mantenere una copia, aggiornata periodicamente, della repository contenente il proprio lavoro, nella propria macchina o eventualmente in una memoria esterna.
+			}\\
+		\end{risktable}
+		
+	\end{table}
+	
 	\mydoublerule{\linewidth}{0pt}{2pt}
