@@ -7,14 +7,14 @@
 	    L'attività di gestione del progetto consiste nel delineare:
 	    \begin{itemize}
 	    	\item I processi di progetto
-	    	\item Le risorse a essi necessarie 
+	    	\item Le risorse a essi necessarie
 	    	\item I costi per la loro esecuzione
 	    	\item I \glossary{task} di risorsa umana
 	    	\item La verifica delle attività di processo
 	    \end{itemize}
 
 		%TODO: da mettere?
-	    % \subsubsection{Istanziazione dei processi}	
+	    % \subsubsection{Istanziazione dei processi}
 		% Derivano dagli standard...
 
 		\subsubsection{Pianificazione di attività}
@@ -23,7 +23,7 @@
 			\Res\ e \Amm\ insieme si occupano di generare il \PdPv\ che tratta generalmente:
 			\begin{itemize}
 				\item \textbf{Modello di sviluppo}: per la decisione del modello di sviluppo che si intende adottare.
-				\item \textbf{Analisi dei rischi}: in cui si identificano i vari possibili rischi e le strategie per evitarli o mitigarli.   
+				\item \textbf{Analisi dei rischi}: in cui si identificano i vari possibili rischi e le strategie per evitarli o mitigarli.
 				\item \textbf{Partizione del carico di lavoro}: che si occupa di delineare un preciso calendario di avanzamento e la rotazione dei ruoli.
 				\item \textbf{Prospetto economico}: per la stima dei costi relativa alle risorse umane.
 			\end{itemize}
@@ -36,8 +36,8 @@
 				\item Ciclo di vita con esposizione del modello di sviluppo
 				\item Analisi dei rischi con annessa valutazione e classificazione
 				\item Pianificazione delle attività in una visione temporale
-				\item Prospetto economico del personale durante le attività 
-				\item Preventivo di ore e costi 
+				\item Prospetto economico del personale durante le attività
+				\item Preventivo di ore e costi
 				\item Organigramma comprendente i componenti del gruppo
 			\end{itemize}
 
@@ -47,8 +47,8 @@
 				\item Individuazione di tutte le attività da svolgere basandosi sulle varie revisione da affrontare
 				\item Riconoscimento dei vari problemi che in cui è possibile incorrere nel corso del progetto con conseguente analisi approfondita di ognuno essi. Questo comporta l'identificazione di:
 				\begin{itemize}
-					\item La probabilità di verificarsi 
-					\item La gravità della situazione 
+					\item La probabilità di verificarsi
+					\item La gravità della situazione
 					\item Le strategie da seguire per l'accertamento
 					\item Le contromisure da adottare per la risoluzione
 				\end{itemize}
@@ -58,13 +58,13 @@
 					\item Dipendenze tra attività
 					\item Sequenzialità
 					\item Possibilità di parallelismo
-					\item Differenza tra durata effettiva e durata pianificata %TODO: c'è davvero?? rivedere 
+					\item Differenza tra durata effettiva e durata pianificata %TODO: c'è davvero?? rivedere
 					\item Andamento del progresso
 					\item Margine di slack per consentire l'ammortizzamento di possibili rallentamenti
 				\end{itemize}
 			\item Stima delle risorse secondo la metrica tempo/persona e le milestone nel tempo, pianificando all'indietro %TODO: chiedere agli altri se va bene o ampliare e mettere anche in avanti
 			\item Assegnazione delle risorse umane alle attività secondo le rotazione dei ruoli %TODO: associare sezione rotazione ruoli
-			\end{enumerate}  
+			\end{enumerate}
 
 			\paragraph{Ruoli di progetto}
 			I ruoli\footnote{Per la descrizione completa, vedere ``Descrizione dei ruoli di progetto'' in \S\ref{rifinfo}.} scelti per lo sviluppo del progetto sono:
@@ -81,18 +81,18 @@
 		\subsubsection{Pianificazione della qualità}\label{Pianificazione qualita}
 		Per cercare la qualità nei prodotti è necessario che vengano misurate diverse caratteristiche di questi ultimi.
 		Per ogni caratteristica deve essere fissato un livello minimo è un livello ottimale che questa deve avere.
-		
+
 		In tale sezione viene descritto il modo di utilizzo di metriche e strumenti utili ad ottenere qualità nei processi, nei documenti e nei prodotti.
-		Gli strumenti utilizzati possono essere software o standard di qualità descritti nel \Doc{\PdQv}.
-		Gli obiettivi che ci si pone di raggiungere con questi strumenti sono descritti invece nel \Doc{\PdPv}.
-			
+		Gli strumenti utilizzati possono essere software descritti nelle \NdP\ o gli standard di qualità descritti nel \Doc{\PdQv}.
+		Gli obiettivi che ci si pone di raggiungere sono descritti nel \PdQ.
+
 			\paragraph{Classificazione degli obiettivi}
 			Gli obiettivi per la qualità (Q) concordati dall'\Amm\ e dal \Ver\ descritti nel \PdQ\ avranno il seguente codice identificativo:
 
 			\begin{center}
 				\texttt{Q[Tipo][ID] Nome}
 			\end{center}
-		
+
 			\begin{itemize}
 				\item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene valutata la qualità, e questa può essere:
 				\begin{itemize}
@@ -100,18 +100,18 @@
 					\item \texttt{PD}: prodotti che risultano essere documenti;
 					\item \texttt{PS}: prodotti software;
 				\end{itemize}
-			
+
 				\item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre;
 				\item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase;
 			\end{itemize}
-		
+
 			Ad esempio:
-			
+
 			\begin{itemize}
 				\item \textbf{QPD001 Leggibilità del testo}
 			\end{itemize}
-			
-			
+
+
 			\paragraph{Classificazione delle metriche}\label{Classificazione metriche}
 			Ogni obiettivo della qualità deve, per quanto possibile, essere collegato ad una metrica, anch'essa scelta dall'\Amm\ e dai Verificatori. Questo per valutare
 			quantitativamente il raggiungimento o meno degli obiettivi stabiliti.
@@ -158,7 +158,7 @@
 					il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver}
 				\end{detailtable}
 			\end{table}
-			
+
 		\subsubsection{Controllo del progetto}
 
 			\paragraph{Monitoraggio del progetto}
@@ -205,7 +205,7 @@
     		\paragraph{Archiviazione delle misurazioni}
 			Oltre ai prodotti vengono archiviate le metriche, definite e classificate nel presente documento, con i limiti di accettazione riportati nel \Doc{\PdQv}.
 			Il calcolo delle metriche verrà effettuato su ciascun prodotto nel momento del suo inserimento nella repository; tali risultati o le anomalie verranno
-			opportunamente archiviate. % TODO Archiviate? Come? Dove? 
+			opportunamente archiviate. % TODO Archiviate? Come? Dove?
 
     	\subsubsection{Strumenti di pianificazione e coordinamento}\label{pianificazione e coordinamento}
 
@@ -237,7 +237,7 @@
 			sembrare, poich\'e permette anche di trattare le issue come delle \gloss{task}, marcandole con una opportuna label. Infatti, l'issue tracker offre le seguenti
 			funzionalità:
 			\begin{itemize}
-				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID che verrà automaticamente generato (e.g. \texttt{\#32}), 
+				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID che verrà automaticamente generato (e.g. \texttt{\#32}),
 					al quale sarà possibile fare riferimento nei messaggi di commit.
 				\item Creare delle \gloss{milestone}, e aggregare ad esse le issue.
 				\item Assegnare delle label alle issue, per marcarne la natura. Ad esempio, una issue marcata come bug sarà un problema da risolvere,
