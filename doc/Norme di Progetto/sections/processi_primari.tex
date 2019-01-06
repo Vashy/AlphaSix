@@ -3,41 +3,41 @@
     \subsection{Processo di fornitura}\label{PP:Fornitura}	%istanziare Management Process, Infrastructure Process e Improvement Process
 
         \subsubsection{Scopo}\label{PP:Fornitura:Scopo}
-		La sezione corrente ha lo scopo di riportare le  attività principali del fornitore in rapporto con il cliente.
+		La sezione corrente ha lo scopo di riportare le  attività principali che i membri di AplhaSix si propongono di attuare al fine di diventare \gloss{fornitori} per la proponente \II.
 
 		\subsubsection{Ricerca delle tecnologie}
 		Il gruppo approfondisce la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono
-		quelle di interesse comune e di utilità per il progetto. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo per averne una buona padronanza.
+		quelle di interesse comune e di utilità per il \gloss{progetto}. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo per acquisirne una buona padronanza.
 
         \subsubsection{Studio di Fattibilità}\label{PP:Fornitura:SdF}
         In quest'attività viene prodotto il documento \Doc{\SdFv} al fine di analizzare ogni capitolato e scegliere quale contratto accettare.
         Nello specifico, il documento in ogni sezione contiene:
         	\begin{itemize}
         		\item \textbf{Descrizione generale}: breve descrizione del capitolato.
-        		\item \textbf{Obiettivo finale}: punto focale su cui si concentra.
+        		\item \textbf{Obiettivo finale}: obiettivo da raggiungere.
         		\item \textbf{Tecnologie coinvolte}: elenco delle tecnologie direttamente coinvolte esplicitate nel capitolato.
         		\item \textbf{Valutazione conclusiva}: giudizio finale del gruppo.
         	\end{itemize}
 
         \subsubsection{Preparazione in vista della revisione}
 		In questa parte il gruppo prepara tutto il materiale necessario al buon superamento della revisione, quali lettera di presentazione,
-		documentazione, verbali e slide per l'esposizione.
+		documentazione, verbali e \gloss{slide} per l'esposizione.
 
 
     \subsection{Processo di sviluppo}\label{PP:Sviluppo}
 
 		\subsubsection{Scopo}\label{PP:Sviluppo:Scopo}
-		Lo sviluppo consiste nell'affrontare le attività volte a produrre il software richiesto dal proponente. Per una corretta implementazione di tale processo è
+		Lo sviluppo consiste nell'affrontare le attività volte a produrre il software richiesto dal proponente. Per una corretta implementazione di questo processo è
 		necessario:
 		\begin{itemize}
 			\item Fissare degli obiettivi di sviluppo
-			\item Realizzare un prodotto che sia conforme:
+			\item Realizzare un prodotto che sia conforme ai:
 			\begin{itemize}
-				\item ai requisiti definiti dal proponente
-				\item ai test di definiti nelle norme di qualità
+				\item Requisiti definiti dal proponente
+				\item Test definiti dalle norme di qualità
 			\end{itemize}
 		\end{itemize}
-		Lo standard ISO/IEC 12207:1995\footnote{Fonte in \S\ref{rifinfo}} definisce il processo di sviluppo quel processo
+		Lo standard ISO/IEC 12207:1995\footnote{Fonte in \S\ref{rifnorma}} definisce il processo di sviluppo quel processo
 		contenente tutte le attività relative al prodotto finale, quali:
 		\begin{itemize} % [noitemsep]
 			\item Analisi dei requisiti
@@ -56,14 +56,15 @@
 		\end{itemize}
 
 		\paragraph{Denominazione dei requisiti}\label{PP:Sviluppo:AdR:DenominazioneRequisiti}
-		Ogni requisito che è stato individuato duranti l'analisi presenta il seguente identificativo univoco \texttt{R[Numero][Tipo][Priorità]}, in cui:
+		Ogni requisito che è stato individuato duranti l'analisi presenta il seguente identificativo univoco \texttt{R[Numero][Tipo][Priorità]} in cui:
 		\begin{itemize}
-		 	\item \textbf{Numero}: corrisponde ad un numero progressivo.
-		 	\item \textbf{Tipo}: segnala la tipologia di requisito che può essere:
+			\item \textbf{R}: si riferisce a requisito.
+		 	\item \textbf{Numero}: corrisponde ad un numero progressivo a partire da 1.
+		 	\item \textbf{Tipo}: segnala la tipologia di requisito che può essere di:
 		 	\begin{itemize}
-		 		\item \textbf{F}: requisito funzionale, che ha a che vedere con le funzionalità del sistema software.
-		 		\item \textbf{Q}: requisito di qualità, che riguarda tecniche ad hoc.
-		 		\item \textbf{V}: requisito di vincolo, imposto da \II.
+		 		\item \textbf{F}: funzionalità, che ha a che vedere con le funzionalità del sistema software.
+		 		\item \textbf{Q}: qualità, che riguarda tecniche ad hoc.
+		 		\item \textbf{V}: vincolo, proposto da \II.
 		 	\end{itemize}
 	 		\item \textbf{Priorità}: indica il grado di urgenza di un requisito di essere soddisfatto, come:
 	 		\begin{itemize}
@@ -80,14 +81,14 @@
 		\begin{itemize}
 		 	\item \textbf{Codice}: per l'identificazione del tipo:
 		 	\begin{itemize}
-		 		\item \texttt{UC[Numero]}: per un caso principale (ad esempio, per il primo caso d'uso avremo \texttt{UC1})
-		 		\item \texttt{UC[Numero].[Numero]}: per un sotto caso (ad esempio, per il primo figlio del primo caso d'uso avremo \texttt{UC1.1})
+		 		\item \texttt{UC[Numero]}: per un caso principale (e.g. per il primo caso d'uso avremo \texttt{UC1})
+		 		\item \texttt{UC[Numero].[Numero]}: per un sotto caso (e.g. per il primo figlio del primo caso d'uso avremo \texttt{UC1.1})
 		 	\end{itemize}
 		 	\item \textbf{Titolo}: denominazione del caso d'uso, possibilmente breve.
 		 	\item \textbf{Attori}: tutti quelli coinvolti, sia primari che secondari.
-		 	\item \textbf{Descrizione}: per spiegare più nel dettaglio le azioni.
-		 	\item \textbf{Precondizione}: per rappresentare l'istante precedente.
-		 	\item \textbf{Postcondizione}: per rappresentare l'istante successivo.
+		 	\item \textbf{Descrizione}: per spiegare più nel dettaglio le azioni che vengono compiute.
+		 	\item \textbf{Precondizione}: per rappresentare lo stato del sistema nell'istante precedente.
+		 	\item \textbf{Postcondizione}: per rappresentare lo stato del sistema l'istante successivo.
 		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute.
 		 	\item \textbf{Estensioni}: per azioni inerenti a scenari alternativi (d'eccezione o errore).
 		\end{itemize}
@@ -99,9 +100,7 @@
 
 		 %\paragraph{Obiettivi}\label{PP:Sviluppo:Progettazione:Obiettivi}
 		 %Contenuto
-
-
-
+		 
 		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML}	%SOLO di attività e sequenza PIÙ AVANTI
 
 
@@ -114,10 +113,8 @@
 			\item Relazioni, che possono essere di:
 			\begin{itemize}
 				\item \textbf{Associazione}: è sempre presente e rappresenta una comunicazione diretta dell'attore con il caso d'uso.
-				\item \textbf{Inclusione}: è una funzionalità comune che coinvolge più casi d'uso, in cui ogni istanza del primo esegue necessariamente il secondo.
-					L'attore esegue sempre tutte le inclusioni.
-				\item \textbf{Estensione}: aumenta le funzionalità di un caso d'uso coinvolgendone un altro.
-					L'esecuzione di quest'ultimo interrompe il precedente, ma non è necessariamente detto che tutte le estensioni vengano eseguite.
+				\item \textbf{Inclusione}: è una funzionalità comune che coinvolge più casi d'uso, in cui ogni istanza del primo esegue necessariamente il secondo. Tutte le inclusioni vengono sempre eseguite dall'utente.
+				\item \textbf{Estensione}: aumenta le funzionalità di un caso d'uso coinvolgendone un altro. L'esecuzione di quest'ultimo interrompe il precedente, ma non è necessariamente detto che tutte le estensioni vengano eseguite.
 				\item \textbf{Generalizzazione}: avviene tra casi d'uso o tra attori e rappresenta delle modifiche alle caratteristiche di base.
 			\end{itemize}
 		\end{itemize}
@@ -130,11 +127,11 @@
         \subsubsection{Strumenti di base}\label{PP:Sviluppo:Strumenti}
 
 	    \paragraph{Ambiente di sviluppo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo}
-	    Vengono qui riportate le componenti software utilizzate da ogni membro del gruppo per lo sviluppo del progetto.
+	    Nei paragrafi successivi vengono riportate le componenti software utilizzate da ogni membro del gruppo per lo sviluppo del progetto.
 
 
 	    \subparagraph{Sistema operativo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:SistemaOperativo}
-	    Il sistema operativo scelto da tutti è Ubuntu, in particolare ognuno ha una versione di Ubuntu 18.
+	    Il sistema operativo scelto da tutti il team è Ubuntu, in particolare ognuno ha una determinata versione di Ubuntu 18.
 
 	    %\subparagraph{IDE}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:IDE}
 	    %Atom - Intellij?
