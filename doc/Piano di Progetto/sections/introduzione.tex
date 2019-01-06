@@ -2,12 +2,12 @@
 \section{Introduzione} \label{Introduzione}
 	
 	\subsection{Scopo del documento}
-	Questo documento ha l'intento di specificare la pianificazione e l'approccio che AlphaSix adotterà per portare a termine il progetto Butterfly.
-	All'interno vengono illustrate le strategie, le suddivisioni dei compiti, l'utilizzo delle risorse, la gestione dei rischi e le attività secondo le quali il gruppo ha intenzione di lavorare.
+	Questo documento ha l'intento di specificare la \gloss{pianificazione} e l'approccio che AlphaSix adotterà per portare a termine il progetto Butterfly.
+	All'interno vengono illustrate le strategie, le suddivisioni dei compiti, l'utilizzo delle risorse, la gestione dei rischi e le attività secondo le quali il team di sviluppo ha intenzione di lavorare.
 	
 	\subsection{Scopo del prodotto}	
 	Il prodotto che AlphaSix si incarica di realizzare è Butterfly: un tool di supporto alle figure di sviluppo in aziende che producono software (non solamente quella del committente).
-	Questo applicativo permette di incanalare le notifiche dei vari strumenti utilizzati nel percorso di \gloss{CI} e \gloss{CD} (come Redmine, GitLab, ecc.) di un software e, tramite un broker (Apache Kafka in questo caso), spedirli alla persona interessata tramite il canale di comunicazione
+	Questo applicativo permette di incanalare le notifiche dei vari strumenti utilizzati nel percorso di \gloss{CI} e \gloss{CD} (come Redmine, GitLab, ecc.) di un software e, tramite un \gloss{broker} (\gloss{Apache Kafka} in questo caso), spedirli alla persona interessata tramite il canale di comunicazione
 	preferito scelto da quest'ultimo (email, Telegram, Slack, ecc.).
 	
 	\subsection{Glossario}
@@ -32,7 +32,7 @@
 			\end{itemize}
 		
 	\subsection{Scadenze}
-	Il gruppo ha deciso di rispettare le scadenze indicate dal professor Vardanega e riportate di seguito:
+	AlphaSix ha deciso di rispettare le scadenze indicate dal professor Vardanega e riportate di seguito:
 	\begin{itemize}
 		\item \textbf{Revisione dei Requisiti}: 21-01-2019;
 		\item \textbf{Revisione di Progetto}: 15-03-2019;
@@ -41,18 +41,18 @@
 	\end{itemize}
 	
 	\subsection{Ciclo di vita} % Usare modello di sviluppo come termine al posto di Ciclo di vita in questo contesto. Vedere #26
-	Data la natura del progetto, composto da più parti modulari e quindi con un valore basso di accoppiamento, il gruppo ha stabilito di adottare un ciclo di vita con modello ibrido tra quello a componenti e quello incrementale.
+	Data la natura del progetto, composto da più parti modulari e quindi con un valore basso di accoppiamento, il team di sviluppo ha stabilito di adottare un ciclo di vita con modello ibrido tra quello a componenti e quello incrementale.
 	Questi modelli si adattano particolarmente a questo tipo di progetto in quanto:
 	\begin{itemize}
 		\item il modello incrementale prevede ripetizioni identificate come cicli di incremento che verranno ripetute fino a quando il prodotto non arriverà a soddisfare i requisiti richiesti dal cliente;
-		\item il modello a componenti è basato sul riuso di unità software che possono avere diversa dimensione:
+		\item il modello a componenti è basato sul riuso di unità software che possono avere diverse dimensione:
 		\begin{itemize}
-			\item \textbf{"System reuse"}: un intero sistema, composto da più applicazioni, può essere riusato come parte di un sistema di tanti sistemi.
-			\item \textbf{"Application reuse"}: un'applicazione può essere riusata incorporandola in altri sistemi senza fare cambiamenti, oppure configurandola.
-			\item \textbf{"Component reuse"}: componenti di un'applicazione (da sotto-sistemi a singoli oggetti).Queste componenti possono risiedere in un cloud o in server privati e possono essere accessibili tramite Application Programming Interface (API). 
+			\item \textbf{System reuse}: un intero sistema, composto da più applicazioni, può essere riusato come parte di un sistema di tanti sistemi.
+			\item \textbf{Application reuse}: un'applicazione può essere riusata incorporandola in altri sistemi senza fare cambiamenti, oppure configurandola.
+			\item \textbf{Component reuse}: componenti di un'applicazione (da sotto-sistemi a singoli oggetti).Queste componenti possono risiedere in un cloud o in server privati e possono essere accessibili tramite Application Programming Interface (API). 
 			\item \textbf{Object and function reuse}: componenti software che implementano una singola funzione o una classe oggetto. Molte librerie di funzioni e classi sono liberamente disponibili. Si riusano classi e funzioni in queste librerie collegandole con lo sviluppo di nuovo codice.
 		\end{itemize}
-		Oppure, nel caso in cui le componenti siano così specifiche da essere molto costosa modificarle per una nuova situazione, è possibile fare "concept reuse", ovvero riusare le idee che stanno alla base del software (e.g. riusare un way of working o un algoritmo). \par
+		Oppure, nel caso in cui le componenti siano così specifiche da essere molto costosa modificarle per una nuova situazione, è possibile fare "concept reuse", ovvero riusare le idee che stanno alla base del software (e.g. riusare un \gloss{way of working} o un algoritmo). \par
 		In particolare i benefici che si possono trarre dal riuso sono:
 		\begin{itemize}
 			\item Costo complessivo di sviluppo più basso, perché meno componenti software devono essere progettate, implementate e validate
