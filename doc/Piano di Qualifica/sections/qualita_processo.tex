@@ -3,7 +3,7 @@
 \subsection{Scopo}
 La qualità di un prodotto è fortemente influenzata dal processo utilizzato nell'arco di creazione del prodotto stesso: da un tubo sporco non può uscire acqua pulita.
 
-Per questo è necessario operare con un buon ciclo di vita per i processi, che devono essere verificati e valutati. Per questo viene seguito lo schema del ciclo di Deming e dell'ISO 15504 descritti all'Appendice §A.
+Per questo è necessario operare con un buon ciclo di vita per i processi, che devono essere verificati e valutati. A questo scopo viene seguito lo schema del ciclo di Deming e dell'ISO 15504 descritti all'Appendice §A.
 
 \subsection{Processi}
 I processi saranno elencati nel seguente modo:
@@ -12,48 +12,52 @@ I processi saranno elencati nel seguente modo:
 	PROC[ID] Nome
 \end{center}
 
-L'ID sarà un numero incrementale per indicare in modo univoco il processo e il nome sarà una breve frase per indicare la funzione del processo.
+\begin{itemize}
+	\item \textbf{ID}: un numero incrementale per indicare in modo univoco il processo.
+	\item \textbf{Nome}: una breve frase per indicare la funzione del processo.
+\end{itemize}
 
 Per ogni processo sono elencate le sue funzioni principali, gli aspetti da misurare per ottenere la qualità desiderata e le metriche utilizzate. Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una particolare metrica. 
 
-La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdP} nella sezione §3.1.3, mentre la loro descrizione alla sezione §4.2.3.2 sempre del \Doc{\NdP}.
+%specificare la versione perchè magari alle Norme v2 quella sezione corrisponderà ad un altra
+La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdPv} nella sezione §3.1.3, mentre la loro descrizione alla sezione §4.2.3.2 sempre del documento \Doc{\NdPv}.
 
 	\subsubsection{PROC001 Pianificazione del progetto, organizzazione e struttura}
-	Tale macro-processo ha lo scopo di pianificare il lavoro da svolgere per soddisfare i requisiti richiesti dal progetto. \'E in questo processo che viene messo in atto il \gloss{way of working} del team di sviluppo ed ha un'importanza particolare perché i suoi output vanno a condizionare l'esito della qualità dell'intero progetto.
+	Tale macro-processo ha lo scopo di pianificare il lavoro da svolgere per soddisfare i requisiti richiesti dal progetto. È in questo processo che viene messo in atto il \gloss{way of working} del team di sviluppo che ha un'importanza particolare perché i suoi output vanno a condizionare l'esito della qualità dell'intero progetto.
 	
 		\paragraph*{Funzioni}
 	
 		\begin{itemize}
-			\item \textbf{Sviluppare sotto-processi}: i vari obiettivi devono poter associati ad azioni ben precise, ognuna delle quali appartiene ad un sotto-processo;
-			\item \textbf{Suddividere i compiti}: è compito dell'\Amm assegnare i vari compiti ai vari ruoli del team;
-			\item \textbf{Candelarizzare i documenti}: altro compito dell'\Amm e quello di stabilire delle \gloss{baseline} durante il progetto, sarà poi compito dei vari membri del team organizzare i loro impegni per rispettare tali scadenze;
-			\item \textbf{Formazione personale}: l'inesperienza del team richiede di un periodo di formazione personale più lungo del normale. Questo periodo deve essere contato dall'\Amm all'interno della calendarizzazione;
-			\item \textbf{Standard}: vengono scelti gli standard da seguire;
-			\item \textbf{Budget}: è necessario conoscere le proprie risorse in termini di tempo $\frac{Costo}{Persona}$ in modo tale da restare il più fedeli possibile al preventivo stilato;
+			\item \textbf{Sviluppare sotto-processi}: i vari obiettivi devono poter essere associati ad azioni ben precise, ognuna delle quali appartiene ad un sotto-processo.
+			\item \textbf{Suddividere i compiti}: è compito dell'\Amm\ assegnare i vari compiti ai vari ruoli del team.
+			\item \textbf{Candelarizzare i documenti}: altro compito dell'\Amm\ è quello di stabilire delle \gloss{baseline} durante il progetto. Sarà poi compito dei vari membri del team organizzare i loro impegni per rispettare tali scadenze.
+			\item \textbf{Formazione personale}: l'inesperienza del team richiede di un periodo di formazione personale più lungo del normale. Questo periodo deve essere contato dall'\Amm\ all'interno della calendarizzazione.
+			\item \textbf{Standard}: vengono scelti gli standard da seguire.
+			\item \textbf{Budget}: è necessario conoscere le proprie risorse in termini di tempo $\frac{Costo}{Persona}$ in modo tale da restare il più fedeli possibile al preventivo stilato.
 		\end{itemize}
 	
 		\paragraph*{Metriche}
 		
 		\begin{itemize}
-			\item \textbf{MPR001 Varianza della programmazione}
-			\item \textbf{MPR002 Varianza dei costi}
-			\item \textbf{MPR003 Aderenza agli standard}
-			\item \textbf{MPR004 Frequenza commit nella repository}
+			\item MPR001 Varianza della programmazione
+			\item MPR002 Varianza dei costi
+			\item MPR003 Aderenza agli standard
+			\item MPR004 Frequenza commit nella repository
 		\end{itemize}
 	
 		\paragraph*{Obiettivi}
 		
-		\begin{itemize}
-			\item \textbf{QPR001 Rispetto delle fasi dell'organigramma}: all'interno dell'organigramma presente alla sezione (inserire sezione organigramma) del \Doc{\PdP} sono presenti le date di scadenza delle varie attività, l'obiettivo è quello di rispettarle il più possibile;
-			\item \textbf{QPR002 Variazione del budget}: le risorse messe a disposizione all'inizio del progetto devono potersi mantenere tali in tutta la sua durata;
-			\item \textbf{QPR003 Rispetto delle fasi del ciclo di vita}: ogni processo deve rispettare le fasi del ciclo di Deming;
-			\item \textbf{QPR004 Versionamento}: durante ogni processo, i prodotti che vengono realizzati devono possedere un numero di versione in modo da tener traccia delle modifiche. In questo modo è possibile sapere le cause di certi comportamenti dovuti ad un mutamento del prodotto in modo molto rapido;  
+		\begin{itemize} 
+			\item \textbf{QPR001 Rispetto delle fasi dell'organigramma}: all'interno dell'organigramma presente alla sezione (inserire sezione organigramma) del \Doc{\PdPv}, sono presenti le date di scadenza delle varie attività. L'obiettivo è quello di rispettarle il più possibile.
+			\item \textbf{QPR002 Variazione del budget}: le risorse messe a disposizione all'inizio del progetto devono potersi mantenere tali in tutta la sua durata.
+			\item \textbf{QPR003 Rispetto delle fasi del ciclo di vita}: ogni processo deve rispettare le fasi del ciclo di Deming.
+			\item \textbf{QPR004 Versionamento}: durante ogni processo, i prodotti che vengono realizzati devono possedere un numero di versione in modo da tener traccia delle modifiche. In questo modo è possibile sapere le cause di certi comportamenti dovuti ad un mutamento del prodotto in modo molto rapido.  
 		\end{itemize}
 	
 	\subsubsection{PROC002 Analisi}
-	Il processo di analisi serve per comprendere le richieste del progetto che consistono in: requisiti, tecnologie da utilizzare e risorse da spendere. Insieme all'analisi dei requisiti, questo processo prevede anche l'analisi dei rischi presente alla sezione (sezione dell'analisi dei rischi) nel \Doc{\PdP}.
+	Il processo di analisi serve per comprendere le richieste del progetto che consistono in: requisiti, tecnologie da utilizzare e risorse da spendere. Insieme all'analisi dei requisiti, questo processo prevede anche l'analisi dei rischi presente alla sezione (sezione dell'analisi dei rischi) nel \Doc{\PdPv}.
 	
-	Completata questa fase il team di sviluppo, oltre ad aver studiato i vari requisiti, deve poter dire se il progetto risulta fattibile per le sue possibilità in termini di competenze e risorse.
+	Completata questa attività il team di sviluppo, oltre ad aver studiato i vari requisiti, deve poter dire se il progetto risulta fattibile per le sue possibilità in termini di competenze e risorse.
 	
 	Tale processo non deve essere rendicontato per il preventivo a finire.
 	
@@ -61,16 +65,16 @@ La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdP} ne
 		
 		\begin{itemize}
 			\item \textbf{Individuare i requisiti}: il capitolato che viene presentato dal cliente può possedere con un lessico più discorsivo che tecnico dovuto all'inesperienza del cliente nel settore. \'E necessario dunque effettuare un lavoro di "traduzione" per individuare i requisiti e classificarli in
-			
+			%TODO: RIDONANTE! C'è anche nelle Norme. Cosa fare?
 			\begin{itemize}
 				\item \textbf{Obbligatori}: necessari ed irrinunciabili;
 				\item \textbf{Desiderabili}: non imprescindibile e da aggiungere solo se a fine progetto si hanno ancora risorse disponibili;  
 				\item \textbf{Opzionali}: se sono presenti danno un valore aggiunto al prodotto, ma non sono necessari;
 			\end{itemize}
-			\item \textbf{Individuare le tecnologie da utilizzare}: in base al tipo di progetto le tecnologie da utilizzare migliori per realizzarlo possono cambiare da progetto a progetto;
-			\item \textbf{Comprendere la quantità di risorse richieste}: sviluppare un preventivo è fondamenta sia per il cliente che vuole sapere il costo del progetto, che per il fornitore che deve sapere se il progetto per lui è fattibile;
-			\item \textbf{Individuare i rischi}: lungo il corso del progetto possono accadere degli imprevisti, perciò è necessario poterli prevedere ed organizzare fin da subito una reazione ad essi;
-			\item \textbf{Stabilire la fattibilità del progetto}: dopo aver fatto l'analisi dei requisiti, dei rischi e dei costi bisogna sapere se iniziare lo sviluppo del progetto o meno;
+			\item \textbf{Individuare le tecnologie da utilizzare}: in base al tipo di progetto le tecnologie da utilizzare migliori per realizzarlo possono cambiare da progetto a progetto.
+			\item \textbf{Comprendere la quantità di risorse richieste}: sviluppare un preventivo è fondamentale, sia per il cliente che vuole sapere il costo del progetto, che per il fornitore che deve sapere se il progetto per lui è fattibile.
+			\item \textbf{Individuare i rischi}: lungo il corso del progetto possono accadere degli imprevisti, perciò è necessario poterli prevedere ed organizzare fin da subito una reazione ad essi.
+			\item \textbf{Stabilire la fattibilità del progetto}: dopo aver fatto l'analisi dei requisiti, dei rischi e dei costi bisogna sapere se iniziare lo sviluppo del progetto o meno.
 		\end{itemize}
 		
 		\paragraph*{Metriche}
@@ -86,9 +90,9 @@ La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdP} ne
 		\paragraph*{Obiettivi}
 		
 		\begin{itemize}
-			\item \textbf{QPR005 Soddisfacimento dei requisiti obbligatori}: tutti i requisiti obbligatori devono essere soddisfatti a fine progetto;
-			\item \textbf{QPR006 Soddisfacimento dei requisiti opzionali e desiderabili}: i requisiti opzionali e desiderabili possono non essere rispettati solo se non avanzano più risorse in termini di $ \frac{tempo}{persona} $ prima della consegna del progetto. I requisiti inoltre devono essere stabiliti in modo corretto: hanno l'obbligo di rispecchiare quanto chiesto dal cliente e non sovrapporsi tra loro;
-			\item \textbf{QPR007 Verificarsi dei rischi previsti}: lo sviluppo del progetto deve essere sicuro e non presentare imprevisti la cui soluzione non è stata prevista, perché potenzialmente aumenterebbe di molto il ritardo nello sviluppo del progetto rispetto ad rischi previsto;
+			\item \textbf{QPR005 Soddisfacimento dei requisiti obbligatori}: tutti i requisiti obbligatori devono essere soddisfatti a fine progetto.
+			\item \textbf{QPR006 Soddisfacimento dei requisiti opzionali e desiderabili}: i requisiti opzionali e desiderabili possono non essere rispettati solo se non avanzano più risorse in termini di $ \frac{tempo}{persona} $ prima della consegna del progetto. I requisiti inoltre devono essere stabiliti in modo corretto: hanno l'obbligo di rispecchiare quanto chiesto dal cliente e non sovrapporsi tra loro.
+			\item \textbf{QPR007 Verificarsi dei rischi previsti}: lo sviluppo del progetto deve essere sicuro e non presentare imprevisti la cui soluzione non è stata prevista, perché potenzialmente aumenterebbe di molto il ritardo nello sviluppo del progetto rispetto al rischio previsto.
 		\end{itemize}
 	
 	\subsubsection{PROC003 Produzione documenti}
