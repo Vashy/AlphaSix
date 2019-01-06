@@ -3,57 +3,60 @@
 \subsection{Scopo}
 Per raggiungere la qualità desiderata nei prodotti, il team di sviluppo prende come modello gli standard ISO 9126 e 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per essere di qualità.
 
-\subsection{Prodotti}
+
+\subsection{Prodotti} %TODO: scrivere qualcosa in più o sembra una parola da Glossario
 Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile. Nel caso del nostro progetto i prodotti sono documenti e software.
 	\subsubsection{Documenti}
 	I documenti rilasciati devono presentarsi leggibili e comprensibili già ad una prima lettura, con contenuti che rispecchino le premesse del documento.
 
 		\paragraph{Metriche}
-		Tra le metriche elencate nelle \Doc{\NdP} in  §4.2.3.1, quelle utilizzate per verificare i documenti sono:
+		Tra le metriche elencate nelle \NdPv in  §4.2.3.1, quelle utilizzate per verificare i documenti sono:
 		
 		\begin{itemize}
-			\item \textbf{MPD001 Indice Gulpease}
-			\item \textbf{MPD002 Correttezza ortografica}
-			%questi sono i nomi della metrica, perciò dovrebbe essere corretto tenere tutto in grassetto
+			\item MPD001 Indice Gulpease
+			\item MPD002 Correttezza ortografica
+			%questi sono i nomi della metrica, perciò dovrebbe essere corretto tenere tutto in grassetto... NEIN!
 		\end{itemize} 
 		
 		\paragraph{Obiettivi}
-		Gli obiettivi per ottenere la qualità desiderata per i documenti sono classificati come descritto nel \Doc{\NdP} in §3.1.3.1 e quando possibile saranno affiancate ad una metrica per valutarne il grado di soddisfacimento.
+		Gli obiettivi per ottenere la qualità desiderata per i documenti sono classificati come descritto nel \NdP in §3.1.3.1 e quando possibile saranno affiancate ad una metrica per valutarne il grado di soddisfacimento.
 		
 		Le caratteristiche di un documento che vengono analizzate sono:
 		
 		\begin{itemize}
-			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido , evitando perciò periodo troppo lunghi o un alto numero di subordinate;
-			\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici;
-			\item \textbf{QPD003 Correttezza contenuti}: i contenuti devono rispecchiare ciò che vogliono far intendere i titoli dei paragrafi e dover portare un valore aggiunto al documento;
-			\item \textbf{QPD004 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati;
-			\item \textbf{QPD005 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato;
+			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido, evitando perciò periodo troppo lunghi o un alto numero di subordinate.
+			\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici.
+			\item \textbf{QPD003 Correttezza contenuti}: i contenuti devono rispecchiare ciò che vogliono far intendere i titoli dei paragrafi e dover portare un valore aggiunto al documento.
+			\item \textbf{QPD004 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati.
+			\item \textbf{QPD005 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato per agevolarne la manutenibilità.
 		\end{itemize}
 
 \subsection{The Twelve-Factor App}
-The Twelve-Factor App è presente tra i requisiti dell'\Doc{Analisi dei Requisiti} ed è una serie di dodici regole destinate ad chi vuole sviluppare \gloss{software-as-a-service} (SaaS).
+%TODO: Frase da non scrivere perchè anche altri requisiti riguardanti la qualità sono resquiti di qualità in AdR
+%The Twelve-Factor App è presente tra i requisiti dell'\AdRv ed 
+\gloss{The Twelve-Factor App} è una serie di dodici regole destinate a chi vuole sviluppare \gloss{software-as-a-service} (SaaS).
 
 I suoi principi sono:
 
 \begin{enumerate}
-	\item \textbf{Codebase}: deve essere presente una sola code base versionata da un \textit{Version Control System} come \gloss{GitLAb} da cui possono derivare diversi deploy;
-	\item \textbf{Dipendenze}: le librerie usate dal codice devono essere presenti nella directory della singola applicazione e non attive a livello di sistema. In questo modo l'applicazione è il meno dipendente possibile dal sistema di esecuzione;
-	\item \textbf{Configurazione}: i parametri di configurazione dell'applicazione devono essere completamente separati dalla sua implementazione;
-	\item \textbf{Backing Service}: l'applicazione non deve far distinzione tra funzionalità uguali usate in locale o remoto;
-	\item \textbf{Build, release, esecuzione}: bisogna separare in modo netto la fase di build, quella di deploy e quella esecuzione, usando tool differenti e diverse repository per salvare i risultati delle varie fasi;
-	\item \textbf{Processi}: l'esecuzione dell'applicazione deve essere vista come l'insieme di uno o più processi che restituiscono un risultato. Questi sono di tipo \gloss{stateless};
-	\item \textbf{Binding delle Porte}: l'applicazione è completamente contenuta in se stessa e non fa affidamento ad un altro servizio nell'ambiente di esecuzione. effettua invece il binding delle porte diventando un servizio per le richieste esterne;
-	\item \textbf{Concorrenza}: sviluppare i processi in modo tale che possano lavorare su un sistema decentralizzato;
-	\item \textbf{Rilasciabilità}: i processi dell'applicazione devono poter essere avviati e fermati quando se ne ha bisogno senza passaggi bruschi;
-	\item \textbf{Parità tra Sviluppo e Produzione}: deve esserci meno differenza possibile tra lo stato di sviluppo e quello di produzione. Questo si ottiene facendo un rilascio contuno del prodotto;
-	\item \textbf{Log}: l'applicazione dovrebbe poter offrire un sistema di login;
-	\item \textbf{Processi di Amministrazione}: porre attenzione a quei processi che devono essere eseguiti una tantum dagli sviluppatori ad esempio. Questi processi devono poter essere accessibili solo ad alcuni e indicati in una specifica release;
+	\item \textbf{Codebase}: deve essere presente una sola code base versionata da un \textit{Version Control System} come \gloss{GitLAb} da cui possono derivare diversi deploy.
+	\item \textbf{Dipendenze}: le librerie usate dal codice devono essere presenti nella directory della singola applicazione e non attive a livello di sistema. In questo modo l'applicazione è il meno dipendente possibile dal sistema di esecuzione.
+	\item \textbf{Configurazione}: i parametri di configurazione dell'applicazione devono essere completamente separati dalla sua implementazione.
+	\item \textbf{Backing Service}: l'applicazione non deve far distinzione tra funzionalità uguali usate in locale o remoto.
+	\item \textbf{Build, release, esecuzione}: bisogna separare in modo netto la fase di build, quella di deploy e quella esecuzione, usando \gloss{tool} differenti e diverse repository per salvare i risultati delle varie fasi.
+	\item \textbf{Processi}: l'esecuzione dell'applicazione deve essere vista come l'insieme di uno o più processi che restituiscono un risultato. Questi sono di tipo \gloss{stateless}.
+	\item \textbf{Binding delle Porte}: l'applicazione è completamente contenuta in se stessa e non fa affidamento ad un altro servizio nell'ambiente di esecuzione. effettua invece il binding delle porte diventando un servizio per le richieste esterne.
+	\item \textbf{Concorrenza}: sviluppare i processi in modo tale che possano lavorare su un sistema decentralizzato.
+	\item \textbf{Rilasciabilità}: i processi dell'applicazione devono poter essere avviati e fermati quando se ne ha bisogno senza passaggi bruschi.
+	\item \textbf{Parità tra Sviluppo e Produzione}: deve esserci meno differenza possibile tra lo stato di sviluppo e quello di produzione. Questo si ottiene facendo un rilascio continuo del prodotto.
+	\item \textbf{Log}: l'applicazione dovrebbe poter offrire un sistema di login.
+	\item \textbf{Processi di Amministrazione}: porre attenzione a quei processi che devono essere eseguiti una tantum dagli sviluppatori ad esempio. Questi processi devono poter essere accessibili solo ad alcuni e indicati in una specifica release.
 \end{enumerate}
 
-In accordo col cliente \textit{Imola Informatica} e da quanto concerne il capitolato, non tutti i punti della Twelve-Factor App possono essere rispettati. Questi sono:
+In accordo col cliente \II e da quanto concerne il capitolato, non tutti i punti della Twelve-Factor App possono essere rispettati. Questi sono:
 
 \begin{itemize}
-	\item \textbf{11}: dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente;
+	\item \textbf{11}: dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente.
 \end{itemize}
 
 \subsection{Tabella qualità di prodotto}
