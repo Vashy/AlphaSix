@@ -9,30 +9,27 @@
 		\caption{Rappresentazione della comunicazione tra publisher e subsriber passando per il broker}
 	\end{figure}
 
-	Per ciascuna tecnologia con cui l'applicativo andrà ad interfacciarsi è previsto un microservizio, il quale avrà come scopo quello di fare da tramite.
+	Per ciascuna tecnologia con cui l'applicativo andrà ad interfacciarsi è previsto un microservizio, il quale avrà come scopo quello di fare da tramite coi subscriber.
 
 	\subsection{Producers}
-		In ordine di priorità richiesta dal committente, i software che svolgono il ruolo di producer sono:
+		I producer da integrare nel progetto sono elencati in ordine di priorità in base a quanto chiesto dal committente.
 
 		\subsubsection{Redmine}
-		Ciascuna istanza di Redmine permette l'utilizzo delle proprie API con le quali potersi interfacciare e ricevere risposte nel formato scelto.
-		Queste vengono prese dal server tramite un microservizio facente parte dell'applicativo che ne fa la richiesta ad intervalli determinati prestabiliti aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai customer interessati.
-		%http://www.redmine.org/projects/redmine/wiki/Rest_api
+		Ciascuna istanza di Redmine permette l'utilizzo delle proprie API\footnote{\url{http://www.redmine.org/projects/redmine/wiki/Rest_api}} con le quali potersi interfacciare e ricevere risposte nel formato scelto.
+		Queste vengono prese dal server tramite un microservizio facente parte dell'applicativo che ne fa la richiesta ad intervalli prestabiliti, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai customer interessati.
 		
 		\subsubsection{GitLab}
-		Ciascuna istanza di GitLab (online o in un server interno dell'azienda) mette a disposizione la configurazione di webhooks che, alla modifica della repo, manda un messaggio con le informazioni aggiornate e il cambiamento che è avvenuto a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
-		%https://docs.gitlab.com/ee/user/project/integrations/webhooks.html
+		Ciascuna istanza di GitLab, online o in un server interno dell'azienda, mette a disposizione la configurazione di \gloss{webhooks}\footnote{\url{https://docs.gitlab.com/ee/user/project/integrations/webhooks.html}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni aggiornate e il cambiamento che è avvenuto a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
 		
 		\subsubsection{SonarQube}
-		Come GitLab, anche SonarQube prevede l'utilizzo di webhooks che dopo ciascuna build manda le il risultato e le informazioni relative ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
-		%https://docs.sonarqube.org/latest/project-administration/webhooks/
+		Come GitLab, anche SonarQube prevede l'utilizzo di webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
 		
 	\subsection{Broker}
 	
 		L'azienda consiglia di utilizzare come broker per i messaggi Apache Kafka.
 	
 		\subsubsection{Apache Kafka}
-		
+		Apache Kafka è un software open-source per lo streaming-processing sviluppato da Linkedin e scritto in \gloss{Scala} e \gloss{Java}
 		
 	
 	\subsection{Consumers}
