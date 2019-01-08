@@ -61,11 +61,19 @@
 \renewenvironment{tabularx}{\rowcolors{2}{white}{lightgray}\oldtabularx}{\endoldtabularx}
 \renewcommand{\arraystretch}{1.4}
 
+% D di documento a pedice, con e senza spazio
+\newcommand{\DAlt}{\ped{\tiny{D}}}
+\newcommand{\D}{\ped{\tiny{D }}}
+
+% e.g. \Doc{Norme di Progetto}
+\newcommand{\Doc}[1]{\textit{#1}\DAlt}
+
 % \date{inseirre-la-data} % comment to show today date
 
 \signature{
 	Responsabile AlphaSix
-    % \\ \includegraphics[width=4cm]{../../CommonImages/logo.jpg}
+	\\\includegraphics[width=5cm]{img/firma_cv.png}
+	\\Ciprian Voinea
 } % firma a piè di pagina
 
 %\address{123 Broadway \\ City, State 12345 \\ (000) 111-1111} % Your address and phone number
@@ -110,18 +118,28 @@
 		\end{center}
 		In allegato saranno inclusi i seguenti documenti:
 		\begin{itemize}
-			\item \emph{Analisi dei Requisiti v1.0.0}\ped{D};
-			\item \emph{Piano di Qualifica v1.0.0}\ped{D};
-			\item \emph{Piano di Progetto v1.0.0}\ped{D};
-			\item \emph{Norme di Progetto v1.0.0}\ped{D};
-			\item \emph{Glossario v1.0.0}\ped{D};
-			\item \emph{Studio di Fattibilità v1.0.0}\ped{D};
+			\item \Doc{Analisi dei Requisiti v1.0.0}
+			\item \Doc{Piano di Qualifica v1.0.0}
+			\item \Doc{Piano di Progetto v1.0.0}
+			\item \Doc{Norme di Progetto v1.0.0}
+			\item \Doc{Glossario v1.0.0}
+			\item \Doc{Studio di Fattibilità v1.0.0}
+			\item Verbali interni:
+			\begin{itemize}
+				\item VI\_22-11-2018
+				\item VI\_26-11-2018
+				\item VI\_17-12-2018
+			\end{itemize}
+			\item Verbali esterni:
+			\begin{itemize}
+				\item VE\_12-12-2018
+			\end{itemize}
       	\end{itemize}
 
-		Il team di sviluppo stima di consegnare il prodotto commissionato entro il 17/05/2019. Il costo preventivato è di \mbox{\euro11 890.00},
+		Il team di sviluppo stima di consegnare il prodotto entro il 17/05/2019.
+		Il costo preventivato è di \mbox{\euro11 890.00},
 		come è propriamente riportato nel documento \textit{Piano di Progetto v1.0.0}.
-		
-		\clearpage
+
 		Si riportano qui i componenti del gruppo AlphaSix:
 		\begin{center}
 			\begin{tabularx}{0.4\textwidth}{Xc}
