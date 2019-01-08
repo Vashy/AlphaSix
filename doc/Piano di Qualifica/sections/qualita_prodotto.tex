@@ -3,6 +3,8 @@
 \subsection{Scopo}
 Per raggiungere la qualità desiderata nei prodotti, il team di sviluppo prende come modello gli standard ISO 9126 e 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per essere di qualità.
 
+Le metriche indicate sono descritte in dettaglio nel \Doc{\NdPv}.
+
 
 \subsection{Prodotti} %TODO: scrivere qualcosa in più o sembra una parola da Glossario
 Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile. Nel caso del nostro progetto i prodotti sono documenti e software.
@@ -60,33 +62,49 @@ In accordo col cliente \II e da quanto concerne il capitolato, non tutti i punti
 \end{itemize}
 
 \subsection{Tabella qualità di prodotto}
+Le tabelle indicano gli obiettivi di qualità che ogni prodotto deve possedere.
+
+Ogni obiettivo di qualità è indicato con:
+
+\begin{itemize}
+	\item \textbf{Obiettivo}: viene indicato l'obiettivo di qualità col suo codice identificativo e nome;
+	\item \textbf{Metrica}: la metrica utilizzata per valutare l'obiettivo di qualità assegnatole. Nel caso non fosse possibile associare una metrica ad un obiettivo di qualità questa non verrà indicata;
+	\item \textbf{Valore desiderato}: il valore che si vuole ottenere attraverso la metrica indicata per soddisfare a pieno l'obiettivo di qualità;
+	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità e della metrica.
+\end{itemize}
 
 \begin{table}[H]
-	\rowcolors{2}{gray!15}{white}
 	{\def\arraystretch{1.5}
 	\begin{tabularx}{\textwidth}{YYY}
 		\rowcolor{gray!30}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{Documenti}} \\
+		\rowcolor{gray!15}
 		\textbf{Obiettivo} &
 		\textbf{Metrica} &
 		\textbf{Valore desiderato}\\
-		\hline
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{Documenti}} \\
-		\hline
+		\hline \rowcolor{white}
 		QPD001 Leggibilità del testo & MPD001 Indice Gulpease & 50 - 60\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver.} \\
+		\hline \rowcolor{white}
 		QPD002 Correttezza ortografica & MPD002 Correttezza ortografica & 0\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico.} \\
+		\hline \rowcolor{white}
 		QPD003 Correttezza contenuti & - & -\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver.} \\
+		\rowcolor{gray!15}
+		\hline \rowcolor{white}
 		QPD004 Organizzazione del documento & - & -\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm.} \\
+		\hline \rowcolor{white}
 		QPD005 Manutenibilità del documento & - & -\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento} \\
-		\bottomrule
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento.} \\
 	\end{tabularx}}
-\caption{Obiettivi di qualità e metriche per i prodotti}
+\caption{Obiettivi di qualità per i Documenti}
 \end{table}
+
+\mydoublerule{\linewidth}{0pt}{2pt}
