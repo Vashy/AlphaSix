@@ -3,14 +3,34 @@
 \subsection{Scopo}
 Per raggiungere la qualità desiderata nei prodotti, il team di sviluppo prende come modello gli standard ISO 9126 e 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per essere di qualità.
 
+\subsection{Nomenclatura metriche ed obiettivi di qualità}
+La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionamento è spiegato in dettaglio nel \Doc{\NdPv}. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
+
+\begin{itemize}
+	\item \textbf{Obiettivi}: 
+	
+	\begin{center}
+		\texttt{QPR[ID] [Nome]}
+	\end{center} 
+	
+	Dove i primi due campi indicano "Qualità di processo", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente il processo;
+	\item \textbf{Metriche}:
+	
+	\begin{center}
+		\texttt{MPR[ID] [Nome]}
+	\end{center}
+	
+	Dove i primi due campi indicano "Metrica di processo", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente la metrica;
+\end{itemize}
+
 
 \subsection{Prodotti} %TODO: scrivere qualcosa in più o sembra una parola da Glossario
 Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile. Nel caso del nostro progetto i prodotti sono documenti e software.
 	\subsubsection{Documenti}
 	I documenti rilasciati devono presentarsi leggibili e comprensibili già ad una prima lettura, con contenuti che rispecchino le premesse del documento.
 
-		\paragraph{Metriche}
-		Tra le metriche elencate nelle \NdPv in  §4.2.3.1, quelle utilizzate per verificare i documenti sono:
+		\paragraph{Metriche} % FIXME crossreference
+		Tra le metriche elencate nelle \Doc{\NdPv} in  §4.2.3.1, quelle utilizzate per verificare i documenti sono:
 		
 		\begin{itemize}
 			\item MPD001 Indice Gulpease
@@ -18,8 +38,9 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 			%questi sono i nomi della metrica, perciò dovrebbe essere corretto tenere tutto in grassetto... NEIN!
 		\end{itemize} 
 		
-		\paragraph{Obiettivi}
-		Gli obiettivi per ottenere la qualità desiderata per i documenti sono classificati come descritto nel \NdP in §3.1.3.1 e quando possibile saranno affiancate ad una metrica per valutarne il grado di soddisfacimento.
+		\paragraph{Obiettivi} % FIXME crossreference
+		Gli obiettivi per ottenere la qualità desiderata per i documenti sono classificati come descritto in \Doc{\NdPv} in §3.1.3.1 e quando possibile saranno
+		affiancate ad una metrica per valutarne il grado di soddisfacimento.
 		
 		Le caratteristiche di un documento che vengono analizzate sono:
 		
@@ -39,7 +60,8 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 I suoi principi sono:
 
 \begin{enumerate}
-	\item \textbf{Codebase}: deve essere presente una sola code base versionata da un \textit{Version Control System} come \gloss{GitLAb} da cui possono derivare diversi deploy.
+	\item \textbf{Codebase}: deve essere presente una sola code base versionata da un \gloss{Version Control System} (VCS) come \gloss{GitLAb} da cui
+	possono derivare diversi deploy.
 	\item \textbf{Dipendenze}: le librerie usate dal codice devono essere presenti nella directory della singola applicazione e non attive a livello di sistema. In questo modo l'applicazione è il meno dipendente possibile dal sistema di esecuzione.
 	\item \textbf{Configurazione}: i parametri di configurazione dell'applicazione devono essere completamente separati dalla sua implementazione.
 	\item \textbf{Backing Service}: l'applicazione non deve far distinzione tra funzionalità uguali usate in locale o remoto.
@@ -55,38 +77,54 @@ I suoi principi sono:
 
 In accordo col cliente \II e da quanto concerne il capitolato, non tutti i punti della Twelve-Factor App possono essere rispettati. Questi sono:
 
-\begin{itemize}
+\begin{itemize} % TODO 12 da ignorare?
 	\item \textbf{11}: dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente.
 \end{itemize}
 
 \subsection{Tabella qualità di prodotto}
+Le tabelle indicano gli obiettivi di qualità che ogni prodotto deve possedere.
 
-\begin{table}[H]
-	\rowcolors{2}{gray!15}{white}
+Ogni obiettivo di qualità è indicato con:
+
+\begin{itemize}
+	\item \textbf{Obiettivo}: viene indicato l'obiettivo di qualità col suo codice identificativo e nome;
+	\item \textbf{Metrica}: la metrica utilizzata per valutare l'obiettivo di qualità assegnatole. Nel caso non fosse possibile associare una metrica ad un obiettivo di qualità questa non verrà indicata;
+	\item \textbf{Valore desiderato}: il valore che si vuole ottenere attraverso la metrica indicata per soddisfare a pieno l'obiettivo di qualità;
+	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità e della metrica.
+\end{itemize}
+
+\begin{table}[H] % FIXME anche qui contrasto non ideale tra le righe. Suggerisco di lasciare l'header bianco
 	{\def\arraystretch{1.5}
 	\begin{tabularx}{\textwidth}{YYY}
 		\rowcolor{gray!30}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{Documenti}} \\
+		\rowcolor{gray!15}
 		\textbf{Obiettivo} &
 		\textbf{Metrica} &
 		\textbf{Valore desiderato}\\
-		\hline
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{Documenti}} \\
-		\hline
+		\hline \rowcolor{white}
 		QPD001 Leggibilità del testo & MPD001 Indice Gulpease & 50 - 60\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver.} \\
+		\hline \rowcolor{white}
 		QPD002 Correttezza ortografica & MPD002 Correttezza ortografica & 0\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico.} \\
+		\hline \rowcolor{white}
 		QPD003 Correttezza contenuti & - & -\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver.} \\
+		\rowcolor{gray!15}
+		\hline \rowcolor{white}
 		QPD004 Organizzazione del documento & - & -\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm} \\
-		\hline
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm.} \\
+		\hline \rowcolor{white}
 		QPD005 Manutenibilità del documento & - & -\\
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento} \\
-		\bottomrule
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento.} \\
 	\end{tabularx}}
-\caption{Obiettivi di qualità e metriche per i prodotti}
+\caption{Obiettivi di qualità per i Documenti}
 \end{table}
+
+\mydoublerule{\linewidth}{0pt}{2pt}
