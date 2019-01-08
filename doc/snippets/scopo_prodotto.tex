@@ -1,0 +1,37 @@
+\subsection{Scopo del prodotto}
+
+%%| Ex Norme di Progetto |%%
+% Il prodotto che \gruppo\ si incarica di realizzare è Butterfly: un \gloss{tool} di supporto alle figure di	sviluppo di aziende di software
+% (non solamente quella committente). Questo applicativo permette di incanalare le notifiche dei vari strumenti utilizzati nel percorso di
+% \gloss{CI/CD} (come \gloss{Redmine}, \gloss{GitLab}, ecc.) di un software e, tramite un \gloss{Broker} (\gloss{Apache Kafka} in questo caso),
+% spedirli alla persona interessata tramite canale di comunicazione preferito scelto da quest’ultimo (email, \gloss{Telegram}, \gloss{Slack}, ecc).
+
+% \vspace{1cm}
+
+%%| Ex Analisi dei Requisiti |%%
+Lo scopo del prodotto è creare un applicativo per poter gestire i messaggi o le segnalazioni provenienti da diversi prodotti per la realizzazione di software,
+come \gloss{Redmine}, \gloss{GitLab} e \gloss{SonarQube}, attraverso un \gloss{Broker} che possa incanalare questi messaggi e distribuirli a strumenti come
+\gloss{Slack}, \gloss{Telegram} ed e-mail.\par
+Il software dovrà inoltre essere in grado di riconoscere il \gloss{Topic} dei messaggi in input per poterli inviare in determinati canali a cui i
+destinatari dovranno iscriversi.\par
+\`E anche richiesto di creare un canale specifico per gestire le particolari esigenze dell'azienda. Dovrà essere in grado, attraverso la lettura di
+particolari	\gloss{metadati}, di reindirizzare i messaggi ricevuti al destinatario più appropriato.
+
+% \vspace{1cm}
+
+%%| Ex Piano di Qualifica |%%
+% Il prodotto finale consiste in uno strumento in grado di ricevere messaggi o segnalazioni da vari tipi di servizi per la produzione software chiamati
+% \gloss{producer} (e.g. \gloss{GitLab}, \gloss{Redmine} e \gloss{SonarQube}), per poterli poi incanalare verso altri servizi chiamati \gloss{Consumer}
+% atti a notificare gli sviluppatori (e.g. \gloss{Slack}, \gloss{Telegram} e Email).\par    
+% L'applicazione sarà inoltre capace di organizzare le segnalazioni suddividendole per topic a cui i vari utenti dovranno iscriversi per esserne notificati.
+% Nel caso in cui il destinatario dovesse segnalare di non essere disponibile, l'applicativo deve reindirizzare il messaggio verso la persona di competenza
+% più prossima. 
+
+% \vspace{1cm}
+
+%%| Ex Piano di Progetto |%%
+% Il prodotto che \gruppo\ si incarica di realizzare è Butterfly: un tool di supporto alle figure di sviluppo in aziende che producono software (non
+% solamente quella del committente).
+% Questo applicativo permette di incanalare le notifiche dei vari strumenti utilizzati nel percorso di \gloss{CI} e \gloss{CD} (come Redmine,
+% GitLab, ecc.) di un software e, tramite un \gloss{broker} (\gloss{Apache Kafka} in questo caso), spedirli alla persona interessata tramite
+% il canale di comunicazione preferito scelto da quest'ultimo (email, Telegram, Slack, ecc.).
