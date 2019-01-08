@@ -15,8 +15,8 @@
 \def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
 \def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
-\input{../template/layout.tex}
-\input{../template/comandi.tex}
+\input{template/layout.tex}
+\input{template/comandi.tex}
 
 \input{sections/diario.tex}
 \setcounter{secnumdepth}{7}
@@ -24,14 +24,14 @@
 \begin{document}
 
 % Inclusione template HomePage
-\input{../template/HomePage.tex}
+\input{template/HomePage.tex}
 
 % Registro delle modifiche e indice 
 % si usa la numerazione romana per gli indici e la tabella delle modifiche
 \pagenumbering{Roman}
-\input{../template/diario.tex}
-% \input{../template/diario_per_piu_pagine.tex}
-\input{../template/index.tex}
+\input{template/diario.tex}
+% \input{template/diario_per_piu_pagine.tex}
+\input{template/index.tex}
 
 \input{sections/introduzione.tex}
 \input{sections/descrizione_generale.tex}

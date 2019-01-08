@@ -15,25 +15,25 @@
 \def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
 
 % Layout del documento 
-\input{../template/layout}
+\input{template/layout}
 \input{sections/diario}
 
 % Comandi generali
-\input{../template/comandi}
+\input{template/comandi}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
 \begin{document}
 	
 	% Inclusione template HomePage
-	\input{../template/HomePage}
+	\input{template/HomePage}
 
 	% Registro delle modifiche e indice 
 	% si usa la numerazione romana per gli indici e la tabella delle modifiche
 	\pagenumbering{Roman}
 
-	\input{../template/diario}
-	\input{../template/index}
+	\input{template/diario}
+	\input{template/index}
 
 	% Sezioni documento
 	\include{sections/introduzione}
