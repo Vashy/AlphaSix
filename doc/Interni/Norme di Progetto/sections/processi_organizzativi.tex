@@ -9,7 +9,7 @@
 	    	\item I processi di progetto
 	    	\item Le risorse a essi necessarie
 	    	\item I costi per la loro esecuzione
-	    	\item I \glossary{task} di risorsa umana
+	    	\item I \gloss{task} di risorsa umana
 	    	\item La verifica delle attività di processo
 	    \end{itemize}
 
@@ -20,7 +20,7 @@
 		\subsubsection{Pianificazione di attività}
 
 			\paragraph{Scopo}
-			\Res\ e \Amm\ insieme si occupano di generare il \PdPv\ che tratta generalmente:
+			\Res\ e \Amm\ insieme si occupano di generare il \Doc{\PdPv} che tratta generalmente:
 			\begin{itemize}
 				\item \textbf{Modello di sviluppo}: per la decisione del modello di sviluppo che si intende adottare.
 				\item \textbf{Analisi dei rischi}: in cui si identificano i vari possibili rischi e le strategie per evitarli o mitigarli.
@@ -82,16 +82,16 @@
 		Per ogni caratteristica deve essere fissato un livello minimo è un livello ottimale che questa deve avere.
 
 		In tale sezione viene descritto il modo di utilizzo di metriche e strumenti utili ad ottenere qualità nei processi, nei documenti e nei prodotti.
-		Gli strumenti utilizzati possono essere software descritti nelle \NdPv\ o gli standard di qualità descritti nel \Doc{\PdQv}.
-		Gli obiettivi che ci si pone di raggiungere sono descritti nel \PdQv.
-		
+		Gli strumenti utilizzati possono essere software descritti nelle \Doc{\NdPv} o gli standard di qualità descritti nel \Doc{\PdQv}.
+		Gli obiettivi che ci si pone di raggiungere sono descritti nel \Doc{\PdQv}.
+
 			\paragraph{Classificazione dei processi}
 			I processi analizzati nel \PdQv sono classificati nel seguente modo:
-			
+
 			\begin{center}
 				\texttt{PROC[ID] [Nome]}
 			\end{center}
-			
+
 			\begin{itemize}
 				\item \textbf{ID}: un numero incrementale per indicare in modo univoco il processo.
 				\item \textbf{Nome}: una breve frase per indicare la funzione del processo.
@@ -205,19 +205,27 @@
 			Problemi emersi durante l'esecuzione dei processi verranno segnalati tramite ticket, utilizzando il sistema integrato di Github come descritto
 			in dettaglio in \S\ref{Github}. Questo permette di tracciare i problemi insorti durante le attività e di pianificare la risoluzione degli stessi.
 
+			Per segnalazioni minori, verranno spesso utilizzati dei tag commentati nei \gloss{sorgenti} \LaTeX.
+
+			Saranno nella forma:%
+			\begin{center}%
+				\texttt{[TAG] [Descrizione]}%
+			\end{center}%
+
     		% \paragraph{Riportare lo stato di avanzamento del progetto}
 			% vedere Breaking Bug, io non riesco a capire il senso di questo paragrafo e lo toglierei ~ Tim
 
 		\subsubsection{Chiusura dei processi}
 
-    		\paragraph{Archiviazione dei prodotti} % TODO Rivedere
-			I prodotti che, una volta terminate le attività e processi per completarli, soddisfano le aspettative in termini di qualità,
-			verranno archiviati in apposite \gloss{repository}. Alla versione attuale di questo documento, RIVEDERE
+    		\paragraph{Archiviazione dei prodotti}
+			I prodotti che, una volta terminate le attività e i processi per completarli, soddisfano le aspettative in termini di qualità,
+			verranno archiviati in apposite \gloss{repository}. Alla versione \textit{1.0.0} del presente documento, gli unici prodotti che verranno
+			archiviati saranno i file \LaTeX\ per la generazione dei relativi PDF.
 
     		\paragraph{Archiviazione delle misurazioni}
 			Oltre ai prodotti vengono archiviate le metriche, definite e classificate nel presente documento, con i limiti di accettazione riportati nel \Doc{\PdQv}.
-			Il calcolo delle metriche verrà effettuato su ciascun prodotto nel momento del suo inserimento nella repository; tali risultati o le anomalie verranno
-			opportunamente archiviate. % TODO Archiviate? Come? Dove?
+			Il calcolo delle metriche verrà effettuato su ciascun prodotto nel momento del suo inserimento nella repository, ove possibile; tali risultati o
+			anomalie verranno opportunamente archiviati. % FIXME Archiviate? Come? Dove?
 
     	\subsubsection{Strumenti di pianificazione e coordinamento}\label{pianificazione e coordinamento}
 
