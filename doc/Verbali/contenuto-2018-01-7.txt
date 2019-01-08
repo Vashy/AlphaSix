@@ -1,0 +1,29 @@
+VERBALE 07/01/2018
+
+STESURA DOCUMENTO 07/01/2018
+
+INFORMAZIONI GENERALI
+
+ORDINE DEL GIORNO: recap punto della situazione, correzione di tutti i documenti, continuazione norme e analisi dei requisiti
+
+LUOGO E DATA: Sala riunioni 701 Torre Archimede. Lunedì 07/01/2018 dalle 14:30 alle 17:30 circa.
+
+PARTECIPANTI DEL GRUPPO ALPHA6:
+- Ciprian Voinea
+- Laura Cameran
+- Matteo Marchiori
+- Nicola Carlesso
+- Timoty Granziero
+- Samuele Gardin
+
+RESOCONTO:
+Revisione di tutte le parti dei documenti redatte durante le vacanze.
+
+Decisione definitiva sullo stile relativo alle tabelle.
+
+Appendici mancanti nei vari documenti (piano di qualifica).
+
+Revisione degli elenchi.
+
+IN PREVSIONE AL PROSSIMO INCONTRO:
+Normare tutti i documenti secondo le norme di progetto e ultimare i casi d'uso.
