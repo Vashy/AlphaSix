@@ -1,5 +1,28 @@
 \section{Requisiti}
-Ai requisiti viene dato un codice identificativo univoco secondo quanto dichiarato nelle \Doc{Norme di Progetto v1.0.0}. 
+Ad ogni requisito viene assegnato il codice identificativo univoco:
+	\begin{center}
+		\texttt{R[Numero][Tipo][Priorità]} 
+	\end{center} 
+	in cui ogni parte ha un significato preciso:
+	\begin{itemize}
+		\item \textbf{R}: requisito.
+		\item \textbf{Numero}: numero progressivo in 3 cifre.
+		\item \textbf{Tipo}: la la tipologia di requisito che può essere di:
+		\begin{itemize}
+			\item \textbf{F}: funzionalità.
+			\item \textbf{Q}: qualità.
+			\item \textbf{V}: vincolo.
+		\end{itemize}
+		\item \textbf{Priorità}: indica il grado di urgenza di un requisito di essere soddisfatto, come:
+		\begin{itemize}
+			\item \textbf{0}: opzionale.
+			\item \textbf{1}: desiderabile.
+			\item \textbf{2}: obbligatorio.
+		\end{itemize}
+	\end{itemize}
+	
+	Esempio: \texttt{R002Q1} indica il secondo requisito di qualità ed è desiderabile.
+	
 
 	%TODO: fare una roba tipo setcounter per il numero progressivo del codice dei requisiti
 	\subsection{Requisiti di funzionalità}
