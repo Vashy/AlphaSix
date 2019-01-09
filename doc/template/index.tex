@@ -6,11 +6,11 @@
 
 % Se è stata impostata a true la variabile per la lista delle tabelle, la mostra
 \ifthenelse{\equal{\TABELLE}{true}} 
-{\listoftables \newpage}{}
+{\listoftables}{}
 
 % Se è stata impostata a true la variabile per la lista delle figure, la mostra
 \ifthenelse{\equal{\FIGURE}{true}}
-{\listoffigures \newpage}{}
+{\listoffigures}{}
 
 % Da qui comincia la numerazione normale
 \pagenumbering{arabic}
