@@ -148,11 +148,19 @@
 }
 
 % D di documento a pedice, con e senza spazio
-\newcommand{\DAlt}{\ped{\tiny{D}}}
-\newcommand{\D}{\ped{\tiny{D }}}
+% \newcommand{\DAlt}{\ped{\tiny{D}}}
+\newcommand{\D}{\ped{\tiny{D}}}
 
 % e.g. \Doc{Norme di Progetto}
-\newcommand{\Doc}[1]{\textit{#1}\DAlt}
+\newcommand{\Doc}[1]{\textit{#1}\D}
+
+% Comandi per applicare \Doc con un comando unico
+\newcommand{\PdQd}{\Doc{\PdQv}}
+\newcommand{\PdPd}{\Doc{\PdPv}}
+\newcommand{\NdPd}{\Doc{\NdPv}}
+\newcommand{\AdRd}{\Doc{\AdRv}}
+\newcommand{\SdFd}{\Doc{\SdFv}}
+\newcommand{\Gld}{\Doc{\Gld}}
 
 % Le sottosezioni paragraph, subparagraph ecc.. vengono visualizzate come section
 \titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
