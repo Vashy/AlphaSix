@@ -15,14 +15,14 @@ La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionam
 	\texttt{QPD[ID] [Nome]}
 	\end{center} 
 
-	Dove i primi due campi indicano "Qualità dei documenti", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente il processo;
+	Le prime tre lettere indicano "Qualità dei documenti", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente il processo;
 	\item \textbf{Metriche}:
 	
 	\begin{center}
 		\texttt{MPD[ID] [Nome]}
 	\end{center}
 	
-	Dove i primi due campi indicano "Metrica dei documenti", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente la metrica;
+	Le prime tre lettere indicano "Metrica dei documenti", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente la metrica;
 \end{itemize}
 
 \subsection{Processi}
@@ -39,10 +39,6 @@ I processi saranno elencati nel seguente modo:
 
 Per ogni processo sono elencate le sue funzioni principali, gli aspetti da misurare per ottenere la qualità desiderata e le metriche utilizzate.
 Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una particolare metrica. 
-
-% FIXME crossreference
-La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdPv} nella sezione §3.1.3, mentre la loro descrizione alla sezione
-§4.2.3.2 dello stesso documento.
 
 	\subsubsection{PROC001 Pianificazione del progetto, organizzazione e struttura}
 	Tale macro-processo ha lo scopo di pianificare il lavoro da svolgere per soddisfare i requisiti richiesti dal progetto. È in questo processo che viene messo in atto il \gloss{way of working} del team di sviluppo che ha un'importanza particolare perché i suoi output vanno a condizionare l'esito della qualità dell'intero progetto.
@@ -91,7 +87,7 @@ La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdPv} n
 			\item \textbf{Individuare i requisiti}: il capitolato che viene presentato dal cliente può possedere con un lessico più discorsivo che tecnico dovuto all'inesperienza del cliente nel settore.
 				\`E necessario dunque effettuare un lavoro di "traduzione" per individuare i requisiti e classificarli in
 
-			% FIXME: RIDONANTE! C'è anche nelle Norme. Cosa fare?
+			% FIXME: RIDONANTE! C'è anche nelle Norme. Cosa fare? Tenerli perché le norme non sono leggibili dall'esterno
 			\begin{itemize}
 				\item \textbf{Obbligatori}: necessari ed irrinunciabili;
 				\item \textbf{Desiderabili}: non imprescindibile e da aggiungere solo se a fine progetto si hanno ancora risorse disponibili;  
@@ -126,8 +122,8 @@ La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdPv} n
 	\subsubsection{PROC003 Produzione documenti}
 	Questo processo rimane attivo in tutta la durata del ciclo di vita del prodotto perché ha il compito di produrre dei documenti che riportino le scelte effettuate, gli strumenti utilizzati e le modifiche attuate nell'intero corso del progetto.
 	
-		\paragraph*{Funzioni} % FIXME CROSSREFERENCE
-		Il processo comprende il ciclo di vita di ogni documento che è spiegato alla sezione §4.1.1.2 delle \Doc{\NdPv}, il quale prevede:
+		\paragraph*{Funzioni}
+		Il processo comprende il ciclo di vita di ogni documento, che è spiegato in dettaglio nelle \Doc{\NdPv}, prevede:
 		
 		\begin{itemize}
 			\item Redazione
@@ -141,7 +137,7 @@ La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdPv} n
 			\item \textbf{QPR008 Rispetto delle fasi del ciclo di vita}: il ciclo di vita di ogni documento deve essere rispettato in ogni sua fase e questo deve venir pubblicato secondo le scadenze stabilite;.
 		\end{itemize}
 	
-	\subsubsection{PROC003 Verifica} % FIXME CROSSREFERENCE, di nuovo PROC03?
+	\subsubsection{PROC004 Verifica}
 	Il processo, attivo in tutta la durata del progetto, ha il compito di valutare la correttezza dei prodotti dati in input e stabilire se presentano errori
 	e se sono sufficientemente di qualità. Il processo di verifica è descritto più nel dettaglio alla sezione §4.2 del documento \mbox{\Doc{\NdPv}}.
 	
@@ -167,7 +163,6 @@ La nomenclatura per le metriche e gli obiettivi è descritta nelle \Doc{\NdPv} n
 			\item \textbf{QPR010 Rispetto delle fasi di verifica}: la fase di verifica deve essere eseguita in modo iterativo senza cambiare in modo sostanziale nel corso del progetto. Un mutamento della fase di verifica renderebbe incoerenti i risultati delle precedenti iterazioni, impedendo di vedere se è presente un miglioramento della qualità o meno.
 		\end{itemize}
 
-\newpage
 \subsection{Tabella qualità di processo}
 Le tabelle indicano gli obiettivi di qualità che ogni processo deve possedere.
 
@@ -256,7 +251,7 @@ Ogni obiettivo di qualità è indicato con:
 	{\def\arraystretch{1.5}
 	\begin{tabularx}{\textwidth}{YYY}
 		\rowcolor{gray!30}
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{PROC003 Verifica}}\\
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{PROC004 Verifica}}\\
 		\hline \rowcolor{gray!15}
 		\textbf{Obiettivo} &
 		\textbf{Metrica} &
