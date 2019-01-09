@@ -6,8 +6,8 @@
 			\centering
 			\begin{orgtable}{\columnwidth}{YYm{7cm}}
 				\rowcolor{gray!40}
-				\thead{Nome} & \thead{Data} & \thead{Firma} \\\hline
-				\CV & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}  \\
+				\thead{Nome} & \thead{Data} & \thead{Firma} \\\toprule
+				\CV & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\bottomrule
 			\end{orgtable}
 			\caption{Redazione}
 		\end{table}
@@ -17,10 +17,10 @@
 			\centering
 			\begin{orgtable}{\columnwidth}{YYm{7cm}}
 				\rowcolor{gray!40}
-				\thead{Nome} &\thead{Data} &\thead{Firma} \\\hline
-				\CV & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\hline\rowcolor{gray!15}
-				Tullio Vardanega &  &  \includegraphics[width=7cm]{img/firma_cv.png}\\\hline
-				Riccardo Cardin &  &  \includegraphics[width=7cm]{img/firma_cv.png}\\
+				\thead{Nome} &\thead{Data} &\thead{Firma} \\\toprule
+				\CV & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\rowcolor{\tablegray}
+				Tullio Vardanega &  &  \includegraphics[width=7cm]{img/firma_cv.png}\\
+				Riccardo Cardin &  &  \includegraphics[width=7cm]{img/firma_cv.png}\\\bottomrule
 			\end{orgtable}
 			\caption{Approvazione}
 		\end{table}
@@ -30,13 +30,13 @@
 			\centering
 				\begin{orgtable}{\columnwidth}{YYm{7cm}}
 				\rowcolor{gray!40}
-				\thead{Nome} &\thead{Data} &\thead{Firma} \\\hline
-				\CV & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\hline\rowcolor{gray!15}
-				\LC & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\hline
-				\SG & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\hline\rowcolor{gray!15}
-				\MM & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\hline
-				\NC & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\hline\rowcolor{gray!15}
-				\TG & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\
+				\thead{Nome} &\thead{Data} &\thead{Firma} \\\toprule
+				\CV & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\rowcolor{\tablegray}
+				\LC & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\
+				\SG & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\rowcolor{\tablegray}
+				\MM & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\
+				\NC & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\rowcolor{\tablegray}
+				\TG & 16-12-2018 & \includegraphics[width=7cm]{img/firma_cv.png}\\\bottomrule
 			\end{orgtable}
 			\caption{Accettazione componenti}
 		\end{table}
@@ -44,17 +44,19 @@
 	\subsection{Componenti}
 		\begin{table}[H]
 			\centering
+			{\def\arraystretch{1.3}
 			\begin{orgtable}{\columnwidth}{YcY}
-				\rowcolor{gray!40}
-				\thead{Nome} & \thead{Matricola} & \thead{Indirizzo} \\
-				\hline
-				\CV & 1143057 & \href{mailto:stefanciprian.voinea@studenti.unipd.it}{stefanciprian.voinea@studenti.unipd.it} \\\hline\rowcolor{gray!15}
-				\LC & 1143488 & \href{mailto:laura.cameran@studenti.unipd.it}{laura.cameran@studenti.unipd.it} \\\hline
-				\SG & 1143807 & \href{mailto:samuele.gardin.1@studenti.unipd.it}{samuele.gardin.1@studenti.unipd.it} \\\hline\rowcolor{gray!15}
-				\MM & 1143333 & \href{mailto:matteo.marchiori.4@studenti.unipd.it}{matteo.marchiori.4@studenti.unipd.it} \\\hline
-				\NC & 1123257 & \href{mailto:nicola.carlesso.2@studenti.unipd.it}{nicola.carlesso.2@studenti.unipd.it} \\\hline\rowcolor{gray!15}
-				\TG & 1123442 & \href{mailto:timoty.granziero@studenti.unipd.it}{timoty.granziero@studenti.unipd.it} \\
+				% \rowcolor{gray!40}
+				\thead{Nome} & \thead{Matricola} & \thead{Indirizzo} \\\toprule
+				\rowcolor{\tablegray}
+				\CV & 1143057 & \href{mailto:stefanciprian.voinea@studenti.unipd.it}{stefanciprian.voinea@studenti.unipd.it} \\
+				\LC & 1143488 & \href{mailto:laura.cameran@studenti.unipd.it}{laura.cameran@studenti.unipd.it} \\\rowcolor{\tablegray}
+				\SG & 1143807 & \href{mailto:samuele.gardin.1@studenti.unipd.it}{samuele.gardin.1@studenti.unipd.it} \\
+				\MM & 1143333 & \href{mailto:matteo.marchiori.4@studenti.unipd.it}{matteo.marchiori.4@studenti.unipd.it} \\\rowcolor{\tablegray}
+				\NC & 1123257 & \href{mailto:nicola.carlesso.2@studenti.unipd.it}{nicola.carlesso.2@studenti.unipd.it} \\
+				\TG & 1123442 & \href{mailto:timoty.granziero@studenti.unipd.it}{timoty.granziero@studenti.unipd.it} \\\bottomrule
 			\end{orgtable}
+			}
 			\caption{Componenti}
 		\end{table}
 

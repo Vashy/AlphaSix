@@ -11,14 +11,20 @@
 \newcommand{\datamodifica}{28 novembre 2018}
 \newcommand{\stato}{Approvato}
 
-\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
-\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+\def\TABELLE{true}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{true} 	% abilita - disabilita l'indice delle figure
 
 
 \input{template/layout} % Layout del documento 
 \input{template/comandi} % Comandi generali
 
 \input{sections/diario} % Entries diario
+
+
+% Colore righe grigie
+\newcommand{\tablegray}{gray!20}
+
+% \includeonly{sections/organigramma}
 
 \begin{document}
 	\sloppy
@@ -32,13 +38,13 @@
     \input{template/index}
 	
     % Sezioni documento
-    \input{sections/introduzione} 
-    \input{sections/analisi_dei_rischi}
-    \input{sections/pianificazione}
-    \input{sections/suddivisione_del_lavoro}
-    \input{sections/prospetto_economico}
-    \input{sections/preventivo}
-    \input{sections/consuntivo}
-    \input{sections/organigramma}
+    \include{sections/introduzione} 
+    \include{sections/analisi_dei_rischi}
+    \include{sections/pianificazione}
+    \include{sections/suddivisione_del_lavoro}
+    \include{sections/prospetto_economico}
+    \include{sections/preventivo}
+    \include{sections/consuntivo}
+    \include{sections/organigramma}
 
 \end{document}
