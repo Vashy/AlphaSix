@@ -108,38 +108,61 @@ testo
 
 
 \subsubsection{UC5 - Accesso}
-
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\columnwidth]{img/UC5.png}\\
+			\caption{UC5 - Accesso}
+		\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC5.
-		\item \textbf{Titolo}: accesso.
-		\item \textbf{Attori primari}: utente non acceduto.
-		\item \textbf{Descrizione}: l'utente richiede di accedere al sistema attraverso un form php dove inserisce username e password.
-		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto.
-		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore come utente acceduto.
+		\item \textbf{Codice}: UC5
+		\item \textbf{Titolo}: accesso
+		\item \textbf{Attori primari}: utente non acceduto
+		\item \textbf{Descrizione}: l'utente richiede di accedere al sistema attraverso un form dove inserisce username e password
+		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto
+		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore come utente acceduto
 		\item \textbf{Scenario Principale}: l'utente non ancora riconosciuto dal sistema effettua l'accesso.
-		\item \textbf{Estensioni}: 
 	\end{itemize}
 	
 	\paragraph{UC5.1 - Accesso dell'utente nel sistema}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\columnwidth]{img/UC5_1.png}\\
+			\caption{UC5.1 - Accesso dell'utente nel sistema}
+		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: UC5.1.
-			\item \textbf{Titolo}: accesso dell'utente nel sistema.
-			\item \textbf{Attori}: utente non acceduto.
+			\item \textbf{Codice}: UC5.1
+			\item \textbf{Titolo}: accesso dell'utente nel sistema
+			\item \textbf{Attori}: utente non acceduto
 			\item \textbf{Descrizione}: l'utente attende l'autenticazione da parte del sistema
 			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non autenticato
 			\item \textbf{Postcondizione}: il sistema riconosce l'utente autenticato con successo
 			\item \textbf{Scenario Principale}: l’utente non ancora riconosciuto dal sistema richiede l'autenticazione
+			\item \textbf{Estensioni}:
+			\begin{itemize}
+				\item Nel caso in cui l'accesso non dovrebbe andare a buon fine viene visualizzato un errore avvisando l'utente[UC5.2].
+			\end{itemize}
 	\end{itemize}
 
 		\subparagraph{UC5.1.1 - Inserimento username}
 			\begin{itemize}
-				\item \textbf{Codice}: UC6.1.1.	
-				\item \textbf{Titolo}: inserimento username.
-				\item \textbf{Attori}: utente non acceduto.
+				\item \textbf{Codice}: UC5.1.1.
+				\item \textbf{Titolo}: inserimento username
+				\item \textbf{Attori}: utente non acceduto
 				\item \textbf{Descrizione}: l'utente inserisce l'username
 				\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento dell'username
 				\item \textbf{Postcondizione}: l'utente ha inserito l'username desiderato
-				\item \textbf{Scenario Principale}: l'utente inserisce l'username per autenticarsi
+				\item \textbf{Scenario Principale}: l'utente inserisce l'username per autenticarsi.
+			\end{itemize}
+		
+		\subparagraph{UC5.1.2 - Inserimento password}
+			\begin{itemize}
+				\item \textbf{Codice}: UC5.1.2	
+				\item \textbf{Titolo}: inserimento password
+				\item \textbf{Attori}: utente non acceduto
+				\item \textbf{Descrizione}: l'utente inserisce la password
+				\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento della password
+				\item \textbf{Postcondizione}: l'utente ha inserito la password desiderata
+				\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi.
 			\end{itemize}
 		
 %Da aggiungere al limite più avanti
@@ -157,10 +180,10 @@ testo
 	
 	\paragraph{UC5.2 - Visualizzazione errore autenticazione fallita}
 		\begin{itemize}
-			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita.
-			\item \textbf{Attori}: utente non autenticato.
-			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username o password sbagliate
-			\item \textbf{Precondizione}: il sistema riceve una richiesta di autenticazione da parte di un utente che
+			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita
+			\item \textbf{Attori}: utente non autenticato
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username o password errate
+			\item \textbf{Precondizione}: il sistema riceve una richiesta di accesso da parte di un utente che
 			fornisce username o password sbagliate
 			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore
 			\item \textbf{Scenario Principale}: l'utente visualizza il messaggio d'errore
