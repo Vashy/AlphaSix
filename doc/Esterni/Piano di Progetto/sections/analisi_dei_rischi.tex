@@ -75,33 +75,31 @@
 
 	Ad esempio con P001-021 si può intuitivamente capire, conoscendo la legenda, che si tratta di un del primo rischio del personale, di gravità accettabile, probabilità alta e un valore di classe medio.
 	
-
 	\subsection{Lista rischi possibili}
-	Per elencare i rischi viene la seguente struttura tabellare:
-	\begin{table}[H]
-		\begin{risktable}{\columnwidth}{m{1.5cm}m{11.7cm}}
-			\thead{ID} &
-			\thead{Nome significativo}\\
-			\rowcolor{\tablegray}
-			\multicolumn{2}{X}{
-				\thead{Breve descrizione}
-			}\\
-			\multicolumn{2}{X}{
-				\thead{Strategie per la rilevazione}
-			}\\
-			\rowcolor{\tablegray}
-			\multicolumn{2}{X}{
-				\thead{Contromisure e mitigazione}
-			}\\
-		\end{risktable}
-		\caption[Analisi dei rischi]{Struttura della tabella dell'analisi dei rischi}
-	\end{table}
-
-	\noindent
-	Dopo un'attenta analisi del capitolato e alcuni incontri tra dei componenti del team di sviluppo, è stato deciso di catalogare i seguenti rischi elencati in maniera crescente rispetto all'ID:\\
-
-	\mydoublerule{\linewidth}{0pt}{2pt}
-
+	
+	Per elencare i rischi viene utilizzata una struttura tabellare che indica nella prima riga il codice identificativo e il nome di ciascun rischio, mentre nelle righe successive vengono elencate e discusse la relativa descrizione, le strategie per la rilevazione e le eventuali contromisure e mitigazioni.\\
+		
+%	Per elencare i rischi viene la seguente struttura tabellare:
+%	\begin{table}[H]
+%		\begin{risktable}{\columnwidth}{m{1.5cm}m{11.7cm}}
+%			\thead{ID} &
+%			\thead{Nome significativo}\\
+%			\rowcolor{\tablegray}
+%			\multicolumn{2}{X}{
+%				\thead{Breve descrizione}
+%			}\\
+%			\multicolumn{2}{X}{
+%				\thead{Strategie per la rilevazione}
+%			}\\
+%			\rowcolor{\tablegray}
+%			\multicolumn{2}{X}{
+%				\thead{Contromisure e mitigazione}
+%			}\\
+%		\end{risktable}
+%		\caption[Analisi dei rischi]{Struttura della tabella dell'analisi dei rischi}
+%	\end{table}
+	Dopo un'attenta analisi del capitolato e alcuni incontri tra i componenti del team di sviluppo, è stato deciso di catalogare i seguenti rischi elencandoli in maniera crescente rispetto all'ID.
+%	\mydoublerule{\linewidth}{0pt}{2pt}
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{1.5cm}m{13.5cm}}
 			\thead{P001-111} &
@@ -118,6 +116,7 @@
 				\textbf{Mitigazione}: ciascun componente si impegna a sanare le proprie lacune e portarsi ad un livello comune concordato in modo da poter lavorare autonomamente e potersi prendere impegni risolvibili senza dover usare tempo ulteriore per imparare la tecnologia.
 			}\\
 		\end{risktable}
+		\caption{Specifica rischio P001-111}
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -138,6 +137,7 @@
 				\textbf{Mitigazione}: durante le ore di studio personale, ciascun componente si impegna a studiare la gerarchia dei ruoli\protect\footnotemark e in caso di dubbi ne potrà parlare con il team di sviluppo oppure direttamente con chi fa da \Res\.
 			}\\
 		\end{risktable}
+		\caption{Specifica rischio P002-122}
 	\end{table}
 
 	\footnotetext{Nei Riferimenti informativi - Vincoli di organigramma e specifiche economiche}
@@ -160,6 +160,7 @@
 				\textbf{Mitigazione}: chi svolge il ruolo di \Res\ deve assicurarsi che i documenti approvati siano effettivamente validi e in caso di sviste il \Ver\ deve saper trovare e correggere gli eventuali errori.
 			}\\
 		\end{risktable}
+		\caption{Specifica rischio P003-100}
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -181,7 +182,7 @@
 				\textbf{Mitigazione}: in caso di errori nella gestione della repository, l'\Amm\ deve saperli risolvere in maniera tempestiva in modo da evitare che chi andrà ad utilizzare successivamente la repository scarichi file errati propagando l'errore anche sul proprio sistema.
 			}\\
 		\end{risktable}
-
+		\caption{Specifica rischio P004-100}
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -206,7 +207,7 @@
 				%LOOOL
 			}\\
 		\end{risktable}
-
+		\caption{Specifica rischio P005-021}
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -231,7 +232,7 @@
 				\textbf{Mitigazione}: in caso dovessero sorgere problemi di questa natura, AlphaPix si impegnerà a ridistribuire le risorse in modo da rispettare la tabella di marcia e in particol modo le scadenze, tenendo conto di consegnare comunque un prodotto di qualità.
 			}\\
 		\end{risktable}
-
+		\caption{Specifica rischio P006-122}
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -255,6 +256,7 @@
 				\textbf{Mitigazione}: ciascun membro si impegna a gestire il proprio tempo adeguatamente in rapporto con gli altri impegni universitari senza tralasciare il suo ruolo nel team di sviluppo: distinguendo le priorità in modo da non influenzare negativamente lo sviluppo del progetto. In caso di impegni che possano ostacolare ciò, ci si prenderà cura di avvisare gli altri componenti del team di sviluppo per tempo.
 			}\\
 		\end{risktable}
+		\caption{Specifica rischio O001-201}	
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -278,7 +280,7 @@
 				\textbf{Mitigazione}: in caso di mancata comunicazione per un lungo arco di tempo è opportuno che alla prima scadenza di revisione utile il team di sviluppo si impegni a contattare l'azienda per avere un suo feedback.
 			}\\
 		\end{risktable}
-
+		\caption{Specifica rischio O002-010}	
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -302,6 +304,7 @@
 				\textbf{Mitigazione}: i guasti di natura hardware non sono facilmente prevedibili e in caso dovessero presentarsi è possibile utilizzare temporaneamente i computer forniti dai laboratori dell'università fino a quando la macchina difettosa non venga riparata o, se necessario, sostituita.
 			}\\
 		\end{risktable}
+		\caption{Specifica rischio S001-100}		
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -327,7 +330,7 @@
 				\textbf{Mitigazione}: nel caso dovesse sorgere la necessità di sviluppare requisiti inaspettati, questi andranno analizzati per capire di che risorse hanno bisogno e come andranno inseriti nella scaletta di sviluppo del progetto in modo adeguato. Data la natura modulare del progetto, ciascun requisito verrà sviluppato dal più al meno importante in modo da dover svolgere compiti facilmente monitorabili e testabili.
 			}\\
 		\end{risktable}
-
+		\caption{Specifica rischio R001-122}		
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
@@ -352,7 +355,7 @@
 				\textbf{Mitigazione}: ciascun componente si impegna a mantenere una copia, aggiornata periodicamente, della repository contenente il proprio lavoro, nella propria macchina o eventualmente in una memoria esterna.
 			}\\
 		\end{risktable}
-
+		\caption{Specifica rischio T001-100}		
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
