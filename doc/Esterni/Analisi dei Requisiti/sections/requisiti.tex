@@ -1,5 +1,27 @@
 \section{Requisiti}
-Ai requisiti viene dato un codice identificativo univoco secondo quanto dichiarato nelle \Doc{Norme di Progetto v1.0.0}. 
+Ai requisiti viene dato un codice identificativo univoco descritto più nel dettaglio nelle \Doc{Norme di Progetto v1.0.0}.
+
+\begin{center}
+	\texttt{R[ID][Tipo][Priorità]}
+\end{center}
+
+La prima lettera indica che si tratta di un requisito, il quale possiede un numero incrementale indicato nell'ID, una tipologia e una priorità.
+
+La tipologia è indicata con:
+
+\begin{itemize}
+	\item \textbf{F}: requisito funzionale.
+	\item \textbf{Q}: requisito di qualità.
+	\item \textbf{V}: requisito vincolante.
+\end{itemize}
+
+La priorità è indicata con:
+
+\begin{itemize}
+	\item \textbf{0}: opzionale.
+	\item \textbf{1}: desiderabile.
+	\item \textbf{2}: obbligatorio.
+\end{itemize}
 
 	%TODO: fare una roba tipo setcounter per il numero progressivo del codice dei requisiti
 	\subsection{Requisiti di funzionalità}
@@ -10,7 +32,9 @@ Ai requisiti viene dato un codice identificativo univoco secondo quanto dichiara
 			R3F0 & Il sistema fa apparire un messaggio di errore se l'autenticazione non è andata a buon fine & Interno UC2 \\
 			R4F0 & L'utente può iscriversi a un topic & Interno UC3.1.1	\\
 			R5F0 & L'utente può selezionare i giorni in cui non è disponibile  & Interno UC3.1.2 \\
-			R6F0 & L'utente può scegliere la piattaforma di messaggistica preferita tra Telegram, Mail e Slack & Interno UC3.1.3 \\
+			R6F0 & L'utente può scegliere la piattaforma di messaggistica preferita tra Telegram e Mail 
+			%e Slack
+			& Interno UC3.1.3 \\
 			R7F0 & L'utente può disiscriversi a un topic & Interno UC3.2.1 \\
 			R8F0 & L'utente può modificare i giorni in cui è disponibile & Interno UC3.2.2  \\
 			R9F0 & L'utente può modificare la piattaforma di messaggistica & Interno UC3.2.3
@@ -65,8 +89,12 @@ Ai requisiti viene dato un codice identificativo univoco secondo quanto dichiara
 			R17V2 & Deve essere redatta documentazione su eventuali problemi riscontrati ancora aperti & Capitolato \\
 			R18V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato \\
 			
+			\\\bottomrule
+		\end{paddedtablex}
+			
 			%R19V
 			
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			R20V2 & Le componenti Consumer devono essere in grado di recuperare i messaggi da un Topic & Capitolato \\ 
 			R21V2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
 			R22V2 & È necessario presentare codice sorgente versionato su repository pubblico, con una delle licenze OpenSource proposte, per ogni componente & Capitolato \\
