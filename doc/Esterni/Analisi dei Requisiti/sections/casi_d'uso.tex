@@ -17,6 +17,8 @@ testo
 	Classificazioni in base al topic.
 
 
+%TODO: da ricordarsi: se qualcuno è offline, c'è la possibilità che il messaggio venga perso.
+
 
 
 \subsubsection{UC1 - Redmine/GitLab genera una segnalazione}
@@ -24,9 +26,27 @@ testo
 		\item \textbf{Codice}: UC1.
 		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
-		\item \textbf{Descrizione}: se il Producer è offline, c'è la possibilità che il messaggio venga perso... il sistema qui è il Producer ed è interno al sistema Butterfly. Cambio stato repository tramite commit per GitLab. Cambio di stato issue tracking system per GitLab e Redmine.
-		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}:
+		\item \textbf{Descrizione}:
+		 il sistema qui è il Producer ed è interno al sistema Butterfly. Cambio stato repository tramite commit per GitLab. Cambio di stato issue tracking system per GitLab e Redmine.
+		\item \textbf{Precondizione}: c'è qualcosa da segnalare
+		\item \textbf{Postcondizione}: segnalazione generata e inviata
+		\item \textbf{Scenario principale}: 
+		\begin{enumerate}
+			\item Redmine/GitLab prepara una segnalazione da mandare
+			\item Redmine/GitLab invia la segnalazione al Producer.
+		\end{enumerate}
+		
+	\end{itemize}
+
+\subsubsection{UC1.1 - Redmine/GitLab crea e invia un messaggio per il Producer}
+	\begin{itemize}
+		\item \textbf{Codice}: UC1.1.
+		\item \textbf{Titolo}: Redmine/GitLab crea e invia un messaggio per il Producer.
+		\item \textbf{Attori primari}: Redmine/Gitlab.
+		\item \textbf{Descrizione}:
+		il sistema qui è il Producer ed è interno al sistema Butterfly. Cambio stato repository tramite commit per GitLab. Cambio di stato issue tracking system per GitLab e Redmine.
+		\item \textbf{Precondizione}: 
+		\item \textbf{Postcondizione}: segnalazione generata e inviata al Producer
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
 			\item Redmine/GitLab prepara una segnalazione da mandare
@@ -34,19 +54,20 @@ testo
 		\end{enumerate}
 		\item \textbf{Estensioni}: messaggio creato con parametri errati.
 	\end{itemize}
+	
 
-\subsubsection{UC2 - Redmine/GitLab genera una segnalazione errata}
+\subsubsection{UC1.2 - Redmine/GitLab genera una segnalazione errata}
 	\begin{itemize}
-		\item \textbf{Codice}: UC2.
+		\item \textbf{Codice}: UC1.2.
 		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione errata.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
 		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}:
+		\item \textbf{Postcondizione}: non viene inviato a Producer
 		\item \textbf{Scenario principale}: 
 	\end{itemize}
 
-\subsubsection{UC3 - Il Producer invia la segnalazione al Broker}
+\subsubsection{UC2 - Il Producer invia la segnalazione al Broker}
 	\begin{itemize}
 		\item \textbf{Codice}: UC3.
 		\item \textbf{Titolo}: il Producer invia la segnalazione al Broker.
@@ -59,7 +80,7 @@ testo
 
 %Opzionale Sonarqube
 
-\subsubsection{UC4 - Il Consumer interroga il Broker}
+\subsubsection{UC3 - Il Consumer interroga il Broker}
 	\begin{itemize}
 		\item \textbf{Codice}: UC4.
 		\item \textbf{Titolo}: il Consumer interroga il Broker.
@@ -70,13 +91,14 @@ testo
 		\item \textbf{Scenario principale}: 
 	\end{itemize}
 
-%TODO: rivedere UC5
-\subsubsection{UC5 - Telegram/e-mail riceve un messaggio dal Consumer} 
+
+\subsubsection{UC4 - Telegram/mail riceve un messaggio dal Consumer} 
 	\begin{itemize}
-		\item \textbf{Codice}: UC5.\footnote{Sebbene questo caso d'uso non sia del tutto corretto perchè l'attore Telegram/e-mail è un attore passivo, che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail". Ma scrivere un caso d'uso così scritto sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/e-mail. Cosa non possibile dato che Telegram/e-mail è esterno a Butterfly e quindi non può essere considerato un suo sottosistema.}
-		\item \textbf{Titolo}: Telegram/e-mail riceve un messaggio dal Consumer.
+		\item \textbf{Codice}: UC5.
+		\item \textbf{Titolo}: Telegram/mail riceve un messaggio dal Consumer.
 		\item \textbf{Attori}: Telegram/server mail.
 		\item \textbf{Descrizione}: ..il sistema di riferimento qui è Consumer ed è interno al sistema Butterfly.
+		Sebbene questo caso d'uso non sia del tutto corretto perchè l'attore Telegram/mail è un attore passivo, che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/mail". Ma scrivere un caso d'uso così scritto sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/mail. Cosa non possibile dato che Telegram/mail è esterno a Butterfly e quindi non può essere considerato un suo sottosistema.
 		\item \textbf{Precondizione}:
 		\item \textbf{Postcondizione}:
 		\item \textbf{Scenario principale}: 
@@ -85,55 +107,58 @@ testo
 %Opzionale Slack
 
 
-
-\subsubsection{UC6 - Autenticazione dell'utente nel sistema}
+\subsubsection{UC5 - Accesso}
 
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.
-		\item \textbf{Titolo}: autenticazione dell'utente nel sistema.
-		\item \textbf{Attori primari}: utente non autenticato.
-		\item \textbf{Descrizione}: l'utente richiede di autenticarsi al sistema attraverso un form php dove inserisce username e password.
-		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non autenticato.
-		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore come utente autenticato.
-		\item \textbf{Scenario Principale}: l'utente non ancora riconosciuto dal sistema effettua l'autenticazione.
+		\item \textbf{Codice}: UC5.
+		\item \textbf{Titolo}: accesso.
+		\item \textbf{Attori primari}: utente non acceduto.
+		\item \textbf{Descrizione}: l'utente richiede di accedere al sistema attraverso un form php dove inserisce username e password.
+		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto.
+		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore come utente acceduto.
+		\item \textbf{Scenario Principale}: l'utente non ancora riconosciuto dal sistema effettua l'accesso.
 		\item \textbf{Estensioni}: 
 	\end{itemize}
 	
-	\paragraph{UC6.1}%TODO: rivedere
+	\paragraph{UC5.1 - Accesso dell'utente nel sistema}
 		\begin{itemize}
-			\item \textbf{Codice}: UC6.1.
-			\item \textbf{Titolo}: autenticazione
-			\item \textbf{Attori}: utente non autenticato
+			\item \textbf{Codice}: UC5.1.
+			\item \textbf{Titolo}: accesso dell'utente nel sistema.
+			\item \textbf{Attori}: utente non acceduto.
 			\item \textbf{Descrizione}: l'utente attende l'autenticazione da parte del sistema
 			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non autenticato
-			\item \textbf{Postcondizione}: il sistema riconosce l'utente come autenticato
+			\item \textbf{Postcondizione}: il sistema riconosce l'utente autenticato con successo
 			\item \textbf{Scenario Principale}: l’utente non ancora riconosciuto dal sistema richiede l'autenticazione
 	\end{itemize}
-		\subparagraph{UC6.1.1}
+
+		\subparagraph{UC5.1.1 - Inserimento username}
 			\begin{itemize}
-			\item \textbf{Codice}: UC6.1.1.	
-			\item \textbf{Titolo}: inserimento username
-			\item \textbf{Attori}: utente non autenticato
-			\item \textbf{Descrizione}: l'utente inserisce l'username
-			\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento dell'username
-			\item \textbf{Postcondizione}: l'utente ha inserito l'username desiderato
-			\item \textbf{Scenario Principale}: l'utente inserisce l'username per autenticarsi
-		\end{itemize}
-		\subparagraph{UC6.1.2}
-			\begin{itemize}
-			\item \textbf{Titolo}: inserimento password
-			\item \textbf{Attori}: utente non autenticato
-			\item \textbf{Descrizione}: l'utente inserisce la password
-			\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento della password
-			\item \textbf{Postcondizione}: l'utente ha inserito la password desiderata
-			\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi
-		\end{itemize}
+				\item \textbf{Codice}: UC6.1.1.	
+				\item \textbf{Titolo}: inserimento username.
+				\item \textbf{Attori}: utente non acceduto.
+				\item \textbf{Descrizione}: l'utente inserisce l'username
+				\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento dell'username
+				\item \textbf{Postcondizione}: l'utente ha inserito l'username desiderato
+				\item \textbf{Scenario Principale}: l'utente inserisce l'username per autenticarsi
+			\end{itemize}
+		
+%Da aggiungere al limite più avanti
+		
+%		\subparagraph{UC5.1.2}
+%			\begin{itemize}
+%			\item \textbf{Codice}: UC6.1.2.
+%			\item \textbf{Titolo}: inserimento password
+%			\item \textbf{Attori}: utente non autenticato
+%			\item \textbf{Descrizione}: l'utente inserisce la password
+%			\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento della password
+%			\item \textbf{Postcondizione}: l'utente ha inserito la password desiderata
+%			\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi
+%		\end{itemize}
 	
-	%TODO: da mettere come un altro caso d'uso distinto
-	\paragraph{UC6.2}
+	\paragraph{UC5.2 - Visualizzazione errore autenticazione fallita}
 		\begin{itemize}
-			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita
-			\item \textbf{Attori}: utente non autenticato
+			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita.
+			\item \textbf{Attori}: utente non autenticato.
 			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username o password sbagliate
 			\item \textbf{Precondizione}: il sistema riceve una richiesta di autenticazione da parte di un utente che
 			fornisce username o password sbagliate
@@ -141,56 +166,87 @@ testo
 			\item \textbf{Scenario Principale}: l'utente visualizza il messaggio d'errore
 		\end{itemize}
 
-\subsubsection{UC7}
-configurazione delle preferenze dell'utente nel sistema
 
-	\paragraph{UC7.1}
-	aggiunta preferenza
-		\subparagraph{UC7.1.1}:
-		iscrizione topic
-			data la lista di topic presenti l'utente seleziona quelli a cui è interessato ricevere notifica (suddiviso per tecnologia e per tag [BUG, FIX, ISSUE, ecc.] )
-		\subparagraph{UC7.1.2}:
-		prima selezione dei giorni in calendario:
-			dato il calendario lavorativo l'utente selezionerà i giorni in cui sarà assente
-		\subparagraph{UC7.1.3}
-		piattaforma di messaggistica:
-			telegram: aggiunta nickname
-			slack: aggiunta nickname
-			mail: aggiunta email
 
-	\paragraph{UC7.2}
-	rimozione preferenza
-		\subparagraph{UC7.2.1}
-		disiscrizione topic %si può non essere iscritti a nessun topic?
-			data la lista di topic a cui è iscritto l'utente elimina quelli a cui non è più interessato ricevere notifica
-		\subparagraph{UC7.2.2}
-		rimozione giorno di calendario
-			data una lista dei giorni in cui non si è reperibili, vengono rimossi uno o più di questi giorni
-		\subparagraph{UC7.2.3}
-		rimozione piattaforma di messaggistica %dire che bisogna lasciarne almeno una?
-			telegram: modifica nickname
-			slack: modifica nickname
-			mail: modifica email
-			
-	\paragraph{UC7.3}
-	applico le modifiche fatte
+\subsubsection{UC6 - Modifica delle preferenze}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.
+		\item \textbf{Titolo}: modifica delle preferenze.
+		\item \textbf{Attori}: 
+		\item \textbf{Descrizione}: modifica delle preferenze dell'utente nel sistema.
+		\item \textbf{Precondizione}: 
+		\item \textbf{Postcondizione}: 
+		\item \textbf{Scenario Principale}:
+	\end{itemize}
+
+
+
+	\paragraph{UC6.1 - Aggiunta preferenze}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.1.
+		\item \textbf{Titolo}: aggiunta preferenze.
+		\item 
+	\end{itemize}
 	
-	\paragraph{UC7.4}
-	Annullo le modifiche fatte
-	\iffalse %inizio paragrafo commentato
-	\paragraph{UC7.2}
-	aggiornamento delle preferenze
-	\subparagraph{UC7.2.1}
-	modifica calendario:
-	dato il calendario lavorativo l'utente modifica i giorni disponibili
-	\subparagraph{UC7.2.2}
-	cambio piattaforma di messaggistica
-	telegram: modifica nickname
-	slack: modifica nickname
-	mail: modifica email
-	\fi
+	\subparagraph{UC6.1.1 - Iscrizione topic}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.1.1.
+		\item \textbf{Titolo}: aggiunta preferenze.
+		\item \textbf{Descrizione}: data la lista di topic presenti l'utente seleziona quelli a cui è interessato ricevere notifica (suddiviso per tecnologia e per tag [BUG, FIX, ISSUE, ecc.] ).
+	\end{itemize}
+		
 			
-		%Possibilità di aggiungere funzionalità specifiche di Gitlab, di Sonar, di Redmine ecc
-		
-		
+	\subparagraph{UC6.1.2 - Aggiunta dei giorni di indisponibilità nel calendario} 
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.1.2.
+		\item \textbf{Titolo}: aggiunta dei giorni di indisponibilità nel calendario.
+		\item \textbf{Descrizione}: dato il calendario lavorativo l'utente selezionerà i giorni in cui sarà assente.
+	\end{itemize}
+			
+	\subparagraph{UC6.1.3 - Aggiunta della piattaforma di messaggistica}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.1.3.
+		\item \textbf{Titolo}: aggiunta della piattaforma di messaggistica.
+		\item \textbf{Descrizione}: 
+		%telegram: nickname e mail sono già salvati nel DB
+	\end{itemize}
+			
+
+
+
+	\paragraph{UC6.2 - Rimozione preferenza}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.2.
+		\item \textbf{Titolo}: rimozione preferenza.
+		\item \textbf{Descrizione}: 
+	\end{itemize}
+	
+	
+	\subparagraph{UC6.2.1 - Disiscrizione topic}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.2.1.
+		\item \textbf{Titolo}: disiscrizione topic.
+		\item \textbf{Descrizione}: data la lista di topic a cui è iscritto l'utente elimina quelli a cui non è più interessato ricevere notifica.
+	\end{itemize}
+	
+			
+	\subparagraph{UC6.2.2 - Rimozione giorno di indisponibilità nel calendario}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.2.2.
+		\item \textbf{Titolo}: rimozione giorno di indisponibilità nel calendario.
+		\item \textbf{Descrizione}: data una lista dei giorni in cui non si è reperibili, vengono rimossi uno o più di questi giorni.
+	\end{itemize}
+			
+			
+	\subparagraph{UC6.2.3 - Rimozione piattaforma di messaggistica}
+	\begin{itemize}
+		\item \textbf{Codice}: UC6.2.3.
+		\item \textbf{Titolo}: rimozione piattaforma di messaggistica.
+		\item \textbf{Descrizione}: 
+	\end{itemize}
+
+%Da tenere in considerazione per la pagina da creare più avanti	
+%	\paragraph{UC7.4}
+%	Annullo le modifiche fatte
+
 		
