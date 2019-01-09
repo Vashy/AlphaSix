@@ -56,10 +56,14 @@
 		\end{itemize}
 
 		\paragraph{Denominazione dei requisiti}\label{PP:Sviluppo:AdR:DenominazioneRequisiti}
-		Ogni requisito che è stato individuato duranti l'analisi presenta il seguente identificativo univoco \texttt{R[Numero][Tipo][Priorità]} in cui:
+		Ogni requisito che è stato individuato duranti l'analisi presenta il seguente identificativo univoco
+		\begin{center}
+		 \texttt{R[Numero][Tipo][Priorità]} 
+		\end{center} 
+		 in cui:
 		\begin{itemize}
 			\item \textbf{R}: si riferisce a requisito.
-		 	\item \textbf{Numero}: corrisponde ad un numero progressivo a partire da 1.
+		 	\item \textbf{Numero}: corrisponde ad un numero progressivo, scritto in 3 cifre, a partire da 1.
 		 	\item \textbf{Tipo}: segnala la tipologia di requisito che può essere di:
 		 	\begin{itemize}
 		 		\item \textbf{F}: funzionalità, che ha a che vedere con le funzionalità del sistema software.
@@ -73,6 +77,9 @@
 	 			\item \textbf{2}: obbligatorio, di grado alto quindi irrinunciabile per il committente e impossibile da tralasciare.
 	 		\end{itemize}
 		\end{itemize}
+	
+		Esempio: \texttt{R002Q1} indica il secondo requisito di qualità ed è desiderabile.
+	
 
 		\paragraph{Casi d'uso}\label{PP:Sviluppo:AdR:CasiUso}
 		% descrivere cos'è?
@@ -81,17 +88,18 @@
 		\begin{itemize}
 		 	\item \textbf{Codice}: per l'identificazione del tipo:
 		 	\begin{itemize}
-		 		\item \texttt{UC[Numero]}: per un caso principale (e.g. per il primo caso d'uso avremo \texttt{UC1})
-		 		\item \texttt{UC[Numero].[Numero]}: per un sotto caso (e.g. per il primo figlio del primo caso d'uso avremo \texttt{UC1.1})
+		 		\item \texttt{UC[Numero]}: per un caso principale (e.g. per il primo caso d'uso avremo \texttt{UC1}).
+		 		\item \texttt{UC[Numero].[Numero]}: per un sotto caso (e.g. per il primo figlio del primo caso d'uso avremo \texttt{UC1.1}).
 		 	\end{itemize}
 		 	\item \textbf{Titolo}: denominazione del caso d'uso, possibilmente breve.
 		 	\item \textbf{Attori primari}: tutti gli attori primari coinvolti.
-		 	\item \textbf{Attori secondari}: tutti gli attori secondari coinvolti, opzionale in caso non dovessero essercene.		 	
+		 	\item \textbf{Attori secondari}: tutti gli attori secondari coinvolti (opzionale, da inserire solo se presenti).		 	
 		 	\item \textbf{Descrizione}: per spiegare più nel dettaglio le azioni che vengono compiute.
 		 	\item \textbf{Precondizione}: per rappresentare lo stato del sistema nell'istante precedente.
 		 	\item \textbf{Postcondizione}: per rappresentare lo stato del sistema l'istante successivo.
 		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute.
-		 	\item \textbf{Estensioni}: per azioni inerenti a scenari alternativi (d'eccezione o errore).
+		 	\item \textbf{Estensioni}: per azioni inerenti a scenari alternativi come d'eccezione o errore (opzionale, da inserire solo se presenti).
+		 	%TODO: sarebbe lo scenario secondario?
 		\end{itemize}
 
 
