@@ -21,18 +21,18 @@ In questa sezione vengono riportati i risultati ottenuti a termine del periodo d
     \begin{table}[H]
     	{\def\arraystretch{1.5}
    		\begin{tabularx}{\textwidth}{YYY}
-   			\rowcolor{gray!30}
+   			\rowcolor{white}
    			\textbf{QPD001 Leggibilità del testo} & \textbf{MPD001 Indice Gulpease} & \textbf{50 -60} \\
-   			\hline
-   			\rowcolor{gray!15}
+			\hline
+   			\rowcolor{gray!30}
    			\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
-   			\hline
-   			\NdPd & 54.57 & Soddisfacente \\
-   			\SdFd & 53.7 & Soddisfacente \\
-   			\PdPd & 51.75 & Soddisfacente \\
-   			\PdQd & 53.29 & Soddisfacente \\
-   			\hline \rowcolor{gray!30}
-   			\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}:tutti i documenti soddisfano pienamente l'obiettivo di qualifica indicato.} \\
+   			\toprule
+   			\rowcolor{white} 	\NdPd & 54.57 & Soddisfacente \\
+   			\rowcolor{\grigiodesc} 		\SdFd & 53.7 & Soddisfacente \\
+   			\rowcolor{white} 	\PdPd & 51.75 & Soddisfacente \\
+   			\rowcolor{\grigiodesc} 	\PdQd & 53.29 & Soddisfacente \\
+   			\bottomrule %\rowcolor{gray!30}
+   			\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: tutti i documenti soddisfano pienamente l'obiettivo di qualifica indicato.} \\
    		\end{tabularx}}
    	\caption{Risultati di MPD001 Indice Gulpease}
     \end{table}
@@ -42,20 +42,20 @@ In questa sezione vengono riportati i risultati ottenuti a termine del periodo d
 	\begin{table}[H]
 		{\def\arraystretch{1.5}
 		\begin{tabularx}{\textwidth}{YYY}
-			\rowcolor{gray!30}
+			\rowcolor{white}
 			\textbf{QPD002 Correttezza ortografica} & \textbf{MPD002 Correttezza
 				ortografica} & \textbf{0} \\
 			\hline
-			\rowcolor{gray!15}
+			\rowcolor{gray!30}
 			\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
-			\hline
-			\NdPd & 0 & Soddisfacente \\
-			\SdFd & 0 & Soddisfacente \\
-			\PdPd & 0 & Soddisfacente \\
-			\PdQd & 0 & Soddisfacente \\
-			\AdRd & 0 & Soddisfacente \\
-			\hline \rowcolor{gray!30}
-			\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}:tutti i documenti soddisfano pienamente l'obiettivo di qualifica indicato.} \\
+			\toprule
+			\rowcolor{white} \NdPd & 0 & Soddisfacente \\
+			\rowcolor{\grigiodesc} \SdFd & 0 & Soddisfacente \\
+			\rowcolor{white} \PdPd & 0 & Soddisfacente \\
+			\rowcolor{\grigiodesc} \PdQd & 0 & Soddisfacente \\
+			\rowcolor{white} \AdRd & 0 & Soddisfacente \\
+			\bottomrule
+			\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: tutti i documenti soddisfano pienamente l'obiettivo di qualifica indicato.} \\
 		\end{tabularx}}
 	\caption{Risultati di MPD002 Correttezza
 		ortografica}
@@ -66,86 +66,91 @@ In questa sezione vengono riportati i risultati ottenuti a termine del periodo d
 	\begin{table}[H]
 		{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YYY}
-				\rowcolor{gray!30}
+				\rowcolor{white}
 				\textbf{QPR001 Rispetto delle fasi dell'organigramma} & \textbf{MPR001 Varianza della programmazione} & \textbf{0-2 Giorni} \\
 				\hline
-				\rowcolor{gray!15}
+				\rowcolor{gray!30}
 				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
-				\hline \rowcolor{white}
-				Organigramma & 1.23 & Soddisfacente \\
-				\hline \rowcolor{gray!30}
+				\toprule
+				\rowcolor{white} Organigramma & 1.23 & Soddisfacente \\
+				\toprule
 				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: non tutte le scadenze sono state rispettate, ma i ritardi sono rientrati nei valori tollerati.} \\
 		\end{tabularx}}
 		\caption{Risultati di MPR001 Varianza della programmazione}
 	\end{table}
 
+	% \vspace{5pt}
 	\mydoublerule{\linewidth}{0pt}{2pt}
+	\vspace{20pt}
 
 	\begin{table}[H]
 		{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YYY}
-				\rowcolor{gray!30}
+				\rowcolor{white}
 				\textbf{QPR002 Variazione del budget} & \textbf{MPR002 Varianza dei costi} & \textbf{\EUR{0-200}} \\
 				\hline
-				\rowcolor{gray!15}
+				\rowcolor{gray!30}
 				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
-				\hline \rowcolor{white}
+				\toprule\rowcolor{white}
 				Differenza consuntivo e consuntivo di periodo & \euro -15,00 & Soddisfacente \\ 
-				\hline \rowcolor{gray!30}
+				\bottomrule
 				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: il valore desiderato indicato precedentemente sembra essere fin troppo permissivo. Il dettaglio del risultato ottenuto è indicato nel consuntivo di periodo in §B.3} \\
 		\end{tabularx}}
 		\caption{Risultati di MPR002 Varianza dei costi}
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
+	\vspace{20pt}
 
 	\begin{table}[H]
 		{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YYY}
-				\rowcolor{gray!30}
+				\rowcolor{white}
 				\textbf{QPR003 Rispetto delle fasi del ciclo di vita} & \textbf{MPR003 Aderenza agli standard} & \textbf{Livello di maturità: 3 Valutazione attributi: L} \\
 				\hline
-				\rowcolor{\tablegray}
+				\rowcolor{gray!30}
 				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
-				\hline \rowcolor{white}
+				\toprule\rowcolor{white}
 				PROC001 Pianificazione del progetto, organizzazione e struttura & Livello di maturità: 2 Valutazione attributi: L & Poco soddisfacente \\
-				\hline \rowcolor{gray!30}
+				\bottomrule
 				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: essendo il primo macro periodo è prevedibile che il livello di maturità desiderato non sia quello sperato. In ogni caso i processi avviati, verso il termine del macro periodo, sono correttamente gestiti.} \\
 		\end{tabularx}}
 		\caption{Risultati di MPR003 Aderenza agli standard}
 	\end{table}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
+	\vspace{20pt}
 	
 	\begin{table}[H]
 		{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YYY}
-				\rowcolor{gray!30}
+				\rowcolor{white}
 				\textbf{QPR004 Versionamento} & \textbf{MPR004 Frequenza commit nella repository} & \textbf{25} \\
 				\hline
-				\rowcolor{\tablegray}
+				\rowcolor{gray!30}
 				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
-				\hline \rowcolor{white}
+				\toprule\rowcolor{white}
 				Repository & 31.25 & Soddisfacente \\
-				\hline \rowcolor{gray!30}
+				\bottomrule
 				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: il numero di commit effettuati in media ogni settimana rischia di non essere un risultato che abbia un valore se non si considera la quantità di modifiche che vengono effettuate ad ogni commit. Il fine principale del risultato ottenuto serve per valutare l'attività del gruppo durante il macro periodo.} \\
 		\end{tabularx}}
 		\caption{Risultati di MPR004 Frequenza commit nella repository}
 	\end{table}
 	
 	\mydoublerule{\linewidth}{0pt}{2pt}
+	\vspace{20pt}
 	
 	\begin{table}[H]
 		{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YYY}
-				\rowcolor{gray!30}
+				\rowcolor{white}
 				\textbf{QPR009 Effettuare una verifica costante} & \textbf{MPR009 Frequenza controllo prodotti} & \textbf{5 Modifiche} \\
 				\hline
-				\rowcolor{\tablegray}
+				\rowcolor{gray!30}
 				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
-				\hline \rowcolor{white}
+				\toprule\rowcolor{white}
 				Documenti & 7.2 & Poco soddisfacente \\
-				\hline \rowcolor{gray!30}
+				\bottomrule
 				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: il valore ottenuto non soddisfa il risultato atteso perché nella prima parte del macro periodo il team di sviluppo ha dedicato molte risorse alla formazione personale e discapito dei della verifica dei prodotti.} \\
 		\end{tabularx}}
 		\caption{Risultati di MPR009 Frequenza controllo prodotti}
