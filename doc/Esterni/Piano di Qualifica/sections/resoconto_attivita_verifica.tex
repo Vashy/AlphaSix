@@ -1,15 +1,152 @@
 \newpage
 \section{Resoconto delle attività di verifica}
+In questa sezione vengono riportati i risultati ottenuti a termine del periodo di revisione dei requisiti attraverso le metriche indicate in §2.4 e §3.5. Essi possono coincidere o meno con i valori desiderati da AlphaSix e, nel secondo caso in particolar modo, saranno oggetto di valutazioni per il miglioramento descritte all'appendice §C.
 
     \subsection{Riassunto delle attività di verifica}
-
-    \subsubsection{Revisione dei requisiti}
-    Contenuto
-
-    \subsubsection{Dettaglio delle verifiche tramite analisi}
+    L'attività di verifica si è rivelata più faticosa del previsto. I motivi sono molteplici, nel primo periodo perché il team di sviluppo non aveva sufficiente esperienza per effettuare una verifica sistematica e perché l'attenzione dell'intero team di sviluppo si è concentrata sull'organizzazione dei ruoli e la loro funzione. Nel secondo periodo invece la verifica è stata più sistematica e meno impegnativa perché i prodotti venivano consegnati in orario è già parzialmente corretti da chi li modificava.
+    
+    Come indicato nelle \NdPv, per l'attività di verifica è stata effettuata inizialmente attraverso Walkthrought e successivamente attraverso Inspection. Essendo l'inizio del progetto e il primo di questo calibro, il team di sviluppo ha effettuato verifica secondo Walkthrough per una buona parte del periodo di analisi dei requisiti. Nel momento in cui sarà necessario verificare prodotti software il team AplphaSix ritiene opportuno effettuare il passaggio da Walkthrough a Inspection in tempi più rapidi di come avvenuto finora.
+    
+    \subsection{Risultati delle verifiche tramite analisi}
+    Nelle tabelle seguenti vengono riportati i risultati ottenuti applicando le metriche precedentemente riportate. In ogni tabella sono indicati i prodotti o i processi sottoposti alle metriche e se i risultati ottenuti sono:
+    
+    \begin{itemize}
+    	\item \textbf{Soddisfacente}: il risultato è quello atteso.
+    	\item \textbf{Poco soddisfacente}: il risultano non è quello atteso, ma gli è vicino.
+    	\item \textbf{Insoddisfacente}: il risultato non è per niente quello atteso.
+    \end{itemize} 
 
     \subsubsection{Documenti}
-    Contenuto
+    
+    \begin{table}[H]
+    	{\def\arraystretch{1.5}
+   		\begin{tabularx}{\textwidth}{YYY}
+   			\rowcolor{gray!30}
+   			\textbf{QPD001 Leggibilità del testo} & \textbf{MPD001 Indice Gulpease} & \textbf{50 -60} \\
+   			\hline
+   			\rowcolor{gray!15}
+   			\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
+   			\hline
+   			\NdPd & 54.57 & Soddisfacente \\
+   			\SdFd & 53.7 & Soddisfacente \\
+   			\PdPd & 51.75 & Soddisfacente \\
+   			\PdQd & 53.29 & Soddisfacente \\
+   			\hline \rowcolor{gray!30}
+   			\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}:tutti i documenti soddisfano pienamente l'obiettivo di qualifica indicato.} \\
+   		\end{tabularx}}
+   	\caption{Risultati di MPD001 Indice Gulpease}
+    \end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+
+	\begin{table}[H]
+		{\def\arraystretch{1.5}
+		\begin{tabularx}{\textwidth}{YYY}
+			\rowcolor{gray!30}
+			\textbf{QPD002 Correttezza ortografica} & \textbf{MPD002 Correttezza
+				ortografica} & \textbf{0} \\
+			\hline
+			\rowcolor{gray!15}
+			\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
+			\hline
+			\NdPd & 0 & Soddisfacente \\
+			\SdFd & 0 & Soddisfacente \\
+			\PdPd & 0 & Soddisfacente \\
+			\PdQd & 0 & Soddisfacente \\
+			\AdRd & 0 & Soddisfacente \\
+			\hline \rowcolor{gray!30}
+			\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}:tutti i documenti soddisfano pienamente l'obiettivo di qualifica indicato.} \\
+		\end{tabularx}}
+	\caption{Risultati di MPD002 Correttezza
+		ortografica}
+	\end{table}
 
 	\subsubsection{Processi}
-	Contenuto
+	
+	\begin{table}[H]
+		{\def\arraystretch{1.5}
+			\begin{tabularx}{\textwidth}{YYY}
+				\rowcolor{gray!30}
+				\textbf{QPR001 Rispetto delle fasi dell'organigramma} & \textbf{MPR001 Varianza della programmazione} & \textbf{0-2 Giorni} \\
+				\hline
+				\rowcolor{gray!15}
+				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
+				\hline \rowcolor{white}
+				Organigramma & 1.23 & Soddisfacente \\
+				\hline \rowcolor{gray!30}
+				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: non tutte le scadenze sono state rispettate, ma i ritardi sono rientrati nei valori tollerati.} \\
+		\end{tabularx}}
+		\caption{Risultati di MPR001 Varianza della programmazione}
+	\end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+
+	\begin{table}[H]
+		{\def\arraystretch{1.5}
+			\begin{tabularx}{\textwidth}{YYY}
+				\rowcolor{gray!30}
+				\textbf{QPR002 Variazione del budget} & \textbf{MPR002 Varianza dei costi} & \textbf{\EUR{0-200}} \\
+				\hline
+				\rowcolor{gray!15}
+				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
+				\hline \rowcolor{white}
+				Differenza consuntivo e consuntivo di periodo & \euro -15,00 & Soddisfacente \\ 
+				\hline \rowcolor{gray!30}
+				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: il valore desiderato indicato precedentemente sembra essere fin troppo permissivo. Il dettaglio del risultato ottenuto è indicato nel consuntivo di periodo in §B.3} \\
+		\end{tabularx}}
+		\caption{Risultati di MPR002 Varianza dei costi}
+	\end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+
+	\begin{table}[H]
+		{\def\arraystretch{1.5}
+			\begin{tabularx}{\textwidth}{YYY}
+				\rowcolor{gray!30}
+				\textbf{QPR003 Rispetto delle fasi del ciclo di vita} & \textbf{MPR003 Aderenza agli standard} & \textbf{Livello di maturità: 3 Valutazione attributi: L} \\
+				\hline
+				\rowcolor{\tablegray}
+				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
+				\hline \rowcolor{white}
+				PROC001 Pianificazione del progetto, organizzazione e struttura & Livello di maturità: 2 Valutazione attributi: L & Poco soddisfacente \\
+				\hline \rowcolor{gray!30}
+				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: essendo il primo macro periodo è prevedibile che il livello di maturità desiderato non sia quello sperato. In ogni caso i processi avviati, verso il termine del macro periodo, sono correttamente gestiti.} \\
+		\end{tabularx}}
+		\caption{Risultati di MPR003 Aderenza agli standard}
+	\end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		{\def\arraystretch{1.5}
+			\begin{tabularx}{\textwidth}{YYY}
+				\rowcolor{gray!30}
+				\textbf{QPR004 Versionamento} & \textbf{MPR004 Frequenza commit nella repository} & \textbf{25} \\
+				\hline
+				\rowcolor{\tablegray}
+				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
+				\hline \rowcolor{white}
+				Repository & 31.25 & Soddisfacente \\
+				\hline \rowcolor{gray!30}
+				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: il numero di commit effettuati in media ogni settimana rischia di non essere un risultato che abbia un valore se non si considera la quantità di modifiche che vengono effettuate ad ogni commit. Il fine principale del risultato ottenuto serve per valutare l'attività del gruppo durante il macro periodo.} \\
+		\end{tabularx}}
+		\caption{Risultati di MPR004 Frequenza commit nella repository}
+	\end{table}
+	
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		{\def\arraystretch{1.5}
+			\begin{tabularx}{\textwidth}{YYY}
+				\rowcolor{gray!30}
+				\textbf{QPR009 Effettuare una verifica costante} & \textbf{MPR009 Frequenza controllo prodotti} & \textbf{5 Modifiche} \\
+				\hline
+				\rowcolor{\tablegray}
+				\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
+				\hline \rowcolor{white}
+				Documenti & 7.2 & Poco soddisfacente \\
+				\hline \rowcolor{gray!30}
+				\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: il valore ottenuto non soddisfa il risultato atteso perché nella prima parte del macro periodo il team di sviluppo ha dedicato molte risorse alla formazione personale e discapito dei della verifica dei prodotti.} \\
+		\end{tabularx}}
+		\caption{Risultati di MPR009 Frequenza controllo prodotti}
+	\end{table}
