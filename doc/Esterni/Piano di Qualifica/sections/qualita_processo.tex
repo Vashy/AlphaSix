@@ -88,9 +88,15 @@ Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una 
 				\`E necessario dunque effettuare un lavoro di "traduzione" per individuare i requisiti e classificarli in
 
 			\begin{itemize}
+<<<<<<< Updated upstream
 				\item \textbf{Obbligatori}: necessari ed irrinunciabili.
 				\item \textbf{Desiderabili}: non imprescindibile e da aggiungere solo se a fine progetto si hanno ancora risorse disponibili.
 				\item \textbf{Opzionali}: se sono presenti danno un valore aggiunto al prodotto, ma non sono necessari.
+=======
+				\item Obbligatori
+				\item Desiderabili  
+				\item Opzionali
+>>>>>>> Stashed changes
 			\end{itemize}
 			\item \textbf{Individuare le tecnologie da utilizzare}: in base al tipo di progetto le tecnologie da utilizzare migliori per realizzarlo possono cambiare da progetto a progetto.
 			\item \textbf{Comprendere la quantità di risorse richieste}: sviluppare un preventivo è fondamentale, sia per il cliente che vuole sapere il costo del progetto, che per il fornitore che deve sapere se il progetto per lui è fattibile.
@@ -152,7 +158,6 @@ Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una 
 		
 		\begin{itemize}
 			\item MPR009 Frequenza controllo prodotti
-			\item MPR010 Norme di progetto non seguite
 		\end{itemize}
 		
 		\paragraph*{Obiettivi}
@@ -174,8 +179,11 @@ Ogni obiettivo di qualità è indicato con:
 	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità e della metrica.
 \end{itemize}
 
+<<<<<<< Updated upstream
 \newcommand{\grigiodesc}{gray!15}
 
+=======
+>>>>>>> Stashed changes
 \begin{table}[H]
 	{\def\arraystretch{1.4}
 	\begin{tabularx}{\textwidth}{YYY}
@@ -184,10 +192,17 @@ Ogni obiettivo di qualità è indicato con:
 		\rowcolor{gray!30}
 		\textbf{Obiettivo} &
 		\textbf{Metrica} &
+<<<<<<< Updated upstream
 		\textbf{Valore desiderato}\\\toprule
 		\rowcolor{white}
 		QPR001 Rispetto delle fasi dell'organigramma & MPR001 Varianza della programmazione & 0-2 giorni\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze date dall'organigramma possono possedere un ritardo massimo di due giorni, per le scadenza infatti viene considerato anche un tempo di \gloss{slack} per eventuali ritardi.} \\
+=======
+		\textbf{Valore desiderato}\\
+		\hline \rowcolor{white}
+		QPR001 Rispetto delle fasi dell'organigramma & MPR001 Varianza della programmazione & 0-2 Giorni\\
+		\rowcolor{gray!15} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze date dall'organigramma possono possedere un ritardo massimo di due giorni, per le scadenza infatti viene considerato anche un tempo di \gloss{slack} per eventuali ritardi. Il valore desiderato indica la media del numero di giorni di ritardo nella chiusura di una issue durante tutto il macro periodo.} \\
+>>>>>>> Stashed changes
 		\hline \rowcolor{white}
 		QPR002 Variazione del budget & MPR002 Varianza dei costi & \EUR{0-200}\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ogni ruolo nel team di sviluppo possiede una tariffa oraria. Può accadere che nel corso del progetto sia richiesto più lavoro di quello conteggiato nel preventivo, queste ore in più devono essere rendicontate.} \\
@@ -195,8 +210,13 @@ Ogni obiettivo di qualità è indicato con:
 		QPR003 Rispetto delle fasi del ciclo di vita & MPR003 Aderenza agli standard & Livello di maturità: 3 Valutazione attributi: L\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: dai sondaggi è emerso che la maggior parte delle aziende italiane che si sono adeguate allo standard ISO/IEC 15504 ha raggiunto un livello di maturità pari a 3. Il team di sviluppo si prefigge di raggiungere anch'esso un tale livello di maturità soddisfacendo i vari attributi di almeno il 75\% della loro interezza.}\\
 		\hline \rowcolor{white}
+<<<<<<< Updated upstream
 		QPR004 Versionamento & MPR004 Frequenza commit nella repository & 5\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il frequente commit in una repository permette di tenere una miglior traccia delle modifiche e di accedere all'ultima versione del progetto a tutti i membri del team di sviluppo. \`E nel valore desiderato è indicato il numero minimo di commit da effettuare in un giorno.}\\
+=======
+		QPR004 Versionamento & MPR004 Frequenza commit nella repository & 25\\
+		\rowcolor{gray!15} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il frequente commit in una repository permette di tenere una miglior traccia delle modifiche e di accedere all'ultima versione del progetto a tutti i membri del team di sviluppo. Nel valore desiderato è indicato il numero minimo di commit da effettuare in media ogni settimana lavorativa durante il un macro periodo.}\\
+>>>>>>> Stashed changes
 	\end{tabularx}}
 	\caption{Obiettivi di qualità per il PROC001}
 \end{table}

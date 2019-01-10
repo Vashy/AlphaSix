@@ -278,12 +278,40 @@
 		\subsubsection{Descrizione}
 		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole raggiungere.
 
-		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQ} all'appendice \S A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
+		Come indicato dal \textit{Ciclo di Deming} nel \Doc{\PdQv} all'appendice \S A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
 		servirà come ``base'' per alzare il livello di qualità di quel processo o prodotto.
 
-		I risultati ottenuti nella fase di verifica sono riportati all'appendice \S B del \Doc{\PdQ}, in questo modo, confrontandoli con gli esiti attesi,
-		è possibile valutare un miglioramento per i vari processi e prodotti che viene riportato nell'appendice §C sempre del \PdQ.
-
+		I risultati ottenuti nella fase di verifica sono riportati nel \Doc{\PdQv}, in questo modo, confrontandoli con gli esiti attesi,
+		è possibile valutare un miglioramento per i vari processi e prodotti sempre nel \PdQv.
+		
+		\subsection{Walkthrough e Inspection}
+		Due modi di effettuare la verifica sono attraverso Walkthrough e Inspection. Il team di sviluppo li adotta entrambi, non però contemporaneamente, per i vantaggi che comporta ogni metodo.
+		
+			\subsubsection*{Walkthtough}
+			Metodo di verifica che effettua un controllo ad ampio spettro senza l’assunzione di presupposti. Dato che per effettuare adottare tale metodo ci si deve divide in gruppi dove ognuno ha un ruolo ben distinto, Walkthrough è ideale per le verifiche effettuate all'inizio dei vari periodi, dove i membri del team di sviluppo non possiedono le conoscenze adeguate per una verifica efficiente.
+			
+			Walkthrough possiede delle fasi ben specifiche:
+			
+			\begin{enumerate}
+				\item \textbf{Pianificazione}: viene pianificato in gruppo come effettuare la verifica dei prodotti.
+				\item \textbf{Lettura}: viene effettuata la lettura del prodotto.
+				\item \textbf{Discussione}: vengono discusse le possibili correzioni.
+				\item \textbf{Correzione di difetti}: si attuano i risultati ottenuti dalla fase di discussione.
+			\end{enumerate}
+		
+		\subsubsection*{Inspection}
+		Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati sei precedenti test. Questo metodo dunque, a differenza di Walkthrough, prevede l'esecuzione con dei presupposti.
+		
+		Le fasi di Inspection sono:
+		
+		\begin{enumerate}
+			\item \textbf{Pianificazione}: viene sempre pianificato in gruppo come effettuare la pianificazione.
+			\item \textbf{definizione di una lista di controllo}: dato che è ben chiaro quali siano le parti da verificare, queste possono essere riportate in una lista in modo da velocizzare il processo di verifica.
+			\item \textbf{Correzione dei difetti}: attuazione dei punti della lista di controllo.
+		\end{enumerate}
+	
+	Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di prodotti e processi da verificare viene effettuato Walkthrough, nel momento in cui il metodo di verifica è ben consolidato da tutti i membri del team di sviluppo si passa ad effettuare verifica secondo Inspection.  
+		
 		\subsubsection{Metriche}
 		La denominazione delle metriche è già stata descritta in \S\ref{Classificazione metriche}, qui viene descritto il loro funzionamento.
 			\paragraph{Metriche per i documenti}
@@ -315,7 +343,11 @@
 				Nonostante il tempo di \gloss{slack} che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo che sono
 				analizzati nella sezione (sezione dell'analisi dei rischi) del \Doc{\PdP}.
 
-				\textbf{Metrica}: vengono contati i giorni di ritardo nel rispettare una scadenza.
+				\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro periodo. Se un'attività viene conclusa con giorni d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
+				
+				\[\dfrac{\sum_{i=1}^{n} x_i}{n}\]
+				
+				$x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}$
 
 				\subparagraph{MPR002 Varianza dei costi} % TODO: (sezione preventivo) -> ?
 				All'interno della sezione (sezione preventivo) nel \Doc{\PdPv} è indicato il costo approssimativo del progetto.
@@ -353,8 +385,14 @@
 				\subparagraph{MPR004 Frequenza commit nella repository}
 				Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro del team effettui un \gloss{commit} ad ogni sua modifica significativa.
 				Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
+				
+				Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
 
-				\textbf{Metrica}: numero minimo di commit effettuati in un giorno lavorativo dall'intero team di sviluppo.
+				\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro periodo.
+				
+				\[\dfrac{\sum_{i=1}^{n} x_i}{n}\]
+				
+				$x_i=\text{numero di commit alla i-esima settimana del pmacro periodo.}$
 
 
 				\subparagraph*{Metriche sui requisiti e i rischi}
@@ -390,10 +428,13 @@
 				\paragraph{MPR009 Frequenza controllo prodotti}
 				I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
 
-				Chi esegue la modifica deve controllare ciò che ha fatto prima di poter ufficializzare, mentre la verifica fatta dal \Ver\ deve essere fattasolo nel momento in cui è
-				stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
+				Chi esegue la modifica deve controllare ciò che ha fatto prima di poter ufficializzare, mentre la verifica fatta dal \Ver\ deve essere fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
 
-				\textbf{Metrica}: numero massimo di modifiche apportate ai prodotti prima che vengono effettuate senza una verifica dal parte del \Ver.
+				\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
+				
+				\[\dfrac{\sum_{i=1}^{n} x_i}{n}\]
+				
+				$x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}$
 
 			\paragraph{Analisi statica}
 			L'analisi statica verifica solo i prodotti che non sono o non possono essere eseguiti, come i documenti.
