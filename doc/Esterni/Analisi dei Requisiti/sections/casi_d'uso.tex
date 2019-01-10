@@ -13,9 +13,6 @@ testo
 	\end{itemize}
 	
 	\subsection{Elenco casi d'uso}
-	Messaggio - tecnologia che invia il messaggio - tipo di messaggio di quella tecnologia.
-	Classificazioni in base al topic.
-
 
 %TODO: da ricordarsi: se qualcuno è offline, c'è la possibilità che il messaggio venga perso.
 
@@ -232,31 +229,47 @@ testo
 
 
 \stepcounter{uccount}
-\subsubsection{UC\theuccount - Modifica delle preferenze}
+\subsubsection{UC\theuccount\ - Modifica delle preferenze}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\columnwidth]{img/UC6.png}\\
+		\caption{UC\theuccount\ - Modifica delle preferenze}
+	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: modifica delle preferenze.
-		\item \textbf{Attori}: 
-		\item \textbf{Descrizione}: modifica delle preferenze dell'utente nel sistema.
-		\item \textbf{Precondizione}: 
-		\item \textbf{Postcondizione}: 
-		\item \textbf{Scenario Principale}:
+		\item \textbf{Attori}: Utente.
+		\item \textbf{Descrizione}: attraverso un'interfaccia l'utente può modificare i vari parametri per configurare l'applicazione per le proprie esigenze. Il sistema di riferimento considerato è tutto \progetto.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema.
+		\item \textbf{Postcondizione}: l'utente effettua zero o più modifiche nella configurazione personale dell'applicazione. 
+		\item \textbf{Scenario Principale}: L'utente ha la possibilità di portare delle modifiche alle sue preferenze all'interno dell'applicazione \progetto.
 	\end{itemize}
 
 
 
 	\paragraph{UC\theuccount.1 - Aggiunta preferenze}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\columnwidth]{img/UC6_1.png}\\
+			\caption{UC\theuccount.1 - Aggiunta preferenze}
+		\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.
 		\item \textbf{Titolo}: aggiunta preferenze.
-		\item 
+		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra topic, giorni di calendario e piattaforme di messaggistica.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
+		\item \textbf{Postcondizione}: lo nuova configurazione contiene una o più preferenza in aggiunta rispetto alla quella precedente.
+		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili disponi, quale aggiungere alla sua configurazione personale.
 	\end{itemize}
 	
 	\subparagraph{UC\theuccount.1.1 - Iscrizione topic}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.1.
-		\item \textbf{Titolo}: aggiunta preferenze.
-		\item \textbf{Descrizione}: data la lista di topic presenti l'utente seleziona quelli a cui è interessato ricevere notifica (suddiviso per tecnologia e per tag [BUG, FIX, ISSUE, ecc.] ).
+		\item \textbf{Titolo}: iscrizione topic.
+		\item \textbf{Descrizione}: data la lista di topic presenti già inserita precedentemente, l'utente seleziona quelli a cui è interessato volendone ricevere una notifica. I topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di topic a cui è interessato l'utente è aumentato.
+		\item \textbf{Scenario principale}: l'utente aggiunge un topic dalla lista proposta dall'applicazione \progetto.
 	\end{itemize}
 		
 			
@@ -264,14 +277,20 @@ testo
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.2.
 		\item \textbf{Titolo}: aggiunta dei giorni di indisponibilità nel calendario.
-		\item \textbf{Descrizione}: dato il calendario lavorativo l'utente selezionerà i giorni in cui sarà assente.
+		\item \textbf{Descrizione}: dato il calendario lavorativo, l'utente aggiunge i giorni in cui è reperibile e non vuole ricevere notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di giorni in cui l'utente non si rende disponibile.
+		\item \textbf{Scenario principale}: l'utente aggiunge le date di calendario in cui non è reperibile.
 	\end{itemize}
 			
 	\subparagraph{UC\theuccount.1.3 - Aggiunta della piattaforma di messaggistica}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.3.
-		\item \textbf{Titolo}: aggiunta della piattaforma di messaggistica.
-		\item \textbf{Descrizione}: 
+		\item \textbf{Titolo}:aggiunta della piattaforma di messaggistica.
+		\item \textbf{Descrizione}: dalla lista delle piattaforme di messaggistica l'utente aggiunge quelle da cui vuole ricevere le notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica selezionate dall'utente è aumentato.
+		\item \textbf{Scenario principale}: l'utente aggiunge le piattaforme di messaggistica da un elenco già fornito. 
 		%telegram: nickname e mail sono già salvati nel DB
 	\end{itemize}
 			
@@ -279,10 +298,18 @@ testo
 
 
 	\paragraph{UC\theuccount.2 - Rimozione preferenza}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\columnwidth]{img/UC6_2.png}\\
+			\caption{UC\theuccount.2 - Rimozione preferenza}
+		\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.
 		\item \textbf{Titolo}: rimozione preferenza.
-		\item \textbf{Descrizione}: 
+		\item \textbf{Descrizione}: l'utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o di più. Le preferenze consistono in topic, date di calendario e piattaforme di messaggistica.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
+		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più configurazioni in meno rispetto a quella precedente.
+		\item \textbf{Scenario principale}: l'utente selezione tra le preferenze già scelte precedentemente quale rimuovere.
 	\end{itemize}
 	
 	
@@ -290,15 +317,21 @@ testo
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.1.
 		\item \textbf{Titolo}: disiscrizione topic.
-		\item \textbf{Descrizione}: data la lista di topic a cui è iscritto l'utente elimina quelli a cui non è più interessato ricevere notifica.
+		\item \textbf{Descrizione}: l'utente di disiscrive da un topic da uno o o più topic dai quali prima riceveva delle notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di topic a cui è iscritto un utente è diminuito.
+		\item \textbf{Scenario principale}: l'utente seleziona i topic a cui si era iscritto precedentemente per disicriversi.
 	\end{itemize}
 	
 			
 	\subparagraph{UC\theuccount.2.2 - Rimozione giorno irreperibilità nel calendario}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.2.
-		\item \textbf{Titolo}: rimozione giorno di indisponibilità nel calendario.
-		\item \textbf{Descrizione}: data una lista dei giorni in cui non si è reperibili, vengono rimossi uno o più di questi giorni.
+		\item \textbf{Titolo}: rimozione giorno irreperibilità nel calendario.
+		\item \textbf{Descrizione}: l'utente rimuove i giorni di calendario in cui precedentemente non era reperibile.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di giorni di calendario in cui l'utente non è reperibile è diminuito.
+		\item \textbf{Scenario principale}: l'utente, dopo aver visto i giorni in cui si era segnato non reperibile, ne rimuove alcuni rendendosi disponibile in quelle date.
 	\end{itemize}
 			
 			
@@ -306,7 +339,10 @@ testo
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.3.
 		\item \textbf{Titolo}: rimozione piattaforma di messaggistica.
-		\item \textbf{Descrizione}: 
+		\item \textbf{Descrizione}: l'utente rimuove le piattaforme di messaggistica dalle quali non vuole più ricevere notifiche tramite \progetto.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica da cui l'utente vuole ricevere notifiche è diminuito.
+		\item \textbf{Scenario principale}: l'utente seleziona da un elenco già presente le piattaforme di messaggistica che aveva precedentemente selezionato da cui non vuole più ricevere notifiche tramite \progetto.
 	\end{itemize}
 
 %Da tenere in considerazione per la pagina da creare più avanti	
