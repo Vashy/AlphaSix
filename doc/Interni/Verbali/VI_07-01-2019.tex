@@ -1,0 +1,58 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VI}
+\newcommand{\nomedocumentofisico}{VI\_07\_01\_2018.pdf}
+\newcommand{\redazione}{\TG}
+\newcommand{\verifica}{\NC}
+\newcommand{\approvazione}{\SG}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Interno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{8 gennaio 2019}
+\newcommand{\datamodifica}{9 gennaio 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento 
+\input{template/comandi} % Comandi generali
+
+\input{VI_07-01-2019/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+    \input{template/index}
+	
+    
+    \section{Informazioni generali}
+		\subsection{Informazioni incontro}
+			% - INSERT INFORMAZIONI INCONTRO
+			\begin{itemize}
+				\item { \textbf{Luogo}: Sala riunioni 701 Torre Archimede}
+				\item { \textbf{Data}: 7-01-2019}
+				\item { \textbf{Ora inizio}: 14:30}
+				\item { \textbf{Ora fine}: 17:30}
+				\item { \textbf{Partecipanti di AlphaSix}: team al completo}
+				\item { \textbf{Partecipanti esterni}: nessuno}
+				\item { \textbf{Ordine del giorno}: controllo dei documenti redatti durante le vacanze, revisione delle norme di progetto}
+			\end{itemize}
+
+        \subsection{Argomenti}
+            % - INSERT ARGOMENTI
+            \subsubsection{Controllo dei documenti redatti durante le vacanze}
+            Vengono discusse insieme le parti dei documenti scritte durante il periodo natalizio.\par
+            Si decide lo stile delle tabelle nei vari documenti.\par
+            Rettifica appendici del piano di qualifica.
+            
+            \subsubsection{Norme di Progetto}
+            Vengono riviste le norme relative ai punti elenco, di modo da correggere alcuni documenti di conseguenza.
+            
+\end{document}
