@@ -55,7 +55,7 @@ testo
 		\end{enumerate}
 		\item \textbf{Estensioni}: messaggio creato con parametri errati.
 	\end{itemize}
-	
+
 
 \subsubsection{UC\theuccount.2 - Redmine/GitLab genera una segnalazione errata}
 	\begin{itemize}
@@ -95,6 +95,7 @@ testo
 \subsubsection{UC\theuccount\ - Il Consumer interroga il Broker}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
+
 		\item \textbf{Titolo}: il Consumer interroga il Broker.
 		\item \textbf{Attori primari}: Consumer.
 		\item \textbf{Descrizione}: il Consumer chiede al Broker per acquisire il messaggio... il sistema di riferimento qui è Broker ed è interno al sistema Butterfly.
@@ -109,11 +110,14 @@ testo
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Telegram/mail riceve un messaggio dal Consumer.
 		\item \textbf{Attori}: Telegram/server mail.
-		\item \textbf{Descrizione}: ..il sistema di riferimento qui è Consumer ed è interno al sistema Butterfly.
-		Sebbene questo caso d'uso non sia del tutto corretto perchè l'attore Telegram/mail è un attore passivo, che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/mail". Ma scrivere un caso d'uso così scritto sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/mail. Cosa non possibile dato che Telegram/mail è esterno a Butterfly e quindi non può essere considerato un suo sottosistema.
-		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}:
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema Butterfly.
+		Sebbene questo caso d'uso non sia del tutto corretto perchè l'attore Telegram/mail è un attore passivo, che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/mail". Ma scrivere un caso d'uso in tal modo sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/mail. Cosa non possibile dato che Telegram/mail è esterno a Butterfly e quindi non può essere considerato un suo sottosistema.
+		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server email in seguito a un'interrogazione del broker.
+		\item \textbf{Postcondizione}: Telegram/server mail riceve il messaggio
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item La ricezione del messaggio va a buon fine
+		\end{enumerate} 
 	\end{itemize}
 
 % Opzionale Slack
@@ -123,7 +127,7 @@ testo
 		\begin{figure}[H]
 			\centering
 				\includegraphics[width=\columnwidth]{img/UC5.png}\\
-			\caption{UC5 - Accesso}
+			\caption{UC\theuccount\ - Accesso}
 		\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC5
@@ -139,10 +143,10 @@ testo
 		\begin{figure}[H]
 			\centering
 				\includegraphics[width=\columnwidth]{img/UC5_1.png}\\
-			\caption{UC5.1 - Accesso dell'utente nel sistema}
+			\caption{UC\theuccount.1 - Accesso dell'utente nel sistema}
 		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: UC5.1
+			\item \textbf{Codice}: UC\theuccount.1
 			\item \textbf{Titolo}: accesso dell'utente nel sistema
 			\item \textbf{Attori}: utente non acceduto
 			\item \textbf{Descrizione}: l'utente attende l'autenticazione da parte del sistema
@@ -157,7 +161,7 @@ testo
 
 		\subparagraph{UC\theuccount.1.1 - Inserimento username}
 			\begin{itemize}
-				\item \textbf{Codice}: UC5.1.1
+				\item \textbf{Codice}: UC\theuccount.1.1
 				\item \textbf{Titolo}: inserimento username
 				\item \textbf{Attori}: utente non acceduto
 				\item \textbf{Descrizione}: l'utente inserisce l'username
@@ -168,7 +172,7 @@ testo
 		
 		\subparagraph{UC\theuccount.1.2 - Inserimento password}
 			\begin{itemize}
-				\item \textbf{Codice}: UC5.1.2	
+				\item \textbf{Codice}: UC\theuccount.1.2	
 				\item \textbf{Titolo}: inserimento password
 				\item \textbf{Attori}: utente non acceduto
 				\item \textbf{Descrizione}: l'utente inserisce la password
