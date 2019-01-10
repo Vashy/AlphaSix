@@ -23,6 +23,11 @@ testo
 
 \stepcounter{uccount}
 \subsubsection{UC\theuccount\ - Redmine/GitLab genera una segnalazione}
+    \begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
+		\caption{UC\theuccount - Redmine/GitLab genera una segnalazione}
+	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione.
@@ -40,13 +45,18 @@ testo
 	\end{itemize}
 
 \subsubsection{UC\theuccount.1 - Redmine/GitLab crea e invia un messaggio per il Producer}
+    \begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{img/UC1_1.png}\\
+		\caption{UC\theuccount.1, UC\theuccount.2 - segnalazione corretta ed errata}
+	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.
 		\item \textbf{Titolo}: Redmine/GitLab crea e invia un messaggio per il Producer.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
 		il sistema qui è il Producer ed è interno al sistema Butterfly. Cambio stato repository tramite commit per GitLab. Cambio di stato issue tracking system per GitLab e Redmine.
-		\item \textbf{Precondizione}: 
+		\item \textbf{Precondizione}: Redmine/Gitlab generano un messaggio per il Producer
 		\item \textbf{Postcondizione}: segnalazione generata e inviata al Producer
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
@@ -63,10 +73,14 @@ testo
 		\item \textbf{Codice}: UC\theuccount.2.
 		\item \textbf{Titolo}: Errore nella trasmissione della segnalazione.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
-		\item \textbf{Descrizione}:
+		\item \textbf{Descrizione}: il sistema qui è il Producer ed è interno al sistema Butterfly. Il messaggio creato da Redmine/Gitlab è errato.
 		\item \textbf{Precondizione}: l'errore nella trasmissione porta alla generazione di una stringa malformata.
 		\item \textbf{Postcondizione}: creazione di un log contenente informazioni utili relativi all'errore
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item Redmine/GitLab invia una segnalazione malformata al Producer.
+			\item Il producer registra l'errore nel log.
+		\end{enumerate}
 	\end{itemize}
 
 \stepcounter{uccount}
@@ -112,6 +126,11 @@ testo
 
 \stepcounter{uccount}
 \subsubsection{UC\theuccount\ - Telegram/mail riceve un messaggio dal Consumer}
+	\begin{figure}[H]
+		\centering
+			\includegraphics[width=\columnwidth]{img/UC4.png}\\
+		\caption{UC\theuccount\ - Telegram/mail riceve un messaggio dal Consumer}
+	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Telegram/mail riceve un messaggio dal Consumer.
