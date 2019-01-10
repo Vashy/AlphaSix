@@ -30,13 +30,12 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 \newcounter{vaZ} % valore
 \newcommand{\decrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addNumber}[0]{\thevaZ \decrZ} % Comando per generare
+\addtocounter{vaZ}{1}%far partire il contatore da 1
 
-\addtocounter{vaZ}{1}
-
+%TODO: mettere caption alle tabelle
 	\subsection{Requisiti di funzionalità}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			
 			R\addNumber
 			F2 & Redmine e GitLab deve essere in grado di generare delle segnalazioni da inviare ai Producer & Interno UC1.1 \\
 			R\addNumber
@@ -69,6 +68,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica & Interno UC6.2.3
 			\\\bottomrule
 		\end{paddedtablex}
+		
+		
 	
 	% Generazione automatica dei numeri 
 	\newcounter{vaQ} % valore
@@ -76,13 +77,21 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\newcommand{\addQNumber}[0]{\thevaQ \decrQ} % Comando per generare
 	\addtocounter{vaQ}{0}
 	
+	%\caption{Tabella contenenti i requisiti di qualità.}
 	%TODO: I test sono requisiti di qualità?
+	%TODO: Tutte le norme scritte nel PdQ sono desiderabili? O obbligatori?
 	\subsection{Requisiti di qualità}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			R\addQNumber
-			Q1  & L'\gloss{indice di Gulpease} di ogni documento ha indice tra 50 e 60 & Interno \\
+			Q1  & L'\gloss{indice di Gulpease} di ogni documento deve avere indice tra 50 e 60 & Interno \\
+			R\addQNumber
+			Q1 & I documenti non devono presentare errori ortografici & Interno \\
+			R\addQNumber
+			Q1 & Non possono essere fatti più di 2 giorni di ritardo & Interno \\
+			R\addQNumber
+			Q1 & Il costi previsti non devono eccedere di 200.... & Interno \\ 
 			R\addQNumber
 			Q2 & Le applicazioni sviluppate devono rispettare (quasi tutti) i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
 			R\addQNumber
