@@ -57,14 +57,15 @@ testo
 	\end{itemize}
 
 
-\subsubsection{UC\theuccount.2 - Redmine/GitLab genera una segnalazione errata}
+%\subsubsection{UC\theuccount.2 - Redmine/GitLab genera una segnalazione errata}
+\subsubsection{UC\theuccount.2 - Errore nella trasmissione della segnalazione}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.
-		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione errata.
+		\item \textbf{Titolo}: Errore nella trasmissione della segnalazione.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
-		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}: non viene inviato a Producer
+		\item \textbf{Precondizione}: l'errore nella trasmissione porta alla generazione di una stringa malformata.
+		\item \textbf{Postcondizione}: creazione di un log contenente informazioni utili relativi all'errore
 		\item \textbf{Scenario principale}: 
 	\end{itemize}
 
