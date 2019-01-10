@@ -1,52 +1,50 @@
 \newpage
-\section{Tecnologie utilizzate}
-	L'obiettivo di questo paragrafo è quello di descrivere in modo generale come il prodotto andrà ad interfacciarsi con le tecnologie che avranno il ruolo di producer e consumer in modo tale da ricevere le notifiche e inoltrarle in maniera corretta al destinatario più adeguato.
-	Di seguito un'immagine presa dalla presentazione del capitolato che rappresenta lo scopo del prodotto finito:
-	\vspace{-0.4cm}
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=\columnwidth]{img/butterfly.png}\\
-		\caption{Rappresentazione della comunicazione tra publisher e subsriber passando per il broker}
-	\end{figure}
-
-	Per ciascuna tecnologia con cui l'applicativo andrà ad interfacciarsi è previsto un microservizio, il quale avrà come scopo quello di fare da tramite coi subscriber.
-
+\section{Tecnologie}
+	L'obiettivo di questo paragrafo è quello di descrivere in modo generale come il prodotto andrà ad interfacciarsi con le tecnologie che mandano e ricevono le notifiche inoltrate.\\
+	Per ciascuna tecnologia con cui l'applicativo andrà ad interfacciarsi è previsto un microservizio, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
+	Questo pattern si chiama Publisher / Subscriber e utilizza uno strumento intermedio detto broker per lo smistamento dei messaggi e la gestione dei flussi.
+	
 	\subsection{Producers}
-		I producer da integrare nel progetto sono elencati in ordine di priorità in base a quanto chiesto dal committente.
+	
+		Per ciascuno degli strumenti che inviano messaggi verso il sistema è necessario creare un microservizio di tipo producer che li ricevi ed elabori inoltrandoli successivamente verso il broker.
+		Le tecnologie dalle quali vengono ricevuti i messaggi sono di elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 
 		\subsubsection{Redmine}
-		Ciascuna istanza di Redmine permette l'utilizzo delle proprie API\footnote{\url{http://www.redmine.org/projects/redmine/wiki/Rest_api}} con le quali potersi interfacciare e ricevere risposte nel formato scelto.
-		Queste vengono prese dal server tramite un microservizio facente parte dell'applicativo che ne fa la richiesta ad intervalli prestabiliti, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai customer interessati.
+		Ciascuna istanza di Redmine permette l'utilizzo delle proprie API\footnote{\url{http://www.redmine.org/projects/redmine/wiki/Rest_api}} con le quali è possibile interfacciarsi e ricevere risposte nel formato scelto.
+		Queste vengono prese dal server tramite un microservizio che ne fa la richiesta ad intervalli prestabiliti, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai customer interessati.
 		
 		\subsubsection{GitLab}
-		Ciascuna istanza di GitLab, online o in un server interno dell'azienda, mette a disposizione la configurazione di \gloss{webhooks}\footnote{\url{https://docs.gitlab.com/ee/user/project/integrations/webhooks.html}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni aggiornate e il cambiamento che è avvenuto a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
+		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di \gloss{webhooks}\footnote{\url{https://docs.gitlab.com/ee/user/project/integrations/webhooks.html}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni aggiornate e il cambiamento che è avvenuto a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
 		
-		\subsubsection{SonarQube}
-		Come GitLab, anche SonarQube prevede l'utilizzo di webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
+%		\subsubsection{SonarQube}
+%		Come GitLab, anche SonarQube prevede l'utilizzo di webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
 		
 	\subsection{Broker}
 	
+		Il ruolo del broker è quello smistare i messaggi in base ai topic con qui questi sono contrassegnati verso i vari microservizi con cui l'utente ha deciso che gli venga inoltrata la notifica.
 		L'azienda consiglia di utilizzare come broker per i messaggi Apache Kafka.
 	
 		\subsubsection{Apache Kafka}
-		Apache Kafka è un software open-source per lo streaming-processing sviluppato da Linkedin e scritto in \gloss{Scala} e \gloss{Java}
+		Apache Kafka è un software open-source che permette la lettura e la scrittura di messaggi su stream di dati.
+		Questi messaggi arrivano dai microservizi producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il broker che le elabora analizzandone il contenuto e contrassegnandole con topic che verranno utilizzati per l'inoltro ai consumer e successivamente agli utenti finali i quali possono abbonarsi a più topic e gestendo le proprie preferenze.
 		
 	
 	\subsection{Consumers}
-	
-		In ordine di priorità richiesta dal committente, i software che svolgono il ruolo di producer sono:
-	
+		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato è necessaria la creazione di un microservizio in grado di fare da tramite tra broker e client dello strumento.
+		Le tecnologie alle quali vengono inoltrati i messaggi sono di elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
+			
 		\subsubsection{Telegram}
-		Telegram permette l'interazione in maniera automatica con gli utenti tramite bot che possono essere configurati per mandare messaggi ricevuti da strumenti di terze parti, come in questo caso il broker apache kafka.
+		Telegram permette l'interazione in maniera automatica con gli utenti tramite bot che possono essere configurati per mandare messaggi ricevuti da strumenti di terze parti.
+		Il broker manda i messaggi ad un microservizio che si occupa della trasmissione effettiva al bot di Telegram.
 		%https://core.telegram.org/bots
 		
 		\subsubsection{E-mail}
-		Per l'invio delle mail agli utenti finali è necessaria la configurazione di un server di posta interno, che sfrutta quindi il protocollo SMTP, in modo tale da poter mandare mail con le informazioni richieste ai customer interessati.
+		Per inoltrare le e-mail agli utenti finali è necessario un microservizio che sfrutta un server di posta in modo tale da poter ricevere i messaggi dal broker e poi mandarli all'indirizzo specificato.
 		%https://realpython.com/python-send-email/
 		
-		\subsubsection{Slack}
-		È possibile utilizzare le API di Slack per poter mandare push notifications ai canali o alle persone interessate specificando il nome del canale (o lo username della persona), testo del messaggio, e lo username che verrà mostrato per il mittente.
-		%https://www.confluent.io/blog/real-time-syslog-processing-with-apache-kafka-and-ksql-part-2-event-driven-alerting-with-slack/
+%		\subsubsection{Slack}
+%		È possibile utilizzare le API di Slack per poter mandare push notifications ai canali o alle persone interessate specificando il nome del canale (o lo username della persona), testo del messaggio, e lo username che verrà mostrato per il mittente.
+%		%https://www.confluent.io/blog/real-time-syslog-processing-with-apache-kafka-and-ksql-part-2-event-driven-alerting-with-slack/
 	
 	\subsection{Gestore personale}
 	Il gestore personale è quello che permette agli utenti di impostare le proprie preferenze per il canale di inoltro dei messaggi ed i topic a cui si iscrivono interfacciandosi dunque con l'intero sistema.
@@ -60,10 +58,6 @@
 		A differenza delle macchine virtuali, dove lo stato dell'ambiente viene salvato su disco occupando memoria, i container si adattano in maniera migliore all'applicativo richiesto in quanto il loro scopo è quello di massimizzare la quantità delle applicazioni in esecuzione riducendo al minimo il numero delle macchine.
 		Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse, però al termine della loro esecuzione non viene salvato lo stato, a meno che non sia esplicitamente richiesto.
 		
-		
 		\subsubsection{Docker e Dockerfile}
 		L'azienda consiglia di utilizzare Docker per la semplicità e perché si adatta all'architettura con i microservizi.
 		La configurazione avverrà tramite un dockerfile in cui verranno specificate informazioni come sistema operativo, script all'avvio, numero di istanze ed altri parametri specifici.
-			
-	\subsection{Protocolli per API}
-	https://searchmicroservices.techtarget.com/definition/REST-representational-state-transfer
