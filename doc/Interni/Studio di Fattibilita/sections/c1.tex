@@ -5,12 +5,13 @@
 
     \subsection{Obiettivo finale}
     Butterfly si presenta come un insieme di componenti che si interfacciano con gli strumenti di sviluppo in modo da recuperare o intercettare le segnalazioni che questi mandano e riportarle all'utente nella forma che quest'ultimo sceglie.\\
-    Quest'applicativo deve essere in grado di incanalare le notifiche (contraddistinte da topic in base alla loro provenienza) di questi strumenti in un singolo broker che ne contolla l'inoltro verso un gestore%
-    \footnote{Applicazione web richiesta dall'azienda che si interfaccia con Butterfly} interno all'azienda oppure direttamente alla persona interessata tramite applicazioni di messaggistica
-    o email in base al topic con cui sono queste notifiche contrassegnate.
+    Quest'applicativo deve essere in grado di incanalare le notifiche (contraddistinte da topic in base alla loro
+    provenienza) di questi strumenti in un singolo broker, dove sarà possibile recuperarle e attraverso un gestore%
+    \footnote{Applicazione web richiesta dall'azienda che si interfaccia con Butterfly} interno all'azienda
+    inoltrarle alla persona interessata tramite applicazioni di messaggistica o email.
 
     \subsection{Tecnologie coinvolte}
-    Si richiede l'utilizzo di un pattern \gloss{Publisher/Subscriber} per la gestione dei messaggi:
+    Si richiede l'utilizzo di un \gloss{pattern Publisher/Subscriber} per la gestione dei messaggi:
 
     \begin{itemize}
         \item \gloss{Producers}:
@@ -30,7 +31,7 @@
             \item \gloss{E-mail}
         \end{itemize}
     \end{itemize}
-    I linguaggi indicati nel capitolato in cui l'applicativo può essere sviluppato sono: \gloss{Java}, \gloss{Python}, \gloss{Nodejs}.\\
+    I linguaggi indicati nel capitolato in cui l'applicativo può essere sviluppato sono: \gloss{Java}, \gloss{Python}, \gloss{Node.js}.\\
     Sono inoltre richeste:
     \begin{itemize}
         \item \gloss{API REST} per interfacciarsi con i componenti dell'applicativo
@@ -43,5 +44,5 @@
     richieste sul mercato come \gloss{Docker} e Apache Kafka e questo ha motivato \gruppo\ a prenderne parte.\par
     Ha colpito molto la possibilità di creare un prodotto concreto e impiegato giornalmente dai developer che possa facilitarne il lavoro
     e automatizzare una parte del processo di sviluppo.\par
-    Ha inoltre attirato l'attenzione del team la consegna chiara e i vincoli precisi posti dall'azienda.\par
+    Ha inoltre attirato l'attenzione di AlphaSix la consegna chiara e i vincoli precisi posti dall'azienda.\par
     D'altra parte l'impiego di numerose tecnologie richiede un impegno non indifferente e potrebbe risultare complesso.
