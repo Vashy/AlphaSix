@@ -1,8 +1,22 @@
 \newpage
 \section{Tecnologie}
-	L'obiettivo di questo paragrafo è quello di descrivere in modo generale come il prodotto andrà ad interfacciarsi con le tecnologie che mandano e ricevono le notifiche inoltrate.\\
-	Per ciascuna tecnologia con cui l'applicativo andrà ad interfacciarsi è previsto un microservizio, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
+	L'obiettivo di questo paragrafo è quello di descrivere in modo generale come il prodotto andrà ad interfacciarsi con le tecnologie che mandano e ricevono le notifiche che passano attraverso Butterfly.\\
+	Per ciascuna do queste con cui l'applicativo andrà ad interfacciarsi è previsto un microservizio, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
 	Questo pattern si chiama Publisher / Subscriber e utilizza uno strumento intermedio detto broker per lo smistamento dei messaggi e la gestione dei flussi.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{img/butterfly.png}\\
+		\caption{Visione generale del sistema Butterfly}
+	\end{figure}
+	L'immagine precedente rappresenta una suddivisione del sistema in quattro sezioni principali:
+	\begin{itemize}
+		\item Butterfly (arancione)
+		\item Producers (azzurro)
+		\item Broker (rosso)
+		\item Consumers (verde)
+	\end{itemize}
+	Questa scomposizione permette di analizzare più approfonditamente il prodotto per la stesura dei casi d'uso utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
 	
 	\subsection{Producers}
 	
