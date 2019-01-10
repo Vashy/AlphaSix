@@ -19,11 +19,12 @@ testo
 
 %TODO: da ricordarsi: se qualcuno è offline, c'è la possibilità che il messaggio venga perso.
 
+\newcounter{uccount}
 
-
-\subsubsection{UC1 - Redmine/GitLab genera una segnalazione}
+\stepcounter{uccount}
+\subsubsection{UC\theuccount\ - Redmine/GitLab genera una segnalazione}
 	\begin{itemize}
-		\item \textbf{Codice}: UC1.
+		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
@@ -38,9 +39,9 @@ testo
 		
 	\end{itemize}
 
-\subsubsection{UC1.1 - Redmine/GitLab crea e invia un messaggio per il Producer}
+\subsubsection{UC\theuccount.1 - Redmine/GitLab crea e invia un messaggio per il Producer}
 	\begin{itemize}
-		\item \textbf{Codice}: UC1.1.
+		\item \textbf{Codice}: UC\theuccount.1.
 		\item \textbf{Titolo}: Redmine/GitLab crea e invia un messaggio per il Producer.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
@@ -54,35 +55,48 @@ testo
 		\end{enumerate}
 		\item \textbf{Estensioni}: messaggio creato con parametri errati.
 	\end{itemize}
-	
 
-\subsubsection{UC1.2 - Redmine/GitLab genera una segnalazione errata}
+
+%\subsubsection{UC\theuccount.2 - Redmine/GitLab genera una segnalazione errata}
+\subsubsection{UC\theuccount.2 - Errore nella trasmissione della segnalazione}
 	\begin{itemize}
-		\item \textbf{Codice}: UC1.2.
-		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione errata.
+		\item \textbf{Codice}: UC\theuccount.2.
+		\item \textbf{Titolo}: Errore nella trasmissione della segnalazione.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
-		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}: non viene inviato a Producer
+		\item \textbf{Precondizione}: l'errore nella trasmissione porta alla generazione di una stringa malformata.
+		\item \textbf{Postcondizione}: creazione di un log contenente informazioni utili relativi all'errore
 		\item \textbf{Scenario principale}: 
 	\end{itemize}
 
-\subsubsection{UC2 - Il Producer invia la segnalazione al Broker}
+\stepcounter{uccount}
+\subsubsection{UC\theuccount\ - Il Producer invia una segnalazione al Broker}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{img/UC2-ProducerBroker.png}\\
+		\caption{UC\theuccount - Il Producer invia una segnalazione al Broker}
+	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC3.
-		\item \textbf{Titolo}: il Producer invia la segnalazione al Broker.
+		\item \textbf{Codice}: UC\theuccount.
+		\item \textbf{Titolo}: il Producer invia una segnalazione al Broker.
 		\item \textbf{Attori primari}: Producer.
-		\item \textbf{Descrizione}: ..il sistema qui è Broker ed è interno al sistema Butterfly.
-		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}:
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/Gitlab, la inoltra al Broker in modo che possa istanziarne un Topic. Il sistema di riferimento qui è il Broker ed è interno al sistema Butterfly.
+		\item \textbf{Precondizione}: il Producer ha ricevuto una segnalazione da inoltrare.
+		\item \textbf{Postcondizione}: il Producer ha inviato al Broker la segnalazione.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item Il Producer procede all'invio della segnalazione
+		\end{enumerate}
+		 
 	\end{itemize}
 
 %Opzionale Sonarqube
 
-\subsubsection{UC3 - Il Consumer interroga il Broker}
+\stepcounter{uccount}
+\subsubsection{UC\theuccount\ - Il Consumer interroga il Broker}
 	\begin{itemize}
-		\item \textbf{Codice}: UC4.
+		\item \textbf{Codice}: UC\theuccount.
+
 		\item \textbf{Titolo}: il Consumer interroga il Broker.
 		\item \textbf{Attori primari}: Consumer.
 		\item \textbf{Descrizione}: il Consumer chiede al Broker per acquisire il messaggio... il sistema di riferimento qui è Broker ed è interno al sistema Butterfly.
@@ -91,27 +105,30 @@ testo
 		\item \textbf{Scenario principale}: 
 	\end{itemize}
 
-
-\subsubsection{UC4 - Telegram/mail riceve un messaggio dal Consumer} 
+\stepcounter{uccount}
+\subsubsection{UC\theuccount\ - Telegram/mail riceve un messaggio dal Consumer}
 	\begin{itemize}
-		\item \textbf{Codice}: UC5.
+		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Telegram/mail riceve un messaggio dal Consumer.
 		\item \textbf{Attori}: Telegram/server mail.
-		\item \textbf{Descrizione}: ..il sistema di riferimento qui è Consumer ed è interno al sistema Butterfly.
-		Sebbene questo caso d'uso non sia del tutto corretto perchè l'attore Telegram/mail è un attore passivo, che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/mail". Ma scrivere un caso d'uso così scritto sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/mail. Cosa non possibile dato che Telegram/mail è esterno a Butterfly e quindi non può essere considerato un suo sottosistema.
-		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}:
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema Butterfly.
+		Sebbene questo caso d'uso non sia del tutto corretto perchè l'attore Telegram/mail è un attore passivo, che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/mail". Ma scrivere un caso d'uso in tal modo sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/mail. Cosa non possibile dato che Telegram/mail è esterno a Butterfly e quindi non può essere considerato un suo sottosistema.
+		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server email in seguito a un'interrogazione del broker.
+		\item \textbf{Postcondizione}: Telegram/server mail riceve il messaggio
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item La ricezione del messaggio va a buon fine
+		\end{enumerate} 
 	\end{itemize}
 
-%Opzionale Slack
+% Opzionale Slack
 
-
-\subsubsection{UC5 - Accesso}
+\stepcounter{uccount}
+\subsubsection{UC\theuccount\ - Accesso}
 		\begin{figure}[H]
 			\centering
 				\includegraphics[width=\columnwidth]{img/UC5.png}\\
-			\caption{UC5 - Accesso}
+			\caption{UC\theuccount\ - Accesso}
 		\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC5
@@ -123,14 +140,14 @@ testo
 		\item \textbf{Scenario Principale}: l'utente non ancora riconosciuto dal sistema effettua l'accesso.
 	\end{itemize}
 	
-	\paragraph{UC5.1 - Accesso dell'utente nel sistema}
+	\paragraph{UC\theuccount.1 - Accesso dell'utente nel sistema}
 		\begin{figure}[H]
 			\centering
 				\includegraphics[width=\columnwidth]{img/UC5_1.png}\\
-			\caption{UC5.1 - Accesso dell'utente nel sistema}
+			\caption{UC\theuccount.1 - Accesso dell'utente nel sistema}
 		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: UC5.1
+			\item \textbf{Codice}: UC\theuccount.1
 			\item \textbf{Titolo}: accesso dell'utente nel sistema
 			\item \textbf{Attori}: utente non acceduto
 			\item \textbf{Descrizione}: l'utente attende l'autenticazione da parte del sistema
@@ -143,9 +160,9 @@ testo
 			\end{enumerate}
 	\end{itemize}
 
-		\subparagraph{UC5.1.1 - Inserimento username}
+		\subparagraph{UC\theuccount.1.1 - Inserimento username}
 			\begin{itemize}
-				\item \textbf{Codice}: UC5.1.1
+				\item \textbf{Codice}: UC\theuccount.1.1
 				\item \textbf{Titolo}: inserimento username
 				\item \textbf{Attori}: utente non acceduto
 				\item \textbf{Descrizione}: l'utente inserisce l'username
@@ -154,9 +171,9 @@ testo
 				\item \textbf{Scenario Principale}: l'utente inserisce l'username per autenticarsi.
 			\end{itemize}
 		
-		\subparagraph{UC5.1.2 - Inserimento password}
+		\subparagraph{UC\theuccount.1.2 - Inserimento password}
 			\begin{itemize}
-				\item \textbf{Codice}: UC5.1.2	
+				\item \textbf{Codice}: UC\theuccount.1.2	
 				\item \textbf{Titolo}: inserimento password
 				\item \textbf{Attori}: utente non acceduto
 				\item \textbf{Descrizione}: l'utente inserisce la password
@@ -178,7 +195,7 @@ testo
 %			\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi
 %		\end{itemize}
 	
-	\paragraph{UC5.2 - Visualizzazione errore autenticazione fallita}
+	\paragraph{UC\theuccount.2 - Visualizzazione errore autenticazione fallita}
 		\begin{itemize}
 			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita
 			\item \textbf{Attori}: utente non autenticato
@@ -190,10 +207,10 @@ testo
 		\end{itemize}
 
 
-
-\subsubsection{UC6 - Modifica delle preferenze}
+\stepcounter{uccount}
+\subsubsection{UC\theuccount - Modifica delle preferenze}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.
+		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: modifica delle preferenze.
 		\item \textbf{Attori}: 
 		\item \textbf{Descrizione}: modifica delle preferenze dell'utente nel sistema.
@@ -204,31 +221,31 @@ testo
 
 
 
-	\paragraph{UC6.1 - Aggiunta preferenze}
+	\paragraph{UC\theuccount.1 - Aggiunta preferenze}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.1.
+		\item \textbf{Codice}: UC\theuccount.1.
 		\item \textbf{Titolo}: aggiunta preferenze.
 		\item 
 	\end{itemize}
 	
-	\subparagraph{UC6.1.1 - Iscrizione topic}
+	\subparagraph{UC\theuccount.1.1 - Iscrizione topic}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.1.1.
+		\item \textbf{Codice}: UC\theuccount.1.1.
 		\item \textbf{Titolo}: aggiunta preferenze.
 		\item \textbf{Descrizione}: data la lista di topic presenti l'utente seleziona quelli a cui è interessato ricevere notifica (suddiviso per tecnologia e per tag [BUG, FIX, ISSUE, ecc.] ).
 	\end{itemize}
 		
 			
-	\subparagraph{UC6.1.2 - Aggiunta dei giorni di indisponibilità nel calendario} 
+	\subparagraph{UC\theuccount.1.2 - Aggiunta dei giorni di indisponibilità nel calendario} 
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.1.2.
+		\item \textbf{Codice}: UC\theuccount.1.2.
 		\item \textbf{Titolo}: aggiunta dei giorni di indisponibilità nel calendario.
 		\item \textbf{Descrizione}: dato il calendario lavorativo l'utente selezionerà i giorni in cui sarà assente.
 	\end{itemize}
 			
-	\subparagraph{UC6.1.3 - Aggiunta della piattaforma di messaggistica}
+	\subparagraph{UC\theuccount.1.3 - Aggiunta della piattaforma di messaggistica}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.1.3.
+		\item \textbf{Codice}: UC\theuccount.1.3.
 		\item \textbf{Titolo}: aggiunta della piattaforma di messaggistica.
 		\item \textbf{Descrizione}: 
 		%telegram: nickname e mail sono già salvati nel DB
@@ -237,33 +254,33 @@ testo
 
 
 
-	\paragraph{UC6.2 - Rimozione preferenza}
+	\paragraph{UC\theuccount.2 - Rimozione preferenza}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.2.
+		\item \textbf{Codice}: UC\theuccount.2.
 		\item \textbf{Titolo}: rimozione preferenza.
 		\item \textbf{Descrizione}: 
 	\end{itemize}
 	
 	
-	\subparagraph{UC6.2.1 - Disiscrizione topic}
+	\subparagraph{UC\theuccount.2.1 - Disiscrizione topic}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.2.1.
+		\item \textbf{Codice}: UC\theuccount.2.1.
 		\item \textbf{Titolo}: disiscrizione topic.
 		\item \textbf{Descrizione}: data la lista di topic a cui è iscritto l'utente elimina quelli a cui non è più interessato ricevere notifica.
 	\end{itemize}
 	
 			
-	\subparagraph{UC6.2.2 - Rimozione giorno di indisponibilità nel calendario}
+	\subparagraph{UC\theuccount.2.2 - Rimozione giorno di indisponibilità nel calendario}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.2.2.
+		\item \textbf{Codice}: UC\theuccount.2.2.
 		\item \textbf{Titolo}: rimozione giorno di indisponibilità nel calendario.
 		\item \textbf{Descrizione}: data una lista dei giorni in cui non si è reperibili, vengono rimossi uno o più di questi giorni.
 	\end{itemize}
 			
 			
-	\subparagraph{UC6.2.3 - Rimozione piattaforma di messaggistica}
+	\subparagraph{UC\theuccount.2.3 - Rimozione piattaforma di messaggistica}
 	\begin{itemize}
-		\item \textbf{Codice}: UC6.2.3.
+		\item \textbf{Codice}: UC\theuccount.2.3.
 		\item \textbf{Titolo}: rimozione piattaforma di messaggistica.
 		\item \textbf{Descrizione}: 
 	\end{itemize}

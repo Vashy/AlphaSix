@@ -6,7 +6,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	in cui ogni parte ha un significato preciso:
 	\begin{itemize}
 		\item \textbf{R}: requisito.
-		\item \textbf{Numero}: numero progressivo in 3 cifre.
+		\item \textbf{Numero}: numero progressivo.
 		\item \textbf{Tipo}: la la tipologia di requisito che può essere di:
 		\begin{itemize}
 			\item \textbf{F}: funzionalità.
@@ -26,93 +26,121 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 %inserire il fatto che una persona può aggiungere il proprio nickname o altro da interfaccia, come requisito opzionale	
 	
 
-\begin{center}
-	\texttt{R[ID][Tipo][Priorità]}
-\end{center}
+% Generazione automatica dei numeri 
+\newcounter{vaZ} % valore
+\newcommand{\decrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
+\newcommand{\addNumber}[0]{\thevaZ \decrZ} % Comando per generare
 
-La prima lettera indica che si tratta di un requisito, il quale possiede un numero incrementale indicato nell'ID, una tipologia e una priorità.
+\addtocounter{vaZ}{0}
 
-La tipologia è indicata con:
-
-\begin{itemize}
-	\item \textbf{F}: requisito funzionale.
-	\item \textbf{Q}: requisito di qualità.
-	\item \textbf{V}: requisito vincolante.
-\end{itemize}
-
-La priorità è indicata con:
-
-\begin{itemize}
-	\item \textbf{0}: opzionale.
-	\item \textbf{1}: desiderabile.
-	\item \textbf{2}: obbligatorio.
-\end{itemize}
-
-	%TODO: fare una roba tipo setcounter per il numero progressivo del codice dei requisiti
 	\subsection{Requisiti di funzionalità}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			R1F0 & L'utente può autenticarsi & Interno UC2 \\
-			R2F2 & Lo stato dell'issue tracking system può cambiare & Interno UC1 \\
-			R3F0 & Il sistema fa apparire un messaggio di errore se l'autenticazione non è andata a buon fine & Interno UC2 \\
-			R4F0 & L'utente può iscriversi a un topic & Interno UC3.1.1	\\
-			R5F0 & L'utente può selezionare i giorni in cui non è disponibile  & Interno UC3.1.2 \\
-			R6F0 & L'utente può scegliere la piattaforma di messaggistica preferita tra Telegram e Mail 
+			R\addNumber
+			F0 & L'utente può autenticarsi & Interno UC2 \\
+			R\addNumber
+			F2 & Lo stato dell'issue tracking system può cambiare & Interno UC1 \\
+			R\addNumber
+			F0 & Il sistema fa apparire un messaggio di errore se l'autenticazione non è andata a buon fine & Interno UC2 \\
+			R\addNumber
+			F0 & L'utente può iscriversi a un topic & Interno UC3.1.1	\\
+			R\addNumber
+			F0 & L'utente può selezionare i giorni in cui non è disponibile  & Interno UC3.1.2 \\
+			R\addNumber
+			F0 & L'utente può scegliere la piattaforma di messaggistica preferita tra Telegram e Mail 
 			%e Slack
 			& Interno UC3.1.3 \\
-			R7F0 & L'utente può disiscriversi a un topic & Interno UC3.2.1 \\
-			R8F0 & L'utente può modificare i giorni in cui è disponibile & Interno UC3.2.2  \\
-			R9F0 & L'utente può modificare la piattaforma di messaggistica & Interno UC3.2.3
+			R\addNumber
+			F0 & L'utente può disiscriversi a un topic & Interno UC3.2.1 \\
+			R\addNumber
+			F0 & L'utente può modificare i giorni in cui è disponibile & Interno UC3.2.2  \\
+			R\addNumber
+			F0 & L'utente può modificare la piattaforma di messaggistica & Interno UC3.2.3
 			\\\bottomrule
 		\end{paddedtablex}
 	
+	% Generazione automatica dei numeri 
+	\newcounter{vaQ} % valore
+	\newcommand{\decrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addQNumber}[0]{\thevaQ \decrQ} % Comando per generare
+	\addtocounter{vaQ}{0}
 	
 	%TODO: I test sono requisiti di qualità?
 	\subsection{Requisiti di qualità}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			R1Q1  & L'\gloss{indice di Gulpease} di ogni documento ha indice circa 55 & Interno \\
-			R2Q2 & Le applicazioni sviluppate devono rispettare (quasi tutti) i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
-			R3Q2 & È necessario fornire test unitari per ogni componente applicativa & Capitolato \\
-			R4Q2 & È necessario fornire test d'integrazione per ogni componente applicativa & Capitolato \\
-			R5Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
-			R6Q2 & È necessario presentare il bug reporting per ogni componente & Capitolato \\
-			R7Q2 & Deve essere redatta documentazione sulle scelte implementative effettuate & Capitolato \\
-			R8Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
-			R9Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle proprie motivazioni & Capitolato \\
-			R10Q2 & Tutte le norme inserite in \NdPv\ devono essere rispettate & Interno \\
-			R11Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettare & Interno \\
+			R\addQNumber
+			Q1  & L'\gloss{indice di Gulpease} di ogni documento ha indice circa 55 & Interno \\
+			R\addQNumber
+			Q2 & Le applicazioni sviluppate devono rispettare (quasi tutti) i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
+			R\addQNumber
+			Q2 & È necessario fornire test unitari per ogni componente applicativa & Capitolato \\
+			R\addQNumber
+			Q2 & È necessario fornire test d'integrazione per ogni componente applicativa & Capitolato \\
+			R\addQNumber
+			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			R\addQNumber
+			Q2 & È necessario presentare il bug reporting per ogni componente & Capitolato \\
+			R\addQNumber
+			Q2 & Deve essere redatta documentazione sulle scelte implementative effettuate & Capitolato \\
+			R\addQNumber
+			Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
+			R\addQNumber
+			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle proprie motivazioni & Capitolato \\
+			R\addQNumber
+			Q2 & Tutte le norme inserite in \NdPv\ devono essere rispettate & Interno \\
+			R\addQNumber
+			Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettare & Interno \\
 			
 			\\\bottomrule
 		\end{paddedtablex}
 	
+	% Generazione automatica dei numeri 
+	\newcounter{vaV} % valore
+	\newcommand{\decrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addVNumber}[0]{\thevaV \decrV} % Comando per generare
+	\addtocounter{vaV}{0}
 	
 	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			R1V2 & Le componenti Producer devono riuscire a recuperare le segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
-			R2V2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi nel giusto Topic & Capitolato \\
-			R3V2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
-			R4V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
-			R5V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
-			R6V2 & Nel sistema deve essere presente un Broker che instanzia e gestisce i Topic & Capitolato \\
-			R7V2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic più adeguati & Capitolato \\
-			R8V2 & Devono esserci due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\
-			R9V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
-			R10V2 & Devono esserci due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
-			R11V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
-			R12V0 & Come meccanismo di estensione per GitHub è possibile fare uso di \gloss{web hook} & Capitolato \\
-			R13V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio Java(8 o più), Python o Node.js & Capitolato \\
-			
-			%R14V
-			
-			R15V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
-			R16V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
-			R17V2 & Deve essere redatta documentazione su eventuali problemi riscontrati ancora aperti & Capitolato \\
-			R18V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato \\
+			R\addVNumber
+			V2 & Le componenti Producer devono riuscire a recuperare le segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
+			R\addVNumber
+			V2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi nel giusto Topic & Capitolato \\
+			R\addVNumber
+			V2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
+			R\addVNumber
+			V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
+			R\addVNumber
+			V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
+			R\addVNumber
+			V2 & Nel sistema deve essere presente un Broker che instanzia e gestisce i Topic & Capitolato \\
+			R\addVNumber
+			V2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic più adeguati & Capitolato \\
+			R\addVNumber
+			V2 & Devono esserci due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\
+			R\addVNumber
+			V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
+			R\addVNumber
+			V2 & Devono esserci due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
+			R\addVNumber
+			V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
+			R\addVNumber
+			V0 & Come meccanismo di estensione per GitHub è possibile fare uso di \gloss{web hook} & Capitolato \\
+			R\addVNumber
+			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio Java(8 o più), Python o Node.js & Capitolato \\
+			R\addVNumber
+			V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
+			R\addVNumber
+			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
+			R\addVNumber
+			V2 & Deve essere redatta documentazione su eventuali problemi riscontrati ancora aperti & Capitolato \\
+			R\addVNumber
+			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato \\
 			
 			\\\bottomrule
 		\end{paddedtablex}
@@ -120,20 +148,27 @@ La priorità è indicata con:
 			%R19V
 			
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			R20V2 & Le componenti Consumer devono essere in grado di recuperare i messaggi da un Topic & Capitolato \\ 
-			R21V2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
-			R22V2 & È necessario presentare codice sorgente versionato su repository pubblico, con una delle licenze OpenSource proposte, per ogni componente & Capitolato \\
-			
-			%R23V
-			
-			R24V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
-			R25V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
-			R26V2 & I file README delle componenti applicative devono contenere la documentazione delle API esposte dal servizio & Capitolato \\
-			R27V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
+			R\addVNumber
+			V2 & Le componenti Consumer devono essere in grado di recuperare i messaggi da un Topic & Capitolato \\ 
+			R\addVNumber
+			V2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
+			R\addVNumber
+			V2 & È necessario presentare codice sorgente versionato su repository pubblico, con una delle licenze OpenSource proposte, per ogni componente & Capitolato \\
+			R\addVNumber
+			V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
+			R\addVNumber
+			V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
+			R\addVNumber
+			V2 & I file README delle componenti applicative devono contenere la documentazione delle API esposte dal servizio & Capitolato \\
+			R\addVNumber
+			V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
 			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-			R28V2 & È necessario presentare un file README per il DockerFile & Capitolato \\
-			R29V2 & Il file README per il DockerFile deve contenere le istruzioni per l'avvio & Capitolato \\
-			R30V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
+			R\addVNumber
+			V2 & È necessario presentare un file README per il DockerFile & Capitolato \\
+			R\addVNumber
+			V2 & Il file README per il DockerFile deve contenere le istruzioni per l'avvio & Capitolato \\
+			R\addVNumber
+			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
 			
 			
 			\\\bottomrule
