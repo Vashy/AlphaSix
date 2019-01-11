@@ -133,7 +133,13 @@ Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una 
 		\paragraph*{Obiettivi}
 		
 		\begin{itemize}
-			\item \textbf{QPR008 Rispetto delle fasi del ciclo di vita}: il ciclo di vita di ogni documento deve essere rispettato in ogni sua fase e questo deve venir pubblicato secondo le scadenze stabilite;.
+			\item \textbf{QPR008 Rispetto delle fasi del ciclo di vita}: il ciclo di vita di ogni documento deve essere rispettato in ogni sua fase e questo deve venir pubblicato secondo le scadenze stabilite. Le sue fasi sono:
+			
+			\begin{itemize}
+				\item Redazione
+				\item Verifica
+				\item Approvazione
+			\end{itemize}
 		\end{itemize}
 
 	\subsubsection{PROC004 Verifica}
@@ -185,9 +191,11 @@ Ogni obiettivo di qualità è indicato con:
 		\textbf{Metrica} &
 		\textbf{Valore desiderato}\\\toprule
 		\rowcolor{white}
+
 		%TODO: cambiare parola programmazione
 		QPR001 Rispetto delle fasi dell'organigramma & MPR001 Varianza della programmazione & 0-2 giorni\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze date dall'organigramma possono possedere un ritardo massimo di due giorni, per le scadenza infatti viene considerato anche un tempo di \gloss{slack} per eventuali ritardi.} \\
+
 		\hline \rowcolor{white}
 		QPR002 Variazione del budget & MPR002 Varianza dei costi & \EUR{0-200}\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ogni ruolo nel team di sviluppo possiede una tariffa oraria. Può accadere che nel corso del progetto sia richiesto più lavoro di quello conteggiato nel preventivo, queste ore in più devono essere rendicontate.} \\
@@ -195,8 +203,8 @@ Ogni obiettivo di qualità è indicato con:
 		QPR003 Rispetto delle fasi del ciclo di vita & MPR003 Aderenza agli standard & Livello di maturità: 3 Valutazione attributi: L\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: dai sondaggi è emerso che la maggior parte delle aziende italiane che si sono adeguate allo standard ISO/IEC 15504 ha raggiunto un livello di maturità pari a 3. Il team di sviluppo si prefigge di raggiungere anch'esso un tale livello di maturità soddisfacendo i vari attributi di almeno il 75\% della loro interezza.}\\
 		\hline \rowcolor{white}
-		QPR004 Versionamento & MPR004 Frequenza commit nella repository & 5\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il frequente commit in una repository permette di tenere una miglior traccia delle modifiche e di accedere all'ultima versione del progetto a tutti i membri del team di sviluppo. \`E nel valore desiderato è indicato il numero minimo di commit da effettuare in un giorno.}\\
+		QPR004 Versionamento & MPR004 Frequenza commit nella repository & 25\\
+		\rowcolor{gray!15} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il frequente commit in una repository permette di tenere una miglior traccia delle modifiche e di accedere all'ultima versione del progetto a tutti i membri del team di sviluppo. Nel valore desiderato è indicato il numero minimo di commit da effettuare in media ogni settimana lavorativa durante il un macro periodo.}\\
 	\end{tabularx}}
 	\caption{Obiettivi di qualità per il PROC001}
 \end{table}

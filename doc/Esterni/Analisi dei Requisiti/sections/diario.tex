@@ -4,8 +4,18 @@
 
 \newcommand{\modifiche}
 {
+	\setcounter{vX}{1}%
+    \setcounter{vY}{0}%
+    \setcounter{vZ}{0}%
+	\addToDiary{Approvazione}{\Res}{Placeholder}{-}
+
+	\decrvX%
+	\setcounter{vY}{3}%
+	\setcounter{vZ}{0}%
+	\addToDiary{Verifica finale}{\Ver}{Placeholder}{-}
+
     % 0.3.Z
-    \setcounter{vY}{2}%
+    \decrvY%
 	\setcounter{vZ}{6}%
 
 	% \addToDiary{Abbozzato paragrafo Tecnologie}{\Ana}{\CV}{02-01-2019}

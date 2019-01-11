@@ -184,11 +184,13 @@
 
 
 % Generazione automatica dei numeri per le versioni
-\newcounter{vZ} % valore Z in X.Y.Z
+\newcounter{vX} % valore per X in X.Y.Z
 \newcounter{vY} % valore per Y in X.Y.Z
-\newcommand{\decrvZ}{\addtocounter{vZ}{-1}} % Comando per il decremento automatico del counter vZ
-\newcommand{\decrvY}{\addtocounter{vY}{-1}}
-\newcommand{\addToDiary}[4]{0.\thevY.\thevZ & #1 & #2 & #3 & #4\decrvZ\\} % Comando per generare una riga di diario delle modifiche (\addToDiary{desc}{ruolo}{nominativo}{data})
+\newcounter{vZ} % valore per Z in X.Y.Z
+\newcommand{\decrvX}{\addtocounter{vX}{-1}} % Comando per il decremento automatico del counter vZ
+\newcommand{\decrvY}{\addtocounter{vY}{-1}} % Comando per decrementare vY
+\newcommand{\decrvZ}{\addtocounter{vZ}{-1}} % Comando per decrementare vZ
+\newcommand{\addToDiary}[4]{\thevX.\thevY.\thevZ & #1 & #2 & #3 & #4\decrvZ\\} % Comando per generare una riga di diario delle modifiche (\addToDiary{desc}{ruolo}{nominativo}{data})
 
 % Colore righe grigie
 \newcommand{\tablegray}{gray!20}
