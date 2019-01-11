@@ -3,35 +3,36 @@
 	\subsection{Intento del prodotto}
     
     L'obiettivo del prodotto è di fornire uno strumento standard per la gestione delle notifiche generate da software utilizzati nella \gloss{CI/CD}.
-    Per ottenere questo verrà usato un pattern publisher/subscriber, di modo da contribuire alla scalabilità del sistema e ottenere una miglior suddivisione logica dei componenti.
+    Per ottenere questo verrà usato un \gloss{pattern Publisher / Subscriber}, di modo da contribuire alla scalabilità del sistema e ottenere una miglior suddivisione logica dei componenti.
 	
 	\subsection{Funzioni del prodotto}
 	
     Le funzioni offerte dal prodotto sono:
     \begin{itemize}
-		\item fornire ai software di CI/CD dei topic a cui è possibile iscriversi e inviare messaggi;
-		\item gestione dei topic tramite un \gloss{broker};
-        \item ricezione dei messaggi da parte di un \gloss{consumer} iscritto a un topic attraverso consumer come Slack,Telegram ed e-mail;
-        \item filtri aggiuntivi per la gestione dei messaggi, come il reindirizzamento verso una persona.
+		\item Fornire ai software di CI/CD dei topic a cui è possibile iscriversi e inviare messaggi.
+		\item Gestione dei topic tramite un \gloss{broker}.
+        \item Ricezione dei messaggi da parte di un \gloss{consumer} iscritto a un topic che invierà le notifiche alle piattaforme di messaggistica come Slack,Telegram ed e-mail.
+        \item Filtri aggiuntivi per la gestione dei messaggi, come il reindirizzamento verso una persona.
 	\end{itemize}
 
 	\subsection{Caratteristiche degli utenti}
     
     Gli utenti che useranno il prodotto saranno team di sviluppatori software che lavorano abitualmente usando gli strumenti per realizzare CI/CD.
-    Tramite il prodotto potranno configurare il proprio ambiente di sviluppo in modo da ottenere le notifiche in tempo reale direttamente sul proprio smartphone al termine di ogni fase principale del ciclo di sviluppo software.
+    Tramite il prodotto potranno configurare il proprio ambiente di sviluppo in modo da ottenere le notifiche in tempo reale direttamente sulle piattaforme di messaggistica selezionate per le segnalazioni sullo sviluppo del proprio progetto.
 	
-	\subsection{Vincoli del progetto}
-	
-		\subsubsection{Requisiti minimi}
-            \begin{itemize}
-                \item ogni componente del software rispetterà, per quanto applicabile, i fattori esposti nel documento \gloss{The Twelve-Factor App};
-                \item ogni componente sarà istanziabile in un container \gloss{docker};
-                \item vengono esposti \gloss{API Rest} ed eventuali altri protocolli dei componenti per l'uso dell'applicativo;
-                \item vengono rilasciati tutti i test necessari a garantire la qualità del software sviluppato.
-            \end{itemize}
-	
-		\subsubsection{Requisiti opzionali}
-		    \begin{itemize}
-                \item viene usato il linguaggio Python per lo sviluppo dei componenti applicativi;
-                \item viene usato Apache Kafka come broker.
-            \end{itemize}
+
+%	\subsection{Vincoli del progetto}
+%	
+%		\subsubsection{Requisiti minimi}
+%            \begin{itemize}
+%                \item Ogni componente del software rispetterà, per quanto applicabile, i fattori esposti nel documento \gloss{The Twelve-Factor App}.
+%                \item Ogni componente sarà istanziabile in un container \gloss{docker}.
+%                \item Vengono esposti \gloss{API Rest} ed eventuali altri protocolli dei componenti per l'uso dell'applicativo.
+%                \item vengono rilasciati tutti i test necessari a garantire la qualità del software sviluppato.
+%            \end{itemize}
+%	
+%		\subsubsection{Requisiti opzionali}
+%		    \begin{itemize}
+%                \item Viene usato il linguaggio Java, Python oppure Node.js per lo sviluppo dei componenti applicativi.
+%                \item Viene usato Apache Kafka come Broker.
+%            \end{itemize}
