@@ -77,27 +77,57 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\newcommand{\addQNumber}[0]{\thevaQ \decrQ} % Comando per generare
 	\addtocounter{vaQ}{0}
 	
-	%\caption{Tabella contenenti i requisiti di qualità.}
-	%TODO: I test sono requisiti di qualità?
-	%TODO: Tutte le norme scritte nel PdQ sono desiderabili? O obbligatori?
+	
 	\subsection{Requisiti di qualità}
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			R\addQNumber
-			Q1  & L'\gloss{indice di Gulpease} di ogni documento deve avere indice tra 50 e 60 & Interno \\
+			Q2 & Tutte le norme inserite in \NdPv\ devono essere rispettate & Interno \\
 			R\addQNumber
-			Q1 & I documenti non devono presentare errori ortografici & Interno \\
+			Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettare & Interno \\
+			%presi dal PdQ processi
 			R\addQNumber
-			Q1 & Non possono essere fatti più di 2 giorni di ritardo & Interno \\
+			Q1 & Non dovrebbero essere fatti più di 2 giorni di ritardo di chiusura di una issue & Interno \\
 			R\addQNumber
-			Q1 & Il costi previsti non devono eccedere di 200.... & Interno \\ 
+			Q1 & I costi previsti dalla pianificazione non dovrebbero variare più di \EUR{200} & Interno \\ 
+			R\addQNumber 
+			Q1 & Il livello di maturità dell'ISO/IEC 15504 che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al terzo & Interno \\
+			R\addQNumber
+			Q1 & La frequenza minima dei commit raggiunti in una settimana dovrebbero essere almeno pari a 25 & Interno \\
+			R\addQNumber
+			Q2 & I requisiti obbligatori devono essere tutti completamente soddisfatti alla terminazione del progetto & Interno \\
+			R\addQNumber
+			Q1 & \gruppo\ si prefigge di soddisfare almeno due requisiti desiderabili & Interno \\
+			R\addQNumber
+			Q1 & Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto & Interno \\
+			R\addQNumber
+			Q1 & Ogni documento dovrebbe attraversare tutte le fasi previste dal suo ciclo di vita & Interno \\
+			R\addQNumber
+			Q1 & I documenti dovrebbero essere controllati ogni 5 modifiche effettuate & Interno \\
+			R\addQNumber
+			Q1 & La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto & Interno \\
+			%presi dal PdQ prodotti
+			R\addQNumber
+			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe avere indice tra 50 e 60 & Interno \\
+			R\addQNumber
+			Q1 & I documenti non dovrebbero presentare errori ortografici & Interno \\   
+			R\addQNumber
+			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
+			%presi da capitolato
 			R\addQNumber
 			Q2 & Le applicazioni sviluppate devono rispettare (quasi tutti) i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
 			R\addQNumber
 			Q2 & È necessario fornire test unitari per ogni componente applicativa & Capitolato \\
 			R\addQNumber
 			Q2 & È necessario fornire test d'integrazione per ogni componente applicativa & Capitolato \\
+					
+			\\\bottomrule
+		\end{paddedtablex}
+	
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+			\toprule
 			R\addQNumber
 			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
 			R\addQNumber
@@ -107,14 +137,10 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addQNumber
 			Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
 			R\addQNumber
-			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle proprie motivazioni & Capitolato \\
-			R\addQNumber
-			Q2 & Tutte le norme inserite in \NdPv\ devono essere rispettate & Interno \\
-			R\addQNumber
-			Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettare & Interno \\
-			
+			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle proprie motivazioni & Capitolato \\	
 			\\\bottomrule
 		\end{paddedtablex}
+	
 	
 	% Generazione automatica dei numeri 
 	\newcounter{vaV} % valore
@@ -128,7 +154,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			R\addVNumber
-			V2 & Le componenti Producer devono riuscire a recuperare le segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
+			V2 & Le componenti Producer devono riuscire a recuperare delle segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
 			R\addVNumber
 			V2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi nel giusto Topic & Capitolato \\
 			R\addVNumber
@@ -142,11 +168,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic più adeguati & Capitolato \\
 			R\addVNumber
-			V2 & Devono esserci due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\
+			V2 & Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\
 			R\addVNumber
 			V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
 			R\addVNumber
-			V2 & Devono esserci due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
+			V2 & Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
 			R\addVNumber
 			V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
 			R\addVNumber
@@ -158,14 +184,12 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
 			R\addVNumber
-			V2 & Deve essere redatta documentazione su eventuali problemi riscontrati ancora aperti & Capitolato \\
+			V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati ancora aperti & Capitolato \\
 			R\addVNumber
 			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato \\
-			
 			\\\bottomrule
 		\end{paddedtablex}
 			
-			%R19V
 			
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			R\addVNumber
