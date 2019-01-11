@@ -115,10 +115,13 @@ testo
 
 		\item \textbf{Titolo}: il Consumer interroga il Broker.
 		\item \textbf{Attori primari}: Consumer.
-		\item \textbf{Descrizione}: il Consumer chiede al Broker per acquisire il messaggio... il sistema di riferimento qui è Broker ed è interno al sistema Butterfly.
-		\item \textbf{Precondizione}:
-		\item \textbf{Postcondizione}:
+		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dall'utente finale. Il sistema di riferimento qui è Broker ed è interno al sistema Butterfly.
+		\item \textbf{Precondizione}: il Broker ha un messaggio pronto ad essere inoltrato da un Consumer verso un client delle tecnologie con cui il sistema si interfaccia.
+		\item \textbf{Postcondizione}: dopo aver recuperato il messaggio dal Broker il Consumer lo inoltra al client della tecnologia correlata in attesa con lo scopo l'utente finale lo legga.
 		\item \textbf{Scenario principale}: 
+			\begin{enumerate}
+				\item Il Consumer richiede la segnalazione da inviare al client utilizzato dall'utente finale
+			\end{enumerate}
 	\end{itemize}
 
 \stepcounter{uccount}
