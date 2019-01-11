@@ -1,7 +1,19 @@
 \newcommand{\paginauno}
 {
+
+    \setcounter{vX}{1}%
+    \setcounter{vY}{0}%
+    \setcounter{vZ}{0}%
+    \addToDiary{Approvazione}{\Res}{Placeholder}{-}
+
+    \decrvX%
+    \setcounter{vY}{4}%
+    \setcounter{vZ}{0}%
+
+    \addToDiary{Verifica finale}{\Ver}{Placeholder}{-}
+
     % 0.3.Z
-    \setcounter{vY}{3}%
+    \decrvY%
     \setcounter{vZ}{4}%
 
 	\addToDiary{Aggiunti link alla documentazione nella sezione Formazione, completato paragrafo}{\Ver}{\LC}{06-01-2018}
@@ -41,11 +53,11 @@
     \decrvY%
 
     \addToDiary{Completata sezione sui processi di fornitura}{\Amm}{\LC}{28-11-2018}
-    \addToDiary{Aggiunti paragrafi ``Strumenti di supporto'' e ``Tabelle''}{\Ver}{\TG}{27-11-2018}
 }
 
 \newcommand{\paginadue}
 {
+    \addToDiary{Aggiunti paragrafi ``Strumenti di supporto'' e ``Tabelle''}{\Ver}{\TG}{27-11-2018}
     \addToDiary{Migliorata sezione sull'ambiente di sviluppo}{\Amm}{\LC}{27-11-2018}
     \addToDiary{Completata sezione design contenente stile del testo, elenchi puntati, figure, ecc}{\Amm}{\LC}{26-11-2018}
     \addToDiary{Completata sezione sulla suddivisione dei documenti}{\Amm}{\LC}{26-11-2018}
