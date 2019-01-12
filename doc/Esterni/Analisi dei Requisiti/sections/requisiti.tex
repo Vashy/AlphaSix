@@ -21,10 +21,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{itemize}
 	\end{itemize}
 	
-	Esempio: \texttt{R02Q1} indica il secondo requisito di qualità ed è desiderabile.
+	Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.
 	
-%inserire il fatto che una persona può aggiungere il proprio nickname o altro da interfaccia, come requisito opzionale	
-	
+%inserire il fatto che una persona può aggiungere il proprio nickname o altro da interfaccia, come requisito opzionale	...
 
 % Generazione automatica dei numeri 
 \newcounter{vaZ} % valore
@@ -34,6 +33,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 %TODO: mettere caption alle tabelle
 	\subsection{Requisiti di funzionalità}
+	
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%da capitolato
@@ -51,7 +51,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addNumber
 			F2 & Redmine e GitLab deve essere in grado di generare delle segnalazioni da inviare ai Producer & Interno UC1.1 \\
 			R\addNumber
-			F0 & Se avviene un errore nella trasmissione di una segnalazione, ne vengono salvate le informazioni relative & Interno UC1.2 \\
+			F0 & Se avviene un errore nella trasmissione di una segnalazione, viene creato un log in cui vengono salvate le informazioni relative all'errore & Interno UC1.2 \\
 			R\addNumber
 			F2 & Il Producer deve essere in grado di inviare delle segnalazioni al Broker & Interno UC2 \\
 			R\addNumber
@@ -71,16 +71,21 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addNumber
 			F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
 			R\addNumber
-			F0 & L'utente può rimuovere i giorni in cui ha dato la sua irreperibilità & Interno UC6.2.2 \\
+			F0 & L'utente può rimuovere i giorni in cui ha segnato di non essere reperibile & Interno UC6.2.2 \\
 			R\addNumber
 			F0 & L'utente può scegliere la piattaforma di messaggistica in cui ricevere le notifiche tra Telegram e Mail 
 			%e Slack
 			& Interno UC6.1.3 \\
+		\end{paddedtablex}	
+			
+	\begin{table}[H]		
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}	
 			R\addNumber
 			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica & Interno UC6.2.3  \\
 			\\\bottomrule
 		\end{paddedtablex}
-		
+		\caption{Elenco dei requisiti di funzionalità.}
+	\end{table}
 		
 	
 	% Generazione automatica dei numeri 
@@ -89,43 +94,42 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\newcommand{\addQNumber}[0]{\thevaQ \decrQ} % Comando per generare
 	\addtocounter{vaQ}{1}
 	
-	
+	%NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
 	\subsection{Requisiti di qualità}
+	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			R\addQNumber
 			Q2 & Tutte le norme inserite in \NdPv\ devono essere rispettate & Interno \\
 			R\addQNumber
-			Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettare & Interno \\
+			Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettati & Interno \\
 			%presi dal PdQ processi
-			R\addQNumber
-			Q1 & Non dovrebbero essere fatti più di 2 giorni di ritardo di chiusura di una issue & Interno \\
-			R\addQNumber
-			Q1 & I costi previsti dalla pianificazione non dovrebbero variare più di \EUR{200} & Interno \\ 
-			R\addQNumber 
-			Q1 & Il livello di maturità dell'ISO/IEC 15504 che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al terzo & Interno \\
-			R\addQNumber
-			Q1 & La frequenza minima dei commit raggiunti in una settimana dovrebbero essere almeno pari a 25 & Interno \\
-			R\addQNumber
-			Q2 & I requisiti obbligatori devono essere tutti completamente soddisfatti alla terminazione del progetto & Interno \\
-			R\addQNumber
-			Q1 & \gruppo\ si prefigge di soddisfare almeno due requisiti desiderabili & Interno \\
-			R\addQNumber
-			Q1 & Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto & Interno \\
-			R\addQNumber
-			Q1 & Ogni documento dovrebbe attraversare tutte le fasi previste dal suo ciclo di vita & Interno \\
-			R\addQNumber
-			Q1 & I documenti dovrebbero essere controllati ogni 5 modifiche effettuate & Interno \\
-			R\addQNumber
-			Q1 & La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto & Interno \\
+%			R\addQNumber
+%			Q1 & Non dovrebbero essere fatti più di 2 giorni di ritardo di chiusura di una issue & Interno \\
+%			R\addQNumber
+%			Q1 & I costi previsti dalla pianificazione non dovrebbero variare più di \EUR{200} & Interno \\ 
+%			R\addQNumber 
+%			Q1 & Il livello di maturità dell'ISO/IEC 15504 che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al terzo & Interno \\
+%			R\addQNumber
+%			Q1 & La frequenza minima dei commit raggiunti in una settimana dovrebbero essere almeno pari a 25 & Interno \\
+%			R\addQNumber
+%			Q2 & I requisiti obbligatori devono essere tutti completamente soddisfatti alla terminazione del progetto & Interno \\
+%			R\addQNumber
+%			Q1 & \gruppo\ si prefigge di soddisfare almeno due requisiti desiderabili & Interno \\
+%			R\addQNumber
+%			Q1 & Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto & Interno \\
+%			R\addQNumber
+%			Q1 & Ogni documento dovrebbe attraversare tutte le fasi previste dal suo ciclo di vita & Interno \\
+%			R\addQNumber
+%			Q1 & I documenti dovrebbero essere controllati ogni 5 modifiche effettuate & Interno \\
+%			R\addQNumber
+%			Q1 & La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto & Interno \\
 			%presi dal PdQ prodotti
 			R\addQNumber
-			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe avere indice tra 50 e 60 & Interno \\
-			R\addQNumber
-			Q1 & I documenti non dovrebbero presentare errori ortografici & Interno \\   
-			R\addQNumber
-			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
+			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe avere indice tra 50 e 60 & Interno \\  
+%			R\addQNumber
+%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
 			%presi da capitolato
 			R\addQNumber
 			Q2 & Le applicazioni sviluppate devono rispettare (quasi tutti) i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
@@ -133,25 +137,19 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q2 & È necessario fornire test unitari per ogni componente applicativa & Capitolato \\
 			R\addQNumber
 			Q2 & È necessario fornire test d'integrazione per ogni componente applicativa & Capitolato \\
-					
-			\\\bottomrule
-		\end{paddedtablex}
-	
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			%\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
-			%\toprule
 			R\addQNumber
 			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
 			R\addQNumber
 			Q2 & È necessario presentare il bug reporting per ogni componente & Capitolato \\
 			R\addQNumber
-			Q2 & Deve essere redatta documentazione sulle scelte implementative effettuate & Capitolato \\
-			R\addQNumber
 			Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
 			R\addQNumber
-			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle proprie motivazioni & Capitolato \\	
+			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\	
 			\\\bottomrule
 		\end{paddedtablex}
+		\caption{Elenco dei requisiti di qualità.}
+	\end{table}
+		
 	
 	
 	% Generazione automatica dei numeri 
@@ -162,6 +160,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	
 	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
+	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
@@ -188,14 +187,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
 			R\addVNumber
-			V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati ancora aperti & Capitolato \\
+			V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
 			R\addVNumber
 			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato \\
-			\\\bottomrule
-		\end{paddedtablex}
-			
-			
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			R\addVNumber
 			V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
 			R\addVNumber
@@ -210,23 +204,92 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V2 & Il file README per il DockerFile deve contenere le istruzioni per l'avvio & Capitolato \\
 			R\addVNumber
-			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\		
+			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
 			\\\bottomrule
 		\end{paddedtablex}
-	
-			
+		\caption{Elenco dei requisiti di vincolo.}
+	\end{table}	
+		
+					
 	
 	\subsection{Tracciamento}
 	
 		\subsubsection{Tracciamento fonti-requisiti}
-		
-		\begin{paddedtablex}[1.7]{\textwidth}{XX}
-			\textbf{Fonte} & \textbf{Requisito} \\\toprule
-			Interno & R1F0 \\
-			
-			\\\bottomrule
-		\end{paddedtablex}
-		
+		%\begin{table}[H]
+			%\begin{tabular}%[1.7]{\textwidth}{XX}
+			\begin{oldtabular}{ll}
+				\textbf{Fonte} & \textbf{Requisito} \\%\toprule
+				\multirow{30}{*}{Capitolato} & R1F2 \\
+				 & R2F2 \\
+				 & R3F2 \\
+				 & R4F2 \\ 
+				 & R5F2 \\
+				 & R4Q2 \\
+				 & R5Q2 \\
+				 & R6Q2 \\
+				 & R7Q2 \\
+				 & R8Q2 \\
+				 & R9Q2 \\
+				 & R10Q2 \\
+				 & R1V2 \\
+				 & R2V2 \\
+				 & R3V0 \\
+				 & R4V2 \\
+				 & R5V0 \\
+				 & R6V0 \\
+				 & R7V1 \\
+				 & R8V1 \\
+				 & R9V2 \\
+				 & R10V2 \\
+				 & R11V1 \\
+				 & R12V2 \\
+				 & R13V2 \\
+				 & R14V2 \\
+				 & R15V2 \\
+				 & R16V2 \\
+				 & R17V2 \\
+				 & R18V2 \\ \hline
+				\multirow{17}{*}{Interno} & R6F2 \\
+				 & R7F0 \\
+				 & R8F2 \\
+				 & R9F2 \\
+				 & R10F0 \\
+				 & R11F0 \\
+				 & R12F0 \\
+				 & R13F0 \\
+				 & R14F0 \\
+				 & R15F0 \\
+				 & R16F0 \\
+				 & R17F0 \\
+				 & R18F0 \\
+				 & R19F0 \\
+				 & R1Q2 \\
+				 & R2Q2 \\
+				 & R3Q1 \\
+			  \end{oldtabular}
+		  
+			\begin{table}[H]	 
+			\begin{oldtabular}{ll}	 
+				Verbale... & R4Q2 \\
+				UC1.1 & R6F2 \\
+				UC1.2 & R7F0 \\
+				UC2 & R8F2 \\
+				UC3 & R9F2 \\
+				UC4 & R10F0 \\
+				UC5.1 & R11F0 \\
+				UC5.1.1 & R12F0 \\
+				UC5.2 & R13F0 \\
+				UC6.1.1 & R14F0 \\
+				UC6.2.1 & R15F0 \\
+				UC6.1.2 & R16F0 \\
+				UC6.2.2 & R17F0 \\
+				UC6.1.3 & R18F0 \\
+				UC6.2.3 & R19F0 \\
+				%\\\bottomrule
+			\end{oldtabular}
+			\caption{Elenco di fonti-requisiti.}
+		\end{table}	
+%		
 		
 \newcounter{V} % valore
 \newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
@@ -237,11 +300,17 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 \newcommand{\deVv}{\addtocounter{Vv}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addVC}[0]{\theVv \deVv} % Comando per generare
 \addtocounter{Vv}{1}		
+
+\newcounter{X} % valore
+\newcommand{\deX}{\addtocounter{X}{+1}} % Comando per l'aumento automatico del counter vaZ
+\newcommand{\addX}[0]{\theX \deX} % Comando per generare
+\addtocounter{X}{1}	
 		
 		\subsubsection{Tracciamento requisiti-fonte}
 		
 		\begin{paddedtablex}[1.7]{\textwidth}{XX}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
+			%R di F
 			R\addC
 			F2 & Capitolato \\
 			R\addC
@@ -249,7 +318,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addC
 			F2 & Capitolato \\
 			R\addC
-			F2 & Capitola \\
+			F2 & Capitolato \\
 			R\addC
 			F2 & Capitolato \\
 			R\addC
@@ -280,12 +349,74 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			F0 & Interno UC6.1.3 \\
 			R\addC
 			F0 & Interno UC6.2.3 \\
-			%R\addVC
+			%R di Q
+			R\addVC
+			Q2 & Interno \\
+			R\addVC
+			Q2 & Interno \\
+			R\addVC
+			Q1 & Interno \\
+			R\addVC
+			Q2 & Capitolato Verbale .... \\
+			R\addVC
+			Q2 & Capitolato \\
+			R\addVC
+			Q2 & Capitolato \\
+			R\addVC
+			Q2 & Capitolato \\
+			R\addVC
+			Q2 & Capitolato \\
+			R\addVC
+			Q2 & Capitolato \\
+			R\addVC
+			Q2 & Capitolato \\
+			%\\\bottomrule
+		\end{paddedtablex}
 			
-			
+		\begin{table}[H]	
+		\begin{paddedtablex}[1.7]{\textwidth}{XX}
+			%R di V
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V0 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V0 & Capitolato \\
+			R\addX
+			V0 & Capitolato \\
+			R\addX
+			V1 & Capitolato \\
+			R\addX
+			V1 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V1 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
 			
 			\\\bottomrule
 		\end{paddedtablex}
+		\caption{Elenco di requisiti-fonti.}
+	\end{table}		
 		
 		
 		
@@ -293,9 +424,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	
 		\begin{paddedtablex}[1.7]{\textwidth}{XXXX}
 			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
-			Di funzionalità & 0 & 0 & 0 \\
-			Di qualità & 0 & 0 & 0 \\
-			Di vincolo & 0 & 0 & 0 			
+			Di funzionalità & 9 & 0 & 10 \\
+			Di qualità & 9 & 1 & 0 \\
+			Di vincolo & 12 & 3 & 3 			
 			\\\bottomrule
 		\end{paddedtablex}
 		
