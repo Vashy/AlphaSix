@@ -21,7 +21,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{itemize}
 	\end{itemize}
 	
+
 	Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.
+
 	
 %inserire il fatto che una persona può aggiungere il proprio nickname o altro da interfaccia, come requisito opzionale	...
 
@@ -40,16 +42,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addNumber 
 			F2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
 			R\addNumber
-			F2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi nel giusto Topic & Capitolato \\
+			F2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti & Capitolato \\
 			R\addNumber
 			F2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
 			R\addNumber
-			F2 & Nel sistema deve essere presente un Broker che istanzia e gestisce i Topic & Capitolato \\
+			F2 & Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic & Capitolato \\
 			R\addNumber
-			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic più adeguati & Capitolato \\
+			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti & Capitolato \\
 			%da casi d'uso
 			R\addNumber
-			F2 & Redmine e GitLab deve essere in grado di generare delle segnalazioni da inviare ai Producer & Interno UC1.1 \\
+			F2 & Redmine e GitLab devono essere in grado di generare delle segnalazioni da inviare ai Producer & Interno UC1.1 \\
 			R\addNumber
 			F0 & Se avviene un errore nella trasmissione di una segnalazione, viene creato un log in cui vengono salvate le informazioni relative all'errore & Interno UC1.2 \\
 			R\addNumber
@@ -57,23 +59,23 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addNumber
 			F2 & Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio & Interno UC3 \\
 			R\addNumber
-			F2 & I Consumer devono essere in grado di inviare delle segnalazioni al server mail e Telegram & Interno UC4 \\
+			F2 & I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram & Interno UC4 \\
 			R\addNumber
 			F0 & L'utente può eseguire l'accesso al gestore personale & Interno UC5.1 \\
 			R\addNumber
-			F0 & L'utente può inserire il proprio username che lo identifica all'interno del sistema & Interno UC5.1.1 \\
+			F0 & L'utente può inserire il proprio username che lo identifica all'interno di \progetto & Interno UC5.1.1 \\
 			R\addNumber
-			F0 & Il sistema fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
+			F0 & \progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
 			R\addNumber
-			F0 & L'utente può iscriversi a un topic & Interno UC6.1.1	\\
+			F0 & L'utente può iscriversi a un Topic & Interno UC6.1.1	\\
 			R\addNumber
-			F0 & L'utente può disiscriversi a un topic & Interno UC6.2.1 \\
+			F0 & L'utente può disiscriversi a un Topic & Interno UC6.2.1 \\
 			R\addNumber
 			F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
 			R\addNumber
-			F0 & L'utente può rimuovere i giorni in cui ha segnato di non essere reperibile & Interno UC6.2.2 \\
+			F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\
 			R\addNumber
-			F0 & L'utente può scegliere la piattaforma di messaggistica in cui ricevere le notifiche tra Telegram e Mail 
+			F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram e e-mail, in cui ricevere le notifiche 
 			%e Slack
 			& Interno UC6.1.3 \\
 		\end{paddedtablex}	
@@ -81,8 +83,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{table}[H]		
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}	
 			R\addNumber
-			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica & Interno UC6.2.3  \\
-			\\\bottomrule
+			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3  \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità.}
 	\end{table}
@@ -96,12 +97,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	
 	%NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
 	\subsection{Requisiti di qualità}
+	
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			R\addQNumber
-			Q2 & Tutte le norme inserite in \NdPv\ devono essere rispettate & Interno \\
+			Q2 & Tutte le norme inserite nelle \NdP\ devono essere rispettate & Interno \\
 			R\addQNumber
 			Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettati & Interno \\
 			%presi dal PdQ processi
@@ -132,11 +134,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 %			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
 			%presi da capitolato
 			R\addQNumber
-			Q2 & Le applicazioni sviluppate devono rispettare (quasi tutti) i fattori trattati in \gloss{The Twelve-Factor App} & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
+			Q2 & Le applicazioni sviluppate devono rispettare i fattori trattati in \gloss{The Twelve-Factor App} segnati nel \PdQd & Capitolato Verbale....	\\ %TODO:inserire verbale in cui ci siamo trovati con Imola
 			R\addQNumber
-			Q2 & È necessario fornire test unitari per ogni componente applicativa & Capitolato \\
+			Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
 			R\addQNumber
-			Q2 & È necessario fornire test d'integrazione per ogni componente applicativa & Capitolato \\
+			Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
 			R\addQNumber
 			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
 			R\addQNumber
@@ -146,6 +148,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addQNumber
 			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\	
 			\\\bottomrule
+
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità.}
 	\end{table}
@@ -160,8 +163,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	
 	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
-	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+	
+   	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			%R\addVNumber
@@ -179,9 +183,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
 			R\addVNumber
-			V0 & Come meccanismo di estensione per GitHub è possibile fare uso di \gloss{web hook} & Capitolato \\
+			V0 & Come meccanismo di estensione per GitHub è possibile fare uso di \gloss{webhooks} & Capitolato \\
 			R\addVNumber
-			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio Java(8 o più), Python o Node.js & Capitolato \\
+			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio Java 8 o una versione più recente, Python o Node.js & Capitolato \\
 			R\addVNumber
 			V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
 			R\addVNumber
@@ -189,7 +193,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
 			R\addVNumber
-			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato \\
+			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato\\
 			R\addVNumber
 			V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
 			R\addVNumber
@@ -206,6 +210,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
 			\\\bottomrule
+
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo.}
 	\end{table}	
@@ -289,7 +294,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\end{oldtabular}
 			\caption{Elenco di fonti-requisiti.}
 		\end{table}	
-%		
+
 		
 \newcounter{V} % valore
 \newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
@@ -413,7 +418,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addX
 			V2 & Capitolato \\
 			
-			\\\bottomrule
+			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco di requisiti-fonti.}
 	\end{table}		

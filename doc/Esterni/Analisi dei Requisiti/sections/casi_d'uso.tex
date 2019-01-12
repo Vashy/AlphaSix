@@ -6,9 +6,12 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	
 	\subsection{Attori}
 	\begin{itemize}
-		\item Redmine/GitLab (Producer)
-		\item Utente, il quale interagisce con il gestore personale
+		\item Redmine/GitLab
+		\item Producer
+		\item Utente non acceduto
+		\item Utente (acceduto), il quale interagisce col gestore personale
 		\item Consumer
+		\item Telegram/e-mail
 	\end{itemize}
 	
 	\subsection{Elenco casi d'uso}
@@ -122,28 +125,28 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Postcondizione}: il messaggio è stato recuperato dal Broker. Dopo il Consumer lo può inoltrare al client della tecnologia correlata in attesa con lo scopo l'utente finale lo legga.
 		\item \textbf{Scenario principale}: 
 			\begin{enumerate}
-				\item Il Consumer richiede la segnalazione da inviare al client utilizzato dall'utente finale
+				\item Il Consumer richiede la segnalazione da inviare al client utilizzato dall'utente finale.
 			\end{enumerate}
 	\end{itemize}
 
 \stepcounter{uccount}
-\subsubsection{UC\theuccount\ - Telegram/mail riceve un messaggio dal Consumer}
+\subsubsection{UC\theuccount\ - Telegram/e-mail riceve un messaggio dal Consumer}
 	\begin{figure}[H]
 		\centering
-			\includegraphics[width=\columnwidth]{img/UC4.png}\\
-		\caption{UC\theuccount\ - Telegram/mail riceve un messaggio dal Consumer}
+			\includegraphics[width=0.7\columnwidth]{img/UC4.png}\\
+		\caption{UC\theuccount\ - Telegram/e-mail riceve un messaggio dal Consumer}
 	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
-		\item \textbf{Titolo}: Telegram/mail riceve un messaggio dal Consumer.
-		\item \textbf{Attori}: Telegram/server mail.
+		\item \textbf{Titolo}: Telegram/e-mail riceve un messaggio dal Consumer.
+		\item \textbf{Attori}: Telegram/server e-mail.
 		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema Butterfly.
-		Sebbene questo caso d'uso non sia del tutto corretto perchè l'attore Telegram/mail è un attore passivo, che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/mail". Ma scrivere un caso d'uso in tal modo sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/mail. Cosa non possibile dato che Telegram/mail è esterno a Butterfly e quindi non può essere considerato un suo sottosistema.
-		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server email in seguito a un'interrogazione del broker.
-		\item \textbf{Postcondizione}: Telegram/server mail riceve il messaggio
+		Sebbene questo caso d'uso non sia del tutto corretto perché l'attore Telegram/e-mail è un attore passivo che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail". Ma scrivere un caso d'uso in tal modo sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/e-mail. Cosa non possibile dato che Telegram/mail è esterno a \progetto e quindi non può essere considerato un suo sottosistema.
+		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server e-mail in seguito a un'interrogazione del Broker.
+		\item \textbf{Postcondizione}: Telegram/server e-mail riceve il messaggio.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
-			\item La ricezione del messaggio va a buon fine
+			\item La ricezione del messaggio va a buon fine.
 		\end{enumerate} 
 	\end{itemize}
 
@@ -157,13 +160,16 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 			\caption{UC\theuccount\ - Accesso}
 		\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC5
-		\item \textbf{Titolo}: accesso
-		\item \textbf{Attori primari}: utente non acceduto
-		\item \textbf{Descrizione}: l'utente richiede di accedere al sistema attraverso un form dove inserisce username e password
-		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto
-		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore come utente acceduto
-		\item \textbf{Scenario Principale}: l'utente non ancora riconosciuto dal sistema effettua l'accesso.
+		\item \textbf{Codice}: UC5.
+		\item \textbf{Titolo}: accesso.
+		\item \textbf{Attori primari}: utente non acceduto.
+		\item \textbf{Descrizione}: l'utente richiede di accedere al sistema attraverso un form dove inserisce l'username.
+		\item \textbf{Precondizione}: il sistema considera l’utilizzatore di esso come un utente non acceduto.
+		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore di esso come utente acceduto.
+		\item \textbf{Scenario Principale}:
+		\begin{enumerate}
+			\item L'utente non ancora riconosciuto dal sistema effettua l'accesso inserendo il proprio username.
+		\end{enumerate}
 	\end{itemize}
 	
 	\paragraph{UC\theuccount.1 - Accesso dell'utente nel sistema}
@@ -173,63 +179,59 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 			\caption{UC\theuccount.1 - Accesso dell'utente nel sistema}
 		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: UC\theuccount.1
-			\item \textbf{Titolo}: accesso dell'utente nel sistema
-			\item \textbf{Attori}: utente non acceduto
-			\item \textbf{Descrizione}: l'utente attende l'autenticazione da parte del sistema
-			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non autenticato
-			\item \textbf{Postcondizione}: il sistema riconosce l'utente autenticato con successo
-			\item \textbf{Scenario Principale}: l’utente non ancora riconosciuto dal sistema richiede l'autenticazione
+			\item \textbf{Codice}: UC\theuccount.1.
+			\item \textbf{Titolo}: accesso dell'utente nel sistema.
+			\item \textbf{Attori}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente attende l'autenticazione da parte del sistema.
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non autenticato.
+			\item \textbf{Postcondizione}: il sistema riconosce l'utente autenticato con successo.
+			\item \textbf{Scenario Principale}:
+			\begin{enumerate}
+				\item L’utente non ancora riconosciuto dal sistema richiede l'autenticazione attraverso l'inserimento dell'username.
+			\end{enumerate}
 			\item \textbf{Estensioni}:
 			\begin{enumerate}
-				\item Nel caso in cui l'accesso non dovrebbe andare a buon fine viene visualizzato un errore avvisando l'utente [UC5.2].
+				\item L'accesso non va a buon fine e viene visualizzato un errore avvisando l'utente [UC5.2].
 			\end{enumerate}
 	\end{itemize}
 
 		\subparagraph{UC\theuccount.1.1 - Inserimento username}
 			\begin{itemize}
 				\item \textbf{Codice}: UC\theuccount.1.1
-				\item \textbf{Titolo}: inserimento username
-				\item \textbf{Attori}: utente non acceduto
-				\item \textbf{Descrizione}: l'utente inserisce l'username
-				\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento dell'username
-				\item \textbf{Postcondizione}: l'utente ha inserito l'username desiderato
-				\item \textbf{Scenario Principale}: l'utente inserisce l'username per autenticarsi.
+				\item \textbf{Titolo}: inserimento username.
+				\item \textbf{Attori}: utente non acceduto.
+				\item \textbf{Descrizione}: l'utente inserisce l'username.
+				\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento dell'username.
+				\item \textbf{Postcondizione}: l'utente ha inserito l'username desiderato.
+				\item \textbf{Scenario Principale}:
+				\begin{enumerate}
+					\item L'utente inserisce l'username per autenticarsi.
+				\end{enumerate}
 			\end{itemize}
 		
-		\subparagraph{UC\theuccount.1.2 - Inserimento password}
-			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount.1.2	
-				\item \textbf{Titolo}: inserimento password
-				\item \textbf{Attori}: utente non acceduto
-				\item \textbf{Descrizione}: l'utente inserisce la password
-				\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento della password
-				\item \textbf{Postcondizione}: l'utente ha inserito la password desiderata
-				\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi.
-			\end{itemize}
-		
-%Da aggiungere al limite più avanti
-		
-%		\subparagraph{UC5.1.2}
+%		\subparagraph{UC\theuccount.1.2 - Inserimento password}
 %			\begin{itemize}
-%			\item \textbf{Codice}: UC6.1.2.
-%			\item \textbf{Titolo}: inserimento password
-%			\item \textbf{Attori}: utente non autenticato
-%			\item \textbf{Descrizione}: l'utente inserisce la password
-%			\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento della password
-%			\item \textbf{Postcondizione}: l'utente ha inserito la password desiderata
-%			\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi
-%		\end{itemize}
+%				\item \textbf{Codice}: UC\theuccount.1.2	
+%				\item \textbf{Titolo}: inserimento password
+%				\item \textbf{Attori}: utente non acceduto
+%				\item \textbf{Descrizione}: l'utente inserisce la password
+%				\item \textbf{Precondizione}: il sistema offre l'interfaccia grafica adatta all'inserimento della password
+%				\item \textbf{Postcondizione}: l'utente ha inserito la password desiderata
+%				\item \textbf{Scenario Principale}: l'utente inserisce la password per autenticarsi.
+%			\end{itemize}
 	
 	\paragraph{UC\theuccount.2 - Visualizzazione errore autenticazione fallita}
 		\begin{itemize}
-			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita
-			\item \textbf{Attori}: utente non autenticato
-			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username o password errate
+			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita.
+			\item \textbf{Attori}: utente non ecceduto.
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username errato.
 			\item \textbf{Precondizione}: il sistema riceve una richiesta di accesso da parte di un utente che
-			fornisce username o password sbagliate
-			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore
-			\item \textbf{Scenario Principale}: l'utente visualizza il messaggio d'errore.
+			fornisce un username errato. 
+			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore.
+			\item \textbf{Scenario Principale}:
+			\begin{enumerate}
+				\item L'utente visualizza il messaggio d'errore.
+			\end{enumerate}
 		\end{itemize}
 
 
@@ -243,11 +245,14 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: modifica delle preferenze.
-		\item \textbf{Attori}: Utente.
+		\item \textbf{Attori}: utente.
 		\item \textbf{Descrizione}: attraverso un'interfaccia l'utente può modificare i vari parametri per configurare l'applicazione per le proprie esigenze. Il sistema di riferimento considerato è tutto \progetto.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema.
 		\item \textbf{Postcondizione}: l'utente effettua zero o più modifiche nella configurazione personale dell'applicazione. 
-		\item \textbf{Scenario Principale}: L'utente ha la possibilità di portare delle modifiche alle sue preferenze all'interno dell'applicazione \progetto.
+		\item \textbf{Scenario Principale}:
+		\begin{enumerate}
+			\item L'utente apporta delle modifiche alle sue preferenze all'interno dell'applicazione \progetto.
+		\end{enumerate}
 	\end{itemize}
 
 
@@ -261,20 +266,25 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.
 		\item \textbf{Titolo}: aggiunta preferenze.
-		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra topic, giorni di calendario e piattaforme di messaggistica.
+		\item \textbf{Attori}: utente.
+		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra Topic, giorni di calendario e piattaforme di messaggistica.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: lo nuova configurazione contiene una o più preferenza in aggiunta rispetto alla quella precedente.
 		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili disponi, quale aggiungere alla sua configurazione personale.
 	\end{itemize}
 	
-	\subparagraph{UC\theuccount.1.1 - Iscrizione topic}
+	\subparagraph{UC\theuccount.1.1 - Iscrizione Topic}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.1.
-		\item \textbf{Titolo}: iscrizione topic.
-		\item \textbf{Descrizione}: data la lista di topic presenti già inserita precedentemente, l'utente seleziona quelli a cui è interessato volendone ricevere una notifica. I topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
-		\item \textbf{Postcondizione}: il numero di topic a cui è interessato l'utente è aumentato.
-		\item \textbf{Scenario principale}: l'utente aggiunge un topic dalla lista proposta dall'applicazione \progetto.
+		\item \textbf{Titolo}: iscrizione Topic.
+		\item \textbf{Attori}: utente.
+		\item \textbf{Descrizione}: data la lista di Topic presenti già inserita precedentemente, l'utente seleziona quelli a cui è interessato ricevendonr una notifica. I Topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutti i Topic possibili proposti da \progetto.
+		\item \textbf{Postcondizione}: il numero di Topic a cui è interessato l'utente è aumentato.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente aggiunge uno o più Topic dalla lista proposta dall'applicazione \progetto.
+		\end{enumerate}
 	\end{itemize}
 		
 			
@@ -282,20 +292,28 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.2.
 		\item \textbf{Titolo}: aggiunta dei giorni di indisponibilità nel calendario.
-		\item \textbf{Descrizione}: dato il calendario lavorativo, l'utente aggiunge i giorni in cui è reperibile e non vuole ricevere notifiche.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
-		\item \textbf{Postcondizione}: il numero di giorni in cui l'utente non si rende disponibile.
-		\item \textbf{Scenario principale}: l'utente aggiunge le date di calendario in cui non è reperibile.
+		\item \textbf{Attori}: utente.
+		\item \textbf{Descrizione}: dato il calendario lavorativo, l'utente aggiunge i giorni in cui non è reperibile e non vuole ricevere notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutti i giorni di calendario proposti da \progetto.
+		\item \textbf{Postcondizione}: il numero di giorni in cui l'utente non si rende disponibile è aumentato.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente aggiunge le date di calendario in cui non è reperibile.
+		\end{enumerate}
 	\end{itemize}
 			
 	\subparagraph{UC\theuccount.1.3 - Aggiunta della piattaforma di messaggistica}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.3.
 		\item \textbf{Titolo}:aggiunta della piattaforma di messaggistica.
+		\item \textbf{Attori}: utente.
 		\item \textbf{Descrizione}: dalla lista delle piattaforme di messaggistica l'utente aggiunge quelle da cui vuole ricevere le notifiche.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le piattaforma di messaggistica possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica selezionate dall'utente è aumentato.
-		\item \textbf{Scenario principale}: l'utente aggiunge le piattaforme di messaggistica da un elenco già fornito. 
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente aggiunge le piattaforme di messaggistica da un elenco già fornito.
+		\end{enumerate} 
 		%telegram: nickname e mail sono già salvati nel DB
 	\end{itemize}
 			
@@ -311,21 +329,29 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.
 		\item \textbf{Titolo}: rimozione preferenza.
-		\item \textbf{Descrizione}: l'utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o di più. Le preferenze consistono in topic, date di calendario e piattaforme di messaggistica.
+		\item \textbf{Attori}: utente.
+		\item \textbf{Descrizione}: l'utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o di più. Le preferenze consistono in Topic, date di calendario e piattaforme di messaggistica.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
-		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più configurazioni in meno rispetto a quella precedente.
-		\item \textbf{Scenario principale}: l'utente selezione tra le preferenze già scelte precedentemente quale rimuovere.
+		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in meno rispetto a quella precedente.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente seleziona tra le preferenze già scelte precedentemente quale rimuovere e la toglie.
+		\end{enumerate}
 	\end{itemize}
 	
 	
 	\subparagraph{UC\theuccount.2.1 - Disiscrizione topic}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.1.
-		\item \textbf{Titolo}: disiscrizione topic.
-		\item \textbf{Descrizione}: l'utente di disiscrive da un topic da uno o o più topic dai quali prima riceveva delle notifiche.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
-		\item \textbf{Postcondizione}: il numero di topic a cui è iscritto un utente è diminuito.
-		\item \textbf{Scenario principale}: l'utente seleziona i topic a cui si era iscritto precedentemente per disicriversi.
+		\item \textbf{Titolo}: disiscrizione Topic.
+		\item \textbf{Attori}: utente.
+		\item \textbf{Descrizione}: l'utente di disiscrive da uno o più Topic dai quali prima riceveva delle notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno un Topic selezionato tra quelle proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di Topic a cui è iscritto l'utente è diminuito.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente seleziona i Topic a cui si era iscritto precedentemente per disicriversi.
+		\end{enumerate}
 	\end{itemize}
 	
 			
@@ -333,8 +359,9 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.2.
 		\item \textbf{Titolo}: rimozione giorno irreperibilità nel calendario.
+		\item \textbf{Attori}: utente.
 		\item \textbf{Descrizione}: l'utente rimuove i giorni di calendario in cui precedentemente non era reperibile.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno un giorno di calendario selezionato tra quelle proposte da \progetto.
 		\item \textbf{Postcondizione}: il numero di giorni di calendario in cui l'utente non è reperibile è diminuito.
 		\item \textbf{Scenario principale}: l'utente, dopo aver visto i giorni in cui si era segnato non reperibile, ne rimuove alcuni rendendosi disponibile in quelle date.
 	\end{itemize}
@@ -344,10 +371,14 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.3.
 		\item \textbf{Titolo}: rimozione piattaforma di messaggistica.
+		\item \textbf{Attori}: utente.
 		\item \textbf{Descrizione}: l'utente rimuove le piattaforme di messaggistica dalle quali non vuole più ricevere notifiche tramite \progetto.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una piattaforma di messaggistica selezionata tra quelle proposte da \progetto.
 		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica da cui l'utente vuole ricevere notifiche è diminuito.
-		\item \textbf{Scenario principale}: l'utente seleziona da un elenco già presente le piattaforme di messaggistica che aveva precedentemente selezionato da cui non vuole più ricevere notifiche tramite \progetto.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente seleziona da un elenco già presente le piattaforme di messaggistica che aveva precedentemente selezionato da cui non vuole più ricevere notifiche tramite \progetto.
+		\end{enumerate}
 	\end{itemize}
 
 %Da tenere in considerazione per la pagina da creare più avanti	
