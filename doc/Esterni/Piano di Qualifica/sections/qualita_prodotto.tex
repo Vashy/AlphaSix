@@ -34,7 +34,7 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 		
 		\begin{itemize}
 			\item MPD001 Indice Gulpease
-			\item MPD002 Correttezza ortografica
+			%\item MPD002 Correttezza ortografica
 			%questi sono i nomi della metrica, perciò dovrebbe essere corretto tenere tutto in grassetto... NEIN!
 		\end{itemize} 
 		
@@ -46,10 +46,10 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 		
 		\begin{itemize}
 			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido, evitando perciò periodo troppo lunghi o un alto numero di subordinate.
-			\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici.
-			\item \textbf{QPD003 Correttezza contenuti}: i contenuti devono rispecchiare ciò che vogliono far intendere i titoli dei paragrafi e dover portare un valore aggiunto al documento.
-			\item \textbf{QPD004 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati.
-			\item \textbf{QPD005 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato per agevolarne la manutenibilità.
+			%\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici.
+			\item \textbf{QPD002 Correttezza contenuti}: i contenuti devono rispecchiare ciò che vogliono far intendere i titoli dei paragrafi e dover portare un valore aggiunto al documento.
+			\item \textbf{QPD003 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati.
+			\item \textbf{QPD004 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato per agevolarne la manutenibilità.
 		\end{itemize}
 
 \subsection{The Twelve-Factor App}
@@ -104,21 +104,21 @@ Ogni obiettivo di qualità è indicato con:
 		QPD001 Leggibilità del testo & MPD001 Indice Gulpease & 50 - 60\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver.} \\
+%		\hline \rowcolor{white}
+%		QPD002 Correttezza ortografica & MPD002 Correttezza ortografica & 0\\
+%		\rowcolor{gray!15}
+%		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico.} \\
 		\hline \rowcolor{white}
-		QPD002 Correttezza ortografica & MPD002 Correttezza ortografica & 0\\
-		\rowcolor{gray!15}
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico.} \\
-		\hline \rowcolor{white}
-		QPD003 Correttezza contenuti & - & -\\
+		QPD002 Correttezza contenuti & - & -\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver.} \\
 		\rowcolor{gray!15}
 		\hline \rowcolor{white}
-		QPD004 Organizzazione del documento & - & -\\
+		QPD003 Organizzazione del documento & - & -\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm.} \\
 		\hline \rowcolor{white}
-		QPD005 Manutenibilità del documento & - & -\\
+		QPD004 Manutenibilità del documento & - & -\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento.} \\
 	\end{tabularx}}
