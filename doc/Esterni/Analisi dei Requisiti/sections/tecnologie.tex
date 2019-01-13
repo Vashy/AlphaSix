@@ -13,15 +13,15 @@
 	L'immagine precedente rappresenta una suddivisione del sistema in quattro sezioni principali:
 	\begin{itemize}
 		\item \progetto (arancione)
-		\item \gloss{Producers} (azzurro)
+		\item \gloss{Producer} (azzurro)
 		\item Broker (rosso)
 		\item Consumers (verde)
 	\end{itemize}
-	Questa scomposizione permette di analizzare più approfonditamente il \gloss{prodotto} per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
+	Questa scomposizione permette di analizzare più approfonditamente il prodotto per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
 	
-	\subsection{Producers}
+	\subsection{Producer}
 	
-		Per ciascuno degli strumenti che inviano messaggi verso il sistema è necessario creare un microservizio di tipo producer che li riceva ed li elabori inoltrandoli successivamente verso il Broker.
+		Per ciascuno degli strumenti che inviano messaggi verso il sistema è necessario creare un microservizio di tipo Producer che li riceva ed li elabori inoltrandoli successivamente verso il Broker.
 		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 
 		\subsubsection{Redmine}
@@ -41,7 +41,7 @@
 	
 		\subsubsection{Apache Kafka}
 		\gloss{Apache Kafka} è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
-		Questi messaggi arrivano dai microservizi producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.
+		Questi messaggi arrivano dai microservizi Producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.
 		
 	
 	\subsection{Consumers}
