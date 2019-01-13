@@ -3,7 +3,7 @@
 	\subsection{Intento del prodotto}
     
     L'obiettivo del prodotto è di fornire uno strumento standard per la gestione delle notifiche generate da software utilizzati nella \gloss{CI/CD}.
-    Per ottenere questo verrà usato un \gloss{pattern Publisher / Subscriber}, di modo da contribuire alla scalabilità del sistema e ottenere una miglior suddivisione logica dei \gloss{componenti}.
+    Per ottenere questo verrà usato un \gloss{pattern Publisher / Subscriber}, di modo da contribuire alla scalabilità del \gloss{sistema} e ottenere una miglior suddivisione logica dei \gloss{componenti}.
 	
 	\subsection{Funzioni del prodotto}
 	
@@ -11,7 +11,7 @@
     \begin{itemize}
 		\item Fornire ai software di CI/CD dei \gloss{topic} a cui è possibile iscriversi e inviare messaggi.
 		\item Gestione dei topic tramite un Broker.
-        \item Ricezione dei messaggi da parte di un \gloss{consumer} iscritto a un topic che invierà le notifiche alle piattaforme di messaggistica come Slack, \gloss{Telegram} ed e-mail.
+        \item Ricezione dei messaggi da parte di un \gloss{consumer} iscritto a un topic che invierà le notifiche alle piattaforme di messaggistica come \gloss{Slack}, \gloss{Telegram} ed e-mail.
         \item Filtri aggiuntivi per la gestione dei messaggi, come il reindirizzamento verso una persona.
 	\end{itemize}
 
