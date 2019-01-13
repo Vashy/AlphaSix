@@ -19,7 +19,7 @@
 	\end{itemize}
 	Questa scomposizione permette di analizzare più approfonditamente il prodotto per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
 	
-	\subsection{Producers}
+	\subsection{Producer}
 	
 		Per ciascuno degli strumenti che inviano messaggi verso il sistema è necessario creare un microservizio di tipo Producer che li riceva ed li elabori inoltrandoli successivamente verso il Broker.
 		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal \gloss{committente}.
@@ -40,9 +40,8 @@
 		L'azienda consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
 	
 		\subsubsection{Apache Kafka}
-		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
-		Questi messaggi arrivano dai microservizi producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.
-		
+		\gloss{Apache Kafka} è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
+		Questi messaggi arrivano dai microservizi Producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.		
 	
 	\subsection{Consumers}
 		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e \gloss{client} dello strumento.
