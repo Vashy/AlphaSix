@@ -32,7 +32,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
-		 il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite commit per GitLab. Cambio di stato dell'issue tracking system per GitLab e Redmine.
+		 il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite commit per GitLab. Cambio di stato dell'\gloss{issue tracking system} per GitLab e Redmine. Per segnalazione dunque s'intende in questo caso un commit o l'apertura di una \gloss{issue}.
 		\item \textbf{Precondizione}: c'è qualcosa da segnalare.
 		\item \textbf{Postcondizione}: segnalazione generata e inviata.
 		\item \textbf{Scenario principale}: 
@@ -54,7 +54,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Titolo}: Redmine/GitLab crea e invia un messaggio per il Producer.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
-		il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite commit per GitLab. Cambio di stato dell'\gloss{issue tracking system} per GitLab e Redmine.
+		il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite commit per GitLab. Cambio di stato dell'issue tracking system per GitLab e Redmine.
 		\item \textbf{Precondizione}: Redmine/Gitlab generano un messaggio per il Producer.
 		\item \textbf{Postcondizione}: segnalazione generata e inviata al Producer.
 		\item \textbf{Scenario principale}: 
@@ -81,7 +81,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item Redmine/GitLab invia una segnalazione malformata al Producer.
-			\item Il Producer registra l'errore nel log.
+			\item Il producer registra l'errore nel \gloss{log}.
 			\item Il messaggio viene perso.
 		\end{enumerate}
 	\end{itemize}
@@ -267,7 +267,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.1.
 		\item \textbf{Titolo}: aggiunta preferenze.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra Topic, giorni di calendario e piattaforme di messaggistica.
+		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra Topic, giorni di calendario e piattaforme di messaggistica come Telegram o e-mail.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: lo nuova configurazione contiene una o più preferenza in aggiunta rispetto alla quella precedente.
 		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili disponi, quale aggiungere alla sua configurazione personale.
