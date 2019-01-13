@@ -3,27 +3,41 @@
 \subsection{Scopo}
 La qualità di un prodotto è fortemente influenzata dal processo utilizzato nell'arco di creazione del prodotto stesso: da un tubo sporco non può uscire acqua pulita.
 
-Per questo è necessario operare con un buon ciclo di vita per i processi, che devono venire verificati e valutati adeguatamente. A questo scopo viene seguito lo schema del ciclo di Deming e dell'ISO 15504 descritti all'Appendice \S\ref{StandardQualita}.
+Per questo è necessario operare con un buon \gloss{ciclo di vita} per i processi, che devono venire verificati e valutati adeguatamente. A questo scopo viene seguito lo schema del \gloss{ciclo di Deming} e dell'\gloss{ISO 15504} descritti all'Appendice \S\ref{StandardQualita}.
+
 
 \subsection{Nomenclatura metriche ed obiettivi di qualità}
-La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
+La nomenclatura degli obiettivi di qualità, delle \gloss{metriche} ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
 
-\begin{itemize}
-	\item \textbf{Obiettivi}: 
-	
-	\begin{center}
-	\texttt{QPD[ID] [Nome]}
-	\end{center} 
+	\begin{itemize}
+		\item \textbf{Obiettivi}: 
+		
+		\begin{center}
+			\texttt{QPR[ID] [Nome]}
+		\end{center} 
+		
+		\begin{itemize}
+			\item \textbf{QPR}: indica "Qualità di processo".
+			\item \textbf{ID}: numero progressivo di tre cifre.
+			\item \textbf{Nome}: descrive brevemente il processo.
+		\end{itemize}
+		
+		\item \textbf{Metriche}:
+		
+		\begin{center}
+			\texttt{MPR[ID] [Nome]}
+		\end{center}
+		
+		\begin{itemize}
+			\item \textbf{MPR}: indica "Metrica di processo".
+			\item \textbf{ID}: numero progressivo di tre cifre.
+			\item \textbf{Nome}: descrive brevemente la metrica.
+		\end{itemize}
+		
+	\end{itemize}
 
-	Le prime tre lettere indicano "Qualità dei documenti", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente il processo;
-	\item \textbf{Metriche}:
-	
-	\begin{center}
-		\texttt{MPD[ID] [Nome]}
-	\end{center}
-	
-	Le prime tre lettere indicano "Metrica dei documenti", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente la metrica;
-\end{itemize}
+
+
 
 \subsection{Processi}
 I processi saranno elencati nel seguente modo:
@@ -33,44 +47,45 @@ I processi saranno elencati nel seguente modo:
 \end{center}
 
 \begin{itemize}
-	\item \textbf{ID}: un numero incrementale per indicare in modo univoco il processo.
+	\item \textbf{PROC}: sta a indicare "Processo".
+	\item \textbf{ID}: un numero incrementale di tre cifre per indicare in modo univoco il processo.
 	\item \textbf{Nome}: una breve frase per indicare la funzione del processo.
 \end{itemize}
 
-Per ogni processo sono elencate le sue funzioni principali, gli aspetti da misurare per ottenere la qualità desiderata e le metriche utilizzate.
-Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una particolare metrica. 
+Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che \gruppo\ si prefigge per ottenere la qualità desiderata e le metriche adottate per raggiungere quell'obiettivo (quando previste).
+%Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una particolare metrica. 
 
 	\subsubsection{PROC001 Pianificazione del progetto, organizzazione e struttura}
-	Tale macro-processo ha lo scopo di pianificare il lavoro da svolgere per soddisfare i requisiti richiesti dal progetto. È in questo processo che viene messo in atto il \gloss{way of working} del team di sviluppo che ha un'importanza particolare perché i suoi output vanno a condizionare l'esito della qualità dell'intero progetto.
+	Tale \gloss{macro-processo} ha lo scopo di pianificare il lavoro da svolgere per soddisfare i \gloss{requisiti} richiesti dal \gloss{progetto}. È in questo processo che viene messo in atto il \gloss{way of working} del \gloss{team di sviluppo} che ha un'importanza particolare perché i suoi risultati vanno a condizionare l'esito della qualità dell'intero progetto.
 	
 		\paragraph*{Funzioni}
 	
 		\begin{itemize}
-			\item \textbf{Sviluppare sotto-processi}: i vari obiettivi devono poter essere associati ad azioni ben precise, ognuna delle quali appartiene ad un sotto-processo.
-			\item \textbf{Suddividere i compiti}: è compito dell'\Amm\ assegnare i vari compiti ai vari ruoli del team.
-			\item \textbf{Candelarizzare i documenti}: altro compito dell'\Amm\ è quello di stabilire delle \gloss{baseline} durante il progetto. Sarà poi compito dei vari membri del team organizzare i loro impegni per rispettare tali scadenze.
-			\item \textbf{Formazione personale}: l'inesperienza del team richiede di un periodo di formazione personale più lungo del normale. Questo periodo deve essere contato dall'\Amm\ all'interno della calendarizzazione.
-			\item \textbf{Standard}: vengono scelti gli standard da seguire.
-			\item \textbf{Budget}: è necessario conoscere le proprie risorse in termini di tempo $\frac{\text{costo}}{\text{persona}}$ in modo tale da restare
-				il più fedeli possibile al preventivo stilato.
+			\item \textbf{Sviluppare \gloss{sotto-processi}}: i vari obiettivi devono poter essere associati ad azioni ben precise, ognuna delle quali appartiene ad un sotto-processo.
+			\item \textbf{Suddividere i compiti}: assegnazione dei compiti da realizzare ai vari componenti di \gruppo.
+			\item \textbf{Candelarizzare i documenti}: stabilire delle \gloss{baseline} durante il progetto.
+			\item \textbf{\gloss{Formazione} personale}: data l'inesperienza del team è richiesto un periodo di formazione personale più lungo del normale. Questo periodo deve essere contato all'interno della calendarizzazione.
+			\item \textbf{Standard}: vengono scelti gli standard più convenienti da seguire.
+			\item \textbf{\gloss{Budget}}: è necessario conoscere le proprie risorse in termini di tempo $\frac{\text{costo}}{\text{persona}}$ in modo tale da restare
+				il più fedeli possibile al \gloss{preventivo} stilato.
 		\end{itemize}
 	
 		\paragraph*{Metriche}
 		
 		\begin{itemize}
-			\item MPR001 Varianza della programmazione
+			\item MPR001 Varianza della pianificazione
 			\item MPR002 Varianza dei costi
 			\item MPR003 Aderenza agli standard
-			\item MPR004 Frequenza commit nella repository
+			\item MPR004 Frequenza \gloss{commit} nella \gloss{repository}
 		\end{itemize}
 	
 		\paragraph*{Obiettivi}
 		
 		\begin{itemize} 
-			\item \textbf{QPR001 Rispetto delle fasi dell'organigramma}: all'interno dell'organigramma presente alla sezione (inserire sezione organigramma) del \Doc{\PdPv}, sono presenti le date di scadenza delle varie attività. L'obiettivo è quello di rispettarle il più possibile.
+			\item \textbf{QPR001 Rispetto dei periodi della pianificazione}: all'interno della presente nel \PdPd, sono presenti le date di scadenza delle varie attività. L'obiettivo è quello di rispettarle il più possibile per proseguire al meglio la realizzazione del progetto.
 			\item \textbf{QPR002 Variazione del budget}: le risorse messe a disposizione all'inizio del progetto devono potersi mantenere tali in tutta la sua durata.
 			\item \textbf{QPR003 Rispetto delle fasi del ciclo di vita}: ogni processo deve rispettare le fasi del ciclo di Deming.
-			\item \textbf{QPR004 Versionamento}: durante ogni processo, i prodotti che vengono realizzati devono possedere un numero di versione in modo da tener traccia delle modifiche. In questo modo è possibile sapere le cause di certi comportamenti dovuti ad un mutamento del prodotto in modo molto rapido.  
+			\item \textbf{QPR004 \gloss{Versionamento}}: durante ogni processo, i prodotti che vengono realizzati devono possedere un numero di versione in modo da tener traccia delle modifiche. In questo modo è possibile sapere le cause di certi comportamenti dovuti ad un mutamento del prodotto in modo molto rapido. L'obiettivo è quindi tenere sotto controllo l'andamento dei cambiamenti.
 		\end{itemize}
 	
 	\subsubsection{PROC002 Analisi}
@@ -93,7 +108,7 @@ Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una 
 				\item Opzionali
 			\end{itemize}
 			\item \textbf{Individuare le tecnologie da utilizzare}: in base al tipo di progetto le tecnologie da utilizzare migliori per realizzarlo possono cambiare da progetto a progetto.
-			\item \textbf{Comprendere la quantità di risorse richieste}: sviluppare un preventivo è fondamentale, sia per il cliente che vuole sapere il costo del progetto, che per il fornitore che deve sapere se il progetto per lui è fattibile.
+			\item \textbf{Comprendere la quantità di risorse richieste}: sviluppare un preventivo è fondamentale, sia per il cliente che vuole sapere il costo del progetto, che per il \gloss{fornitore} che deve sapere se il progetto per lui è fattibile.
 			\item \textbf{Individuare i rischi}: lungo il corso del progetto possono accadere degli imprevisti, perciò è necessario poterli prevedere ed organizzare fin da subito una reazione ad essi.
 			\item \textbf{Stabilire la fattibilità del progetto}: dopo aver fatto l'analisi dei requisiti, dei rischi e dei costi bisogna sapere se iniziare lo sviluppo del progetto o meno.
 		\end{itemize}
@@ -193,7 +208,7 @@ Ogni obiettivo di qualità è indicato con:
 		\rowcolor{white}
 
 		QPR001 Rispetto delle fasi dell'organigramma & MPR001 Varianza della programmazione & 0-2 giorni\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze date dall'organigramma possono possedere un ritardo massimo di due giorni, per le scadenza infatti viene considerato anche un tempo di \gloss{slack} per eventuali ritardi. Il valore desiderato indica la media del numero di giorni di ritardo nella chiusura di una issue durante tutto il macro periodo.} \\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze date dall'organigramma possono possedere un ritardo massimo di due giorni, per le scadenza infatti viene considerato anche un tempo di \gloss{slack} per eventuali ritardi. Il valore desiderato indica la media del numero di giorni di ritardo nella chiusura di una \gloss{issue} durante tutto il macro periodo.} \\
 
 		\hline \rowcolor{white}
 		QPR002 Variazione del budget & MPR002 Varianza dei costi & \EUR{0-200}\\

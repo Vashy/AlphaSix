@@ -4,24 +4,30 @@
 Per raggiungere la qualità desiderata nei prodotti, il team di sviluppo prende come modello gli standard ISO 9126 e 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per essere di qualità.
 
 \subsection{Nomenclatura metriche ed obiettivi di qualità}
-La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionamento è spiegato in dettaglio nel \Doc{\NdPv}. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
+La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
 
-\begin{itemize}
-	\item \textbf{Obiettivi}: 
+	\begin{itemize}
+		\item \textbf{Obiettivi}: 
+		
+		\begin{center}
+			\texttt{QPD[ID] [Nome]}
+		\end{center} 
+		
+		\begin{itemize}
+			\item \textbf{QPD}: indica "Qualità dei documenti".
+			\item \textbf{ID}: numero progressivo di tre cifre.
+			\item \textbf{Nome}: descrive brevemente il processo.
+		\end{itemize}
+		
+		\item \textbf{Metriche}:
+		
+		\begin{center}
+			\texttt{MPD[ID] [Nome]}
+		\end{center}
+		
+		Le prime tre lettere indicano "Metrica dei documenti", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente la metrica;
+	\end{itemize}
 	
-	\begin{center}
-		\texttt{QPR[ID] [Nome]}
-	\end{center} 
-	
-	Dove i primi due campi indicano "Qualità di processo", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente il processo;
-	\item \textbf{Metriche}:
-	
-	\begin{center}
-		\texttt{MPR[ID] [Nome]}
-	\end{center}
-	
-	Dove i primi due campi indicano "Metrica di processo", l'ID è un numero progressivo di tre cifre e il nome descrive brevemente la metrica;
-\end{itemize}
 
 
 \subsection{Prodotti} %TODO: scrivere qualcosa in più o sembra una parola da Glossario
@@ -33,7 +39,7 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 		Tra le metriche elencate nelle \NdPd, quelle utilizzate per verificare i documenti sono:
 		
 		\begin{itemize}
-			\item MPD001 Indice Gulpease
+			\item MPD001 \gloss{Indice Gulpease}
 			%\item MPD002 Correttezza ortografica
 			%questi sono i nomi della metrica, perciò dovrebbe essere corretto tenere tutto in grassetto... NEIN!
 		\end{itemize} 
@@ -59,7 +65,7 @@ I suoi principi sono:
 
 \begin{enumerate}
 	\item \textbf{Codebase}: deve essere presente una sola code base versionata da un \gloss{Version Control System} (VCS) come \gloss{GitLAb} da cui
-	possono derivare diversi deploy.
+	possono derivare diversi \gloss{deploy}.
 	\item \textbf{Dipendenze}: le librerie usate dal codice devono essere presenti nella directory della singola applicazione e non attive a livello di sistema. In questo modo l'applicazione è il meno dipendente possibile dal sistema di esecuzione.
 	\item \textbf{Configurazione}: i parametri di configurazione dell'applicazione devono essere completamente separati dalla sua implementazione.
 	\item \textbf{Backing Service}: l'applicazione non deve far distinzione tra funzionalità uguali usate in locale o remoto.
