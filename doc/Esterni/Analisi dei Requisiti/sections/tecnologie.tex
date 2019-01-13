@@ -12,24 +12,24 @@
 	\end{figure}
 	L'immagine precedente rappresenta una suddivisione del sistema in quattro sezioni principali:
 	\begin{itemize}
-		\item \progetto (arancione)
+		\item \progetto\ (arancione)
 		\item \gloss{Producers} (azzurro)
 		\item Broker (rosso)
 		\item Consumers (verde)
 	\end{itemize}
-	Questa scomposizione permette di analizzare più approfonditamente il \gloss{prodotto} per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
+	Questa scomposizione permette di analizzare più approfonditamente il prodotto per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
 	
 	\subsection{Producers}
 	
-		Per ciascuno degli strumenti che inviano messaggi verso il sistema è necessario creare un microservizio di tipo producer che li riceva ed li elabori inoltrandoli successivamente verso il Broker.
-		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
+		Per ciascuno degli strumenti che inviano messaggi verso il sistema è necessario creare un microservizio di tipo Producer che li riceva ed li elabori inoltrandoli successivamente verso il Broker.
+		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal \gloss{committente}.
 
 		\subsubsection{Redmine}
 		Ciascuna istanza di Redmine permette l'utilizzo delle proprie \gloss{API}\footnote{Riferirsi alla voce "API Rest di Redmine" alla sezione \S\ref{sec:RiferimentiInformativi}} con le quali è possibile interfacciarsi e ricevere risposte nel formato scelto.
 		Queste vengono prese dal server tramite un microservizio che ne fa la richiesta ad intervalli prestabiliti, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai customer interessati.
 		
 		\subsubsection{GitLab}
-		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di \gloss{Webhooks}\footnote{Riferirsi alla voce "Weebhooks di GitLab" alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
+		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di Webhooks\footnote{Riferirsi alla voce "Weebhooks di GitLab" alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
 		
 %		\subsubsection{SonarQube}
 %		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
@@ -40,12 +40,12 @@
 		L'azienda consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
 	
 		\subsubsection{Apache Kafka}
-		\gloss{Apache Kafka} è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
+		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
 		Questi messaggi arrivano dai microservizi producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.
 		
 	
 	\subsection{Consumers}
-		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e client dello strumento.
+		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e \gloss{client} dello strumento.
 		Le tecnologie alle quali vengono inoltrati i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 			
 		\subsubsection{Telegram}
@@ -62,15 +62,15 @@
 %		%https://www.confluent.io/blog/real-time-syslog-processing-with-apache-kafka-and-ksql-part-2-event-driven-alerting-with-slack/
 	
 	\subsection{Gestore personale}
-	Il gestore personale è quel componente che permette agli utenti di impostare le proprie preferenze per il canale di inoltro dei messaggi ed i Topic a cui ci si iscrive, interfacciandosi dunque con l'intero sistema.
-	È previsto come un'applicazione Web installata in un server interno all'azienda accessibile dai dipendenti interessati, i quali potranno quindi modificare, perciò con la possibilità di aggiungere e rimuovere, impostazioni come Topic a cui si è iscritti e modalità di ricezione dei messaggi.
+	Il gestore personale è quel \gloss{componente} che permette agli utenti di impostare le proprie preferenze per il canale di inoltro dei messaggi ed i Topic a cui ci si iscrive, interfacciandosi dunque con l'intero sistema.
+	È previsto come un'applicazione web installata in un server interno all'azienda accessibile dai dipendenti interessati, i quali potranno quindi modificare, perciò con la possibilità di aggiungere e rimuovere, impostazioni come Topic a cui si è iscritti e modalità di ricezione dei messaggi.
 	
 	\subsection{Container Software}
 	
-		Un container software simula questo ambiente virtuale dove è possibile testare e mantenere le proprie applicazioni, permettendo di aumentare l'efficienza riducendone i costi e simulando l'esecuzione di sistema operativo su una macchina con risorse condivise.
+		Un container software simula questo ambiente virtuale dove è possibile testare e mantenere le proprie applicazioni, permettendo di aumentare l'efficienza riducendone i costi e simulando l'esecuzione di sistema operativo su una macchina con \gloss{risorse} condivise.
 		
 		\subsection{Differenza tra container e macchina virtuale}
-		A differenza delle macchine virtuali, dove lo stato dell'ambiente viene salvato su disco occupando memoria, i container si adattano in maniera più performante all'applicativo richiesto, in quanto il loro scopo è quello di massimizzare la quantità delle applicazioni in esecuzione riducendo al minimo il numero delle macchine per eseguirla.
+		A differenza delle \gloss{macchine virtuali}, dove lo stato dell'ambiente viene salvato su disco occupando memoria, i container si adattano in maniera più performante all'applicativo richiesto, in quanto il loro scopo è quello di massimizzare la quantità delle applicazioni in esecuzione riducendo al minimo il numero delle macchine per eseguirla.
 		Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse. Purtroppo al termine della loro esecuzione non viene salvato lo stato, a meno che non sia esplicitamente richiesto.
 		
 		\subsubsection{Docker e Dockerfile}
