@@ -3,7 +3,7 @@
 \subsection{Scopo}
 \gruppo\ prende come modello gli standard ISO 9126 e 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per raggiungere la qualità desiderata.
 
-\subsection{Nomenclatura metriche ed obiettivi di qualità}
+\subsection{Nomenclatura metriche ed obiettivi di qualità}	\label{nomenclaturaprodotti}
 La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
 
 
@@ -38,6 +38,7 @@ La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionam
 
 \subsection{Prodotti} 
 Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile. Nel contesto di questo progetto, i prodotti sono documenti e software.
+
 	\subsubsection{Documenti}
 	I documenti rilasciati devono presentarsi leggibili e comprensibili già ad una prima lettura, con contenuti che rispecchino le premesse del documento.
 
@@ -52,10 +53,10 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 		
 		\begin{itemize}
 			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido, evitando perciò periodo troppo lunghi o un alto numero di subordinate.
-			%\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici.
-			\item \textbf{QPD002 Correttezza contenuti}: i contenuti devono rispecchiare ciò che è scritto nei titoli dei paragrafi e dare un valore aggiunto al documento.
+			\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici.
+%			\item \textbf{QPD002 Correttezza contenuti}: i contenuti devono rispecchiare ciò che è scritto nei titoli dei paragrafi e devono dare valore aggiunto al documento.
 			\item \textbf{QPD003 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati.
-			\item \textbf{QPD004 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato per agevolarne la manutenibilità.
+%			\item \textbf{QPD004 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato per agevolarne la manutenibilità.
 		\end{itemize}
 
 \subsection{The Twelve-Factor App}
@@ -64,26 +65,28 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 I suoi principi sono:
 
 \begin{enumerate}
-	\item \textbf{Codebase}: deve essere presente una sola code base versionata da un \gloss{Version Control System} (VCS) come \gloss{GitLAb} da cui
+	\item \textbf{\gloss{Codebase}}: deve essere presente una sola codebase versionata da un \gloss{Version Control System} (VCS) come \gloss{GitLAb} da cui
 	possono derivare diversi \gloss{deploy}.
 	\item \textbf{Dipendenze}: le librerie usate dal codice devono essere presenti nella directory della singola applicazione e non attive a livello di \gloss{sistema}. In questo modo l'applicazione è il meno dipendente possibile dal sistema di esecuzione.
 	\item \textbf{Configurazione}: i parametri di configurazione dell'applicazione devono essere completamente separati dalla sua implementazione.
 	\item \textbf{Backing Service}: l'applicazione non deve far distinzione tra funzionalità uguali usate in locale o remoto.
 	\item \textbf{Build, release, esecuzione}: bisogna separare in modo netto la fase di build, quella di deploy e quella esecuzione, usando \gloss{tool} differenti e diverse repository per salvare i risultati delle varie fasi.
 	\item \textbf{Processi}: l'esecuzione dell'applicazione deve essere vista come l'insieme di uno o più processi che restituiscono un risultato. Questi sono di tipo \gloss{stateless}.
-	\item \textbf{Binding delle Porte}: l'applicazione è completamente contenuta in se stessa e non fa affidamento ad un altro servizio nell'ambiente di esecuzione. effettua invece il binding delle porte diventando un servizio per le richieste esterne.
+	\item \textbf{\gloss{Binding} delle Porte}: l'applicazione è completamente contenuta in se stessa e non fa affidamento ad un altro servizio nell'ambiente di esecuzione. Effettua invece il binding delle porte diventando un servizio per le richieste esterne.
 	\item \textbf{Concorrenza}: sviluppare i processi in modo tale che possano lavorare su un sistema decentralizzato.
 	\item \textbf{Rilasciabilità}: i processi dell'applicazione devono poter essere avviati e fermati quando se ne ha bisogno senza passaggi bruschi.
-	\item \textbf{Parità tra Sviluppo e Produzione}: deve esserci meno differenza possibile tra lo stato di sviluppo e quello di produzione. Questo si ottiene facendo un rilascio continuo del prodotto.
+	\item \textbf{Parità tra sviluppo e produzione}: deve esserci meno differenza possibile tra lo stato di sviluppo e quello di produzione. Questo si ottiene facendo un rilascio continuo del prodotto.
 	\item \textbf{Log}: l'applicazione dovrebbe poter offrire un sistema di login.
 	\item \textbf{Processi di Amministrazione}: porre attenzione a quei processi che devono essere eseguiti una tantum dagli sviluppatori ad esempio. Questi processi devono poter essere accessibili solo ad alcuni e indicati in una specifica release.
 \end{enumerate}
 
-In accordo col cliente \II e da quanto concerne il capitolato, non tutti i punti della Twelve-Factor App possono essere rispettati. Questi sono:
+In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto per \gruppo\ il soddisfacimento del punto 12 in quanto... , mentre il punto 11 è lasciato al fornitore come opzionale.
+%TODO: aggiungere motivo
 
-\begin{itemize} 
-	\item \textbf{12}: dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente.
-\end{itemize}
+%\begin{itemize} 
+%	\item \textbf{11}: 
+%	%dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente.
+%\end{itemize}
 
 \subsection{Tabella qualità di prodotto}
 Le tabelle indicano gli obiettivi di qualità che ogni prodotto deve possedere.
@@ -91,10 +94,10 @@ Le tabelle indicano gli obiettivi di qualità che ogni prodotto deve possedere.
 Ogni obiettivo di qualità è indicato con:
 
 \begin{itemize}
-	\item \textbf{Obiettivo}: viene indicato il codice dell'obiettivo di qualità  ;
-	\item \textbf{Metrica}: la metrica utilizzata per valutare l'obiettivo di qualità assegnatole. Nel caso non fosse possibile associare una metrica ad un obiettivo di qualità questa non verrà indicata;
-	\item \textbf{Valore desiderato}: il valore che si vuole ottenere attraverso la metrica indicata per soddisfare a pieno l'obiettivo di qualità;
-	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità e della metrica.
+	\item \textbf{Obiettivo}: viene indicato il codice dell'obiettivo di qualità secondo quanto descritto nella sezione \S\ref{nomenclaturaprodotti}.
+	\item \textbf{Metrica}: la metrica utilizzata per valutare l'obiettivo di qualità assegnatole con identificativo secondo quanto scritto in \S\ref{nomenclaturaprodotti}. Nel caso in cui non fosse possibile associare una metrica ad un obiettivo di qualità questa non verrà indicata.
+	\item \textbf{Valore desiderato}: il valore che si vuole ottenere attraverso la metrica indicata per soddisfare appieno l'obiettivo di qualità, qualora una metrica sia presente.
+	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità.
 \end{itemize}
 
 \begin{table}[H]
@@ -109,24 +112,24 @@ Ogni obiettivo di qualità è indicato con:
 		\toprule\rowcolor{white}
 		QPD001 Leggibilità del testo & MPD001 Indice Gulpease & 50 - 60\\
 		\rowcolor{gray!15}
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver.} \\
-%		\hline \rowcolor{white}
-%		QPD002 Correttezza ortografica & MPD002 Correttezza ortografica & 0\\
-%		\rowcolor{gray!15}
-%		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico.} \\
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'indice Gulpease e una verifica da parte del \Ver. In particolare è stato scelto l'intervallo 50-60 poiché \gruppo\ vuole che i propri documenti siano facilmente leggibili, ma anche con un lessico adeguato e più ricercato del solito.} \\
 		\hline \rowcolor{white}
-		QPD002 Correttezza contenuti & - & -\\
+		QPD002 Correttezza ortografica & MPD002 Correttezza ortografica & 0\\
 		\rowcolor{gray!15}
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver.} \\
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il testo non deve presentare alcun errore ortografico.} \\
+%		\hline \rowcolor{white}
+%		QPD002 Correttezza contenuti & - & -\\
+%		\rowcolor{gray!15}
+%		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la correttezza dei contenuti viene controllata attraverso più letture del documento dal \Ver.} \\
 		\rowcolor{gray!15}
 		\hline \rowcolor{white}
 		QPD003 Organizzazione del documento & - & -\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm.} \\
 		\hline \rowcolor{white}
-		QPD004 Manutenibilità del documento & - & -\\
-		\rowcolor{gray!15}
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento.} \\
+%		QPD004 Manutenibilità del documento & - & -\\
+%		\rowcolor{gray!15}
+%		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento.} \\
 	\end{tabularx}}
 \caption{Obiettivi di qualità per i Documenti}
 \end{table}
