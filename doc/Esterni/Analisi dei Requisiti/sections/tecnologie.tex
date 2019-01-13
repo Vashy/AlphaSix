@@ -1,7 +1,7 @@
 %\newpage
 \section{Tecnologie}
 	L'obiettivo di questo paragrafo è quello di descrivere in modo generale come il prodotto andrà ad interfacciarsi con le tecnologie che mandano e ricevono le notifiche che passano attraverso \progetto.\\
-	Per ciascuna di queste tecnologie con cui l'applicativo andrà ad interfacciarsi è previsto un \gloss{microservizio}, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
+	Per ciascuna di queste tecnologie con cui l'\gloss{applicativo} andrà ad interfacciarsi è previsto un \gloss{microservizio}, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
 	Questo pattern si chiama Publisher / Subscriber e utilizza uno strumento intermedio detto Broker per lo smistamento dei messaggi e la gestione dei flussi.
 
 	\begin{figure}[H]
@@ -40,7 +40,7 @@
 		L'azienda consiglia di utilizzare come broker per i messaggi Apache Kafka.
 	
 		\subsubsection{Apache Kafka}
-		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
+		\gloss{Apache Kafka} è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
 		Questi messaggi arrivano dai microservizi producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.
 		
 	
