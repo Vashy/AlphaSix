@@ -54,7 +54,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Titolo}: Redmine/GitLab crea e invia un messaggio per il Producer.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
-		il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite commit per GitLab. Cambio di stato dell'issue tracking system per GitLab e Redmine.
+		il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite commit per GitLab. Cambio di stato dell'\gloss{issue tracking system} per GitLab e Redmine.
 		\item \textbf{Precondizione}: Redmine/Gitlab generano un messaggio per il Producer.
 		\item \textbf{Postcondizione}: segnalazione generata e inviata al Producer.
 		\item \textbf{Scenario principale}: 
@@ -141,7 +141,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Titolo}: Telegram/e-mail riceve un messaggio dal Consumer.
 		\item \textbf{Attori primari}: Telegram/server e-mail.
 		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema Butterfly.
-		Sebbene questo caso d'uso non sia del tutto corretto perché l'attore Telegram/e-mail è un attore passivo che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail". Ma scrivere un caso d'uso in tal modo sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/e-mail. Cosa non possibile dato che Telegram/mail è esterno a \progetto e quindi non può essere considerato un suo sottosistema.
+		Sebbene questo caso d'uso non sia del tutto corretto perché l'\gloss{attore} Telegram/e-mail è un attore passivo che riceve e non che agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail". Ma scrivere un caso d'uso in tal modo sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/e-mail. Cosa non possibile dato che Telegram/mail è esterno a \progetto e quindi non può essere considerato un suo sottosistema.
 		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server e-mail in seguito a un'interrogazione del Broker.
 		\item \textbf{Postcondizione}: Telegram/server e-mail riceve il messaggio.
 		\item \textbf{Scenario principale}:
