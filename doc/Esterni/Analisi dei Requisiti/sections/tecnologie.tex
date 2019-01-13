@@ -1,7 +1,7 @@
 %\newpage
 \section{Tecnologie}
 	L'obiettivo di questo paragrafo è quello di descrivere in modo generale come il prodotto andrà ad interfacciarsi con le tecnologie che mandano e ricevono le notifiche che passano attraverso \progetto.\\
-	Per ciascuna di queste tecnologie con cui l'applicativo andrà ad interfacciarsi è previsto un \gloss{microservizio}, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
+	Per ciascuna di queste tecnologie con cui l'\gloss{applicativo} andrà ad interfacciarsi è previsto un \gloss{microservizio}, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
 	Questo pattern si chiama Publisher / Subscriber e utilizza uno strumento intermedio detto Broker per lo smistamento dei messaggi e la gestione dei flussi.
 
 	\begin{figure}[H]
@@ -17,7 +17,7 @@
 		\item Broker (rosso)
 		\item Consumers (verde)
 	\end{itemize}
-	Questa scomposizione permette di analizzare più approfonditamente il prodotto per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
+	Questa scomposizione permette di analizzare più approfonditamente il \gloss{prodotto} per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
 	
 	\subsection{Producers}
 	
@@ -25,22 +25,22 @@
 		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 
 		\subsubsection{Redmine}
-		Ciascuna istanza di Redmine permette l'utilizzo delle proprie API\footnote{Riferirsi alla voce "API Rest di Redmine" alla sezione \S\ref{sec:RiferimentiInformativi}} con le quali è possibile interfacciarsi e ricevere risposte nel formato scelto.
+		Ciascuna istanza di Redmine permette l'utilizzo delle proprie \gloss{API}\footnote{Riferirsi alla voce "API Rest di Redmine" alla sezione \S\ref{sec:RiferimentiInformativi}} con le quali è possibile interfacciarsi e ricevere risposte nel formato scelto.
 		Queste vengono prese dal server tramite un microservizio che ne fa la richiesta ad intervalli prestabiliti, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai customer interessati.
 		
 		\subsubsection{GitLab}
-		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di webhooks\footnote{Riferirsi alla voce "Weebhooks di GitLab" alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
+		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di \gloss{Webhooks}\footnote{Riferirsi alla voce "Weebhooks di GitLab" alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
 		
 %		\subsubsection{SonarQube}
-%		Come GitLab, anche SonarQube prevede l'utilizzo di webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
+%		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
 		
 	\subsection{Broker}
 	
 		Il ruolo del Broker è quello smistare i messaggi in base ai Topic con cui questi sono contrassegnati verso i vari microservizi con cui l'utente ha deciso che gli venga inoltrata la notifica.
-		L'azienda consiglia di utilizzare come broker per i messaggi Apache Kafka.
+		L'azienda consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
 	
 		\subsubsection{Apache Kafka}
-		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
+		\gloss{Apache Kafka} è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
 		Questi messaggi arrivano dai microservizi producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.
 		
 	
@@ -63,7 +63,7 @@
 	
 	\subsection{Gestore personale}
 	Il gestore personale è quel componente che permette agli utenti di impostare le proprie preferenze per il canale di inoltro dei messaggi ed i Topic a cui ci si iscrive, interfacciandosi dunque con l'intero sistema.
-	È previsto come un'applicazione web installata in un server interno all'azienda accessibile dai dipendenti interessati, i quali potranno quindi modificare, perciò con la possibilità di aggiungere e rimuovere, impostazioni come Topic a cui si è iscritti e modalità di ricezione dei messaggi.
+	È previsto come un'applicazione Web installata in un server interno all'azienda accessibile dai dipendenti interessati, i quali potranno quindi modificare, perciò con la possibilità di aggiungere e rimuovere, impostazioni come Topic a cui si è iscritti e modalità di ricezione dei messaggi.
 	
 	\subsection{Container Software}
 	
@@ -74,5 +74,5 @@
 		Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse. Purtroppo al termine della loro esecuzione non viene salvato lo stato, a meno che non sia esplicitamente richiesto.
 		
 		\subsubsection{Docker e Dockerfile}
-		L'azienda consiglia di utilizzare Docker per la semplicità e perché si adatta all'architettura a microservizi.
-		La configurazione avverrà tramite un dockerfile in cui verranno specificate informazioni come sistema operativo, script di avvio, numero di istanze ed altri parametri specifici.
+		L'azienda consiglia di utilizzare \gloss{Docker} per la semplicità e perché si adatta all'architettura a microservizi.
+		La configurazione avverrà tramite un \gloss{dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio, numero di istanze ed altri parametri specifici.
