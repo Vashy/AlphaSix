@@ -36,6 +36,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 %TODO: mettere caption alle tabelle
 	\subsection{Requisiti di funzionalità}
 	
+	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%da capitolato
@@ -73,19 +74,22 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addNumber
 			F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
 			R\addNumber
-			F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\
+			F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\\bottomrule
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di funzionalità (1)}
+	\end{table}
+			
+	\begin{table}[H]		
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 			R\addNumber
 			F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram e e-mail, in cui ricevere le notifiche 
 			%e Slack
 			& Interno UC6.1.3 \\
-		\end{paddedtablex}	
-			
-	\begin{table}[H]		
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}	
 			R\addNumber
-			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3  \\
+			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3 \\\bottomrule\\
 		\end{paddedtablex}
-		\caption{Elenco dei requisiti di funzionalità.}
+		\caption{Elenco dei requisiti di funzionalità (2)}
 	\end{table}
 		
 	
@@ -130,8 +134,19 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			%presi dal PdQ prodotti
 			R\addQNumber
 			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe avere indice tra 50 e 60 & Interno \\  
-%			R\addQNumber
-%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
+			%			R\addQNumber
+			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
+			
+				
+			\bottomrule
+
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di qualità (1)}
+	\end{table}
+		
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%presi da capitolato
 			R\addQNumber
 			Q2 & Le applicazioni sviluppate devono rispettare i fattori trattati in \gloss{The Twelve-Factor App} segnati nel \PdQd & Capitolato \Doc{VE\_12-12-2018}	\\ 
@@ -146,14 +161,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addQNumber
 			Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
 			R\addQNumber
-			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\	
-			\\\bottomrule
-
+			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\
+			\bottomrule
 		\end{paddedtablex}
-		\caption{Elenco dei requisiti di qualità.}
+		\caption{Elenco dei requisiti di qualità (2)}
 	\end{table}
-		
-	
 	
 	% Generazione automatica dei numeri 
 	\newcounter{vaV} % valore
@@ -182,6 +194,15 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			V2 & Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
 			R\addVNumber
 			V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
+			\bottomrule
+			\end{paddedtablex}
+		\caption{Elenco dei requisiti di vincolo (1)}
+	\end{table}	
+			
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+			\toprule
 			R\addVNumber
 			V0 & Come meccanismo di estensione per GitHub è possibile fare uso di \gloss{webhooks} & Capitolato \\
 			R\addVNumber
@@ -208,11 +229,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVNumber
 			V2 & Il file README per il DockerFile deve contenere le istruzioni per l'avvio & Capitolato \\
 			R\addVNumber
-			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
-			\\\bottomrule
-
+			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\\bottomrule
 		\end{paddedtablex}
-		\caption{Elenco dei requisiti di vincolo.}
+		\caption{Elenco dei requisiti di vincolo (2)}
 	\end{table}	
 		
 					
@@ -220,61 +239,80 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\subsection{Tracciamento}
 	
 		\subsubsection{Tracciamento fonti-requisiti}
-		%\begin{table}[H]
-			%\begin{tabular}%[1.7]{\textwidth}{XX}
-			\begin{oldtabular}{ll}
-				\textbf{Fonte} & \textbf{Requisito} \\%\toprule
-				\multirow{30}{*}{Capitolato} & R1F2 \\
-				 & R2F2 \\
-				 & R3F2 \\
-				 & R4F2 \\ 
-				 & R5F2 \\
-				 & R4Q2 \\
-				 & R5Q2 \\
-				 & R6Q2 \\
-				 & R7Q2 \\
-				 & R8Q2 \\
-				 & R9Q2 \\
-				 & R10Q2 \\
-				 & R1V2 \\
-				 & R2V2 \\
-				 & R3V0 \\
-				 & R4V2 \\
-				 & R5V0 \\
-				 & R6V0 \\
-				 & R7V1 \\
-				 & R8V1 \\
-				 & R9V2 \\
-				 & R10V2 \\
-				 & R11V1 \\
-				 & R12V2 \\
-				 & R13V2 \\
-				 & R14V2 \\
-				 & R15V2 \\
-				 & R16V2 \\
-				 & R17V2 \\
-				 & R18V2 \\ \hline
-				\multirow{17}{*}{Interno} & R6F2 \\
-				 & R7F0 \\
-				 & R8F2 \\
-				 & R9F2 \\
-				 & R10F0 \\
-				 & R11F0 \\
-				 & R12F0 \\
-				 & R13F0 \\
-				 & R14F0 \\
-				 & R15F0 \\
-				 & R16F0 \\
-				 & R17F0 \\
-				 & R18F0 \\
-				 & R19F0 \\
-				 & R1Q2 \\
-				 & R2Q2 \\
-				 & R3Q1 \\
-			  \end{oldtabular}
-		  
-			\begin{table}[H]	 
-			\begin{oldtabular}{ll}	 
+			
+		\begin{table}[H]
+			\centering
+			\begin{tabularx}{\textwidth}{YY}
+				\textbf{Fonte} & \textbf{Requisito} \\
+				\toprule
+				\cellcolor{white} & R1F2 \\
+				\cellcolor{white} & R2F2 \\
+				\cellcolor{white} & R3F2 \\
+				\cellcolor{white} & R4F2 \\ 
+				\cellcolor{white} & R5F2 \\
+				\cellcolor{white} & R4Q2 \\
+				\cellcolor{white} & R5Q2 \\
+				\cellcolor{white} & R6Q2 \\
+				\cellcolor{white} & R7Q2 \\
+				\cellcolor{white} & R8Q2 \\
+				\cellcolor{white} & R9Q2 \\
+				\cellcolor{white} & R10Q2 \\
+				\cellcolor{white} & R1V2 \\
+				\cellcolor{white} & R2V2 \\
+				\cellcolor{white} & R3V0 \\
+				\cellcolor{white} & R4V2 \\
+				\cellcolor{white} & R5V0 \\
+				\cellcolor{white} & R6V0 \\
+				\cellcolor{white} & R7V1 \\
+				\cellcolor{white} & R8V1 \\
+				\cellcolor{white} & R9V2 \\
+				\cellcolor{white} & R10V2 \\
+				\cellcolor{white} & R11V1 \\
+				\cellcolor{white} & R12V2 \\
+				\cellcolor{white} & R13V2 \\
+				\cellcolor{white} & R14V2 \\
+				\cellcolor{white} & R15V2 \\
+				\cellcolor{white} & R16V2 \\
+				\cellcolor{white} & R17V2 \\
+				\cellcolor{white} \multirow{-30}{*}{Capitolato} & R18V2 \\\bottomrule
+				\\
+			\end{tabularx}
+			\caption{Elenco dei requisiti del capitolato}
+		\end{table}
+	
+		\begin{table}[H]
+			\centering
+			\begin{tabularx}{\textwidth}{YY}
+				\textbf{Fonte} & \textbf{Requisito} \\
+				\toprule
+				\cellcolor{white} & R6F2 \\
+				\cellcolor{white} & R7F0 \\
+				\cellcolor{white} & R8F2 \\
+				\cellcolor{white} & R9F2 \\
+				\cellcolor{white} & R10F0 \\
+				\cellcolor{white} & R11F0 \\
+				\cellcolor{white} & R12F0 \\
+				\cellcolor{white} & R13F0 \\
+				\cellcolor{white} & R14F0 \\
+				\cellcolor{white} & R15F0 \\
+				\cellcolor{white} & R16F0 \\
+				\cellcolor{white} & R17F0 \\
+				\cellcolor{white} & R18F0 \\
+				\cellcolor{white} & R19F0 \\
+				\cellcolor{white} & R1Q2 \\
+				\cellcolor{white} & R2Q2 \\
+				\cellcolor{white} \multirow{-17}{*}{Interno} & R3Q1 \\
+				\bottomrule
+			\end{tabularx}
+		\caption{Elenco dei requisiti interni}
+	\end{table}
+
+		\begin{table}[H]
+			\centering
+			\rowcolors{2}{white}{\tablegray}
+			\begin{tabularx}{\textwidth}{YY}
+				\textbf{Fonte} & \textbf{Requisito} \\				
+				\toprule
 				\Doc{VE\_12-12-2018} & R4Q2 \\
 				UC1.1 & R6F2 \\
 				UC1.2 & R7F0 \\
@@ -290,11 +328,10 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				UC6.2.2 & R17F0 \\
 				UC6.1.3 & R18F0 \\
 				UC6.2.3 & R19F0 \\
-				%\\\bottomrule
-			\end{oldtabular}
-			\caption{Elenco di fonti-requisiti.}
-		\end{table}	
-
+				\bottomrule
+			\end{tabularx}
+			\caption{Elenco dei requisiti per i casi d'uso e verbali}
+		\end{table}
 		
 \newcounter{V} % valore
 \newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
@@ -313,6 +350,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		
 		\subsubsection{Tracciamento requisiti-fonte}
 		
+		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{XX}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di F
@@ -354,6 +392,14 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			F0 & Interno UC6.1.3 \\
 			R\addC
 			F0 & Interno UC6.2.3 \\
+			\bottomrule
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti funzionali in rapporto alle fonti}
+		\end{table}
+			
+		\begin{table}[H]	
+		\begin{paddedtablex}[1.7]{\textwidth}{XX}
+			\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di Q
 			R\addVC
 			Q2 & Interno \\
@@ -374,12 +420,14 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVC
 			Q2 & Capitolato \\
 			R\addVC
-			Q2 & Capitolato \\
-			%\\\bottomrule
-		\end{paddedtablex}
-			
-		\begin{table}[H]	
-		\begin{paddedtablex}[1.7]{\textwidth}{XX}
+			Q2 & Capitolato \\ \bottomrule \\
+			\end{paddedtablex}
+		\caption{Elenco dei requisiti di qualità in rapporto alle fonti}
+	\end{table}
+
+\begin{table}[H]	
+	\begin{paddedtablex}[1.7]{\textwidth}{XX}
+		\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di V
 			R\addX
 			V2 & Capitolato \\
@@ -417,16 +465,14 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			V2 & Capitolato \\
 			R\addX
 			V2 & Capitolato \\
-			
-			\bottomrule
+			\bottomrule \\
 		\end{paddedtablex}
-		\caption{Elenco di requisiti-fonti.}
+		\caption{Elenco dei requisiti di vincolo in rapporto alle fonti}
 	\end{table}		
-		
-		
-		
+				
 	\subsection{Riepilogo}
 	
+		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{XXXX}
 			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
 			Di funzionalità & 9 & 0 & 10 \\
@@ -434,5 +480,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Di vincolo & 12 & 3 & 3 			
 			\\\bottomrule
 		\end{paddedtablex}
+		\caption{Riepilogo dei requisiti}
+		\end{table}
 		
 	
