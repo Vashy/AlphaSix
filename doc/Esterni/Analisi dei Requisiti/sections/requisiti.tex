@@ -6,7 +6,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	in cui ogni parte ha un significato preciso:
 	\begin{itemize}
 		\item \textbf{R}: requisito.
-		\item \textbf{Numero}: numero progressivo.
+		\item \textbf{Numero}: numero progressivo che segue la struttura dei documenti.
 		\item \textbf{Tipo}: la la tipologia di requisito che può essere di:
 		\begin{itemize}
 			\item \textbf{F}: funzionalità.
@@ -41,21 +41,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			%da capitolato
-			R\addNumber 
-			F2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
-			R\addNumber
-			F2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti & Capitolato \\
-			R\addNumber
-			F2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
-			R\addNumber
-			F2 & Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic & Capitolato \\
-			R\addNumber
-			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti & Capitolato \\
+			
 			%da casi d'uso
-			R\addNumber
+			R\addNumber.1
 			F2 & Redmine e GitLab devono essere in grado di generare delle segnalazioni da inviare ai Producer & Interno UC1.1 \\
-			R\addNumber
+			R1.2
 			F0 & Se avviene un errore nella trasmissione di una segnalazione, viene creato un log in cui vengono salvate le informazioni relative all'errore & Interno UC1.2 \\
 			R\addNumber
 			F2 & Il Producer deve essere in grado di inviare delle segnalazioni al Broker & Interno UC2 \\
@@ -63,20 +53,27 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			F2 & Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio & Interno UC3 \\
 			R\addNumber
 			F2 & I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram & Interno UC4 \\
-			R\addNumber
+			R\addNumber.1
 			F0 & L'utente può eseguire l'accesso al gestore personale & Interno UC5.1 \\
-			R\addNumber
+			R5.1.1
 			F0 & L'utente può inserire il proprio username che lo identifica all'interno di \progetto & Interno UC5.1.1 \\
-			R\addNumber
+			R5.2
 			F0 & \progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
-			R\addNumber
+			R\addNumber.1.1
 			F0 & L'utente può iscriversi a un Topic & Interno UC6.1.1	\\
-			R\addNumber
-			F0 & L'utente può disiscriversi a un Topic & Interno UC6.2.1 \\
-			R\addNumber
+			R6.1.2
 			F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
-			R\addNumber
-			F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\\bottomrule
+			R6.1.3
+			F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram e e-mail, in cui ricevere le notifiche 
+			%e Slack
+			& Interno UC6.1.3 \\
+			R6.2.1
+			F0 & L'utente può disiscriversi a un Topic & Interno UC6.2.1 \\
+			R6.2.2
+			F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\
+			R6.2.3
+			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3 \\
+			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (1)}
 	\end{table}
@@ -84,12 +81,18 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{table}[H]		
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+			%da capitolato
+			R\addNumber 
+			F2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
 			R\addNumber
-			F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram e e-mail, in cui ricevere le notifiche 
-			%e Slack
-			& Interno UC6.1.3 \\
+			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti & Capitolato \\
 			R\addNumber
-			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3 \\\bottomrule\\
+			F2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
+			R\addNumber
+			F2 & Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic & Capitolato \\
+			R\addNumber
+			F2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti & Capitolato \\
+		\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (2)}
 	\end{table}
@@ -108,36 +111,37 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
+			%presi dal PdQ processi
+			R\addQNumber
+			Q1 & Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue & Interno QPR001\\
+			%presi dal PdQ prodotti
+			R1.1
+			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito & Interno QPD001\\  
+			%			R\addQNumber
+			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
+			%presi dal PdQ processi
+			R\addQNumber
+			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di \EUR{200} & Interno QPR002\\ 
+			R\addQNumber 
+			Q1 & Il livello di maturità dell'\gloss{ISO/IEC 15504} che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al terzo & Interno QPR003\\
+			R\addQNumber
+			Q1 & Il team \gruppo\ si è messo d'accordo per una frequenza minima di commit effettuati in una settimana & Interno QPR004\\
+			R\addQNumber
+			Q2 & I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto & Interno QPR005\\
+			R\addQNumber
+			Q1 & \gruppo\ si prefigge di soddisfare un numero stabilito di requisiti desiderabili & Interno QPR006\\
+			R\addQNumber
+			Q1 & Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto & Interno QPR007\\
+			R\addQNumber
+			Q1 & Ogni documento dovrebbe attraversare tutte le fasi previste dal suo \gloss{ciclo di vita} & Interno QPR008\\
+			R\addQNumber
+			Q1 & Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato & Interno QPR009\\
+			R\addQNumber
+			Q1 & La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto & Interno QPR010\\
 			R\addQNumber
 			Q2 & Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate & Interno \\
 			R\addQNumber
 			Q2 & Tutti i vincoli presenti nel \PdQ\ devono essere rispettati & Interno \\
-			%presi dal PdQ processi
-			R\addQNumber
-			Q1 & Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue & Interno \\
-			R\addQNumber
-			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di \EUR{200} & Interno \\ 
-			R\addQNumber 
-			Q1 & Il livello di maturità dell'\gloss{ISO/IEC 15504} che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al terzo & Interno \\
-			R\addQNumber
-			Q1 & Il team \gruppo\ si è messo d'accordo per una frequenza minima di commit effettuati in una settimana & Interno \\
-			R\addQNumber
-			Q2 & I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto & Interno \\
-			R\addQNumber
-			Q1 & \gruppo\ si prefigge di soddisfare un numero stabilito di requisiti desiderabili & Interno \\
-			R\addQNumber
-			Q1 & Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto & Interno \\
-			R\addQNumber
-			Q1 & Ogni documento dovrebbe attraversare tutte le fasi previste dal suo \gloss{ciclo di vita} & Interno \\
-			R\addQNumber
-			Q1 & Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato & Interno \\
-			R\addQNumber
-			Q1 & La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto & Interno \\
-			%presi dal PdQ prodotti
-			R\addQNumber
-			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito & Interno \\  
-			%			R\addQNumber
-			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
 			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (1)}
@@ -148,20 +152,22 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%presi da capitolato
 			R\addQNumber
-			Q2 & Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd & Capitolato \Doc{VE\_12-12-2018}	\\ 
-			R\addQNumber
-			Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
-			R\addQNumber
-			Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
-			R\addQNumber
-			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			Q2 & Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd & Capitolato \Doc{VE\_12-12-2018}	\\
 			R\addQNumber
 			Q2 & È necessario presentare il \gloss{bug} reporting per ogni componente & Capitolato \\
 			R\addQNumber
 			Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
 			R\addQNumber
 			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\
-			\bottomrule
+			R\addQNumber
+			Q2 & È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema & Capitolato \\
+			R17.1
+			Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
+			R17.2
+			Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
+			R17.3
+			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			\bottomrule \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (2)}
 	\end{table}
@@ -174,61 +180,62 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	
 	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
-	
-   	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
-			\toprule
-			%R\addVNumber
-			%V2 & Le componenti Producer devono riuscire a recuperare delle segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
-%			R\addVNumber
-%			V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
-			R\addVNumber
-			V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
-			R\addVNumber
-			V2 & Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\
-			R\addVNumber
-			V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
-			R\addVNumber
-			V2 & Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
-			R\addVNumber
-			V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
-			\bottomrule
-			\end{paddedtablex}
-		\caption{Elenco dei requisiti di vincolo (1)}
-	\end{table}	
 			
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
+			%R\addVNumber
+			%V2 & Le componenti Producer devono riuscire a recuperare delle segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
+			%			R\addVNumber
+			%			V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
+			R\addVNumber
+			V2 & Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e Sonarqube & Capitolato \\
+			R1.1
+			V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
+			R\addVNumber
+			V2 & Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
+			R2.1
+			V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
+			R\addVNumber
+			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
+			R3.1
+			V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
+			R\addVNumber
+			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato\\
+			R4.1
+			V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di vincolo (1)}
+	\end{table}	
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+			\toprule
+			R\addVNumber
+			V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
+			R5.1
+			V2 & I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio & Capitolato \\
+			R5.2
+			V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
+			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
+			R5.3
+			V2 & È necessario presentare un file README per il DockerFile & Capitolato \\
+			R5.4
+			V2 & Il file README per il Dockerfile deve contenere le istruzioni per l'avvio & Capitolato \\
+			R5.5
+			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
+			R\addVNumber
+			V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
 			R\addVNumber
 			V0 & Come meccanismo di estensione per GitLab è possibile fare uso di Webhooks & Capitolato \\
 			R\addVNumber
 			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js} & Capitolato \\
 			R\addVNumber
 			V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
-			R\addVNumber
-			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
-			R\addVNumber
-			V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
-			R\addVNumber
-			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato\\
-			R\addVNumber
-			V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
-			R\addVNumber
-			V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
-			R\addVNumber
-			V2 & I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio & Capitolato \\
-			R\addVNumber
-			V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
-			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-			R\addVNumber
-			V2 & È necessario presentare un file README per il DockerFile & Capitolato \\
-			R\addVNumber
-			V2 & Il file README per il Dockerfile deve contenere le istruzioni per l'avvio & Capitolato \\
-			R\addVNumber
-			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\\bottomrule
+			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (2)}
 	\end{table}	
@@ -241,99 +248,110 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			
 		\begin{table}[H]
 			\centering
+			{\def\arraystretch{1.4}
 			\begin{tabularx}{\textwidth}{YY}
 				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
-				\cellcolor{white} & R1F2 \\
-				\cellcolor{white} & R2F2 \\
-				\cellcolor{white} & R3F2 \\
-				\cellcolor{white} & R4F2 \\ 
-				\cellcolor{white} & R5F2 \\
+				\cellcolor{white} & R7F2 \\
+				\cellcolor{white} & R8F2 \\
+				\cellcolor{white} & R9F2 \\
+				\cellcolor{white} & R10F2 \\ 
+				\cellcolor{white} & R11F2 \\
 				\cmidrule{2-2}
-				\cellcolor{white} & R4Q2 \\
-				\cellcolor{white} & R5Q2 \\
-				\cellcolor{white} & R6Q2 \\
-				\cellcolor{white} & R7Q2 \\
-				\cellcolor{white} & R8Q2 \\
-				\cellcolor{white} & R9Q2 \\
-				\cellcolor{white} & R10Q2 \\
+				\cellcolor{white} & R14Q2 \\
+				\cellcolor{white} & R15Q2 \\
+				\cellcolor{white} & R16Q2 \\
+				\cellcolor{white} & R17Q2 \\
+				\cellcolor{white} & R17.1Q2 \\
+				\cellcolor{white} & R17.2Q2 \\
+				\cellcolor{white} & R17.3Q2 \\
 				\cmidrule{2-2}
 				\cellcolor{white} & R1V2 \\
+				\cellcolor{white} & R1.1V0 \\
 				\cellcolor{white} & R2V2 \\
-				\cellcolor{white} & R3V0 \\
-				\cellcolor{white} & R4V2 \\
-				\cellcolor{white} & R5V0 \\
-				\cellcolor{white} & R6V0 \\
-				\cellcolor{white} & R7V1 \\
+				\cellcolor{white} & R2.1V0 \\
+				\cellcolor{white} & R3V2 \\
+				\cellcolor{white} & R3.1V2 \\
+				\cellcolor{white} & R4V1 \\
+				\cellcolor{white} & R4.1V2 \\
+				\cellcolor{white} & R5V2 \\
+				\cellcolor{white} & R5.1V2 \\
+				\cellcolor{white} & R5.2V2 \\
+				\cellcolor{white} & R5.3V2 \\
+				\cellcolor{white} & R5.4V2 \\
+				\cellcolor{white} & R5.5V2 \\
+				\cellcolor{white} & R6V2 \\
+				\cellcolor{white} & R7V0 \\
 				\cellcolor{white} & R8V1 \\
-				\cellcolor{white} & R9V2 \\
-				\cellcolor{white} & R10V2 \\
-				\cellcolor{white} & R11V1 \\
-				\cellcolor{white} & R12V2 \\
-				\cellcolor{white} & R13V2 \\
-				\cellcolor{white} & R14V2 \\
-				\cellcolor{white} & R15V2 \\
-				\cellcolor{white} & R16V2 \\
-				\cellcolor{white} & R17V2 \\
-				\cellcolor{white} \multirow{-30}{*}{Capitolato} & R18V2 \\\bottomrule
-				\\
-			\end{tabularx}
+				\cellcolor{white} \multirow{-31}{*}{Capitolato} & R9V1 \\
+				\bottomrule\\
+			\end{tabularx}}
 			\caption{Elenco dei requisiti del capitolato}
 		\end{table}
 	
-		\begin{table}[H]
+			\begin{table}[H]
 			\centering
-			\begin{tabularx}{\textwidth}{YY}
-				\textbf{Fonte} & \textbf{Requisito} \\
-				\toprule
-				\cellcolor{white} & R6F2 \\
-				\cellcolor{white} & R7F0 \\
-				\cellcolor{white} & R8F2 \\
-				\cellcolor{white} & R9F2 \\
-				\cellcolor{white} & R10F0 \\
-				\cellcolor{white} & R11F0 \\
-				\cellcolor{white} & R12F0 \\
-				\cellcolor{white} & R13F0 \\
-				\cellcolor{white} & R14F0 \\
-				\cellcolor{white} & R15F0 \\
-				\cellcolor{white} & R16F0 \\
-				\cellcolor{white} & R17F0 \\
-				\cellcolor{white} & R18F0 \\
-				\cellcolor{white} & R19F0 \\
-				\cmidrule{2-2}
-				\cellcolor{white} & R1Q2 \\
-				\cellcolor{white} & R2Q2 \\
-				\cellcolor{white} \multirow{-17}{*}{Interno} & R3Q1 \\
-				\bottomrule \\
-			\end{tabularx}
-		\caption{Elenco dei requisiti interni}
-	\end{table}
+			{\def\arraystretch{1.5}
+				\begin{tabularx}{\textwidth}{YY}
+					\textbf{Fonte} & \textbf{Requisito} \\
+					\toprule
+					\cellcolor{white} & R11Q2 \\
+					\cellcolor{white} & R12Q2 \\
+					\cellcolor{white} \multirow{-2}{*}{Interno} & R3Q1 \\
+					\bottomrule
+				\end{tabularx}}
+			\caption{Elenco dei requisiti interni}
+		\end{table}
 
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{white}{\tablegray}
+			{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YY}
 				\textbf{Fonte} & \textbf{Requisito} \\				
 				\toprule
-				\Doc{VE\_12-12-2018} & R4Q2 \\
-				UC1.1 & R6F2 \\
-				UC1.2 & R7F0 \\
-				UC2 & R8F2 \\
-				UC3 & R9F2 \\
-				UC4 & R10F0 \\
-				UC5.1 & R11F0 \\
-				UC5.1.1 & R12F0 \\
-				UC5.2 & R13F0 \\
-				UC6.1.1 & R14F0 \\
-				UC6.2.1 & R15F0 \\
-				UC6.1.2 & R16F0 \\
-				UC6.2.2 & R17F0 \\
-				UC6.1.3 & R18F0 \\
-				UC6.2.3 & R19F0 \\
-				\bottomrule
-			\end{tabularx}
-			\caption{Elenco dei requisiti per i casi d'uso e verbali}
+				UC1.1 & R1.1F2 \\
+				UC1.2 & R1.2F0 \\
+				UC2 & R2F2 \\
+				UC3 & R3F2 \\
+				UC4 & R4F0 \\
+				UC5.1 & R5.1F0 \\
+				UC5.1.1 & R5.1.1F0 \\
+				UC5.2 & R5.2F0 \\
+				UC6.1.1 & R6.1.1F0 \\
+				UC6.1.2 & R6.1.2F0 \\
+				UC6.1.3 & R6.1.3F0 \\
+				UC6.2.1 & R6.2.1F0 \\
+				UC6.2.2 & R6.2.2F0 \\
+				UC6.2.3 & R6.2.3F0 \\
+				\bottomrule \\
+			\end{tabularx}}
+			\caption{Elenco dei requisiti per i casi d'uso}
 		\end{table}
+	
+		\begin{table}[H]
+		\centering
+		\rowcolors{2}{white}{\tablegray}
+		{\def\arraystretch{1.5}
+		\begin{tabularx}{\textwidth}{YY}
+			\textbf{Fonte} & \textbf{Requisito} \\				
+			\toprule
+			QPR001 & R1Q1 \\
+			QPD001 & R1.1Q1 \\
+			QPR002 & R2Q1 \\
+			QPR003 & R3Q1 \\
+			QPR004 & R4Q1 \\
+			QPR005 & R5Q2 \\
+			QPR006 & R6Q1 \\
+			QPR007 & R7Q1 \\
+			QPR008 & R8Q1 \\
+			QPR009 & R9Q1 \\
+			QPR010 & R10Q1 \\
+			\Doc{VE\_12-12-2018} & R13Q2 \\
+			\bottomrule\\
+		\end{tabularx}}
+		\caption{Elenco dei requisiti per gli obiettivi di qualità e verbali}
+	\end{table}
 		
 \newcounter{V} % valore
 \newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
@@ -356,19 +374,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{XX}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di F
-			R\addC
-			F2 & Capitolato \\
-			R\addC
-			F2 & Capitolato \\
-			R\addC
-			F2 & Capitolato \\
-			R\addC
-			F2 & Capitolato \\
-			R\addC
-			F2 & Capitolato \\
-			R\addC
+			R\addC.1
 			F2 & Interno UC1.1 \\
-			R\addC
+			R1.2
 			F0 & Interno UC1.2 \\
 			R\addC
 			F2 & Interno UC2 \\
@@ -376,24 +384,34 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			F2 & Interno UC3 \\
 			R\addC
 			F0 & Interno UC4 \\
-			R\addC
+			R\addC.1
 			F0 & Interno UC5.1 \\
-			R\addC
+			R5.1.1
 			F0 & Interno UC5.1.1 \\
-			R\addC
+			R5.2
 			F0 & Interno UC5.2 \\
-			R\addC
+			R\addC.1.1
 			F0 & Interno UC6.1.1 \\
-			R\addC
-			F0 & Interno UC6.2.1 \\
-			R\addC
+			R6.1.2
 			F0 & Interno UC6.1.2 \\
-			R\addC
-			F0 & Interno UC6.2.2 \\
-			R\addC
+			R6.1.3
 			F0 & Interno UC6.1.3 \\
-			R\addC
+			R6.2.1
+			F0 & Interno UC6.2.1 \\
+			R6.2.3
+			F0 & Interno UC6.2.2 \\
+			R6.2.3
 			F0 & Interno UC6.2.3 \\
+			R\addC
+			F2 & Capitolato \\
+			R\addC
+			F2 & Capitolato \\
+			R\addC
+			F2 & Capitolato \\
+			R\addC
+			F2 & Capitolato \\
+			R\addC
+			F2 & Capitolato \\
 			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti funzionali in rapporto alle fonti}
@@ -404,15 +422,33 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di Q
 			R\addVC
-			Q2 & Interno \\
+			Q1 & Interno QPR001 \\
+			R1.1
+			Q1 & Interno QPD001 \\
+			R\addVC
+			Q1 & Interno QPR002 \\
+			R\addVC
+			Q1 & Interno QPR003 \\
+			R\addVC
+			Q1 & Interno QPR004 \\
+			R\addVC
+			Q2 & Interno QPR005 \\
+			R\addVC
+			Q1 & Interno QPR006 \\
+			R\addVC
+			Q1 & Interno QPR007 \\
+			R\addVC
+			Q1 & Interno QPR008 \\
+			R\addVC
+			Q1 & Interno QPR009 \\
+			R\addVC
+			Q2 & Interno QPR010 \\
 			R\addVC
 			Q2 & Interno \\
 			R\addVC
-			Q1 & Interno \\
+			Q2 & Interno \\
 			R\addVC
-			Q2 & Capitolato \Doc{VE\_12-12-2018} \\
-			R\addVC
-			Q2 & Capitolato \\
+			Q2 & \Doc{VE\_12-12-2018} \\
 			R\addVC
 			Q2 & Capitolato \\
 			R\addVC
@@ -421,8 +457,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q2 & Capitolato \\
 			R\addVC
 			Q2 & Capitolato \\
-			R\addVC
-			Q2 & Capitolato \\ \bottomrule \\
+			R17.1
+			Q2 & Capitolato \\
+			R17.2
+			Q2 & Capitolato \\
+			R17.3
+			Q2 & Capitolato \\
+			\bottomrule
 			\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità in rapporto alle fonti}
 	\end{table}
@@ -433,40 +474,40 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			%R di V
 			R\addX
 			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
+			R1.1
 			V0 & Capitolato \\
 			R\addX
 			V2 & Capitolato \\
-			R\addX
+			R2.1
 			V0 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R3.1
+			V2 & Capitolato \\
+			R\addX
+			V1 & Capitolato \\
+			R4.1
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
+			R5.1
+			V2 & Capitolato \\
+			R5.2
+			V2 & Capitolato \\
+			R5.3
+			V2 & Capitolato \\
+			R5.4
+			V2 & Capitolato \\
+			R5.5
+			V2 & Capitolato \\
+			R\addX
+			V2 & Capitolato \\
 			R\addX
 			V0 & Capitolato \\
 			R\addX
 			V1 & Capitolato \\
 			R\addX
 			V1 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V1 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
-			R\addX
-			V2 & Capitolato \\
 			\bottomrule \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo in rapporto alle fonti}
