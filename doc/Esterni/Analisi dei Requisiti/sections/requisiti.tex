@@ -10,7 +10,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\item \textbf{Tipo}: la la tipologia di requisito che può essere di:
 		\begin{itemize}
 			\item \textbf{F}: funzionalità.
-			\item \textbf{Q}: qualità.
+			\item \textbf{Q}: \gloss{qualità}.
 			\item \textbf{V}: vincolo.
 		\end{itemize}
 		\item \textbf{Priorità}: indica il grado di urgenza di un requisito di essere soddisfatto, come:
@@ -47,7 +47,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addNumber
 			F2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
 			R\addNumber
-			F2 & Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic & Capitolato \\
+			F2 & Nel \gloss{sistema} deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic & Capitolato \\
 			R\addNumber
 			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti & Capitolato \\
 			%da casi d'uso
@@ -112,9 +112,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q2 & Tutti i vincoli presenti nel \PdQv\ devono essere rispettati & Interno \\
 			%presi dal PdQ processi
 			R\addQNumber
-			Q1 & Non dovrebbero esserci più di 2 giorni di ritardo di chiusura di una issue & Interno \\
+			Q1 & Non dovrebbero esserci più di 2 giorni di ritardo di chiusura di una \gloss{issue} & Interno \\
 			R\addQNumber
-			Q1 & I costi previsti dalla pianificazione non dovrebbero variare più di \EUR{200} & Interno \\ 
+			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di \EUR{200} & Interno \\ 
 			R\addQNumber 
 			Q1 & Il livello di maturità dell'ISO/IEC 15504 che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al terzo & Interno \\
 			R\addQNumber
@@ -136,10 +136,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe avere indice tra 50 e 60 & Interno \\  
 			%			R\addQNumber
 			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
-			
-				
 			\bottomrule
-
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (1)}
 	\end{table}
@@ -157,7 +154,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addQNumber
 			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
 			R\addQNumber
-			Q2 & È necessario presentare il bug reporting per ogni componente & Capitolato \\
+			Q2 & È necessario presentare il \gloss{bug} reporting per ogni componente & Capitolato \\
 			R\addQNumber
 			Q2 & Deve essere redatta documentazione sulle scelte progettuali effettuate & Capitolato \\
 			R\addQNumber
@@ -204,9 +201,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			R\addVNumber
-			V0 & Come meccanismo di estensione per GitHub è possibile fare uso di \gloss{webhooks} & Capitolato \\
+			V0 & Come meccanismo di estensione per GitLab è possibile fare uso di webhooks & Capitolato \\
 			R\addVNumber
-			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio Java 8 o una versione più recente, Python o Node.js & Capitolato \\
+			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js} & Capitolato \\
 			R\addVNumber
 			V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
 			R\addVNumber
