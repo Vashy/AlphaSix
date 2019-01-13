@@ -1,12 +1,13 @@
 \section{Qualità di processo}\label{QualitaProcesso}
 
 \subsection{Scopo}
-La qualità di un prodotto è fortemente influenzata dal processo utilizzato nell'arco di creazione del prodotto stesso: da un tubo sporco non può uscire acqua pulita.
+La qualità di un prodotto è fortemente influenzata dai processi utilizzati nell'arco di creazione del prodotto stesso: da un tubo sporco non può uscire acqua pulita.
 
-Per questo è necessario operare con un buon \gloss{ciclo di vita} per i processi, che devono venire verificati e valutati adeguatamente. A questo scopo viene seguito lo schema del \gloss{ciclo di Deming} e dell'\gloss{ISO 15504} descritti all'Appendice \S\ref{StandardQualita}.
+Per questo è necessario operare con un buon \gloss{ciclo di vita} che
+determina quali processi attivare e che devono essere verificati e valutati adeguatamente. A questo scopo viene seguito lo schema del \gloss{ciclo di Deming} e dell'\gloss{ISO 15504} descritti all'Appendice \S\ref{StandardQualita}.
 
 
-\subsection{Nomenclatura metriche ed obiettivi di qualità}
+\subsection{Nomenclatura metriche ed obiettivi di qualità}	\label{nomenclatura}
 La nomenclatura degli obiettivi di qualità, delle \gloss{metriche} ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
 
 	\begin{itemize}
@@ -89,55 +90,50 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che \g
 		\end{itemize}
 	
 	\subsubsection{PROC002 Analisi}
-	Il processo di analisi serve per comprendere le richieste del progetto che consistono in: requisiti, tecnologie da utilizzare e risorse da spendere.
-	Insieme all'analisi dei requisiti, questo processo prevede anche l'analisi dei rischi presente alla sezione (sezione dell'analisi dei rischi) nel \Doc{\PdPv}.
+	Per processo di analisi si intende qui un processo di analisi generico, di più contenuti, non riferendosi solo all'analisi dei requisiti (consultabile al documento \AdRd), ma anche all'analisi dei rischi (presente nel \PdPd) e altre attività di identificazione e analisi riportate qui di seguito tra le funzioni.
 	
-	Completata questa attività il team di sviluppo, oltre ad aver studiato i vari requisiti, deve poter dire se il progetto risulta fattibile per le sue possibilità in termini di competenze e risorse.
+	%TODO: si riferisce allo Studio di fattibilità
+	%Completata questa attività, il team di sviluppo, oltre ad aver studiato i vari requisiti, deve poter dire se il progetto risulta fattibile per le sue possibilità in termini di competenze e risorse.
 	
-	Tale processo non deve essere rendicontato per il preventivo a finire.
+	%TODO: VERO?
+	%Tale processo non deve essere rendicontato per il preventivo a finire.
 	
 		\paragraph*{Funzioni}
 		
 		\begin{itemize}
-			\item \textbf{Individuare i requisiti}: il capitolato che viene presentato dal cliente può possedere con un lessico più discorsivo che tecnico dovuto all'inesperienza del cliente nel settore.
-				\`E necessario dunque effettuare un lavoro di "traduzione" per individuare i requisiti e classificarli in
-
-			\begin{itemize}
-				\item Obbligatori
-				\item Desiderabili  
-				\item Opzionali
-			\end{itemize}
-			\item \textbf{Individuare le tecnologie da utilizzare}: in base al tipo di progetto le tecnologie da utilizzare migliori per realizzarlo possono cambiare da progetto a progetto.
+			\item \textbf{Individuare i requisiti}: il capitolato che viene presentato dal cliente può possedere un lessico più discorsivo che tecnico.
+			È necessario dunque effettuare un lavoro più approfondito per individuare i requisiti, espliciti ed impliciti, e classificarli.
+			%\item \textbf{Individuare le tecnologie da utilizzare}: in base al tipo di progetto le tecnologie da utilizzare migliori per realizzarlo possono cambiare da progetto a progetto.
 			\item \textbf{Comprendere la quantità di risorse richieste}: sviluppare un preventivo è fondamentale, sia per il cliente che vuole sapere il costo del progetto, che per il \gloss{fornitore} che deve sapere se il progetto per lui è fattibile.
 			\item \textbf{Individuare i rischi}: lungo il corso del progetto possono accadere degli imprevisti, perciò è necessario poterli prevedere ed organizzare fin da subito una reazione ad essi.
-			\item \textbf{Stabilire la fattibilità del progetto}: dopo aver fatto l'analisi dei requisiti, dei rischi e dei costi bisogna sapere se iniziare lo sviluppo del progetto o meno.
+			%\item \textbf{Stabilire la fattibilità del progetto}: dopo aver fatto l'analisi dei requisiti, dei rischi e dei costi, è necessario essere consapevoli se si è in grado di iniziare lo sviluppo del progetto o meno.
 		\end{itemize}
 
 		\paragraph*{Metriche}
 
 		\begin{itemize}
-			\item \textbf{MPR005 Requisiti obbligatori non soddisfatti}
-			\item \textbf{MPR006 Requisiti desiderabili non soddisfatti}
-			\item \textbf{MPR007 Requisiti opzionali non soddisfatti}
-			\item \textbf{MPR008 Rischi non previsti avvenuti}
+			\item MPR005 Requisiti obbligatori non soddisfatti
+			\item MPR006 Requisiti desiderabili non soddisfatti
+			\item MPR007 Requisiti opzionali non soddisfatti
+			\item MPR008 Rischi non previsti avvenuti
 		\end{itemize}
-		I risultati di tutte queste metriche possono essere pubblicate ed analizzate solo a progetto compiuto, prima avrebbe poca utilità. 
+		I risultati di tutte queste metriche possono essere pubblicate ed analizzate solo a progetto compiuto; prima avrebbe poca utilità. 
 	
 		\paragraph*{Obiettivi}
 		
 		\begin{itemize}
 			\item \textbf{QPR005 Soddisfacimento dei requisiti obbligatori}: tutti i requisiti obbligatori devono essere soddisfatti a fine progetto.
-			\item \textbf{QPR006 Soddisfacimento dei requisiti opzionali e desiderabili}: i requisiti opzionali e desiderabili possono non essere rispettati
-				solo se non avanzano più risorse in termini di $ \frac{\text{tempo}}{\text{persona}}$ prima della consegna del progetto. I requisiti inoltre
-				devono essere stabiliti in modo corretto: hanno l'obbligo di rispecchiare quanto chiesto dal cliente e non sovrapporsi tra loro.
-			\item \textbf{QPR007 Verificarsi dei rischi previsti}: lo sviluppo del progetto deve essere sicuro e non presentare imprevisti la cui soluzione non è stata prevista, perché potenzialmente aumenterebbe di molto il ritardo nello sviluppo del progetto rispetto al rischio previsto.
+			\item \textbf{QPR006 Soddisfacimento dei requisiti opzionali e desiderabili}: i requisiti opzionali e desiderabili possono essere soddisfatti
+				solo se si avanzano ancora risorse in termini di $ \frac{\text{tempo}}{\text{persona}}$ prima del definitivo termine del progetto. 
+				I requisiti inoltre devono essere stabiliti in modo corretto: hanno l'obbligo di rispecchiare quanto chiesto dal cliente e non sovrapporsi tra loro.
+			\item \textbf{QPR007 Verificarsi dei rischi previsti}: lo sviluppo del progetto dovrebbe procedere senza incertezze e non presentare imprevisti non precedentemente studiati, perché potenzialmente potrebbe aumenterebbe di molto il ritardo nello sviluppo del progetto rispetto al previsto.
 		\end{itemize}
 	
 	\subsubsection{PROC003 Produzione documenti}
-	Questo processo rimane attivo in tutta la durata del ciclo di vita del prodotto perché ha il compito di produrre dei documenti che riportino le scelte effettuate, gli strumenti utilizzati e le modifiche attuate nell'intero corso del progetto.
+	Questo processo rimane attivo in tutta la durata dello sviluppo del prodotto perché ha il compito di produrre dei documenti che riportino le scelte effettuate, gli strumenti utilizzati e le modifiche attuate nell'intera durata del progetto.
 	
 		\paragraph*{Funzioni}
-		Il processo comprende il ciclo di vita di ogni documento, che è spiegato in dettaglio nelle \Doc{\NdPv}, prevede:
+		Il processo comprende il ciclo di vita di ogni documento, che è spiegato in dettaglio nelle \NdPv, e prevede:
 		
 		\begin{itemize}
 			\item Redazione
@@ -148,24 +144,18 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che \g
 		\paragraph*{Obiettivi}
 		
 		\begin{itemize}
-			\item \textbf{QPR008 Rispetto delle fasi del ciclo di vita}: il ciclo di vita di ogni documento deve essere rispettato in ogni sua fase e questo deve venir pubblicato secondo le scadenze stabilite. Le sue fasi sono:
-			
-			\begin{itemize}
-				\item Redazione
-				\item Verifica
-				\item Approvazione
-			\end{itemize}
+			\item \textbf{QPR008 Rispetto delle fasi del ciclo di vita}: il ciclo di vita di ogni documento deve essere rispettato in ogni sua fase e questo deve venir pubblicato secondo le scadenze prestabilite. 
 		\end{itemize}
 
 	\subsubsection{PROC004 Verifica}
 	Il processo, attivo in tutta la durata del progetto, ha il compito di valutare la correttezza dei prodotti dati in input e stabilire se presentano errori
-	e se sono sufficientemente di qualità. Il processo di verifica è descritto più nel dettaglio alla sezione §4.2 del documento \mbox{\Doc{\NdPv}}.
+	e se sono sufficientemente di qualità.
 	
 		\paragraph*{Funzioni}
 		
 		\begin{itemize}
 			\item \textbf{Verificare le funzionalità dei prodotti}: i prodotti devono saper soddisfare i requisiti richiesti. Nella fase di verifica viene accertato che questo effettivamente avvenga.
-			\item \textbf{Verificare la corretta esecuzione dei processi}: i processi possiedono un ciclo di vita che è suddiviso in fasi, per la buona esecuzione del processo queste devono essere eseguite nell'ordine corretto restituendo gli output attesi.
+			%\item \textbf{Verificare la corretta esecuzione dei processi}: i processi possiedono un ciclo di vita che è suddiviso in fasi, per la buona esecuzione del processo queste devono essere eseguite nell'ordine corretto restituendo gli output attesi.
 			\item \textbf{Verificare che siano rispettate le \NdP}: il team di sviluppo stabilisce un suo way of working che deve rispettare in tutta la durata del progetto. Anche la verifica di queste norme deve essere effettuata.
 		\end{itemize}
 		
@@ -178,20 +168,21 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che \g
 		\paragraph*{Obiettivi}
 		
 		\begin{itemize}
-			\item \textbf{QPR009 Effettuare una verifica costante}: la fase di verifica è sempre attiva perché ogni singolo prodotto deve essere testato e controllato ogni volta che viene modificato o prima della scadenza di una \gloss{milestone}.
-			%\item \textbf{QPR010 Rispetto delle fasi di verifica}: la fase di verifica deve essere eseguita in modo iterativo senza cambiare in modo sostanziale nel corso del progetto. Un mutamento della fase di verifica renderebbe incoerenti i risultati delle precedenti iterazioni, impedendo di vedere se è presente un miglioramento della qualità o meno.
+			\item \textbf{QPR009 Effettuare una verifica costante}: la fase di verifica è sempre attiva perché ogni singolo prodotto deve essere testato e controllato ogni volta che viene modificato o prima dell'arrivo di una \gloss{milestone}.
+			\item \textbf{QPR010 Rispetto delle fasi di verifica}: la fase di verifica deve essere eseguita in modo iterativo senza cambiare in modo sostanziale nel corso del progetto. Un mutamento della fase di verifica renderebbe incoerenti i risultati delle precedenti iterazioni, impedendo di vedere se è presente un miglioramento della qualità o meno.
 		\end{itemize}
 
+
 \subsection{Tabella qualità di processo}
-Le tabelle indicano gli obiettivi di qualità che ogni processo deve possedere.
+Le tabelle indicano gli obiettivi di qualità discussi nelle precedenti sezioni che ogni processo deve possedere.
 
 Ogni obiettivo di qualità è indicato con:
 
 \begin{itemize}
-	\item \textbf{Obiettivo}: viene indicato l'obiettivo di qualità col suo codice identificativo e nome;
-	\item \textbf{Metrica}: la metrica utilizzata per valutare l'obiettivo di qualità assegnatole. Nel caso non fosse possibile associare una metrica ad un obiettivo di qualità questa non verrà indicata;
-	\item \textbf{Valore desiderato}: il valore che si vuole ottenere attraverso la metrica indicata per soddisfare a pieno l'obiettivo di qualità;
-	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità e della metrica.
+	\item \textbf{Obiettivo}: indica il proprio codice identificativo secondo quanto esplicato nella sezione \S\ref{nomenclatura}.
+	\item \textbf{Metrica}: la metrica utilizzata per valutare l'obiettivo di qualità assegnatole denominato sempre secondo quanto dichiarato in \S\ref{nomenclatura}. Nel caso non fosse possibile associare una metrica ad un obiettivo di qualità, questa non verrà indicata.
+	\item \textbf{Valore desiderato}: il valore che \gruppo\ vuole ottenere per soddisfare appieno l'obiettivo di qualità. È possibile dare un valore quantificabile solo tramite una metrica, quindi questo campo è nullo nel caso in cui quest'ultima sia assente.
+	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità prefisso.
 \end{itemize}
 
 \newcommand{\grigiodesc}{gray!15}
@@ -207,18 +198,19 @@ Ogni obiettivo di qualità è indicato con:
 		\textbf{Valore desiderato}\\\toprule
 		\rowcolor{white}
 
-		QPR001 Rispetto delle fasi dell'organigramma & MPR001 Varianza della programmazione & 0-2 giorni\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze date dall'organigramma possono possedere un ritardo massimo di due giorni, per le scadenza infatti viene considerato anche un tempo di \gloss{slack} per eventuali ritardi. Il valore desiderato indica la media del numero di giorni di ritardo nella chiusura di una \gloss{issue} durante tutto il macro periodo.} \\
+		QPR001 Rispetto dei periodi della pianificazione & MPR001 Varianza della pianificazione & 0-2 giorni\\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze riportate nel \PdP\ considerano anche un tempo di \gloss{slack} per eventuali ritardi. Il completamento di un compito assegnato, che per \gruppo\ corrisponde alla chiusura di una \gloss{issue}, può quindi possedere fino a un ritardo massimo di due giorni.} \\
 
 		\hline \rowcolor{white}
 		QPR002 Variazione del budget & MPR002 Varianza dei costi & \EUR{0-200}\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ogni ruolo nel team di sviluppo possiede una tariffa oraria. Può accadere che nel corso del progetto sia richiesto più lavoro di quello conteggiato nel preventivo, queste ore in più devono essere rendicontate.} \\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ogni ruolo nel team di sviluppo possiede una tariffa oraria. Può accadere che nel corso del progetto sia richiesta una quantità di lavoro diversa da quella preventivamente conteggiata. Si è previsto di poter tollerare fino a un massimo di \EUR{200} di differenza.} \\
 		\hline \rowcolor{white}
 		QPR003 Rispetto delle fasi del ciclo di vita & MPR003 Aderenza agli standard & Livello di maturità: 3 Valutazione attributi: L\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: dai sondaggi è emerso che la maggior parte delle aziende italiane che si sono adeguate allo standard ISO/IEC 15504 ha raggiunto un livello di maturità pari a 3. Il team di sviluppo si prefigge di raggiungere anch'esso un tale livello di maturità soddisfacendo i vari attributi di almeno il 75\% della loro interezza.}\\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: dai sondaggi è emerso che la maggior parte delle aziende italiane che si sono adeguate allo standard ISO/IEC 15504 ha raggiunto un livello di maturità pari a 3. \gruppo\ si prefigge di raggiungere anch'esso un tale livello di maturità soddisfacendo i vari attributi di almeno il 75\% della loro interezza.}\\
 		\hline \rowcolor{white}
-		QPR004 Versionamento & MPR004 Frequenza commit nella repository & 25\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il frequente commit in una repository permette di tenere una miglior traccia delle modifiche e di accedere all'ultima versione del progetto a tutti i membri del team di sviluppo. Nel valore desiderato è indicato il numero minimo di commit da effettuare in media ogni settimana lavorativa durante il un macro periodo.}\\
+		QPR004 Versionamento & MPR004 Frequenza commit nella repository & 25+\\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i commit di una repository permettono di tenere una miglior traccia delle modifiche e di accedere facilmente all'ultima versione del prodotto.
+		È stato calcolato che un giusto numero di commit da effettuare in media durante una settimana produttiva è 25.}\\
 	\end{tabularx}}
 	\caption{Obiettivi di qualità per il PROC001}
 \end{table}
@@ -236,15 +228,15 @@ Ogni obiettivo di qualità è indicato con:
 		\textbf{Valore desiderato}\\\toprule
 		\rowcolor{white}
 		QPR005 Soddisfacimento dei requisiti obbligatori & MPR005 Requisiti obbligatori non soddisfatti & 0\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i requisiti obbligatori devono essere tutti soddisfatti alla consegna finale del progetto.}\\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i requisiti obbligatori devono essere tutti soddisfatti entro la consegna finale del progetto.}\\
 		\hline \rowcolor{white}
 		QPR006 Soddisfacimento dei requisiti opzionali e desiderabili & MPR006 Requisiti desiderabili non soddisfatti MPR007 Requisiti opzionali non soddisfatti & 0-(n-2)\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i requisiti opzionali e desiderabili, non essendo
-			obbligatori possono non essere svolti all'interno del progetto, dato che però offrono un valore aggiunto, il team di sviluppo vuole soddisfarne almeno due.}\\
+			obbligatori possono non essere svolti all'interno del progetto. Dato che però offrono un valore aggiunto, \gruppo\ mira a soddisfarne almeno due.}\\
 		\hline \rowcolor{white}
 		QPR007 Verificarsi dei rischi previsti & MPR008 Rischi non previsti avvenuti & 0\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il verificarsi di imprevisti può accadere nel corso
-			del progetto, ma devono essere tutti già previsti dal team di sviluppo in modo tale da intervenire tempestivamente con una soluzione.}\\
+			del progetto, ma devono essere tutti già rilevati. Per questo si prevede che non si presenti nessun altro rischio al di fuori di quelli previsti.}\\
 	\end{tabularx}}
 	\caption{Obiettivi di qualità per il PROC002}
 \end{table}
@@ -262,7 +254,7 @@ Ogni obiettivo di qualità è indicato con:
 		\textbf{Valore desiderato}\\\toprule
 		\rowcolor{white}
 		QPR008 Rispetto delle fasi del ciclo di vita & - & -\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ogni documento deve attraversare determinate fasi del ciclo di vita, è compito del \Ver~accertarsi che tali fasi vengano rispettate.}\\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ogni documento deve attraversare determinate fasi del ciclo di vita. È compito del \Ver~accertarsi che tali fasi vengano rispettate.}\\
 	\end{tabularx}}
 	\caption{Obiettivi di qualità per il PROC003}
 \end{table}
@@ -280,10 +272,12 @@ Ogni obiettivo di qualità è indicato con:
 		\textbf{Valore desiderato}\\\toprule
 		\rowcolor{white}
 		QPR009 Effettuare una verifica costante & MPR009 Frequenza controllo prodotti & 5 modifiche\\
-		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il \Ver\ deve controllare i prodotti in modo frequente, in modo tale che siano corretti nella forma, contenuto e funzionalità. Per quanto riguarda i documenti le modifiche sono le varie versioni del documento riportate nel diario, per i prodotti software invece i commit effettuati.}\\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il \Ver\ deve controllare i prodotti in modo frequente, in modo tale che siano corretti nella forma, contenuto e funzionalità. Si considera 5 un numero sufficiente di modifiche apportate a un documento tale da necessitare di una verifica.
+		%Teoricamente non solo..
+		%, per i prodotti software invece i commit effettuati.}\\
 		\hline \rowcolor{white}
-%		QPR010 Rispetto delle fasi di verifica & - & -\\
-%		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: è compito del \Ver~assicurarsi che la fase di verifica venga eseguita nel modo corretto per disporre sempre di risultati di verifica attendibili ed analizzabili.}\\
+		QPR010 Rispetto delle fasi di verifica & - & -\\
+		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: è compito del \Ver~assicurarsi che la fase di verifica venga eseguita nel modo corretto per disporre sempre di risultati di verifica attendibili ed analizzabili.}\\
 	\end{tabularx}}
 	\caption{Obiettivi di qualità per il PROC003}
 \end{table}
