@@ -1,6 +1,9 @@
 %\newpage
 \section{Casi d'uso}
-Questa sezione elenca le funzionalità offerte da \progetto\ descritte attraverso il linguaggio \gloss{UML}. Dato che non è stata ancora affrontata la fase implementativa del progetto, i casi d'uso elencati descrivono l'applicazione ad un livello molto astratto, senza mostrare nel dettaglio i passaggi per applicare le funzionalità descritte.
+Questa sezione elenca le funzionalità offerte da \progetto\ descritte attraverso il linguaggio \gloss{UML}. 
+%TODO: excuseme wtf!!!!!!!!!!!!!!!!!
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAh!
+Dato che non è stata ancora affrontata la fase implementativa del progetto, i casi d'uso elencati descrivono l'applicazione ad un livello molto astratto, senza mostrare nel dettaglio i passaggi per applicare le funzionalità descritte.
 
 \progetto\ può essere visto come l'insieme di più sottosistemi che verranno di seguito elencati e che sono stati descritti in modo molto generale anche attraverso la figura \ref{fig:butterfly}.
 	
@@ -122,6 +125,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Attori primari}: Consumer.
 		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dall'utente in un'apposita interfaccia. Il sistema di riferimento qui è Broker ed è interno al sistema \progetto.
 		\item \textbf{Precondizione}: il Broker ha un messaggio pronto ad essere inoltrato da un Consumer verso un client delle tecnologie con cui il sistema si interfaccia.
+		%TODO: consumer
 		\item \textbf{Postcondizione}: il messaggio è stato recuperato dal Broker. Dopo il Consumer lo può inoltrare al client della tecnologia correlata in attesa con lo scopo l'utente finale lo legga.
 		\item \textbf{Scenario principale}: 
 			\begin{enumerate}
@@ -141,8 +145,10 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Titolo}: Telegram/e-mail riceve un messaggio dal Consumer.
 		\item \textbf{Attori primari}: Telegram/server e-mail.
 		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema Butterfly.
+		%TODO: rifare
 		Sebbene questo caso d'uso non sia del tutto corretto perché l'\gloss{attore} Telegram/e-mail è passivo che riceve e non agisce, è stato scelto di creare questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail". Ma scrivere un caso d'uso in tal modo sarebbe stato del tutto scorretto in quanto il sistema di riferimento in questo caso sarebbe stato Telegram/e-mail. Cosa non possibile dato che Telegram/mail è esterno a \progetto e quindi non può essere considerato un suo sottosistema.
 		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server e-mail in seguito a un'interrogazione del Broker.
+		%TODO: passato
 		\item \textbf{Postcondizione}: Telegram/server e-mail riceve il messaggio.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -278,7 +284,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.1.1.
 		\item \textbf{Titolo}: iscrizione Topic.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: data la lista di Topic presenti già inserita precedentemente, l'utente seleziona quelli a cui è interessato ricevendonr una notifica. I Topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
+		\item \textbf{Descrizione}: data la lista di Topic presenti già inserita precedentemente, l'utente seleziona quelli a cui è interessato ricevendone una notifica. I Topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutti i Topic possibili proposti da \progetto.
 		\item \textbf{Postcondizione}: il numero di Topic a cui è interessato l'utente è aumentato.
 		\item \textbf{Scenario principale}:
