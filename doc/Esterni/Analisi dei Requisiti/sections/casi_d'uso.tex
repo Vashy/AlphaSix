@@ -21,83 +21,40 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 \newcounter{uccount}
 
 \stepcounter{uccount}
-\subsubsection{UC\theuccount\ - Redmine/GitLab genera una segnalazione}
+\subsubsection{UC\theuccount\ - Redmine/GitLab invia una segnalazione}
     \begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UC\theuccount - Redmine/GitLab genera una segnalazione}
+		\caption{UC\theuccount - Redmine/GitLab invia una segnalazione}
 	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
-		\item \textbf{Titolo}: Redmine/GitLab genera una segnalazione.
+		\item \textbf{Titolo}: Redmine/GitLab invia una segnalazione.
 		\item \textbf{Attori primari}: Redmine/Gitlab.
 		\item \textbf{Descrizione}:
-		 il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite \gloss{commit} per GitLab. Cambio di stato dell'\gloss{issue tracking system} per GitLab e Redmine. Per segnalazione dunque s'intende in questo caso un commit o l'apertura di una \gloss{issue}.
+		 il sistema qui è il Producer ed è interno al sistema \progetto.
+		 L'invio di una segnalazione avviene da parte di Redmine/GitLab in seguito all'apertura di una issue o di un commit.		 
 		\item \textbf{Precondizione}: c'è qualcosa da segnalare.
-		\item \textbf{Postcondizione}: segnalazione generata e inviata.
+		\item \textbf{Postcondizione}: segnalazione inviata.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
-			\item Redmine/GitLab prepara una segnalazione da mandare
 			\item Redmine/GitLab invia la segnalazione al Producer
 		\end{enumerate}
 		
-	\end{itemize}
-
-\subsubsection{UC\theuccount.1 - Redmine/GitLab crea e invia un messaggio per il Producer}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=1\textwidth]{img/UC1_1.png}\\
-		\caption{UC1.1 - Messaggio creato con parametri errati.}
-	\end{figure}
-	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.1.
-		\item \textbf{Titolo}: Redmine/GitLab crea e invia un messaggio per il Producer.
-		\item \textbf{Attori primari}: Redmine/Gitlab.
-		\item \textbf{Descrizione}:
-		il sistema qui è il Producer ed è interno al sistema \progetto. Cambio dello stato della repository tramite commit per GitLab. Cambio di stato dell'issue tracking system per GitLab e Redmine.
-		\item \textbf{Precondizione}: Redmine/Gitlab generano un messaggio per il Producer.
-		\item \textbf{Postcondizione}: segnalazione generata e inviata al Producer.
-		\item \textbf{Scenario principale}: 
-		\begin{enumerate}
-			\item Redmine/GitLab prepara una segnalazione da mandare
-			\item Redmine/GitLab invia la segnalazione al Producer.
-		\end{enumerate}
-		\item \textbf{Estensioni}
-		\begin{itemize}
-			\item Messaggio creato coi parametri errati [UC1.2].
-		\end{itemize} 
-	\end{itemize}
-
-
-%\subsubsection{UC\theuccount.2 - Redmine/GitLab genera una segnalazione errata}
-\subsubsection{UC\theuccount.2 - Errore nella trasmissione della segnalazione}
-	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.2.
-		\item \textbf{Titolo}: errore nella trasmissione della segnalazione.
-		\item \textbf{Attori primari}: Redmine/Gitlab.
-		\item \textbf{Descrizione}: il sistema qui è il Producer ed è interno al sistema \progetto. Il messaggio creato da Redmine/Gitlab è errato.
-		\item \textbf{Precondizione}: l'errore nella trasmissione porta alla generazione di una stringa malformata.
-		\item \textbf{Postcondizione}: creazione di un log contenente informazioni utili relativi all'errore
-		\item \textbf{Scenario principale}:
-		\begin{enumerate}
-			\item Redmine/GitLab invia una segnalazione malformata al Producer.
-			\item Il producer registra l'errore nel \gloss{log}.
-			\item Il messaggio viene perso.
-		\end{enumerate}
 	\end{itemize}
 
 \stepcounter{uccount}
 \subsubsection{UC\theuccount\ - Il Producer invia una segnalazione al Broker}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/UC2Producer.png}\\
+		\includegraphics[width=0.9\textwidth]{img/UC2.png}\\
 		\caption{UC\theuccount\ - Il Producer invia una segnalazione al Broker}
 	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: il Producer invia una segnalazione al Broker.
 		\item \textbf{Attori primari}: Producer.
-		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/Gitlab, la inoltra al Broker in modo che possa istanziarne un Topic. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
+		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/Gitlab, la inoltra al Broker. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
 		\item \textbf{Precondizione}: il Producer ha ricevuto una segnalazione da inoltrare.
 		\item \textbf{Postcondizione}: il Producer ha inviato al Broker la segnalazione.
 		\item \textbf{Scenario principale}:
@@ -106,8 +63,6 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\end{enumerate}
 		 
 	\end{itemize}
-
-%Opzionale Sonarqube
 
 \stepcounter{uccount}
 \subsubsection{UC\theuccount\ - Il Consumer interroga il Broker}
@@ -120,10 +75,10 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: il Consumer interroga il Broker.
 		\item \textbf{Attori primari}: Consumer.
-		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dall'utente in un'apposita interfaccia. Il sistema di riferimento qui è Broker ed è interno al sistema \progetto.
+		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dal Topic. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
 		\item \textbf{Precondizione}: il Broker ha un messaggio pronto ad essere inoltrato da un Consumer verso un client delle tecnologie con cui il sistema si interfaccia.
 		%TODO: consumer
-		\item \textbf{Postcondizione}: il messaggio è stato recuperato dal Broker. Dopo il Consumer lo può inoltrare al client della tecnologia correlata in attesa con lo scopo l'utente finale lo legga.
+		\item \textbf{Postcondizione}: il messaggio recuperato dal Consumer è inoltrato al client della tecnologia correlata.
 		\item \textbf{Scenario principale}: 
 			\begin{enumerate}
 				\item Il Consumer richiede la segnalazione da inviare al client utilizzato dall'utente finale.
@@ -141,8 +96,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Telegram/e-mail riceve un messaggio.
 		\item \textbf{Attori primari}: Telegram/server e-mail.
-		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema Butterfly.
-		\footnote{L'\gloss{attore} Telegram/e-mail è passivo, riceve e non agisce. Viene creato questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail", poiché Telegram/mail è esterno a \progetto e quindi non può essere considerato un suo sottosistema.}
+		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema\\Butterfly\footnote{L'\gloss{attore} Telegram/e-mail è passivo, riceve e non agisce. Viene creato questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail", poiché Telegram/mail è esterno a \progetto, quindi non può essere considerato un suo sottosistema.}.
+		Il messaggio viene inviato dal Producer a un client esterno al sistema identificato tramite il Topic.
 		
 		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server e-mail in seguito a un'interrogazione del Broker.
 		\item \textbf{Postcondizione}: Telegram/server e-mail riceve il messaggio.
@@ -151,8 +106,6 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 			\item La ricezione del messaggio va a buon fine.
 		\end{enumerate} 
 	\end{itemize}
-
-% Opzionale Slack
 
 \stepcounter{uccount}
 \subsubsection{UC\theuccount\ - Accesso}
@@ -225,8 +178,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\paragraph{UC\theuccount.2 - Visualizzazione errore autenticazione fallita}
 		\begin{itemize}
 			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita.
-			\item \textbf{Attori primari}: utente non ecceduto.
-			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username errato.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito un username errato.
 			\item \textbf{Precondizione}: il sistema riceve una richiesta di accesso da parte di un utente che
 			fornisce un username errato. 
 			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore.
@@ -272,7 +225,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra Topic, giorni di calendario e piattaforme di messaggistica come Telegram o e-mail.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: lo nuova configurazione contiene una o più preferenza in aggiunta rispetto alla quella precedente.
-		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili disponi, quale aggiungere alla sua configurazione personale.
+		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili, quale aggiungere alla sua configurazione personale.
 	\end{itemize}
 	
 	\subparagraph{UC\theuccount.1.1 - Iscrizione Topic}
