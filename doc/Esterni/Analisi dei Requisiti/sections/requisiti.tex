@@ -44,36 +44,25 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 			
 			%da casi d'uso
-			R\addNumber.1
-			F2 & Redmine e GitLab devono essere in grado di generare delle segnalazioni da inviare ai Producer & Interno UC1.1 \\
-			R1.2
-			F0 & Se avviene un errore nella trasmissione di una segnalazione, viene creato un log in cui vengono salvate le informazioni relative all'errore & Interno UC1.2 \\
+			R\addNumber
+			F2 & Redmine e GitLab devono essere in grado di inviare delle segnalazioni da inviare ai Producer & Interno UC1 \\
 			R\addNumber
 			F2 & Il Producer deve essere in grado di inviare delle segnalazioni al Broker & Interno UC2 \\
 			R\addNumber
 			F2 & Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio & Interno UC3 \\
 			R\addNumber
 			F2 & I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram & Interno UC4 \\
-			R\addNumber.1
-			F0 & L'utente può eseguire l'accesso al gestore personale & Interno UC5.1 \\
-			R5.1.1
-			F0 & L'utente può inserire il proprio username che lo identifica all'interno di \progetto & Interno UC5.1.1 \\
-			R5.2
-			F0 & \progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
-			R\addNumber.1.1
-			F0 & L'utente può iscriversi a un Topic & Interno UC6.1.1	\\
-			R6.1.2
-			F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
-			R6.1.3
-			F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram e e-mail, in cui ricevere le notifiche 
+			R\addNumber.1F0 & L'utente può eseguire l'accesso al gestore personale & Interno UC5.1 \\
+			R5.1.1F0 & L'utente può inserire il proprio username che lo identifica all'interno di \progetto & Interno UC5.1.1 \\
+			R5.2F0 & \progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
+			R\addNumber.1.1F0 & L'utente può iscriversi a un Topic & Interno UC6.1.1	\\
+			R6.1.2F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
+			R6.1.3F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche 
 			%e Slack
 			& Interno UC6.1.3 \\
-			R6.2.1
-			F0 & L'utente può disiscriversi a un Topic & Interno UC6.2.1 \\
-			R6.2.2
-			F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\
-			R6.2.3
-			F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3 \\
+			R6.2.1F0 & L'utente può disiscriversi da un Topic & Interno UC6.2.1 \\
+			R6.2.2F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\
+			R6.2.3F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3 \\
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (1)}
@@ -116,15 +105,15 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addQNumber
 			Q1 & Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue & Interno QPR001\\
 			%presi dal PdQ prodotti
-			R1.1
+			R\addQNumber
 			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito & Interno QPD001\\  
 			%			R\addQNumber
 			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
 			%presi dal PdQ processi
 			R\addQNumber
-			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di \EUR{200} & Interno QPR002\\ 
+			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito & Interno QPR002\\ 
 			R\addQNumber 
-			Q1 & Il livello di maturità dell'\gloss{ISO/IEC 15504} che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al terzo & Interno QPR003\\
+			Q1 & Il livello di maturità dell'\gloss{ISO/IEC 15504} che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al livello stabilito & Interno QPR003\\
 			R\addQNumber
 			Q1 & Il team \gruppo\ si è messo d'accordo per una frequenza minima di commit effettuati in una settimana & Interno QPR004\\
 			R\addQNumber
@@ -162,12 +151,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\
 			R\addQNumber
 			Q2 & È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema & Capitolato \\
-			R17.1
-			Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
-			R17.2
-			Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
-			R17.3
-			Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			R17.1Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
+			R17.2Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
+			R17.3Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
 			\bottomrule \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (2)}
@@ -192,20 +178,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			%			V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
 			R\addVNumber
 			V2 & Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e SonarQube & Capitolato \\
-			R1.1
-			V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
+			R1.1V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
 			R\addVNumber
 			V2 & Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
-			R2.1
-			V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
+			R2.1V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
 			R\addVNumber
 			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
-			R3.1
-			V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
+			R3.1V2 & È necessario presentare un DockerFile per ogni componente & Capitolato \\
 			R\addVNumber
 			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato\\
-			R4.1
-			V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
+			R4.1V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (1)}
@@ -217,17 +199,12 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\toprule
 			R\addVNumber
 			V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
-			R5.1
-			V2 & I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio & Capitolato \\
-			R5.2
-			V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
+			R5.1V2 & I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio & Capitolato \\
+			R5.2V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
 			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-			R5.3
-			V2 & È necessario presentare un file README per il DockerFile & Capitolato \\
-			R5.4
-			V2 & Il file README per il Dockerfile deve contenere le istruzioni per l'avvio & Capitolato \\
-			R5.5
-			V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
+			R5.3V2 & È necessario presentare un file README per il DockerFile & Capitolato \\
+			R5.4V2 & Il file README per il Dockerfile deve contenere le istruzioni per l'avvio & Capitolato \\
+			R5.5V2 & Il file README per il DockerFile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
 			R\addVNumber
 			V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
 			R\addVNumber
@@ -311,11 +288,10 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{tabularx}{\textwidth}{YY}
 				\textbf{Fonte} & \textbf{Requisito} \\				
 				\toprule
-				UC1.1 & R1.1F2 \\
-				UC1.2 & R1.2F0 \\
+				UC1 & R1F2 \\
 				UC2 & R2F2 \\
 				UC3 & R3F2 \\
-				UC4 & R4F0 \\
+				UC4 & R4F2 \\
 				UC5.1 & R5.1F0 \\
 				UC5.1.1 & R5.1.1F0 \\
 				UC5.2 & R5.2F0 \\
@@ -338,16 +314,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Fonte} & \textbf{Requisito} \\				
 			\toprule
 			QPR001 & R1Q1 \\
-			QPD001 & R1.1Q1 \\
-			QPR002 & R2Q1 \\
-			QPR003 & R3Q1 \\
-			QPR004 & R4Q1 \\
-			QPR005 & R5Q2 \\
-			QPR006 & R6Q1 \\
-			QPR007 & R7Q1 \\
-			QPR008 & R8Q1 \\
-			QPR009 & R9Q1 \\
-			QPR010 & R10Q1 \\
+			QPD001 & R2Q1 \\
+			QPR002 & R3Q1 \\
+			QPR003 & R4Q1 \\
+			QPR004 & R5Q1 \\
+			QPR005 & R6Q2 \\
+			QPR006 & R7Q1 \\
+			QPR007 & R8Q1 \\
+			QPR008 & R9Q1 \\
+			QPR009 & R10Q1 \\
+			QPR010 & R11Q1 \\
 			\Doc{VE\_12-12-2018} & R13Q2 \\
 			\bottomrule\\
 		\end{tabularx}}
@@ -375,34 +351,25 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{YY}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di F
-			R\addC.1
-			F2 & Interno UC1.1 \\
-			R1.2
-			F0 & Interno UC1.2 \\
+			R\addC
+			F2 & Interno UC1 \\
 			R\addC
 			F2 & Interno UC2 \\
 			R\addC
 			F2 & Interno UC3 \\
 			R\addC
 			F0 & Interno UC4 \\
-			R\addC.1
-			F0 & Interno UC5.1 \\
-			R5.1.1
-			F0 & Interno UC5.1.1 \\
-			R5.2
-			F0 & Interno UC5.2 \\
-			R\addC.1.1
-			F0 & Interno UC6.1.1 \\
-			R6.1.2
-			F0 & Interno UC6.1.2 \\
-			R6.1.3
-			F0 & Interno UC6.1.3 \\
-			R6.2.1
-			F0 & Interno UC6.2.1 \\
-			R6.2.3
-			F0 & Interno UC6.2.2 \\
-			R6.2.3
-			F0 & Interno UC6.2.3 \\
+			R\addC
+			.1F0 & Interno UC5.1 \\
+			R5.1.1F0 & Interno UC5.1.1 \\
+			R5.2F0 & Interno UC5.2 \\
+			R\addC
+			.1.1F0 & Interno UC6.1.1 \\
+			R6.1.2F0 & Interno UC6.1.2 \\
+			R6.1.3F0 & Interno UC6.1.3 \\
+			R6.2.1F0 & Interno UC6.2.1 \\
+			R6.2.3F0 & Interno UC6.2.2 \\
+			R6.2.3F0 & Interno UC6.2.3 \\
 			R\addC
 			F2 & Capitolato \\
 			R\addC
@@ -424,7 +391,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			%R di Q
 			R\addVC
 			Q1 & Interno QPR001 \\
-			R1.1
+			R\addVC
 			Q1 & Interno QPD001 \\
 			R\addVC
 			Q1 & Interno QPR002 \\
@@ -458,12 +425,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q2 & Capitolato \\
 			R\addVC
 			Q2 & Capitolato \\
-			R17.1
-			Q2 & Capitolato \\
-			R17.2
-			Q2 & Capitolato \\
-			R17.3
-			Q2 & Capitolato \\
+			R17.1Q2 & Capitolato \\
+			R17.2Q2 & Capitolato \\
+			R17.3Q2 & Capitolato \\
 			\bottomrule
 			\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità in rapporto alle fonti}
@@ -475,32 +439,23 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			%R di V
 			R\addX
 			V2 & Capitolato \\
-			R1.1
-			V0 & Capitolato \\
+			R1.1V0 & Capitolato \\
 			R\addX
 			V2 & Capitolato \\
-			R2.1
-			V0 & Capitolato \\
+			R2.1V0 & Capitolato \\
 			R\addX
 			V2 & Capitolato \\
-			R3.1
-			V2 & Capitolato \\
+			R3.1V2 & Capitolato \\
 			R\addX
 			V1 & Capitolato \\
-			R4.1
-			V2 & Capitolato \\
+			R4.1V2 & Capitolato \\
 			R\addX
 			V2 & Capitolato \\
-			R5.1
-			V2 & Capitolato \\
-			R5.2
-			V2 & Capitolato \\
-			R5.3
-			V2 & Capitolato \\
-			R5.4
-			V2 & Capitolato \\
-			R5.5
-			V2 & Capitolato \\
+			R5.1V2 & Capitolato \\
+			R5.2V2 & Capitolato \\
+			R5.3V2 & Capitolato \\
+			R5.4V2 & Capitolato \\
+			R5.5V2 & Capitolato \\
 			R\addX
 			V2 & Capitolato \\
 			R\addX
