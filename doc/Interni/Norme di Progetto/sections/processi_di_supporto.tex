@@ -30,7 +30,7 @@
 		\subsubsection{Struttura}\label{PS:Documentazione:Struttura}
 
 			\paragraph{Frontespizio}\label{PS:Documentazione:Struttura:Frontespizio}
-			La prima pagina di ogni documento, eccezione fatta per i verbali (in cui saranno presenti informazioni ridotte), sarà caratterizzata da:
+			La prima pagina di ogni documento, sarà caratterizzata da:
 			\begin{itemize}
 				\item Logo e nome del gruppo
 				\item Titolo del documento
@@ -73,7 +73,7 @@
 			\begin{itemize}
 				\item Intestazione con:
 				\begin{itemize}
-					\item A sinistra, logo di \emph{\gruppo}
+					\item A sinistra, logo di \gruppo
 					\item A destra, nome del capitolato e documento corrente
 				\end{itemize}
 				\item Piè di pagina con:
@@ -95,8 +95,9 @@
 				\item \textbf{Corsivo}: solo per i nomi dei documenti citati.
 				\item \textbf{Maiuscolo}: la prima lettera per
 				\begin{itemize}
-					\item tutte le parole appartenenti ai nomi dei documenti tranne gli articoli
-					\item i nomi dei ruoli
+					\item Tutte le parole appartenenti ai nomi dei documenti tranne gli articoli
+					\item Nomi dei ruoli
+					\item Prima parola degli elenchi puntati
 				\end{itemize}
 			\end{itemize}
 
@@ -110,7 +111,8 @@
 
 			\subparagraph{Altri formati testuali comuni} \label{PS:Documentazione:Design:NormeT:AltriFormati}
 			\begin{itemize}
-				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601 nel formato 24 ore dove:
+				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601\footnote{Riferirsi alla voce ``ISO 8601'' in \S\ref{rifnorma}}
+				nel formato 24 ore dove:
 				\begin{itemize}
 					\item \texttt{HH} indica le ore, da 00 a 23
 					\item \texttt{MM} i minuti, da 00 a 59
@@ -121,7 +123,8 @@
 					\item \texttt{MM} il mese, da 01 a 12
 					\item \texttt{YYYY} l'anno
 				\end{itemize}
-				\item \textbf{Nota a piè di pagina}: serve ad inserire elementi aggiuntivi, come osservazioni o riferimenti a parti interne al documento, utili alla comprensione del testo, ma se inseriti all'interno del discorso ne interromperebbero la lettura rendendola meno scorrevole.
+				\item \textbf{Nota a piè di pagina}: serve ad inserire elementi aggiuntivi, come osservazioni o riferimenti a parti interne al documento, utili alla comprensione del testo,
+				ma se inseriti all'interno del discorso, ne interromperebbero la lettura, rendendola meno scorrevole.
 			\end{itemize}
 
 
@@ -150,7 +153,7 @@
 			\paragraph{Suddivisione dei documenti}
 
 			\subparagraph{Documenti interni}
-			Sono considerati interni documenti quali \SdF\ e \NdP\ che non sono visibili ad entità esterne, ma solo ad \gruppo.
+			Sono considerati interni documenti quali \SdF\ e \NdP, che non sono visibili ad entità esterne, ma solo ad \gruppo.
 
 			\subparagraph{Documenti esterni}
 			Sono considerati esterni, invece, documenti quali \PdP, \PdQ\ e \AdR\ che, al contrario dei precedenti, sono visibili al committente.
@@ -164,8 +167,9 @@
 
 
 			\subparagraph{Verbali}
-			Questi documenti vengono successivamente alle riunioni tenute da \gruppo\ o in caso di incontri con \gloss{stakeholder} esterni, per esempio con \II. Vengono redatti da una singola persona e presentano tutti le stesse sezioni:
-			%Questi documenti vengono redatti quando \gruppo\ tiene delle riunioni o ci sono incontri esterni, per esempio con \II. Vengono redatti da una singola persona e presentano tutti le stesse sezioni:
+			Questi documenti vengono redatti successivamente alle riunioni tenute da \gruppo\
+			o in caso di incontri con \gloss{stakeholder} esterni, per esempio con \II. Una singola persona ha il compito di stendere
+			la relazione relativa al verbale, presentando le seguenti sezioni:
 			\begin{itemize}
 				\item \textbf{Informazioni incontro}: lista delle informazioni principali riguardanti la riunione quali luogo, data, orario, ordine del giorno, ecc\dots
 				\item \textbf{Argomenti}: lista dei principali argomenti trattati con descrizione di cosa si è discusso nel dettaglio.
@@ -181,7 +185,6 @@
 				\item Supporta nativamente il \gloss{versionamento}, essendo un linguaggio compilato
 				\item Supporta la modularità, rendendo più facile organizzare un documento dividendone logicamente i vari moduli
 				\item Permette il riutilizzo del codice tramite l'uso di macro già pronte o personalizzate, oppure includendo lo stesso \gloss{sorgente} in punti diversi
-					(ad esempio come fatto in \S\ref{PS:Documentazione:Implementazione:Template})
 				\item Gestisce automaticamente indici e riferimenti
 			\end{itemize}
 
@@ -195,7 +198,7 @@
 			Più informazioni sono reperibili sui rispettivi siti ufficiali, i cui link sono presenti in \S\ref{rifinfo}.
 			% \subparagraph{Visual Studio Code}
 
-			\subparagraph{GanttProject} % TODO: Rivedere?
+			\subparagraph{GanttProject}
 			GanttProject è un programma gratuito dedicato alla formazione dei diagrammi di Gantt. Permette di creare task e milestone, organizzare le task in lavoro strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità, generando automaticamente il relativo diagramma.
 			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}).
 
@@ -203,8 +206,7 @@
 			Draw.io è un'applicazione web in grado di creare diagrammi UML, di Entità-Relazionale, di flusso e molto altro. Il motivo che ha portato AlphaSix a scegliere questo strumento è la sua perfetta integrazione con \gloss{Google Drive}, oltre al suo alto livello di intuitività. Questo vantaggio permette poter condividere i diagrammi creati tra tutti i collaboratori in ogni momento e in modo automatico. Per maggiori informazioni, visualizzare la fonte ufficiale (\S\ref{rifinfo}).
 
 			\subparagraph{Indice di Gulpease}
-			Per il calcolo dell'indice di Gulpease, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice Gulpease.
-			È stato scelto come accettabile un indice con valore compreso tra 50 e 60 per i documenti che seguiranno le norme qui definite.
+			Per il calcolo dell'indice di Gulpease, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
 
 		\subsubsection{Mantenimento}
 
@@ -212,13 +214,13 @@
 			Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
 			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
 			\begin{center}
-				\texttt{vX.Y.Z}
+				\texttt{X.Y.Z}
 			\end{center}
 			\indent dove:
 			\begin{itemize}
-				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento, determinando	una major release.
-				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente. Inizia da 0. 	Viene azzerato ad ogni incremento della \texttt{X}.
-				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, quale l'aggiunta di una sezione	o correzioni grammaticali/sintattiche di un certo peso. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}.
+				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento, determinando una major release
+				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente. Inizia da 0. 	Viene azzerato ad ogni incremento della \texttt{X}
+				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
 			\end{itemize}
 
 			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
@@ -245,8 +247,8 @@
 			\subparagraph{Documenti vari}
 			Saranno presenti due tipologie di file: file interni ad \gruppo\ e file esterni.
 			\begin{itemize}
-				\item La prima categoria include moduli di \LaTeX\ contenenti le varie sezioni e che non verranno mai esposti esternamente. Questi file verranno	denominati usando la convenzione \texttt{snake\_case.tex}, dove snake\_case è il nome della sezione o modulo.
-				\item La seconda categoria include i file \texttt{.tex} principali che produrranno i PDF da consegnare al committente. Essi verranno denominati con la convenzione \texttt{CamelCase\_vX.Y.Z.pdf}, dove CamelCase sarà il nome del documento generico mentre	\texttt{vX.Y.Z} sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}.
+				\item La prima categoria include moduli di \LaTeX\ contenenti le varie sezioni e che non verranno mai esposti esternamente. Questi file verranno	denominati usando la convenzione \texttt{snake\_case.tex}, dove snake\_case è il nome della sezione o modulo
+				\item La seconda categoria include i file \texttt{.tex} principali che produrranno i PDF da consegnare al committente. Essi verranno denominati con la convenzione \mbox{\texttt{CamelCase vX.Y.Z.pdf}}, dove CamelCase sarà il nome del documento generico mentre \texttt{vX.Y.Z} sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
 			\end{itemize}
 
 	\subsection{Verifica}
@@ -254,23 +256,23 @@
 		\subsubsection{Scopo}
 		Questa sezione vuole descrivere come il team di sviluppo esegue la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci si attende.
 		La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il
-		ritorno ad una fase stabile del progetto per poi ripartire da lì prendendo in considerazione i risultati della precedente verifica.
+		ritorno ad una fase stabile del progetto per poi ripartire da lì, prendendo in considerazione i risultati della precedente verifica.
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
 		\subsubsection{Descrizione}
 		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole raggiungere.
 
-		Come indicato dal \gloss{Ciclo di Deming} nel \Doc{\PdQv} all'appendice \S A, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
+		Come indicato dal \gloss{Ciclo di Deming} nel \Doc{\PdQv}, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
 		servirà come ``base'' per alzare il livello di qualità di quel processo o prodotto.
 
 		I risultati ottenuti nella fase di verifica sono riportati nel \PdQ, in questo modo, confrontandoli con gli esiti attesi,
 		è possibile valutare un miglioramento per i vari processi e prodotti sempre nel \PdQ.
 		
 		\subsection{Walkthrough e Inspection}
-		Due modi di effettuare la verifica sono attraverso Walkthrough e Inspection. Il team di sviluppo li adotta entrambi, ma non contemporaneamente, per i vantaggi che comporta ogni metodo.
+		Due modi di effettuare la verifica sono attraverso \gloss{Walkthrough} e Inspection. Il team di sviluppo li adotta entrambi, ma non contemporaneamente, per i vantaggi che comporta ogni metodo.
 		
-			\subsubsection*{Walkthtough}
+			\subsubsection{Walkthtough}
 			Metodo di verifica che effettua un controllo ad ampio spettro senza l’assunzione di presupposti. Dato che per mettere in atto tale metodo ci si deve divide in gruppi dove ognuno ha un ruolo ben distinto, Walkthrough è ideale per le verifiche effettuate all'inizio dei vari periodi, dove i membri del team di sviluppo non possiedono le conoscenze adeguate per una verifica efficiente.
 			
 			Walkthrough possiede delle fasi ben specifiche:
@@ -282,7 +284,7 @@
 				\item \textbf{Correzione di difetti}: si attuano i risultati ottenuti dalla fase di discussione.
 			\end{enumerate}
 		
-		\subsubsection*{Inspection}
+		\subsubsection{Inspection}
 		Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati sei precedenti test. Questo metodo dunque, a differenza di Walkthrough, prevede l'esecuzione con dei presupposti.
 		
 		Le fasi di Inspection sono:
@@ -298,7 +300,7 @@
 		\subsubsection{Metriche}
 		La denominazione delle metriche è già stata descritta in \S\ref{Classificazione metriche}, qui viene descritto il loro funzionamento.
 			\paragraph{Metriche per i documenti}
-				\subparagraph{MPD001 Indice Gulpease}
+				\subparagraph{MPD001 Indice di Gulpease}
 				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla
 				lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
 
@@ -307,32 +309,29 @@
 				\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
 
 				\begin{itemize}
-					\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare;
-					\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media;
-					\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore;
+					\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare.
+					\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media.
+					\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore.
 				\end{itemize}
 
-				Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in PDF per valutarne l'indice Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
+				Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in PDF per valutarne l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
 
-%				\subparagraph{MPD002 Correttezza ortografica}
-%				Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
-%
-%				\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
+				\subparagraph{MPD002 Correttezza ortografica}
+				Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
+
+				\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 
 			\paragraph{Metriche per i processi}
 				\subparagraph{MPR001 Varianza della pianificazione}
-				Nella sezione \S 1.5 del documento \Doc{\PdPv} sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
-				Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo che sono
-				analizzati nella sezione \S 2 del \Doc{\PdPv}, intitolata Analisi dei rischi.
-
-				\[\dfrac{\sum_{i=1}^{n} x_i}{n}\]
+				Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
+				Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
+				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
 				
-				$x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}$
 
-				\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro periodo. Se un'attività viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
+				\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
 				
 				\subparagraph{MPR002 Varianza dei costi}
-				All'interno della sezione \S 6 del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
+				All'interno del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
 				In corso d'opera possono presentarsi dei problemi che richiedono un'aggiunta di costo in termini di $\frac{\text{tempo}}{\text{persona}}$.
 				Lo scopo del preventivo è infatti fare una stima non definitiva dei costi. Per verificare se il preventivo è rispettato viene fatto periodicamente un consuntivo di periodo.
 
@@ -349,23 +348,22 @@
 				\end{itemize}
 
 				\subparagraph{MPR003 Aderenza agli standard}
-				Per misurare e verificare i processi sono stati scelti alcuni specifici standard di qualità descritti nel \PdQ che possono offrire una valutazione quantitativa.
+				Per misurare e verificare i processi sono stati scelti alcuni specifici standard di qualità descritti nel \PdQ\ che possono offrire una valutazione quantitativa.
 				Gli standard scelti sono:
 
 				\begin{itemize}
-				\item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità. Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità;
-				\item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziare una fase del Ciclo di Deming senza aver finito completamente le fasi precedenti;
+				\item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità. Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
+				\item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziare una fase del Ciclo di Deming senza aver finito completamente le fasi precedenti.
 				\end{itemize}
 
-				\textbf{Metrica}: il livello di maturità descritto nell'ISO/IEC 15504 all'appendice §A del \Doc{\PdQv}.
+				\textbf{Metrica}: il livello di maturità è descritto nell'ISO/IEC 15504 nel \Doc{\PdQv}.
 
 				\subparagraph{MPR004 Frequenza commit nella repository}
 				Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro di \gruppo\ effettui un commit ad ogni sua modifica significativa.
 				Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.				
 				Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
-				\[\dfrac{\sum_{i=1}^{n} x_i}{n}\]
-				$x_i=\text{numero di commit alla i-esima settimana del macro periodo.}$\\
-				\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro periodo.
+				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
+				\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
 
 				\subparagraph*{Metriche sui requisiti e i rischi}
 				Dato che non è fisso il numero dei requisiti di un progetto, sono state scelte una serie di metriche dove il valore ottimale da raggiungere è sempre uguale,
@@ -390,8 +388,8 @@
 
 				\textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
 
-				\subparagraph{MPR008 Rischi non previsti avvenuti} % TODO: Rivedere l'ultima frase
-				Nell'Analisi dei rischi presente nella sezione §2 del \Doc{\PdPv}, sono presenti i rischi ritenuti possibili per i quali è proposta una soluzione.
+				\subparagraph{MPR008 Rischi non previsti avvenuti}
+				Nell'Analisi dei rischi presente nel \Doc{\PdPv}, sono presenti i rischi ritenuti possibili per i quali è proposta una soluzione.
 				Possono presentarsi anche rischi non previsti in tale analisi. Questi devono essere il meno possibili (nulli) perché la loro soluzione sarà decisa al momento causando ritardi all'interno del progetto.
 
 				\textbf{Metrica}: numero di rischi non previsti avvenuti nel corso dell'intero progetto.
@@ -399,10 +397,10 @@
 				\paragraph{MPR009 Frequenza controllo prodotti}
 				I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
 
-				Chi esegue la modifica deve controllare ciò che ha fatto prima di poter ufficializzare, mentre la verifica fatta dal \Ver\ deve essere fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
+				Chi esegue la modifica deve controllare ciò che ha fatto prima di poterla ufficializzare, mentre la verifica fatta dal \Ver\ deve essere fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
 			
-				\[\dfrac{\sum_{i=1}^{n} x_i}{n}\]
-				$x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}$
+				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
+
 				\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
 
 			\paragraph{Analisi statica}
@@ -413,8 +411,8 @@
 				Per l'analisi dei documenti vengono utilizzate:
 
 				\begin{itemize}
-					\item \textbf{MPD001}
-					\item \textbf{MPD002}
+					\item MPD001
+					\item MPD002
 				\end{itemize}
 
 %TODO: non facciamo ora analisi dinamica!
@@ -423,14 +421,14 @@
 %			Vengono presi in esame i prodotti software e i processi.
 
 				\subparagraph{Analisi dei processi}
-				Per analizzare i processi vengono usati gli standard sopra elencati. Ad ogni fase del processo verranno valutati gli attributi richiesti secondo l'ISO 15504 e in che misura questi sono stati rispettati e in che fase del Ciclo di Deming il processo si trova.
+				Per analizzare i processi vengono usati gli standard sopra elencati. Ad ogni fase del processo verranno valutati gli attributi richiesti secondo l'ISO 15504, in che misura questi sono stati rispettati e in che fase del Ciclo di Deming il processo si trova.
 				Per l'analisi dei processi vengono utilizzate:
 
 				\begin{itemize}
-					\item \textbf{MPR001 Varianza della pianificazione}
-					\item \textbf{MPR002 Varianza dei costi}
-					\item \textbf{MPR004 Frequenza commit nella repository}
-					\item \textbf{MPR009 Frequenza controllo prodotti}
+					\item MPR001 Varianza della pianificazione
+					\item MPR002 Varianza dei costi
+					\item MPR004 Frequenza commit nella repository
+					\item MPR009 Frequenza controllo prodotti
 					% \item \textbf{MPR010 Norme di progetto non seguite}
 				\end{itemize}
 
