@@ -1,8 +1,8 @@
 %\newpage
-\section{Tecnologie}
-	L'obiettivo di questo paragrafo è quello di descrivere in modo generale come il prodotto andrà ad interfacciarsi con le tecnologie che mandano e ricevono le notifiche che passano attraverso \progetto.\\
-	Per ciascuna di queste tecnologie con cui l'\gloss{applicativo} andrà ad interfacciarsi è previsto un \gloss{microservizio}, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
-	Questo pattern si chiama Publisher / Subscriber e utilizza uno strumento intermedio detto Broker per lo smistamento dei messaggi e la gestione dei flussi.
+\section{Tecnologie e scelte relative al progetto}
+	L'obiettivo di questo paragrafo è descrivere in maniera specifica come \progetto\ andrà a interfacciarsi con le tecnologie.\\
+	Per ciascuna di queste è previsto un \gloss{microservizio}, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
+	Questo pattern si chiama \gloss{Publisher / Subscriber} e utilizza uno strumento intermedio detto Broker per lo smistamento dei messaggi e la gestione dei flussi.
 
 	\begin{figure}[H]
 		\centering
@@ -13,23 +13,43 @@
 	L'immagine precedente rappresenta una suddivisione del sistema in quattro sezioni principali:
 	\begin{itemize}
 		\item \progetto\ (arancione)
-		\item \gloss{Producers} (azzurro)
+		\item Producer (azzurro)
 		\item Broker (rosso)
-		\item Consumers (verde)
+		\item Consumer (verde)
 	\end{itemize}
-	Questa scomposizione permette di analizzare più approfonditamente il prodotto per la stesura dei casi d'uso, utilizzando come attori non solo le tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail) ma anche i microservizi interni come i Producer / Consumer associati e il Broker.
+	Questa scomposizione permette di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
 	
 	\subsection{Producer}
 	
-		Per ciascuno degli strumenti che inviano messaggi verso il sistema è necessario creare un microservizio di tipo Producer che li riceva ed li elabori inoltrandoli successivamente verso il Broker.
+		Per ciascuno degli strumenti che invia messaggi verso il sistema è necessario creare una componente applicativa di tipo Producer che li riceva e li elabori inoltrandoli successivamente verso il Broker.
 		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal \gloss{committente}.
-
+		\begin{itemize}
+			\item Redmine
+			\item GitLab
+			\item SonarQube
+		\end{itemize}
+		\gruppo\ ha scelto di sviluppare i Producer per le prime due applicazioni in base alle priorità suggerite da \II\ nel capitolato, lasciando l'applicativo relativo a SonarQube come opzionale.
+		
+		Ciascun messaggio ricevuto da queste tecnologie verrà analizzato dal Producer associato che ne ricercherà al suo interno keyword che ne indicano il Topic.
+		Queste sono preimpostate da una persona incaricata dall'azienda che le inserisce nel database.
+		
 		\subsubsection{Redmine}
-		Ciascuna istanza di Redmine permette l'utilizzo delle proprie \gloss{API}\footnote{Riferirsi alla voce "API Rest di Redmine" alla sezione \S\ref{sec:RiferimentiInformativi}} con le quali è possibile interfacciarsi e ricevere risposte nel formato scelto.
-		Queste vengono prese dal server tramite un microservizio che ne fa la richiesta ad intervalli prestabiliti, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai customer interessati.
+		Ciascuna istanza di Redmine permette l'utilizzo di webhook\footnote{Riferirsi alla voce ``Webhook di Redmine'' alla sezione \S\ref{sec:RiferimentiInformativi}} che inviano segnalazioni al Producer alla modifica del progetto.
+		Queste vengono ricevute dal server tramite un microservizio che resta in ascolto, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai Consumer interessati.
+		In particolare, le modifiche relative al progetto prese in considerazione sono:
+		\begin{itemize}
+			\item Apertura issue
+		\end{itemize} 
 		
 		\subsubsection{GitLab}
-		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di Webhooks\footnote{Riferirsi alla voce "Weebhooks di GitLab" alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come prima, inoltrare le notifiche ai customer interessati.
+		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce ``Webhook di GitLab'' alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come per Redmine, inoltrare le notifiche ai Consumer interessati.
+		In particolare, le modifiche relative alla repository prese in considerazione sono:
+		\begin{itemize}
+			\item Commit
+			\item Apertura \gloss{issue}
+			\item Chiusura issue
+		\end{itemize}
+		Le segnalazioni sono generate da commit contenenti \gloss{keyword} preimpostate.
 		
 %		\subsubsection{SonarQube}
 %		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
@@ -43,7 +63,7 @@
 		\gloss{Apache Kafka} è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su stream di dati.
 		Questi messaggi arrivano dai microservizi Producer che ricevono le notifiche di applicazioni di terze parti e mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic e gestendo le proprie preferenze.		
 	
-	\subsection{Consumers}
+	\subsection{Consumer}
 		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e \gloss{client} dello strumento.
 		Le tecnologie alle quali vengono inoltrati i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 			
@@ -75,3 +95,9 @@
 		\subsubsection{Docker e Dockerfile}
 		L'azienda consiglia di utilizzare \gloss{Docker} per la semplicità e perché si adatta all'architettura a microservizi.
 		La configurazione avverrà tramite un \gloss{dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio, numero di istanze ed altri parametri specifici.
+
+	\subsection{Utenti}
+		\subsubsection{Amministratore}
+		\subsubsection{Utente finale}
+		
+	\subsection{Topic}

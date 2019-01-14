@@ -6,7 +6,19 @@
 
 	Il documento vuole fungere da base per la fase di progettazione del software in modo che essa sia conforme alle richieste fatte dall'azienda proponente.
 
-    \input{../../snippets/scopo_prodotto}
+	%\input{../../snippets/scopo_prodotto}
+    
+    \subsection{Scopo del prodotto}
+	Lo scopo del \gloss{prodotto} è creare un \gloss{applicativo} per poter gestire i messaggi o le segnalazioni provenienti da diversi prodotti per la realizzazione di software, come \gloss{Redmine}, \gloss{GitLab} e opzionalmente \gloss{SonarQube}, attraverso un \gloss{Broker} che possa incanalare questi messaggi e distribuirli a strumenti come	\gloss{Telegram}, e-mail e opzionalmente \gloss{Slack}.\par
+	Per ciascuna di queste tecnologie viene creato un \gloss{Producer} e un \gloss{Consumer} associato per l'effettiva ricezione e invio delle varie segnalazioni.
+	Il software dovrà inoltre essere in grado di riconoscere il \gloss{Topic} dei messaggi in input per poterli inviare in determinati canali a cui i
+	destinatari dovranno iscriversi.\par
+	Dovrà essere in grado, attraverso la lettura di	particolari	\gloss{metadati}, di reindirizzare i messaggi ricevuti al destinatario più appropriato. 
+	\`E anche richiesto di creare un canale specifico per gestire le particolari esigenze dell'azienda. 
+	Questo viene chiamato Gestore Personale e permette agli utenti di poter personalizzare su quale piattaforma di messaggistica e da quali Topic specifici ricevere i messaggi.
+	
+	
+
 
     \input{../../snippets/riferimenti_esterni}
 
@@ -30,8 +42,8 @@
 			\item Diagrammi dei \gloss{casi d'uso}\\
 			\url{https://www.math.unipd.it/~tullio/IS-1/2018/Dispense/E05b.pdf}
 		\end{itemize}
-		\item \gloss{API Rest} di Redmine\\
-		\url{http://www.redmine.org/projects/redmine/wiki/Rest_api}
-		\item \gloss{Weekhooks} di GitLab\\
+		\item \gloss{Webhook} di Redmine\\
+		\url{http://www.redmine.org/projects/redmine/wiki/Hooks}
+		\item Webhook di GitLab\\
 		\url{https://docs.gitlab.com/ee/user/project/integrations/Webhooks.html}
 	\end{itemize}

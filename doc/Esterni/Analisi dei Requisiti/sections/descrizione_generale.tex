@@ -1,26 +1,25 @@
 \section{Descrizione generale}
 
-	\subsection{Intento del prodotto}
-    
-    L'obiettivo del prodotto è di fornire uno strumento standard per la gestione delle notifiche generate da software utilizzati nella \gloss{CI/CD}.
-    Per ottenere questo verrà usato un \gloss{pattern Publisher / Subscriber}, di modo da contribuire alla scalabilità del \gloss{sistema} e ottenere una miglior suddivisione logica dei \gloss{componenti}.
+%	\subsection{Intento del prodotto}    
+%    L'obiettivo del prodotto è di fornire uno strumento standard per la gestione delle notifiche generate da software utilizzati nella \gloss{CI/CD}.
+%    Per ottenere questo verrà usato un \gloss{pattern Publisher / Subscriber}, di modo da contribuire alla scalabilità del \gloss{sistema} e ottenere una miglior suddivisione logica dei \gloss{componenti}.
 	
 	\subsection{Funzioni del prodotto}
 	
     Le funzioni offerte dal prodotto sono:
     \begin{itemize}
-		\item Fornire ai software di CI/CD dei \gloss{Topic} a cui è possibile iscriversi e inviare messaggi.
-		\item Gestione dei Topic tramite un Broker.
-        \item Ricezione dei messaggi da parte di un \gloss{Consumer} iscritto a un Topic che invierà le notifiche alle piattaforme di messaggistica come Slack, \gloss{Telegram} ed e-mail.
-        \item Filtri aggiuntivi per la gestione dei messaggi, come il reindirizzamento verso una persona.
+        \item Ricezione delle segnalazioni provenienti da Redmine e GitLab
+        \item Gestione dei Topic tramite un Broker
+        \item Inoltro dei messaggi verso Telegram ed e-mail
+        \item Personalizzazione da parte dell'utente finale di impostazioni riguardanti le segnalazioni interessate
 	\end{itemize}
 
 	\subsection{Caratteristiche degli utenti}
     
-    Gli utenti che useranno il prodotto saranno team di sviluppatori software che lavorano abitualmente usando gli strumenti per realizzare CI/CD.
-    Tramite il prodotto potranno configurare il proprio ambiente di sviluppo in modo da ottenere le notifiche in tempo reale direttamente sulle piattaforme di messaggistica selezionate per le segnalazioni sullo sviluppo del proprio progetto.
+    Gli utenti che useranno il prodotto saranno team di sviluppatori software che lavorano abitualmente usando gli strumenti per realizzare \gloss{CI/CD}.
+    Tramite Butterfly, essi potranno configurare la pipeline per lo sviluppo del proprio progetto, in modo da ottenere le notifiche in tempo reale direttamente sulle piattaforme di messaggistica selezionate.
+    Nel caso in cui la persona non sia reperibile, verrà effettuata una segnalazione in un apposito calendario sul quale il sistema farà riferimento per l'inoltro alla seconda persona più appropriata a riceverla all'interno del contesto lavorativo.
 	
-
 %	\subsection{Vincoli del progetto}
 %	
 %		\subsubsection{Requisiti minimi}
