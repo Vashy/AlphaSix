@@ -9,23 +9,24 @@
 		\item \textbf{Analisi}: determinare la probabilità di occorrenza e comprenderne la criticità.
 		\item \textbf{Pianificazione}: definire strategie che possano evitare i rischi precedentemente incontrati.
 		\item \textbf{Controllo}: si monitorano e si revisionano i rischi affinché non si presentino nel corso del progetto.
-		\item \textbf{Revisione}: dopo aver risolto eventuali rischi incontrati, si rivede la strategia utilizzata, e in caso ci siano migliorie possibili alla procedura, vengono applicate. Nel caso non fosse stata definita una strategia per tale rischio, se ne definisce una nuova.
+		\item \textbf{Revisione}: dopo aver risolto eventuali rischi incontrati, si rivede la strategia utilizzata nel caso vengano individuate migliorie per la procedura. Se queste si rivelano più efficaci, vengono applicate.
 	\end{itemize}
 	\subsection{Valutazione}
-	Per la valutazione dei rischi viene utilizzato uno strumento di misura chiamato \textit{Qualitative Risk Assessment}, che ne considera i criteri quantitativi e qualitativi assegnando a ciascuno un valore di gravità determinato dalla probabilità che il rischio possa avvenire e dalla gravità con cui esso influenza il progetto.
+	Per la valutazione dei rischi, viene utilizzato uno strumento di misura chiamato Qualitative Risk Assessment che ne considera i criteri quantitativi e qualitativi, assegnando a ciascuno un valore di gravità determinato dalla probabilità che il rischio possa avvenire e dalla gravità con cui esso influenza il progetto.
 	% VEDI : https://www2.deloitte.com/content/dam/Deloitte/it/Documents/risk/Board%20Academy%20Corso%20C6%2020%20dic%202012%20SDA%20Bocconi.pdf
-	Dato il numero non elevato di rischi, si è scelto di mettere solamente tre livelli di gravità e probabilità producendo quindi una matrice con nove. In questo modo i rischi possono essere classificati in tre livelli di importanza:
+	Dato il numero non elevato di rischi, si è scelto di mettere solamente tre livelli di gravità e probabilità producendo quindi una matrice con nove elementi. In questo modo i rischi possono essere classificati in tre livelli di importanza:
 
 	\begin{itemize}
-		\item \textbf{Basso}
-		\item \textbf{Medio}
-		\item \textbf{Alto}
+		\item Basso
+		\item Medio
+		\item Alto
 	\end{itemize}
 
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.5]{img/risk_assessment_table.png}\\
 		\caption{Matrice del Qualitative Risk Assessment}
+		\label{fig:rischi}
 	\end{figure}
 
 	\subsection{Classificazione}
@@ -50,7 +51,7 @@
 				\item \textbf{T}: tecnologico.
 			\end{itemize}
 
-		\item \textbf{ID}: numero progressivo di tre cifre che inizia da uno (001 - 999)
+		\item \textbf{ID}: numero progressivo di tre cifre che inizia da uno (001 - 999).
 		\item \textbf{Gravità}:
 			\begin{itemize}
 				\item \textbf{0}: accettabile.
@@ -65,11 +66,11 @@
 				\item \textbf{2}: alta.
 			\end{itemize}
 
-		\item \textbf{Classe}:
+		\item \textbf{Classe}: ci si riferisce ai livelli di rischio individuati dalla matrice in Figura \ref{fig:rischi}
 			\begin{itemize}
-				\item \textbf{0}: basso.
-				\item \textbf{1}: medio.
-				\item \textbf{2}: alto.
+				\item \textbf{0}: basso (verde).
+				\item \textbf{1}: medio (arancione).
+				\item \textbf{2}: alto (rosso).
 			\end{itemize}
 	\end{itemize}
 
@@ -107,14 +108,14 @@
 			Inesperienza del team a livello tecnico\\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Descrizione}: non tutti i componenti del team di sviluppo hanno le conoscenze di ambienti di sviluppo, linguaggi di programmazione e strumenti richiesti dall'azienda allo stesso livello.
+				\textbf{Descrizione}: non tutti i componenti del team hanno le conoscenze di ambienti di sviluppo, linguaggi di programmazione e strumenti richiesti dall'azienda allo stesso livello.
 			}\\
 			\multicolumn{2}{X}{
-				\textbf{Strategia}: sarà compito del \Res\ di progetto parlare con il resto del team di sviluppo e capire le conoscenze di ciascuno delle tecnologie che saranno utilizzare per lo sviluppo del progetto.
+				\textbf{Strategia}: sarà compito del \Res\ di progetto parlare con il resto del team di sviluppo e capire le conoscenze di ciascuna delle tecnologie che saranno utilizzate per lo sviluppo del progetto.
 			}\\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Mitigazione}: ciascun componente si impegna a sanare le proprie lacune e portarsi ad un livello comune concordato, in modo da poter lavorare autonomamente e potersi prendere impegni risolvibili senza dover usare tempo ulteriore per imparare la tecnologia.
+				\textbf{Mitigazione}: ciascun componente si impegna a sanare le proprie lacune e a portarsi ad un livello comune concordato, in modo da poter lavorare autonomamente e potersi prendere impegni risolvibili senza dover usare tempo ulteriore per imparare la tecnologia.
 			}\\
 		\end{risktable}
 		\caption{Specifica rischio P001-111}
@@ -128,20 +129,20 @@
 			Impreparazione del team a livello gestionale \\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Descrizione}: non avendo affrontato progetti del genere prima d'ora, i componenti del team di sviluppo non conoscono bene i ruoli che devono intraprendere e i compiti da svolgere.
+				\textbf{Descrizione}: non avendo affrontato progetti del genere prima d'ora, i componenti di \gruppo\ non conoscono bene i ruoli che devono intraprendere e i compiti da svolgere.
 			}\\
 			\multicolumn{2}{X}{
 				\textbf{Strategia}: sarà compito di chi copre il ruolo di \Res\ assicurarsi che non ci siano perplessità da parte degli altri membri sui ruoli ricoperti e sui compiti assegnati.
 			}\\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Mitigazione}: durante le ore di studio personale, ciascun componente si impegna a studiare la gerarchia dei ruoli\protect\footnotemark\ e, in caso di dubbi, ne dovrà parlare con il team di sviluppo oppure direttamente con il \Res.
+				\textbf{Mitigazione}: durante le ore di studio personale, ciascun componente si impegnerà a studiare la gerarchia dei ruoli\protect\footnotemark\ e, in caso di dubbi, ne parlerà con il team di sviluppo oppure direttamente con il \Res.
 			}\\
 		\end{risktable}
 		\caption{Specifica rischio P002-122}
 	\end{table}
 
-	\footnotetext{Nei Riferimenti informativi \S\ref{rifinfo} - Vincoli di organigramma e specifiche economiche}
+	\footnotetext{Riferirsi alla voce ``Vincoli di organigramma e specifiche economiche'' in \S\ref{rifinfo}}
 
 	\mydoublerule{\linewidth}{0pt}{2pt}
 
@@ -151,7 +152,7 @@
 			Approvazione errata di documenti \\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Descrizione}: è possibile che il \Res\ commetta errori nella fase di approvazione dei documenti che possono portare alla consegna di documentazione errata o scadente, causando quindi disguidi con il cliente, oltre che a lasciare un'impressione negativa. \`E necessario correggere tali sviste, andando quindi a sprecare risorse investibili in altri compiti.
+				\textbf{Descrizione}: è possibile che il \Res\ commetta errori nella fase di approvazione dei documenti, che potrebbero portare alla consegna di documentazione errata o scadente, causando disguidi con il cliente e lasciando un'impressione negativa. \`E necessario correggere tali sviste, andando quindi a sprecare risorse investibili in altri compiti.
 			}\\
 			\multicolumn{2}{X}{
 				\textbf{Strategia}: il \Res\ deve avere modo di controllare il lavoro prodotto dal proprio team in modo costante e graduale.
@@ -180,7 +181,7 @@
 			}\\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Mitigazione}: in caso di errori nella gestione della repository, l'\Amm\ deve saperli risolvere in maniera tempestiva, in modo da evitare che chi andrà ad utilizzare successivamente la repository scarichi file errati, propagando l'errore anche sul proprio sistema.
+				\textbf{Mitigazione}: in caso di errori nella gestione della repository, l'\Amm\ deve saperli risolvere in maniera tempestiva, evitando che chi utilizzi successivamente la repository scarichi file errati, propagando l'errore anche sul proprio sistema.
 			}\\
 		\end{risktable}
 		\caption{Specifica rischio P004-100}
@@ -194,10 +195,11 @@
 			Intesa parziale tra i membri del team di sviluppo\\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Descrizione}: il team di sviluppo è formato principalmente da persone che precedentemente non si conoscevano o che hanno avuto poche interazioni tra di loro fino al momento della creazione di quest'ultimo. Poiché non si conoscono le competenze altrui, ciò può comportare un'errata gestione del lavoro e assegnazione dei compiti.
+				\textbf{Descrizione}: il team di sviluppo è formato principalmente da persone che precedentemente non si conoscevano o che hanno avuto poche interazioni tra di loro fino al momento della creazione di quest'ultimo.
+				La mancata conoscenza delle competenze altrui potrebbe causare un'errata gestione del lavoro e dell'assegnazione dei compiti.
 			}\\
 			\multicolumn{2}{X}{
-				\textbf{Strategia}: attraverso gli incontri diretti o con strumenti di chat quali \gloss{Telegram} o \gloss{Slack}, ci si confronta e si realizzano i diversi modi di lavorare per ognuno.
+				\textbf{Strategia}: attraverso gli incontri diretti o con strumenti di chat quali \gloss{Slack}, ci si confronta e si realizzano i diversi modi di lavorare per ognuno.
 			}\\
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
@@ -246,7 +248,7 @@
 
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Descrizione}: è possibile che uno o più componenti del team di sviluppo, per impegni legati alla propria vita privata o universitaria, non riescano a gestire i compiti assegnati, arrivando a una scadenza senza aver finito il proprio lavoro e obbligando l'intero team di sviluppo rinviare la consegna.
+				\textbf{Descrizione}: è possibile che uno o più componenti del team di sviluppo, per impegni legati alla propria vita privata o universitaria, non riescano a gestire i compiti assegnati, arrivando a una scadenza senza aver finito il proprio lavoro e obbligando l'intero team di sviluppo a rinviare la consegna.
 			}\\
 
 			\multicolumn{2}{X}{
@@ -274,7 +276,7 @@
 			}\\
 
 			\multicolumn{2}{X}{
-				\textbf{Strategia}: è opportuno che il \Res\ si metta in comunicazione con l'azienda, attraverso Telegram, Skype o tramite incontri di persona, e riferisca il progresso svolto dal team di sviluppo in modo da avere feedback e critiche costruttive che possano migliorare lo sviluppo del progetto.
+				\textbf{Strategia}: è opportuno che il \Res\ si metta in comunicazione con l'azienda, attraverso \gloss{Telegram}, Skype o tramite incontri di persona e riferisca il progresso svolto dal team di sviluppo, in modo da avere feedback e critiche costruttive che possano migliorare lo sviluppo del progetto.
 			}\\
 
 			\rowcolor{\tablegray}
@@ -329,7 +331,7 @@
 
 			\rowcolor{\tablegray}
 			\multicolumn{2}{X}{
-				\textbf{Mitigazione}: nel caso dovesse sorgere la necessità di sviluppare requisiti non previsti, questi andranno analizzati per capire di che risorse hanno bisogno e come andranno inseriti nella scaletta di sviluppo del progetto in modo adeguato. Data la natura modulare del progetto, ciascun requisito verrà sviluppato dal più al meno importante in modo da dover svolgere compiti facilmente monitorabili e testabili.
+				\textbf{Mitigazione}: nel caso dovesse sorgere la necessità di sviluppare requisiti non previsti, questi andranno analizzati per capire di che risorse hanno bisogno e come andranno inseriti nella scaletta di sviluppo del progetto in modo adeguato. Data la natura modulare del progetto, ciascun requisito verrà sviluppato in ordine di importanza, in modo da dover svolgere compiti facilmente monitorabili e testabili.
 			}\\
 		\end{risktable}
 		\caption{Specifica rischio R001-122}		
