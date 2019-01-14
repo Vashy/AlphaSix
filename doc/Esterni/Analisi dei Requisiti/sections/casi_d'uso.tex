@@ -54,7 +54,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: il Producer invia una segnalazione al Broker.
 		\item \textbf{Attori primari}: Producer.
-		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/Gitlab la inoltra al Broker. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
+		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/Gitlab, la inoltra al Broker. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
 		\item \textbf{Precondizione}: il Producer ha ricevuto una segnalazione da inoltrare.
 		\item \textbf{Postcondizione}: il Producer ha inviato al Broker la segnalazione.
 		\item \textbf{Scenario principale}:
@@ -75,7 +75,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: il Consumer interroga il Broker.
 		\item \textbf{Attori primari}: Consumer.
-		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dall'utente in base al Topic. Il sistema di riferimento qui è Broker ed è interno al sistema \progetto.
+		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dal Topic. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
 		\item \textbf{Precondizione}: il Broker ha un messaggio pronto ad essere inoltrato da un Consumer verso un client delle tecnologie con cui il sistema si interfaccia.
 		%TODO: consumer
 		\item \textbf{Postcondizione}: il messaggio recuperato dal Consumer è inoltrato al client della tecnologia correlata.
@@ -96,8 +96,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Telegram/e-mail riceve un messaggio.
 		\item \textbf{Attori primari}: Telegram/server e-mail.
-		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema Butterfly.
-		\footnote{L'\gloss{attore} Telegram/e-mail è passivo, riceve e non agisce. Viene creato questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail", poiché Telegram/mail è esterno a \progetto e quindi non può essere considerato un suo sottosistema.}
+		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema\\Butterfly\footnote{L'\gloss{attore} Telegram/e-mail è passivo, riceve e non agisce. Viene creato questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail", poiché Telegram/mail è esterno a \progetto, quindi non può essere considerato un suo sottosistema.}.
+		Il messaggio viene inviato dal Producer a un client esterno al sistema identificato tramite il Topic.
 		
 		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server e-mail in seguito a un'interrogazione del Broker.
 		\item \textbf{Postcondizione}: Telegram/server e-mail riceve il messaggio.
@@ -178,8 +178,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\paragraph{UC\theuccount.2 - Visualizzazione errore autenticazione fallita}
 		\begin{itemize}
 			\item \textbf{Titolo}: visualizzazione errore autenticazione fallita.
-			\item \textbf{Attori primari}: utente non ecceduto.
-			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito username errato.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito un username errato.
 			\item \textbf{Precondizione}: il sistema riceve una richiesta di accesso da parte di un utente che
 			fornisce un username errato. 
 			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore.
@@ -225,7 +225,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra Topic, giorni di calendario e piattaforme di messaggistica come Telegram o e-mail.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: lo nuova configurazione contiene una o più preferenza in aggiunta rispetto alla quella precedente.
-		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili disponi, quale aggiungere alla sua configurazione personale.
+		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili, quale aggiungere alla sua configurazione personale.
 	\end{itemize}
 	
 	\subparagraph{UC\theuccount.1.1 - Iscrizione Topic}
