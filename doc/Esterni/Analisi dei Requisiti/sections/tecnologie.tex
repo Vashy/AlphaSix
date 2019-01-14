@@ -30,13 +30,13 @@
 		\end{enumerate}
 		\gruppo\ ha scelto di sviluppare i Producer per le prime due applicazioni in base alle priorità suggerite da \II\ nel capitolato, lasciando l'applicativo relativo a SonarQube come opzionale.
 		Ciascun messaggio ricevuto da queste tecnologie verrà analizzato dal Producer associato in modo da inserirli nel Topic appropriato.\\
-		In particolare, le modifiche relative alla repository (GitLab) o al progetto (Redmine) prese in considerazione sono:
+		In particolare, le modifiche relative alla \gloss{repository} (GitLab) o al progetto (Redmine) prese in considerazione sono:
 		\begin{itemize}
 			\item Commit (solo GitLab)
 			\item Apertura \gloss{issue} 
 			\item Chiusura issue (solo GitLab)
 		\end{itemize}
-		Le segnalazioni sono generate in base alle keyword contenute nei messaggi di commit e nelle etichette assegnate alle issue.
+		Le segnalazioni sono generate in base alle \gloss{keyword} contenute nei messaggi di commit e nelle etichette assegnate alle issue.
 		Da quest'ultime verrà creato il Topic corrispondente in caso non sia già esistente.
 		
 		\subsubsection{Redmine}
@@ -44,7 +44,7 @@
 		Queste vengono ricevute dal server tramite un microservizio che resta in ascolto, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai Consumer interessati.
 		
 		\subsubsection{GitLab}
-		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce ``Webhook di GitLab'' alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della \gloss{repository}, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come per Redmine, inoltrare le notifiche ai Consumer interessati.
+		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce ``Webhook di GitLab'' alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della repository, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come per Redmine, inoltrare le notifiche ai Consumer interessati.
 		
 %		\subsubsection{SonarQube}
 %		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
@@ -60,7 +60,7 @@
 	
 	\subsection{Consumer}
 		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e \gloss{client} dello strumento di messaggistica scelto dall'utente.
-		Le tecnologie verso le quali vengono inoltrati i messaggi rielaborati dal sistema sono elencate di seguito in ordine di priorità in base a quanto richiesto dal \gloss{committente}.
+		Le tecnologie verso le quali vengono inoltrati i messaggi rielaborati dal sistema sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 		\begin{enumerate}
 			\item Telegram
 			\item E-mail
@@ -85,6 +85,7 @@
 	Il gestore personale è quel \gloss{componente} che permette agli utenti di impostare le proprie preferenze per l'applicativo di ricezione dei messaggi ed i Topic a cui si iscrive, interfacciandosi dunque con l'intero sistema \progetto.
 	È previsto come un'applicazione web installata in un server interno all'azienda.
 	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, con la possibilità di aggiungere e rimuovere, determinate impostazioni riguardanti le proprie preferenze.
+	\newpage
 	Quest'ultime sono:
 	\begin{itemize}
 		\item Scelta dell'applicativo sul quale ricevere le notifiche (Telegram / e-mail)
