@@ -150,9 +150,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\
 			R\addQNumber
 			Q2 & È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema & Capitolato \\
-			R17.1Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
-			R17.2Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
-			R17.3Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			R18.1Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
+			R18.2Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
+			R18.3Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
 			\bottomrule \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (2)}
@@ -239,11 +239,22 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\cellcolor{white} & R15Q2 \\
 				\cellcolor{white} & R16Q2 \\
 				\cellcolor{white} & R17Q2 \\
-				\cellcolor{white} & R17.1Q2 \\
-				\cellcolor{white} & R17.2Q2 \\
-				\cellcolor{white} & R17.3Q2 \\
-				\cmidrule{2-2}
-				\cellcolor{white} & R1V2 \\
+				\cellcolor{white} & R18Q2 \\
+				\cellcolor{white} & R18.1Q2 \\
+				\cellcolor{white} & R18.2Q2 \\
+				\cellcolor{white} \multirow{-13}{*}{Capitolato} & R18.3Q2 \\
+				\bottomrule\\
+			\end{tabularx}}
+			\caption{Elenco dei requisiti del capitolato (1)}
+		\end{table}
+		
+		\begin{table}[H]
+			\centering
+			{\def\arraystretch{1.4}
+			\begin{tabularx}{\textwidth}{YY}
+				\textbf{Fonte} & \textbf{Requisito} \\
+				\toprule
+		        \cellcolor{white} & R1V2 \\
 				\cellcolor{white} & R1.1V0 \\
 				\cellcolor{white} & R2V2 \\
 				\cellcolor{white} & R2.1V0 \\
@@ -260,21 +271,21 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\cellcolor{white} & R6V2 \\
 				\cellcolor{white} & R7V0 \\
 				\cellcolor{white} & R8V1 \\
-				\cellcolor{white} \multirow{-31}{*}{Capitolato} & R9V1 \\
+				\cellcolor{white} \multirow{-18}{*}{Capitolato} & R9V1 \\
 				\bottomrule\\
 			\end{tabularx}}
-			\caption{Elenco dei requisiti del capitolato}
+			\caption{Elenco dei requisiti del capitolato (2)}
 		\end{table}
-	
-			\begin{table}[H]
+	    
+		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.5}
 				\begin{tabularx}{\textwidth}{YY}
 					\textbf{Fonte} & \textbf{Requisito} \\
 					\toprule
-					\cellcolor{white} & R11Q2 \\
+					\cellcolor{white} & R11Q1 \\
 					\cellcolor{white} & R12Q2 \\
-					\cellcolor{white} \multirow{-2}{*}{Interno} & R3Q1 \\
+					\cellcolor{white} \multirow{-2}{*}{Interno} & R13Q2 \\
 					\bottomrule
 				\end{tabularx}}
 			\caption{Elenco dei requisiti interni}
@@ -323,7 +334,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			QPR008 & R9Q1 \\
 			QPR009 & R10Q1 \\
 			QPR010 & R11Q1 \\
-			\Doc{VE\_12-12-2018} & R13Q2 \\
+			\Doc{VE\_12-12-2018} & R14Q2 \\
 			\bottomrule\\
 		\end{tabularx}}
 		\caption{Elenco dei requisiti per gli obiettivi di qualità e verbali}
@@ -357,7 +368,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addC
 			F2 & Interno UC3 \\
 			R\addC
-			F0 & Interno UC4 \\
+			F2 & Interno UC4 \\
 			R\addC
 			.1F0 & Interno UC5.1 \\
 			R5.1.1F0 & Interno UC5.1.1 \\
@@ -424,9 +435,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q2 & Capitolato \\
 			R\addVC
 			Q2 & Capitolato \\
-			R17.1Q2 & Capitolato \\
-			R17.2Q2 & Capitolato \\
-			R17.3Q2 & Capitolato \\
+			R18.1Q2 & Capitolato \\
+			R18.2Q2 & Capitolato \\
+			R18.3Q2 & Capitolato \\
 			\bottomrule
 			\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità in rapporto alle fonti}
@@ -473,8 +484,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YYYY}
 			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
-			Di funzionalità & 9 & 0 & 10 \\
-			Di qualità & 9 & 1 & 0 \\
+			Di funzionalità & 8 & 0 & 10 \\
+			Di qualità & 12 & 9 & 0 \\
 			Di vincolo & 12 & 3 & 3 			
 			\\\bottomrule
 		\end{paddedtablex}
