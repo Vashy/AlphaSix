@@ -1,14 +1,16 @@
 \newpage
 \section{Casi d'uso}
 Questa sezione elenca le funzionalità offerte da \progetto\ descritte attraverso il linguaggio \gloss{UML}.
-\progetto\ può essere visto come l'insieme di più sottosistemi che verranno di seguito elencati e che sono stati descritti in modo molto generale anche attraverso la Figura \ref{fig:butterfly}.
+\progetto\ può essere visto come l'insieme di più sottosistemi che verranno di seguito elencati e che sono stati descritti in modo molto generale anche attraverso la Figura \ref{fig:butterfly}.\\
+Questa mostra la suddivisione di \progetto\ nei sottosistemi in cui è composto e ne facilita l'analisi per la stesura dei casi d'uso.
+Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al sistema ma anche componente inoltre quali Producer e Consumer che hanno interazioni con il Broker.
 	
 	\subsection{Attori}
 	\begin{itemize}
 		\item Redmine/GitLab
 		\item Producer
 		\item Utente non acceduto
-		\item Utente (acceduto), il quale interagisce col gestore personale
+		\item Utente (acceduto), che interagisce col Gestore Personale
 		\item Consumer
 		\item Telegram/e-mail
 	\end{itemize}
@@ -33,8 +35,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Descrizione}:
 		 il sistema qui è il Producer ed è interno al sistema \progetto.
 		 L'invio di una segnalazione avviene da parte di Redmine/GitLab in seguito all'apertura di una issue o di un commit.		 
-		\item \textbf{Precondizione}: c'è qualcosa da segnalare.
-		\item \textbf{Postcondizione}: segnalazione inviata.
+		\item \textbf{Precondizione}: l'applicazione esterna a \progetto\ ha subito una modifica e la segnala al sistema.
+		\item \textbf{Postcondizione}: il Producer riceve la segnalazione dell'applicativo esterno.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
 			\item Redmine/GitLab invia la segnalazione al Producer
@@ -53,7 +55,7 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: il Producer invia una segnalazione al Broker.
 		\item \textbf{Attori primari}: Producer.
-		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/Gitlab, la inoltra al Broker. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
+		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/ Gitlab, la inoltra al Broker. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
 		\item \textbf{Precondizione}: il Producer ha ricevuto una segnalazione da inoltrare.
 		\item \textbf{Postcondizione}: il Producer ha inviato al Broker la segnalazione.
 		\item \textbf{Scenario principale}:
