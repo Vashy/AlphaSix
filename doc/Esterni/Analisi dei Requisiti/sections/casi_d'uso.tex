@@ -233,8 +233,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.1.1.
 		\item \textbf{Titolo}: iscrizione Topic.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: data la lista di Topic presenti già inserita precedentemente, l'utente seleziona quelli a cui è interessato ricevendone una notifica. I Topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutti i Topic possibili proposti da \progetto.
+		\item \textbf{Descrizione}: data la lista di Topic presenti già inserita precedentemente, l'utente ne seleziona uno o più a cui è interessato ricevendone una notifica. I Topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
+		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema e non ha selezionato tutti i Topic possibili proposti da \progetto.
 		\item \textbf{Postcondizione}: il numero di Topic a cui è interessato l'utente è aumentato.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -248,8 +248,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.1.2.
 		\item \textbf{Titolo}: aggiunta dei giorni di indisponibilità nel calendario.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: dato il calendario lavorativo, l'utente aggiunge i giorni in cui non è reperibile e non vuole ricevere notifiche.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutti i giorni di calendario proposti da \progetto.
+		\item \textbf{Descrizione}: dato il calendario lavorativo, l'utente aggiunge uno o più giorni in cui non è reperibile e non vuole ricevere notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema e non ha selezionato tutti i giorni di calendario proposti da \progetto.
 		\item \textbf{Postcondizione}: il numero di giorni in cui l'utente non si rende disponibile è aumentato.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -260,10 +260,10 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\subparagraph{UC\theuccount.1.3 - Aggiunta della piattaforma di messaggistica}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.1.3.
-		\item \textbf{Titolo}:aggiunta della piattaforma di messaggistica.
+		\item \textbf{Titolo}: aggiunta della piattaforma di messaggistica.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: dalla lista delle piattaforme di messaggistica l'utente aggiunge quelle da cui vuole ricevere le notifiche.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le piattaforma di messaggistica possibili proposte da \progetto.
+		\item \textbf{Descrizione}: dalla lista delle piattaforme di messaggistica l'utente ne aggiunge una o più di quelle da cui vuole ricevere le notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema e non ha selezionato tutte le piattaforma di messaggistica possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica selezionate dall'utente è aumentato.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -285,8 +285,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.2.
 		\item \textbf{Titolo}: rimozione preferenza.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l'utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o di più. Le preferenze consistono in Topic, date di calendario e piattaforme di messaggistica.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
+		\item \textbf{Descrizione}: l'utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o più. Le preferenze consistono in Topic, date di calendario e piattaforme di messaggistica.
+		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da \progetto.
 		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in meno rispetto a quella precedente.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -300,8 +300,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.2.1.
 		\item \textbf{Titolo}: disiscrizione Topic.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l'utente di disiscrive da uno o più Topic dai quali prima riceveva delle notifiche.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno un Topic selezionato tra quelle proposte da \progetto.
+		\item \textbf{Descrizione}: l'utente si disiscrive da uno o più Topic dai quali prima riceveva delle notifiche.
+		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema ed è presente almeno un Topic selezionato tra quelli proposti da \progetto.
 		\item \textbf{Postcondizione}: il numero di Topic a cui è iscritto l'utente è diminuito.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -313,10 +313,10 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 	\subparagraph{UC\theuccount.2.2 - Rimozione giorno irreperibilità nel calendario}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.2.2.
-		\item \textbf{Titolo}: rimozione giorno irreperibilità nel calendario.
+		\item \textbf{Titolo}: rimozione di uno o più giorni  di irreperibilità nel calendario.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l'utente rimuove i giorni di calendario in cui precedentemente non era reperibile.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno un giorno di calendario selezionato tra quelle proposte da \progetto.
+		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema ed è presente almeno un giorno di calendario selezionato tra quelli proposti da \progetto.
 		\item \textbf{Postcondizione}: il numero di giorni di calendario in cui l'utente non è reperibile è diminuito.
 		\item \textbf{Scenario principale}: l'utente, dopo aver visto i giorni in cui si era segnato non reperibile, ne rimuove alcuni rendendosi disponibile in quelle date.
 	\end{itemize}
@@ -327,8 +327,8 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 		\item \textbf{Codice}: UC\theuccount.2.3.
 		\item \textbf{Titolo}: rimozione piattaforma di messaggistica.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l'utente rimuove le piattaforme di messaggistica dalle quali non vuole più ricevere notifiche tramite \progetto.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le credenziali nel sistema ed è presente almeno una piattaforma di messaggistica selezionata tra quelle proposte da \progetto.
+		\item \textbf{Descrizione}: l'utente rimuove una o più piattaforme di messaggistica dalle quali non vuole più ricevere notifiche tramite \progetto.
+		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema ed è presente almeno una piattaforma di messaggistica selezionata tra quelle proposte da \progetto.
 		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica da cui l'utente vuole ricevere notifiche è diminuito.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
