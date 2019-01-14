@@ -22,6 +22,8 @@
 		
 		\subsubsection{Riferimenti Informativi}\label{rifinfo}
 			\begin{itemize}
+				\item Presentazione capitolato d'appalto C1:\\
+				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1p.pdf}
 				\item Software Engineering - Ian Sommerville - 10 th Edition (2016)
 				\item Slide dell’insegnamento Ingegneria del Software\\
 				\url{http://www.math.unipd.it/~tullio/IS-1/2018/}
@@ -34,30 +36,31 @@
 	\subsection{Scadenze}\label{Scadenze}
 	\gruppo\ ha deciso di rispettare le scadenze indicate dal professor Vardanega, riportate di seguito:
 	\begin{itemize}
-		\item \textbf{Revisione dei Requisiti}: 21-01-2019
-		\item \textbf{Revisione di Progetto}: 15-03-2019
-		\item \textbf{Revisione di Qualifica}: 19-04-2019
+		\item \textbf{Revisione dei Requisiti}: 21-01-2019.
+		\item \textbf{Revisione di Progetto}: 15-03-2019.
+		\item \textbf{Revisione di Qualifica}: 19-04-2019.
 		\item \textbf{Revisione di Accettazione}: 17-05-2019.
 	\end{itemize}
 	
-	\subsection{Modello di sviluppo} % Usare modello di sviluppo come termine al posto di Ciclo di vita in questo contesto. Vedere #26
+	\subsection{Modello di sviluppo}
 	Data la natura del progetto, composto da più parti modulari e con un basso valore di accoppiamento, si è scelto di adottare un \gloss{modello di
 	sviluppo} ibrido tra quello a \gloss{componenti} e quello incrementale.
 	Essi si adattano particolarmente bene a questo tipo di progetto, in quanto:
 	\begin{itemize}
-		\item Il modello incrementale prevede ripetizioni identificate come cicli di incremento che verranno ripetute fino a quando il prodotto non arriverà a soddisfare i \gloss{requisiti} richiesti dal cliente
+		\item Il modello incrementale prevede ripetizioni identificate come cicli di incremento,
+		che verranno ripetute fino a quando il prodotto non arriverà a soddisfare i \gloss{requisiti} richiesti dal cliente
 		\item Il modello a componenti è basato sul riuso di unità software che possono avere diverse dimensioni:
 		\begin{itemize}
-			\item \textbf{System reuse}: un intero \gloss{sistema}, composto da più applicazioni, può essere riusato come parte di un sistema di tanti sistemi % TODO: rivedere la frase
+			\item \textbf{System reuse}: un \gloss{sistema} può essere riutilizzato come sottosistema all'interno di uno più ampio.
 			\item \textbf{Application reuse}: un'applicazione può essere riusata incorporandola in altri sistemi senza apportare cambiamenti, 
-				oppure configurandola
+				oppure configurandola.
 			\item \textbf{Component reuse}: i \gloss{componenti} di un'applicazione, che possono essere da sotto-sistemi a singoli oggetti, risiedono
-				in un \gloss{cloud} o in server privati e possono essere accessibili tramite \gloss{Application Programming Interface} (API)
+				in un \gloss{cloud} o in server privati e possono essere accessibili tramite \gloss{Application Programming Interface} (API).
 			\item \textbf{Object and function reuse}: componenti software che implementano una singola funzione o una classe oggetto. Si 
 				possono riusare collegandole con lo sviluppo di nuovo codice. Molte di queste sono liberamente disponibili. 
 		\end{itemize}
-		Oppure, nel caso in cui le componenti siano così specifiche da essere troppo costoso adattarle ad una nuova situazione,
-		è possibile fare "concept reuse", ovvero riusare le idee che stanno alla base del componente (e.g. riusare un \gloss{way of working} o un algoritmo). \par
+		Oppure, nel caso in cui le componenti siano così specifiche da risultare troppo costose da adattare,
+		è possibile fare ``concept reuse'', ovvero riusare le idee che stanno alla base del componente (e.g. riutilizzare un \gloss{way of working} o un algoritmo). \\
 		In particolare, i benefici che si possono trarre dal riuso sono:
 		\begin{itemize}
 			\item \textbf{Costo complessivo di sviluppo più basso}: perché il numero di componenti software che devono essere progettati, implementati e validati è minore.
@@ -67,13 +70,13 @@
 			%\item  Ridotto rischio di processo, vero specialmente per grandi componenti software riusate come sottosistemi. È un fattore importante per il Project Manager perché riduce il margine di errore nella stima dei costi di un progetto.
 			\item \textbf{Conformità con gli standard}: alcuni standard
 			%, come gli interface standard, 
-			possono essere implementati come set di componenti riusabili.
+			possono essere applicati come set di componenti riusabili.
 		\end{itemize}
 		%e prevede che venga riutilizzata una base per lo sviluppo dei vari pezzi che formano il progetto, fra loro indipendenti
 	\end{itemize}
-	Inizialmente si possono spendere le risorse nella realizzazione di una base di partenza per le componenti, che verrà successivamente sviluppata per ciascun requisito richiesto, rappresentando il nucleo del prodotto finale.
-	A tale \gloss{milestone} si potranno integrare le funzionalità secondarie richieste dal cliente insieme ai possibili requisiti impliciti desiderabili presenti nel capitolato. In base alla pianificazione svolta, le risorse disponibili saranno ridistribuite in modo da garantire lo sviluppo completo del prodotto.
-	L'immagine che segue rappresenta il modello incrementale e come il progetto viene composto da componenti sviluppati ciascuno secondo cicli con fasi ben definite.
+	Inizialmente, si possono spendere le risorse nella realizzazione di una base di partenza per le componenti, che verrà successivamente sviluppata per ciascun requisito richiesto, rappresentando il nucleo del prodotto finale.
+	A tale \gloss{milestone}, si potranno integrare le funzionalità secondarie richieste dal cliente insieme ai possibili requisiti impliciti desiderabili presenti nel capitolato. In base alla pianificazione svolta, le risorse disponibili saranno ridistribuite in modo da garantire lo sviluppo completo del prodotto.
+	L'immagine che segue rappresenta il modello incrementale e come il progetto viene composto da componenti sviluppati, ciascuno secondo cicli con fasi ben definite.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.5]{img/modello_incrementale.png}
@@ -81,5 +84,5 @@
 		\label{fig:modello_incrementale}
 	\end{figure}
 
-	\footnotetext{Fonte in \S\ref{rifinfo}}
+	\footnotetext{Riferirsi alla voce ``Fonte Figura 1'' in \S\ref{rifinfo}}
 	
