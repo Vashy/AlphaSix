@@ -157,10 +157,10 @@
 
 			\subparagraph{Documenti esterni}
 			Sono considerati esterni, invece, documenti quali \PdP, \PdQ\ e \AdR\ che, al contrario dei precedenti, sono visibili al committente.
-			
+
 			%Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \PdP, \PdQ\ e \AdR. Si chiamano esterni perché accessibili al committente.
 
-			%\subparagraph{Glossario} 
+			%\subparagraph{Glossario}
 			% TODO: già scritto nell'introduzione, eliminare? L: anche sì
 			%Il documento denominato \Doc{\Gl}  raccoglie in ordine alfabetico tutti i termini utilizzati che necessitano di una spiegazione più approfondita.
 			%Sono identificabili all'interno degli altri documenti da un font differente e una G a pedice la prima volta che appaiono.
@@ -268,7 +268,7 @@
 
 		I risultati ottenuti nella fase di verifica sono riportati nel \PdQ, in questo modo, confrontandoli con gli esiti attesi,
 		è possibile valutare un miglioramento per i vari processi e prodotti sempre nel \PdQ.
-		
+
 		\subsection{Walkthrough e Inspection}
 		Due modi di effettuare la verifica sono attraverso \gloss{Walkthrough} e Inspection.
 		Il team di sviluppo li adotta entrambi, ma non contemporaneamente, per i vantaggi che comporta ogni metodo.
@@ -277,29 +277,29 @@
 			Metodo di verifica che effettua un controllo ad ampio spettro senza l’assunzione di presupposti. Dato che per mettere in atto tale metodo ci
 			si deve divide in gruppi dove ognuno ha un ruolo ben distinto, Walkthrough è ideale per le verifiche effettuate all'inizio dei vari periodi,
 			dove i membri del team di sviluppo non possiedono le conoscenze adeguate per una verifica efficiente.
-			
+
 			Walkthrough possiede delle fasi ben specifiche:
-			
+
 			\begin{enumerate}
 				\item \textbf{Pianificazione}: viene pianificato in gruppo come effettuare la verifica dei prodotti.
 				\item \textbf{Lettura}: viene effettuata la lettura del prodotto.
 				\item \textbf{Discussione}: vengono discusse le possibili correzioni.
 				\item \textbf{Correzione di difetti}: si attuano i risultati ottenuti dalla fase di discussione.
 			\end{enumerate}
-		
+
 		\subsubsection{Inspection}
 		Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati sei precedenti test. Questo metodo dunque, a differenza di Walkthrough, prevede l'esecuzione con dei presupposti.
-		
+
 		Le fasi di Inspection sono:
-		
+
 		\begin{enumerate}
 			\item \textbf{Pianificazione}: viene sempre pianificato in gruppo come effettuare la pianificazione.
 			\item \textbf{Definizione di una lista di controllo}: dato che le parti da verificare sono specificate, queste possono essere riportate in una lista in modo da velocizzare il processo di verifica.
 			\item \textbf{Correzione dei difetti}: attuazione dei punti della lista di controllo.
 		\end{enumerate}
-	
-	Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di prodotti e processi da verificare viene effettuato Walkthrough, nel momento in cui il metodo di verifica è ben consolidato da tutti i membri del team di sviluppo si passa ad effettuare verifica secondo Inspection.  
-		
+
+	Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di prodotti e processi da verificare viene effettuato Walkthrough, nel momento in cui il metodo di verifica è ben consolidato da tutti i membri del team di sviluppo si passa ad effettuare verifica secondo Inspection.
+
 		\subsubsection{Metriche}
 		La denominazione delle metriche è già stata descritta in \S\ref{Classificazione metriche}, qui viene descritto il loro funzionamento.
 			\paragraph{Metriche per i documenti}
@@ -329,10 +329,10 @@
 				Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
 				Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
 				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
-				
+
 
 				\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
-				
+
 				\subparagraph{MPR002 Varianza dei costi}
 				All'interno del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
 				In corso d'opera possono presentarsi dei problemi che richiedono un'aggiunta di costo in termini di $\frac{\text{tempo}}{\text{persona}}$.
@@ -363,7 +363,7 @@
 
 				\subparagraph{MPR004 Frequenza commit nella repository}
 				Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro di \gruppo\ effettui un commit ad ogni sua modifica significativa.
-				Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.				
+				Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
 				Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
 				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
 				\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
@@ -401,7 +401,7 @@
 				I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
 
 				Chi esegue la modifica deve controllare ciò che ha fatto prima di poterla ufficializzare, mentre la verifica fatta dal \Ver\ deve essere fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
-			
+
 				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
 
 				\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.

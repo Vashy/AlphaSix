@@ -15,7 +15,7 @@
 		%TODO: da mettere?
 	    % \subsubsection{Istanziazione dei processi}
 		% Derivano dagli standard...
-		
+
 		\subsubsection{Pianificazione di attività}
 
 			\paragraph{Scopo}
@@ -63,7 +63,7 @@
 			\item Stima delle risorse secondo la \gloss{metrica} tempo/persona e le \gloss{milestone} nel tempo, pianificando all'indietro
 			\item Assegnazione delle risorse umane alle attività secondo una precisa rotazione dei ruoli
 			\end{enumerate}
-		
+
 			\paragraph{Classificazione dei rischi}
 			Le tipologie in cui suddividere i rischi sono state prese dal libro Software Engineering\footnote{Software Engineering, 10° edizione, Pagina 648, Capitolo 22: Project management} e sono:
 			\begin{itemize}
@@ -73,17 +73,17 @@
 				\item \textbf{Strumentale}: per l'utilizzo e la performance degli strumenti hardware.
 				\item \textbf{Tecnologico}: per problemi riguardanti l'utilizzo e le funzionalità degli strumenti software.
 			\end{itemize}
-			
+
 			A ciascun rischio viene assegnato un codice identificativo in modo da essere facilmente riconoscibile e per comprenderne le generalità (classe, probabilità e severità), per poi non doverle cercare nelle tabelle che comprendono tutti i rischi del progetto analizzati.
-			
+
 			Questo codice è composto da:
-			
+
 			\begin{center}
 				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]}
 			\end{center}
 			\clearpage
 			I valori che possono assumere sono:
-			
+
 			\begin{itemize}
 				\item \textbf{Tipologia}:
 				\begin{itemize}
@@ -93,7 +93,7 @@
 					\item \textbf{S}: strumentale.
 					\item \textbf{T}: tecnologico.
 				\end{itemize}
-				
+
 				\item \textbf{ID}: numero progressivo di tre cifre (001 - 999);
 				\item \textbf{Gravità}:
 				\begin{itemize}
@@ -101,14 +101,14 @@
 					\item \textbf{1}: tollerabile.
 					\item \textbf{2}: inaccettabile.
 				\end{itemize}
-				
+
 				\item \textbf{Probabilità}:
 				\begin{itemize}
 					\item \textbf{0}: bassa.
 					\item \textbf{1}: media.
 					\item \textbf{2}: alta.
 				\end{itemize}
-				
+
 				\item \textbf{Classe}:ci si riferisce ai livelli di rischio.
 				\begin{itemize}
 					\item \textbf{0}: basso.
@@ -116,9 +116,9 @@
 					\item \textbf{2}: alto.
 				\end{itemize}
 			\end{itemize}
-			
+
 			Ad esempio con P001-021 si può intuitivamente capire che si tratta del primo rischio relativo al personale, di gravità accettabile, probabilità alta e un valore di classe medio.
-			
+
 			\paragraph{Ruoli di progetto}
 			I ruoli\footnote{Riferirsi alla voce ``Descrizione dei ruoli di progetto'' in \S\ref{rifinfo}.} adoperati per lo sviluppo del progetto sono:
 			\begin{itemize}[noitemsep]
@@ -270,7 +270,7 @@
 				\item \textbf{TODO}: per segnalare la presenza di un lavoro da fare o lasciato a metà.
 				\item \textbf{FIXME}: per segnalare la presenza di una correzione da effettuare su del lavoro già svolto.
 			\end{itemize}
-		
+
     		% \paragraph{Riportare lo stato di avanzamento del progetto}
 			% vedere Breaking Bug, io non riesco a capire il senso di questo paragrafo e lo toglierei ~ Tim
 
@@ -289,8 +289,8 @@
     		\paragraph{Slack}
 			Slack è uno strumento di collaborazione nato appositamente per coordinare il lavoro tra i team, permettendo la comunicazione in tempo
 			reale e mettendo a disposizione molte altre utilità indispensabili. Tra queste, c'è la possibilità di dividere il \gloss{workspace} in vari canali specifici, marcare parole o frasi importanti con diversi stili (grassetto, corsivo, codice, barrato), fissare i messaggi importanti, aprire una discussione sotto ogni messaggio per non creare troppi messaggi sul canale, ecc \dots
-			
-			Il workspace usato dal team è stato suddiviso in diversi canali in base alle esigenze del periodo di lavoro. 
+
+			Il workspace usato dal team è stato suddiviso in diversi canali in base alle esigenze del periodo di lavoro.
 			%Nel periodo attuale, i vari canali sono:
 			Nel periodo relativo alla stesura della versione attuale del documento, i vari canali sono:
 			\begin{itemize}
@@ -306,20 +306,21 @@
 			\end{itemize}
 
     		\paragraph{GitHub}\label{Github}
-			GitHub fornisce un \gloss{Issue Tracking System} per ogni repository che ospita. Questo strumento offre più funzionalità di quanto potrebbe sembrare, poich\'e permette anche di trattare le issue come delle task, marcandole con una opportuna label. Infatti, questo sistema offre le seguenti funzionalità:
+			GitHub fornisce un \gloss{Issue Tracking System} per ogni repository che ospita. Questo strumento offre più funzionalità di quanto potrebbe sembrare,
+			poich\'e permette anche di trattare le issue come delle task, marcandole con una opportuna label. Infatti, questo sistema offre le seguenti funzionalità:
 			\begin{itemize}
-				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID generato automaticamente in maniera incrementale (e.g. \texttt{\#32}), al quale sarà possibile fare riferimento nei messaggi di commit.
+				\item Aprire una issue, attribuendone un titolo e una descrizione più dettagliata. Ogni issue è legata a un ID generato automaticamente in maniera
+					incrementale (e.g. \texttt{\#32}), al quale sarà possibile fare riferimento nei messaggi di commit.
 				\item Creare delle milestone, e aggregare ad esse le issue.
-				\item Assegnare delle label alle issue, per marcarne la natura. Ad esempio, una issue marcata come \gloss{bug} sarà un problema da risolvere, una issue marcata come \gloss{enhancement} sarà un miglioramento o una task. È possibile inoltre creare delle label personalizzate.
-				\item Assegnare una issue a s\'e stessi o a un collaboratore, che sarà tenuta a correggerla.
-%				\item Supporto di \gloss{markdown} esteso, che permette di formare delle pagine per le issue di aspetto delizioso e allo stesso tempo estremamente funzionali.
-				\item Supporto di \gloss{markdown} esteso, che permette di 
-				formattare le pagine delle issue in modo estremamente funzionale.			
+				\item Assegnare delle label alle issue, per marcarne la natura. Ad esempio, una issue marcata come \gloss{bug} sarà un problema da risolvere, una
+					issue marcata come \gloss{enhancement} sarà un miglioramento o una task. È possibile inoltre creare delle label personalizzate.
+				\item Assegnare una issue a s\'e stessi o a un collaboratore.
+				\item Supporto di \gloss{markdown} esteso, che permette di
+				formattare le pagine delle issue in modo estremamente funzionale.
 			\end{itemize}
 
 			%\paragraph{Redmine} % ? da vedere piu avanti.
 			% Per ora Github per issue-task tracker ~Tim
-
 
 
 	\subsection{Formazione}
@@ -331,14 +332,14 @@
 		\begin{itemize}
 			\item Lo studio della documentazione\footnote{Vedere \S\ref{rifinfo} per i link alla documentazione.} di tecnologie e metodologie quali:
 			\begin{itemize}
-				\item \LaTeX 
-				\item Redmine 
-				\item GitLab 
+				\item \LaTeX
+				\item Redmine
+				\item GitLab
 				%\item SonarQube
 				\item Apache Kafka
-				\item Telegram 
-				%\item Slack 
-				\item Docker 
+				\item Telegram
+				%\item Slack
+				\item Docker
 				\item API Rest
 				\item The Twelve-Factor App
 			\end{itemize}
