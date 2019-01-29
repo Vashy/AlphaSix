@@ -1,3 +1,7 @@
+### Starting Zookeeper
+Posizione: Kafka home dir (e.g. `~/Desktop/kafka_2.11-2.1.0`)
+> `bin/zookeeper-server-start.sh config/zookeeper.properties`
+
 ### Starting Kafka Server
 Posizione: Kafka home dir (e.g. `~/Desktop/kafka_2.11-2.1.0`)
 > `bin/kafka-server-start.sh config/server.properties`
