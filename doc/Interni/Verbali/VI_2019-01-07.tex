@@ -1,14 +1,14 @@
 % Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
 \newcommand{\documento}{\VI}
-\newcommand{\nomedocumentofisico}{VI\ 17-12-2018.pdf}
-\newcommand{\redazione}{\TG}
-\newcommand{\verifica}{\CV}
-\newcommand{\approvazione}{\MM}
+\newcommand{\nomedocumentofisico}{VI\_2019-01-07.pdf}
+\newcommand{\redazione}{\SG}
+\newcommand{\verifica}{\LC}
+\newcommand{\approvazione}{\NC}
 \newcommand{\versione}{1.0.0}
 \newcommand{\uso}{Interno}
 \newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
-\newcommand{\datacreazione}{18 dicembre 2018}
-\newcommand{\datamodifica}{19 dicembre 2018}
+\newcommand{\datacreazione}{08 gennaio 2019}
+\newcommand{\datamodifica}{09 gennaio 2019}
 \newcommand{\stato}{Approvato}
 
 \def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
@@ -18,7 +18,7 @@
 \input{template/layout} % Layout del documento 
 \input{template/comandi} % Comandi generali
 
-\input{VI_17-12-2018/diario} % Entries diario
+\input{VI_2019-01-07/diario} % Entries diario
 
 \begin{document}
 
@@ -34,25 +34,23 @@
 		\subsection{Informazioni incontro}
 			% - INSERT INFORMAZIONI INCONTRO
 			\begin{itemize}
-				\item { \textbf{Luogo}: Lab036 Paolotti}
-				\item { \textbf{Data}: 17-12-2018}
+				\item { \textbf{Luogo}: Sala riunioni 701 Torre Archimede}
+				\item { \textbf{Data}: 2019-01-07}
 				\item { \textbf{Ora inizio}: 14:30}
-				\item { \textbf{Ora fine}: 17:15}
+				\item { \textbf{Ora fine}: 17:30}
 				\item { \textbf{Partecipanti di AlphaSix}: team al completo}
 				\item { \textbf{Partecipanti esterni}: nessuno}
-				\item { \textbf{Ordine del giorno}: controllo Analisi dei Rischi, nuove \NdP, discussione sull'\AdR}
+				\item { \textbf{Ordine del giorno}: controllo dei documenti redatti durante le vacanze, revisione delle \NdP}
 			\end{itemize}
 
         \subsection{Argomenti}
             % - INSERT ARGOMENTI
-            \subsubsection{Revisione del Piano di Progetto}
-            Decisa la forma definitiva delle tabelle di Analisi dei Rischi.\par
-            Viene preso in considerazione il \gloss{modello a componenti} come possibile \gloss{modello di sviluppo} da adottare.\par
-            
-            \subsubsection{Analisi dei Requisiti}
-            Grazie al precedente incontro con la proponente {\II} alcuni dubbi sono stati chiariti.\par
-            Pertanto vengono ridiscussi i casi d'uso generali dell'applicazione e inizia il delineamento dei sottocasi d'uso.
+            \subsubsection{Controllo dei documenti redatti durante le vacanze}
+            Vengono discusse insieme le parti dei \gloss{documenti} scritte durante il periodo natalizio.\par
+            Si decide lo stile delle tabelle nei vari documenti.\par
+            Rettifica appendici del \PdQ.
             
             \subsubsection{Norme di Progetto}
-            Vengono discusse altre \NdP\ relative alla documentazione.
+            Vengono riviste le \gloss{norme} relative ai punti elenco, di modo da correggere alcuni documenti di conseguenza.
+            
 \end{document}
