@@ -1,0 +1,11 @@
+//[]Opzionale
+
+- Redmine segnala apertura issue a producer redmine (Project, Tracker, Subject, [Description], Proirity)
+- Gitlab segnala apertura issue a producer gitlab (Title, Label, [Milestone, Assignee, Due Date])
+- Gitlab segnala commit a producer gitlab (Commit message(la presenza di keyword non è obbligatoria))
+- Producer Redmine invia messaggio al sistema consumer
+- Producer Gitlab invia messaggio al sistema consumer
+- Consumer telegram invia messaggio a Telegram
+- Consumer email invia messaggio a E-mail
+- 
+
