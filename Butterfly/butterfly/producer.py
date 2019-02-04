@@ -4,6 +4,7 @@ import kafka.errors
 from abc import ABC, abstractmethod
 import configparser
 
+
 class Producer(ABC):
     """Interfaccia Producer"""
 
