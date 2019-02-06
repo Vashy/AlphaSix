@@ -1,49 +1,49 @@
 \newpage
 \section{Introduzione} \label{Introduzione}
 	
+	\input{../../snippets/riferimenti_esterni}
+
 	\subsection{Scopo del documento}
-	Questo \gloss{documento} ha l'intento di specificare la \gloss{pianificazione} e l'approccio che \gruppo\ adotterà per portare a termine il \gloss{progetto} Butterfly.
-	All'interno vengono illustrate le strategie, le suddivisioni dei compiti, l'utilizzo delle \gloss{risorse}, la gestione dei rischi e le attività secondo le quali il team di sviluppo ha intenzione di lavorare.
+	Questo \gloss{documento} ha l'intento di specificare la \gloss{pianificazione} e l'approccio che adotteremo per portare a termine il \gloss{progetto} Butterfly.
+	All'interno vengono illustrate le strategie, le suddivisioni dei compiti, l'utilizzo delle \gloss{risorse}, la gestione dei rischi e le attività secondo le quali
+	il team di sviluppo ha intenzione di lavorare.
 
     \input{../../snippets/scopo_prodotto}
 
-	\input{../../snippets/riferimenti_esterni}
 	\subsection{Riferimenti}
 		\subsubsection{Riferimenti Normativi}\label{rifnorma}
 			\begin{itemize}
 				\item \NdPd
-				\item \gloss{Capitolato} d'appalto C1:\\
+				\item \gloss{Capitolato} d'appalto C1\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1.pdf}
 				\item Vincoli di \gloss{organigramma} e specifiche economiche\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/RO.html}
-				\item \gloss{The Twelve-Factor App}, \gloss{norme} per lo sviluppo di un prodotto software consigliate dall'azienda.\\
-				\url{https://12factor.net/}
 			\end{itemize}
-		
+
 		\subsubsection{Riferimenti Informativi}\label{rifinfo}
 			\begin{itemize}
-				\item Presentazione capitolato d'appalto C1:\\
+				\item Presentazione capitolato d'appalto C1\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1p.pdf}
-				\item Software Engineering - Ian Sommerville - 10 th Edition (2016)
+				\item Software Engineering - Ian Sommerville - 10 th Edition (2016) % TODO: specificare i capitoli di interesse
 				\item Slide dell’insegnamento Ingegneria del Software\\
-				\url{http://www.math.unipd.it/~tullio/IS-1/2018/}
-				\item I sistemi per la gestione dei rischi (presentazione rilasciata dalla Bocconi per la gestione dei rischi).\\
+				\url{http://www.math.unipd.it/~tullio/IS-1/2018/} % TODO: specificare quali slide
+				\item I sistemi per la gestione dei rischi (presentazione rilasciata dalla Bocconi per la gestione dei rischi)\\
 				\url{https://www2.deloitte.com/content/dam/Deloitte/it/Documents/risk/Board\%20Academy\%20Corso\%20C6\%2020\%20dic\%202012\%20SDA\%20Bocconi.pdf}
-				\item Fonte Figura \ref{fig:modello_incrementale}:\\
+				\item Fonte Figura \ref{fig:modello_incrementale}\\
 				\url{https://it.wikipedia.org/wiki/Modello_incrementale}
 			\end{itemize}
 		
 	\subsection{Scadenze}\label{Scadenze}
-	\gruppo\ ha deciso di rispettare le scadenze indicate dal professor Vardanega, riportate di seguito:
+	Abbiamo deciso di rispettare le scadenze indicate dal professor Vardanega, riportate di seguito:
 	\begin{itemize}
-		\item \textbf{Revisione dei Requisiti}: 21-01-2019.
-		\item \textbf{Revisione di Progetto}: 15-03-2019.
-		\item \textbf{Revisione di Qualifica}: 19-04-2019.
-		\item \textbf{Revisione di Accettazione}: 17-05-2019.
+		\item \textbf{Revisione dei Requisiti}: 2019-01-21.
+		\item \textbf{Revisione di Progetto}: 2019-03-15.
+		\item \textbf{Revisione di Qualifica}: 2019-04-19.
+		\item \textbf{Revisione di Accettazione}: 2019-05-2017.
 	\end{itemize}
 	
 	\subsection{Modello di sviluppo}
-	Data la natura del progetto, composto da più parti modulari e con un basso valore di accoppiamento, si è scelto di adottare un \gloss{modello di
+	Data la natura del progetto, composto da più parti modulari e con un basso valore di accoppiamento, abbiamo scelto di adottare un \gloss{modello di
 	sviluppo} ibrido tra quello a \gloss{componenti} e quello incrementale.
 	Essi si adattano particolarmente bene a questo tipo di progetto, in quanto:
 	\begin{itemize}
