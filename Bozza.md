@@ -14,7 +14,7 @@
 * **POST**: Il Producer Redmine ha ricevuto una segnalazione da Redmine
 * **Estensioni**: -
 
-### UC2: GitLab segnala apertura issue al Producer GitLab (`Title, `Label`, `[Milestone, Assignee, Due Date]`)
+### UC2: GitLab segnala apertura issue al Producer GitLab (`Title`, `Label`, `[Milestone, Assignee, Due Date]`)
 
 * **Titolo**: GitLab segnala apertura issue al Producer GitLab
 * **Attori primari**: GitLab
@@ -76,11 +76,3 @@
 
 Creare un caso d'uso per ogni coppia Producer-Consumer
 * Problema: complessità esponenziale
-
-Da Redmine 
-
-bug
-todo
-
-Consumer Telegram riceve soltanto 
-
