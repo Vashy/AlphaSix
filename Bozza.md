@@ -35,7 +35,7 @@ Butterfly. L'invio di una segnalazione avviene da parte di GitLab
 * **POST**: Il Producer GitLab ha ricevuto una segnalazione da GitLab
 * **Estensioni**: -
 
-### UCX: Gitlab segnala la modifica di una issue al Producer Gitlab
+### UC3: Gitlab segnala la modifica di una issue al Producer Gitlab
 
 * **Titolo**: GitLab segnala la modifica di una issue al Producer GitLab
 * **Attori primari**: GitLab
@@ -152,16 +152,71 @@ Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
 * **Titolo**: Producer GitLab invia messaggio al Gestore Personale
 * **Attori primari**: Producer GitLab
 * **Attori secondari**: -
-* **Descrizione**: sistema Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo aver ricevuto una determinata segnalazione da GitLab, elabora un messaggio (come è fatto?) da inviare al Gestore Personale.  
+* **Descrizione**: sistema Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo aver ricevuto una determinata segnalazione da GitLab, elabora un messaggio (come è fatto?) da inviare al Gestore Personale.
 Il messaggio finale, una volta elaborato, conterrà i campi:
 * Project
 * Topic
 * Subject e, opzionalmente:
     * Description
-* **PRE**: il Producer GitLab ha ricevuto una segnalazione di apertura issue da GitLab.
+    * Due date
+    * Milestone
+    * Assegnee
+* **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 * **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio.
 * **Estensioni**: -
 
+### UC5.1: Producer GitLab invia messaggio di commit al Gestore Personale
+
+* **Titolo**: Producer GitLab invia messaggio di commit al Gestore Personale
+* **Attori primari**: Producer GitLab
+* **Attori secondari**: -
+* **Descrizione**: sistema Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo aver ricevuto una segnalazione di commit da GitLab, controlla se ci sono keyword all'interno del messaggio, se dovessero esserci vengono inserite nel campo topic altrimenti vengono assegnate al topic di default "unknown" 
+Il messaggio finale, una volta elaborato, conterrà i campi:
+* Project
+* Topic
+* Subject e, opzionalmente:
+    * Description
+    * Due date
+    * Milestone
+    * Assegnee
+* **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
+* **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio.
+* **Estensioni**: -
+
+### UC5.2: Producer GitLab invia messaggio di issue al Gestore Personale
+
+* **Titolo**: Producer GitLab invia messaggio di issue al Gestore Personale
+* **Attori primari**: Producer GitLab
+* **Attori secondari**: -
+* **Descrizione**: sistema Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo aver ricevuto una segnalazione di issue da GitLab, controlla se la issue è appena stata creata o si tratta di una modifica di una issue preesistente.
+Il messaggio finale, una volta elaborato, conterrà i campi:
+* Project
+* Topic
+* Subject e, opzionalmente:
+    * Description
+    * Due date
+    * Milestone
+    * Assegnee
+* **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
+* **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio.
+* **Estensioni**: -
+
+### UC5.2.1: Producer GitLab invia messaggio di una nuova issue al Gestore Personale
+
+* **Titolo**: Producer GitLab invia messaggio di una nuova issue al Gestore Personale
+* **Attori primari**: Producer GitLab
+* **Attori secondari**: -
+* **Descrizione**: sistema Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo aver ricevuto una segnalazione di una nuova issue da GitLab controlla se ili messaggio contiene i seguenti campi:
+* Project
+* Topic
+* Subject e, opzionalmente:
+    * Description
+    * Due date
+    * Milestone
+    * Assegnee
+* **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
+* **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio.
+* **Estensioni**: -
 
 ### UC6: Gestore Personale inserisce il messaggio nella coda Telegram
 * **Titolo**: Producer GitLab invia messaggio al Gestore Personale
