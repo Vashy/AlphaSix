@@ -11,7 +11,7 @@ Lo scopo del modello a V è quello di mostrare quali tipi di test accompagnano o
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/V-model.png}
 	\label{img:vmodel}
-	\caption{Modello a V ciao \protect\footnotemark}
+	\caption{Modello a V\protect\footnotemark}
 \end{figure}
 
 \footnotetext{Vedere Riferimenti Informativi in \S\ref{riferimenti informativi}}
@@ -34,6 +34,13 @@ Le varie tipologie di test sono classificati nel seguente modo:
 	\item \textbf{Nome}: breve frase esplicativa che descrive lo scopo del test.
 \end{itemize}
 
+\subsection{Test di sistema}
+Tipo di test da effettuare durante l'analisi dei requisiti. Servono in ultimo luogo per svolgere la validazione del prodotto.
+
+Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno anche gli ultimi ad essere eseguiti prima della consegna del prodotto.
+
+I test di sistema servono per testare l'intero prodotto, in particolare le sue specifiche tecniche e funzionali. Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzionali presenti nell'\AdRd.
+
 Per ogni test vengono affrontati i seguenti punti:
 
 \begin{itemize}
@@ -50,14 +57,6 @@ Alcuni termini ed espressioni assumono il seguente significato:
 	\item \textbf{Topic}: s'intende l'insieme delle etichette delle issue di GitLab e Redmine e delle keyword presenti nei messaggi di commit notificati dai push di GitLab.
 	\item \textbf{Persona delegata}: s'intende l'utente a cui verranno inoltrate le notifiche nei giorni di indisponibilità dell'utente che sta usando l'applicazione. 
 \end{itemize}
-
-
-\subsection{Test di sistema}
-Tipo di test da effettuare durante l'analisi dei requisiti. Servono in ultimo luogo per svolgere la validazione del prodotto.
-
-Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno anche gli ultimi ad essere eseguiti prima della consegna del prodotto.
-
-I test di sistema servono per testare l'intero prodotto, in particolare le sue specifiche tecniche e funzionali. Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzionali presenti nell'\AdRd.
 
 	\subsubsection{TS001 Inserimento utente}
 		All'interno del gestore personale deve essere presente la possibilità di inserire e memorizzare la presenza di un novo utente che possa usare l'applicativo.
@@ -95,7 +94,7 @@ I test di sistema servono per testare l'intero prodotto, in particolare le sue s
 	\subsubsection{TS003 Iscrizione ad una label, ad una piattaforma di messaggistica e modifica issue}
 		Come descritto nel test precedente, un utente può iscriversi ad una label e ad una piattaforma di messaggistica per ricevere una notifica.
 		
-		\paragraph{Procedura}
+		\paragraph*{Procedura}
 			\begin{enumerate}
 				\item Selezionare l'utente con cui si vuole usale l'applicativo.
 				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalla label è possibile capire quali derivano da Redmine e quali da GitLab.
@@ -104,7 +103,7 @@ I test di sistema servono per testare l'intero prodotto, in particolare le sue s
 				\item Se tra i campi modificati nella issue ci sono anche le label, iscriversi nel gestore personale alla label della issue modificata.
 			\end{enumerate}
 		
-		\paragraph{Accettazione}
+		\paragraph*{Accettazione}
 		La modifica del titolo o delle label di una issue di Redmine o GitLab comporta l'invio della notifica a tutti gli iscritti alle nuove lebel, se queste sono cambiate, altrimenti agli iscritti delle solite label se è cambiato solo il titolo della issue. La modifica di qualsiasi altro campo non comporta l'invio di una notifica.
 		
 	\subsubsection{TS004 Disiscrizione da una label}
