@@ -35,9 +35,9 @@ Le varie tipologie di test sono classificati nel seguente modo:
 \end{itemize}
 
 \subsection{Test di sistema}
-Tipo di test da effettuare durante l'analisi dei requisiti. Servono in ultimo luogo per svolgere la validazione del prodotto.
+Tipo di test da effettuare durante l'analisi dei requisiti. Servono per svolgere la validazione del prodotto.
 
-Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno anche gli ultimi ad essere eseguiti prima della consegna del prodotto.
+Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
 
 I test di sistema servono per testare l'intero prodotto, in particolare le sue specifiche tecniche e funzionali. Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzionali presenti nell'\AdRd.
 
@@ -59,7 +59,7 @@ Alcuni termini ed espressioni assumono il seguente significato:
 \end{itemize}
 
 	\subsubsection{TS001 Inserimento utente}
-		All'interno del gestore personale deve essere presente la possibilità di inserire e memorizzare la presenza di un novo utente che possa usare l'applicativo.
+		All'interno del gestore personale deve essere presente la possibilità di inserire e memorizzare la presenza di un nuovo utente che possa usare l'applicativo.
 		
 		\paragraph*{Procedura}
 			\begin{enumerate}
@@ -67,7 +67,7 @@ Alcuni termini ed espressioni assumono il seguente significato:
 				\begin{itemize}
 					\item nome
 					\item cognome
-					\item contatto telegram
+					\item contatto Telegram
 					\item contatto email
 				\end{itemize}
 				
@@ -82,37 +82,37 @@ Alcuni termini ed espressioni assumono il seguente significato:
 		
 		\paragraph*{Procedura}
 			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usale l'applicativo.
-				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalle label è possibile capire quali derivano da Redmine e quali da GitLab.
-				\item Selezionare Telegrama o email per decidere in che piattaforma di messaggistica ricevere le notifiche della label.
-				\item Aprire una issue da Gitlab se l'iscrizione è stata fatta da una label proveniente da GitLab, o aprire una issue da GitLab se l'iscrizione è stata fatta da una label proveniente da Redmine.
+				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalle label è possibile capire quali notifiche derivano da Redmine e quali da GitLab.
+				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche della label.
+				\item Aprire una issue da Gitlab se l'iscrizione è stata fatta da una label proveniente da GitLab, o aprire una issue da Redmine se l'iscrizione è stata fatta da una label proveniente da Redmine.
 			\end{enumerate}
 		
 		\paragraph*{Accettazione}
-		Alla piattaforma di messaggistica selezionata arriva una notifica dell'apertura della issue inerente al topc selezionato.
+		Alla piattaforma di messaggistica selezionata arriva una notifica dell'apertura della issue inerente al topic selezionato.
 		
-	\subsubsection{TS003 Iscrizione ad una label, ad una piattaforma di messaggistica e modifica issue}
-		Come descritto nel test precedente, un utente può iscriversi ad una label e ad una piattaforma di messaggistica per ricevere una notifica.
+	\subsubsection{TS003 Iscrizione a una label, a una piattaforma di messaggistica e modifica issue}
+		Come descritto nel test precedente, un utente può iscriversi a una label e a una piattaforma di messaggistica per ricevere una notifica.
 		
 		\paragraph*{Procedura}
 			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usale l'applicativo.
+				\item Selezionare l'utente con cui si vuole usare l'applicativo.
 				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalla label è possibile capire quali derivano da Redmine e quali da GitLab.
-				\item Selezionare Telegrama o email per decidere in che piattaforma di messaggistica ricevere le notifiche delle label.
-				\item Selezionare su Redmine, se ci si è iscritti ad una label di Redmine, o su GitLab, se ci si è inscritti ad una label su GtLab, una issue già aperta e modificarla in termini di label o titolo della issue.
+				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche delle label.
+				\item Selezionare su Redmine, se ci si è iscritti ad una label di Redmine, o su GitLab, se ci si è inscritti ad una label su GitLab, una issue già aperta e modificarla in termini di label o titolo della issue.
 				\item Se tra i campi modificati nella issue ci sono anche le label, iscriversi nel gestore personale alla label della issue modificata.
 			\end{enumerate}
 		
 		\paragraph*{Accettazione}
-		La modifica del titolo o delle label di una issue di Redmine o GitLab comporta l'invio della notifica a tutti gli iscritti alle nuove lebel, se queste sono cambiate, altrimenti agli iscritti delle solite label se è cambiato solo il titolo della issue. La modifica di qualsiasi altro campo non comporta l'invio di una notifica.
+		La modifica del titolo o delle label di una issue di Redmine o GitLab comporta l'invio della notifica a tutti gli iscritti alle nuove label, se queste sono cambiate, altrimenti agli iscritti delle solite label se è cambiato solo il titolo della issue. La modifica di qualsiasi altro campo non comporta l'invio di una notifica.
 		
 	\subsubsection{TS004 Disiscrizione da una label}
 		La disiscrizione ad una label deve terminare la notifica delle segnalazioni legate a quella label.
 		
 		\paragraph*{Procedura}
 			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usale l'applicativo.
-				\item Disiscriversi ad una label a cui precedentemente si era iscritti.
+				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+				\item Disiscriversi da una label a cui precedentemente si era iscritti.
 				\item Aprire o modificare una issue da Redmine o GitLab con la label da cui ci si è disiscritti precedentemente.
 			\end{enumerate}
 		
@@ -124,7 +124,7 @@ Alcuni termini ed espressioni assumono il seguente significato:
 		
 		\paragraph*{Procedura}
 		\begin{itemize}
-			\item Selezionare l'utente con cui si vuole usale l'applicativo.
+			\item Selezionare l'utente con cui si vuole usare l'applicativo.
 			\item Aggiungere una keyword nel gestore personale.
 			\item Effettuare un push su Gitlab dove il messaggio di commit contiene la keyword appena inserita.
 		\end{itemize}
@@ -133,24 +133,24 @@ Alcuni termini ed espressioni assumono il seguente significato:
 		L'utente le notifiche dei push che nel loro messaggio di commit contengo la keyword aggiunta.
 	
 	\subsubsection{TS006 Rimozione di una keyword}
-		La rimozione di una delle keyword aggiunta precedentemente evita di ricevere la notifica dei push di GitLab col messaggio di commit con la keyword rimossa.
+		La rimozione di una delle keyword aggiunta precedentemente evita di ricevere la notifica dei push di GitLab con il messaggio di commit con la keyword rimossa.
 		
 		\paragraph*{Procedura}
 			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usale l'applicativo.
+				\item Selezionare l'utente con cui si vuole usare l'applicativo.
 				\item Rimuovere una delle keyword selezionate in precedenza.
 				\item Effettuare un push su GitLab dove il messaggio di commit contiene la keyword appena rimossa.
 			\end{enumerate}
 		
 		\paragraph*{Accettazione}
-		Non arrivano le notifiche dei push di Gitlab in cui il messaggio di commit è presente la keyword appena rimossa.
+		Non arrivano le notifiche dei push di Gitlab in cui nel messaggio di commit è presente la keyword appena rimossa.
 		
 	\subsubsection{TS007 Rimozione di una piattaforma di messaggistica}
 		Come per il test precedente, anche rimuovendo una piattaforma di messaggistica (Telegram o email), le notifiche a quella piattaforma non dovrebbero più arrivare.
 		
 		\paragraph*{Procedura}
 		\begin{enumerate}
-			\item Selezionare l'utente con cui si vuole usale l'applicativo.
+			\item Selezionare l'utente con cui si vuole usare l'applicativo.
 			\item Deselezionare una piattaforma di messaggistica precedentemente selezionata
 			\item Creare o modificare una issue da Redmine o Gitlab, oppure effettuare un \gloss{push}. 
 		\end{enumerate}
@@ -163,7 +163,7 @@ Alcuni termini ed espressioni assumono il seguente significato:
 		
 		\paragraph*{Procedura}
 			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usale l'applicativo.
+				\item Selezionare l'utente con cui si vuole usare l'applicativo.
 				\item Aggiungere nel gestore personale il giorno di esecuzione del test come giorno di indisponibilità in cui non si vogliono ricevere notifiche dall'applicativo.
 				\item Aggiungere, tra gli utenti inseriti nell'applicazione, l'utente a cui inoltrare le notifiche nei giorni di indisponibilità.
 				\item Creare o modificare una issue da Redmine o Gitlab, oppure effettuare un \gloss{push}. 
@@ -177,9 +177,9 @@ Alcuni termini ed espressioni assumono il seguente significato:
 		
 		\paragraph*{Procedura}
 			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usale l'applicativo.
-				\item Deselezionale tra i giorni di irreperibilità il giorno di esecuzione del test (se il giorno è già selezionato, selezionarlo e poi deselezionarlo).
-				\item Effettuare un push da GitLab oppure arire o modificare una issue su Redmine o GitLab.
+				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+				\item Deselezionare tra i giorni di irreperibilità il giorno di esecuzione del test (se il giorno è già selezionato, selezionarlo e poi deselezionarlo).
+				\item Effettuare un push da GitLab oppure aprire o modificare una issue su Redmine o GitLab.
 			\end{enumerate}
 		
 		\paragraph*{Accettazione}
