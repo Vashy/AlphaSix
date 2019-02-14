@@ -6,6 +6,6 @@
         "bootstrap_servers": "localhost:9092",
         "enable_auto_commit" : true,
         "consumer_timeout_ms" : "inf",
-        "auto_offset_reset" : "earliest"
+        "auto_offset_reset" : "latest"
     }
 }
