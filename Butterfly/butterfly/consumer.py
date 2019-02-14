@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import sys
+# Uso: python3 path/to/consumer.py
+
 from kafka import KafkaConsumer
 import kafka.errors
 from abc import ABC, abstractmethod
@@ -12,12 +13,9 @@ class Consumer(ABC):
 
     @abstractmethod
     def listen(self):
+        """Resta in ascolto del Broker"""
         pass
 
-    @abstractmethod
-    def close(self):
-        """Chiude il Consumer"""
-        pass
 
 class ConsoleConsumer(Consumer):
     """Implementa Consumer"""
@@ -30,7 +28,10 @@ class ConsoleConsumer(Consumer):
         self._consumer = KafkaConsumer(*topics, **config)
 
     def listen(self):
-        """Ascolta i messaggi provenienti dai topic a cui il consumer è abbonato"""
+        """Ascolta i messaggi provenienti dai Topic a cui il consumer è
+        abbonato.
+        Precondizione: i messaggi devono essere codificati in binario.
+        """
         for message in self._consumer:
             print ("{}:{}:{}:\tkey={}\tvalue={}".format(
                     message.topic,
@@ -47,27 +48,98 @@ class ConsoleConsumer(Consumer):
         return self._consumer
 
     def close(self):
+        """Chiude la connessione del Consumer"""
+        self._consumer.close()
+
+class WebhookConsumer(Consumer):
+    """Implementa Consumer"""
+
+    def __init__(self, topics: list, configs: dict):
+        # Converte stringa 'inf' nel relativo float
+        if configs["consumer_timeout_ms"] == "inf":
+            configs["consumer_timeout_ms"] = float("inf")
+
+        self._consumer = KafkaConsumer(
+            *topics,
+            # Deserializza i messaggi dal formato JSON a oggetti Python
+            value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+            **config
+        )
+
+    def listen(self):
+        """Ascolta i messaggi provenienti dai Topic a cui il
+        consumer è abbonato.
+
+        Precondizione: i messaggi salvati nel broker devono essere
+        in formato JSON, e devono contenere dei campi specifici
+        definiti in nel modulo webhook
+        """
+        for message in self._consumer:
+            print ("{}:{}:{}:\tkey={}\n{}".format(
+                    message.topic,
+                    message.partition,
+                    message.offset,
+                    message.key,
+                    self.pretty(message.value)
+                )
+            )
+
+    def pretty(self, obj: object):
+        """Restituisce una stringa con una formattazione migliore da un
+        oggetto JSON (Webhook).
+
+        Arguments:
+        obj -- JSON object
+        """
+
+        res = ""
+        return "".join(
+            [
+                res, "Type: \t\t{}".format(obj["object_kind"]),
+                res, "\nTitle: \t\t{}".format(obj["title"]),
+                res, "\nProject ID: \t{}".format(obj["project"]["id"]),
+                res, "\nProject name: \t{}".format(obj["project"]["name"]),
+                res, "\nAction: \t{}\n ... ".format(obj["action"])
+            ]
+        )
+
+
+    def close(self):
+        """Chiude la connessione del Consumer"""
         self._consumer.close()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
-
-    # Fetch dei topic dal file topics.json
+    """Fetch dei topic dal file topics.json
+    Campi:
+    - topics['id']
+    - topics['label']
+    - topics['project']
+    """
     with open(Path(__file__).parent / 'topics.json') as f:
         topics = json.load(f)
 
     # Fetch delle configurazioni dal file config.json
     with open(Path(__file__).parent / 'config.json') as f:
         config = json.load(f)
-    config = config["consumer"]
+    config = config['consumer']
 
-    consumer = ConsoleConsumer(
-        topics["topics"],
-        config
+    # Per ora, sono solo di interesse i nomi (label) dei Topic
+    topiclst = []
+    for topic in topics:
+        # Per ogni topic, aggiunge a topiclst solo se non è già presente 
+        if topic['label'] not in topiclst:
+            topiclst.append(topic['label'])
+
+    # Inizializza WebhookConsumer
+    consumer = WebhookConsumer(
+        topiclst, 
+        config 
     )
 
     try:
-        consumer.listen()
+        consumer.listen() # Resta in ascolto del Broker
     except KeyboardInterrupt as e:
-        print(" Closing Consumer ...")
+        consumer.close()
+        print(' Closing Consumer ...')
