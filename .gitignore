@@ -243,4 +243,5 @@ TSWLatexianTemp*
 
 .vscode/
 
+# Python
 __pycache__/
