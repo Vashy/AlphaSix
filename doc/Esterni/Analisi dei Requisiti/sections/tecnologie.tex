@@ -17,7 +17,7 @@
 		\item Broker (rosso)
 		\item Consumer (verde)
 	\end{itemize}
-	Questa scomposizione permette di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
+	Questa scomposizione ci ha permesso di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
 	
 	\subsubsection{Producer}
 	
@@ -28,7 +28,7 @@
 			\item GitLab
 			\item SonarQube
 		\end{enumerate}
-		\gruppo\ ha scelto di sviluppare i Producer per le prime due applicazioni in base alle priorità suggerite da \II\ nel capitolato, lasciando l'applicativo relativo a SonarQube come opzionale.
+		Abbiamo scelto di sviluppare i Producer per le prime due applicazioni in base alle priorità suggerite da \II\ nel capitolato, lasciando l'applicativo relativo a SonarQube come opzionale.
 		Ciascun messaggio ricevuto da queste tecnologie verrà analizzato dal Producer associato in modo da inserirli nel Topic appropriato.\\
 		In particolare, le modifiche relative alla \gloss{repository} (GitLab) o al progetto (Redmine) prese in considerazione sono:
 		\begin{itemize}
@@ -52,7 +52,7 @@
 	\subsubsection{Broker}
 	
 		Il ruolo del Broker è quello di smistare i messaggi in base ai Topic con cui questi sono contrassegnati verso i vari microservizi con cui l'utente ha deciso che gli venga inoltrata la notifica.
-		L'azienda consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
+		L'azienda ci consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
 	
 		\paragraph{Apache Kafka}
 		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su differenti canali di comunicazioni per i dati.
@@ -66,7 +66,7 @@
 			\item E-mail
 			\item Slack
 		\end{enumerate}
-		Allo stesso modo dei Producer, \gruppo\ ha scelto di sviluppare i Consumer per le prime due applicazioni in base alle priorità suggerite da \II\ nel capitolato, lasciando l'applicativo relativo a Slack come opzionale.
+		Allo stesso modo dei Producer, abbiamo scelto di sviluppare i Consumer per le prime due applicazioni in base alle priorità suggeriteci da \II\ nel capitolato, lasciando l'applicativo relativo a Slack come opzionale.
 		Le tecnologie alle quali vengono inoltrati i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 			
 		\paragraph{Telegram}
@@ -74,7 +74,7 @@
 		Il Consumer interroga il Broker per acquisire i messaggi da inoltrare e li trasmette effettivamente al bot di Telegram.
 		
 		\paragraph{E-mail}
-		Per inoltrare le e-mail agli utenti finali è necessario sviluppare un Consumer associato che sfrutta un server di posta in modo tale da poter ricevere i messaggi dal Broker e poi mandarli all'indirizzo specificato.
+		Per inoltrare le e-mail agli utenti finali è necessario che sviluppiamo un Consumer associato che sfrutta un server di posta in modo tale da poter ricevere i messaggi dal Broker e poi mandarli all'indirizzo specificato.
 		%https://realpython.com/python-send-email/
 		
 %		\subsubsection{Slack}
@@ -83,7 +83,7 @@
 	
 	\subsubsection{Gestore personale}
 	Il gestore personale è quel \gloss{componente} che permette agli utenti di impostare le proprie preferenze per l'applicativo di ricezione dei messaggi ed i Topic a cui si iscrive, interfacciandosi dunque con l'intero sistema \progetto.
-	È previsto come un'applicazione web installata in un server interno all'azienda.
+	Lo abbiamo previsto come un'applicazione web installata in un server interno all'azienda.
 	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, con la possibilità di aggiungere e rimuovere, determinate impostazioni riguardanti le proprie preferenze.
 	\newpage
 	Quest'ultime sono:
@@ -104,7 +104,7 @@
 		%Sebbene.. Purtroppo al termine della loro esecuzione non viene salvato lo stato, a meno che non sia esplicitamente richiesto.
 		
 		\paragraph{Docker}
-		L'azienda consiglia di utilizzare \gloss{Docker} per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
+		L'azienda ci consiglia di utilizzare \gloss{Docker} per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
 		La configurazione avverrà tramite un \gloss{dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio, numero di istanze ed altri parametri specifici.
 
 	\subsubsection{Informazioni preconfigurate}
@@ -112,4 +112,4 @@
 	Questo in quanto non è richiesto da \II\ un sistema di autenticazione, poiché si considera che l'applicativo sia utilizzato internamente all'azienda.
 	Non è nemmeno richiesta una configurazione iniziale delle keyword.
 	Il progetto quindi non si occupa della gestione dei profili utente in maniera completa e nemmeno di fornire le keyword da riconoscere.
-	Per questo motivo \gruppo\ non ha pensato a un procedimento di autenticazione tramite la coppia username e password, ma solamente a un username al fine di poter differenziare i diversi utenti.
+	Per questo motivo non abbiamo pensato a un procedimento di autenticazione tramite la coppia username e password, ma solamente a un username al fine di poter differenziare i diversi utenti.
