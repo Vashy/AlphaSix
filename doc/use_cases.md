@@ -1,7 +1,7 @@
 # Bozze nuovi casi d'uso
 
 ### UC1: Redmine segnala apertura issue a Producer Redmine
-<!-- (`Project`, `Tracker`, `Subject`, `[Description]`, `Proirity`, `Status`, `[Assegnee]`) -->
+<!-- (`Project`, `Tracker`, `Subject`, `[Description]`, `Proirity`, `Status`, `[Assignee]`) -->
 * **Titolo**: Redmine segnala apertura issue al Producer Redmine
 * **Attori primari**: Redmine
 * **Attori secondari**: -
@@ -13,7 +13,7 @@ contiene i seguenti campi di interesse:
     * Status
     * Priority e, opzionalmente:
         * Description
-        * Assegnee (da decidere: potrebbe essere utile per inviare la notifica solo all'assegnato)
+        * Assignee (da decidere: potrebbe essere utile per inviare la notifica solo all'assegnato)
 
 * **PRE**: Viene aperta una issue su Redmine
 * **POST**: Il Producer Redmine ha ricevuto una segnalazione da Redmine
@@ -31,7 +31,7 @@ tramite webhook. L'apertura di una issue su GitLab contiene:
     * Title e, opzionalmente:
         * Label (0 a n)
         * Milestone
-        * Assegnee (0 a n) (da decidere: potrebbe essere utile per inviare la notifica solo all'assegnato)
+        * Assignee (0 a n) (da decidere: potrebbe essere utile per inviare la notifica solo all'assegnato)
         * Due Date
 
 * **PRE**: Viene aperta una issue su GitLab
@@ -118,7 +118,7 @@ Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
         * Description
         * Due date
         * Milestone
-        * Assegnee -->
+        * Assignee -->
 * **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 * **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato.
 * **Estensioni**: -
@@ -150,7 +150,7 @@ Il messaggio elaborato, una volta elaborato, conterrà i campi:
         * Description
         * Due date (?)
         * Milestone (?)
-        * Assegnee (?)
+        * Assignee (?)
 * **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 * **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato.
 * **Estensioni**: -
@@ -167,7 +167,7 @@ Il messaggio elaborato, una volta elaborato, conterrà i campi:
         * Description
         * Due date (?)
         * Milestone (?)
-        * Assegnee (?)
+        * Assignee (?)
 * **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 * **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato di nuova issue.
 * **Estensioni**: -
@@ -184,7 +184,7 @@ Il messaggio elaborato, una volta elaborato, conterrà i campi:
     * Description
     * Due date (?)
     * Milestone (?)
-    * Assegnee (?)
+    * Assignee (?)
 
 * **PRE**: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 * **POST**: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato di modifica issue.
