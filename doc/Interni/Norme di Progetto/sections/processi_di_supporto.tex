@@ -343,8 +343,37 @@
 	
 			Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di
 			prodotti e processi da verificare viene effettuato Walkthrough; nel momento in cui il metodo di verifica è ben consolidato da tutti noi,
-			si passa ad effettuare verifica secondo Inspection.		
+			si passa ad effettuare verifica secondo Inspection.	
 
+		\subsection{The Twelve-Factor App}
+		\gloss{The Twelve-Factor App} è una serie di dodici regole destinate a chi vuole sviluppare \gloss{software-as-a-service} (SaaS). Sono utili per verificare in corso d'opera la qualità del progetto, valutando quali punti riesce a rispettare l'applicazione.
+		
+		I suoi principi sono:
+		
+		\begin{enumerate}
+			\item \textbf{\gloss{Codebase}}: deve essere presente una sola codebase versionata da un \gloss{Version Control System} (VCS) come \gloss{GitLAb} da cui
+			possono derivare diversi \gloss{deploy}.
+			\item \textbf{Dipendenze}: le librerie usate dal codice devono essere presenti nella directory della singola applicazione e non attive a livello di \gloss{sistema}. In questo modo l'applicazione è il meno dipendente possibile dal sistema di esecuzione.
+			\item \textbf{Configurazione}: i parametri di configurazione dell'applicazione devono essere completamente separati dalla sua implementazione.
+			\item \textbf{Backing Service}: l'applicazione non deve far distinzione tra funzionalità uguali usate in locale o remoto.
+			\item \textbf{Build, release, esecuzione}: bisogna separare in modo netto la fase di build, quella di deploy e quella esecuzione, usando \gloss{tool} differenti e diverse repository per salvare i risultati delle varie fasi.
+			\item \textbf{Processi}: l'esecuzione dell'applicazione deve essere vista come l'insieme di uno o più processi che restituiscono un risultato. Questi sono di tipo \gloss{stateless}.
+			\item \textbf{\gloss{Binding} delle Porte}: l'applicazione è completamente contenuta in se stessa e non fa affidamento ad un altro servizio nell'ambiente di esecuzione. Effettua invece il binding delle porte diventando un servizio per le richieste esterne.
+			\item \textbf{Concorrenza}: sviluppare i processi in modo tale che possano lavorare su un sistema decentralizzato.
+			\item \textbf{Rilasciabilità}: i processi dell'applicazione devono poter essere avviati e fermati quando se ne ha bisogno senza passaggi bruschi.
+			\item \textbf{Parità tra sviluppo e produzione}: deve esserci meno differenza possibile tra lo stato di sviluppo e quello di produzione. Questo si ottiene facendo un rilascio continuo del prodotto.
+			\item \textbf{Log}: l'applicazione dovrebbe poter offrire un sistema di login.
+			\item \textbf{Processi di Amministrazione}: porre attenzione a quei processi che devono essere eseguiti una tantum dagli sviluppatori ad esempio. Questi processi devono poter essere accessibili solo ad alcuni e indicati in una specifica release.
+		\end{enumerate}
+		
+		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto per \gruppo\ il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
+		%TODO: aggiungere motivo
+		
+		%\begin{itemize} 
+		%	\item \textbf{11}: 
+		%	%dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente.
+		%\end{itemize}
+		
 		\subsubsection{Analisi statica}
 		L'analisi statica verifica solo i prodotti che non sono o che non possono essere eseguiti, come i documenti.
 
