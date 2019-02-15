@@ -1,5 +1,5 @@
 %\newpage
-\section{Tecnologie e scelte relative al progetto}
+\subsection{Tecnologie e scelte relative al progetto}
 	L'obiettivo di questo paragrafo è descrivere in maniera specifica come \progetto\ andrà a interfacciarsi con le tecnologie.\\
 	Per ciascuna di queste è previsto un \gloss{microservizio}, il quale avrà come scopo quello di fare da tramite tra lo strumento che genera il messaggio e quello che lo riceve.\\
 	Questo pattern si chiama \gloss{Publisher / Subscriber} e utilizza uno strumento intermedio detto Broker per lo smistamento dei messaggi e la gestione dei flussi.
@@ -19,7 +19,7 @@
 	\end{itemize}
 	Questa scomposizione permette di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
 	
-	\subsection{Producer}
+	\subsubsection{Producer}
 	
 		Per ciascuno degli strumenti che invia messaggi verso il sistema è necessario creare una componente applicativa di tipo Producer che li riceva e li elabori inoltrandoli successivamente verso il Broker.
 		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal \gloss{committente}.
@@ -39,26 +39,26 @@
 		Le segnalazioni sono generate in base alle \gloss{keyword} contenute nei messaggi di commit e nelle etichette assegnate alle issue.
 		Da quest'ultime verrà creato il Topic corrispondente in caso non sia già esistente.
 		
-		\subsubsection{Redmine}
+		\paragraph{Redmine}
 		Ciascuna istanza di Redmine permette l'utilizzo di webhook\footnote{Riferirsi alla voce ``Webhook di Redmine'' alla sezione \S\ref{sec:RiferimentiInformativi}} che inviano segnalazioni al Producer alla modifica del progetto.
 		Queste vengono ricevute dal server tramite un microservizio che resta in ascolto, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai Consumer interessati.
 		
-		\subsubsection{GitLab}
+		\paragraph{GitLab}
 		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce ``Webhook di GitLab'' alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della repository, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come per Redmine, inoltrare le notifiche ai Consumer interessati.
 		
 %		\subsubsection{SonarQube}
 %		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
 		
-	\subsection{Broker}
+	\subsubsection{Broker}
 	
 		Il ruolo del Broker è quello di smistare i messaggi in base ai Topic con cui questi sono contrassegnati verso i vari microservizi con cui l'utente ha deciso che gli venga inoltrata la notifica.
 		L'azienda consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
 	
-		\subsubsection{Apache Kafka}
+		\paragraph{Apache Kafka}
 		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su differenti canali di comunicazioni per i dati.
 		Questi messaggi arrivano dai Producer che ricevono le notifiche di applicazioni di terze parti mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic.
 	
-	\subsection{Consumer}
+	\subsubsection{Consumer}
 		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e \gloss{client} dello strumento di messaggistica scelto dall'utente.
 		Le tecnologie verso le quali vengono inoltrati i messaggi rielaborati dal sistema sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 		\begin{enumerate}
@@ -69,11 +69,11 @@
 		Allo stesso modo dei Producer, \gruppo\ ha scelto di sviluppare i Consumer per le prime due applicazioni in base alle priorità suggerite da \II\ nel capitolato, lasciando l'applicativo relativo a Slack come opzionale.
 		Le tecnologie alle quali vengono inoltrati i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 			
-		\subsubsection{Telegram}
+		\paragraph{Telegram}
 		Telegram permette l'interazione in maniera automatica con gli utenti tramite \gloss{bot}\footnote{Riferirsi alla voce ``Bot di Telegram'' alla sezione \S\ref{sec:RiferimentiInformativi}} che possono essere configurati per mandare messaggi ricevuti da strumenti di terze parti, in questo caso \progetto.
 		Il Consumer interroga il Broker per acquisire i messaggi da inoltrare e li trasmette effettivamente al bot di Telegram.
 		
-		\subsubsection{E-mail}
+		\paragraph{E-mail}
 		Per inoltrare le e-mail agli utenti finali è necessario sviluppare un Consumer associato che sfrutta un server di posta in modo tale da poter ricevere i messaggi dal Broker e poi mandarli all'indirizzo specificato.
 		%https://realpython.com/python-send-email/
 		
@@ -81,7 +81,7 @@
 %		È possibile utilizzare le API di Slack per poter mandare push notifications ai canali o alle persone interessate specificando il nome del canale (o lo username della persona), testo del messaggio, e lo username che verrà mostrato per il mittente.
 %		%https://www.confluent.io/blog/real-time-syslog-processing-with-apache-kafka-and-ksql-part-2-event-driven-alerting-with-slack/
 	
-	\subsection{Gestore personale}
+	\subsubsection{Gestore personale}
 	Il gestore personale è quel \gloss{componente} che permette agli utenti di impostare le proprie preferenze per l'applicativo di ricezione dei messaggi ed i Topic a cui si iscrive, interfacciandosi dunque con l'intero sistema \progetto.
 	È previsto come un'applicazione web installata in un server interno all'azienda.
 	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, con la possibilità di aggiungere e rimuovere, determinate impostazioni riguardanti le proprie preferenze.
@@ -94,20 +94,20 @@
 	\end{itemize}
 	Nel caso arrivasse una notifica da inoltrare a un utente indisponibile, questa verrà inoltrata alla persona più adatta e disponibile al momento.
 	
-	\subsection{Container software}
+	\subsubsection{Container software}
 	
 	Un container software simula un ambiente virtuale dove è possibile testare e mantenere le proprie applicazioni, permettendo di aumentare l'efficienza riducendone i costi e simulando l'esecuzione di sistema operativo su una macchina con \gloss{risorse} condivise.
 		
-		\subsubsection{Differenza tra container e macchina virtuale}
+		\paragraph{Differenza tra container e macchina virtuale}
 		A differenza delle \gloss{macchine virtuali}, dove lo stato dell'ambiente viene salvato su disco occupando memoria, i container si adattano in maniera più performante all'applicativo richiesto, in quanto il loro scopo è quello di massimizzare la quantità delle applicazioni in esecuzione riducendo al minimo il numero delle macchine per eseguirla.
 		Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse.
 		%Sebbene.. Purtroppo al termine della loro esecuzione non viene salvato lo stato, a meno che non sia esplicitamente richiesto.
 		
-		\subsubsection{Docker}
+		\paragraph{Docker}
 		L'azienda consiglia di utilizzare \gloss{Docker} per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
 		La configurazione avverrà tramite un \gloss{dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio, numero di istanze ed altri parametri specifici.
 
-	\subsection{Informazioni preconfigurate}
+	\subsubsection{Informazioni preconfigurate}
 	I dati relativi ai profili esistenti degli utenti presenti nel sistema (ovvero lo username) e le keyword da riconoscere all'interno dei messaggi che vengono ricevuti da GitLab / Redmine, sono considerati già esistenti e presenti nel database del Gestore Personale.
 	Questo in quanto non è richiesto da \II\ un sistema di autenticazione, poiché si considera che l'applicativo sia utilizzato internamente all'azienda.
 	Non è nemmeno richiesta una configurazione iniziale delle keyword.
