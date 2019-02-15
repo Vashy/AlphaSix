@@ -522,6 +522,15 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il sistema comunica all’utilizzatore l’errore di preferenza.
 * **Estensioni**: -
 
+### UC15.6 Aggiunta keyword per i push di GitLab
+
+* **Titolo**: Aggiunta keyword per i push di GitLab.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente aggiunge le keyword che vuole che siano contenute nei messaggi di commit dei push di cui vuole ricevere la notifica.
+* **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema.
+* **POST**: nelle nuove configurazioni dell'utente selezionato sono presenti nuove keyword per ricevere notifiche da push di GitLab.
+* **Estensioni**: -
+
 ### UC16 Rimozione preferenze
 
 * **Titolo**: rimozione preferenza.
@@ -570,6 +579,24 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **Descrizione**: l’utente viene avvisato che ha inserito uno user ID errato.
 * **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
 * **POST**: il sistema comunica all’utilizzatore l’errore di preferenza.
+* **Estensioni**: -
+
+### UC16.6 Rimozione con successo di keyword per i push di GitLab
+
+* **Titolo**: Rimozione con successo di keyword per i push di GitLab.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente seleziona e rimuove una o più keyword già presente nel sistema per non ricevere la notifica di push in cui i messaggi di commit contengono la keyword rimossa.
+* **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema.
+* **POST**: nelle nuove configurazioni dell'utente selezionato sono state rimosse delle keyword precedentemente presenti.
+* **Estensioni**: UC16.7
+
+### UC16.6 Errore keyword da rimuovere non presente
+
+* **Titolo**: Errore keyword da rimuovere non presente.
+* **Attori primari**: utente.
+* **Descrizione**: la keyword che l'utente intende rimuovere non è registrata nel sistema.
+* **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema.
+* **POST**: viene visualizzato un messaggio d'errore con indicato che la keyword selezionata non è presente nel sistema.
 * **Estensioni**: -
 
 <!-- 
