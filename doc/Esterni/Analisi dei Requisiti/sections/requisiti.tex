@@ -2,8 +2,8 @@
 \section{Requisiti}
 Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{center}
-		\texttt{R[Numero][Tipo][Priorità]} 
-	\end{center} 
+		\texttt{R[Numero][Tipo][Priorità]}
+	\end{center}
 	in cui ogni parte ha un significato preciso:
 	\begin{itemize}
 		\item \textbf{R}: requisito.
@@ -21,28 +21,32 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\item \textbf{2}: obbligatorio.
 		\end{itemize}
 	\end{itemize}
-	
+
 
 	Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.\\
-	
+
 	%I requisiti di seguito riportati sono elencati in modo tale da seguire la struttura dei documenti. Ovvero, si possono trovare raggruppati i requisiti derivanti dello stesso tipo, ad esempio solo i requisiti di funzionalità dal sesto al diciannovesimo derivano dai casi d'uso.
 	%TODO: rifare id requisiti
-	
+
 %inserire il fatto che una persona può aggiungere il proprio nickname o altro da interfaccia, come requisito opzionale	...
 
-% Generazione automatica dei numeri 
+% Generazione automatica dei numeri
 \newcounter{vaZ} % valore
 \newcommand{\decrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addNumber}[0]{\thevaZ \decrZ} % Comando per generare
 \addtocounter{vaZ}{1}%far partire il contatore da 1
 
+% Comando requisito generico
+\newcommand{\req}[3]{%
+#1 & #2 & #3 \\
+}
 
 	\subsection{Requisiti di funzionalità}
-	
+
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			
+
 			%da casi d'uso
 			R\addNumber
 			F2 & Redmine e GitLab devono essere in grado di inviare delle segnalazioni da inviare ai Producer & Interno UC1 \\
@@ -57,7 +61,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R5.2F0 & \progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
 			R\addNumber.1.1F0 & L'utente può iscriversi a un Topic & Interno UC6.1.1	\\
 			R6.1.2F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
-			R6.1.3F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche 
+			R6.1.3F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche
 			%e Slack
 			& Interno UC6.1.3 \\
 			R6.2.1F0 & L'utente può disiscriversi da un Topic & Interno UC6.2.1 \\
@@ -67,12 +71,12 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (1)}
 	\end{table}
-			
-	\begin{table}[H]		
+
+	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%da capitolato
-			R\addNumber 
+			R\addNumber
 			F2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
 			R\addNumber
 			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti & Capitolato \\
@@ -86,17 +90,21 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (2)}
 	\end{table}
-		
-	
-	% Generazione automatica dei numeri 
+
+
+	% Generazione automatica dei numeri
 	\newcounter{vaQ} % valore
 	\newcommand{\decrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
 	\newcommand{\addQNumber}[0]{\thevaQ \decrQ} % Comando per generare
 	\addtocounter{vaQ}{1}
-	
-	%NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
+
+
+	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\}
+	\newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\}
+
+	% NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
 	\subsection{Requisiti di qualità}
-	
+
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
@@ -106,13 +114,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			Q1 & Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue & Interno QPR001\\
 			%presi dal PdQ prodotti
 			R\addQNumber
-			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito & Interno QPD001\\  
+			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito & Interno QPD001\\
 			%			R\addQNumber
 			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
 			%presi dal PdQ processi
 			R\addQNumber
-			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito & Interno QPR002\\ 
-			R\addQNumber 
+			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito & Interno QPR002\\
+			R\addQNumber
 			Q1 & Il livello di maturità dell'\gloss{ISO/IEC 15504} che ci siamo prefissati di raggiungere  deve essere almeno pari al livello stabilito & Interno QPR003\\
 			R\addQNumber
 			Q1 & Ci siamo accordati per una frequenza minima di commit effettuati in una settimana & Interno QPR004\\
@@ -136,38 +144,35 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (1)}
 	\end{table}
-		
+
+
+
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			%presi da capitolato
-			R\addQNumber
-			Q2 & Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd & Capitolato \Doc{VE\_2018-12-12}	\\
-			R\addQNumber
-			Q2 & È necessario presentare il \gloss{bug} reporting per ogni componente & Capitolato \\
-			R\addQNumber
-			Q2 & Deve essere redatta la documentazione sulle scelte progettuali effettuate & Capitolato \\
-			R\addQNumber
-			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\
-			R\addQNumber
-			Q2 & È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema & Capitolato \\
-			R18.1Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
-			R18.2Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
-			R18.3Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
+			\Qreq{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
+			\Qreq{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
+			\Qreq{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
+			\Qreq{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\Qsubreq{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema}{Capitolato}
+			\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+			\req{R\thevaQ.2Q2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
+			\req{R\thevaQ.3Q2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
+
 			\bottomrule \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (2)}
 	\end{table}
-	
-	% Generazione automatica dei numeri 
+
+	% Generazione automatica dei numeri
 	\newcounter{vaV} % valore
 	\newcommand{\decrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
 	\newcommand{\addVNumber}[0]{\thevaV \decrV} % Comando per generare
 	\addtocounter{vaV}{1}
-	
+
 	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
-			
+
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
@@ -191,7 +196,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (1)}
-	\end{table}	
+	\end{table}
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
@@ -216,14 +221,14 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (2)}
-	\end{table}	
-		
-					
-	
+	\end{table}
+
+
+
 	\subsection{Tracciamento}
-	
+
 		\subsubsection{Tracciamento fonti-requisiti}
-			
+
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
@@ -233,7 +238,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\cellcolor{white} & R7F2 \\
 				\cellcolor{white} & R8F2 \\
 				\cellcolor{white} & R9F2 \\
-				\cellcolor{white} & R10F2 \\ 
+				\cellcolor{white} & R10F2 \\
 				\cellcolor{white} & R11F2 \\
 				\cmidrule{2-2}
 				\cellcolor{white} & R14Q2 \\
@@ -248,7 +253,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\end{tabularx}}
 			\caption{Elenco dei requisiti del capitolato (1)}
 		\end{table}
-		
+
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
@@ -277,7 +282,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\end{tabularx}}
 			\caption{Elenco dei requisiti del capitolato (2)}
 		\end{table}
-	    
+
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.5}
@@ -297,7 +302,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\rowcolors{2}{white}{\tablegray}
 			{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YY}
-				\textbf{Fonte} & \textbf{Requisito} \\				
+				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
 				UC1 & R1F2 \\
 				UC2 & R2F2 \\
@@ -316,13 +321,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\end{tabularx}}
 			\caption{Elenco dei requisiti per i casi d'uso}
 		\end{table}
-	
+
 		\begin{table}[H]
 		\centering
 		\rowcolors{2}{white}{\tablegray}
 		{\def\arraystretch{1.5}
 		\begin{tabularx}{\textwidth}{YY}
-			\textbf{Fonte} & \textbf{Requisito} \\				
+			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
 			QPR001 & R1Q1 \\
 			QPD001 & R2Q1 \\
@@ -340,24 +345,24 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{tabularx}}
 		\caption{Elenco dei requisiti per gli obiettivi di qualità e verbali}
 	\end{table}
-		
+
 \newcounter{V} % valore
 \newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addC}[0]{\theV \deV} % Comando per generare
-\addtocounter{V}{1}		
+\addtocounter{V}{1}
 
 \newcounter{Vv} % valore
 \newcommand{\deVv}{\addtocounter{Vv}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addVC}[0]{\theVv \deVv} % Comando per generare
-\addtocounter{Vv}{1}		
+\addtocounter{Vv}{1}
 
 \newcounter{X} % valore
 \newcommand{\deX}{\addtocounter{X}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addX}[0]{\theX \deX} % Comando per generare
-\addtocounter{X}{1}	
-		
+\addtocounter{X}{1}
+
 		\subsubsection{Tracciamento requisiti-fonte}
-		
+
 		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YY}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
@@ -395,8 +400,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti funzionali in rapporto alle fonti}
 		\end{table}
-			
-		\begin{table}[H]	
+
+		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YY}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di Q
@@ -444,7 +449,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\caption{Elenco dei requisiti di qualità in rapporto alle fonti}
 	\end{table}
 
-\begin{table}[H]	
+\begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{YY}
 		\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di V
@@ -478,42 +483,41 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\bottomrule \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo in rapporto alle fonti}
-	\end{table}		
-				
+	\end{table}
+
 	\subsection{Riepilogo}
-	
+
 		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YYYY}
 			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
 			Di funzionalità & 8 & 0 & 10 \\
 			Di qualità & 12 & 9 & 0 \\
-			Di vincolo & 12 & 3 & 3 			
+			Di vincolo & 12 & 3 & 3
 			\\\bottomrule
 		\end{paddedtablex}
 		\caption{Riepilogo dei requisiti}
 		\end{table}
-	
+
 	\subsection{Metriche}
 	Dato che non è fisso il numero dei requisiti di un progetto, abbiamo scelto una serie di metriche dove il valore ottimale da raggiungere è sempre uguale, lo zero. Abbiamo anche scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto	riguarda i rischi che possono verificarsi nel corso del progetto.
-	
+
 	Gli obiettivi che si vogliono raggiungere attraverso tali metriche possono essere stabiliti solo a progetto concluso.
-	
+
 	La denominazione delle metriche è descritta nel \NdPd.
-	
+
 		\subsubsection{MPR005 Requisiti obbligatori non soddisfatti}
 		Per adempiere completamente alla richiesta del cliente, ci serve individuare tutti i requisiti presenti nella sua richiesta, impliciti, espliciti, diretti e derivati. Alcuni sono imprescindibili, detti obbligatori, e il loro soddisfacimento determina la buona riuscita del progetto.
-		
+
 		\textbf{Metrica}: numero dei requisiti obbligatori non soddisfatti.
-		
+
 		\subsubsection{MPR006 Requisiti desiderabili non soddisfatti}
 		I requisiti desiderabili non sono necessari, ma offrono un valore aggiunto al progetto.
-		
+
 		\textbf{Metrica}: numero dei requisiti desiderabili non soddisfatti.
-		
+
 		\subsubsection{MPR007 Requisiti opzionali non soddisfatti}
 		Tali requisiti dovranno essere adempiuti solo nel momento in cui tutti i requisiti obbligatori saranno soddisfatti.
 		Possono essere concordati col cliente in corso d'opera.
-		
+
 		\textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
-		
-	
+
