@@ -51,7 +51,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
 			% da casi d'uso
-			\Freq{2}{Redmine e GitLab devono essere in grado di inviare delle segnalazioni da inviare ai Producer}{Interno UC1}
+			\Freq{2}{Redmine deve essere in grado di inviare delle segnalazioni da inviare ai Producer}{Interno UC1}
+			\Freq{2}{GitLab deve essere in grado di inviare delle segnalazioni da inviare ai Producer}{Interno UC1}
 			\Freq{2}{Il Producer deve essere in grado di inviare delle segnalazioni al Broker}{Interno UC2}
 			\Freq{2}{Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio}{Interno UC3}
 			\Freq{2}{I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram}{Interno UC4}
@@ -81,6 +82,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\Freq{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
 			\Freq{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
 			\Freq{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
+			\Freq{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
 
 			\bottomrule
 		\end{paddedtablex}
@@ -107,7 +109,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\toprule
 			% presi dal PdQ processi
 
-			\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
+			%\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
 
 			% presi dal PdQ prodotti
 			\Qreq{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
@@ -117,14 +119,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			% presi dal PdQ processi
 
 			\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
-			\Qreq{1}{Il livello di maturità dell'\gloss{ISO/IEC 15504} che ci siamo prefissati di raggiungere  deve essere almeno pari al livello stabilito}{Interno QPR003}
+			%\Qreq{1}{Il livello di maturità dell'\gloss{ISO/IEC 15504} che ci siamo prefissati di raggiungere  deve essere almeno pari al livello stabilito}{Interno QPR003}
 			\Qreq{1}{Ci siamo accordati per una frequenza minima di commit effettuati in una settimana}{Interno QPR004}
-			\Qreq{2}{I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto}{Interno QPR005}
+			%\Qreq{2}{I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto}{Interno QPR005}
 			\Qreq{1}{Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili}{Interno QPR006}
-			\Qreq{1}{Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto}{Interno QPR007}
-			\Qreq{1}{Ogni documento dovrebbe attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
+			\Qreq{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
+			\Qreq{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
 			\Qreq{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
-			\Qreq{1}{La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto}{Interno QPR010}
 			\Qreq{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
 			\Qreq{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
 
@@ -146,6 +147,17 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
 			\req{R\thevaQ.2Q2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
 			\req{R\thevaQ.3Q2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
+			\Qsubreq{1}{Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro}{Capitolato}
+			\req{R\thevaQ.1}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
+			
+			\Qsubreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
+			\req{R\thevaQ.1V2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+			\req{R\thevaQ.2V2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
+			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
+			\req{R\thevaQ.3V2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
+			\req{R\thevaQ.4V2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
+			\req{R\addQNumber.5V2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
+			
 
 			\bottomrule \\
 		\end{paddedtablex}
@@ -179,8 +191,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\req{R\addVNumber.1V0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
 			\Vsubreq{2}{Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
 			\req{R\addVNumber.1V2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
-			\Vsubreq{1}{Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro}{Capitolato}
-			\req{R\addVNumber.1}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
+%			\Vsubreq{1}{Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro}{Capitolato}
+%			\req{R\addVNumber.1}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -192,15 +204,15 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 
-			\Vsubreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
-			\req{R\thevaV.1V2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
-			\req{R\thevaV.2V2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
-			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-			\req{R\thevaV.3V2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
-			\req{R\thevaV.4V2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
-			\req{R\addVNumber.5V2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
-			\Vreq{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
-			\Vreq{0}{Come meccanismo di estensione per GitLab è possibile fare uso di Webhooks}{Capitolato}
+%			\Vsubreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
+%			\req{R\thevaV.1V2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+%			\req{R\thevaV.2V2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
+%			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
+%			\req{R\thevaV.3V2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
+%			\req{R\thevaV.4V2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
+%			\req{R\addVNumber.5V2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
+%			\Vreq{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
+			%\Vreq{0}{Come meccanismo di estensione per GitLab è possibile fare uso di Webhooks}{Capitolato}
 			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js}}{Capitolato}
 			\Vreq{1}{È possibile utilizzare Apache Kafka come Broker}{Capitolato}
 
