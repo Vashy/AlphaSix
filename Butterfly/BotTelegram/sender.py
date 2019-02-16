@@ -12,7 +12,7 @@ def on_chat_message(msg):
         print('Testo messaggio: ', text)
         print('-----------')
         if text == '/start':
-            bot.sendMessage(chat_id, 'Ciao %s, questo è il bot che ti invierà le segnalazioni dei topic ai quali ti sei iscritto.'%name)
+            bot.sendMessage(chat_id, 'Ciao {}, questo è il bot che ti invierà le segnalazioni dei topic ai quali ti sei iscritto.'.format(name))
         else:
             bot.sendMessage(chat_id, 'Non inviarmi messaggi, sono impegnato e non ho tempo per risponderti.')
 
@@ -23,13 +23,13 @@ bot = telepot.Bot(token)
 
 
 def main():
-    # viene  chiamata ogni volta che il bot riceve un messaggio
+    # viene chiamata ogni volta che il bot riceve un messaggio
     bot.message_loop(on_chat_message)
 
     print('Listening ...')
 
     # procede all'infinito a intervalli di un secondo
-    while 1:
+    while True:
         time.sleep(1)
 
 
