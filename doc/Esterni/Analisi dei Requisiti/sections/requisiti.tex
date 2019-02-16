@@ -33,8 +33,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 % Generazione automatica dei numeri
 \newcounter{vaZ} % valore
 \newcommand{\decrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
-\newcommand{\addNumber}[0]{\thevaZ \decrZ} % Comando per generare
+\newcommand{\addZNumber}[0]{\thevaZ \decrZ} % Comando per generare
 \addtocounter{vaZ}{1}%far partire il contatore da 1
+
+\newcommand{\Freq}[3]{R\addZNumber F#1 & #2 & #3 \\}
+\newcommand{\Fsubreq}[3]{R\thevaZ F#1 & #2 & #3 \\} % Se c'è bisogno di sottocasi
 
 % Comando requisito generico
 \newcommand{\req}[3]{%
@@ -47,26 +50,21 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-			%da casi d'uso
-			R\addNumber
-			F2 & Redmine e GitLab devono essere in grado di inviare delle segnalazioni da inviare ai Producer & Interno UC1 \\
-			R\addNumber
-			F2 & Il Producer deve essere in grado di inviare delle segnalazioni al Broker & Interno UC2 \\
-			R\addNumber
-			F2 & Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio & Interno UC3 \\
-			R\addNumber
-			F2 & I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram & Interno UC4 \\
-			R\addNumber.1F0 & L'utente può eseguire l'accesso al gestore personale & Interno UC5.1 \\
-			R5.1.1F0 & L'utente può inserire il proprio username che lo identifica all'interno di \progetto & Interno UC5.1.1 \\
-			R5.2F0 & \progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
-			R\addNumber.1.1F0 & L'utente può iscriversi a un Topic & Interno UC6.1.1	\\
-			R6.1.2F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
-			R6.1.3F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche
-			%e Slack
-			& Interno UC6.1.3 \\
-			R6.2.1F0 & L'utente può disiscriversi da un Topic & Interno UC6.2.1 \\
-			R6.2.2F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\
-			R6.2.3F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3 \\
+			% da casi d'uso
+			\Freq{2}{Redmine e GitLab devono essere in grado di inviare delle segnalazioni da inviare ai Producer}{Interno UC1}
+			\Freq{2}{Il Producer deve essere in grado di inviare delle segnalazioni al Broker}{Interno UC2}
+			\Freq{2}{Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio}{Interno UC3}
+			\Freq{2}{I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram}{Interno UC4}
+			\req{R\thevaZ.1F0}{L'utente può eseguire l'accesso al gestore personale}{Interno UC5.1}
+			\req{R\thevaZ.1.1F0}{L'utente può inserire il proprio username che lo identifica all'interno di \progetto}{Interno UC5.1.1}
+			\req{R\thevaZ.2F0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC5.2}
+			\req{R\addZNumber.1.1F0}{L'utente può iscriversi a un Topic}{Interno UC6.1.1}
+			\req{R\thevaZ.1.2F0}{L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile}{Interno UC6.1.2}
+			\req{R\thevaZ.1.3F0}{L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche}{Interno UC6.1.3}
+			\req{R\thevaZ.2.1F0}{L'utente può disiscriversi da un Topic}{Interno UC6.2.1}
+			\req{R\thevaZ.2.2F0}{L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile}{Interno UC6.2.2}
+			\req{R\thevaZ.2.3F0}{L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto}{Interno UC6.2.3}
+
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (1)}
@@ -75,18 +73,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			%da capitolato
-			R\addNumber
-			F2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
-			R\addNumber
-			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti & Capitolato \\
-			R\addNumber
-			F2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
-			R\addNumber
-			F2 & Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic & Capitolato \\
-			R\addNumber
-			F2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti & Capitolato \\
-		\bottomrule
+
+			% da capitolato
+			% stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
+			\Freq{2}{Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario}{Capitolato}
+			\Freq{2}{Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti}{Capitolato}
+			\Freq{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
+			\Freq{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
+			\Freq{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
+
+			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (2)}
 	\end{table}
@@ -109,37 +105,29 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			%presi dal PdQ processi
-			R\addQNumber
-			Q1 & Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue & Interno QPR001\\
-			%presi dal PdQ prodotti
-			R\addQNumber
-			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito & Interno QPD001\\
+			% presi dal PdQ processi
+
+			\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
+
+			% presi dal PdQ prodotti
+			\Qreq{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
+
 			%			R\addQNumber
-			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
-			%presi dal PdQ processi
-			R\addQNumber
-			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito & Interno QPR002\\
-			R\addQNumber
-			Q1 & Il livello di maturità dell'\gloss{ISO/IEC 15504} che ci siamo prefissati di raggiungere  deve essere almeno pari al livello stabilito & Interno QPR003\\
-			R\addQNumber
-			Q1 & Ci siamo accordati per una frequenza minima di commit effettuati in una settimana & Interno QPR004\\
-			R\addQNumber
-			Q2 & I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto & Interno QPR005\\
-			R\addQNumber
-			Q1 & Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili & Interno QPR006\\
-			R\addQNumber
-			Q1 & Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto & Interno QPR007\\
-			R\addQNumber
-			Q1 & Ogni documento dovrebbe attraversare tutte le fasi previste dal suo \gloss{ciclo di vita} & Interno QPR008\\
-			R\addQNumber
-			Q1 & Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato & Interno QPR009\\
-			R\addQNumber
-			Q1 & La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto & Interno QPR010\\
-			R\addQNumber
-			Q2 & Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate & Interno \\
-			R\addQNumber
-			Q2 & Tutti i vincoli presenti nel \PdQ\ devono essere rispettati & Interno \\
+			%			Q1 & Il registro delle modifiche di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
+			% presi dal PdQ processi
+
+			\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
+			\Qreq{1}{Il livello di maturità dell'\gloss{ISO/IEC 15504} che ci siamo prefissati di raggiungere  deve essere almeno pari al livello stabilito}{Interno QPR003}
+			\Qreq{1}{Ci siamo accordati per una frequenza minima di commit effettuati in una settimana}{Interno QPR004}
+			\Qreq{2}{I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto}{Interno QPR005}
+			\Qreq{1}{Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili}{Interno QPR006}
+			\Qreq{1}{Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto}{Interno QPR007}
+			\Qreq{1}{Ogni documento dovrebbe attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
+			\Qreq{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
+			\Qreq{1}{La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto}{Interno QPR010}
+			\Qreq{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
+			\Qreq{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
+
 			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (1)}
@@ -170,6 +158,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\newcommand{\addVNumber}[0]{\thevaV \decrV} % Comando per generare
 	\addtocounter{vaV}{1}
 
+	\newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\}
+	\newcommand{\Vsubreq}[3]{R\thevaV V#1 & #2 & #3 \\}
+
 	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
 
@@ -181,18 +172,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			%V2 & Le componenti Producer devono riuscire a recuperare delle segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
 			%			R\addVNumber
 			%			V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
-			R\addVNumber
-			V2 & Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e SonarQube & Capitolato \\
-			R1.1V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
-			R\addVNumber
-			V2 & Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
-			R2.1V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
-			R\addVNumber
-			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
-			R3.1V2 & È necessario presentare un Dockerfile per ogni componente & Capitolato \\
-			R\addVNumber
-			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato\\
-			R4.1V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
+
+			\Vsubreq{2}{Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e SonarQube}{Capitolato}
+			\req{R\addVNumber.1V0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
+			\Vsubreq{2}{Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack}{Capitolato}
+			\req{R\addVNumber.1V0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
+			\Vsubreq{2}{Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
+			\req{R\addVNumber.1V2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
+			\Vsubreq{1}{Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro}{Capitolato}
+			\req{R\addVNumber.1}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
+
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (1)}
@@ -202,22 +191,19 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			R\addVNumber
-			V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
-			R5.1V2 & I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio & Capitolato \\
-			R5.2V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
+
+			\Vsubreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
+			\req{R\thevaV.1V2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+			\req{R\thevaV.2V2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
 			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-			R5.3V2 & È necessario presentare un file README per il Dockerfile & Capitolato \\
-			R5.4V2 & Il file README per il Dockerfile deve contenere le istruzioni per l'avvio & Capitolato \\
-			R5.5V2 & Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
-			R\addVNumber
-			V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
-			R\addVNumber
-			V0 & Come meccanismo di estensione per GitLab è possibile fare uso di Webhooks & Capitolato \\
-			R\addVNumber
-			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js} & Capitolato \\
-			R\addVNumber
-			V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
+			\req{R\thevaV.3V2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
+			\req{R\thevaV.4V2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
+			\req{R\addVNumber.5V2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
+			\Vreq{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
+			\Vreq{0}{Come meccanismo di estensione per GitLab è possibile fare uso di Webhooks}{Capitolato}
+			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js}}{Capitolato}
+			\Vreq{1}{È possibile utilizzare Apache Kafka come Broker}{Capitolato}
+
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (2)}
