@@ -10,6 +10,7 @@ def on_chat_message(msg):
         print('Nome utente: ', name)
         text = msg['text']
         print('Testo messaggio: ', text)
+        print('-----------')
         if text == '/start':
             bot.sendMessage(chat_id, 'Ciao %s, questo è il bot che ti invierà le segnalazioni dei topic ai quali ti sei iscritto.'%name)
         else:
