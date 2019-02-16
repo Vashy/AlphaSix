@@ -10,6 +10,9 @@
 		Ognuno di noi approfondirà la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono
 		quelle di interesse comune e di utilità per il progetto. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo
 		per acquisirne una buona padronanza.
+		
+		\subsubsection{Normazione} %TODO
+		%L’Amministratore apporta incrementi all’insieme di regole che ogni componente del gruppo deve seguire durante lo svolgimento delle attività e dei compiti a lui assegnati. Con il procedere del progetto, si acquisiscono nuove conoscenze o si incontrano difficoltà che potrebbero richiedere la modifica di queste regole....
 
         \subsubsection{Studio di fattibilità}\label{PP:Fornitura:SdF}
         In quest'attività viene prodotto il documento \Doc{\SdFv} al fine di analizzare ogni \gloss{capitolato} e scegliere quale contratto accettare.
@@ -22,7 +25,7 @@
         	\end{itemize}
 
         \subsubsection{Preparazione in vista della revisione}
-		In questa attività preparemo tutto il materiale necessario per il buon superamento della revisione: 
+		In questa attività prepariamo tutto il materiale necessario per il buon superamento della revisione: 
 		\begin{itemize}
 			\item I vari documenti, i verbali e la lettera di presentazione per quanto riguarda la documentazione in ingresso
 			\item I diagrammi dei package e il codice necessari per la realizzazione del \gloss{Proof of Concept}
@@ -106,13 +109,35 @@
 		 	\item \textbf{Estensioni}: opzionale, per azioni inerenti a scenari alternativi come d'eccezione o errore.
 		\end{itemize}
 
-        %\subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}	%PIÙ AVANTI
-        %Contenuto generico
-
-		%\paragraph{Obiettivi}\label{PP:Sviluppo:Progettazione:Obiettivi}
+        \subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}	
+        %L’attività di progettazione è svolta dai progettisti ed include le seguenti sotto-attività...
+        
+		\paragraph{Obiettivi}\label{PP:Sviluppo:Progettazione:Obiettivi}
 		%Contenuto
 		 
-		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} %SOLO di attività e sequenza PIÙ AVANTI
+		 
+		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} %TODO: notare se da scrivere ora tutti o solo alcuni (classi - attività -sequenza)
+		
+		\paragraph{Diagrammi delle classi} %TODO
+		%Contenuto
+		
+		\subparagraph{Semantica} %TODO
+		%Dipendenza generica, Associazione, Aggregazione..
+		
+		
+		\paragraph{Diagrammi di attività} %TODO
+		%Contenuto
+		
+		\subparagraph{Semantica} %TODO
+		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
+		
+		
+		\paragraph{Diagrammi di sequenza} %TODO
+		%Contenuto
+		
+		\subparagraph{Semantica} %TODO
+		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
+		
 
 		\paragraph{Diagrammi dei casi d'uso}\label{DiagrammiCasiUso}
 		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0. Essi descrivono la visione di un utente
@@ -130,8 +155,79 @@
 			\end{itemize}
 		\end{itemize}
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
+		
+		
+		\subsubsection{Qualità della progettazione} %TODO
+		%Di seguito elenchiamo le linee guida da seguire per garantire una progettazione di qualità.
+		
+		\paragraph{Qualità dei diagrammi delle classi} %TODO
+		%Evitare le dipendenze circolari....
+		
+		\paragraph{Qualità dei diagrammi di attività} %TODO
+		%Contenuto
+		
+		\paragraph{Qualità dei diagrammi di sequenza} %TODO
+		%Contenuto
+		
+		\paragraph{Qualità dei diagrammi dei casi d'uso} %TODO: facoltativo..
+		%Contenuto
+		
+		%manuale utente da presentare in RQ, quindi da fare più avanti
+		%\subsubsection{Produzione del manuale utente} 
+		
 
-        %\paragraph{Codifica}\label{PP:Sviluppo:Codifica} %PIÙ AVANTI
+        \subsubsection{Codifica}\label{PP:Sviluppo:Codifica} %TODO: scrivere nei prossimi paragrafi tutto quello che potrebbe essere idealmente scritto in un file di checkstyle. Struttura presa come spunto da Breaking Bug RA.
+        %Contenuto
+        
+        \paragraph{Intestazione} %TODO
+        %Intestazione di file e funzioni
+        
+        \paragraph{Dichiarazione di variabili}  %TODO
+        %Contenuto
+        
+        \paragraph{Costruttore} %TODO
+        %Contenuto
+        
+        \paragraph{Operatore di espansione} %TODO
+        %Contenuto
+        
+        \paragraph{Stringhe} %TODO
+        %Contenuto
+        
+        \paragraph{Parametri delle funzioni} %TODO
+        %Contenuto
+        
+        \paragraph{Funzioni anonime} %TODO
+        %Contenuto
+        
+        \paragraph{Punti e virgola} %TODO
+        %Contenuto
+        
+        \paragraph{Indentazione} %TODO
+        %Contenuto
+        
+        \paragraph{Lunghezza massima delle righe} %TODO
+        %Contenuto
+        
+        \paragraph{Denominazione} %TODO
+        %Contenuto
+        
+        \paragraph{Lunghezza massima di una procedura} %TODO
+        %Contenuto
+        
+        \paragraph{Complessità ciclomatica} %TODO
+        %Contenuto
+        
+        \paragraph{Commenti} %TODO
+        %Contenuto
+        
+        \paragraph{Codetags} %TODO: e mettere parola in gloss
+        %Contenuto
+        
+        %TODO: Per altri formalismi da aggiungere, vedere un po' dei punti del link: http://checkstyle.sourceforge.net/checks.html
+        
+        \subsubsection{Metriche per la codifica} %TODO: prendere spunto da 3.2.4.2.4 della RA di Breaking Bug
+        
 
         \subsubsection{Strumenti di base}\label{PP:Sviluppo:Strumenti}
 
@@ -141,3 +237,6 @@
 
 	    \subparagraph{Sistema operativo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:SistemaOperativo}
 	    Abbiamo deciso di usare, come sistema operativo, GNU/Linux, in particolare una qualsiasi distribuzione basata su Ubuntu 18.04.
+	    
+	    \subparagraph{IDE} %TODO
+	    %Atom o IDEA o Eclipse ecc ecc....

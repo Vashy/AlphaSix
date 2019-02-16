@@ -165,14 +165,14 @@
 			% Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \PdP, \PdQ\ e \AdR. Si chiamano esterni perché accessibili al committente.
 
 
-			\subparagraph{Verbali}
+			\subparagraph{Verbali}%TODO: da ricontrollare
 			Questi documenti vengono redatti successivamente alle riunioni tenute da \gruppo\
 			o, in caso di incontri con \gloss{stakeholder} esterni, per esempio con \II. Una singola persona ha il compito di stendere
 			la relazione relativa al verbale, presentando le seguenti sezioni:
 			\begin{itemize}
 				\item \textbf{Informazioni incontro}: lista delle informazioni principali riguardanti la riunione quali luogo, data, orario, ordine del giorno, ecc\dots
 				\item \textbf{Argomenti}: lista dei principali argomenti trattati con descrizione di cosa si è discusso nel dettaglio.
-				%TODO: da riempire se viene aggiunto altro
+				
 			\end{itemize}
 
 
@@ -187,8 +187,7 @@
 				\item Gestisce automaticamente indici e riferimenti
 			\end{itemize}
 
-			\subsection{Google Drive}
-			% TODO: da fare. Qui?
+			\subparagraph{Google Drive} % TODO: da fare sì
 
 			\subparagraph{TexStudio/Visual Studio Code}
 			TexStudio e Visual Studio Code sono i due ambienti di sviluppo scelti per stilare la documentazione.
@@ -345,7 +344,7 @@
 			prodotti e processi da verificare viene effettuato Walkthrough; nel momento in cui il metodo di verifica è ben consolidato da tutti noi,
 			si passa ad effettuare verifica secondo Inspection.	
 
-		\subsection{The Twelve-Factor App}
+		\subsubsection{The Twelve-Factor App}
 		\gloss{The Twelve-Factor App} è una serie di dodici regole destinate a chi vuole sviluppare \gloss{software-as-a-service} (SaaS). Sono utili per verificare in corso d'opera la qualità del progetto, valutando quali punti riesce a rispettare l'applicazione.
 		
 		I suoi principi sono:
@@ -366,13 +365,8 @@
 			\item \textbf{Processi di Amministrazione}: porre attenzione a quei processi che devono essere eseguiti una tantum dagli sviluppatori ad esempio. Questi processi devono poter essere accessibili solo ad alcuni e indicati in una specifica release.
 		\end{enumerate}
 		
-		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto per \gruppo\ il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
-		%TODO: aggiungere motivo
+		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
 		
-		%\begin{itemize} 
-		%	\item \textbf{11}: 
-		%	%dato che l'applicazione verrà eseguita nella rete interna dell'azienda, non sarà necessaria una fase di autenticazione dell'utente.
-		%\end{itemize}
 		
 		\subsubsection{Analisi statica}
 		L'analisi statica verifica solo i prodotti che non sono o che non possono essere eseguiti, come i documenti.
@@ -385,10 +379,6 @@
 				\item MPD001
 				\item MPD002
 			\end{itemize}
-
-			\paragraph{Analisi dinamica}
-			L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
-			Vengono presi in esame i prodotti software e i processi.
 
 			\paragraph{Analisi dei processi}
 			Per analizzare i processi usiamo gli standard sopra elencati. Ad ogni fase del processo, verranno valutati gli attributi richiesti secondo
@@ -404,24 +394,53 @@
 			\end{itemize}
 
 
-			%\paragraph{...Tutti i test}	%UTILE??
+			\paragraph{Metriche}
+			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
+		
+			\subparagraph{MPR009 Frequenza controllo prodotti}
+			I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
+		
+			Chi esegue la modifica deve controllare ciò che ha fatto prima di poterla ufficializzare, mentre la verifica fatta dal \Ver\ deve essere
+			fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
+		
+			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
+		
+			\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
 
-			%\paragraph{Strumenti}
-
-			%\subparagraph{Verifica di documentazione}
-			%Google Docs?
-
-			%\subparagraph{Integrazione continua} % Jenkins? Più avanti?
-
-	\subsubsection{Metriche}
-	La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
-
-		\paragraph{MPR009 Frequenza controllo prodotti}
-		I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
-
-		Chi esegue la modifica deve controllare ciò che ha fatto prima di poterla ufficializzare, mentre la verifica fatta dal \Ver\ deve essere
-		fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
-
-		\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
-
-		\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
+		
+		
+		\subsubsection{Analisi dinamica} %TODO
+		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
+		Vengono presi in esame i prodotti software e i processi.
+		%Parlare dei test..
+		
+			\paragraph{Procedure} %TODO: prendere spunto da 3.2.6.2.4 Breaking Bug RA
+			%Ogni test deve essere ripetibile.. ogni test vengano segnati i seguenti riferimenti:
+			\begin{itemize}
+				\item \textbf{Ambiente di sviluppo}:
+				\item \textbf{Stato iniziale}:
+				\item \textbf{Input}: inserito.
+				\item \textbf{Output}: atteso.
+				\item \textbf{Notifica risultato}:
+			\end{itemize}
+		
+			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST
+			
+			\paragraph{Test di sistema} %TODO
+			%Contenuto
+			
+			\paragraph{Test d'integrazione} %TODO
+			%Contenuto
+			
+			\paragraph{Test di unità} %TODO
+			%Contenuto
+			
+			\paragraph{Test di regressione} %TODO
+			%Contenuto
+			
+			\paragraph{Test di accettazione} %TODO
+			%Contenuto
+		
+		
+		\subsubsection{Tipologie e trattamento delle anomalie riscontrate} %TODO
+		%Anomalie dovute al mancato rispetto dei valori di riferimento stabiliti per le metriche applicate... e Anomalie dovute al mancato superamento dei test pianificati.....

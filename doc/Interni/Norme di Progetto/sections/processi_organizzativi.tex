@@ -12,10 +12,6 @@
 	    	\item La verifica delle attività di processo
 	    \end{itemize}
 
-		%TODO: da mettere?
-	    % \subsubsection{Istanziazione dei processi}
-		% Derivano dagli standard...
-
 		\subsubsection{Pianificazione di attività}
 
 			\paragraph{Scopo}
@@ -41,10 +37,10 @@
 				\item \gloss{Organigramma} comprendente i componenti del team di sviluppo
 			\end{itemize}
 
-			\paragraph{Ordine di esecuzione}
+			\paragraph{Ordine di esecuzione}%TODO: Aggiungere attualizzazione.. dove inserire attualizzazione?
 			L'insieme di azioni che indicano in quale modo procedere sono riportate di seguito, in ordine:
 			\begin{enumerate}
-				\item Individuazione di tutte le attività da svolgere basandosi sulle varie revisione da affrontare
+				\item Individuazione di tutte le attività da svolgere basandosi sulle varie revisioni da affrontare
 				\item Riconoscimento dei vari problemi in cui è possibile incorrere nel corso del progetto, con conseguente analisi
 					approfondita di ognuno essi. Questo comporta l'identificazione di:
 				\begin{itemize}
@@ -52,7 +48,6 @@
 					\item Gravità della situazione
 					\item Strategie da seguire per l'accertamento
 					\item Contromisure da adottare per la risoluzione
-					% TODO: Aggiungere attualizzazione?
 				\end{itemize}
 				%si può ampliare
 				\item Ordinamento delle attività tramite diagrammi di \gloss{Gantt} creati secondo alcuni fattori importanti da tenere
@@ -137,6 +132,7 @@
 				\item Verificatore
 			\end{itemize}
 
+
 		\subsubsection{Pianificazione della qualità}\label{Pianificazione qualita}
 		%Per cercare la qualità nei prodotti è necessario che vengano misurate diverse caratteristiche di questi ultimi.
 		Per la ricerca della qualità nei prodotti è necessario che ne vengano misurate diverse caratteristiche associate.
@@ -197,7 +193,6 @@
 				\item \textbf{Tipo}: indica la tipologia di quello su cui viene applicata la metrica, può essere:
 				\begin{itemize}
 					\item \texttt{PR}: processi.
-%					\item \texttt{PD}: prodotti che risultano essere documenti;
 					\item \texttt{PD}: prodotti di documentazione.
 					\item \texttt{PS}: prodotti software.
 				\end{itemize}
@@ -230,6 +225,7 @@
 				\end{detailtable}
 				\caption[Metrica Indice di Gulpease]{Metrica dell'Indice di Gulpease}%, usata per il calcolo della qualità della leggibilità del testo}
 			\end{table}
+
 
 		\subsubsection{Controllo del progetto}
 
@@ -282,8 +278,6 @@
 				\item \textbf{FIXME}: per segnalare la presenza di una correzione da effettuare su del lavoro già svolto.
 			\end{itemize}
 
-    		% \paragraph{Riportare lo stato di avanzamento del progetto}
-			% vedere Breaking Bug, io non riesco a capire il senso di questo paragrafo e lo toglierei ~ Tim
 
 		\subsubsection{Chiusura dei processi}
 
@@ -296,6 +290,7 @@
 			Oltre ai prodotti archivieremo le metriche, definite e classificate nel presente documento, con i limiti di accettazione riportati nel \Doc{\PdQv}.
 			Il calcolo delle metriche verrà effettuato su ciascun prodotto nel momento del suo inserimento nella repository, ove possibile; tali risultati
 			o anomalie verranno opportunamente archiviati. % FIXME: Archiviate? Come? Dove?
+
 
     	\subsubsection{Strumenti di pianificazione e coordinamento}\label{pianificazione e coordinamento}
 
@@ -336,6 +331,7 @@
 
 			%\paragraph{Redmine} % ? da vedere piu avanti.
 			% Per ora GitHub per issue-task tracker ~Tim
+			
 			
 	\subsection{Metriche}
 	La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
@@ -378,6 +374,7 @@
 	Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
 	\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
 	\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
+
 
 	\subsection{Formazione}
 
