@@ -80,9 +80,12 @@ class WebhookConsumer(Consumer):
                     message.partition,
                     message.offset,
                     message.key,
-                    self.pretty(message.value)
+                    self.pretty(message.value),
                 )
             )
+            # La versione con format è più carina
+            # print (f"{message.topic}:{message.partition}:{message.offset}:"
+            #     "\tkey={message.key}\n{self.pretty(message.value)}")
 
     def pretty(self, obj: object):
         """Restituisce una stringa con una formattazione migliore da un
@@ -95,11 +98,11 @@ class WebhookConsumer(Consumer):
         res = ""
         return "".join(
             [
-                res, "Type: \t\t{}".format(obj["object_kind"]),
-                res, "\nTitle: \t\t{}".format(obj["title"]),
-                res, "\nProject ID: \t{}".format(obj["project"]["id"]),
-                res, "\nProject name: \t{}".format(obj["project"]["name"]),
-                res, "\nAction: \t{}\n ... ".format(obj["action"])
+                res, f'Type: \t\t{obj["object_kind"]}',
+                res, f'\nTitle: \t\t{obj["title"]}',
+                res, f'\nProject ID: \t{obj["project"]["id"]}',
+                res, f'\nProject name: \t{obj["project"]["name"]}',
+                res, f'\nAction: \t{obj["action"]}\n ... ',
             ]
         )
 
