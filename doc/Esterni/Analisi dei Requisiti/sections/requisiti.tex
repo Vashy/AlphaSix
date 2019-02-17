@@ -23,7 +23,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\end{itemize}
 
 
-	Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.\\
+	Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.
 
 	%I requisiti di seguito riportati sono elencati in modo tale da seguire la struttura dei documenti. Ovvero, si possono trovare raggruppati i requisiti derivanti dello stesso tipo, ad esempio solo i requisiti di funzionalità dal sesto al diciannovesimo derivano dai casi d'uso.
 	%TODO: rifare id requisiti
@@ -32,9 +32,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 % Generazione automatica dei numeri
 \newcounter{vaZ} % valore
-\newcommand{\decrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
-\newcommand{\addZNumber}[0]{\thevaZ \decrZ} % Comando per generare
-\addtocounter{vaZ}{1}%far partire il contatore da 1
+\newcommand{\incrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
+\newcommand{\addZNumber}[0]{\incrZ\thevaZ} % Comando per generare
 
 \newcommand{\Freq}[3]{R\addZNumber F#1 & #2 & #3 \\}
 \newcommand{\Fsubreq}[3]{R\thevaZ F#1 & #2 & #3 \\} % Se c'è bisogno di sottocasi
@@ -93,24 +92,24 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	% Generazione automatica dei numeri
 	\newcounter{vaQ} % valore
 	%\addtocounter{vaQ}{1} % inizia da 1 il contatore
-	\newcommand{\decrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addQNumber}[0]{\decrQ\thevaQ} % Comando per generare il valore incrementato di uno rispetto a prima
-	
+	\newcommand{\incrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addQNumber}{\incrQ\thevaQ} % Comando per generare il valore incrementato di uno rispetto a prima
+
 	\newcounter{secondQ} % per il secondo livello del requisito
 	\addtocounter{secondQ}{1}
-	\newcommand{\secdecrQ}{\addtocounter{secondQ}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
-	\newcommand{\addSecQNumber}[0]{\secdecrQ\thesecondQ} % Comando per generare il valore incrementato di uno rispetto a prima
-	\newcommand{\resetQCounter}{\addtocounter{secondQ}{-\thesecondQ}\addtocounter{secondQ}{+1}}
-	\newcommand{\decSecQ}[0]{\resetQCounter\thesecondQ}
-	
+	\newcommand{\secIncrQ}{\addtocounter{secondQ}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addSecQNumber}{\secIncrQ\thesecondQ} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetQCounter}{\setcounter{secondQ}{1}}
+	\newcommand{\decSecQ}{\resetQCounter\thesecondQ}
 
 
-	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\} %Nuovo requisito, maggiore del precedente
-	\newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\} %Requisito diverso ma con stesso numero progressivo
+
+	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	\newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
 	\newcommand{\Qsecondreq}[3]{R\thevaQ.\addSecQNumber Q#1 & #2 & #3 \\}
 	\newcommand{\Qinitsecondreq}[3]{R\thevaQ.\decSecQ Q#1 & #2 & #3 \\}
-	
-	
+
+
 
 	% NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
 	\subsection{Requisiti di qualità}
@@ -119,7 +118,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			% presi dal PdQ 
+			% presi dal PdQ
 			\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
 			\Qreq{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
 			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
@@ -143,7 +142,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			
+
 			\Qreq{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
 			%\req{R\thevaQ.1Q2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
 			\Qinitsecondreq{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
@@ -170,8 +169,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 	% Generazione automatica dei numeri
 	\newcounter{vaV} % valore
-	\newcommand{\decrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addVNumber}[0]{\decrV\thevaV} % Comando per generare
+	\newcommand{\incrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addVNumber}[0]{\incrV\thevaV} % Comando per generare
 	\addtocounter{vaV}{1}
 
 	\newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\}
@@ -192,7 +191,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\req{R\thevaV.1V2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
 			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js}}{Capitolato}
 			\Vreq{1}{È possibile utilizzare Apache Kafka come Broker}{Capitolato}
-			
+
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (1)}
@@ -204,7 +203,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 %			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 %			\toprule
 %
-%			
+%
 %			\bottomrule\\
 %		\end{paddedtablex}
 %		\caption{Elenco dei requisiti di vincolo (2)}
@@ -485,4 +484,3 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\caption{Riepilogo dei requisiti}
 		\end{table}
 
-	
