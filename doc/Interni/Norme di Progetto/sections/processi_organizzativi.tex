@@ -35,9 +35,10 @@
 				\item Prospetto economico del personale durante le attività
 				\item \gloss{Preventivo} di ore e costi
 				\item \gloss{Organigramma} comprendente i componenti del team di sviluppo
+				\item Attualizzazione dei rischi verificatisi nel corso del progetto
 			\end{itemize}
 
-			\paragraph{Ordine di esecuzione}%TODO: Aggiungere attualizzazione.. dove inserire attualizzazione?
+			\paragraph{Ordine di esecuzione}
 			L'insieme di azioni che indicano in quale modo procedere sono riportate di seguito, in ordine:
 			\begin{enumerate}
 				\item Individuazione di tutte le attività da svolgere basandosi sulle varie revisioni da affrontare
@@ -49,6 +50,7 @@
 					\item Strategie da seguire per l'accertamento
 					\item Contromisure da adottare per la risoluzione
 				\end{itemize}
+				\item Report dei problemi incorsi durante lo svolgersi delle attività del progetto, con soluzione adottata
 				%si può ampliare
 				\item Ordinamento delle attività tramite diagrammi di \gloss{Gantt} creati secondo alcuni fattori importanti da tenere
 				in considerazione, quali:
@@ -82,6 +84,15 @@
 			\begin{center}
 				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]}
 			\end{center}
+			
+			Nel caso dell'attualizzazione dei rischi, al codice viene aggiunta in coda la data in cui si è verificato il problema, in modo da tenere una traccia cronologica.\\
+			
+			Il codice in tal caso diventa:
+			
+			\begin{center}
+				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]-[Data]}
+			\end{center}
+			
 			\clearpage
 			I valori che possono assumere sono:
 
@@ -94,8 +105,7 @@
 					\item \textbf{S}: strumentale.
 					\item \textbf{T}: tecnologico.
 				\end{itemize}
-
-				\item \textbf{ID}: numero progressivo di tre cifre (001 - 999);
+				\item \textbf{ID}: numero progressivo di tre cifre (001 - 999).
 				\item \textbf{Gravità}:
 				\begin{itemize}
 					\item \textbf{0}: accettabile.
@@ -110,16 +120,19 @@
 					\item \textbf{2}: alta.
 				\end{itemize}
 
-				\item \textbf{Classe}:ci si riferisce ai livelli di rischio.
+				\item \textbf{Classe}: ci si riferisce ai livelli di rischio.
 				\begin{itemize}
 					\item \textbf{0}: basso.
 					\item \textbf{1}: medio.
 					\item \textbf{2}: alto.
 				\end{itemize}
+				
+				\item \textbf{Data}: data in cui si è verificato il problema.
 			\end{itemize}
 
 			Ad esempio con P001-021 si può intuitivamente capire che si tratta del primo rischio relativo al personale, di gravità accettabile,
-			probabilità alta e un valore di classe medio.
+			probabilità alta e un valore di classe medio.\\
+			Invece P002-122-2019-01-13 è il secondo rischio attualizzato relativo al personale, di gravità tollerabile, probabilità alta, valore di classe alto e si è verificato in data 2019-01-13.
 
 			\paragraph{Ruoli di progetto}
 			I ruoli\footnote{Riferirsi alla voce ``Descrizione dei ruoli di progetto'' in \S\ref{rifinfo}.} adoperati per lo sviluppo del progetto sono:
