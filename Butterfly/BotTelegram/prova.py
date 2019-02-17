@@ -18,7 +18,8 @@ args = parser.parse_args()
 
 token = '767404683:AAF6Fo4LP7wDWYmEbIRQ37KTX5GECMoTziA'
 # id_utente = data["utente"][0]["telegram"]
-id_utente = "38883960" # Inserire il proprio ID Telegram ottenibile da @myidbot
+#id_utente = "38883960" #TIM Inserire il proprio ID Telegram ottenibile da @myidbot
+id_utente = "265266555" #Laura
 
 # messaggio = data["utente"][0]["messaggio"]
 messaggio = ''.join(args.message)

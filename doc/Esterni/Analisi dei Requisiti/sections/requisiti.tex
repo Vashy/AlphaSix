@@ -92,13 +92,25 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 	% Generazione automatica dei numeri
 	\newcounter{vaQ} % valore
+	%\addtocounter{vaQ}{1} % inizia da 1 il contatore
 	\newcommand{\decrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addQNumber}[0]{\thevaQ \decrQ} % Comando per generare
-	\addtocounter{vaQ}{1}
+	\newcommand{\addQNumber}[0]{\decrQ\thevaQ} % Comando per generare il valore incrementato di uno rispetto a prima
+	
+	\newcounter{secondQ} % per il secondo livello del requisito
+	\addtocounter{secondQ}{1}
+	\newcommand{\secdecrQ}{\addtocounter{secondQ}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addSecQNumber}[0]{\secdecrQ\thesecondQ} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetQCounter}{\addtocounter{secondQ}{-\thesecondQ}\addtocounter{secondQ}{+1}}
+	\newcommand{\decSecQ}[0]{\resetQCounter\thesecondQ}
+	
 
 
-	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\}
-	\newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\}
+	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\} %Nuovo requisito, maggiore del precedente
+	\newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\} %Requisito diverso ma con stesso numero progressivo
+	\newcommand{\Qsecondreq}[3]{R\thevaQ.\addSecQNumber Q#1 & #2 & #3 \\}
+	\newcommand{\Qinitsecondreq}[3]{R\thevaQ.\decSecQ Q#1 & #2 & #3 \\}
+	
+	
 
 	% NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
 	\subsection{Requisiti di qualità}
@@ -107,27 +119,19 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			% presi dal PdQ processi
-
-			%\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
-
-			% presi dal PdQ prodotti
+			% presi dal PdQ 
+			\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
 			\Qreq{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
-
-			%			R\addQNumber
-			%			Q1 & Il registro delle modifiche di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
-			% presi dal PdQ processi
-
-			\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
-			%\Qreq{1}{Il livello di maturità dell'\gloss{ISO/IEC 15504} che ci siamo prefissati di raggiungere  deve essere almeno pari al livello stabilito}{Interno QPR003}
+			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
 			\Qreq{1}{Ci siamo accordati per una frequenza minima di commit effettuati in una settimana}{Interno QPR004}
-			%\Qreq{2}{I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto}{Interno QPR005}
 			\Qreq{1}{Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili}{Interno QPR006}
 			\Qreq{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
 			\Qreq{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
 			\Qreq{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
 			\Qreq{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
 			\Qreq{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
+			\Qreq{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
+			\Qreq{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
 
 			\bottomrule
 		\end{paddedtablex}
@@ -139,25 +143,25 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			\Qreq{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
-			\Qreq{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
+			
 			\Qreq{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
-			\Qreq{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
-			\Qsubreq{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema}{Capitolato}
-			\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
-			\req{R\thevaQ.2Q2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
-			\req{R\thevaQ.3Q2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
-			\Qsubreq{1}{Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro}{Capitolato}
-			\req{R\thevaQ.1}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
-			
-			\Qsubreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
-			\req{R\thevaQ.1V2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
-			\req{R\thevaQ.2V2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
-			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-			\req{R\thevaQ.3V2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
-			\req{R\thevaQ.4V2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
-			\req{R\addQNumber.5V2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
-			
+			%\req{R\thevaQ.1Q2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\Qinitsecondreq{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\Qreq{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema}{Capitolato}
+			%\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+			\Qinitsecondreq{2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+			%\req{R\thevaQ.2Q2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
+			\Qsecondreq{2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
+			\Qsecondreq{2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
+			\Qreq{1}{Per ogni problema aperto documentato, si allegano delle soluzioni da attuare in futuro}{Capitolato}
+			\Qinitsecondreq{2}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
+			\Qreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
+			%\req{R\thevaQ.1Q2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+			\Qinitsecondreq{2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+			\Qsecondreq{2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
+			\Qsecondreq{2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
+			\Qsecondreq{2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
+			\Qsecondreq{2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
 
 			\bottomrule \\
 		\end{paddedtablex}
@@ -167,7 +171,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	% Generazione automatica dei numeri
 	\newcounter{vaV} % valore
 	\newcommand{\decrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addVNumber}[0]{\thevaV \decrV} % Comando per generare
+	\newcommand{\addVNumber}[0]{\decrV\thevaV} % Comando per generare
 	\addtocounter{vaV}{1}
 
 	\newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\}
@@ -180,46 +184,31 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			%R\addVNumber
-			%V2 & Le componenti Producer devono riuscire a recuperare delle segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
-			%			R\addVNumber
-			%			V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
-
 			\Vsubreq{2}{Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e SonarQube}{Capitolato}
-			\req{R\addVNumber.1V0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
-			\Vsubreq{2}{Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack}{Capitolato}
-			\req{R\addVNumber.1V0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
-			\Vsubreq{2}{Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
-			\req{R\addVNumber.1V2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
-%			\Vsubreq{1}{Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro}{Capitolato}
-%			\req{R\addVNumber.1}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
-
+			\req{R\thevaV.1V0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
+			\Vreq{2}{Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack}{Capitolato}
+			\req{R\thevaV.1V0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
+			\Vreq{2}{Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
+			\req{R\thevaV.1V2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
+			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js}}{Capitolato}
+			\Vreq{1}{È possibile utilizzare Apache Kafka come Broker}{Capitolato}
+			
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo (1)}
 	\end{table}
 
-	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
-			\toprule
-
-%			\Vsubreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
-%			\req{R\thevaV.1V2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
-%			\req{R\thevaV.2V2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
-%			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-%			\req{R\thevaV.3V2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
-%			\req{R\thevaV.4V2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
-%			\req{R\addVNumber.5V2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
-%			\Vreq{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
-			%\Vreq{0}{Come meccanismo di estensione per GitLab è possibile fare uso di Webhooks}{Capitolato}
-			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js}}{Capitolato}
-			\Vreq{1}{È possibile utilizzare Apache Kafka come Broker}{Capitolato}
-
-			\bottomrule\\
-		\end{paddedtablex}
-		\caption{Elenco dei requisiti di vincolo (2)}
-	\end{table}
+%
+%	\begin{table}[H]
+%		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+%			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+%			\toprule
+%
+%			
+%			\bottomrule\\
+%		\end{paddedtablex}
+%		\caption{Elenco dei requisiti di vincolo (2)}
+%	\end{table}
 
 
 
