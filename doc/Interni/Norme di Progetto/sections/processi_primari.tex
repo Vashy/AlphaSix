@@ -10,9 +10,11 @@
 		Ognuno di noi approfondirà la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono
 		quelle di interesse comune e di utilità per il progetto. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo
 		per acquisirne una buona padronanza.
-		
-		\subsubsection{Normazione} %TODO
-		%L’Amministratore apporta incrementi all’insieme di regole che ogni componente del gruppo deve seguire durante lo svolgimento delle attività e dei compiti a lui assegnati. Con il procedere del progetto, si acquisiscono nuove conoscenze o si incontrano difficoltà che potrebbero richiedere la modifica di queste regole....
+
+		\subsubsection{Normazione} % TODO
+		% L’Amministratore apporta incrementi all’insieme di regole che ogni componente del gruppo deve seguire durante lo svolgimento delle
+		% attività e dei compiti a lui assegnati. Con il procedere del progetto, si acquisiscono nuove conoscenze o si incontrano difficoltà
+		% che potrebbero richiedere la modifica di queste regole....
 
         \subsubsection{Studio di fattibilità}\label{PP:Fornitura:SdF}
         In quest'attività viene prodotto il documento \Doc{\SdFv} al fine di analizzare ogni \gloss{capitolato} e scegliere quale contratto accettare.
@@ -25,7 +27,7 @@
         	\end{itemize}
 
         \subsubsection{Preparazione in vista della revisione}
-		In questa attività prepariamo tutto il materiale necessario per il buon superamento della revisione: 
+		In questa attività prepariamo tutto il materiale necessario per il buon superamento della revisione:
 		\begin{itemize}
 			\item I vari documenti, i verbali e la lettera di presentazione per quanto riguarda la documentazione in ingresso
 			\item I diagrammi dei package e il codice necessari per la realizzazione del \gloss{Proof of Concept}
@@ -85,10 +87,10 @@
 	 			\item \textbf{2}: obbligatorio, di grado alto quindi irrinunciabile per il \gloss{committente} e impossibile da tralasciare.
 	 		\end{itemize}
 		\end{itemize}
-	
+
 		Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.
-	
-		
+
+
 		\paragraph{Metriche}
 		Dato che non è fisso il numero dei requisiti di un progetto, abbiamo scelto una serie di metriche dove il valore ottimale da raggiungere è sempre uguale, lo zero. Abbiamo anche scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto	riguarda i rischi che possono verificarsi nel corso del progetto.
 		
@@ -111,9 +113,6 @@
 		Possono essere concordati col cliente in corso d'opera.
 		
 		\textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
-		
-		
-	
 	
 
 		\paragraph{Casi d'uso}\label{PP:Sviluppo:AdR:CasiUso}
@@ -125,10 +124,10 @@
 		 	\begin{itemize}
 		 		\item \texttt{UC[Numero]}: per un caso principale (e.g. per il primo caso d'uso avremo \texttt{UC1}).
 		 		\item \texttt{UC[Numero].[Numero]}: per un sotto caso (e.g. per il primo figlio del primo caso d'uso avremo \texttt{UC1.1}).
-		 	\end{itemize}
+			\end{itemize}
 		 	\item \textbf{Titolo}: denominazione del caso d'uso, possibilmente breve.
 		 	\item \textbf{Attori primari}: tutti gli \gloss{attori} primari coinvolti.
-		 	\item \textbf{Attori secondari}: opzionale, tutti gli attori secondari coinvolti.		 	
+		 	\item \textbf{Attori secondari}: opzionale, tutti gli attori secondari coinvolti.
 		 	\item \textbf{Descrizione}: per spiegare più nel dettaglio le azioni che vengono compiute.
 		 	\item \textbf{Precondizione}: per rappresentare lo stato del sistema nell'istante precedente.
 		 	\item \textbf{Postcondizione}: per rappresentare lo stato del sistema l'istante successivo.
@@ -136,35 +135,43 @@
 		 	\item \textbf{Estensioni}: opzionale, per azioni inerenti a scenari alternativi come d'eccezione o errore.
 		\end{itemize}
 
-        \subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}	
+		Vi possono essere al massimo tre livelli di annidamento, come nel seguente esempio:
+		\begin{itemize}
+			\item \texttt{UC1} identifica il caso d'uso con il numero 1
+			\item \texttt{UC1.1} identifica il sottocaso 1 del caso d'uso 1
+			\item \texttt{UC1.1.1} identifica il sottocaso 1 del caso d'uso 1.1
+		\end{itemize}
+		Per ogni livello i numeri partono da 1.
+
+        \subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}
         %L’attività di progettazione è svolta dai progettisti ed include le seguenti sotto-attività...
-        
+
 		\paragraph{Obiettivi}\label{PP:Sviluppo:Progettazione:Obiettivi}
 		%Contenuto
-		 
-		 
+
+
 		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} %TODO: notare se da scrivere ora tutti o solo alcuni (classi - attività -sequenza)
-		
+
 		\paragraph{Diagrammi delle classi} %TODO
 		%Contenuto
-		
+
 		\subparagraph{Semantica} %TODO
 		%Dipendenza generica, Associazione, Aggregazione..
-		
-		
+
+
 		\paragraph{Diagrammi di attività} %TODO
 		%Contenuto
-		
+
 		\subparagraph{Semantica} %TODO
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
-		
-		
+
+
 		\paragraph{Diagrammi di sequenza} %TODO
 		%Contenuto
-		
+
 		\subparagraph{Semantica} %TODO
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
-		
+
 
 		\paragraph{Diagrammi dei casi d'uso}\label{DiagrammiCasiUso}
 		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0. Essi descrivono la visione di un utente
@@ -182,79 +189,166 @@
 			\end{itemize}
 		\end{itemize}
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
-		
-		
+
+
 		\subsubsection{Qualità della progettazione} %TODO
 		%Di seguito elenchiamo le linee guida da seguire per garantire una progettazione di qualità.
-		
+
 		\paragraph{Qualità dei diagrammi delle classi} %TODO
 		%Evitare le dipendenze circolari....
-		
+
 		\paragraph{Qualità dei diagrammi di attività} %TODO
 		%Contenuto
-		
+
 		\paragraph{Qualità dei diagrammi di sequenza} %TODO
 		%Contenuto
-		
+
 		\paragraph{Qualità dei diagrammi dei casi d'uso} %TODO: facoltativo..
 		%Contenuto
-		
-		%manuale utente da presentare in RQ, quindi da fare più avanti
-		%\subsubsection{Produzione del manuale utente} 
-		
 
-        \subsubsection{Codifica}\label{PP:Sviluppo:Codifica} %TODO: scrivere nei prossimi paragrafi tutto quello che potrebbe essere idealmente scritto in un file di checkstyle. Struttura presa come spunto da Breaking Bug RA.
-        %Contenuto
-        
+		%manuale utente da presentare in RQ, quindi da fare più avanti
+		%\subsubsection{Produzione del manuale utente}
+
+
+		\subsubsection{Codifica}\label{PP:Sviluppo:Codifica}
+		% TODO: scrivere nei prossimi paragrafi tutto quello che potrebbe essere idealmente scritto in un file di checkstyle. Struttura presa come spunto da Breaking Bug RA.
+
+		\paragraph{Scopo}
+		La presente sezione ha lo scopo di normare l'attività di codifica che svolgeremo nel corso della realizzazione del progetto \progetto, per
+		evitare qualsiasi tipo di inconsistenza e rendere il codice il quanto più omogeneo possibile.
+
+		Il progetto sarà sviluppato perlopiù usando il linguaggio \gloss{Python} (per una parte sarà valutato se utilizzare Ruby).
+		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce ``PEP 8'' in \S\ref{rifnorma}},
+		lo standard Python che definisce lo stile da seguire nella codifica e in attività correlate ad essa.
+
         \paragraph{Intestazione} %TODO
-        %Intestazione di file e funzioni
-        
-        \paragraph{Dichiarazione di variabili}  %TODO
+		Ogni sorgente Python conterrà la seguente intestazione:
+		\begin{verbatim}
+			"""
+			File:	<nomefile.estensione>
+			Data creazione: <YYYY-MM-DD>
+
+			<descrizione>
+
+			Licenza:	<nome licenza>
+			Versione:	<X.Y.Z>
+			Creatore:	<nome cognome: email>
+			Autori:
+				<nome cognome: email>
+				<nome cognome: email>
+				....
+			"""
+		\end{verbatim}
+
+		\paragraph{Formattazione}
+		Viene utilizzato uno spazio per separare simboli e identificatori.
+		\lstinputlisting{py/format.py}
+
+
+		\paragraph{Convenzioni di nominazione}
+		\begin{itemize}
+			\item Per i nomi delle classi, viene usato \texttt{PascalCase}\footnote{Riferirsi alla voce ``Naming convention'' in \S\ref{rifinfo}}
+			\item Per le costanti, viene usato \texttt{MACRO\_CASE}
+			\item Per denominare tutto il resto, ad esempio variabili e metodi, si usa \texttt{snake\_case}
+		\end{itemize}
+
+		Inoltre, tutti gli identificativi devono avere dei nomi significativi, relativi al contesto e alla loro utilità.
+\begin{lstlisting}[language=Python]
+uscita = True		# Si
+a = True			# No
+
+count_match = 0		# Si
+b = 0				# No
+
+def somma(x, y):	# Si, x e y sono concessi per il chiaro contesto matematico
+	return x + y
+def foo(a, b):		# No
+	return a + b
+\end{lstlisting}
+
+        % \paragraph{Costruttore} %TODO roba da js
         %Contenuto
-        
-        \paragraph{Costruttore} %TODO
+
+        % \paragraph{Operatore di espansione} %TODO Altra roba da js
         %Contenuto
-        
-        \paragraph{Operatore di espansione} %TODO
+
+
+        % \paragraph{Funzioni anonime} %TODO Solo in caso di necessità
         %Contenuto
-        
-        \paragraph{Stringhe} %TODO
+
+        % \paragraph{Punti e virgola} %TODO Niente punti e virgola in Python!
         %Contenuto
-        
-        \paragraph{Parametri delle funzioni} %TODO
+
+        \paragraph{Indentazione}
+		Per l'indentazione, come da PEP 8, si usano 4 spazi. L'IDE utilizzato dovrà essere configurato in modo che, premendo il
+		tasto TAB, verranno generati 4 spazi.
+
+		\paragraph{Stringhe}
+		Preferire l'uso del carattere di apice singolo (') per circondare le stringhe. Usare il doppio apice (") solo per aumentare la
+		leggibilità in caso sia presente nella stringa un apice singolo, o per le stringhe di documentazione (circondate da tripli apici doppi).\par
+		Per ottenere stringhe formattabili con parametri, usare le f-stringhe introdotte con Python 3.6.
+
+\begin{lstlisting}[language=Python]
+stringa = 'una stringa'
+def foo(x):
+	"""Stringa di documentazione"""
+	pass
+f_stringa = f'{stringa} parametrizzata!'
+\end{lstlisting}
+
+        \paragraph{Lunghezza massima delle righe}
         %Contenuto
-        
-        \paragraph{Funzioni anonime} %TODO
-        %Contenuto
-        
-        \paragraph{Punti e virgola} %TODO
-        %Contenuto
-        
-        \paragraph{Indentazione} %TODO
-        %Contenuto
-        
-        \paragraph{Lunghezza massima delle righe} %TODO
-        %Contenuto
-        
-        \paragraph{Denominazione} %TODO
-        %Contenuto
-        
-        \paragraph{Lunghezza massima di una procedura} %TODO
-        %Contenuto
-        
-        \paragraph{Complessità ciclomatica} %TODO
-        %Contenuto
-        
-        \paragraph{Commenti} %TODO
-        %Contenuto
-        
-        \paragraph{Codetags} %TODO: e mettere parola in gloss
-        %Contenuto
-        
-        %TODO: Per altri formalismi da aggiungere, vedere un po' dei punti del link: http://checkstyle.sourceforge.net/checks.html
-        
-        \subsubsection{Metriche per la codifica} %TODO: prendere spunto da 3.2.4.2.4 della RA di Breaking Bug
-        
+		Le righe di codice devono avere una lunghezza massima di 79 caratteri. Le righe di documentazione relative ad esempio a un metodo,
+		invece, non devono contenere più di 72 caratteri.
+		A tal fine, vengono divisi in più righe le istruzioni che superano il limite massimo di caratteri, per migliorare la leggibilità.
+
+		\begin{lstlisting}[language=Python]
+with open('/path/to/some/file/you/want/to/read') as file_1, \
+        open('/path/to/some/file/being/written', 'w') as file_2:
+	file_2.write(file_1.read())
+		\end{lstlisting}
+
+
+		\paragraph{Lunghezza massima di metodi e funzioni}
+		Il numero massimo di righe per ogni metodo o funzione viene fissato a 50 linee di codice, numero necessario ad occupare un'intera
+		schermata su un comune IDE. Funzioni più lunghe di 50 righe sono quasi sicuramente sintomo di una funzione che svolge troppi compiti,
+		che sarebbe spacchettabile in più funzioni.
+
+		\paragraph{Parametri delle funzioni}
+		Per i parametri delle funzioni, usare dei nomi esplicativi se il numero dei parametri non supera i 6. Altrimenti, preferire l'uso di liste
+		arbitrarie di parametri e l'uso di coppie chiavi-valori. Documentare, di conseguenza,
+		i nomi dei parametri che l'operatore ** (per le coppie chiave-valore) si aspetta, e sollevare una eccezione appropriata in caso si ottenga una chiave
+		inaspettata.
+\begin{lstlisting}[language=Python]
+def cheeseshop(kind, *arguments, **keywords):
+    print("-- Do you have any", kind, "?")
+    print("-- I'm sorry, we're all out of", kind)
+    for arg in arguments:
+        print(arg)
+    print("-" * 40)
+    for kw in keywords:
+        print(kw, ":", keywords[kw])
+\end{lstlisting}
+
+        \paragraph{Complessità ciclomatica}
+		Va evitato il più possibile l'annidamento di più strutture di controllo. Per questo, stare sotto i tre livelli di annidamento è una buona
+		prassi che semplifica leggibilità e \gloss{debugging} e va rispettata il più possibile.
+
+
+        \paragraph{Commenti}
+		Il \Progr\ è tenuto ad inserire commenti ove ritiene che questo possa migliorare la leggibilità del codice. Per contro, i commenti vanno
+		omessi dove il codice è auto esplicatorio.\par
+		Per inserire un commento, far seguire al simbolo di commento (\texttt{\#}) uno spazio, e iniziare con una lettera maiuscola (e.g.
+		\texttt{\#\ Cerca il match del parametro x nella lista}). In caso di commento su più righe, solo la prima riga va iniziata con carattere
+		maiuscolo.
+
+        % \paragraph{Codetags} % TODO: e mettere parola in gloss
+        % Già presente nei processi organizzativi, alla sezione "Gestione dei problemi emersi"
+
+        % TODO: Per altri formalismi da aggiungere, vedere un po' dei punti del link: http://checkstyle.sourceforge.net/checks.html
+
+        \subsubsection{Metriche per la codifica} % TODO: prendere spunto da 3.2.4.2.4 della RA di Breaking Bug
+
 
         \subsubsection{Strumenti di base}\label{PP:Sviluppo:Strumenti}
 
@@ -264,6 +358,22 @@
 
 	    \subparagraph{Sistema operativo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:SistemaOperativo}
 	    Abbiamo deciso di usare, come sistema operativo, GNU/Linux, in particolare una qualsiasi distribuzione basata su Ubuntu 18.04.
-	    
-	    \subparagraph{IDE} %TODO
-	    %Atom o IDEA o Eclipse ecc ecc....
+
+	    \subparagraph{IDE} % NOTE: controllare la sezione relativa a VSC sui processi di supporto
+		Gli IDE principali scelti per lo sviluppo di codice Python sono
+		{PyCharm}\footnote{Riferirsi alla voce ``Pycharm'' in \S\ref{rifinfo}} e
+		{Visual Studio Code}\footnote{Riferirsi alla voce ``Visual Studio Code'' in \S\ref{rifinfo}}.
+		Il primo è proprietario e supportato dal team di NetBeans, il secondo è un progetto \gloss{open source} di Microsoft, che ha
+		per questo il supporto della comunità open source.\par
+		Entrambi offrono la maggior parte dei vantaggi utili al processo di sviluppo di \progetto, tra cui:
+		\begin{itemize}
+			\item Highlighting del codice per una lettura agevole
+			\item Pylint, un \gloss{linter} per Python per l'analisi in tempo reale della qualità del codice
+			\item Debugging
+			\item Supporto a una miriade di plugin esterni
+		\end{itemize}
+
+		\begin{figure}[H]
+			\includegraphics[width=\textwidth]{img/pycharm.png}
+			\caption{Interfaccia grafica di PyCharm}
+		\end{figure}
