@@ -31,17 +31,46 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 %inserire il fatto che una persona può aggiungere il proprio nickname o altro da interfaccia, come requisito opzionale	...
 
 % Generazione automatica dei numeri
-\newcounter{vaZ} % valore
-\newcommand{\incrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
-\newcommand{\addZNumber}[0]{\incrZ\thevaZ} % Comando per generare
-
-\newcommand{\Freq}[3]{R\addZNumber F#1 & #2 & #3 \\}
-\newcommand{\Fsubreq}[3]{R\thevaZ F#1 & #2 & #3 \\} % Se c'è bisogno di sottocasi
+%\newcounter{vaZ} % valore
+%\newcommand{\incrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
+%\newcommand{\addZNumber}[0]{\incrZ\thevaZ} % Comando per generare
+%
+%\newcommand{\Freq}[3]{R\addZNumber F#1 & #2 & #3 \\}
+%\newcommand{\Fsubreq}[3]{R\thevaZ F#1 & #2 & #3 \\} % Se c'è bisogno di sottocasi
 
 % Comando requisito generico
 \newcommand{\req}[3]{%
 #1 & #2 & #3 \\
 }
+
+	%COMANDI PER REQ DI FUNZIONALITÀ
+	% Generazione automatica dei numeri
+	\newcounter{vaF} % valore
+	\newcommand{\incrF}{\addtocounter{vaF}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addFNumber}{\incrF\thevaF} % Comando per generare il valore incrementato di uno rispetto a prima
+	
+	\newcounter{secondF} % per il secondo livello del requisito
+	\addtocounter{secondF}{1}
+	\newcommand{\secIncrF}{\addtocounter{secondF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addSecFNumber}{\secIncrF\thesecondF} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetFCounter}{\setcounter{secondF}{1}}
+	\newcommand{\decSecF}{\resetFCounter\thesecondF}
+	
+	\newcounter{thirdF} % per il terzo livello del requisito
+	\addtocounter{thirdF}{1}
+	\newcommand{\thirdIncrF}{\addtocounter{thirdF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addThirdFNumber}{\thirdIncrF\thethirdF} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetthirdFCounter}{\setcounter{thirdF}{1}}
+	\newcommand{\decThirdF}{\resetthirdFCounter\thethirdF}
+	
+	
+	\newcommand{\Freq}[3]{R\addFNumber F#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	\newcommand{\Fsubreq}[3]{R\thevaF F#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	\newcommand{\Fsecondreq}[3]{R\thevaF.\addSecFNumber F#1 & #2 & #3 \\}
+	\newcommand{\Finitsecondreq}[3]{R\thevaF.\decSecF F#1 & #2 & #3 \\}
+	\newcommand{\Fthirdreq}[3]{R\thevaF.\thesecondF.\addThirdFNumber F#1 & #2 & #3 \\}
+	\newcommand{\Finitthirdreq}[3]{R\thevaF.\thesecondF.\decThirdF F#1 & #2 & #3 \\}
+	
 
 	\subsection{Requisiti di funzionalità}
 
@@ -55,15 +84,15 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\Freq{2}{Il Producer deve essere in grado di inviare delle segnalazioni al Broker}{Interno UC2}
 			\Freq{2}{Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio}{Interno UC3}
 			\Freq{2}{I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram}{Interno UC4}
-			\req{R\thevaZ.1F0}{L'utente può eseguire l'accesso al gestore personale}{Interno UC5.1}
-			\req{R\thevaZ.1.1F0}{L'utente può inserire il proprio username che lo identifica all'interno di \progetto}{Interno UC5.1.1}
-			\req{R\thevaZ.2F0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC5.2}
-			\req{R\addZNumber.1.1F0}{L'utente può iscriversi a un Topic}{Interno UC6.1.1}
-			\req{R\thevaZ.1.2F0}{L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile}{Interno UC6.1.2}
-			\req{R\thevaZ.1.3F0}{L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche}{Interno UC6.1.3}
-			\req{R\thevaZ.2.1F0}{L'utente può disiscriversi da un Topic}{Interno UC6.2.1}
-			\req{R\thevaZ.2.2F0}{L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile}{Interno UC6.2.2}
-			\req{R\thevaZ.2.3F0}{L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto}{Interno UC6.2.3}
+			\Finitsecondreq{0}{L'utente può eseguire l'accesso al gestore personale}{Interno UC5.1}
+			\Finitthirdreq{0}{L'utente può inserire il proprio username che lo identifica all'interno di \progetto}{Interno UC5.1.1}
+			\Fsecondreq{0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC5.2}
+			\req{R\addFNumber.1.1F0}{L'utente può iscriversi a un Topic}{Interno UC6.1.1}
+			\req{R\thevaF.1.2F0}{L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile}{Interno UC6.1.2}
+			\req{R\thevaF.1.3F0}{L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche}{Interno UC6.1.3}
+			\req{R\thevaF.2.1F0}{L'utente può disiscriversi da un Topic}{Interno UC6.2.1}
+			\req{R\thevaF.2.2F0}{L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile}{Interno UC6.2.2}
+			\req{R\thevaF.2.3F0}{L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto}{Interno UC6.2.3}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -88,7 +117,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\caption{Elenco dei requisiti di funzionalità (2)}
 	\end{table}
 
-
+	%COMANDI PER REQUISITI DI FUNZIONALITÀ
 	% Generazione automatica dei numeri
 	\newcounter{vaQ} % valore
 	%\addtocounter{vaQ}{1} % inizia da 1 il contatore
@@ -101,7 +130,6 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\newcommand{\addSecQNumber}{\secIncrQ\thesecondQ} % Comando per generare il valore incrementato di uno rispetto a prima
 	\newcommand{\resetQCounter}{\setcounter{secondQ}{1}}
 	\newcommand{\decSecQ}{\resetQCounter\thesecondQ}
-
 
 
 	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
@@ -167,14 +195,25 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\caption{Elenco dei requisiti di qualità (2)}
 	\end{table}
 
+	%COMANDI PER REQ DI VINCOLO
 	% Generazione automatica dei numeri
 	\newcounter{vaV} % valore
 	\newcommand{\incrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addVNumber}[0]{\incrV\thevaV} % Comando per generare
-	\addtocounter{vaV}{1}
-
-	\newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\}
-	\newcommand{\Vsubreq}[3]{R\thevaV V#1 & #2 & #3 \\}
+	\newcommand{\addVNumber}{\incrV\thevaV} % Comando per generare il valore incrementato di uno rispetto a prima
+	
+	\newcounter{secondV} % per il secondo livello del requisito
+	\addtocounter{secondV}{1}
+	\newcommand{\secIncrV}{\addtocounter{secondV}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addSecVNumber}{\secIncrV\thesecondV} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetVCounter}{\setcounter{secondV}{1}}
+	\newcommand{\decSecV}{\resetVCounter\thesecondV}
+	
+	
+	\newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	\newcommand{\Vsubreq}[3]{R\thevaV V#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	\newcommand{\Vsecondreq}[3]{R\thevaV.\addSecVNumber V#1 & #2 & #3 \\}
+	\newcommand{\Vinitsecondreq}[3]{R\thevaV.\decSecV V#1 & #2 & #3 \\}
+	
 
 	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
 	\subsection{Requisiti di vincolo}
@@ -183,12 +222,15 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			\Vsubreq{2}{Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e SonarQube}{Capitolato}
-			\req{R\thevaV.1V0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
+			\Vreq{2}{Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e SonarQube}{Capitolato}
+			%\req{R\thevaV.1V0}
+			\Vinitsecondreq{0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
 			\Vreq{2}{Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack}{Capitolato}
-			\req{R\thevaV.1V0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
+			%\req{R\thevaV.1V0}
+			\Vinitsecondreq{0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
 			\Vreq{2}{Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
-			\req{R\thevaV.1V2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
+			%\req{R\thevaV.1V2}
+			\Vinitsecondreq{2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
 			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js}}{Capitolato}
 			\Vreq{1}{È possibile utilizzare Apache Kafka come Broker}{Capitolato}
 
