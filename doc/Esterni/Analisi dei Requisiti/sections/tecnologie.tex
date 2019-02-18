@@ -19,7 +19,7 @@
 	\end{itemize}
 	Questa scomposizione ci ha permesso di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
 	
-	\subsubsection{Producer}
+	\subsubsection{Producer}\label{TecnologieProducer}
 	
 		Per ciascuno degli strumenti che invia messaggi verso il sistema è necessario creare una componente applicativa di tipo Producer che li riceva e li elabori inoltrandoli successivamente verso il Broker.
 		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal \gloss{committente}.
@@ -49,7 +49,7 @@
 %		\subsubsection{SonarQube}
 %		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
 		
-	\subsubsection{Broker}
+	\subsubsection{Broker}\label{TecnologieBroker}
 	
 		Il ruolo del Broker è quello di smistare i messaggi in base ai Topic con cui questi sono contrassegnati verso i vari microservizi con cui l'utente ha deciso che gli venga inoltrata la notifica.
 		L'azienda ci consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
@@ -58,7 +58,7 @@
 		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su differenti canali di comunicazioni per i dati.
 		Questi messaggi arrivano dai Producer che ricevono le notifiche di applicazioni di terze parti mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic.
 	
-	\subsubsection{Consumer}
+	\subsubsection{Consumer}\label{TecnologieConsumer}
 		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e \gloss{client} dello strumento di messaggistica scelto dall'utente.
 		Le tecnologie verso le quali vengono inoltrati i messaggi rielaborati dal sistema sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 		\begin{enumerate}
@@ -81,7 +81,7 @@
 %		È possibile utilizzare le API di Slack per poter mandare push notifications ai canali o alle persone interessate specificando il nome del canale (o lo username della persona), testo del messaggio, e lo username che verrà mostrato per il mittente.
 %		%https://www.confluent.io/blog/real-time-syslog-processing-with-apache-kafka-and-ksql-part-2-event-driven-alerting-with-slack/
 	
-	\subsubsection{Gestore personale}
+	\subsubsection{Gestore personale}\label{TecnologieGestorePersonale}
 	Il gestore personale è quel \gloss{componente} che permette agli utenti di impostare le proprie preferenze per l'applicativo di ricezione dei messaggi ed i Topic a cui si iscrive, interfacciandosi dunque con l'intero sistema \progetto.
 	Lo abbiamo previsto come un'applicazione web installata in un server interno all'azienda.
 	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, con la possibilità di aggiungere e rimuovere, determinate impostazioni riguardanti le proprie preferenze.
@@ -94,7 +94,7 @@
 	\end{itemize}
 	Nel caso arrivasse una notifica da inoltrare a un utente indisponibile, questa verrà inoltrata alla persona più adatta e disponibile al momento.
 	
-	\subsubsection{Container software}
+	\subsubsection{Container software}\label{TecnologieContainer}
 	
 	Un container software simula un ambiente virtuale dove è possibile testare e mantenere le proprie applicazioni, permettendo di aumentare l'efficienza riducendone i costi e simulando l'esecuzione di sistema operativo su una macchina con \gloss{risorse} condivise.
 		
