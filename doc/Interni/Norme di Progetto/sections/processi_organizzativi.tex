@@ -85,7 +85,7 @@
 				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]}
 			\end{center}
 			
-			Nel caso dell'attualizzazione dei rischi, al codice viene aggiunta in coda la data in cui si è verificato il problema, in modo da tenere una traccia cronologica.\\
+			Nel caso dell'attualizzazione dei rischi, vengono aggiustati i valori di gravità, probabilità, classe e al codice viene aggiunta in coda la data in cui si è verificato il problema, in modo da tenere una traccia cronologica.\\
 			
 			Il codice in tal caso diventa:
 			
@@ -93,7 +93,9 @@
 				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]-[Data]}
 			\end{center}
 			
-			\clearpage
+			\\
+			Nel caso i rischi non si siano verificati ma ne venga riconsiderata la probabilità, allora vengono posti in elenco in seguito ai rischi effettivamente riscontrati, con il vecchio codice per tipologia e id e con i valori aggiornati per gravità, probabilità e classe.
+			\\\\
 			I valori che possono assumere sono:
 
 			\begin{itemize}
