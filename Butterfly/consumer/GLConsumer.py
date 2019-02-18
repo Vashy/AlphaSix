@@ -7,6 +7,7 @@ from kafka import KafkaConsumer
 import kafka.errors
 from abc import ABC, abstractmethod
 import json
+import requests
 from pathlib import Path
 from consumer.consumer import Consumer
 import webhook.webhook as GLIssueWebhook
@@ -15,15 +16,21 @@ class WebhookConsumer(Consumer):
     """Implementa Consumer"""
 
     def __init__(self, topics: list, configs: dict):
+        self._token = configs['telegram']['token_bot']
+        self._receiver = configs['telegram']['receiver']
+
+        configs = configs['kafka']
+
         # Converte stringa 'inf' nel relativo float
-        if configs["consumer_timeout_ms"] == "inf":
-            configs["consumer_timeout_ms"] = float("inf")
+        if (configs['consumer_timeout_ms'] is not None
+                and configs['consumer_timeout_ms'] == 'inf'):
+            configs['consumer_timeout_ms'] = float('inf')
 
         self._consumer = KafkaConsumer(
             *topics,
             # Deserializza i messaggi dal formato JSON a oggetti Python
             value_deserializer=lambda m: json.loads(m.decode('utf-8')),
-            **config
+            **configs
         )
 
     def listen(self):
@@ -35,17 +42,28 @@ class WebhookConsumer(Consumer):
         definiti in nel modulo webhook
         """
         for message in self._consumer:
-            print ("{}:{}:{}:\tkey={}\n{}".format(
+            final_msg = '{}:{}:{}:\tkey={}\n{}'.format(
                     message.topic,
                     message.partition,
                     message.offset,
                     message.key,
                     self.pretty(message.value),
                 )
-            )
-            # La versione con format è più carina
-            # print (f"{message.topic}:{message.partition}:{message.offset}:"
-            #     "\tkey={message.key}\n{self.pretty(message.value)}")
+
+            print (final_msg)
+
+            response = requests.post(
+                url='https://api.telegram.org/bot' 
+                    + self._token + '/sendMessage?chat_id=' 
+                    + self._receiver + '&text=' 
+                    + final_msg + '',
+            ).json()
+
+            if response['ok'] != 0:
+                print('Inviato')
+            else:
+                print('Qualcosa è andato storto')
+
 
     def pretty(self, obj: object):
         """Restituisce una stringa con una formattazione migliore da un
@@ -55,14 +73,13 @@ class WebhookConsumer(Consumer):
         obj -- JSON object
         """
 
-        res = ""
         return "".join(
             [
-                res, f'Type: \t\t{obj["object_kind"]}',
-                res, f'\nTitle: \t\t{obj["title"]}',
-                res, f'\nProject ID: \t{obj["project"]["id"]}',
-                res, f'\nProject name: \t{obj["project"]["name"]}',
-                res, f'\nAction: \t{obj["action"]}\n ... ',
+                f'Type: \t\t{obj["object_kind"]}',
+                f'\nTitle: \t\t{obj["title"]}',
+                f'\nProject ID: \t{obj["project"]["id"]}',
+                f'\nProject name: \t{obj["project"]["name"]}',
+                f'\nAction: \t{obj["action"]}\n ... ',
             ]
         )
 
@@ -96,8 +113,8 @@ if __name__ == '__main__':
 
     # Inizializza WebhookConsumer
     consumer = WebhookConsumer(
-        topiclst, 
-        config 
+        topiclst,
+        config
     )
 
     try:

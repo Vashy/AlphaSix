@@ -12,7 +12,6 @@ import kafka.errors
 from producer.producer import Producer
 import json
 from pathlib import Path
-# from webhook.webhook import Webhook
 
 
 class ConsoleProducer(Producer):

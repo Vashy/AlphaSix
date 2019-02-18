@@ -7,6 +7,7 @@ from kafka import KafkaConsumer
 import kafka.errors
 from abc import ABC, abstractmethod
 import json
+import requests
 from pathlib import Path
 from consumer.consumer import Consumer
 
@@ -16,10 +17,15 @@ class ConsoleConsumer(Consumer):
 
     def __init__(self, topics: list, configs: dict):
 
+        self._token = configs['telegram']['token_bot']
+        self._receiver = configs['telegram']['receiver']
+
+        configs = configs['kafka']
         # Converte stringa 'inf' nel relativo float
-        if configs["consumer_timeout_ms"] == "inf":
-            configs["consumer_timeout_ms"] = float("inf")
-        self._consumer = KafkaConsumer(*topics, **config)
+        if configs['consumer_timeout_ms'] == 'inf':
+            configs['consumer_timeout_ms'] = float('inf')
+        self._consumer = KafkaConsumer(*topics, **configs)
+
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il consumer è
@@ -27,7 +33,8 @@ class ConsoleConsumer(Consumer):
         Precondizione: i messaggi devono essere codificati in binario.
         """
         for message in self._consumer:
-            print ("{}:{}:{}:\tkey={}\tvalue={}".format(
+            final_msg = ('{}:{}:{}:\nkey={}\nvalue={}'
+                .format(
                     message.topic,
                     message.partition,
                     message.offset,
@@ -35,6 +42,31 @@ class ConsoleConsumer(Consumer):
                     message.value.decode()
                 )
             )
+
+            # final_msg = (
+            #     f'{message.topic}:'
+            #     f'{message.partition}:'
+            #     f'{message.offset}:'
+            #     f'\nkey={message.key}'
+            #     f'\nvalue={message.value.decode()}'
+            # )
+
+            print (final_msg)
+
+            # print(self._token)
+            # print(self._receiver)
+            response = requests.post(
+                url='https://api.telegram.org/bot' 
+                    + self._token + '/sendMessage?chat_id=' 
+                    + self._receiver + '&text=' 
+                    + final_msg + ''
+            ).json()
+
+            if response['ok'] != 0:
+                print('Inviato')
+            else:
+                print('Qualcosa è andato storto')
+
 
     @property
     def consumer(self):
@@ -46,7 +78,7 @@ class ConsoleConsumer(Consumer):
         self._consumer.close()
 
 
-if __name__ == '__main__':
+def main():
 
     """Fetch dei topic dal file topics.json
     Campi:
@@ -61,21 +93,35 @@ if __name__ == '__main__':
     with open(Path(__file__).parent / 'config.json') as f:
         config = json.load(f)
 
+    # print(config['kafka'])
+
     # Per ora, sono solo di interesse i nomi (label) dei Topic
     topiclst = []
     for topic in topics:
-        # Per ogni topic, aggiunge a topiclst solo se non è già presente 
+        # Per ogni topic, aggiunge a topiclst solo se non è già presente
         if topic['label'] not in topiclst:
             topiclst.append(topic['label'])
 
-    # Inizializza WebhookConsumer
-    consumer = ConsoleConsumer(
-        topiclst,
-        config
-    )
+    try:
+        # Inizializza WebhookConsumer
+        consumer = ConsoleConsumer(
+            topiclst,
+            config,
+        )
+    except kafka.errors.KafkaConfigurationError as e:
+        print(e.with_traceback())
+
+    print('Listening to messages from topics:')
+    for topic in topiclst:
+        print(f'- {topic}, {topiclst}')
+    print()
 
     try:
         consumer.listen() # Resta in ascolto del Broker
     except KeyboardInterrupt as e:
         consumer.close()
         print(' Closing Consumer ...')
+
+
+if __name__ == '__main__':
+    main()
