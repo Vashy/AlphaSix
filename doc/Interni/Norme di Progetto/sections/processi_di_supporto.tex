@@ -236,11 +236,18 @@
 			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
 
 			\paragraph{Continuous Integration} % TODO: Da aggiornare per il codice
-			Per quanto riguarda la stesura dei documenti, adotteremo il principio di \gloss{Continuous Integration}, che sarà tuttavia limitato in questo periodo
-			a sincronizzarsi il prima possibile con la repository remota (non essendoci
-			una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
-
-			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.
+			Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
+			Per quanto riguarda la stesura dei documenti il principio sarà limitato in questo periodo a sincronizzarsi il prima possibile con la repository remota (non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
+			Per quanto concerne il codice sorgente useremo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
+			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			\begin{itemize}
+			    \item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+			    \item \textbf{Build}: build del codice su docker container.
+			    \item \textbf{Unit Test}: test di unità ... %TODO
+			    \item \textbf{Integration Test}: test di integrazione ... %TODO
+			    \item \textbf{System Test}: test per verificare il comportamento dell'intero sistema. 
+			\end{itemize}
 
 
 			\paragraph{Nomenclatura}
