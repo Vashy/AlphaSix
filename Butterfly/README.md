@@ -23,11 +23,18 @@ Posizione: Kafka home dir
 Precondizione: è necessario avere il pacchetto `kafka-python` installato nel sistema.
 > `pip3 install kafka-python`
 
-### Run the Python Consumer
+### Run the Python ConsoleConsumer
 
-> `path/to/consumer.py`
+Posizione: `Butterfly/`
+> `python3 -m path.to.ConsoleConsumer`
 
 (si mette in ascolto di tutti i topic definiti nel file `topics.json`)
+
+
+### Run the Python ConsoleProducer
+
+Posizione: `Butterfly/`
+> `python3 -m path.to.ConsoleProducer -t nometopic msg1 msg2 "msg 3"`
 
 
 <!-- ### Run the Consumer
@@ -38,7 +45,13 @@ Posizione: Kafka home dir
 Posizione: Kafka home dir
 > `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning`   -->
 
-### Run the Python Producer
+### Run the Python WebhookConsumer
+Si mette in ascolto dei messaggi generati da WebhookProducer.  
+Posizione: `Butterfly/`
+> `python3 path.to.WebhookConsumer`  
 
-> `python3 path/to/producer.py -t nometopic msg1 msg2 ... msgK`  
-(K >= 0)
+
+### Run the Python GLProducer
+
+Posizione: `Butterfly/`
+> `python3 -m path.to.GLProducer -t nometopic`

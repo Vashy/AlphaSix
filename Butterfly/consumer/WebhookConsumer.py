@@ -1,55 +1,15 @@
 #!/usr/bin/env python3
 
-# Uso: python3 path/to/consumer.py
+# Posizione: Butterfly/
+# Uso: python3 -m path.to.WebhookConsumer
 
 from kafka import KafkaConsumer
 import kafka.errors
 from abc import ABC, abstractmethod
 import json
 from pathlib import Path
-
-class Consumer(ABC):
-    """Interfaccia Consumer"""
-
-    @abstractmethod
-    def listen(self):
-        """Resta in ascolto del Broker"""
-        pass
-
-
-class ConsoleConsumer(Consumer):
-    """Implementa Consumer"""
-
-    def __init__(self, topics: list, configs: dict):
-
-        # Converte stringa 'inf' nel relativo float
-        if configs["consumer_timeout_ms"] == "inf":
-            configs["consumer_timeout_ms"] = float("inf")
-        self._consumer = KafkaConsumer(*topics, **config)
-
-    def listen(self):
-        """Ascolta i messaggi provenienti dai Topic a cui il consumer è
-        abbonato.
-        Precondizione: i messaggi devono essere codificati in binario.
-        """
-        for message in self._consumer:
-            print ("{}:{}:{}:\tkey={}\tvalue={}".format(
-                    message.topic,
-                    message.partition,
-                    message.offset,
-                    message.key,
-                    message.value.decode()
-                )
-            )
-
-    @property
-    def consumer(self):
-        """Restituisce il KafkaConsumer"""
-        return self._consumer
-
-    def close(self):
-        """Chiude la connessione del Consumer"""
-        self._consumer.close()
+from consumer.consumer import Consumer
+import webhook.webhook as GLIssueWebhook
 
 class WebhookConsumer(Consumer):
     """Implementa Consumer"""
@@ -120,13 +80,12 @@ if __name__ == '__main__':
     - topics['label']
     - topics['project']
     """
-    with open(Path(__file__).parent / 'topics.json') as f:
+    with open(Path(__file__).parent.parent / 'topics.json') as f:
         topics = json.load(f)
 
     # Fetch delle configurazioni dal file config.json
     with open(Path(__file__).parent / 'config.json') as f:
         config = json.load(f)
-    config = config['consumer']
 
     # Per ora, sono solo di interesse i nomi (label) dei Topic
     topiclst = []
