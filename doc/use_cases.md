@@ -212,6 +212,18 @@ messaggio, controlla chi è iscritto a quel Topic, se la persona è
 disponibile, e se vuole ricevere il messaggio tramite Telegram.
 Se tutte queste condizioni sono verificate, viene preparato il messaggio
 finale da inviare all'utente e inserito nella coda Telegram.
+Il messaggio finale, una volta elaborato, conterrà i campi:
+    * Id della chat del destinatario
+    * Applicazione di provenienza
+    * Ora di invio
+    * Tipo di segnalazione (commit,issue)
+    * Project
+    * Topic
+    * Subject e, opzionalmente:
+        * Description
+        * Due date
+        * Milestone
+        * Assignee
 * **PRE**: il Gestore Personale ha ricevuto il messaggio elaborato dai Producer Redmine o GitLab.
 * **POST**: Il Gestore Personale ha inserito il messaggio finale nella coda Telegram.
 * **Estensioni**: -
@@ -228,6 +240,18 @@ messaggio, controlla chi è iscritto a quel Topic, se la persona è
 disponibile, e se vuole ricevere il messaggio tramite email.
 Se tutte queste condizioni sono verificate, viene preparato il messaggio
 finale da inviare all'utente e inserito nella coda email.
+Il messaggio finale, una volta elaborato, conterrà i campi:
+    * Email del destinatario
+    * Applicazione di provenienza
+    * Ora di invio
+    * Tipo di segnalazione (commit,issue)
+    * Project
+    * Topic
+    * Subject e, opzionalmente:
+        * Description
+        * Due date
+        * Milestone
+        * Assignee
 * **PRE**: il Gestore Personale ha ricevuto il messaggio elaborato dai Producer Redmine o GitLab.
 * **POST**: Il Gestore Personale ha inserito il messaggio finale nella coda email.
 * **Estensioni**: -
