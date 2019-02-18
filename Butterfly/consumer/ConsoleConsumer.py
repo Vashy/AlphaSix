@@ -1,4 +1,33 @@
-#!/usr/bin/env python3
+"""
+File: ConsoleConsumer.py
+Data creazione: 2019-02-18
+
+<descrizione>
+
+Licenza: Apache 2.0
+
+Copyright 2019 AlphaSix
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Versione: 0.1.0
+Creatore: Timoty Granziero, timoty.granziero@gmail.com
+Autori:
+    <nome cognome, email>
+    <nome cognome: email>
+    ....
+"""
+
 
 # Posizione: Butterfly/
 # Uso: python3 -m path.to.ConsoleConsumer
@@ -21,9 +50,13 @@ class ConsoleConsumer(Consumer):
         self._receiver = configs['telegram']['receiver']
 
         configs = configs['kafka']
+        self._topics = topics
+
         # Converte stringa 'inf' nel relativo float
-        if configs['consumer_timeout_ms'] == 'inf':
+        if (configs['consumer_timeout_ms'] is not None
+                and configs['consumer_timeout_ms'] == 'inf'):
             configs['consumer_timeout_ms'] = float('inf')
+
         self._consumer = KafkaConsumer(*topics, **configs)
 
 
@@ -32,6 +65,11 @@ class ConsoleConsumer(Consumer):
         abbonato.
         Precondizione: i messaggi devono essere codificati in binario.
         """
+        print('Listening to messages from topics:')
+        for topic in self._topics:
+            print(f'- {topic}')
+        print()
+
         for message in self._consumer:
             final_msg = ('{}:{}:{}:\nkey={}\nvalue={}'
                 .format(
@@ -93,8 +131,6 @@ def main():
     with open(Path(__file__).parent / 'config.json') as f:
         config = json.load(f)
 
-    # print(config['kafka'])
-
     # Per ora, sono solo di interesse i nomi (label) dei Topic
     topiclst = []
     for topic in topics:
@@ -110,11 +146,6 @@ def main():
         )
     except kafka.errors.KafkaConfigurationError as e:
         print(e.with_traceback())
-
-    print('Listening to messages from topics:')
-    for topic in topiclst:
-        print(f'- {topic}, {topiclst}')
-    print()
 
     try:
         consumer.listen() # Resta in ascolto del Broker
