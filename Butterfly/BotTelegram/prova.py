@@ -28,7 +28,7 @@ response = requests.post(
     url='https://api.telegram.org/bot' + token + '/sendMessage?chat_id=' + id_utente + '&text=' + messaggio + ''
 ).json()
 
-if response != 0:
+if response["ok"] != 0:
     print('Inviato')
 else:
     print('Qualcosa è andato storto')
