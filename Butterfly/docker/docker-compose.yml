@@ -1,0 +1,82 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: postgres_redmine
+    hostname: postgres_redmine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_DB=redmine'
+
+  redmine:
+    image: redmine:latest
+    restart: always
+    container_name: redmine
+    hostname: redmine
+    volumes:
+      - ./plugins:/usr/src/redmine/plugins
+      - redmine-data:/usr/src/redmine/files
+    ports:
+      - 3000:3000
+    environment:
+      - 'REDMINE_DB_POSTGRES=postgres'
+      - 'REDMINE_DB_DATABASE=redmine'
+      - 'REDMINE_DB_PASSWORD=password'
+
+#  jenkins:
+#    image: jenkins/jenkins:lts
+#    container_name: jenkins
+#    hostname: jenkins
+#    restart: always
+#    ports: 
+#      - 1500:8080
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: 10m
+#        max-file: "3"
+
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab
+    hostname: gitlab
+    restart: always
+    ports:
+      - '1501:80'
+      - '1502:443'
+      - '1503:22'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 10m
+        max-file: "3"
+  
+#  telegram_consumer:
+#    image: telegram_consumer
+#    container_name: telegram_consumer
+#    hostname: telegram_consumer
+#    build:
+#      context: ../BotTelegram
+#      dockerfile: ../BotTelegram/Dockerfile
+#    ports:
+#      - 5000:5000
+#    stdin_open: true
+#    tty: true
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: 10m
+#        max-file: "3"
+
+volumes:
+  postgres-data:
+  redmine-data:
