@@ -139,7 +139,7 @@
 			accompagnata da una breve \gloss{caption} che permetta al lettore di capire esattamente che cosa sta guardando.\\
 			È presente nell'indice l'elenco delle figure che raccoglie la lista di tutte le immagini presenti.
 
-			\subparagraph{Tabelle}
+			\subparagraph{Tabelle}\label{StrumentiDiSupportoTabelle}
 			Come per le figure, ogni tabella sarà accompagnata da una caption e sarà della dimensione del testo, o se più piccola, centrata.
 			Tutte le tabelle saranno raccolte nell'elenco delle tabelle.\par
 			Saranno presenti due tipologie di tabelle:
@@ -154,7 +154,7 @@
 
 		\subsubsection{Produzione}
 
-			\paragraph{Suddivisione dei documenti}
+			\paragraph{Suddivisione dei documenti}\label{SuddivisioneDeiDocumenti}
 
 			\subparagraph{Documenti interni}
 			Le \NdP\ e lo \SdF\ sono documenti interni, consultabili solo dal team e dal committente, per motivi didattici.
@@ -176,7 +176,7 @@
 			\end{itemize}
 
 
-			\paragraph{Strumenti di supporto}
+			\paragraph{Strumenti di supporto}\label{StrumentiDiSupporto}
 
 			\subparagraph{\LaTeX} \label{LaTeX}
 			Per la stesura della documentazione abbiamo deciso di utilizzare il linguaggio di \gloss{markup} \LaTeX\ perché presenta molti vantaggi, tra i quali:
@@ -214,7 +214,7 @@
 			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla
 			lunghezza delle parole in lettere e non in sillabe.
 
-		\subsubsection{Mantenimento}
+		\subsubsection{Mantenimento}\label{Mantenimento}
 
 			\paragraph{Versionamento} \label{Versionamento}
 			Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
@@ -235,7 +235,7 @@
 
 			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
 
-			\paragraph{Continuous Integration} % TODO: Da aggiornare per il codice
+			\paragraph{Continuous Integration}\label{ContinuousIntegration} % TODO: Da aggiornare per il codice
 			Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
 			Per quanto riguarda la stesura dei documenti il principio sarà limitato in questo periodo a sincronizzarsi il prima possibile con la repository remota (non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
 			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
@@ -271,7 +271,7 @@
 				sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
 			\end{itemize}
 		
-		\subsubsection{Metriche}
+		\subsubsection{Metriche}\label{ProcessiSupportoMetriche}
 		La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
 		
 			\paragraph{MPD001 Indice di Gulpease}
@@ -297,7 +297,7 @@
 
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 
-	\subsection{Verifica}
+	\subsection{Verifica}\label{Verifica}
 
 		\subsubsection{Scopo}
 		Questa sezione vuole descrivere come eseguiamo la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci attendiamo.
@@ -375,7 +375,7 @@
 		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
 		
 		
-		\subsubsection{Analisi statica}
+		\subsubsection{Analisi statica}\label{AnalisiStatica}
 		L'analisi statica verifica solo i prodotti che non sono o che non possono essere eseguiti, come i documenti.
 
 			\paragraph{Analisi dei documenti}
@@ -416,7 +416,7 @@
 
 		
 		
-		\subsubsection{Analisi dinamica} %TODO
+		\subsubsection{Analisi dinamica}\label{AnalisiDinamica} %TODO
 		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
 		Vengono presi in esame i prodotti software e i processi.
 		%Parlare dei test..
@@ -449,5 +449,5 @@
 			%Contenuto
 		
 		
-		\subsubsection{Tipologie e trattamento delle anomalie riscontrate} %TODO
+		\subsubsection{Tipologie e trattamento delle anomalie riscontrate}\label{TrattamentoAnomalie} %TODO
 		%Anomalie dovute al mancato rispetto dei valori di riferimento stabiliti per le metriche applicate... e Anomalie dovute al mancato superamento dei test pianificati.....
