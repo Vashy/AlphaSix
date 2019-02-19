@@ -1,7 +1,7 @@
 ### ConsoleProducer
 
-Prima di lanciare un Producer, dovresti configurare l'[ambiente Kafka](https://github.com/Vashy/AlphaSix/blob/e946305cef4878bb99da314acd95e61ffbdddee0/Butterfly/README.md) ed
-eventualmente un [Consumer](https://github.com/Vashy/AlphaSix/blob/b6f3a176088e3b822261c5f0381d26017d351463/Butterfly/consumer/README.md).
+Prima di lanciare un Producer, dovresti configurare l'[ambiente Kafka](https://github.com/Vashy/AlphaSix/tree/develop/Butterfly/README.md) ed
+eventualmente un [Consumer](https://github.com/Vashy/AlphaSix/tree/develop/Butterfly/consumer/README.md).
 
 Per mandare uno o più messaggi da linea di comando su Kafka in un topic specifico, posizionarsi nella cartella `Butterfly/` e dare il comando:
 
