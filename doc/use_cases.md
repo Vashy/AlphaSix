@@ -293,9 +293,9 @@ finale per poterlo inoltrare agli utenti di email interessati.
 
 * **Titolo**: accesso dell’utente nel sistema.
 * **Attori primari**: utente non acceduto.
-* **Descrizione**: l’utente attende l’autenticazione da parte del sistema.
-* **PRE**: il sistema riconosce l’utilizzatore come un utente non autenticato.
-* **POST**: il sistema riconosce l’utente autenticato con successo.
+* **Descrizione**: l’utente attende l’accesso al sistema.
+* **PRE**: il sistema riconosce l’utilizzatore come un utente non acceduto.
+* **POST**: il sistema riconosce l'utente con successo.
 * **Estensioni**: UC11.2
 
 ### UC11.1.1: Inserimento Username
