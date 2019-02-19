@@ -1,4 +1,4 @@
-\section{Processi primari}\label{PP}
+\section{Processi primari}\label{ProcessiPrimari}
 
     \subsection{Processo di fornitura}\label{PP:Fornitura}	%istanziare Management Process, Infrastructure Process e Improvement Process
 
@@ -91,7 +91,7 @@
 		Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.
 
 
-		\paragraph{Metriche}
+		\paragraph{Metriche}\label{ProcessiPrimariMetriche}
 		Dato che non è fisso il numero dei requisiti di un progetto, abbiamo scelto una serie di metriche dove il valore ottimale da raggiungere è sempre uguale, lo zero. Abbiamo anche scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto	riguarda i rischi che possono verificarsi nel corso del progetto.
 		
 		Gli obiettivi che si vogliono raggiungere attraverso tali metriche possono essere stabiliti solo a progetto concluso.
@@ -152,28 +152,28 @@
 
 		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} %TODO: notare se da scrivere ora tutti o solo alcuni (classi - attività -sequenza)
 
-		\paragraph{Diagrammi delle classi} %TODO
+		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi} %TODO
 		%Contenuto
 
 		\subparagraph{Semantica} %TODO
 		%Dipendenza generica, Associazione, Aggregazione..
 
 
-		\paragraph{Diagrammi di attività} %TODO
+		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività} %TODO
 		%Contenuto
 
 		\subparagraph{Semantica} %TODO
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
 
 
-		\paragraph{Diagrammi di sequenza} %TODO
+		\paragraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza} %TODO
 		%Contenuto
 
 		\subparagraph{Semantica} %TODO
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
 
 
-		\paragraph{Diagrammi dei casi d'uso}\label{DiagrammiCasiUso}
+		\paragraph{Diagrammi dei casi d'uso}\label{PP:Sviluppo:DiagrammiCasiUso}
 		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0. Essi descrivono la visione di un utente
 		esterno al sistema e non danno nessun dettaglio implementativo. I \gloss{componenti} contenuti in questo tipo di diagrammi sono:
 		\begin{itemize}
@@ -191,7 +191,7 @@
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
 
 
-		\subsubsection{Qualità della progettazione} %TODO
+		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione} %TODO
 		%Di seguito elenchiamo le linee guida da seguire per garantire una progettazione di qualità.
 
 		\paragraph{Qualità dei diagrammi delle classi} %TODO
@@ -359,7 +359,7 @@ def cheeseshop(kind, *arguments, **keywords):
 	    \subparagraph{Sistema operativo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:SistemaOperativo}
 	    Abbiamo deciso di usare, come sistema operativo, GNU/Linux, in particolare una qualsiasi distribuzione basata su Ubuntu 18.04.
 
-	    \subparagraph{IDE} % NOTE: controllare la sezione relativa a VSC sui processi di supporto
+	    \subparagraph{IDE}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:IDE} % NOTE: controllare la sezione relativa a VSC sui processi di supporto
 		Gli IDE principali scelti per lo sviluppo di codice Python sono
 		{PyCharm}\footnote{Riferirsi alla voce ``Pycharm'' in \S\ref{rifinfo}} e
 		{Visual Studio Code}\footnote{Riferirsi alla voce ``Visual Studio Code'' in \S\ref{rifinfo}}.
