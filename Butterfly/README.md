@@ -8,7 +8,7 @@ Posizione: Kafka home dir (`path/to/kafka_2.11-2.1.0/`)
 
 ### Create Topics
 Posizione: Kafka home dir
-> `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test`
+> `bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic bug`
 
 ### List all available topics
 Posizione: Kafka home dir
