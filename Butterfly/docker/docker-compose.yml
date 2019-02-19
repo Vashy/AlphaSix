@@ -2,6 +2,19 @@ version: '3.3'
 
 services:
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    hostname: jenkins
+    restart: always
+    ports: 
+      - 1500:8080
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 10m
+        max-file: "3"
+
   postgres:
     image: postgres:11-alpine
     restart: always
@@ -32,37 +45,24 @@ services:
       - 'REDMINE_DB_DATABASE=redmine'
       - 'REDMINE_DB_PASSWORD=password'
 
-#  jenkins:
-#    image: jenkins/jenkins:lts
-#    container_name: jenkins
-#    hostname: jenkins
-#    restart: always
-#    ports: 
-#      - 1500:8080
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 10m
-#        max-file: "3"
-
-#  gitlab:
-#    image: 'gitlab/gitlab-ce:latest'
-#    container_name: gitlab
-#    hostname: gitlab
-#    restart: always
-#    ports:
-#      - '1501:80'
-#      - '1502:443'
-#      - '1503:22'
-#    volumes:
-#      - '/srv/gitlab/config:/etc/gitlab'
-#      - '/srv/gitlab/logs:/var/log/gitlab'
-#      - '/srv/gitlab/data:/var/opt/gitlab'
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 10m
-#        max-file: "3"
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab
+    hostname: gitlab
+    restart: always
+    ports:
+      - '4080:80'
+      - '4443:443'
+      - '4022:22'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 10m
+        max-file: "3"
   
 #  telegram_consumer:
 #    image: telegram_consumer
