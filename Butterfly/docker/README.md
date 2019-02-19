@@ -1,54 +1,92 @@
-#  Configurazione del sistema Butterfly
+<h1>Configurazione del sistema Butterfly</h1>
+Viene fornito il file ```docker-compose.yml``` che contiene la configurazione automatica del sistema e per i servizi che vengono utilizzati dalla nostra applicazione.
+Come prerequisito è necessario avere almeno la versione 18.09 di Docker installata nel sistema.
 
-Viene fornito un file ```docker-compose.yml``` che contiene la configurazione per il sistema e per i servizi che vengono utilizzati dalla nostra applicazione.
-Per eseguirlo è necessario avere almeno la versione XX.XX.XX di Docker installata nel sistema.
+<h2>Configurazione file di log</h2>
+Per ciascun container vengono salvati file di log in formato json. Un prerequisito per poterli utilizzare è specificare il driver di logging di default e le opzioni dei log nel file ```/etc/docker/daemon.json``` copiando il seguente snippet.
 
-I file di log che vengono utilizzati sono formato json-file 
-Prima di eseguire fare configurazione per file log
+	{
+	  "log-driver": "json-file",
+	  "log-opts": {
+	    "max-size": "10m"
+	  }
+	}
+	
+In caso questo file non dovesse esistere crearlo con ```sudo touch /etc/docker/daemon.json```. Per ulteriori informazioni riferirsi alla documentazione ufficiale a [questo link](https://docs.docker.com/v17.09/engine/admin/logging/json-file/#usage).
 
-Mandare il comando all'interno della cartella in cui è presente il file:
+<h2>docker-compose</h2>
+Per far costruire automaticamente l'ambiente necessario al corretto funzionamento del sistema, eseguire il seguente comando dall'interno di questa cartella (dove è presente il file ```docker-compose.yml```):
  
  	$ docker-compose up -d ; 
+ 	
+L'opzione ```-d``` è utilizzata per effettuare il ```detach```, ovvero il processo viene eseguito in maniera headless, diventando quindi un daemon che continua la sua esecuzione in background.
+ <h2>Configurazione dei servizi</h2>
+Dopo aver eseguito il comando descritto precedentemente i servizi verranno configurati nel seguente ordine e saranno accessibili tramite le porte specificate nel file di configurazione.
  
-L'opzione ```-d``` serve per effettuare il ```detach```, ovvero il processo viene eseguito headless / daemon.
- 
-I servizi verranno configurati in questo ordine e saranno accessibili tramite i seguenti link con porte ...
- 
-* **Jenkins** : 
-Le porte esposte per Jenkins sono:  1500:8080
-Per configurare il servizio Jenkins andare all'indirizzo localhost:1500
-La password che viene richiesta si può trovare nel container nel file ...
-Per ulteriori informazioni non presenti riferirsi alla [documentazione ufficiale](https://github.com/jenkinsci/docker/blob/master/README.md).
+* **Jenkins** :
+Il binding delle porte che viene effettuato per questo servizio sono:
+
+	- *1500 : 8080* per interfacciarsi tramite HTTP
+	
+	Per poter quindi accedere ai servizi web del container sul quale viene eseguito Jenkins andare dal browse alla pagina ```IP_CONTAINER:1500/```. Verrà richiesta una password di amministrazione per poter sbloccare Jenkins e continuare quindi con la configurazione. 
+	Tale password può essere visualizzata eseguendo sul container il comando:
+	
+		$ cat /var/jenkins_home/secrets/initialAdminPassword
+	
+	Successivamente si potrà procedere con la configurazione dei plugin e utilizzare dunque il servizio. Per ulteriori informazioni riferirsi alla [documentazione ufficiale](https://github.com/jenkinsci/docker/blob/master/README.md).
 
 * **Gitlab** :
-Il servizio GitLab mette a disposizione le porte 
-    - *1501:80* per la connessione all'interfaccia web tramite http
-    - *1502:443* per la connessione all'interfaccia web tramite https
-    - *1503:22* per la connessione tramite ssh al container
-    
-	Per la prima autenticazione utilizzare ... E' possibile accedere al servizio tramite le credenziali admin admin che verrà subito chiesto di essere cambiate.
-Per ulteriori informazioni non presenti riferirsi alla [documentazione ufficiale](https://docs.gitlab.com/omnibus/docker/).
+Il binding delle porte che viene effettuato per questo servizio sono:
+    - *4080 : 80* per interfacciarsi tramite HTTP
+    - *4443 : 443* per interfacciarsi tramite HTTPS
+    - *4022 : 22* per interfacciarsi tramite SSH
+
+    Per poter quindi accedere ai servizi web del container sul quale viene eseguito GitLab andare dal browse alla pagina ```IP_CONTAINER:4080/``` oppure ```IP_CONTAINER:4443/```.
+	Per la prima autenticazione utilizzare le credenziali 
+		
+		username: root 
+		password: root
+Per motivi di sicurezza, dopo aver eseguito il login, verrà richiesto che queste siano cambiate. Successivamente si potrà accedere in maniera completa ai servizi offerti da GitLab.
+Per ulteriori informazioni riferirsi alla [documentazione ufficiale](https://docs.gitlab.com/omnibus/docker/).
 
 * **Postgres** :
+
 * **Redmine** :
-All'interno della cartella docker/plugins/redmine è presente il plugin ... di redmine per i webhook
-Per ulteriori informazioni non presenti riferirsi alla [documentazione ufficiale](https://github.com/suer/redmine_webhook).
+Il binding delle porte che viene effettuato per questo servizio sono:
+	- 3000 : 3000  per interfacciarsi tramite HTTP
+	
+	Per la prima autenticazione utilizzare le credenziali 
+		
+		username: admin 
+		password: admin
+	Come per GitLab, per motivi di sicurezza, dopo aver eseguito il login, verrà richiesto che queste siano cambiate. Successivamente si potrà accedere in maniera completa ai servizi offerti da Redmine.
+	All'interno della cartella ```docker/plugins/redmine``` è presente il plugin **Redmine WebHook Plugin** per poter utilizzare il servizio di notifica tramite webhook all'accadere di eventi come ad esempio creazione o modifica di issue. Dopo che il container viene creato si può utilizzare questo plugin senza aver bisogno di effettuare ulteriori comandi di  configurazioni.
+Per ulteriori informazioni relativi all'istanza di Redmine su Docker riferirsi alla [documentazione ufficiale](https://hub.docker.com/_/redmine).
+Per ulteriori informazioni relativi al plugin Redmine WebHook Plugin riferirsi alla [documentazione ufficiale](https://github.com/suer/redmine_webhook).
 
 * **Producer Gitlab** :
+Per ulteriori informazioni sul Producer GitLab fare riferimento al file [README.md](../producer/gitlab) presente nella cartella apposita. 
+
+* **Producer Redmine** :
+Per ulteriori informazioni sul Producer Redmine fare riferimento al file [README.md](../producer/redmine) presente nella cartella apposita. 
+
+* **Consumer e-mail** :
+Per ulteriori informazioni sul Consumer e-mail fare riferimento al file [README.md](../consumer/redmine) presente nella cartella apposita. 
 
 * **Consumer Telegram** :
-Serve per le interazioni con il bot di telegram online che si chiama ... 
-Il consumer Telegram fatto da noi da la possibilità di bla ..
-E' possibile vedere i log dei messaggi inviati
+Per ulteriori informazioni sul Consumer Telegram fare riferimento al file [README.md](../consumer/telegram) presente nella cartella apposita. 
 
 * **Apache kafka** :
+Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
  
- 
- 
+ <h2>Visualizzazione dei file di log</h2>
 Per ciascun container, i file di log sono disponibili nella cartella  ```/var/lib/docker/containers/ID_CONTAINER``` e sono di tipo ```*-json.log```.
 	
 	$ docker inspect --format='{{.LogPath}}' NOME_CONTAINER / ID_CONTAINER ; 
 	
 	/var/lib/docker/containers/[container-id]/[container-id]-json.log
 	
-Per facilitare la gestione dei container è possibile utilizzare un programma free di terze parti chiamato dockerhost
+Sono inoltre presenti nella cartella plugins i vari file necessari per l'aggiunta dei plugin ai container	
+
+<h2>Strumenti di terze parti</h2>
+Per facilitare la gestione dei container e velocizzare il modo di interfacciarsi con questi è stato utilizzato un software di terze parti chiamato [*DockStation*](https://dockstation.io/).
