@@ -63,14 +63,82 @@ services:
       options:
         max-size: 10m
         max-file: "3"
-  
-#  telegram_consumer:
-#    image: telegram_consumer
-#    container_name: telegram_consumer
-#    hostname: telegram_consumer
+
+#  apache_kafka:
+#    image: apache_kafka
+#    container_name: apache_kafka
+#    hostname: apache_kafka
 #    build:
-#      context: ../BotTelegram
-#      dockerfile: ../BotTelegram/Dockerfile
+#      context: ../kafka
+#      dockerfile: ../kafka/Dockerfile
+#    ports:
+#      - 5000:5000
+#    stdin_open: true
+#    tty: true
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: 10m
+#        max-file: "3"
+
+#  producer_gitlab:
+#    image: producer_gitlab
+#    container_name: producer_gitlab
+#    hostname: producer_gitlab
+#    build:
+#      context: ../producer/gitlab
+#      dockerfile: ../producer/gitlab/Dockerfile
+#    ports:
+#      - 5000:5000
+#    stdin_open: true
+#    tty: true
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: 10m
+#        max-file: "3"
+
+#  producer_redmine:
+#    image: producer_redmine
+#    container_name: producer_redmine
+#    hostname: producer_redmine
+#    build:
+#      context: ../producer/redmine
+#      dockerfile: ../producer/redmine/Dockerfile
+#    ports:
+#      - 5000:5000
+#    stdin_open: true
+#    tty: true
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: 10m
+#        max-file: "3"
+
+#  consumer_email:
+#    image: consumer_email
+#    container_name: consumer_email
+#    hostname: consumer_email
+#    build:
+#      context: ../consumer/email
+#      dockerfile: ../consumer/email/Dockerfile
+#    ports:
+#      - 5000:5000
+#    stdin_open: true
+#    tty: true
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: 10m
+#        max-file: "3"
+
+#  consumer_telegram:
+#    image: consumer_telegram
+#    container_name: consumer_telegram
+#    hostname: consumer_telegram
+#    build:
+#      context: ../consumer/telegram
+#      dockerfile: ../consumer/telegram/Dockerfile
 #    ports:
 #      - 5000:5000
 #    stdin_open: true
