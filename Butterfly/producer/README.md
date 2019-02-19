@@ -5,15 +5,17 @@ eventualmente un [Consumer](https://github.com/Vashy/AlphaSix/tree/develop/Butte
 
 Per mandare uno o più messaggi da linea di comando su Kafka in un topic specifico, posizionarsi nella cartella `Butterfly/` e dare il comando:
 
-    $ python3 -m producer.ConsoleProducer -t nometopic msg1 msg2 "messaggio numero 3"
+    $ python3 -m producer.ConsoleProducer -t nometopic msg1 msg2 "messaggio numero 3" ...
 
-Verranno passati su Kafka 3 messaggi, tutti al topic *nometopic*. Usare preferibilmente i topic `enhancement`, `bug` o `wontfix`, che sono i 3 definiti nel json
+Nell'esempio sopra, verranno passati su Kafka 3 messaggi, tutti al topic *nometopic*. Usare preferibilmente i topic `enhancement`, `bug` o `wontfix`, che sono i 3 definiti nel json
 di configurazione dei Consumer.
 
 I messaggi mandati sono:
 * msg1
 * msg2
 * messaggio numero 3
+
+È possibile passare un numero arbitrario di argomenti, per ognuno di essi verrà generato su Kafka un messaggio diverso sul Topic specificato.
 
 La flag `-t` è opzionale, se omessa verrà usato un topic di default.
 
