@@ -22,9 +22,11 @@ I dati di Kafka, attualmente, non vengono salvati tra una sessione e l'altra (to
 
 ### Riferimenti
 
-* Avviare il TelegramConsumer:
+* Avviare il TelegramConsumer:  
+https://github.com/Vashy/AlphaSix/blob/b6f3a176088e3b822261c5f0381d26017d351463/Butterfly/consumer/README.md
 
-* Lanciare un Producer:
+* Lanciare un Producer:  
+https://github.com/Vashy/AlphaSix/blob/b6f3a176088e3b822261c5f0381d26017d351463/Butterfly/producer/README.md
 
 
 <!-- ### Starting Zookeeper
@@ -83,4 +85,4 @@ Posizione: `Butterfly/`
 ### Run the Python GLProducer
 
 Posizione: `Butterfly/`
-> `python3 -m path.to.GLProducer -t nometopic` --> -->
+> `python3 -m path.to.GLProducer -t nometopic` -->

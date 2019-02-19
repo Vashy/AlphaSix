@@ -1,6 +1,7 @@
 ### ConsoleProducer
 
-Prima di lanciare un Producer, dovresti configurare l'ambiente Kafka ed eventualmente un Consumer.
+Prima di lanciare un Producer, dovresti configurare l'[ambiente Kafka](https://github.com/Vashy/AlphaSix/blob/e946305cef4878bb99da314acd95e61ffbdddee0/Butterfly/README.md) ed
+eventualmente un [Consumer](https://github.com/Vashy/AlphaSix/blob/b6f3a176088e3b822261c5f0381d26017d351463/Butterfly/consumer/README.md).
 
 Per mandare uno o più messaggi da linea di comando su Kafka in un topic specifico, posizionarsi nella cartella `Butterfly/` e dare il comando:
 
@@ -14,8 +15,13 @@ I messaggi mandati sono:
 * msg2
 * messaggio numero 3
 
+La flag `-t` è opzionale, se omessa verrà usato un topic di default.
+
+
+### GLProducer
+
 Per mandare un messaggio come Webhook di GitLab (attualmente il file `webhook.json` contenuto in `webhook/`), dare il comando
 
     $ python3 -m producer.GLProducer -t nometopic
 
-La flag `-t` è opzionale per entrambi i comandi, se omessa verrà usato un topic di default.
+La flag `-t` è opzionale, se omessa verrà usato un topic di default.
