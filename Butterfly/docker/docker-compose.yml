@@ -12,7 +12,7 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: 10m
+        max-size: 500k
         max-file: "3"
 
   postgres:
@@ -25,6 +25,11 @@ services:
     environment:
       - 'POSTGRES_PASSWORD=password'
       - 'POSTGRES_DB=redmine'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
 
   redmine:
     image: redmine:3
@@ -44,6 +49,11 @@ services:
       - 'REDMINE_DB_POSTGRES=postgres'
       - 'REDMINE_DB_DATABASE=redmine'
       - 'REDMINE_DB_PASSWORD=password'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
 
   gitlab:
     image: 'gitlab/gitlab-ce:latest'
@@ -61,7 +71,7 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: 10m
+        max-size: 500k
         max-file: "3"
 
 #  apache_kafka:
@@ -78,7 +88,7 @@ services:
 #    logging:
 #      driver: "json-file"
 #      options:
-#        max-size: 10m
+#        max-size: 500k
 #        max-file: "3"
 
 #  producer_gitlab:
@@ -95,7 +105,7 @@ services:
 #    logging:
 #      driver: "json-file"
 #      options:
-#        max-size: 10m
+#        max-size: 500k
 #        max-file: "3"
 
 #  producer_redmine:
@@ -112,7 +122,7 @@ services:
 #    logging:
 #      driver: "json-file"
 #      options:
-#        max-size: 10m
+#        max-size: 500k
 #        max-file: "3"
 
 #  consumer_email:
@@ -129,25 +139,25 @@ services:
 #    logging:
 #      driver: "json-file"
 #      options:
-#        max-size: 10m
+#        max-size: 500k
 #        max-file: "3"
 
-#  consumer_telegram:
-#    image: consumer_telegram
-#    container_name: consumer_telegram
-#    hostname: consumer_telegram
-#    build:
-#      context: ../consumer/telegram
-#      dockerfile: ../consumer/telegram/Dockerfile
-#    ports:
-#      - 5000:5000
-#    stdin_open: true
-#    tty: true
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 10m
-#        max-file: "3"
+  consumer_telegram:
+    image: consumer_telegram
+    container_name: consumer_telegram
+    hostname: consumer_telegram
+    build:
+      context: ../consumer/telegram
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
 
 volumes:
   postgres-data:
