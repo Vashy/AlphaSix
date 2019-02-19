@@ -1,4 +1,33 @@
-### Starting Zookeeper
+# Configurazione dell'ambiente Kafka
+
+## Avvio server Zookeeper
+
+Posizionarsi nella homedir di Kafka, e dare il comando
+
+    $ bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Lasciare il processo attivo in foreground su quell'istanza del terminale.  
+
+## Avvio server Kafka
+
+Sempre all'interno della homedir di Kafka, dare il comando
+
+    $ bin/kafka-server-start.sh config/server.properties
+
+Lasciare anche questo processo attivo in foreground. L'ambiente di Kafka dovrebbe essere ora correttamente configurato.
+
+### Nota a margine
+
+I dati di Kafka, attualmente, non vengono salvati tra una sessione e l'altra (topic, messaggi, etc...).
+
+### Riferimenti
+
+* Avviare il TelegramConsumer:
+
+* Lanciare un Producer:
+
+
+<!-- ### Starting Zookeeper
 Posizione: Kafka home dir (e.g. `path/to/kafka_2.11-2.1.0/`)
 > `bin/zookeeper-server-start.sh config/zookeeper.properties`
 
@@ -44,7 +73,7 @@ Posizione: Kafka home dir
 <!-- ### Run the Consumer, list messages from beginning
 Posizione: Kafka home dir
 > `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning`   -->
-
+<!-- 
 ### Run the Python WebhookConsumer
 Si mette in ascolto dei messaggi generati da WebhookProducer.  
 Posizione: `Butterfly/`
@@ -54,4 +83,4 @@ Posizione: `Butterfly/`
 ### Run the Python GLProducer
 
 Posizione: `Butterfly/`
-> `python3 -m path.to.GLProducer -t nometopic`
+> `python3 -m path.to.GLProducer -t nometopic` --> -->

@@ -88,7 +88,8 @@ def main():
     - topics['label']
     - topics['project']
     """
-    with open(Path(__file__).parent.parent / 'topics.json') as f:
+
+    with open(Path(__file__).parents[1] / 'topics.json') as f:
         topics = json.load(f)
 
     # Istanzia il Producer

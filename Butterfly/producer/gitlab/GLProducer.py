@@ -38,10 +38,10 @@ import kafka.errors
 import json
 from pathlib import Path
 from producer.producer import Producer
-from webhook.webhook import GLIssueWebhook
+from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 
-class WebhookProducer(Producer):
+class GLProducer(Producer):
     def __init__(self, config):
         self._producer = KafkaProducer(
             # Serializza l'oggetto Python in un oggetto JSON, codifica UTF-8
@@ -49,7 +49,7 @@ class WebhookProducer(Producer):
             **config
         )
 
-    def __del__(self):
+    def __del__(self): # Utile?
         self.close()
 
 
@@ -89,7 +89,7 @@ class WebhookProducer(Producer):
 def main():
 
     # Configurazione da config.json
-    with open(Path(__file__).parent / 'config.json') as f:
+    with open(Path(__file__).parents[1] / 'config.json') as f:
         config = json.load(f)
 
     """Fetch dei topic dal file topics.json
@@ -98,11 +98,11 @@ def main():
     - topics['label']
     - topics['project']
     """
-    with open(Path(__file__).parent.parent / 'topics.json') as f:
+    with open(Path(__file__).parents[2] / 'topics.json') as f:
         topics = json.load(f)
 
     # Istanzia il Producer
-    producer = WebhookProducer(config)
+    producer = GLProducer(config)
 
     # Parsing dei parametri da linea di comando
     parser = argparse.ArgumentParser(description='Crea messaggi su Kafka')
@@ -110,14 +110,11 @@ def main():
                         help='topic di destinazione')
     args = parser.parse_args()
 
-    # Produce i messaggi nel topic passato come argomento
-
-
     # Inizializza il GLIssueWebhook con il path a webhook.json
-    webhook = GLIssueWebhook(Path(__file__).parent.parent / 'webhook/webhook.json')
-    if args.topic:
+    webhook = GLIssueWebhook(Path(__file__).parents[2] / 'webhook/webhook.json')
+    if args.topic: # Topic passato con la flag -t
         producer.produce(args.topic, webhook)
-    else:
+    else: # Prende come Topic di default il primo del file webhook.json
         producer.produce(topics[0]['label'], webhook)
 
 

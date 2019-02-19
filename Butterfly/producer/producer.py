@@ -1,6 +1,6 @@
 """
-File: consumer.py
-Data creazione: 2019-02-13
+File: Producer.py
+Data creazione: 2019-02-12
 
 <descrizione>
 
@@ -28,17 +28,13 @@ Autori:
     ....
 """
 
-# from kafka import KafkaConsumer
-# import kafka.errors
-from abc import ABC, abstractmethod
-# import json
-# from pathlib import Path
 
-class Consumer(ABC):
-    """Interfaccia Consumer"""
+from abc import ABC, abstractmethod
+
+class Producer(ABC):
+    """Interfaccia Producer"""
 
     @abstractmethod
-    def listen(self):
-        """Resta in ascolto del Broker"""
+    def produce(self, topic, msg):
+        """Produce il messaggio `msg` nel Topic designato del Broker"""
         pass
-

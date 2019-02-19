@@ -59,6 +59,8 @@ class ConsoleConsumer(Consumer):
 
         self._consumer = KafkaConsumer(*topics, **configs)
 
+    def send(self, msg: str):
+        pass
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il consumer è
