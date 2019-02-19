@@ -8,5 +8,8 @@
     "telegram" : {
         "token_bot": "767404683:AAF6Fo4LP7wDWYmEbIRQ37KTX5GECMoTziA",
         "receiver": "38883960"
+    },
+    "email" : {
+        "receiver": "alpha.six.unipd@gmail.com"
     }
 }
