@@ -1,8 +1,8 @@
-#Configurazione del sistema Butterfly
+# Configurazione del sistema Butterfly
 Viene fornito il file `docker-compose.yml` che contiene la configurazione automatica del sistema e per i servizi che vengono utilizzati dalla nostra applicazione.<br>
 Come prerequisito è necessario avere almeno la versione 18.09 di Docker installata nel sistema.
 
-##Configurazione file di log
+## Configurazione file di log
 Per ciascun container vengono salvati file di log in formato json. Un prerequisito per poterli utilizzare è specificare il driver di logging di default e le opzioni dei log nel file `/etc/docker/daemon.json` copiando il seguente snippet.
 
 	{
@@ -15,14 +15,14 @@ Per ciascun container vengono salvati file di log in formato json. Un prerequisi
 In caso questo file non dovesse esistere crearlo con `sudo touch /etc/docker/daemon.json`. <br>
 Per ulteriori informazioni riferirsi alla documentazione ufficiale a [questo link](https://docs.docker.com/v17.09/engine/admin/logging/json-file/#usage).
 
-##docker-compose
+## docker-compose
 Per far costruire automaticamente l'ambiente necessario al corretto funzionamento del sistema, eseguire il seguente comando dall'interno di questa cartella (dove è presente il file `docker-compose.yml`):
  
  	$ docker-compose up -d ; 
  	
 L'opzione `-d` è utilizzata per effettuare il `detach`, ovvero il processo viene eseguito in maniera headless, diventando quindi un daemon che continua la sua esecuzione in background.
 
-##Configurazione dei servizi
+## Configurazione dei servizi
 Dopo aver eseguito il comando descritto precedentemente i servizi verranno configurati nel seguente ordine e saranno accessibili tramite le porte specificate nel file di configurazione.
  
 * **Jenkins** :
@@ -83,7 +83,7 @@ Per ulteriori informazioni sul Consumer Telegram fare riferimento al file [READM
 * **Apache kafka** :
 Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
  
-##Visualizzazione dei file di log
+## Visualizzazione dei file di log
 Per ciascun container, i file di log sono disponibili nella cartella  `/var/lib/docker/containers/ID_CONTAINER` e sono di tipo `*-json.log`.
 	
 	$ docker inspect --format='{{.LogPath}}' NOME_CONTAINER / ID_CONTAINER ; 
@@ -94,5 +94,5 @@ aa
 	
 Sono inoltre presenti nella cartella plugins i vari file necessari per l'aggiunta dei plugin ai container	
 
-##Strumenti di terze parti
+## Strumenti di terze parti
 Per facilitare la gestione dei container e velocizzare il modo di interfacciarsi con questi è stato utilizzato un software di terze parti chiamato [*DockStation*](https://dockstation.io/).
