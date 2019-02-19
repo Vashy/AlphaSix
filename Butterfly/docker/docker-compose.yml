@@ -1,9 +1,9 @@
-version: '3'
+version: '3.3'
 
 services:
 
   postgres:
-    image: postgres:latest
+    image: postgres:11-alpine
     restart: always
     container_name: postgres_redmine
     hostname: postgres_redmine
@@ -14,16 +14,20 @@ services:
       - 'POSTGRES_DB=redmine'
 
   redmine:
-    image: redmine:latest
+    image: redmine:3
     restart: always
     container_name: redmine
     hostname: redmine
     volumes:
-      - ./plugins:/usr/src/redmine/plugins
+      - ./plugins/redmine:/usr/src/redmine/plugins
       - redmine-data:/usr/src/redmine/files
     ports:
       - 3000:3000
+    depends_on:
+      - postgres
     environment:
+      - 'REDMINE_PLUGINS_MIGRATE=true'
+      - 'REDMINE_HTTPS=false'
       - 'REDMINE_DB_POSTGRES=postgres'
       - 'REDMINE_DB_DATABASE=redmine'
       - 'REDMINE_DB_PASSWORD=password'
@@ -41,24 +45,24 @@ services:
 #        max-size: 10m
 #        max-file: "3"
 
-  gitlab:
-    image: 'gitlab/gitlab-ce:latest'
-    container_name: gitlab
-    hostname: gitlab
-    restart: always
-    ports:
-      - '1501:80'
-      - '1502:443'
-      - '1503:22'
-    volumes:
-      - '/srv/gitlab/config:/etc/gitlab'
-      - '/srv/gitlab/logs:/var/log/gitlab'
-      - '/srv/gitlab/data:/var/opt/gitlab'
-    logging:
-      driver: "json-file"
-      options:
-        max-size: 10m
-        max-file: "3"
+#  gitlab:
+#    image: 'gitlab/gitlab-ce:latest'
+#    container_name: gitlab
+#    hostname: gitlab
+#    restart: always
+#    ports:
+#      - '1501:80'
+#      - '1502:443'
+#      - '1503:22'
+#    volumes:
+#      - '/srv/gitlab/config:/etc/gitlab'
+#      - '/srv/gitlab/logs:/var/log/gitlab'
+#      - '/srv/gitlab/data:/var/opt/gitlab'
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: 10m
+#        max-file: "3"
   
 #  telegram_consumer:
 #    image: telegram_consumer
