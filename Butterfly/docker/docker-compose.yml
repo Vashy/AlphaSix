@@ -142,6 +142,25 @@ services:
 #        max-size: 500k
 #        max-file: "3"
 
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    container_name: kafka_zookeper
+    hostname: kafka_zookeper
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    image: 'bitnami/kafka:latest'
+    container_name: kafka
+    hostname: kafka
+    ports:
+      - '9092:9092'
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
   consumer_telegram:
     image: consumer_telegram
     container_name: consumer_telegram
