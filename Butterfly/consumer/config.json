@@ -7,7 +7,7 @@
     },
     "telegram" : {
         "token_bot": "767404683:AAF6Fo4LP7wDWYmEbIRQ37KTX5GECMoTziA",
-        "receiver": "279916459"
+        "receiver": "38883960"
     },
     "email" : {
         "receiver": "prova@prova.it",
@@ -15,6 +15,6 @@
     },
     "emailSettings": {
         "sender": "alpha.six.unipd@gmail.com",
-        "pwd": "alfa6swe"
+        "pwd": "7ef989497ef040318894f580e9b9bf5ac0a32e07ac04c545dd3983932f426749:7d66ef6b24074b819712bffd5fd45400"
     }
 }
