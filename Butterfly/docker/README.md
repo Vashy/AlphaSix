@@ -15,6 +15,11 @@ Per ciascun container vengono salvati file di log in formato json. Un prerequisi
 In caso questo file non dovesse esistere crearlo con `sudo touch /etc/docker/daemon.json`. <br>
 Per ulteriori informazioni riferirsi alla documentazione ufficiale a [questo link](https://docs.docker.com/v17.09/engine/admin/logging/json-file/#usage).
 
+## Dockerfile
+Per costruire le immagini necessarie per ciascun servizio creato da noi eseguire i comandi dall'interno della cartella Butterfly:
+
+	docker build --no-cache --tag consumer_telegram -f consumer/telegram/Dockerfile .
+
 ## docker-compose
 Per far costruire automaticamente l'ambiente necessario al corretto funzionamento del sistema, eseguire il seguente comando dall'interno di questa cartella (dove è presente il file `docker-compose.yml`):
  
