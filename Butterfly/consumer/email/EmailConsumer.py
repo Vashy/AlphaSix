@@ -35,10 +35,10 @@ from kafka import KafkaConsumer
 import kafka.errors
 from abc import ABC, abstractmethod
 import json
-import smtplib
-
-import getpass
 from pathlib import Path
+
+import smtplib
+import getpass
 
 from consumer.consumer import Consumer
 import webhook.webhook as GLIssueWebhook
@@ -96,10 +96,10 @@ class EmailConsumer(Consumer):
 
                 # Interruzione da parte dell'utente della task
                 except KeyboardInterrupt:
-                    print('\nEmail non inviata. In ascolto di altri messaggi ...')
+                    print('\nInvio email annullato. In ascolto di altri messaggi ...')
                     return
 
-            text = '\r\n'.join([
+            text = '\n'.join([
                 'From: ' + self._sender,
                 'To: ' + self._receiver,
                 'Subject: ' + self._subject,
@@ -113,8 +113,6 @@ class EmailConsumer(Consumer):
                 print('\nEmail inviata. In ascolto di altri messaggi ...')
             except smtplib.SMTPException:
                 print('Errore, email non inviata. In ascolto di altri messaggi ...')
-        # finally:
-        #     mailserver.close()
 
 
     def listen(self):
