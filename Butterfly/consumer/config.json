@@ -7,9 +7,14 @@
     },
     "telegram" : {
         "token_bot": "767404683:AAF6Fo4LP7wDWYmEbIRQ37KTX5GECMoTziA",
-        "receiver": "38883960"
+        "receiver": "279916459"
     },
     "email" : {
-        "receiver": "alpha.six.unipd@gmail.com"
+        "receiver": "prova@prova.it",
+        "subject": "Butterfly"
+    },
+    "emailSettings": {
+        "sender": "alpha.six.unipd@gmail.com",
+        "pwd": "alfa6swe"
     }
 }
