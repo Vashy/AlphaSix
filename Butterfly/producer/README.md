@@ -24,6 +24,6 @@ La flag `-t` è opzionale, se omessa verrà usato un topic di default.
 
 Per mandare un messaggio come Webhook di GitLab (attualmente il file `webhook.json` contenuto in `webhook/`), dare il comando
 
-    $ python3 -m producer.GLProducer -t nometopic
+    $ python3 -m producer.gitlab.GLProducer -t nometopic
 
 La flag `-t` è opzionale, se omessa verrà usato un topic di default.

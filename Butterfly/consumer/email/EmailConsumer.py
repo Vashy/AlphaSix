@@ -36,9 +36,11 @@ import kafka.errors
 from abc import ABC, abstractmethod
 import json
 import smtplib
+import getpass
 from pathlib import Path
 from consumer.consumer import Consumer
 import webhook.webhook as GLIssueWebhook
+
 
 class EmailConsumer(Consumer):
     """Implementa Consumer"""
@@ -47,7 +49,7 @@ class EmailConsumer(Consumer):
         self._receiver = configs['email']['receiver']
         self._subject = configs['email']['subject']
         self._sender = configs['emailSettings']['sender']
-        self._pwd = configs['emailSettings']['pwd']
+        # self._pwd = configs['emailSettings']['pwd']
         self._topics = topics
 
         configs = configs['kafka']
@@ -75,23 +77,42 @@ class EmailConsumer(Consumer):
         mailserver = smtplib.SMTP('smtp.gmail.com', 587)
         mailserver.ehlo()
         mailserver.starttls()
-        mailserver.login(self._sender, self._pwd)
+
+        # Autenticazione
+        while True:
+            try:
+                # Prompt per l'inserimento della psw
+                psw = getpass.getpass('\nInserisci la password '
+                    f'di {self._sender}: ')
+
+                mailserver.login(self._sender, psw) # Login al server SMTP
+                break # Login riuscito, e Filè incacchiato
+
+            # Errore di autenticazione, riprova
+            except smtplib.SMTPAuthenticationError:
+                print('Email e password non corrispondono.')
+
+            # Interruzione da parte dell'utente della task
+            except KeyboardInterrupt:
+                print('\nEmail non inviata. In ascolto di altri messaggi ...')
+                return
 
         text = '\r\n'.join([
             'From: ' + self._sender,
             'To: ' + self._receiver,
             'Subject: ' + self._subject,
             '',
-            ' ',msg
+            ' ',
+            msg,
         ])
 
-        try:
+        try: # Tenta di inviare la mail
             mailserver.sendmail(self._sender, self._receiver, text)
+            print('\nEmail inviata. In ascolto di altri messaggi ...')
         except smtplib.SMTPException:
-            print('Errore, email non inviata')
+            print('Errore, email non inviata. In ascolto di altri messaggi ...')
         finally:
             mailserver.close()
-        print('Email inviata')
 
 
     def listen(self):
@@ -107,6 +128,7 @@ class EmailConsumer(Consumer):
             print(f'- {topic}')
         print()
 
+        # Si mette in ascolto dei messsaggi dal Broker
         for message in self._consumer:
             print(f'Tipo messaggio: {type(message.value)}')
 
@@ -124,7 +146,7 @@ class EmailConsumer(Consumer):
                     value,
             )
 
-            # Invia la richiesta post per l'invio del messaggio
+            # Invia la richiesta per l'invio della mail
             self.send(final_msg)
 
             print() # Per spaziare i messaggi sulla shell
@@ -140,11 +162,11 @@ class EmailConsumer(Consumer):
 
         return "".join(
             [
-                f'Type: \t\t{obj["object_kind"]}',
-                f'\nTitle: \t\t{obj["title"]}',
-                f'\nProject ID: \t{obj["project"]["id"]}',
-                f'\nProject name: \t{obj["project"]["name"]}',
-                f'\nAction: \t{obj["action"]}\n ... ',
+                f'Type: {obj["object_kind"]}',
+                f'\nTitle: {obj["title"]}',
+                f'\nProject ID: {obj["project"]["id"]}',
+                f'\nProject name: {obj["project"]["name"]}',
+                f'\nAction: {obj["action"]}\n ... ',
             ]
         )
 
