@@ -7,10 +7,10 @@
     },
     "telegram" : {
         "token_bot": "767404683:AAF6Fo4LP7wDWYmEbIRQ37KTX5GECMoTziA",
-        "receiver": "279916459"
+        "receiver": "265266555"
     },
     "email" : {
-        "receiver": "prova@prova.it",
+        "receiver": "lauracameran@gmail.com",
         "subject": "Butterfly"
     },
     "emailSettings": {

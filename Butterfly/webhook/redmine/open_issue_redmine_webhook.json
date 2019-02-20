@@ -39,19 +39,19 @@
       },
       "author": {
         "id": 1,
-        "login": "admin",
-        "mail": "admin@example.net",
-        "firstname": "Redmine",
-        "lastname": "Admin",
+        "login": "alphasix",
+        "mail": "alpha.six.unipd@gmail.com",
+        "firstname": "AlphaSix",
+        "lastname": "AlphaSix",
         "identity_url": null,
         "icon_url": "//www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&size=50"
       },
       "assignee": {
         "id": 1,
-        "login": "admin",
-        "mail": "admin@example.net",
-        "firstname": "Redmine",
-        "lastname": "Admin",
+        "login": "alphasix",
+        "mail": "alpha.six.unipd@gmail.com",
+        "firstname": "AlphaSix",
+        "lastname": "AlphaSix",
         "identity_url": null,
         "icon_url": "//www.gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?rating=PG&size=50"
       },
