@@ -3,7 +3,7 @@ Viene fornito il file `docker-compose.yml` che contiene la configurazione automa
 Come prerequisito è necessario avere almeno la versione 18.09 di Docker installata nel sistema.
 
 ## Configurazione file di log
-Per ciascun container vengono salvati file di log in formato json. Un prerequisito per poterli utilizzare è specificare il driver di logging di default e le opzioni dei log nel file `/etc/docker/daemon.json` copiando il seguente snippet.
+Per ciascun container vengono salvati file di log in formato json. Un prerequisito per poterli utilizzare è specificare il driver di logging di default e le opzioni dei log nel file `/etc/docker/daemon.json` copiando il seguente snippet:
 
 	{
 	  "log-driver": "json-file",
@@ -18,7 +18,15 @@ Per ulteriori informazioni riferirsi alla documentazione ufficiale a [questo lin
 ## Dockerfile
 Per costruire le immagini necessarie per ciascun servizio creato da noi eseguire i comandi dall'interno della cartella Butterfly:
 
-	docker build --no-cache --tag consumer_telegram -f consumer/telegram/Dockerfile .
+	$ docker build --no-cache --tag consumer_telegram -f path/to/Dockerfile .
+Il path relativo a ciacun Dockerfile è quello relativo al servizio di cui si vuole creare l'immagine. Per i **producer**:
+	
+	$ docker build --no-cache --tag consumer_telegram -f producer/redmine/Dockerfile . ;
+	$ docker build --no-cache --tag consumer_telegram -f producer/gitlab/Dockerfile . ;
+Per i **consumer**:
+	
+	$ docker build --no-cache --tag consumer_telegram -f consumer/email/Dockerfile . ;
+	$ docker build --no-cache --tag consumer_telegram -f consumer/telegram/Dockerfile . ;
 
 ## docker-compose
 Per far costruire automaticamente l'ambiente necessario al corretto funzionamento del sistema, eseguire il seguente comando dall'interno di questa cartella (dove è presente il file `docker-compose.yml`):

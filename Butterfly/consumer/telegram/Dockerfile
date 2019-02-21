@@ -7,6 +7,7 @@ EXPOSE 5000
 # Copying files from the correct folders
 COPY /consumer/telegram/TelegramConsumer.py ./Butterfly/consumer/telegram/
 COPY /consumer/telegram/requirements.txt ./Butterfly/consumer/telegram/
+COPY /consumer/telegram/__init__.py ./Butterfly/consumer/telegram/
 COPY /consumer/consumer.py ./Butterfly/consumer/
 COPY /consumer/config.json ./Butterfly/consumer/
 COPY /webhook/webhook.py ./Butterfly/webhook/

@@ -51,8 +51,8 @@ class RedmineProducer(Producer):
             **config
         )
 
-    def __del__(self):  # DISTRUTTORE
-        self.close()
+    #def __del__(self):  # DISTRUTTORE
+    #    self.close()
 
     @property
     def producer(self):
@@ -81,9 +81,9 @@ class RedmineProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-    def close(self):
-        """Rilascia il Producer associato"""
-        self._producer.close()
+    #def close(self):
+    #    """Rilascia il Producer associato"""
+    #    self._producer.close()
 
 
 def main():
