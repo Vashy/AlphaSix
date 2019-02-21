@@ -245,3 +245,6 @@ TSWLatexianTemp*
 
 # Python
 __pycache__/
+
+# NetBeans
+/Butterfly/webinterface/frontend/nbproject/
