@@ -99,6 +99,10 @@ Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare rife
 * **Apache kafka** :
 TODO
 Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
+
+* **Gestore personale**
+TODO
+Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
  
 ## Visualizzazione dei file di log
 COMPLETARE

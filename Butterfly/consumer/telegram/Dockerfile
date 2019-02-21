@@ -14,7 +14,7 @@ COPY /webhook/webhook.py ./Butterfly/webhook/
 COPY topics.json ./Butterfly/
  
 # Change current directory
-WORKDIR Butterfly
+WORKDIR /Butterfly
 
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r consumer/telegram/requirements.txt
