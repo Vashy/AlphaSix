@@ -36,7 +36,9 @@ import json
 import requests
 from pathlib import Path
 from consumer.consumer import Consumer
-import webhook.webhook as GLIssueWebhook
+#import webhook.webhook as GLIssueWebhook
+#from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
+
 
 class TelegramConsumer(Consumer):
     """Implementa Consumer"""
@@ -186,6 +188,7 @@ class TelegramConsumer(Consumer):
         obj -- JSON object
         """
 
+        # FIXME: Va bene solo per Gitlab!
         return "".join(
             [
                 f'*Type*: \t\t{obj["object_kind"]}',
