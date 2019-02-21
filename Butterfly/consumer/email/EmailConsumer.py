@@ -41,7 +41,7 @@ import smtplib
 import getpass
 
 from consumer.consumer import Consumer
-import webhook.webhook as GLIssueWebhook
+# import webhook.webhook as GLIssueWebhook
 
 
 class EmailConsumer(Consumer):
@@ -87,7 +87,7 @@ class EmailConsumer(Consumer):
                     psw = getpass.getpass('\nInserisci la password '
                         f'di {self._sender}: ')
 
-                    mailserver.login(self._sender, psw) # Login al server SMTP
+                    mailserver.login(self._sender, psw)  # Login al server SMTP
                     break # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova
@@ -108,12 +108,11 @@ class EmailConsumer(Consumer):
                 msg,
             ])
 
-            try: # Tenta di inviare la mail
+            try:  # Tenta di inviare la mail
                 mailserver.sendmail(self._sender, self._receiver, text)
                 print('\nEmail inviata. In ascolto di altri messaggi ...')
             except smtplib.SMTPException:
                 print('Errore, email non inviata. In ascolto di altri messaggi ...')
-
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
@@ -138,19 +137,21 @@ class EmailConsumer(Consumer):
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
 
-            final_msg = '{}:{}:{}:\tkey={}\n{}'.format(
-                    message.topic,
-                    message.partition,
-                    message.offset,
-                    message.key,
-                    value,
+            final_msg = '{}{}{}Key: {}\n{}{}'.format(
+                'Topic: ',
+                message.topic,
+                # message.partition,
+                # message.offset,
+                '\n\n',
+                message.key,
+                '\n',
+                value,
             )
 
             # Invia la richiesta per l'invio della mail
             self.send(final_msg)
 
-            print() # Per spaziare i messaggi sulla shell
-
+            print()  # Per spaziare i messaggi sulla shell
 
     def pretty(self, obj: object):
         """Restituisce una stringa con una formattazione migliore da un
@@ -160,16 +161,23 @@ class EmailConsumer(Consumer):
         obj -- JSON object
         """
 
-        return "".join(
+        # Questa chiamata va bene sia per i webhook di rd che per gt
+        res = "".join(
             [
-                f'Type: {obj["object_kind"]}',
-                f'\nTitle: {obj["title"]}',
-                f'\nProject ID: {obj["project"]["id"]}',
-                f'\nProject name: {obj["project"]["name"]}',
-                f'\nAction: {obj["action"]}\n ... ',
-            ]
-        )
+                f'E` stata aperta una issue nel progetto: {obj["project_name"]} ',
+                f'({obj["project_id"]})',
+                "\n\nAuthor: " + f'\n - {obj["author"]}'
+                "\n\n Issue's information: "
+                f'\n - Title: {obj["title"]}',
+                f'\n - Description: {obj["description"]}',
+                f'\n - Action: {obj["action"]}',
+                "\n\nAssegnee's information:"
+            ])
 
+        for value in obj["assignees"]:
+            res += f'\n - {value}'
+
+        return res
 
     def close(self):
         """Chiude la connessione del Consumer"""
