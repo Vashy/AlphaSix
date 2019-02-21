@@ -1,170 +1,133 @@
-version: '3.3'
+version: '3'
 
 services:
 
-#  jenkins:
-#    image: jenkins/jenkins:lts
-#    container_name: jenkins
-#    hostname: jenkins
-#    restart: always
-#    ports: 
-#      - 1500:8080
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
-#
-#  postgres:
-#    image: postgres:11-alpine
-#    restart: always
-#    container_name: postgres_redmine
-#    hostname: postgres_redmine
-#    volumes:
-#      - postgres-data:/var/lib/postgresql/data
-#    environment:
-#      - 'POSTGRES_PASSWORD=password'
-#      - 'POSTGRES_DB=redmine'
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
-#
-#  redmine:
-#    image: redmine:3
-#    restart: always
-#    container_name: redmine
-#    hostname: redmine
-#    volumes:
-#      - ./plugins/redmine:/usr/src/redmine/plugins
-#      - redmine-data:/usr/src/redmine/files
-#    ports:
-#      - 3000:3000
-#    depends_on:
-#      - postgres
-#    environment:
-#      - 'REDMINE_PLUGINS_MIGRATE=true'
-#      - 'REDMINE_HTTPS=false'
-#      - 'REDMINE_DB_POSTGRES=postgres'
-#      - 'REDMINE_DB_DATABASE=redmine'
-#      - 'REDMINE_DB_PASSWORD=password'
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
-#
-#  gitlab:
-#    image: 'gitlab/gitlab-ce:latest'
-#    container_name: gitlab
-#    hostname: gitlab
-#    restart: always
-#    ports:
-#      - '4080:80'
-#      - '4443:443'
-#      - '4022:22'
-#    volumes:
-#      - '/srv/gitlab/config:/etc/gitlab'
-#      - '/srv/gitlab/logs:/var/log/gitlab'
-#      - '/srv/gitlab/data:/var/opt/gitlab'
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
-#
-#  apache_kafka:
-#    image: apache_kafka
-#    container_name: apache_kafka
-#    hostname: apache_kafka
-#    build:
-#      context: ../kafka
-#      dockerfile: ../kafka/Dockerfile
-#    ports:
-#      - 5000:5000
-#    stdin_open: true
-#    tty: true
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
+  # jenkins:
+  #   image: jenkins/jenkins:lts
+  #   container_name: jenkins
+  #   hostname: jenkins
+  #   restart: always
+  #   ports: 
+  #     - 1500:8080
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: 500k
+  #       max-file: "3"
+  #   network_mode:
+  #     - app-tier
 
-#  producer_gitlab:
-#    image: producer_gitlab
-#    container_name: producer_gitlab
-#    hostname: producer_gitlab
-#    build:
-#      context: ../producer/gitlab
-#      dockerfile: ../producer/gitlab/Dockerfile
-#    ports:
-#      - 5000:5000
-#    stdin_open: true
-#    tty: true
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
+  # postgres:
+  #   image: postgres:11-alpine
+  #   restart: always
+  #   container_name: postgres_redmine
+  #   hostname: postgres_redmine
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   environment:
+  #     - 'POSTGRES_PASSWORD=password'
+  #     - 'POSTGRES_DB=redmine'
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: 500k
+  #       max-file: "3"
+  #   network_mode:
+  #     - app-tier
 
-#  producer_redmine:
-#    image: producer_redmine
-#    container_name: producer_redmine
-#    hostname: producer_redmine
-#    build:
-#      context: ../producer/redmine
-#      dockerfile: ../producer/redmine/Dockerfile
-#    ports:
-#      - 5000:5000
-#    stdin_open: true
-#    tty: true
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
+  # redmine:
+  #   image: redmine:3
+  #   restart: always
+  #   container_name: redmine
+  #   hostname: redmine
+  #   volumes:
+  #     - ./plugins/redmine:/usr/src/redmine/plugins
+  #     - redmine-data:/usr/src/redmine/files
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     - 'REDMINE_PLUGINS_MIGRATE=true'
+  #     - 'REDMINE_HTTPS=false'
+  #     - 'REDMINE_DB_POSTGRES=postgres'
+  #     - 'REDMINE_DB_DATABASE=redmine'
+  #     - 'REDMINE_DB_PASSWORD=password'
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: 500k
+  #       max-file: "3"
+  #   network_mode:
+  #     - app-tier
 
-#  consumer_email:
-#    image: consumer_email
-#    container_name: consumer_email
-#    hostname: consumer_email
-#    build:
-#      context: ../consumer/email
-#      dockerfile: ../consumer/email/Dockerfile
-#    ports:
-#      - 5000:5000
-#    stdin_open: true
-#    tty: true
-#    logging:
-#      driver: "json-file"
-#      options:
-#        max-size: 500k
-#        max-file: "3"
+  # gitlab:
+  #   image: 'gitlab/gitlab-ce:latest'
+  #   container_name: gitlab
+  #   hostname: gitlab
+  #   restart: always
+  #   ports:
+  #     - '4080:80'
+  #     - '4443:443'
+  #     - '4022:22'
+  #   volumes:
+  #     - '/srv/gitlab/config:/etc/gitlab'
+  #     - '/srv/gitlab/logs:/var/log/gitlab'
+  #     - '/srv/gitlab/data:/var/opt/gitlab'
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: 500k
+  #       max-file: "3"
+  #   network_mode: host
 
-  zookeeper:
-    image: 'bitnami/zookeeper:latest'
-    container_name: kafka_zookeper
-    hostname: kafka_zookeper
-    ports:
-      - '2181:2181'
+  zookeper:
+    image: confluentinc/cp-zookeeper
+    container_name: zookeper
+    hostname: zookerper
+    deploy:
+      restart_policy:
+          condition: always
+          delay: 5s
     environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
+      - 'ZOOKEEPER_CLIENT_PORT=2181'
+      - 'ZOOKEEPER_TICK_TIME=2000'
+      - 'ZOOKEEPER_SYNC_LIMIT=2'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
 
   kafka:
-    image: 'bitnami/kafka:latest'
+    image: confluentinc/cp-kafka
     container_name: kafka
     hostname: kafka
-    ports:
-      - '9092:9092'
+    deploy:
+      restart_policy:
+          condition: always
+          delay: 5s
+    depends_on:
+      - zookeper
     environment:
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
+      - 'KAFKA_ZOOKEEPER_CONNECT=localhost:2181'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092'
+      - 'KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
 
   consumer_telegram:
     image: consumer_telegram
     container_name: consumer_telegram
     hostname: consumer_telegram
+    restart: always
+    depends_on:
+      - kafka
     build:
       context: ../
       dockerfile: ../consumer/telegram/Dockerfile
@@ -177,6 +140,70 @@ services:
       options:
         max-size: 500k
         max-file: "3"
+    network_mode: host
+
+  consumer_email:
+    image: consumer_email
+    container_name: consumer_email
+    hostname: consumer_email
+    restart: always
+    depends_on:
+      - kafka
+    build:
+      context: ../
+      dockerfile: ../consumer/email/Dockerfile
+    ports:
+      - 5001:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
+
+  producer_redmine:
+    image: producer_redmine
+    container_name: producer_redmine
+    hostname: producer_redmine
+    restart: always
+    depends_on:
+      - kafka
+    build:
+      context: ../
+      dockerfile: ../producer/redmine/Dockerfile
+    ports:
+      - 5002:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
+
+  producer_gitlab:
+    image: producer_gitlab
+    container_name: producer_gitlab
+    hostname: producer_gitlab
+    restart: always
+    depends_on:
+      - kafka
+    build:
+      context: ../
+      dockerfile: ../producer/gitlab/Dockerfile
+    ports:
+      - 5003:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
 
 volumes:
   postgres-data:

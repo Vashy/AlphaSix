@@ -49,8 +49,8 @@ class GLProducer(Producer):
             **config
         )
 
-    def __del__(self):  # Utile?
-        self.close()
+    #def __del__(self):  # Utile?
+    #    self.close()
 
     @property
     def producer(self):
@@ -79,9 +79,9 @@ class GLProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-    def close(self):
-        """Rilascia il Producer associato"""
-        self._producer.close()
+    #def close(self):
+    #    """Rilascia il Producer associato"""
+    #    self._producer.close()
 
 
 def main():

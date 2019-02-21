@@ -148,7 +148,7 @@ class EmailConsumer(Consumer):
             # Invia la richiesta per l'invio della mail
             self.send(final_msg)
 
-            print() # Per spaziare i messaggi sulla shell
+            print()  # Per spaziare i messaggi sulla shell
 
     def pretty(self, obj: object):
         """Restituisce una stringa con una formattazione migliore da un
@@ -161,11 +161,11 @@ class EmailConsumer(Consumer):
         # Questa chiamata va bene sia per i webhook di rd che per gt
         return "".join(
             [
-                f'*Title*: \t\t{obj["title"]}',
-                f'\n*Description*: \t\t{obj["description"]}',
-                f'\n*Project ID*: \t{obj["project_id"]}',
-                f'\n*Project name*: \t{obj["project_name"]}',
-                f'\n*Action*: \t{obj["action"]}\n ... ',
+                f'Title: \t{obj["title"]}',
+                f'\nDescription: \t{obj["description"]}',
+                f'\nProject ID: \t{obj["project_id"]}',
+                f'\nProject name: \t{obj["project_name"]}',
+                f'\nAction: \t{obj["action"]}\n ... ',
             ]
         )
 
