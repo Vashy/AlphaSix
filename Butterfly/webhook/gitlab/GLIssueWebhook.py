@@ -89,6 +89,7 @@ class GLIssueWebhook(Webhook):
 
         webhook["assignees"] = []
         for value in self.json_file["assignees"]:
+            print(type())
             webhook["assignees"].append(value["username"])
 
         webhook["action"] = self.json_file["object_attributes"]["action"]

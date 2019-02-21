@@ -195,7 +195,7 @@ class TelegramConsumer(Consumer):
                 f'È stata aperta una issue nel progetto: {obj["project_name"]} ',
                 f'({obj["project_id"]})',
                 "\n\n*Author*: " + f'\n - {obj["author"]}'
-                "\n\n *Issue's informations: *"
+                "\n\n *Issue's information: *"
                 f'\n - *Title*: \t\t{obj["title"]}',
                 f'\n - *Description*: \t\t{obj["description"]}',
                 f'\n - *Action*: \t{obj["action"]}',

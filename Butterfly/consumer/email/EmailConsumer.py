@@ -137,12 +137,15 @@ class EmailConsumer(Consumer):
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
 
-            final_msg = '{}:{}:{}:\tkey={}\n{}'.format(
-                    message.topic,
-                    message.partition,
-                    message.offset,
-                    message.key,
-                    value,
+            final_msg = '{}{}{}Key: {}\n{}{}'.format(
+                'Topic: ',
+                message.topic,
+                # message.partition,
+                # message.offset,
+                '\n\n',
+                message.key,
+                '\n',
+                value,
             )
 
             # Invia la richiesta per l'invio della mail
@@ -159,15 +162,22 @@ class EmailConsumer(Consumer):
         """
 
         # Questa chiamata va bene sia per i webhook di rd che per gt
-        return "".join(
+        res = "".join(
             [
-                f'Title: \t{obj["title"]}',
-                f'\nDescription: \t{obj["description"]}',
-                f'\nProject ID: \t{obj["project_id"]}',
-                f'\nProject name: \t{obj["project_name"]}',
-                f'\nAction: \t{obj["action"]}\n ... ',
-            ]
-        )
+                f'E` stata aperta una issue nel progetto: {obj["project_name"]} ',
+                f'({obj["project_id"]})',
+                "\n\nAuthor: " + f'\n - {obj["author"]}'
+                "\n\n Issue's information: "
+                f'\n - Title: {obj["title"]}',
+                f'\n - Description: {obj["description"]}',
+                f'\n - Action: {obj["action"]}',
+                "\n\nAssegnee's information:"
+            ])
+
+        for value in obj["assignees"]:
+            res += f'\n - {value}'
+
+        return res
 
     def close(self):
         """Chiude la connessione del Consumer"""
