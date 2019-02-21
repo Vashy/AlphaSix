@@ -35,9 +35,11 @@ from kafka import KafkaConsumer
 import kafka.errors
 from abc import ABC, abstractmethod
 import json
+from pathlib import Path
+
 import smtplib
 import getpass
-from pathlib import Path
+
 from consumer.consumer import Consumer
 import webhook.webhook as GLIssueWebhook
 
@@ -74,45 +76,43 @@ class EmailConsumer(Consumer):
         all'utente finale.
         """
 
-        mailserver = smtplib.SMTP('smtp.gmail.com', 587)
-        mailserver.ehlo()
-        mailserver.starttls()
+        with smtplib.SMTP('smtp.gmail.com', 587) as mailserver:
+            mailserver.ehlo()
+            mailserver.starttls()
 
-        # Autenticazione
-        while True:
-            try:
-                # Prompt per l'inserimento della psw
-                psw = getpass.getpass('\nInserisci la password '
-                    f'di {self._sender}: ')
+            # Autenticazione
+            while True:
+                try:
+                    # Prompt per l'inserimento della psw
+                    psw = getpass.getpass('\nInserisci la password '
+                        f'di {self._sender}: ')
 
-                mailserver.login(self._sender, psw) # Login al server SMTP
-                break # Login riuscito, e Filè incacchiato
+                    mailserver.login(self._sender, psw) # Login al server SMTP
+                    break # Login riuscito, e Filè incacchiato
 
-            # Errore di autenticazione, riprova
-            except smtplib.SMTPAuthenticationError:
-                print('Email e password non corrispondono.')
+                # Errore di autenticazione, riprova
+                except smtplib.SMTPAuthenticationError:
+                    print('Email e password non corrispondono.')
 
-            # Interruzione da parte dell'utente della task
-            except KeyboardInterrupt:
-                print('\nEmail non inviata. In ascolto di altri messaggi ...')
-                return
+                # Interruzione da parte dell'utente della task
+                except KeyboardInterrupt:
+                    print('\nInvio email annullato. In ascolto di altri messaggi ...')
+                    return
 
-        text = '\r\n'.join([
-            'From: ' + self._sender,
-            'To: ' + self._receiver,
-            'Subject: ' + self._subject,
-            '',
-            ' ',
-            msg,
-        ])
+            text = '\n'.join([
+                'From: ' + self._sender,
+                'To: ' + self._receiver,
+                'Subject: ' + self._subject,
+                '',
+                ' ',
+                msg,
+            ])
 
-        try: # Tenta di inviare la mail
-            mailserver.sendmail(self._sender, self._receiver, text)
-            print('\nEmail inviata. In ascolto di altri messaggi ...')
-        except smtplib.SMTPException:
-            print('Errore, email non inviata. In ascolto di altri messaggi ...')
-        finally:
-            mailserver.close()
+            try: # Tenta di inviare la mail
+                mailserver.sendmail(self._sender, self._receiver, text)
+                print('\nEmail inviata. In ascolto di altri messaggi ...')
+            except smtplib.SMTPException:
+                print('Errore, email non inviata. In ascolto di altri messaggi ...')
 
 
     def listen(self):

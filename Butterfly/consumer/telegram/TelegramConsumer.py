@@ -31,10 +31,11 @@ Autori:
 from kafka import KafkaConsumer
 import kafka.errors
 import telepot
+from pathlib import Path
 from abc import ABC, abstractmethod
 import json
-import requests
-from pathlib import Path
+import pprint # Pretty format per oggetti Python
+
 from consumer.consumer import Consumer
 #import webhook.webhook as GLIssueWebhook
 #from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
@@ -92,7 +93,7 @@ class TelegramConsumer(Consumer):
                 parse_mode='markdown',
             )
             if log:
-                print(f'Inviato il messaggio:\n{log}')
+                print(f'Inviato il messaggio:\n{pprint.pformat(log)}')
             else:
                 print('Errore: il messaggio non è stato inviato')
         except telepot.exception.TelegramError as e:
