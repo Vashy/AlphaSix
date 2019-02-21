@@ -123,5 +123,6 @@ def main():
     else:  # Prende come Topic di default il primo del file webhook.json
         producer.produce(topics[0]['label'], webhook)
 
+
 if __name__ == '__main__':
     main()

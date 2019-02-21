@@ -99,7 +99,6 @@ class TelegramConsumer(Consumer):
         except telepot.exception.TelegramError as e:
             print(f'Nessun messaggio inviato: "{e.description}"')
 
-
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
         consumer è abbonato.
@@ -123,11 +122,14 @@ class TelegramConsumer(Consumer):
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nWarning: "{value}" non è in formato JSON\n-----\n')
 
-            final_msg = '{}:{}:{}:\tkey={}\n{}'.format(
+            final_msg = '{}{}{}*Key*: {}\n{}{}'.format(
+                    '*Topic*: ',
                     message.topic,
-                    message.partition,
-                    message.offset,
+                    # message.partition,
+                    # message.offset,
+                    '\n\n',
                     message.key,
+                    '\n',
                     value,
             )
 
@@ -135,7 +137,6 @@ class TelegramConsumer(Consumer):
             self.send(final_msg)
 
             print() # Per spaziare i messaggi sulla shell
-
 
     def _on_chat_message(self, msg):
         content_type, _, chat_id = telepot.glance(msg) # Raccoglie il messaggio
@@ -151,7 +152,6 @@ class TelegramConsumer(Consumer):
             text = msg['text']
             print('Testo messaggio: ', text)
             print('-----------')
-
 
             final_msg = ''
             if text == '/start':
@@ -190,15 +190,22 @@ class TelegramConsumer(Consumer):
         """
 
         # Questa chiamata va bene sia per i webhook di rd che per gt
-        return "".join(
+        res = "".join(
             [
-                f'*Title*: \t\t{obj["title"]}',
-                f'\n*Description*: \t\t{obj["description"]}',
-                f'\n*Project ID*: \t{obj["project_id"]}',
-                f'\n*Project name*: \t{obj["project_name"]}',
-                f'\n*Action*: \t{obj["action"]}\n ... ',
-            ]
-        )
+                f'È stata aperta una issue nel progetto: {obj["project_name"]} ',
+                f'({obj["project_id"]})',
+                "\n\n*Author*: " + f'\n - {obj["author"]}'
+                "\n\n *Issue's informations: *"
+                f'\n - *Title*: \t\t{obj["title"]}',
+                f'\n - *Description*: \t\t{obj["description"]}',
+                f'\n - *Action*: \t{obj["action"]}',
+                "\n\n*Assegnee's information:*"
+            ])
+
+        for value in obj["assignees"]:
+            res += f'\n - {value}'
+
+        return res
 
     def close(self):
         """Chiude la connessione del Consumer"""
