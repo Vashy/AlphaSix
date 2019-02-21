@@ -19,7 +19,8 @@ Per ulteriori informazioni riferirsi alla documentazione ufficiale a [questo lin
 Per costruire le immagini necessarie per ciascun servizio creato da noi eseguire i comandi dall'interno della cartella Butterfly:
 
 	$ docker build --no-cache --tag consumer_telegram -f path/to/Dockerfile .
-Il path relativo a ciacun Dockerfile è quello relativo al servizio di cui si vuole creare l'immagine. Per i **producer**:
+Il path relativo a ciacun Dockerfile è quello relativo al servizio di cui si vuole creare l'immagine.
+Per i **producer**:
 	
 	$ docker build --no-cache --tag consumer_telegram -f producer/redmine/Dockerfile . ;
 	$ docker build --no-cache --tag consumer_telegram -f producer/gitlab/Dockerfile . ;
@@ -65,9 +66,6 @@ Il binding delle porte che viene effettuato per questo servizio sono:
 Per motivi di sicurezza, dopo aver eseguito il login, verrà richiesto che queste siano cambiate. Successivamente si potrà accedere in maniera completa ai servizi offerti da GitLab.
 Per ulteriori informazioni riferirsi alla [documentazione ufficiale](https://docs.gitlab.com/omnibus/docker/).
 
-* **Postgres** :
-TODO
-
 * **Redmine** :
 Il binding delle porte che viene effettuato per questo servizio sono:
 	- 3000 : 3000  per interfacciarsi tramite HTTP
@@ -78,6 +76,7 @@ Il binding delle porte che viene effettuato per questo servizio sono:
 		password: admin
 	Come per GitLab, per motivi di sicurezza, dopo aver eseguito il login, verrà richiesto che queste siano cambiate. Successivamente si potrà accedere in maniera completa ai servizi offerti da Redmine.
 	All'interno della cartella `docker/plugins/redmine` è presente il plugin **Redmine WebHook Plugin** per poter utilizzare il servizio di notifica tramite webhook all'accadere di eventi come ad esempio creazione o modifica di issue. Dopo che il container viene creato si può utilizzare questo plugin senza aver bisogno di effettuare ulteriori comandi di  configurazioni.
+Per funzionare correttamente è necessario un database **Postgres**.
 Per ulteriori informazioni relativi all'istanza di Redmine su Docker riferirsi alla [documentazione ufficiale](https://hub.docker.com/_/redmine).
 Per ulteriori informazioni relativi al plugin Redmine WebHook Plugin riferirsi alla [documentazione ufficiale](https://github.com/suer/redmine_webhook).
 
@@ -93,10 +92,16 @@ Per ulteriori informazioni sul Consumer e-mail fare riferimento al file [README.
 * **Consumer Telegram** :
 Per ulteriori informazioni sul Consumer Telegram fare riferimento al file [README.md](../consumer/telegram) presente nella cartella apposita. 
 
+* **Apache Zookeeper** :
+TODO
+Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
+
 * **Apache kafka** :
+TODO
 Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
  
 ## Visualizzazione dei file di log
+COMPLETARE
 Per ciascun container, i file di log sono disponibili nella cartella  `/var/lib/docker/containers/ID_CONTAINER` e sono di tipo `*-json.log`.
 	
 	$ docker inspect --format='{{.LogPath}}' NOME_CONTAINER / ID_CONTAINER ; 
