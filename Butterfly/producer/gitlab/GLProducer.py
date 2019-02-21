@@ -49,7 +49,7 @@ class GLProducer(Producer):
             **config
         )
 
-    #def __del__(self):  # Utile?
+    # def __del__(self):  # Utile?
     #    self.close()
 
     @property
@@ -68,7 +68,7 @@ class GLProducer(Producer):
         assert isinstance(msg, GLIssueWebhook), \
             'msg non è di tipo GLIssueWebhook'
 
-        # Parse del JSON associato al webhook ottenendo un oggetto Python 
+        # Parse del JSON associato al webhook ottenendo un oggetto Python
         msg.parse()
         try:
             print()
@@ -79,7 +79,7 @@ class GLProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-    #def close(self):
+    # def close(self):
     #    """Rilascia il Producer associato"""
     #    self._producer.close()
 
@@ -109,7 +109,10 @@ def main():
     args = parser.parse_args()
 
     # Inizializza il GLIssueWebhook con il path a webhook.json
-    webhook = GLIssueWebhook(Path(__file__).parents[2] / 'webhook/webhook.json')
+    webhook = GLIssueWebhook(
+        Path(__file__).parents[2] /
+        'webhook/webhook.json'
+    )
     if args.topic:  # Topic passato con la flag -t
         producer.produce(args.topic, webhook)
     else:  # Prende come Topic di default il primo del file webhook.json

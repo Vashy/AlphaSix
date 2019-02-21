@@ -32,6 +32,7 @@ import json
 from pathlib import Path
 from webhook.webhook import Webhook
 
+
 # FIXME: Tim ~ Secondo me da rivedere, per renderlo stateless.
 # e.g. passando come parametri alla funzione parse().
 # Di conseguenza, rivedere i metodi astratti dell'interfaccia Webhook
@@ -54,7 +55,7 @@ class GLIssueWebhook(Webhook):
         # Controlla se jsonfile è istanza di Path, str o None
         if isinstance(jsonfile, Path):
             path = jsonfile
-            if not path.is_file(): # Se non è un file
+            if not path.is_file():  # Se non è un file
                 raise FileNotFoundError()
 
             with open(path) as f:
@@ -62,7 +63,7 @@ class GLIssueWebhook(Webhook):
 
         elif isinstance(jsonfile, str):
             path = Path(jsonfile)
-            if not path.is_file(): # Se non è un file
+            if not path.is_file():  # Se non è un file
                 raise FileNotFoundError()
 
             with open(path) as f:
@@ -89,16 +90,15 @@ class GLIssueWebhook(Webhook):
 
         webhook["assignees"] = []
         for value in self.json_file["assignees"]:
-            print(type())
             webhook["assignees"].append(value["username"])
 
         webhook["action"] = self.json_file["object_attributes"]["action"]
-        webhook["description"] = self.json_file["object_attributes"]["description"]
+        webhook["description"] = (
+            self.json_file["object_attributes"]["description"]
+        )
 
         webhook["labels"] = []
         for value in self.json_file["labels"]:
-            #print('value: ' + value)
-            print(type(value))
             webhook["labels"].append(value["title"])
 
         webhook["changes"] = {}
@@ -112,7 +112,7 @@ class GLIssueWebhook(Webhook):
         self._webhook = webhook
 
         # TODO: Da continuare, con tutti i campi di interesse
-        #  definiti in webhook.json 
+        #  definiti in webhook.json
 
     def webhook(self):
         """Restituisce l'oggetto Python associato al Webhook, solo

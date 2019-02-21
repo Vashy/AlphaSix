@@ -112,7 +112,8 @@ class TelegramConsumer(Consumer):
             print(f'- {topic}')
         print()
 
-        self._bot.message_loop(self._on_chat_message)
+        # Linea da commentare in caso qualcun altro abbia attivo il bot
+        # self._bot.message_loop(self._on_chat_message)
         for message in self._consumer:
             print(f'Tipo messaggio: {type(message.value)}')
 
@@ -120,7 +121,8 @@ class TelegramConsumer(Consumer):
             try:
                 value = self.pretty(json.loads(value))
             except json.decoder.JSONDecodeError:
-                print(f'\n-----\nWarning: "{value}" non è in formato JSON\n-----\n')
+                print(f'\n-----\nWarning: "{value}"'
+                      'non è in formato JSON\n-----\n')
 
             final_msg = '{}{}{}*Key*: {}\n{}{}'.format(
                     '*Topic*: ',
@@ -136,10 +138,11 @@ class TelegramConsumer(Consumer):
             # Invia il messaggio finale
             self.send(final_msg)
 
-            print() # Per spaziare i messaggi sulla shell
+            print()  # Per spaziare i messaggi sulla shell
 
     def _on_chat_message(self, msg):
-        content_type, _, chat_id = telepot.glance(msg) # Raccoglie il messaggio
+        # Raccoglie il messaggio
+        content_type, _, chat_id = telepot.glance(msg)
 
         if content_type == 'text':
 
@@ -155,23 +158,27 @@ class TelegramConsumer(Consumer):
 
             final_msg = ''
             if text == '/start':
-                final_msg = (f'Ciao {name}, '
+                final_msg = (
+                    f'Ciao {name}, '
                     'questo è il bot che ti invierà '
                     'le segnalazioni dei topic ai quali ti sei iscritto.'
                 )
 
-            elif text == '/subscribe': # TODO Comando /subscribe
-                final_msg = (f'{name}, sei stato aggiunto correttamente '
+            elif text == '/subscribe':  # TODO Comando /subscribe
+                final_msg = (
+                    f'{name}, sei stato aggiunto correttamente '
                     'al sistema *Butterfly*!'
                 )
 
-            elif text == '/unsubscribe': # TODO Comando /unsubscribe
-                final_msg = ('Sei stato rimosso '
+            elif text == '/unsubscribe':  # TODO Comando /unsubscribe
+                final_msg = (
+                    'Sei stato rimosso '
                     'dal sistema *Butterfly*! Se cambiassi idea, '
                     'fammelo sapere!'
                 )
             else:
-                final_msg = ('Comando non riconosciuto.\n\nUso:\n'
+                final_msg = (
+                    'Comando non riconosciuto.\n\nUso:\n'
                     '/subscribe\n/unsubscribe'
                 )
 
@@ -192,7 +199,8 @@ class TelegramConsumer(Consumer):
         # Questa chiamata va bene sia per i webhook di rd che per gt
         res = "".join(
             [
-                f'È stata aperta una issue nel progetto: {obj["project_name"]} ',
+                'È stata aperta una issue nel progetto: '
+                f'{obj["project_name"]} ',
                 f'({obj["project_id"]})',
                 "\n\n*Author*: " + f'\n - {obj["author"]}'
                 "\n\n *Issue's information: *"
@@ -200,7 +208,8 @@ class TelegramConsumer(Consumer):
                 f'\n - *Description*: \t\t{obj["description"]}',
                 f'\n - *Action*: \t{obj["action"]}',
                 "\n\n*Assegnee's information:*"
-            ])
+            ]
+        )
 
         for value in obj["assignees"]:
             res += f'\n - {value}'
