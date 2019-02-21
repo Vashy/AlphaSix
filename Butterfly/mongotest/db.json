@@ -1,7 +1,7 @@
 {
     "users" : [
         {
-            "id" : 123,
+            "_id" : 123,
             "nome" : "timoty",
             "cognome" : "granziero",
             "telegram" : "@user1",
@@ -23,10 +23,34 @@
             "sostituto" : 124
         },
         {
-            "id" : 124,
-            "nome" : "timoty",
+            "_id" : 124,
+            "nome" : "simone",
             "cognome" : "granziero",
-            "telegram" : "@user2",
+            "telegram" : null,
+            "email" : "example@gmail.com",
+            "topics" : [
+                "bug-r-23434",
+                "wontfix-r-301358",
+                "enhancement-g-2",
+                "pacco-r-0",
+                "commits"
+            ],
+            "keywords" : [
+                "kw1",
+                "kw2"
+            ],
+            "irreperibilità" : [
+                "2019-07-17",
+                "2019-07-20"
+            ],
+            "preferenza": "email",
+            "sostituto" : 123
+        },
+        {
+            "_id" : 125,
+            "nome" : "simone",
+            "cognome" : "granziero",
+            "telegram" : null,
             "email" : "example@gmail.com",
             "topics" : [
                 "bug-r-23434",
