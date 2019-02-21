@@ -38,7 +38,7 @@ from webhook.webhook import Webhook
 class GLIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def __init__(self, jsonfile = None):
+    def __init__(self, jsonfile=None):
         self.json_file = jsonfile
         self._webhook = None
 
@@ -74,7 +74,6 @@ class GLIssueWebhook(Webhook):
         else:
             self._json_file = jsonfile
 
-
     def parse(self):
         """Parsing del file JSON associato al webhook."""
         if self.json_file is None:
@@ -84,8 +83,8 @@ class GLIssueWebhook(Webhook):
         webhook["object_kind"] = self.json_file["object_kind"]
         webhook["title"] = self.json_file["object_attributes"]["title"]
         webhook["project"] = {}
-        webhook["project"]["id"] = self.json_file["project"]["id"]
-        webhook["project"]["name"] = self.json_file["project"]["name"]
+        webhook["project_id"] = self.json_file["project"]["id"]
+        webhook["project_name"] = self.json_file["project"]["name"]
 
         webhook["assignees"] = []
         for value in self.json_file["assignees"]:
@@ -100,10 +99,12 @@ class GLIssueWebhook(Webhook):
 
         webhook["changes"] = {}
         webhook["changes"]["labels"] = {}
-        webhook["changes"]["labels"]["previous"] = \
+        webhook["changes"]["labels"]["previous"] = (
             self.json_file["changes"]["labels"]["previous"]
-        webhook["changes"]["labels"]["current"] = \
+        )
+        webhook["changes"]["labels"]["current"] = (
             self.json_file["changes"]["labels"]["current"]
+        )
         self._webhook = webhook
 
         # TODO: Da continuare, con tutti i campi di interesse

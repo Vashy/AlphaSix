@@ -41,7 +41,7 @@ import smtplib
 import getpass
 
 from consumer.consumer import Consumer
-import webhook.webhook as GLIssueWebhook
+# import webhook.webhook as GLIssueWebhook
 
 
 class EmailConsumer(Consumer):
@@ -87,7 +87,7 @@ class EmailConsumer(Consumer):
                     psw = getpass.getpass('\nInserisci la password '
                         f'di {self._sender}: ')
 
-                    mailserver.login(self._sender, psw) # Login al server SMTP
+                    mailserver.login(self._sender, psw)  # Login al server SMTP
                     break # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova
@@ -108,12 +108,11 @@ class EmailConsumer(Consumer):
                 msg,
             ])
 
-            try: # Tenta di inviare la mail
+            try:  # Tenta di inviare la mail
                 mailserver.sendmail(self._sender, self._receiver, text)
                 print('\nEmail inviata. In ascolto di altri messaggi ...')
             except smtplib.SMTPException:
                 print('Errore, email non inviata. In ascolto di altri messaggi ...')
-
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
@@ -151,7 +150,6 @@ class EmailConsumer(Consumer):
 
             print() # Per spaziare i messaggi sulla shell
 
-
     def pretty(self, obj: object):
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
@@ -160,16 +158,16 @@ class EmailConsumer(Consumer):
         obj -- JSON object
         """
 
+        # Questa chiamata va bene sia per i webhook di rd che per gt
         return "".join(
             [
-                f'Type: {obj["object_kind"]}',
-                f'\nTitle: {obj["title"]}',
-                f'\nProject ID: {obj["project"]["id"]}',
-                f'\nProject name: {obj["project"]["name"]}',
-                f'\nAction: {obj["action"]}\n ... ',
+                f'*Title*: \t\t{obj["title"]}',
+                f'\n*Description*: \t\t{obj["description"]}',
+                f'\n*Project ID*: \t{obj["project_id"]}',
+                f'\n*Project name*: \t{obj["project_name"]}',
+                f'\n*Action*: \t{obj["action"]}\n ... ',
             ]
         )
-
 
     def close(self):
         """Chiude la connessione del Consumer"""

@@ -34,11 +34,11 @@ import telepot
 from pathlib import Path
 from abc import ABC, abstractmethod
 import json
-import pprint # Pretty format per oggetti Python
+import pprint  # Pretty format per oggetti Python
 
 from consumer.consumer import Consumer
-#import webhook.webhook as GLIssueWebhook
-#from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
+# import webhook.webhook as GLIssueWebhook
+# from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
 
 
 class TelegramConsumer(Consumer):
@@ -189,17 +189,16 @@ class TelegramConsumer(Consumer):
         obj -- JSON object
         """
 
-        # FIXME: Va bene solo per Gitlab!
+        # Questa chiamata va bene sia per i webhook di rd che per gt
         return "".join(
             [
-                f'*Type*: \t\t{obj["object_kind"]}',
-                f'\n*Title*: \t\t{obj["title"]}',
-                f'\n*Project ID*: \t{obj["project"]["id"]}',
-                f'\n*Project name*: \t{obj["project"]["name"]}',
+                f'*Title*: \t\t{obj["title"]}',
+                f'\n*Description*: \t\t{obj["description"]}',
+                f'\n*Project ID*: \t{obj["project_id"]}',
+                f'\n*Project name*: \t{obj["project_name"]}',
                 f'\n*Action*: \t{obj["action"]}\n ... ',
             ]
         )
-
 
     def close(self):
         """Chiude la connessione del Consumer"""
@@ -238,7 +237,7 @@ if __name__ == '__main__':
         print(e.with_traceback())
 
     try:
-        consumer.listen() # Resta in ascolto del Broker
+        consumer.listen()  # Resta in ascolto del Broker
     except KeyboardInterrupt as e:
         consumer.close()
         print(' Closing Consumer ...')

@@ -35,10 +35,12 @@ from webhook.webhook import Webhook
 # FIXME: Tim ~ Secondo me da rivedere, per renderlo stateless.
 # e.g. passando come parametri alla funzione parse().
 # Di conseguenza, rivedere i metodi astratti dell'interfaccia Webhook
+
+
 class RedmineIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def __init__(self, jsonfile = None):
+    def __init__(self, jsonfile=None):
         self.json_file = jsonfile
         self._webhook = None
 
@@ -74,7 +76,6 @@ class RedmineIssueWebhook(Webhook):
         else:
             self._json_file = jsonfile
 
-
     def parse(self):
         """Parsing del file JSON associato al webhook."""
         if self.json_file is None:
@@ -82,15 +83,18 @@ class RedmineIssueWebhook(Webhook):
 
         webhook = {}
         webhook["issue_id"] = self.json_file["payload"]["issue"]["id"]
-        webhook["subject"] = self.json_file["payload"]["issue"]["subject"]
+        webhook["title"] = self.json_file["payload"]["issue"]["subject"]
+        webhook["description"] = self.json_file["payload"]["issue"]["description"]
         webhook["project_id"] = self.json_file["payload"]["issue"]["project"]["id"]
+        webhook["project_name"] = self.json_file["payload"]["issue"]["project"]["name"]
         webhook["status"] = self.json_file["payload"]["issue"]["status"]["name"]
         webhook["tracker"] = self.json_file["payload"]["issue"]["tracker"]["name"]
         webhook["priority"] = self.json_file["payload"]["issue"]["priority"]["name"]
         webhook["action"] = self.json_file["payload"]["action"]
+        self._webhook = webhook
 
         # TODO: Da continuare, con tutti i campi di interesse
-        #  definiti in webhook.json 
+        #  definiti nel .json 
 
     def webhook(self):
         """Restituisce l'oggetto Python associato al Webhook, solo

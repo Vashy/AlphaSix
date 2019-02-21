@@ -49,15 +49,13 @@ class GLProducer(Producer):
             **config
         )
 
-    def __del__(self): # Utile?
+    def __del__(self):  # Utile?
         self.close()
-
 
     @property
     def producer(self):
         """Restituisce il KafkaProducer"""
         return self._producer
-
 
     def produce(self, topic, msg: GLIssueWebhook):
         """Produce il messaggio in Kafka.
@@ -68,7 +66,7 @@ class GLProducer(Producer):
         """
 
         assert isinstance(msg, GLIssueWebhook), \
-                'msg non è di tipo GLIssueWebhook'
+            'msg non è di tipo GLIssueWebhook'
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python 
         msg.parse()
@@ -76,7 +74,7 @@ class GLProducer(Producer):
             print()
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self.producer.send(topic, msg.webhook())
-            self.producer.flush(10) # Attesa 10 secondi
+            self.producer.flush(10)  # Attesa 10 secondi
         except kafka.errors.KafkaTimeoutError:
             stderr.write('Errore di timeout\n')
             exit(-1)
@@ -112,9 +110,9 @@ def main():
 
     # Inizializza il GLIssueWebhook con il path a webhook.json
     webhook = GLIssueWebhook(Path(__file__).parents[2] / 'webhook/webhook.json')
-    if args.topic: # Topic passato con la flag -t
+    if args.topic:  # Topic passato con la flag -t
         producer.produce(args.topic, webhook)
-    else: # Prende come Topic di default il primo del file webhook.json
+    else:  # Prende come Topic di default il primo del file webhook.json
         producer.produce(topics[0]['label'], webhook)
 
 

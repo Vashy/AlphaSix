@@ -21,7 +21,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Versione: 0.1.0
-Creatore: Timoty Granziero, timoty.granziero@gmail.com
+Creatore: Laura Cameran, lauracameran@gmail.com
 Autori:
     <nome cognome, email>
     <nome cognome: email>
@@ -38,27 +38,26 @@ import kafka.errors
 import json
 from pathlib import Path
 from producer.producer import Producer
-#from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
-#from redminelib import Redmine
+# from redminelib import Redmine
+
 
 class RedmineProducer(Producer):
 
-    def __init__(self, config): # COSTRUTTORE
+    def __init__(self, config):   # COSTRUTTORE
         self._producer = KafkaProducer(
             # Serializza l'oggetto Python in un oggetto JSON, codifica UTF-8
             value_serializer=lambda m: json.dumps(m).encode('utf-8'),
             **config
         )
 
-    def __del__(self): # DISTRUTTORE
+    def __del__(self):  # DISTRUTTORE
         self.close()
 
     @property
     def producer(self):
         """Restituisce il KafkaProducer"""
         return self._producer
-
 
     def produce(self, topic, msg: RedmineIssueWebhook):
         """Produce il messaggio in Kafka.
@@ -67,17 +66,17 @@ class RedmineProducer(Producer):
         Arguments:
         topic -- il topic dove salvare il messaggio.
         """
-        #può mai accadere false??
+        # Può mai accadere false??
         assert isinstance(msg, RedmineIssueWebhook), \
-                'msg non è di tipo RedmineIssueWebhook' 
+            'msg non è di tipo RedmineIssueWebhook'
 
-        # Parse del JSON associato al webhook ottenendo un oggetto Python 
+        # Parse del JSON associato al webhook ottenendo un oggetto Python
         msg.parse()
         try:
             print()
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self.producer.send(topic, msg.webhook())
-            self.producer.flush(10) # Attesa 10 secondi
+            self.producer.flush(10)   # Attesa 10 secondi
         except kafka.errors.KafkaTimeoutError:
             stderr.write('Errore di timeout\n')
             exit(-1)
@@ -105,22 +104,24 @@ def main():
     # Istanzia il Producer
     producer = RedmineProducer(config)
 
-        # Parsing dei parametri da linea di comando
+    # Parsing dei parametri da linea di comando
     parser = argparse.ArgumentParser(description='Crea messaggi su Kafka')
     parser.add_argument('-t', '--topic', type=str,
                         help='topic di destinazione')
     args = parser.parse_args()
 
-    # Inzializza RedmineIssueWebhook con il percorso 
+    # Inzializza RedmineIssueWebhook con il percorso
     # a open_issue_redmine_webhook.json
-    webhook = RedmineIssueWebhook(Path(__file__).parents[2] / 'webhook/redmine/open_issue_redmine_webhook.json')
+    webhook = RedmineIssueWebhook(
+            Path(__file__).parents[2] /
+            'webhook/redmine/open_issue_redmine_webhook.json'
+    )
 
-    if args.topic: # Topic passato con la flag -t
+    # print(topics[0]['label'])
+    if args.topic:  # Topic passato con la flag -t
         producer.produce(args.topic, webhook)
-    else: # Prende come Topic di default il primo del file webhook.json
-        producer.produce(topics[0]['label'], webhook)    
-
-
+    else:  # Prende come Topic di default il primo del file webhook.json
+        producer.produce(topics[0]['label'], webhook)
 
 if __name__ == '__main__':
     main()
