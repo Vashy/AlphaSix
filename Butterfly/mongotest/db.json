@@ -1,11 +1,11 @@
 {
     "users" : [
         {
-            "_id" : 123,
-            "nome" : "timoty",
-            "cognome" : "granziero",
-            "telegram" : "@user1",
+            "_id": 1,
+            "nome" : "Timoty",
+            "cognome" : "Granziero",
             "email" : null,
+            "telegram" : "@user1",
             "topics" : [
                 1,
                 2,
@@ -20,14 +20,14 @@
                 "2019-06-18"
             ],
             "preferenza": "telegram",
-            "sostituto" : 124
+            "sostituto" : 2
         },
         {
-            "_id" : 124,
-            "nome" : "simone",
-            "cognome" : "granziero",
-            "telegram" : null,
-            "email" : "example@gmail.com",
+            "_id": 2,
+            "nome" : "Simone",
+            "cognome" : "Granziero",
+            "telegram" : "@user2",
+            "email" : "simone.granziero@gmail.com",
             "topics" : [
                 "bug-r-23434",
                 "wontfix-r-301358",
@@ -41,23 +41,20 @@
             ],
             "irreperibilità" : [
                 "2019-07-17",
-                "2019-07-20"
+                "2019-04-01",
+                "2019-04-05"
             ],
             "preferenza": "email",
             "sostituto" : 123
         },
         {
-            "_id" : 125,
-            "nome" : "simone",
-            "cognome" : "granziero",
+            "_id": 3,
+            "nome" : "Mattia",
+            "cognome" : "Ridolfi",
             "telegram" : null,
             "email" : "example@gmail.com",
             "topics" : [
-                "bug-r-23434",
-                "wontfix-r-301358",
-                "enhancement-g-2",
-                "pacco-r-0",
-                "commits"
+                
             ],
             "keywords" : [
                 "kw1",
@@ -73,32 +70,51 @@
     ],
     "projects" : [
         {
-            "id" : 1,
-            "name": "Nome",
-            "app" : "redmine",
-            "url" : "http://"
+            "url" : "http://localhost/redmine/project-1/",
+            "name": "Project-1",
+            "app" : "redmine" 
         },
         {
-            "id" : 2,
-            "app" : "gitlab",
-            "url" : "https://"
+            "url" : "http://localhost/gitlab/gitlab-1",
+            "name": "Gitlab-1",
+            "app" : "gitlab"
+        },
+        {
+            "url" : "http://localhost/gitlab/gitlab-2",
+            "name": "Gitlab-2",
+            "app" : "gitlab"
+        },
+        {
+            "url" : "http://localhost/redmine/project-2",
+            "name": "Project-2",
+            "app" : "redmine"
         }
     ],
     "topics" : [
         {
-            "id" : 1,
+            "_id" : 1,
             "label" : "bug",
-            "project" : 1
+            "project" : "http://localhost/redmine/project-1/"
         },
         {
-            "id" : 2,
+            "_id" : 2,
             "label" : "enhancement",
-            "project" : 3
+            "project" : "http://localhost/gitlab/gitlab-2"
         },
         {
-            "id" : 3,
+            "_id" : 3,
             "label" : "bug",
-            "project" : 3
+            "project" : "http://localhost/gitlab/gitlab-2"
+        },
+        {
+            "_id" : 4,
+            "label" : "wip",
+            "project" : "http://localhost/redmine/project-2"
+        },
+        {
+            "_id" : 5,
+            "label" : "wontfix",
+            "project" : "http://localhost/gitlab/gitlab-2"
         }
     ]
 }
