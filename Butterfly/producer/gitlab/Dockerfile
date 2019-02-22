@@ -1,8 +1,8 @@
 # Base image
 FROM python:3.7
 
-# Expose port 5000
-EXPOSE 5000
+# Expose port 80
+EXPOSE 80
 
 # Copying files from the correct folders
 COPY /producer/gitlab/GLProducer.py ./Butterfly/producer/gitlab/
@@ -20,7 +20,7 @@ COPY topics.json ./Butterfly/
 WORKDIR /Butterfly
 
 # Installing dependencies
-RUN ls -la producer ; pip3 install --upgrade pip ; pip3 install -r producer/gitlab/requirements.txt
+RUN pip3 install --upgrade pip ; pip3 install -r producer/gitlab/requirements.txt
 
 # Run after the dependencies have been installed
 CMD python3 -m producer.gitlab.GLProducer

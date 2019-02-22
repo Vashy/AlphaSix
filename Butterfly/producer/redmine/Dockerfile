@@ -1,8 +1,8 @@
 # Base image
 FROM python:alpine3.7
 
-# Expose port 5000
-EXPOSE 5000
+# Expose port 80
+EXPOSE 80
 
 # Copying files from the correct folders
 COPY /producer/redmine/RedmineProducer.py ./Butterfly/producer/redmine/
