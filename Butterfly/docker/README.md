@@ -59,11 +59,8 @@ Il binding delle porte che viene effettuato per questo servizio sono:
     - *4022 : 22* per interfacciarsi tramite SSH
 
     Per poter quindi accedere ai servizi web del container sul quale viene eseguito GitLab andare dal browse alla pagina ```IP_CONTAINER:4080/``` oppure ```IP_CONTAINER:4443/```.
-	Per la prima autenticazione utilizzare le seguenti credenziali:
-		
-		username: root 
-		password: root
-Per motivi di sicurezza, dopo aver eseguito il login, verrà richiesto che queste siano cambiate. Successivamente si potrà accedere in maniera completa ai servizi offerti da GitLab.
+Per motivi di sicurezza, verrà richiesto di impostare una password per l'utente `root`, successivamente si potrà accedere tramite tale account con la password impostata oppure creare nuove utenze.
+Successivamente si potrà accedere in maniera completa ai servizi offerti da GitLab.
 Per ulteriori informazioni riferirsi alla [documentazione ufficiale](https://docs.gitlab.com/omnibus/docker/).
 
 * **Redmine** :
@@ -92,29 +89,19 @@ Per ulteriori informazioni sul Consumer e-mail fare riferimento al file [README.
 * **Consumer Telegram** :
 Per ulteriori informazioni sul Consumer Telegram fare riferimento al file [README.md](../consumer/telegram) presente nella cartella apposita. 
 
-* **Apache Zookeeper** :
-TODO
-Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
-
-* **Apache kafka** :
-TODO
-Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
+* **Apache kafka** e **Apache Zookeper**:
+Vengono istanziati i servizi di Apache Kafka e Zookeeper in modo tale da poter mettere in comunicazione fra di loro *producer* e *consumer* tramite immagini di confluent.
+Per ulteriori informazioni relativi all'istanza di Docker riferirsi alla [documentazione specifica](https://github.com/confluentinc/cp-demo)  alle immagini utilizzate.  
 
 * **Gestore personale**
 TODO
 Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
  
 ## Visualizzazione dei file di log
-COMPLETARE
 Per ciascun container, i file di log sono disponibili nella cartella  `/var/lib/docker/containers/ID_CONTAINER` e sono di tipo `*-json.log`.
+L' ID_CONTAINER può essere recuperato tramite il comando 
 	
-	$ docker inspect --format='{{.LogPath}}' NOME_CONTAINER / ID_CONTAINER ; 
-	
-aa
+	$ docker ps ;
 		
-	/var/lib/docker/containers/[container-id]/[container-id]-json.log
-	
-Sono inoltre presenti nella cartella plugins i vari file necessari per l'aggiunta dei plugin ai container	
-
 ## Strumenti di terze parti
 Per facilitare la gestione dei container e velocizzare il modo di interfacciarsi con questi è stato utilizzato un software di terze parti chiamato [*DockStation*](https://dockstation.io/).
