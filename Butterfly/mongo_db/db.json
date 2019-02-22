@@ -5,15 +5,16 @@
             "name" : "Timoty",
             "surname" : "Granziero",
             "email" : null,
-            "telegram" : null,
+            "telegram" : "@user1",
             "topics" : [
                 1,
                 2,
                 3
             ],
             "keywords" : [
-                "kw1",
-                "kw2"
+                "mongodb",
+                "python",
+                "test"
             ],
             "irreperibilità" : [
                 "2019-06-17",
@@ -33,8 +34,8 @@
                 4
             ],
             "keywords" : [
-                "kw1",
-                "kw2"
+                "bug",
+                "banana"
             ],
             "irreperibilità" : [
                 "2019-07-17",
@@ -54,8 +55,8 @@
                 
             ],
             "keywords" : [
-                "kw1",
-                "kw2"
+                "CI",
+                "jenkins"
             ],
             "irreperibilità" : [
                 "2019-07-17",
@@ -67,7 +68,7 @@
     ],
     "projects" : [
         {
-            "url" : "http://localhost/redmine/project-1/",
+            "url" : "http://localhost/redmine/project-1",
             "name": "Project-1",
             "app" : "redmine" 
         },

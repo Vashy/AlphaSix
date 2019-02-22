@@ -2,7 +2,20 @@ import pymongo
 
 
 class DBConnection(object):
-    def __init__(self, db, server='localhost', port=27017):
+    """Classe con la funzionalità di connessione e sconnessione
+    a un database. Dovrebbe essere usata in un costrutto with,
+    in modo da automatizzare il rilascio della risorsa.
+
+    e.g.:
+    with DBConnection('nomedb'):
+        # ...
+
+    Arguments:
+        db -- Nome del database a cui connettersi
+        server -- server mongo a cui connettersi
+        port -- porta specifica in cui gira il processo mongod
+    """
+    def __init__(self, db: str, server='localhost', port=27017):
         print('Apertura connessione ...')
         self._client = pymongo.MongoClient(server, port)
         print('Connessione stabilita.')
