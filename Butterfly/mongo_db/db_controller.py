@@ -87,6 +87,9 @@ class DBController(object):
     def insert_topic(self, topic):
         """Aggiunge il documento `topic` alla collezione `topics`
         """
+        # L'ultimo carattere dell'url di project non deve essere '/'
+        if topic['project'][-1:] == '/':
+            topic['project'] = topic['project'][:-1]
         try:  # Tenta l'aggiunta del topic al DB
             result = self.dbConnection.db['topics'].insert_one(topic)
             return result
@@ -109,6 +112,9 @@ class DBController(object):
     def insert_project(self, project: dict):
         """Aggiunge il documento `project` alla collezione `projects`
         """
+        # L'ultimo carattere non deve essere '/'
+        if project['url'][-1:] == '/':
+            project['url'] = project['url'][:-1]
         try:  # Tenta l'aggiunta del progetto
             result = self.dbConnection.db['projects'].insert_one(project)
             return result
