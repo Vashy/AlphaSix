@@ -29,7 +29,7 @@ class DBController(object):
             collection: str,
     ) -> pymongo.collection.InsertOneResult:
         """Aggiunge il documento `document` alla collezione
-        `collection`
+        `collection`, se non è già presente.
         """
         result = self.dbConnection.db[collection].insert_one(document)
         return result
@@ -46,7 +46,12 @@ class DBController(object):
         return result
 
     def insert_user(self, user: dict) -> pymongo.collection.InsertOneResult:
-        """Aggiunge il documento `user` alla collezione `users`
+        """Aggiunge il documento `user` alla collezione `users` se non
+        già presente (il controllo è sui contatti Telegram e email).
+        Inoltre, i campi `telegram` e `email` non possono essere
+        entrambi None.
+        Restituisce il risultato, che può essere
+        `None` in caso di chiave duplicata.
         """
         users = self.dbConnection.db['users']
 
@@ -74,6 +79,10 @@ class DBController(object):
             return self.insert_document(user, 'users')
 
     def delete_one_user(self, user: str) -> pymongo.collection.DeleteResult:
+        """Rimuove un documento che corrisponde a
+        `user`, se presente. `user` può riferirsi sia al contatto
+        Telegram che email. Restituisce il risultato dell'operazione.
+        """
         return self.delete_one_document(
             {
                 '$or': [
@@ -85,7 +94,9 @@ class DBController(object):
         )
 
     def insert_topic(self, topic):
-        """Aggiunge il documento `topic` alla collezione `topics`
+        """Aggiunge il documento `topic` alla collezione `topics` se
+        non già presente e restituisce il risultato, che può essere
+        `None` in caso di chiave (`label`-`project`) duplicata.
         """
         # L'ultimo carattere dell'url di project non deve essere '/'
         if topic['project'][-1:] == '/':
@@ -102,6 +113,9 @@ class DBController(object):
             project: str,
             label: str,
     ) -> pymongo.collection.DeleteResult:
+        """Rimuove un documento che corrisponda alla coppia `label`-`project`,
+        se presente, e restituisce il risultato.
+        """
         return self.delete_one_document({
                 'label': label,
                 'project': project,
@@ -110,7 +124,9 @@ class DBController(object):
         )
 
     def insert_project(self, project: dict):
-        """Aggiunge il documento `project` alla collezione `projects`
+        """Aggiunge il documento `project` alla collezione `projects`,
+        se non già presente, e restituisce il risultato, che può essere
+        `None` in caso di chiave duplicata.
         """
         # L'ultimo carattere non deve essere '/'
         if project['url'][-1:] == '/':
@@ -128,6 +144,9 @@ class DBController(object):
             self,
             url: str,
     ) -> pymongo.collection.DeleteResult:
+        """Rimuove un documento che corrisponda a `url`,
+        se presente, e restituisce il risultato.
+        """
         return self.delete_one_document({
                 'url': url,
             },
