@@ -1,10 +1,17 @@
 import cherrypy
 import os
 import os.path
+# import pathlib
 import json
 
 absDir = os.path.join(os.getcwd(), os.path.dirname(__file__))
 absDir = os.path.join(absDir, '../frontend/public_html/')
+# Modo più 'moderno' per ottenere un path assoluto
+# absDir2 = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
+# absDir2 = absDir2.resolve()
+# print(absDir)
+# print(absDir2)
+
 path = os.path.join(absDir, '../../../mongodb/db.json')
 data=open(path).read()
 
