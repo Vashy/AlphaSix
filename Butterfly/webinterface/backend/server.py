@@ -16,6 +16,12 @@ class Handler(object):
         return page
     
     @cherrypy.expose
+    def addpreferences(self):
+        path = os.path.join(absDir, 'addpreferences.html')
+        page = open(path).read()
+        return page
+    
+    @cherrypy.expose
     def access(self,
                submit='*submit*',
                username='*username*'):
