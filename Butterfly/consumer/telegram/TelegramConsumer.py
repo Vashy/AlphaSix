@@ -211,8 +211,13 @@ class TelegramConsumer(Consumer):
             ]
         )
 
-        for value in obj["assignees"]:
-            res += f'\n - {value}'
+        # Avendo gitlab che può avere più assignees e redmine che invece può averne soltanto uno
+        # hanno due profondità diverse nel file json, quindi vanno scorse in modo diverso
+        if obj['type'] == 'redmine':
+            res += f'\n - {obj["assignees"]["firstname"]}'
+        elif obj['type'] == 'gitlab':
+            for value in obj["assignees"]:
+                res += f'\n - {value["name"]}'
 
         return res
 

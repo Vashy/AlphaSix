@@ -4,18 +4,18 @@ services:
 
 ## JENKINS ##
 
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    hostname: jenkins
-    restart: always
-    ports: 
-      - 1500:8080
-    logging:
-      driver: "json-file"
-      options:
-        max-size: 500k
-        max-file: "3"
+  # jenkins:
+  #   image: jenkins/jenkins:lts
+  #   container_name: jenkins
+  #   hostname: jenkins
+  #   restart: always
+  #   ports: 
+  #     - 1500:8080
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: 500k
+  #       max-file: "3"
 
 ## REDMINE + POSTGRES ##
 
@@ -82,7 +82,7 @@ services:
         max-size: 500k
         max-file: "3"
 
-## APACHE + ZOOKEEPER ###
+## KAFKA + ZOOKEEPER ###
 
   zookeper:
     image: confluentinc/cp-zookeeper
@@ -137,7 +137,7 @@ services:
       context: ../
       dockerfile: ../consumer/telegram/Dockerfile
     ports:
-      - 5000:5000
+      - 7000:80
     stdin_open: true
     tty: true
     logging:
@@ -158,7 +158,7 @@ services:
       context: ../
       dockerfile: ../consumer/email/Dockerfile
     ports:
-      - 5001:5000
+      - 7001:80
     stdin_open: true
     tty: true
     logging:
@@ -170,47 +170,47 @@ services:
 
 ## PRODUCER ##
 
-  producer_redmine:
-    image: producer_redmine
-    container_name: producer_redmine
-    hostname: producer_redmine
-    restart: always
-    depends_on:
-      - kafka
-    build:
-      context: ../
-      dockerfile: ../producer/redmine/Dockerfile
-    ports:
-      - 5002:5000
-    stdin_open: true
-    tty: true
-    logging:
-      driver: "json-file"
-      options:
-        max-size: 500k
-        max-file: "3"
-    network_mode: host
-
-  producer_gitlab:
-    image: producer_gitlab
-    container_name: producer_gitlab
-    hostname: producer_gitlab
-    restart: always
-    depends_on:
-      - kafka
-    build:
-      context: ../
-      dockerfile: ../producer/gitlab/Dockerfile
-    ports:
-      - 5003:5000
-    stdin_open: true
-    tty: true
-    logging:
-      driver: "json-file"
-      options:
-        max-size: 500k
-        max-file: "3"
-    network_mode: host
+  # producer_redmine:
+  #   image: producer_redmine
+  #   container_name: producer_redmine
+  #   hostname: producer_redmine
+  #   restart: always
+  #   depends_on:
+  #     - kafka
+  #   build:
+  #     context: ../
+  #     dockerfile: ../producer/redmine/Dockerfile
+  #   ports:
+  #     - 7002:80
+  #   stdin_open: true
+  #   tty: true
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: 500k
+  #       max-file: "3"
+  #   network_mode: host
+    
+  # producer_gitlab:
+  #   image: producer_gitlab
+  #   container_name: producer_gitlab
+  #   hostname: producer_gitlab
+  #   restart: always
+  #   depends_on:
+  #     - kafka
+  #   build:
+  #     context: ../
+  #     dockerfile: ../producer/gitlab/Dockerfile
+  #   ports:
+  #     - 7003:80
+  #   stdin_open: true
+  #   tty: true
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: 500k
+  #       max-file: "3"
+  #   network_mode: host
     
 ## VOLUMI ##
 

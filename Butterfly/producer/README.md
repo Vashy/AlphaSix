@@ -27,3 +27,11 @@ Per mandare un messaggio come Webhook di GitLab (attualmente il file `webhook.js
     $ python3 -m producer.gitlab.GLProducer -t nometopic
 
 La flag `-t` è opzionale, se omessa verrà usato un topic di default.
+
+### RedmineProducer
+
+Per mandare un messaggio come Webhook di Redmine (attualmente il file `open_issue_redmine_webhook.json`), dare il comando
+
+    $ python3 -m producer.redmine.RedmineProducer -t nometopic
+
+La flag `-t` è opzionale, se omessa verrà usato un topic di default.
