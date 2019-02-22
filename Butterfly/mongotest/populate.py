@@ -28,13 +28,16 @@ with DBConnection('myDB') as client:
     # Popola la collezione users da db.json
     for user in users_json:
         if user['telegram'] is None and user['email'] is None:
-            print(f'User {timoty}')
+            print(f'User {user["name"]} {user["surname"]} '
+                  'non ha ne contatto Telegram ne email')
         # Se telegram è già presente
-        if users.find_one({'telegram': user['telegram']}):
+        elif (users.find_one({'telegram': user['telegram']}) and
+                user['telegram'] is not None):
             print(f'Username {user["telegram"]} già presente')
 
         # Se email è già presente
-        elif users.find_one({'email': user['email']}):
+        elif (users.find_one({'email': user['email']}) and
+                user['email'] is not None):
             print(f'Email {user["email"]} già presente')
 
         # Via libera all'aggiunta al DB
@@ -75,5 +78,5 @@ with DBConnection('myDB') as client:
         except pymongo.errors.DuplicateKeyError as err:
             print(err)
 
-    # for user in users.find({}):
-    #     pprint.pprint(user)
+    for user in users.find({}):
+        pprint.pprint(user)

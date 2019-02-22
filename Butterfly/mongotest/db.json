@@ -2,10 +2,10 @@
     "users" : [
         {
             "_id": 1,
-            "nome" : "Timoty",
-            "cognome" : "Granziero",
+            "name" : "Timoty",
+            "surname" : "Granziero",
             "email" : null,
-            "telegram" : "@user1",
+            "telegram" : null,
             "topics" : [
                 1,
                 2,
@@ -24,16 +24,13 @@
         },
         {
             "_id": 2,
-            "nome" : "Simone",
-            "cognome" : "Granziero",
+            "name" : "Simone",
+            "surname" : "Granziero",
             "telegram" : "@user2",
             "email" : "simone.granziero@gmail.com",
             "topics" : [
-                "bug-r-23434",
-                "wontfix-r-301358",
-                "enhancement-g-2",
-                "pacco-r-0",
-                "commits"
+                2,
+                4
             ],
             "keywords" : [
                 "kw1",
@@ -45,12 +42,12 @@
                 "2019-04-05"
             ],
             "preferenza": "email",
-            "sostituto" : 123
+            "sostituto" : 1
         },
         {
             "_id": 3,
-            "nome" : "Mattia",
-            "cognome" : "Ridolfi",
+            "name" : "Mattia",
+            "surname" : "Ridolfi",
             "telegram" : null,
             "email" : "example@gmail.com",
             "topics" : [
@@ -65,7 +62,7 @@
                 "2019-07-20"
             ],
             "preferenza": "email",
-            "sostituto" : 123
+            "sostituto" : 1
         }
     ],
     "projects" : [
