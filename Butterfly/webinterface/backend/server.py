@@ -139,9 +139,30 @@ class Handler(object):
         return page
     
     @cherrypy.expose
-    def modifyuser(self):
+    def modifyuser(self,
+                   submit=None,
+                   nome='*nome*',
+                   cognome='*cognome*',
+                   email='*email*',
+                   telegram='*telegram*'):
         path = os.path.join(absDir, 'modifyuser.html')
         page = open(path).read()
+        if True:
+            page = page.replace('*modifyuser*',
+                                 '<div><p>Utente modificato</p></div>')
+        
+        #TODO: for each user from mongo, new select option
+        
+        page = page.replace('*nome*', '%s' % nome)
+        page = page.replace('*cognome*', '%s' % cognome)
+        page = page.replace('*email*', '%s' % email)
+        page = page.replace('*telegram*', '%s' % telegram)
+        page = page.replace('*nome*', '')
+        page = page.replace('*cognome*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*modifyuser*',
+                            '<div><p>Utente non modificato</p></div>')
         return page
 
 if __name__ == '__main__':
