@@ -22,8 +22,14 @@ class Handler(object):
         return page
     
     @cherrypy.expose
+    def removepreferences(self):
+        path = os.path.join(absDir, 'removepreferences.html')
+        page = open(path).read()
+        return page
+    
+    @cherrypy.expose
     def access(self,
-               submit='*submit*',
+               submit=None,
                username='*username*'):
         if True:
             path = os.path.join(absDir, 'panel.html')
@@ -38,7 +44,7 @@ class Handler(object):
     
     @cherrypy.expose
     def adduser(self,
-               submit='*submit*',
+               submit=None,
                username='*username*',
                nome='*nome*',
                cognome='*cognome*',
@@ -61,6 +67,81 @@ class Handler(object):
         page = page.replace('*telegram*', '')
         page = page.replace('*insert*',
                              '<div><p>Utente già presente nel sistema</p></div')
+        return page
+    
+    @cherrypy.expose
+    def removeuser(self):
+        path = os.path.join(absDir, 'removeuser.html')
+        page = open(path).read()
+        page = page.replace('*username*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*removeusername*', '')
+        page = page.replace('*removeemail*', '')
+        page = page.replace('*removetelegram*', '')
+        return page
+    
+    @cherrypy.expose
+    def removeusername(self,
+                   submit=None,
+                   username='*username*'):
+        path = os.path.join(absDir, 'removeuser.html')
+        page = open(path).read()
+        if True:
+            page = page.replace('*removeusername*',
+                                 '<div><p>Utente rimosso</p></div>')
+        page = page.replace('*username*', '%s' % username)
+        page = page.replace('*username*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*removeusername*',
+                            '<div><p>Utente non rimosso</p></div>')
+        page = page.replace('*removeemail*', '')
+        page = page.replace('*removetelegram*', '')
+        return page
+    
+    @cherrypy.expose
+    def removeemail(self,
+                   submit=None,
+                   email='*email*'):
+        path = os.path.join(absDir, 'removeuser.html')
+        page = open(path).read()
+        if True:
+            page = page.replace('*removeemail*',
+                                 '<div><p>Utente rimosso</p></div>')
+        page = page.replace('*email*', '%s' % email)
+        page = page.replace('*username*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*removeemail*',
+                            '<div><p>Utente non rimosso</p></div>')
+        page = page.replace('*removeusername*', '')
+        page = page.replace('*removetelegram*', '')
+        return page
+    
+    @cherrypy.expose
+    def removetelegram(self,
+                   submit=None,
+                   telegram='*telegram*'):
+        path = os.path.join(absDir, 'removeuser.html')
+        page = open(path).read()
+        if True:
+            page = page.replace('*removetelegram*',
+                                 '<div><p>Utente rimosso</p></div>')
+        page = page.replace('*telegram*', '%s' % telegram)
+        page = page.replace('*username*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*removetelegram*',
+                            '<div><p>Utente non rimosso</p></div>')
+        page = page.replace('*removeusername*', '')
+        page = page.replace('*removeemail*', '')
+        return page
+    
+    @cherrypy.expose
+    def modifyuser(self):
+        path = os.path.join(absDir, 'modifyuser.html')
+        page = open(path).read()
         return page
 
 if __name__ == '__main__':
