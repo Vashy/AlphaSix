@@ -1,9 +1,12 @@
 import cherrypy
 import os
 import os.path
+import json
 
 absDir = os.path.join(os.getcwd(), os.path.dirname(__file__))
 absDir = os.path.join(absDir, '../frontend/public_html/')
+path = os.path.join(absDir, '../../../mongodb/db.json')
+data=open(path).read()
 
 class Handler(object):
     
@@ -52,7 +55,15 @@ class Handler(object):
                telegram='*telegram*'):
         path = os.path.join(absDir, 'insertuser.html')
         page = open(path).read()
-        if True:
+        
+        not_found = True
+        for user in data['users']['username']:
+            if username in user:
+                not_found = False
+        #TODO cercare negli altri campi e spostare in classe Utility
+        
+        if not_found:
+            #TODO INSERT USER
             page = page.replace('*insert*',
                                  '<div><p>Utente inserito</p></div>')
         page = page.replace('*username*', '%s' % username)
