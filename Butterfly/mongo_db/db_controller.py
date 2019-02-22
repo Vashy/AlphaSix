@@ -5,15 +5,19 @@ from mongo_db.db_connection import DBConnection
 
 # Non credo che controller sia il termine adatto
 class DBController(object):
-    def __init__(self, db: DBConnection):
+    def __init__(self, db: DBConnection, indexes=True):
         self._dbConnection = db
+        if indexes:
+            self.initialize_indexes()
+
+    def initialize_indexes(self):
         # Rende unique l'url dei progetti
-        db.db['projects'].create_index(
+        self.dbConnection.db['projects'].create_index(
             [('url', pymongo.ASCENDING)],
             unique=True,
         )
         # Rende unica la coppia label-project di topics
-        db.db['topics'].create_index(
+        self.dbConnection.db['topics'].create_index(
             [('label', pymongo.ASCENDING),
                 ('project', pymongo.ASCENDING)],
             unique=True,
@@ -30,7 +34,18 @@ class DBController(object):
         result = self.dbConnection.db[collection].insert_one(document)
         return result
 
-    def insert_user(self, user: dict):
+    def delete_one_document(
+            self,
+            filter: dict,
+            collection: str,
+    ) -> pymongo.collection.DeleteResult:
+        """Rimuove un documento che corrisponde al
+        `filter`, se presente, e restituisce il risultato.
+        """
+        result = self.dbConnection.db[collection].delete_one(filter)
+        return result
+
+    def insert_user(self, user: dict) -> pymongo.collection.InsertOneResult:
         """Aggiunge il documento `user` alla collezione `users`
         """
         users = self.dbConnection.db['users']
@@ -39,43 +54,79 @@ class DBController(object):
         if user['telegram'] is None and user['email'] is None:
             print(f'User {user["name"]} {user["surname"]} '
                   'non ha ne contatto Telegram ne email')
+            return None
 
         # Se telegram è già presente
         elif (users.find_one({'telegram': user['telegram']}) and
                 user['telegram'] is not None):
             print(f'Username {user["telegram"]} già presente')
+            return None
 
         # Se email è già presente
         elif (users.find_one({'email': user['email']}) and
                 user['email'] is not None):
             print(f'Email {user["email"]} già presente')
+            return None
 
         # Via libera all'aggiunta al DB
         else:
-            result = self.insert_document(user, 'users')
-            print(result.inserted_id)
+            # print(result.inserted_id)
+            return self.insert_document(user, 'users')
+
+    def delete_one_user(self, user: str) -> pymongo.collection.DeleteResult:
+        return self.delete_one_document(
+            {
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ]
+            },
+            'users',
+        )
 
     def insert_topic(self, topic):
         """Aggiunge il documento `topic` alla collezione `topics`
         """
         try:  # Tenta l'aggiunta del topic al DB
             result = self.dbConnection.db['topics'].insert_one(topic)
-            # Stampa l'id se l'aggiunta avviene con successo
-            print(result.inserted_id)
+            return result
         except pymongo.errors.DuplicateKeyError as err:
             print(err)
+            return None
+
+    def delete_one_topic(
+            self,
+            project: str,
+            label: str,
+    ) -> pymongo.collection.DeleteResult:
+        return self.delete_one_document({
+                'label': label,
+                'project': project,
+            },
+            'topics',
+        )
 
     def insert_project(self, project: dict):
         """Aggiunge il documento `project` alla collezione `projects`
         """
         try:  # Tenta l'aggiunta del progetto
             result = self.dbConnection.db['projects'].insert_one(project)
-            # Stampa l'id se l'aggiunta avviene con successo
-            print(result.inserted_id)
+            return result
         # url già presente, segnala l'errore
         # e prosegue con il prossimo documento
         except pymongo.errors.DuplicateKeyError as err:
             print(err)
+            return None
+
+    def delete_one_project(
+            self,
+            url: str,
+    ) -> pymongo.collection.DeleteResult:
+        return self.delete_one_document({
+                'url': url,
+            },
+            'projects'
+        )
 
     @property
     def dbConnection(self):

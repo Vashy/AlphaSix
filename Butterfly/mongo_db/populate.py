@@ -7,13 +7,12 @@ from mongo_db.db_connection import DBConnection
 from mongo_db.db_controller import DBController
 
 
-with DBConnection('myDB') as client:
+with DBConnection('butterfly') as client:
     # print(client._db.collection_names())
 
     client.drop_collections('users', 'projects', 'topics')
 
     controller = DBController(client)
-
     db = client.db
     with open(Path(__file__).parent / 'db.json') as f:
         data = json.load(f)
@@ -24,15 +23,19 @@ with DBConnection('myDB') as client:
 
     # Popola la collezione users da db.json
     for user in users_json:
-        controller.insert_user(user)
+        result = controller.insert_user(user)
+        if result is not None:
+            print(result.inserted_id)
 
     # Popola la collezione projects da db.json
     for project in projects_json:
-        controller.insert_project(project)
-
+        result = controller.insert_project(project)
+        if result is not None:
+            print(result.inserted_id)
     # Popola la collezione topics da db.json
     for topic in topics_json:
-        controller.insert_topic(topic)
-
+        result = controller.insert_topic(topic)
+        if result is not None:
+            print(result.inserted_id)
     # for user in users.find({}):
     #     pprint.pprint(user)
