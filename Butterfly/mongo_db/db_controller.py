@@ -62,21 +62,20 @@ class DBController(object):
             return None
 
         # Se telegram è già presente
-        elif (users.find_one({'telegram': user['telegram']}) and
+        if (users.find_one({'telegram': user['telegram']}) and
                 user['telegram'] is not None):
             print(f'Username {user["telegram"]} già presente')
             return None
 
         # Se email è già presente
-        elif (users.find_one({'email': user['email']}) and
+        if (users.find_one({'email': user['email']}) and
                 user['email'] is not None):
             print(f'Email {user["email"]} già presente')
             return None
 
         # Via libera all'aggiunta al DB
-        else:
-            # print(result.inserted_id)
-            return self.insert_document(user, 'users')
+        # print(result.inserted_id)
+        return self.insert_document(user, 'users')
 
     def delete_one_user(self, user: str) -> pymongo.collection.DeleteResult:
         """Rimuove un documento che corrisponde a
