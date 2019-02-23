@@ -48,12 +48,11 @@ class TelegramConsumer(Consumer):
 
         self._receiver = configs['telegram']['receiver']
         self._topics = topics
-        configs = configs['kafka']
 
         # Converte stringa 'inf' nel relativo float
-        if (configs['consumer_timeout_ms'] is not None
-                and configs['consumer_timeout_ms'] == 'inf'):
-            configs['consumer_timeout_ms'] = float('inf')
+        if (configs['kafka']['consumer_timeout_ms'] is not None
+                and configs['kafka']['consumer_timeout_ms'] == 'inf'):
+            configs['kafka']['consumer_timeout_ms'] = float('inf')
 
         notify = False
         while True:  # Attende una connessione con il Broker
@@ -64,8 +63,9 @@ class TelegramConsumer(Consumer):
                 self._consumer = KafkaConsumer(
                     *topics,
                     # Deserializza i messaggi dal formato JSON a oggetti Python
-                    # value_deserializer=lambda m: json.loads(m.decode('utf-8')),
-                    **configs,
+                    # value_deserializer=(
+                    #   lambda m: json.loads(m.decode('utf-8'))),
+                    **configs['kafka'],
                 )
                 break
             except kafka.errors.NoBrokersAvailable:
@@ -75,6 +75,7 @@ class TelegramConsumer(Consumer):
             except KeyboardInterrupt:
                 print(' Closing Consumer ...')
                 exit(1)
+        print('Connessione con il Broker stabilita')
 
         self._bot = telepot.Bot(configs['telegram']['token_bot'])
         # Da modificare nel file config.json

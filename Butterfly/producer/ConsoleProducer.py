@@ -55,7 +55,7 @@ class ConsoleProducer(Producer):
             except KeyboardInterrupt:
                 print(' Closing Producer ...')
                 exit(1)
-
+        print('Connessione con il Broker stabilita')
 
     @property
     def producer(self):

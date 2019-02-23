@@ -60,6 +60,7 @@ class GLProducer(Producer):
             except KeyboardInterrupt:
                 print(' Closing Producer ...')
                 exit(1)
+        print('Connessione con il Broker stabilita')
 
     # def __del__(self):  # Utile?
     #    self.close()

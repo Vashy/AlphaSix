@@ -81,6 +81,7 @@ class EmailConsumer(Consumer):
             except KeyboardInterrupt:
                 print(' Closing Consumer ...')
                 exit(1)
+        print('Connessione con il Broker stabilita')
 
     def send(self, msg: str):
         """Manda il messaggio finale, tramite il server mail,
