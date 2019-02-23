@@ -1,40 +1,33 @@
 import cherrypy
-import os
-import os.path
-# import pathlib
+import pathlib
 import json
 
-absDir = os.path.join(os.getcwd(), os.path.dirname(__file__))
-absDir = os.path.join(absDir, '../frontend/public_html/')
-# Modo più 'moderno' per ottenere un path assoluto
-# absDir2 = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
-# absDir2 = absDir2.resolve()
-# print(absDir)
-# print(absDir2)
+root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
+root = root.resolve()
 
-path = os.path.join(absDir, '../../../mongodb/db.json')
-data=open(path).read()
+file = root / '..' / '..' / '..' / 'mongodb' / 'db.json'
+data = file.read_text()
 
 class Handler(object):
     
     @cherrypy.expose
     def index(self):
-        path = os.path.join(absDir, 'access.html')
-        page = open(path).read()
+        file = root / 'access.html'
+        page = file.read_text()
         page = page.replace('*access*', '')
         page = page.replace('*username*', '')
         return page
     
     @cherrypy.expose
     def addpreferences(self):
-        path = os.path.join(absDir, 'addpreferences.html')
-        page = open(path).read()
+        file = root / 'addpreferences.html'
+        page = file.read_text()
         return page
     
     @cherrypy.expose
     def removepreferences(self):
-        path = os.path.join(absDir, 'removepreferences.html')
-        page = open(path).read()
+        file = root / 'removepreferences.html'
+        page = file.read_text()
         return page
     
     @cherrypy.expose
@@ -42,11 +35,11 @@ class Handler(object):
                submit=None,
                username='*username*'):
         if True:
-            path = os.path.join(absDir, 'panel.html')
-            page = open(path).read()
+            file = root / 'panel.html'
+            page = file.read_text()
             return page
-        path = os.path.join(absDir, 'access.html')
-        page = open(path).read()
+        file = root / 'access.html'
+        page = file.read_text()
         page = page.replace('*username*', '%s' % username)
         page = page.replace('*access*',
                              '<div><p>Username errato</p></div>')
@@ -60,8 +53,8 @@ class Handler(object):
                cognome='*cognome*',
                email='*email*',
                telegram='*telegram*'):
-        path = os.path.join(absDir, 'insertuser.html')
-        page = open(path).read()
+        file = root / 'insertuser.html'
+        page = file.read_text()
         
         not_found = True
         for user in data['users']['username']:
@@ -89,8 +82,8 @@ class Handler(object):
     
     @cherrypy.expose
     def removeuser(self):
-        path = os.path.join(absDir, 'removeuser.html')
-        page = open(path).read()
+        file = root / 'removeuser.html'
+        page = file.read_text()
         page = page.replace('*username*', '')
         page = page.replace('*email*', '')
         page = page.replace('*telegram*', '')
@@ -103,8 +96,8 @@ class Handler(object):
     def removeusername(self,
                    submit=None,
                    username='*username*'):
-        path = os.path.join(absDir, 'removeuser.html')
-        page = open(path).read()
+        file = root / 'removeuser.html'
+        page = file.read_text()
         if True:
             page = page.replace('*removeusername*',
                                  '<div><p>Utente rimosso</p></div>')
@@ -122,8 +115,8 @@ class Handler(object):
     def removeemail(self,
                    submit=None,
                    email='*email*'):
-        path = os.path.join(absDir, 'removeuser.html')
-        page = open(path).read()
+        file = root / 'removeuser.html'
+        page = file.read_text()
         if True:
             page = page.replace('*removeemail*',
                                  '<div><p>Utente rimosso</p></div>')
@@ -141,8 +134,8 @@ class Handler(object):
     def removetelegram(self,
                    submit=None,
                    telegram='*telegram*'):
-        path = os.path.join(absDir, 'removeuser.html')
-        page = open(path).read()
+        file = root / 'removeuser.html'
+        page = file.read_text()
         if True:
             page = page.replace('*removetelegram*',
                                  '<div><p>Utente rimosso</p></div>')
@@ -163,8 +156,8 @@ class Handler(object):
                    cognome='*cognome*',
                    email='*email*',
                    telegram='*telegram*'):
-        path = os.path.join(absDir, 'modifyuser.html')
-        page = open(path).read()
+        file = root / 'modifyuser.html'
+        page = file.read_text()
         if True:
             page = page.replace('*modifyuser*',
                                  '<div><p>Utente modificato</p></div>')
