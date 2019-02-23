@@ -33,7 +33,7 @@ class Handler(object):
             self,
             submit=None,
             username='*username*'
-        ):
+    ):
         if True:
             file = root / 'panel.html'
             page = file.read_text()
@@ -54,7 +54,7 @@ class Handler(object):
             cognome='*cognome*',
             email='*email*',
             telegram='*telegram*'
-        ):
+    ):
         file = root / 'insertuser.html'
         page = file.read_text()
 
@@ -96,7 +96,7 @@ class Handler(object):
             self,
             submit=None,
             username='*username*'
-        ):
+    ):
         file = root / 'removeuser.html'
         page = file.read_text()
         if True:
@@ -115,9 +115,9 @@ class Handler(object):
     @cherrypy.expose
     def removeemail(
             self,
-                submit=None,
-                email='*email*'
-        ):
+            submit=None,
+            email='*email*'
+    ):
         file = root / 'removeuser.html'
         page = file.read_text()
         if True:
@@ -138,7 +138,7 @@ class Handler(object):
             self,
             submit=None,
             telegram='*telegram*'
-        ):
+    ):
         file = root / 'removeuser.html'
         page = file.read_text()
         if True:
@@ -162,7 +162,7 @@ class Handler(object):
             cognome='*cognome*',
             email='*email*',
             telegram='*telegram*'
-        ):
+    ):
         file = root / 'modifyuser.html'
         page = file.read_text()
         if True:
