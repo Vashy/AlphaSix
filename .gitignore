@@ -249,6 +249,9 @@ __pycache__/
 # NetBeans
 /Butterfly/webinterface/frontend/nbproject/
 
+# PyCharm
+/Butterfly/.idea/
+
 *.pyc
 */bin/
 */lib/
