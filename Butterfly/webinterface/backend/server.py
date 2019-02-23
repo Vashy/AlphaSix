@@ -1,6 +1,5 @@
 import cherrypy
 import pathlib
-import json
 
 root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
 root = root.resolve()
