@@ -43,11 +43,23 @@ from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 class GLProducer(Producer):
     def __init__(self, config):
-        self._producer = KafkaProducer(
-            # Serializza l'oggetto Python in un oggetto JSON, codifica UTF-8
-            value_serializer=lambda m: json.dumps(m).encode('utf-8'),
-            **config
-        )
+        notify = False
+        while True:  # Attende una connessione con il Broker
+            try:
+                self._producer = KafkaProducer(
+                    # Serializza l'oggetto Python
+                    # in un oggetto JSON, codifica UTF-8
+                    value_serializer=lambda m: json.dumps(m).encode('utf-8'),
+                    **config
+                )
+                break
+            except kafka.errors.NoBrokersAvailable:
+                if not notify:
+                    notify = True
+                    print('Broker offline. In attesa di una connessione ...')
+            except KeyboardInterrupt:
+                print(' Closing Producer ...')
+                exit(1)
 
     # def __del__(self):  # Utile?
     #    self.close()

@@ -61,15 +61,26 @@ class EmailConsumer(Consumer):
                 and configs['consumer_timeout_ms'] == 'inf'):
             configs['consumer_timeout_ms'] = float('inf')
 
-        # Il parametro value_deserializer tornerà probabilmente
-        # utile successivamente, per ora lasciamo il controllo
-        # del tipo a listen()
-        self._consumer = KafkaConsumer(
-            *topics,
-            # Deserializza i messaggi dal formato JSON a oggetti Python
-            # value_deserializer=lambda m: json.loads(m.decode('utf-8')),
-            **configs,
-        )
+        notify = False
+        while True:  # Attende una connessione con il Broker
+            try:
+                # Il parametro value_deserializer tornerà probabilmente
+                # utile successivamente, per ora lasciamo il controllo
+                # del tipo a listen()
+                self._consumer = KafkaConsumer(
+                    *topics,
+                    # Deserializza i messaggi dal formato JSON a oggetti Python
+                    # value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+                    **configs,
+                )
+                break
+            except kafka.errors.NoBrokersAvailable:
+                if not notify:
+                    notify = True
+                    print('Broker offline. In attesa di una connessione ...')
+            except KeyboardInterrupt:
+                print(' Closing Consumer ...')
+                exit(1)
 
     def send(self, msg: str):
         """Manda il messaggio finale, tramite il server mail,

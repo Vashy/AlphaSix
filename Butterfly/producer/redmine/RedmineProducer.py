@@ -45,14 +45,22 @@ from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
 class RedmineProducer(Producer):
 
     def __init__(self, config):   # COSTRUTTORE
-        self._producer = KafkaProducer(
-            # Serializza l'oggetto Python in un oggetto JSON, codifica UTF-8
-            value_serializer=lambda m: json.dumps(m).encode('utf-8'),
-            **config
-        )
-
-    #def __del__(self):  # DISTRUTTORE
-    #    self.close()
+        notify = False
+        while True:  # Attende una connessione con il Broker
+            try:
+                self._producer = KafkaProducer(
+                    # Serializza l'oggetto Python in un oggetto JSON, codifica UTF-8
+                    value_serializer=lambda m: json.dumps(m).encode('utf-8'),
+                    **config
+                )
+                break
+            except kafka.errors.NoBrokersAvailable:
+                if not notify:
+                    notify = True
+                    print('Broker offline. In attesa di una connessione ...')
+            except KeyboardInterrupt:
+                print(' Closing Producer ...')
+                exit(1)
 
     @property
     def producer(self):
@@ -81,7 +89,7 @@ class RedmineProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-    #def close(self):
+    # def close(self):
     #    """Rilascia il Producer associato"""
     #    self._producer.close()
 

@@ -57,7 +57,18 @@ class ConsoleConsumer(Consumer):
                 and configs['consumer_timeout_ms'] == 'inf'):
             configs['consumer_timeout_ms'] = float('inf')
 
-        self._consumer = KafkaConsumer(*topics, **configs)
+        notify = False
+        while True:  # Attende una connessione con il Broker
+            try:
+                self._consumer = KafkaConsumer(*topics, **configs)
+                break
+            except kafka.errors.NoBrokersAvailable:
+                if not notify:
+                    notify = True
+                    print('Broker offline. In attesa di una connessione ...')
+            except KeyboardInterrupt:
+                print(' Closing Consumer ...')
+                exit(1)
 
     def send(self, msg: str):
         pass
@@ -91,7 +102,7 @@ class ConsoleConsumer(Consumer):
             #     f'\nvalue={message.value.decode()}'
             # )
 
-            print (final_msg)
+            print(final_msg)
 
             # print(self._token)
             # print(self._receiver)
