@@ -5,9 +5,6 @@ import json
 root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
 root = root.resolve()
 
-file = root / '..' / '..' / '..' / 'mongodb' / 'db.json'
-data = file.read_text()
-
 class Handler(object):
     
     @cherrypy.expose
@@ -57,8 +54,8 @@ class Handler(object):
         page = file.read_text()
         
         not_found = True
-        for user in data['users']['username']:
-            if username in user:
+        for user in data['users']:
+            if username in user['username']:
                 not_found = False
         #TODO cercare negli altri campi e spostare in classe Utility
         
