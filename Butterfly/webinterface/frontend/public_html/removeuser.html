@@ -8,24 +8,12 @@
     <body lang="it">
         <div>
             <h1>Rimozione utente | Butterfly</h1>
-            <form action="/removeusername" method="post">
-                <label for="username">Username:</label>
-                <input id="username" name="username" value="*username*" type="text" placeholder="Inserire username"/>
-                <input id="removeusername" name="submit" type="submit" value="Rimuovi utente"/>
+            <form action="/removeuserid" method="post">
+                <label for="userid">Email o Telegram:</label>
+                <input id="userid" name="userid" value="*userid*" type="text" placeholder="Inserire email o telegram"/>
+                <input id="removeuser" name="removeuser" type="submit" value="Rimuovi utente"/>
             </form>
-            *removeusername*
-            <form action="/removeemail" method="post">
-                <label for="email">Email:</label>
-                <input id="email" name="email" value="*email*" type="email" placeholder="Inserire email"/>
-                <input id="removeemail" name="submit" type="submit" value="Rimuovi utente"/>
-            </form>
-            *removeemail*
-            <form action="/removetelegram" method="post">
-                <label for="telegram">Telegram:</label>
-                <input id="telegram" name="telegram" value="*telegram*" type="text" placeholder="Inserire Telegarm ID"/>
-                <input id="removetelegram" name="submit" type="submit" value="Rimuovi utente"/>
-            </form>
-            *removetelegram*
+            *removeuser*
         </div>
     </body>
 </html>

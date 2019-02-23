@@ -1,18 +1,27 @@
 import cherrypy
 import pathlib
+from mongo_db.db_controller import DBConnection,DBController
 
 root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
 root = root.resolve()
 
-
 class Handler(object):
+    """Classe con la funzionalità di server http.
+    Ogni metodo della classe corrisponde a un url http gestito da cherrypy.
+    Gli argomenti passati ai metodi sono i parametri del metodo post http.
+
+    Le parti contenenti *keyword* sono parole chiave usate per definire
+    il comportamento lato server dell'interfaccia grafica.
+    Vengono sostituite con frammenti html in base agli eventi
+    scatenati dalle azioni dell'utente.
+    """
 
     @cherrypy.expose
     def index(self):
         file = root / 'access.html'
         page = file.read_text()
         page = page.replace('*access*', '')
-        page = page.replace('*username*', '')
+        page = page.replace('*userid*', '')
         return page
 
     @cherrypy.expose
@@ -30,25 +39,30 @@ class Handler(object):
     @cherrypy.expose
     def access(
             self,
-            submit=None,
-            username='*username*'
+            access=None,
+            userid='*userid*'
     ):
-        if True:
-            file = root / 'panel.html'
-            page = file.read_text()
-            return page
+        with DBConnection('butterfly') as client:
+            controller = DBController(client)
+            email = userid
+            telegram = userid
+
+
+            if True:
+                file = root / 'panel.html'
+                page = file.read_text()
+                return page
         file = root / 'access.html'
         page = file.read_text()
-        page = page.replace('*username*', '%s' % username)
+        page = page.replace('*userid*', '%s' % userid)
         page = page.replace('*access*',
-                            '<div><p>Username errato</p></div>')
+                            '<div><p>userid errato</p></div>')
         return page
 
     @cherrypy.expose
     def adduser(
             self,
             submit=None,
-            username='*username*',
             nome='*nome*',
             cognome='*cognome*',
             email='*email*',
@@ -61,15 +75,23 @@ class Handler(object):
         # TODO cercare negli altri campi e spostare in classe Utility
 
         if not_found:
-            # TODO INSERT USER
-            page = page.replace('*insert*',
+            with DBConnection('butterfly') as client:
+                controller = DBController(client)
+                user = {
+                    "name": nome,
+                    "surname": cognome,
+                    "email": email,
+                    "telegram": telegram
+                }
+                print(controller.insert_user(user))
+                page = page.replace('*insert*',
                                 '<div><p>Utente inserito</p></div>')
-        page = page.replace('*username*', '%s' % username)
+        page = page.replace('*userid*', '%s' % "")
         page = page.replace('*nome*', '%s' % nome)
         page = page.replace('*cognome*', '%s' % cognome)
         page = page.replace('*email*', '%s' % email)
         page = page.replace('*telegram*', '%s' % telegram)
-        page = page.replace('*username*', '')
+        page = page.replace('*userid*', '')
         page = page.replace('*nome*', '')
         page = page.replace('*cognome*', '')
         page = page.replace('*email*', '')
@@ -82,75 +104,25 @@ class Handler(object):
     def removeuser(self):
         file = root / 'removeuser.html'
         page = file.read_text()
-        page = page.replace('*username*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*removeusername*', '')
-        page = page.replace('*removeemail*', '')
-        page = page.replace('*removetelegram*', '')
+        page = page.replace('*userid*', '')
+        page = page.replace('*removeuser*', '')
         return page
 
     @cherrypy.expose
-    def removeusername(
+    def removeuserid(
             self,
-            submit=None,
-            username='*username*'
+            removeuser=None,
+            userid='*userid*'
     ):
         file = root / 'removeuser.html'
         page = file.read_text()
         if True:
-            page = page.replace('*removeusername*',
+            page = page.replace('*removeuserid*',
                                 '<div><p>Utente rimosso</p></div>')
-        page = page.replace('*username*', '%s' % username)
-        page = page.replace('*username*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*removeusername*',
+        page = page.replace('*userid*', '%s' % userid)
+        page = page.replace('*userid*', '')
+        page = page.replace('*removeuser*',
                             '<div><p>Utente non rimosso</p></div>')
-        page = page.replace('*removeemail*', '')
-        page = page.replace('*removetelegram*', '')
-        return page
-
-    @cherrypy.expose
-    def removeemail(
-            self,
-            submit=None,
-            email='*email*'
-    ):
-        file = root / 'removeuser.html'
-        page = file.read_text()
-        if True:
-            page = page.replace('*removeemail*',
-                                '<div><p>Utente rimosso</p></div>')
-        page = page.replace('*email*', '%s' % email)
-        page = page.replace('*username*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*removeemail*',
-                            '<div><p>Utente non rimosso</p></div>')
-        page = page.replace('*removeusername*', '')
-        page = page.replace('*removetelegram*', '')
-        return page
-
-    @cherrypy.expose
-    def removetelegram(
-            self,
-            submit=None,
-            telegram='*telegram*'
-    ):
-        file = root / 'removeuser.html'
-        page = file.read_text()
-        if True:
-            page = page.replace('*removetelegram*',
-                                '<div><p>Utente rimosso</p></div>')
-        page = page.replace('*telegram*', '%s' % telegram)
-        page = page.replace('*username*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*removetelegram*',
-                            '<div><p>Utente non rimosso</p></div>')
-        page = page.replace('*removeusername*', '')
-        page = page.replace('*removeemail*', '')
         return page
 
     @cherrypy.expose
