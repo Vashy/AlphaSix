@@ -248,3 +248,8 @@ __pycache__/
 
 # NetBeans
 /Butterfly/webinterface/frontend/nbproject/
+
+*.pyc
+*/bin/
+*/lib/
+*/include/

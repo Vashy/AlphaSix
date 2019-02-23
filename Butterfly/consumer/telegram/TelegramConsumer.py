@@ -34,10 +34,12 @@ import telepot
 from pathlib import Path
 from abc import ABC, abstractmethod
 import json
-import pprint # Pretty format per oggetti Python
+import pprint  # Pretty format per oggetti Python
 
 from consumer.consumer import Consumer
-import webhook.webhook as GLIssueWebhook
+# import webhook.webhook as GLIssueWebhook
+# from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
+
 
 class TelegramConsumer(Consumer):
     """Implementa Consumer"""
@@ -97,7 +99,6 @@ class TelegramConsumer(Consumer):
         except telepot.exception.TelegramError as e:
             print(f'Nessun messaggio inviato: "{e.description}"')
 
-
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
         consumer è abbonato.
@@ -111,7 +112,8 @@ class TelegramConsumer(Consumer):
             print(f'- {topic}')
         print()
 
-        self._bot.message_loop(self._on_chat_message)
+        # Linea da commentare in caso qualcun altro abbia attivo il bot
+        # self._bot.message_loop(self._on_chat_message)
         for message in self._consumer:
             print(f'Tipo messaggio: {type(message.value)}')
 
@@ -119,24 +121,28 @@ class TelegramConsumer(Consumer):
             try:
                 value = self.pretty(json.loads(value))
             except json.decoder.JSONDecodeError:
-                print(f'\n-----\nWarning: "{value}" non è in formato JSON\n-----\n')
+                print(f'\n-----\nWarning: "{value}"'
+                      'non è in formato JSON\n-----\n')
 
-            final_msg = '{}:{}:{}:\tkey={}\n{}'.format(
+            final_msg = '{}{}{}*Key*: {}\n{}{}'.format(
+                    '*Topic*: ',
                     message.topic,
-                    message.partition,
-                    message.offset,
+                    # message.partition,
+                    # message.offset,
+                    '\n\n',
                     message.key,
+                    '\n',
                     value,
             )
 
             # Invia il messaggio finale
             self.send(final_msg)
 
-            print() # Per spaziare i messaggi sulla shell
-
+            print()  # Per spaziare i messaggi sulla shell
 
     def _on_chat_message(self, msg):
-        content_type, _, chat_id = telepot.glance(msg) # Raccoglie il messaggio
+        # Raccoglie il messaggio
+        content_type, _, chat_id = telepot.glance(msg)
 
         if content_type == 'text':
 
@@ -150,26 +156,29 @@ class TelegramConsumer(Consumer):
             print('Testo messaggio: ', text)
             print('-----------')
 
-
             final_msg = ''
             if text == '/start':
-                final_msg = (f'Ciao {name}, '
+                final_msg = (
+                    f'Ciao {name}, '
                     'questo è il bot che ti invierà '
                     'le segnalazioni dei topic ai quali ti sei iscritto.'
                 )
 
-            elif text == '/subscribe': # TODO Comando /subscribe
-                final_msg = (f'{name}, sei stato aggiunto correttamente '
+            elif text == '/subscribe':  # TODO Comando /subscribe
+                final_msg = (
+                    f'{name}, sei stato aggiunto correttamente '
                     'al sistema *Butterfly*!'
                 )
 
-            elif text == '/unsubscribe': # TODO Comando /unsubscribe
-                final_msg = ('Sei stato rimosso '
+            elif text == '/unsubscribe':  # TODO Comando /unsubscribe
+                final_msg = (
+                    'Sei stato rimosso '
                     'dal sistema *Butterfly*! Se cambiassi idea, '
                     'fammelo sapere!'
                 )
             else:
-                final_msg = ('Comando non riconosciuto.\n\nUso:\n'
+                final_msg = (
+                    'Comando non riconosciuto.\n\nUso:\n'
                     '/subscribe\n/unsubscribe'
                 )
 
@@ -187,16 +196,25 @@ class TelegramConsumer(Consumer):
         obj -- JSON object
         """
 
-        return "".join(
+        # Questa chiamata va bene sia per i webhook di rd che per gt
+        res = "".join(
             [
-                f'*Type*: \t\t{obj["object_kind"]}',
-                f'\n*Title*: \t\t{obj["title"]}',
-                f'\n*Project ID*: \t{obj["project"]["id"]}',
-                f'\n*Project name*: \t{obj["project"]["name"]}',
-                f'\n*Action*: \t{obj["action"]}\n ... ',
+                'È stata aperta una issue nel progetto: '
+                f'{obj["project_name"]} ',
+                f'({obj["project_id"]})',
+                "\n\n*Author*: " + f'\n - {obj["author"]}'
+                "\n\n *Issue's information: *"
+                f'\n - *Title*: \t\t{obj["title"]}',
+                f'\n - *Description*: \t\t{obj["description"]}',
+                f'\n - *Action*: \t{obj["action"]}',
+                "\n\n*Assegnee's information:*"
             ]
         )
 
+        for value in obj["assignees"]:
+            res += f'\n - {value}'
+
+        return res
 
     def close(self):
         """Chiude la connessione del Consumer"""
@@ -235,7 +253,7 @@ if __name__ == '__main__':
         print(e.with_traceback())
 
     try:
-        consumer.listen() # Resta in ascolto del Broker
+        consumer.listen()  # Resta in ascolto del Broker
     except KeyboardInterrupt as e:
         consumer.close()
         print(' Closing Consumer ...')
