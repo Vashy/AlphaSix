@@ -34,7 +34,6 @@ Autori:
 
 from kafka import KafkaConsumer
 import kafka.errors
-from abc import ABC, abstractmethod
 import json
 import requests
 from pathlib import Path
@@ -85,7 +84,8 @@ class ConsoleConsumer(Consumer):
         print()
 
         for message in self._consumer:
-            final_msg = ('{}:{}:{}:\nkey={}\nvalue={}'
+            final_msg = (
+                '{}:{}:{}:\nkey={}\nvalue={}'
                 .format(
                     message.topic,
                     message.partition,
@@ -108,9 +108,9 @@ class ConsoleConsumer(Consumer):
             # print(self._token)
             # print(self._receiver)
             response = requests.post(
-                url='https://api.telegram.org/bot' 
-                    + self._token + '/sendMessage?chat_id=' 
-                    + self._receiver + '&text=' 
+                url='https://api.telegram.org/bot'
+                    + self._token + '/sendMessage?chat_id='
+                    + self._receiver + '&text='
                     + final_msg + ''
             ).json()
 
@@ -118,7 +118,6 @@ class ConsoleConsumer(Consumer):
                 print('Inviato')
             else:
                 print('Qualcosa è andato storto')
-
 
     @property
     def consumer(self):
@@ -162,8 +161,8 @@ def main():
         print(e.with_traceback())
 
     try:
-        consumer.listen() # Resta in ascolto del Broker
-    except KeyboardInterrupt as e:
+        consumer.listen()  # Resta in ascolto del Broker
+    except KeyboardInterrupt:
         consumer.close()
         print(' Closing Consumer ...')
 

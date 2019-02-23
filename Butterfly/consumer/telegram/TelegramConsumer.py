@@ -32,7 +32,6 @@ from kafka import KafkaConsumer
 import kafka.errors
 import telepot
 from pathlib import Path
-from abc import ABC, abstractmethod
 import json
 import pprint  # Pretty format per oggetti Python
 
@@ -223,8 +222,10 @@ class TelegramConsumer(Consumer):
             ]
         )
 
-        # Avendo gitlab che può avere più assignees e redmine che invece può averne soltanto uno
-        # hanno due profondità diverse nel file json, quindi vanno scorse in modo diverso
+        # Avendo gitlab che può avere più assignees e redmine
+        # che invece può averne soltanto uno
+        # hanno due profondità diverse nel file json,
+        # quindi vanno scorse in modo diverso
         if obj['type'] == 'redmine':
             res += f'\n - {obj["assignees"]["firstname"]}'
         elif obj['type'] == 'gitlab':
@@ -256,7 +257,7 @@ if __name__ == '__main__':
     # Per ora, sono solo di interesse i nomi (label) dei Topic
     topiclst = []
     for topic in topics:
-        # Per ogni topic, aggiunge a topiclst solo se non è già presente 
+        # Per ogni topic, aggiunge a topiclst solo se non è già presente
         if topic['label'] not in topiclst:
             topiclst.append(topic['label'])
 
@@ -271,6 +272,6 @@ if __name__ == '__main__':
 
     try:
         consumer.listen()  # Resta in ascolto del Broker
-    except KeyboardInterrupt as e:
+    except KeyboardInterrupt:
         consumer.close()
         print(' Closing Consumer ...')

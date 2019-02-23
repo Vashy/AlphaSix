@@ -68,7 +68,7 @@ class ConsoleProducer(Producer):
             # Produce il messaggio sul Broker, codificando la
             # stringa in binario
             self.producer.send(topic, msg.encode())
-            self.producer.flush(10) # Attende 10 secondi
+            self.producer.flush(10)  # Attende 10 secondi
         except kafka.errors.KafkaTimeoutError:
             stderr.write('Errore di timeout\n')
             exit(-1)
@@ -78,12 +78,12 @@ class ConsoleProducer(Producer):
         self._producer.close()
 
 
-
 # Funzione ausiliaria per ConsoleProducer
 def produce_messages(console_producer, topic, messages):
     """Genera i messaggi degli argomenti passati a linea di comando"""
     for msg in messages:
         console_producer.produce(topic, msg)
+
 
 def main():
 
@@ -118,6 +118,7 @@ def main():
         produce_messages(producer, args.topic, args.message)
     else:
         produce_messages(producer, topics[0]['label'], args.message)
+
 
 if __name__ == "__main__":
     main()
