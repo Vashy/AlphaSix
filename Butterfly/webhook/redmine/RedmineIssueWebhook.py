@@ -56,7 +56,7 @@ class RedmineIssueWebhook(Webhook):
         # Controlla se jsonfile è istanza di Path, str o None
         if isinstance(jsonfile, Path):
             path = jsonfile
-            if not path.is_file(): # Se non è un file
+            if not path.is_file():  # Se non è un file
                 raise FileNotFoundError()
 
             with open(path) as f:
@@ -64,7 +64,7 @@ class RedmineIssueWebhook(Webhook):
 
         elif isinstance(jsonfile, str):
             path = Path(jsonfile)
-            if not path.is_file(): # Se non è un file
+            if not path.is_file():  # Se non è un file
                 raise FileNotFoundError()
 
             with open(path) as f:
@@ -83,14 +83,28 @@ class RedmineIssueWebhook(Webhook):
         webhook = {}
         # webhook["issue_id"] = self.json_file["payload"]["issue"]["id"]
         webhook["title"] = self.json_file["payload"]["issue"]["subject"]
-        webhook["description"] = self.json_file["payload"]["issue"]["description"]
-        webhook["project_id"] = self.json_file["payload"]["issue"]["project"]["id"]
-        webhook["project_name"] = self.json_file["payload"]["issue"]["project"]["name"]
-        # webhook["status"] = self.json_file["payload"]["issue"]["status"]["name"]
-        # webhook["tracker"] = self.json_file["payload"]["issue"]["tracker"]["name"]
-        # webhook["priority"] = self.json_file["payload"]["issue"]["priority"]["name"]
+        webhook["description"] = self.json_file(
+            ["payload"]["issue"]["description"]
+        )
+        webhook["project_id"] = self.json_file(
+            ["payload"]["issue"]["project"]["id"]
+        )
+        webhook["project_name"] = self.json_file(
+            ["payload"]["issue"]["project"]["name"]
+        )
+        # webhook["status"] = self.json_file(
+        # ["payload"]["issue"]["status"]["name"]
+        # )
+        # webhook["tracker"] = self.json_file(
+        # ["payload"]["issue"]["tracker"]["name"]
+        # )
+        # webhook["priority"] = self.json_file(
+        # ["payload"]["issue"]["priority"]["name"]
+        # )
         webhook["action"] = self.json_file["payload"]["action"]
-        webhook["author"] = self.json_file["payload"]["issue"]["author"]["firstname"]
+        webhook["author"] = self.json_file(
+            ["payload"]["issue"]["author"]["firstname"]
+        )
 
         webhook["assignees"] = []
         for value in self.json_file['payload']['issue']['assignee']:

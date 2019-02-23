@@ -51,7 +51,7 @@ class RedmineProducer(Producer):
             **config
         )
 
-    #def __del__(self):  # DISTRUTTORE
+    # def __del__(self):  # DISTRUTTORE
     #    self.close()
 
     @property
@@ -81,7 +81,7 @@ class RedmineProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-    #def close(self):
+    # def close(self):
     #    """Rilascia il Producer associato"""
     #    self._producer.close()
 
@@ -113,7 +113,10 @@ def main():
     # Inzializza RedmineIssueWebhook con il percorso
     # a open_issue_redmine_webhook.json
     webhook = RedmineIssueWebhook(
-            Path(__file__).parents[2] / 'webhook/redmine/open_issue_redmine_webhook.json')
+            Path(__file__).parents[2] / (
+                'webhook/redmine/open_issue_redmine_webhook.json'
+            )
+            )
 
     # print(topics[0]['label'])
     if args.topic:  # Topic passato con la flag -t
