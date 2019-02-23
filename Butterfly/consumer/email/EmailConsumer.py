@@ -33,7 +33,6 @@ Autori:
 
 from kafka import KafkaConsumer
 import kafka.errors
-from abc import ABC, abstractmethod
 import json
 from pathlib import Path
 
@@ -61,15 +60,28 @@ class EmailConsumer(Consumer):
                 and configs['consumer_timeout_ms'] == 'inf'):
             configs['consumer_timeout_ms'] = float('inf')
 
-        # Il parametro value_deserializer tornerà probabilmente
-        # utile successivamente, per ora lasciamo il controllo
-        # del tipo a listen()
-        self._consumer = KafkaConsumer(
-            *topics,
-            # Deserializza i messaggi dal formato JSON a oggetti Python
-            # value_deserializer=lambda m: json.loads(m.decode('utf-8')),
-            **configs,
-        )
+        notify = False
+        while True:  # Attende una connessione con il Broker
+            try:
+                # Il parametro value_deserializer tornerà probabilmente
+                # utile successivamente, per ora lasciamo il controllo
+                # del tipo a listen()
+                self._consumer = KafkaConsumer(
+                    *topics,
+                    # Deserializza i messaggi dal formato JSON a oggetti Python
+                    # value_deserializer=(
+                    #   (lambda m: json.loads(m.decode('utf-8'))),
+                    **configs,
+                )
+                break
+            except kafka.errors.NoBrokersAvailable:
+                if not notify:
+                    notify = True
+                    print('Broker offline. In attesa di una connessione ...')
+            except KeyboardInterrupt:
+                print(' Closing Consumer ...')
+                exit(1)
+        print('Connessione con il Broker stabilita')
 
     def send(self, msg: str):
         """Manda il messaggio finale, tramite il server mail,
@@ -84,11 +96,13 @@ class EmailConsumer(Consumer):
             while True:
                 try:
                     # Prompt per l'inserimento della psw
-                    psw = getpass.getpass('\nInserisci la password '
-                        f'di {self._sender}: ')
+                    psw = getpass.getpass(
+                        '\nInserisci la password '
+                        f'di {self._sender}: '
+                    )
 
                     mailserver.login(self._sender, psw)  # Login al server SMTP
-                    break # Login riuscito, e Filè incacchiato
+                    break  # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova
                 except smtplib.SMTPAuthenticationError:
@@ -96,7 +110,8 @@ class EmailConsumer(Consumer):
 
                 # Interruzione da parte dell'utente della task
                 except KeyboardInterrupt:
-                    print('\nInvio email annullato. In ascolto di altri messaggi ...')
+                    print('\nInvio email annullato. '
+                          'In ascolto di altri messaggi ...')
                     return
 
             text = '\n'.join([
@@ -112,7 +127,8 @@ class EmailConsumer(Consumer):
                 mailserver.sendmail(self._sender, self._receiver, text)
                 print('\nEmail inviata. In ascolto di altri messaggi ...')
             except smtplib.SMTPException:
-                print('Errore, email non inviata. In ascolto di altri messaggi ...')
+                print('Errore, email non inviata. '
+                      'In ascolto di altri messaggi ...')
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
@@ -164,7 +180,8 @@ class EmailConsumer(Consumer):
         # Questa chiamata va bene sia per i webhook di rd che per gt
         res = "".join(
             [
-                f'E` stata aperta una issue nel progetto: {obj["project_name"]} ',
+                'E` stata aperta una issue nel progetto: '
+                f'{obj["project_name"]} ',
                 f'({obj["project_id"]})',
                 "\n\nAuthor: " + f'\n - {obj["author"]}'
                 "\n\n Issue's information: "
@@ -174,8 +191,10 @@ class EmailConsumer(Consumer):
                 "\n\nAssegnee's information:"
             ])
 
-        # Avendo gitlab che può avere più assignees e redmine che invece può averne soltanto uno
-        # hanno due profondità diverse nel file json, quindi vanno scorse in modo diverso
+        # Avendo gitlab che può avere più assignees
+        # e redmine che invece può averne soltanto uno
+        # hanno due profondità diverse nel file json,
+        # quindi vanno scorse in modo diverso
         if obj['type'] == 'redmine':
             res += f'\n - {obj["assignees"]["firstname"]}'
         elif obj['type'] == 'gitlab':
@@ -207,7 +226,7 @@ if __name__ == '__main__':
     # Per ora, sono solo di interesse i nomi (label) dei Topic
     topiclst = []
     for topic in topics:
-        # Per ogni topic, aggiunge a topiclst solo se non è già presente 
+        # Per ogni topic, aggiunge a topiclst solo se non è già presente
         if topic['label'] not in topiclst:
             topiclst.append(topic['label'])
 
@@ -221,7 +240,7 @@ if __name__ == '__main__':
         print(e.with_traceback())
 
     try:
-        consumer.listen() # Resta in ascolto del Broker
-    except KeyboardInterrupt as e:
+        consumer.listen()  # Resta in ascolto del Broker
+    except KeyboardInterrupt:
         consumer.close()
         print(' Closing Consumer ...')

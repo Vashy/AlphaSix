@@ -32,7 +32,6 @@ from kafka import KafkaConsumer
 import kafka.errors
 import telepot
 from pathlib import Path
-from abc import ABC, abstractmethod
 import json
 import pprint  # Pretty format per oggetti Python
 
@@ -48,27 +47,39 @@ class TelegramConsumer(Consumer):
 
         self._receiver = configs['telegram']['receiver']
         self._topics = topics
+
+        # Converte stringa 'inf' nel relativo float
+        if (configs['kafka']['consumer_timeout_ms'] is not None
+                and configs['kafka']['consumer_timeout_ms'] == 'inf'):
+            configs['kafka']['consumer_timeout_ms'] = float('inf')
+
+        notify = False
+        while True:  # Attende una connessione con il Broker
+            try:
+                # Il parametro value_deserializer tornerà probabilmente
+                # utile successivamente, per ora lasciamo il controllo
+                # del tipo a listen()
+                self._consumer = KafkaConsumer(
+                    *topics,
+                    # Deserializza i messaggi dal formato JSON a oggetti Python
+                    # value_deserializer=(
+                    #   lambda m: json.loads(m.decode('utf-8'))),
+                    **configs['kafka'],
+                )
+                break
+            except kafka.errors.NoBrokersAvailable:
+                if not notify:
+                    notify = True
+                    print('Broker offline. In attesa di una connessione ...')
+            except KeyboardInterrupt:
+                print(' Closing Consumer ...')
+                exit(1)
+        print('Connessione con il Broker stabilita')
+
         self._bot = telepot.Bot(configs['telegram']['token_bot'])
         # Da modificare nel file config.json
         # 38883960 Timoty
         # 265266555 Laura
-
-        configs = configs['kafka']
-
-        # Converte stringa 'inf' nel relativo float
-        if (configs['consumer_timeout_ms'] is not None
-                and configs['consumer_timeout_ms'] == 'inf'):
-            configs['consumer_timeout_ms'] = float('inf')
-
-        # Il parametro value_deserializer tornerà probabilmente
-        # utile successivamente, per ora lasciamo il controllo
-        # del tipo a listen()
-        self._consumer = KafkaConsumer(
-            *topics,
-            # Deserializza i messaggi dal formato JSON a oggetti Python
-            # value_deserializer=lambda m: json.loads(m.decode('utf-8')),
-            **configs,
-        )
 
     def send(self, msg: str):
         """Manda il messaggio finale, tramite il bot,
@@ -211,8 +222,10 @@ class TelegramConsumer(Consumer):
             ]
         )
 
-        # Avendo gitlab che può avere più assignees e redmine che invece può averne soltanto uno
-        # hanno due profondità diverse nel file json, quindi vanno scorse in modo diverso
+        # Avendo gitlab che può avere più assignees e redmine
+        # che invece può averne soltanto uno
+        # hanno due profondità diverse nel file json,
+        # quindi vanno scorse in modo diverso
         if obj['type'] == 'redmine':
             res += f'\n - {obj["assignees"]["firstname"]}'
         elif obj['type'] == 'gitlab':
@@ -244,7 +257,7 @@ if __name__ == '__main__':
     # Per ora, sono solo di interesse i nomi (label) dei Topic
     topiclst = []
     for topic in topics:
-        # Per ogni topic, aggiunge a topiclst solo se non è già presente 
+        # Per ogni topic, aggiunge a topiclst solo se non è già presente
         if topic['label'] not in topiclst:
             topiclst.append(topic['label'])
 
@@ -259,6 +272,6 @@ if __name__ == '__main__':
 
     try:
         consumer.listen()  # Resta in ascolto del Broker
-    except KeyboardInterrupt as e:
+    except KeyboardInterrupt:
         consumer.close()
         print(' Closing Consumer ...')

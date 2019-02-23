@@ -2,7 +2,7 @@
 
 ## Avvio server Zookeeper
 
-Posizionarsi nella homedir di Kafka, e dare il comando
+Posizionarsi nella homedir di Kafka (il path non deve contenere nomi di cartelle con spazi), e dare il comando
 
     $ bin/zookeeper-server-start.sh config/zookeeper.properties
 

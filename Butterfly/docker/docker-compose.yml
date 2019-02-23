@@ -126,47 +126,47 @@ services:
 
 ## CONSUMER ##
 
-  # consumer_telegram:
-  #   image: consumer_telegram
-  #   container_name: consumer_telegram
-  #   hostname: consumer_telegram
-  #   restart: always
-  #   depends_on:
-  #     - kafka
-  #   build:
-  #     context: ../
-  #     dockerfile: ../consumer/telegram/Dockerfile
-  #   ports:
-  #     - 7000:80
-  #   stdin_open: true
-  #   tty: true
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-size: 500k
-  #       max-file: "3"
-  #   network_mode: host
+  consumer_telegram:
+    image: consumer_telegram
+    container_name: consumer_telegram
+    hostname: consumer_telegram
+    restart: always
+    depends_on:
+      - kafka
+    build:
+      context: ../
+      dockerfile: ../consumer/telegram/Dockerfile
+    ports:
+      - 5000:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
 
-  # consumer_email:
-  #   image: consumer_email
-  #   container_name: consumer_email
-  #   hostname: consumer_email
-  #   restart: always
-  #   depends_on:
-  #     - kafka
-  #   build:
-  #     context: ../
-  #     dockerfile: ../consumer/email/Dockerfile
-  #   ports:
-  #     - 7001:80
-  #   stdin_open: true
-  #   tty: true
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-size: 500k
-  #       max-file: "3"
-  #   network_mode: host
+  consumer_email:
+    image: consumer_email
+    container_name: consumer_email
+    hostname: consumer_email
+    restart: always
+    depends_on:
+      - kafka
+    build:
+      context: ../
+      dockerfile: ../consumer/email/Dockerfile
+    ports:
+      - 5001:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
 
 ## PRODUCER ##
 
@@ -181,7 +181,7 @@ services:
   #     context: ../
   #     dockerfile: ../producer/redmine/Dockerfile
   #   ports:
-  #     - 7002:80
+  #     - 5002:5000
   #   stdin_open: true
   #   tty: true
   #   logging:
@@ -202,7 +202,7 @@ services:
   #     context: ../
   #     dockerfile: ../producer/gitlab/Dockerfile
   #   ports:
-  #     - 7003:80
+  #     - 5003:5000
   #   stdin_open: true
   #   tty: true
   #   logging:
