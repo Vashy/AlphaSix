@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modifica preferenze | Butterfly</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body lang="it">
+        <div>
+            <h1>Butterfly</h1>
+            <form action="/subscriptiontopic" method="post">
+                *topics*
+                <input id="subscriptiontopic" name="subscriptiontopic" type="submit" value="Modifica iscrizioni topic"/>
+            </form>
+            *subscriptiontopic*
+            <form action="/indisponibilita" method="post">
+                <fieldset>
+                    <label for="calendario">Indisponibilità</label>
+                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Modifica indisponibilità"/>
+                </fieldset>
+            </form>
+            *indisponibilita*
+            <form action="/favouriteplatform" method="post">
+                <fieldset>
+                    <label for="email">Email</label>
+                    <input name="platform" id="email" type="radio" />
+                    <label for="telegram">Telegram</label>
+                    <input name="platform" id="telegram" type="radio" />
+                    <input id="favouriteplatform" name="favouriteplatform" type="submit" value="Modifica piattaforma preferita"/>
+                </fieldset>
+            </form>
+            *favouriteplatform*
+            <form action="/favouriteuser" method="post">
+                <fieldset>
+                    <label for="userid">User ID (email o telegram)</label>
+                    <input name="userid" type="text" />
+                    <input id="favouriteuser" name="favouriteuser" type="submit" value="Modifica utente preferito"/>
+                </fieldset>
+            </form>
+            *favouriteuser*
+            <form action="/keywords" method="post">
+                <fieldset>
+                    <label for="textkeywords">Gitlab keywords</label>
+                    <textarea id="textkeywords" name="keywords">*textkeywords*</textarea>
+                    <input id="keywords" name="keywords" type="submit" value="Modifica parole chiave"/>
+                </fieldset>
+            </form>
+            *keywords*
+        </div>
+    </body>
+</html>
