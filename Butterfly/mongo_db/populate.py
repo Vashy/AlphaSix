@@ -23,7 +23,9 @@ with DBConnection('butterfly') as client:
 
     # Popola la collezione users da db.json
     for user in users_json:
-        result = controller.insert_user(user)
+        # NON usare questo metodo per inserire utenti! Usare
+        # controller.insert_user()
+        result = controller.collection('users').insert_one(user)
         if result is not None:
             print(result.inserted_id)
 
