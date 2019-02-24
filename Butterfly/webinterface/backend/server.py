@@ -60,6 +60,20 @@ class Handler(object):
         return page
 
     @cherrypy.expose
+    def insertuser(
+            self
+    ):
+        file = root / 'insertuser.html'
+        page = file.read_text()
+        page = page.replace('*userid*', '')
+        page = page.replace('*nome*', '')
+        page = page.replace('*cognome*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*insert*', '')
+        return page
+
+    @cherrypy.expose
     def adduser(
             self,
             submit=None,
@@ -71,21 +85,17 @@ class Handler(object):
         file = root / 'insertuser.html'
         page = file.read_text()
 
-        not_found = True
-        # TODO cercare negli altri campi e spostare in classe Utility
-
-        if not_found:
-            with DBConnection('butterfly') as client:
-                controller = DBController(client)
-                user = {
-                    "name": nome,
-                    "surname": cognome,
-                    "email": email,
-                    "telegram": telegram
-                }
-                print(controller.insert_user(user))
-                page = page.replace('*insert*',
-                                '<div><p>Utente inserito</p></div>')
+        with DBConnection('butterfly') as client:
+            controller = DBController(client)
+            user = {
+                "name": nome,
+                "surname": cognome,
+                "email": email,
+                "telegram": telegram
+            }
+            controller.insert_user()
+            page = page.replace('*insert*',
+                            '<div><p>Utente inserito</p></div>')
         page = page.replace('*userid*', '%s' % "")
         page = page.replace('*nome*', '%s' % nome)
         page = page.replace('*cognome*', '%s' % cognome)
