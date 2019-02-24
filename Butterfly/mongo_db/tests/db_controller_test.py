@@ -701,6 +701,11 @@ class TestDBController(unittest.TestCase):
                 'a'
             )
 
+        with self.subTest('Update sostituto'):
+            pre = self.controller.user('ccc@gmail.com')
+            # self.assertEqual()
+
+
     def test_user(self):
         obj = self.controller.user('@user1')
         self.assertEqual(obj['name'], 'Timoty')

@@ -427,6 +427,9 @@ class DBController(object):
             }
         )
 
+    def update_user_sostituto(self, id: str, new_sostituto):
+        pass
+
     def user_has_telegram(self, id: str) -> bool:
         assert self.user_exists(id), f'User {id} inesistente'
 
