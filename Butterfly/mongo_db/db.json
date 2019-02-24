@@ -86,13 +86,23 @@
             "url" : "http://localhost/redmine/project-2",
             "name": "Project-2",
             "app" : "redmine"
+        },
+        {
+            "url": "http://localhost/redmine/project-4",
+            "name": "Project-4",
+            "app": "redmine"
         }
     ],
     "topics" : [
         {
+            "_id" : 0,
+            "label" : "rivedere",
+            "project" : "http://localhost/redmine/project-4"
+        },
+        {
             "_id" : 1,
             "label" : "bug",
-            "project" : "http://localhost/redmine/project-1/"
+            "project" : "http://localhost/redmine/project-1"
         },
         {
             "_id" : 2,
