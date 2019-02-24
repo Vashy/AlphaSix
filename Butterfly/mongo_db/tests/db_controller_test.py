@@ -668,6 +668,47 @@ class TestDBController(unittest.TestCase):
             self.assertFalse(self.controller.user_exists(
                 'michele.rapanello@hotmail.it'))
 
+        with self.subTest('Update name'):
+            # self.user
+            pre = self.controller.user('ccc@gmail.com')
+            self.assertEqual(pre['name'], 'Michele')
+            self.controller.update_user_name(
+                'ccc@gmail.com',
+                'Matteo'
+            )
+            post = self.controller.user('ccc@gmail.com')
+            self.assertEqual(post['name'], 'Matteo')
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_user_name,
+                '@user22',
+                'a',
+            )
+
+        with self.subTest('Update surname'):
+            pre = self.controller.user('ccc@gmail.com')
+            self.assertEqual(pre['surname'], 'Rapanello')
+            self.controller.update_user_surname(
+                'ccc@gmail.com',
+                'Morgana'
+            )
+            post = self.controller.user('ccc@gmail.com')
+            self.assertEqual(post['surname'], 'Morgana')
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_user_surname,
+                '@user22',
+                'a'
+            )
+
+    def test_user(self):
+        obj = self.controller.user('@user1')
+        self.assertEqual(obj['name'], 'Timoty')
+        self.assertRaises(
+            AssertionError,
+            self.controller.user,
+            'abcsd'
+        )
 
 
 # Funzione chiamata solo con runner.run(...)

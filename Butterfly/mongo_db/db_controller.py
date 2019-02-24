@@ -345,7 +345,7 @@ class DBController(object):
             }
         )
 
-    def update_user_telegram(self, id, new_telegram):
+    def update_user_telegram(self, id: str, new_telegram: str):
         assert self.user_exists(id), f'User {id} inesistente'
 
         assert not self.user_exists(new_telegram), \
@@ -360,7 +360,7 @@ class DBController(object):
 
         # self._print_user(id)
         # print(new_telegram)
-        self.collection('users').find_one_and_update(
+        return self.collection('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
                 {'email': id},
@@ -372,7 +372,7 @@ class DBController(object):
             }
         )
 
-    def update_user_email(self, id, new_email):
+    def update_user_email(self, id: str, new_email: str):
         assert self.user_exists(id), f'User {id} inesistente'
 
         assert not self.user_exists(new_email), \
@@ -385,7 +385,7 @@ class DBController(object):
             raise AssertionError('Operazione fallita. Impostare prima ' 
                                  'un account Telegram')
 
-        self.collection('users').find_one_and_update(
+        return self.collection('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
                 {'email': id},
@@ -397,7 +397,35 @@ class DBController(object):
             }
         )
 
-    # def update_user_name
+    def update_user_name(self, id: str, new_name: str):
+        assert self.user_exists(id), f'User {id} inesistente'
+
+        return self.collection('users').find_one_and_update(
+            {'$or': [
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$set': {
+                    'name': new_name
+                }
+            }
+        )
+
+    def update_user_surname(self, id: str, new_surname: str):
+        assert self.user_exists(id), f'User {id} inesistente'
+
+        return self.collection('users').find_one_and_update(
+            {'$or': [
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$set': {
+                    'surname': new_surname
+                }
+            }
+        )
 
     def user_has_telegram(self, id: str) -> bool:
         assert self.user_exists(id), f'User {id} inesistente'
@@ -438,3 +466,13 @@ class DBController(object):
     @property
     def dbConnection(self):
         return self._dbConnection
+
+    def user(self, id):
+        assert self.user_exists(id), f'User {id} inesistente'
+
+        return self.users({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })[0]
