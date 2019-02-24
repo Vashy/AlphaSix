@@ -116,174 +116,174 @@ class TestDBController(unittest.TestCase):
         self.assertIsNotNone(topic2)
 
     # @unittest.expectedFailure
-    def test_insert_user(self):
+    def test_insert_delete_user(self):
         # pprint(self.controller.users({'telegram': '@user2'})[0])
-        collection = self.client.db.users
-        documents_count = self.client.db.users.count_documents({})
+        with self.subTest('Insert user'):
+            collection = self.client.db.users
+            documents_count = self.client.db.users.count_documents({})
 
-        result = self.controller.insert_user({
-            '_id': 10,
-            'name': 'Giovanni',
-            'surname': 'Masala',
-            'email': None,
-            'telegram': '@giovanni',
-            'topics': [
-                4
-            ],
-            'keywords': [
-                'rotella',
-                'java',
-            ],
-            'preferenza': 'telegram',
-            'sostituto': 3,
-        })
-
-        self.assertIsNotNone(result)
-        self.assertIsNotNone(
-            collection.find_one({
+            result = self.controller.insert_user({
                 '_id': 10,
+                'name': 'Giovanni',
+                'surname': 'Masala',
+                'email': None,
+                'telegram': '@giovanni',
+                'topics': [
+                    4
+                ],
+                'keywords': [
+                    'rotella',
+                    'java',
+                ],
+                'preferenza': 'telegram',
+                'sostituto': 3,
             })
-        )
-        self.assertEqual(
-            documents_count+1,
-            self.client.db.users.count_documents({}),
-        )
 
-    def test_insert_project(self):
+            self.assertIsNotNone(result)
+            self.assertIsNotNone(
+                collection.find_one({
+                    '_id': 10,
+                })
+            )
+            self.assertEqual(
+                documents_count+1,
+                self.client.db.users.count_documents({}),
+            )
+
+        with self.subTest('Delete user'):
+            # pprint(self.controller.users({'telegram': '@user2'})[0])
+            collection = self.client.db.users
+            documents_count = self.client.db.users.count_documents({})
+
+            result = self.controller.delete_one_user('@giovanni')
+
+            self.assertIsNotNone(result)
+            self.assertEqual(result.deleted_count, 1)
+            self.assertIsNone(
+                collection.find_one({
+                    '_id': 10,
+                })
+            )
+            self.assertEqual(
+                documents_count,
+                self.client.db.users.count_documents({})+1,
+            )
+
+            # Controlla un delete fallito
+            documents_count = self.client.db.users.count_documents({})
+            result = self.controller.delete_one_user('aaaaa')
+            self.assertEqual(
+                documents_count,
+                self.client.db.users.count_documents({}),
+            )
+
+    def test_insert_delete_project(self):
         # pprint(self.controller.users({'telegram': '@user2'})[0])
-        collection = self.client.db.projects
-        documents_count = self.client.db.projects.count_documents({})
+        with self.subTest('Insert project'):
+            collection = self.client.db.projects
+            documents_count = self.client.db.projects.count_documents({})
 
-        result = self.controller.insert_project({
-            "url": "http://localhost/gitlab/project-10",
-            "name": "Project-10",
-            "app": "gitlab",
-        })
-
-        self.assertIsNotNone(result)
-        self.assertIsNotNone(
-            collection.find_one({
-                'name': 'Project-10',
+            result = self.controller.insert_project({
+                "url": "http://localhost/gitlab/project-10",
+                "name": "Project-10",
+                "app": "gitlab",
             })
-        )
-        self.assertEqual(
-            documents_count+1,
-            self.client.db.projects.count_documents({}),
-        )
 
-    def test_insert_topic(self):
+            self.assertIsNotNone(result)
+            self.assertIsNotNone(
+                collection.find_one({
+                    'name': 'Project-10',
+                })
+            )
+            self.assertEqual(
+                documents_count+1,
+                self.client.db.projects.count_documents({}),
+            )
+
+        with self.subTest('Delete project'):
+            collection = self.client.db.projects
+            documents_count = self.client.db.projects.count_documents({})
+
+            result = self.controller.delete_one_project(
+                'http://localhost/gitlab/project-10'
+            )
+
+            self.assertIsNotNone(result)
+            self.assertEqual(result.deleted_count, 1)
+            self.assertIsNone(
+                collection.find_one({
+                    'url': 'http://localhost/gitlab/project-10'
+                })
+            )
+            self.assertEqual(
+                documents_count,
+                self.client.db.projects.count_documents({})+1,
+            )
+
+            # Controlla un delete fallito
+            documents_count = self.client.db.projects.count_documents({})
+            result = self.controller.delete_one_project('aaaaa')
+            self.assertEqual(
+                documents_count,
+                self.client.db.projects.count_documents({}),
+            )
+
+    def test_insert_delete_topic(self):
         # pprint(self.controller.users({'telegram': '@user2'})[0])
-        collection = self.client.db.topics
-        documents_count = self.client.db.topics.count_documents({})
+        with self.subTest('Insert topic'):
+            collection = self.client.db.topics
+            documents_count = self.client.db.topics.count_documents({})
 
-        # result = self.controller.insert_topic({
-        #     "label": "wip",
-        #     "project": "http://localhost/gitlab/project-10",
-        # })
+            # result = self.controller.insert_topic({
+            #     "label": "wip",
+            #     "project": "http://localhost/gitlab/project-10",
+            # })
 
-        result = self.controller.insert_topic(
-            'wip',
-            'http://localhost/gitlab/project-10',
-        )
+            result = self.controller.insert_topic(
+                'wip',
+                'http://localhost/gitlab/project-1',
+            )
 
-        self.assertIsNotNone(result)
-        self.assertIsNotNone(
-            collection.find_one({
-                'project': 'http://localhost/gitlab/project-10',
-            })
-        )
-        self.assertEqual(
-            documents_count+1,
-            self.client.db.topics.count_documents({}),
-        )
+            self.assertIsNotNone(result)
+            self.assertIsNotNone(
+                collection.find_one({
+                    'project': 'http://localhost/gitlab/project-1',
+                })
+            )
+            self.assertEqual(
+                documents_count+1,
+                self.client.db.topics.count_documents({}),
+            )
 
-    # @unittest.skip('debugging')
-    def test_delete_user(self):
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
-        collection = self.client.db.users
-        documents_count = self.client.db.users.count_documents({})
+        with self.subTest('Delete topic'):
+            collection = self.client.db.topics
+            documents_count = self.client.db.topics.count_documents({})
 
-        result = self.controller.delete_one_user('@user1')
+            result = self.controller.delete_one_topic(
+                'wip',
+                'http://localhost/gitlab/project-1',
+            )
 
-        self.assertIsNotNone(result)
-        self.assertEqual(result.deleted_count, 1)
-        self.assertIsNone(
-            collection.find_one({
-                '_id': 1,
-            })
-        )
-        self.assertEqual(
-            documents_count,
-            self.client.db.users.count_documents({})+1,
-        )
+            self.assertIsNotNone(result)
+            self.assertEqual(result.deleted_count, 1)
+            self.assertIsNone(
+                collection.find_one({
+                    'project': 'http://localhost/gitlab/project-1',
+                    'label': 'wip',
+                })
+            )
+            self.assertEqual(
+                documents_count,
+                self.client.db.topics.count_documents({})+1,
+            )
 
-        # Controlla un delete fallito
-        documents_count = self.client.db.users.count_documents({})
-        result = self.controller.delete_one_user('aaaaa')
-        self.assertEqual(
-            documents_count,
-            self.client.db.users.count_documents({}),
-        )
-
-    def test_delete_topic(self):
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
-        collection = self.client.db.topics
-        documents_count = self.client.db.topics.count_documents({})
-
-        result = self.controller.delete_one_topic(
-            'http://localhost/redmine/project-1',
-            'bug',
-        )
-
-        self.assertIsNotNone(result)
-        self.assertEqual(result.deleted_count, 1)
-        self.assertIsNone(
-            collection.find_one({
-                'project': 'http://localhost/gitlab/project-1',
-                'label': 'bug',
-            })
-        )
-        self.assertEqual(
-            documents_count,
-            self.client.db.topics.count_documents({})+1,
-        )
-
-        # Controlla un delete fallito
-        documents_count = self.client.db.topics.count_documents({})
-        result = self.controller.delete_one_topic('aaaaa', 'aaaaa')
-        self.assertEqual(
-            documents_count,
-            self.client.db.topics.count_documents({}),
-        )
-
-    def test_delete_project(self):
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
-        collection = self.client.db.projects
-        documents_count = self.client.db.projects.count_documents({})
-
-        result = self.controller.delete_one_project(
-            'http://localhost/redmine/project-1'
-        )
-
-        self.assertIsNotNone(result)
-        self.assertEqual(result.deleted_count, 1)
-        self.assertIsNone(
-            collection.find_one({
-                'url': 'http://localhost/redmine/project-1'
-            })
-        )
-        self.assertEqual(
-            documents_count,
-            self.client.db.projects.count_documents({})+1,
-        )
-
-        # Controlla un delete fallito
-        documents_count = self.client.db.projects.count_documents({})
-        result = self.controller.delete_one_project('aaaaa')
-        self.assertEqual(
-            documents_count,
-            self.client.db.projects.count_documents({}),
-        )
+            # Controlla un delete fallito
+            documents_count = self.client.db.topics.count_documents({})
+            result = self.controller.delete_one_topic('aaaaa', 'aaaaa')
+            self.assertEqual(
+                documents_count,
+                self.client.db.topics.count_documents({}),
+            )
 
     # @unittest.expectedFailure
     def test_collection(self):
@@ -308,6 +308,7 @@ class TestDBController(unittest.TestCase):
                 self.assertEqual(type(value['topics']), list)
                 self.assertEqual(type(value['keywords']), list)
                 self.assertEqual(type(value['irreperibilità']), list)
+            index += 1
 
     def test_users(self):
 
@@ -542,6 +543,9 @@ class TestDBController(unittest.TestCase):
                 'preferenza': 'email',
             })
             self.assertEqual(count, 1)
+
+    def test_update_user_data(self):
+        pass
 
 
 # Funzione chiamata solo con runner.run(...)

@@ -132,8 +132,8 @@ class DBController(object):
 
     def delete_one_topic(
             self,
-            project: str,
             label: str,
+            project: str,
     ) -> pymongo.collection.DeleteResult:
         """Rimuove un documento che corrisponda alla coppia `label`-`project`,
         se presente, e restituisce il risultato.
@@ -260,10 +260,24 @@ class DBController(object):
         )
 
     def update_preference(self, id: str, preference: str):
+
+        # Controllo validità campo preference
         assert preference.lower() in ('telegram', 'email'), \
             f'Selezione {preference} non valida: scegli tra Telegram o Email'
 
+        # Controllo esistenza id user
         assert self.user_exists(id), f'User {id} inesistente'
+
+        count = self.collection('users').count_documents({
+            '$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ],
+            preference: None,
+        })
+
+        # Controllo su preferenza non su un campo null
+        assert count == 0, f'Il campo "{preference}" non è impostato'
 
         return self.collection('users').find_one_and_update(
             {'$or': [  # Confronta id sia con telegram che con email
