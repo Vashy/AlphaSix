@@ -1,6 +1,6 @@
 import unittest
-import pprint
-from mongo_db.db_controller import DBConnection, DBController  # pymongo
+# import pprint
+from mongo_db.db_controller import DBConnection, DBController, pymongo
 
 
 class TestDBController(unittest.TestCase):
@@ -123,7 +123,7 @@ class TestDBController(unittest.TestCase):
             documents_count = self.client.db.users.count_documents({})
 
             result = self.controller.insert_user(
-                _id=10,
+                # _id=10,
                 name='Giovanni',
                 surname='Masala',
                 telegram='@giovanni',
@@ -136,7 +136,7 @@ class TestDBController(unittest.TestCase):
             self.assertIsNotNone(result)
             self.assertIsNotNone(
                 collection.find_one({
-                    '_id': 10,
+                    'telegram': '@giovanni'
                 })
             )
             self.assertEqual(
@@ -259,6 +259,15 @@ class TestDBController(unittest.TestCase):
             self.assertEqual(
                 documents_count+1,
                 self.client.db.projects.count_documents({}),
+            )
+            self.assertRaises(
+                pymongo.errors.DuplicateKeyError,
+                self.controller.insert_project,
+                {
+                    "url": "http://localhost/gitlab/project-10",
+                    "name": "Project-10",
+                    "app": "gitlab",
+                }
             )
 
         with self.subTest('Delete project'):
@@ -612,19 +621,26 @@ class TestDBController(unittest.TestCase):
 
         with self.subTest('Update preference'):
             # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
-            self.controller.update_user_preferece('@giovannimastrota', 'email')
+            self.controller.update_user_preference(
+                '@giovannimastrota', 'email')
 
             self.assertRaises(
                 AssertionError,
-                self.controller.update_user_preferece,
+                self.controller.update_user_preference,
                 '@user22',
                 'telegram'
             )
             self.assertRaises(
                 AssertionError,
-                self.controller.update_user_preferece,
+                self.controller.update_user_preference,
                 '@user2',
                 'telegramm'
+            )
+            self.assertRaises(  # Preference su campo non None
+                AssertionError,
+                self.controller.update_user_preference,
+                'mattia.ridolfi@gmail.com',
+                'telegram'
             )
 
             # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
