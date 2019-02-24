@@ -313,7 +313,7 @@ class DBController(object):
     # | Update user data |
     # --------------------
 
-    def user_update_preference(self, id: str, preference: str):
+    def update_user_preferece(self, id: str, preference: str):
 
         # Controllo validità campo preference
         assert preference.lower() in ('telegram', 'email'), \
@@ -396,6 +396,8 @@ class DBController(object):
                 }
             }
         )
+
+    # def update_user_name
 
     def user_has_telegram(self, id: str) -> bool:
         assert self.user_exists(id), f'User {id} inesistente'

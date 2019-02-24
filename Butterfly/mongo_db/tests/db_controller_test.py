@@ -521,17 +521,17 @@ class TestDBController(unittest.TestCase):
 
         with self.subTest('Update preference'):
             # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
-            self.controller.user_update_preference('@giovannimastrota', 'email')
+            self.controller.update_user_preferece('@giovannimastrota', 'email')
 
             self.assertRaises(
                 AssertionError,
-                self.controller.user_update_preference,
+                self.controller.update_user_preferece,
                 '@user22',
                 'telegram'
             )
             self.assertRaises(
                 AssertionError,
-                self.controller.user_update_preference,
+                self.controller.update_user_preferece,
                 '@user2',
                 'telegramm'
             )
