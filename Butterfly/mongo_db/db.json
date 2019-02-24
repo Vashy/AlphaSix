@@ -21,7 +21,7 @@
                 "2019-06-18"
             ],
             "preferenza": "telegram",
-            "sostituto" : "@user2"
+            "sostituto" : 2
         },
         {
             "_id": 2,
@@ -43,7 +43,7 @@
                 "2019-04-05"
             ],
             "preferenza": "email",
-            "sostituto" : "@user1"
+            "sostituto" : 1
         },
         {
             "_id": 3,
@@ -63,7 +63,7 @@
                 "2019-07-20"
             ],
             "preferenza": "email",
-            "sostituto" : "@user1"
+            "sostituto" : 1
         }
     ],
     "projects" : [

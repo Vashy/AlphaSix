@@ -1,6 +1,6 @@
 import pymongo
 import pprint
-import re
+import copy
 
 from mongo_db.db_connection import DBConnection
 
@@ -47,7 +47,39 @@ class DBController(object):
         result = self.dbConnection.db[collection].delete_one(filter)
         return result
 
-    def insert_user(self, user: dict) -> pymongo.collection.InsertOneResult:
+    # def insert_user(self, user: dict) -> pymongo.collection.InsertOneResult:
+    #     """Aggiunge il documento `user` alla collezione `users` se non
+    #     già presente (il controllo è sui contatti Telegram e email).
+    #     Inoltre, i campi `telegram` e `email` non possono essere
+    #     entrambi None.
+    #     Restituisce il risultato, che può essere
+    #     `None` in caso di chiave duplicata.
+    #     """
+    #     users = self.dbConnection.db['users']
+
+    #     # Se telegram e email sono entrambi None
+    #     if user['telegram'] is None and user['email'] is None:
+    #         print(f'User {user["name"]} {user["surname"]} '
+    #               'non ha ne contatto Telegram ne email')
+    #         return None
+
+    #     # Se telegram è già presente
+    #     if (users.find_one({'telegram': user['telegram']}) and
+    #             user['telegram'] is not None):
+    #         print(f'Username {user["telegram"]} già presente')
+    #         return None
+
+    #     # Se email è già presente
+    #     if (users.find_one({'email': user['email']}) and
+    #             user['email'] is not None):
+    #         print(f'Email {user["email"]} già presente')
+    #         return None
+
+    #     # Via libera all'aggiunta al DB
+    #     # print(result.inserted_id)
+    #     return self.insert_document(user, 'users')
+
+    def insert_user(self, **fields) -> pymongo.collection.InsertOneResult:
         """Aggiunge il documento `user` alla collezione `users` se non
         già presente (il controllo è sui contatti Telegram e email).
         Inoltre, i campi `telegram` e `email` non possono essere
@@ -57,27 +89,126 @@ class DBController(object):
         """
         users = self.dbConnection.db['users']
 
+        FIELDS = {
+            '_id': None,
+            'name': None,
+            'surname': None,
+            'telegram': None,
+            'email': None,
+            'preferenza': None,
+            'irreperibilità': [],
+            'sostituto': None,
+            'keywords': [],
+            'topics': [],
+        }
+
+        new_user = copy.copy(FIELDS)
+        for key in new_user:
+            if key in fields:
+                new_user[key] = fields.pop(key)
+        fields.pop('_id', True)
+        assert not fields, 'Sono stati inseriti campi non validi'
+
         # Se telegram e email sono entrambi None
-        if user['telegram'] is None and user['email'] is None:
-            print(f'User {user["name"]} {user["surname"]} '
-                  'non ha ne contatto Telegram ne email')
-            return None
+        if new_user['telegram'] is None and new_user['email'] is None:
+            raise AssertionError(
+                'È necessario inserire almeno un valore tra email o telegram'
+            )
 
         # Se telegram è già presente
-        if (users.find_one({'telegram': user['telegram']}) and
-                user['telegram'] is not None):
-            print(f'Username {user["telegram"]} già presente')
-            return None
+        if (users.find_one({'telegram': new_user['telegram']}) and
+                new_user['telegram'] is not None):
+            raise AssertionError(
+                f'Username {new_user["telegram"]} già presente'
+            )
 
         # Se email è già presente
-        if (users.find_one({'email': user['email']}) and
-                user['email'] is not None):
-            print(f'Email {user["email"]} già presente')
-            return None
+        if (users.find_one({'email': new_user['email']}) and
+                new_user['email'] is not None):
+            raise AssertionError(f'Email {new_user["email"]} già presente')
+
+        if new_user['telegram'] is None:
+            id = new_user['email']
+        else:
+            id = new_user['telegram']
+
+        # if new_user[new_user['preferenza']] is None:
+        #     print(f'Preferenza su un campo nullo non valida')
+        #     return None
 
         # Via libera all'aggiunta al DB
-        # print(result.inserted_id)
-        return self.insert_document(user, 'users')
+        result = self.insert_document(
+            {
+                '_id': new_user['_id'],
+                'name': new_user['name'],
+                'surname': new_user['surname'],
+                'telegram': new_user['telegram'],
+                'email': new_user['email'],
+                'preferenza': None,
+                'topics': [],
+                'keywords': [],
+                'irreperibilità': new_user['irreperibilità'],
+                'sostituto': None,
+            },
+            'users'
+        )
+
+        # NOTE: Se i dati precedenti sono validi, verranno già
+        # inseriti nel DB. I dati successivi verranno inseriti
+        # mano a mano che saranno considerati validi, e AssertionError
+        # verrà lanciata se qualcosa lo è
+
+        if new_user['preferenza'] is not None:
+            self.update_user_preferece(
+                new_user[new_user['preferenza']],
+                new_user['preferenza']
+            )
+
+        for topic in new_user['topics']:
+            self.add_user_topic_from_id(id, topic)
+
+        self.add_keywords(id, *new_user['keywords'])
+
+        self.update_user_sostituto(id, new_user['sostituto'])
+
+        return result
+        # if 'topics' in new_user:
+        #     for topic in new_user.get('topics'):
+        #         topic_exists('')
+
+        # result = {
+        #     name,
+        #     surname,
+        #     telegram,
+        #     email,
+        #     preference,
+        #     irreperibilità,
+        #     sostituto,
+        #     topics,
+        #     keywords,
+        # }
+
+        # Se telegram e email sono entrambi None
+        # if user['telegram'] is None and user['email'] is None:
+        #     print(f'User {user["name"]} {user["surname"]} '
+        #           'non ha ne contatto Telegram ne email')
+        #     return None
+
+        # # Se telegram è già presente
+        # if (users.find_one({'telegram': user['telegram']}) and
+        #         user['telegram'] is not None):
+        #     print(f'Username {user["telegram"]} già presente')
+        #     return None
+
+        # # Se email è già presente
+        # if (users.find_one({'email': user['email']}) and
+        #         user['email'] is not None):
+        #     print(f'Email {user["email"]} già presente')
+        #     return None
+
+        # # Via libera all'aggiunta al DB
+        # # print(result.inserted_id)
+        # return self.insert_document(user, 'users')
 
     def delete_one_user(self, user: str) -> pymongo.collection.DeleteResult:
         """Rimuove un documento che corrisponde a
@@ -243,12 +374,27 @@ class DBController(object):
             }
         })
 
-    def add_user_topic(self, id: str, label: str, project: str) -> list:
+    def add_user_topic(self, id: str, label: str, project: str):
         assert self.user_exists(id), f'User {id} inesistente'
         assert self.project_exists(project), 'Progetto sconosciuto'
         assert self.topic_exists(label, project), 'Topic inesistente'
 
         topic_id = self.topics({'label': label, 'project': project})[0]['_id']
+        return self.collection('users').find_one_and_update(
+            {'$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$addToSet': {  # Aggiunge all'array topics, senza duplicare
+                    'topics': topic_id,
+                }
+            }
+        )
+
+    def add_user_topic_from_id(self, id: str, topic_id: int):
+        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.topic_from_id_exists(topic_id), 'Topic inesistente'
         return self.collection('users').find_one_and_update(
             {'$or': [  # Confronta id sia con telegram che con email
                 {'telegram': id},
@@ -298,9 +444,18 @@ class DBController(object):
             return False
         return True
 
+    def topic_from_id_exists(self, id: int) -> bool:
+        count = self.collection('topics').count_documents({
+            '_id': id,
+        })
+        if count == 0:
+            return False
+        return True
+
     def user_exists(self, id: str) -> bool:
         count = self.collection('users').count_documents({
             '$or': [
+                # {'_id': id},
                 {'telegram': id},
                 {'email': id},
             ]
@@ -355,7 +510,7 @@ class DBController(object):
             new_telegram = None
 
         if new_telegram is None and not self.user_has_email(id):
-            raise AssertionError('Operazione fallita. Impostare prima ' 
+            raise AssertionError('Operazione fallita. Impostare prima '
                                  'una Email')
 
         # self._print_user(id)
@@ -382,7 +537,7 @@ class DBController(object):
             new_email = None
 
         if new_email is None and not self.user_has_telegram(id):
-            raise AssertionError('Operazione fallita. Impostare prima ' 
+            raise AssertionError('Operazione fallita. Impostare prima '
                                  'un account Telegram')
 
         return self.collection('users').find_one_and_update(
@@ -428,7 +583,23 @@ class DBController(object):
         )
 
     def update_user_sostituto(self, id: str, new_sostituto):
-        pass
+        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.user_exists(new_sostituto), \
+            f'User {new_sostituto} inesistente'
+
+        new_sostituto_id = self.user(new_sostituto)['_id']
+
+        return self.collection('users').find_one_and_update(
+            {'$or': [
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$set': {
+                    'sostituto': new_sostituto_id
+                }
+            }
+        )
 
     def user_has_telegram(self, id: str) -> bool:
         assert self.user_exists(id), f'User {id} inesistente'

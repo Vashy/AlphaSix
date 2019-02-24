@@ -115,29 +115,23 @@ class TestDBController(unittest.TestCase):
 
         self.assertIsNotNone(topic2)
 
-    # @unittest.expectedFailure
+    # @unittest.skip('debugging')
     def test_insert_delete_user(self):
         # pprint(self.controller.users({'telegram': '@user2'})[0])
         with self.subTest('Insert user'):
             collection = self.client.db.users
             documents_count = self.client.db.users.count_documents({})
 
-            result = self.controller.insert_user({
-                '_id': 10,
-                'name': 'Giovanni',
-                'surname': 'Masala',
-                'email': None,
-                'telegram': '@giovanni',
-                'topics': [
-                    4
-                ],
-                'keywords': [
-                    'rotella',
-                    'java',
-                ],
-                'preferenza': 'telegram',
-                'sostituto': 3,
-            })
+            result = self.controller.insert_user(
+                _id=10,
+                name='Giovanni',
+                surname='Masala',
+                telegram='@giovanni',
+                topics=[4],
+                keywords=['rotella', 'java'],
+                preferenza='telegram',
+                sostituto='@user1'
+            )
 
             self.assertIsNotNone(result)
             self.assertIsNotNone(
@@ -148,6 +142,73 @@ class TestDBController(unittest.TestCase):
             self.assertEqual(
                 documents_count+1,
                 self.client.db.users.count_documents({}),
+            )
+
+        with self.subTest('Insert user raises'):
+
+            # Campo inesistente
+            self.assertRaises(
+                AssertionError,
+                self.controller.insert_user,
+                _id=10123,
+                name='Giovannii',
+                surname='Masalaa',
+                telegram='@giovannino',
+                topics=[4],
+                keywords=['rotella', 'java'],
+                preferenza='telegram',
+                sostituto='@user1',
+                namee='kappa',
+            )
+
+            # Campi telegram e email entrambi assenti
+            self.assertRaises(
+                AssertionError,
+                self.controller.insert_user,
+                _id=10124,
+                name='Giovannii',
+                surname='Masalaa',
+                topics=[4],
+                keywords=['rotella', 'java'],
+            )
+
+            # Telegram già presente
+            self.assertRaises(
+                AssertionError,
+                self.controller.insert_user,
+                _id=10123,
+                name='Giovannii',
+                surname='Masalaa',
+                telegram='@user1',
+                topics=[4],
+                keywords=['rotella', 'java'],
+                preferenza='telegram',
+            )
+
+            # Email già presente
+            self.assertRaises(
+                AssertionError,
+                self.controller.insert_user,
+                _id=10123,
+                name='Giovannii',
+                surname='Masalaa',
+                email='mattia.ridolfi@gmail.com',
+                topics=[4],
+                keywords=['rotella', 'java'],
+                preferenza='email',
+            )
+
+            # Preferenza non valida
+            self.assertRaises(
+                AssertionError,
+                self.controller.insert_user,
+                _id=10123,
+                name='Giovannii',
+                surname='Masalaa',
+                email='mattia.ridolfi@gmail.com',
+                topics=[4],
+                keywords=['rotella', 'java'],
+                preferenza='telegram',
             )
 
         with self.subTest('Delete user'):
@@ -368,11 +429,15 @@ class TestDBController(unittest.TestCase):
             '@user2', 'wontfix', 'http://localhost/gitlab/gitlab-2'
         )
 
+        self.controller.add_user_topic_from_id(
+            '@user2', 0
+        )
+
         # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
 
         count = self.controller.collection('users').count_documents({
             'telegram': t_id,
-            'topics': {'$size': 3},
+            'topics': {'$size': 4},
         })
         self.assertEqual(count, 1)
 
@@ -453,6 +518,31 @@ class TestDBController(unittest.TestCase):
                     project='http://localhostt/gitlab/gitlab-2',
                 )
             )
+            self.assertTrue(
+                self.controller.topic_from_id_exists(
+                    1,
+                )
+            )
+            self.assertTrue(
+                self.controller.topic_from_id_exists(
+                    2,
+                )
+            )
+            self.assertTrue(
+                self.controller.topic_from_id_exists(
+                    3,
+                )
+            )
+            self.assertFalse(
+                self.controller.topic_from_id_exists(
+                    12123,
+                )
+            )
+            self.assertFalse(
+                self.controller.topic_from_id_exists(
+                    12123134,
+                )
+            )
 
         with self.subTest('users'):
             self.assertTrue(
@@ -476,6 +566,7 @@ class TestDBController(unittest.TestCase):
                 )
             )
 
+    # @unittest.skip('debug')
     def test_update_preference(self):
 
         with self.subTest('Inserimento user'):
@@ -483,24 +574,24 @@ class TestDBController(unittest.TestCase):
             collection = self.client.db.users
 
             # Inserimento nuovo utente per evitare data races
-            result = self.controller.insert_user({
-                '_id': 105,
-                'name': 'Giovanni',
-                'surname': 'Mastrota',
-                'email': 'revolver@hotmail.it',
-                'telegram': '@giovannimastrota',
-                'topics': [
+            result = self.controller.insert_user(
+                _id=105,
+                name='Giovanni',
+                surname='Mastrota',
+                email='revolver@hotmail.it',
+                telegram='@giovannimastrota',
+                topics=[
                     4,
                     5
                 ],
-                'keywords': [
+                keywords=[
                     'gear',
                     'rotella',
                     'java',
                 ],
-                'preferenza': 'telegram',
-                'sostituto': 3,
-            })
+                preferenza='telegram',
+                sostituto='mattia.ridolfi@gmail.com',
+            )
 
             self.assertIsNotNone(result)
             self.assertIsNotNone(
@@ -570,7 +661,6 @@ class TestDBController(unittest.TestCase):
             'aaaaaaaa'
         )
 
-
     # @unittest.skip('debugging')
     def test_update_user_data(self):
 
@@ -578,44 +668,44 @@ class TestDBController(unittest.TestCase):
             collection = self.client.db.users
             documents_count = self.client.db.users.count_documents({})
 
-            result = self.controller.insert_user({
-                '_id': 939,
-                'name': 'Mattia',
-                'surname': 'Masala',
-                'email': None,
-                'telegram': '@rodo',
-                'topics': [
+            result = self.controller.insert_user(
+                _id=939,
+                name='Mattia',
+                surname='Masala',
+                email=None,
+                telegram='@rodo',
+                topics=[
                     1,
                     2,
                     4
                 ],
-                'keywords': [
+                keywords=[
                     'rotella',
                     'java',
                 ],
-                'preferenza': 'telegram',
-                'sostituto': 2,
-            })
+                preferenza='telegram',
+                sostituto='@user2',
+            )
 
-            result = self.controller.insert_user({
-                '_id': 940,
-                'name': 'Michele',
-                'surname': 'Rapanello',
-                'email': 'michele.rapanello@hotmail.it',
-                'telegram': None,
-                'topics': [
+            result = self.controller.insert_user(
+                _id=940,
+                name='Michele',
+                surname='Rapanello',
+                email='michele.rapanello@hotmail.it',
+                telegram=None,
+                topics=[
                     1,
                     5,
                     4
                 ],
-                'keywords': [
+                keywords=[
                     'python',
                     'java',
                     'crudo'
                 ],
-                'preferenza': 'email',
-                'sostituto': 939,
-            })
+                preferenza='email',
+                sostituto='@rodo',
+            )
 
             self.assertIsNotNone(result)
             self.assertIsNotNone(
@@ -703,8 +793,13 @@ class TestDBController(unittest.TestCase):
 
         with self.subTest('Update sostituto'):
             pre = self.controller.user('ccc@gmail.com')
-            # self.assertEqual()
-
+            self.assertEqual(pre['sostituto'], 939)
+            self.controller.update_user_sostituto(
+                'ccc@gmail.com',
+                '@user1',
+            )
+            post = self.controller.user('ccc@gmail.com')
+            self.assertEqual(post['sostituto'], 1)
 
     def test_user(self):
         obj = self.controller.user('@user1')
