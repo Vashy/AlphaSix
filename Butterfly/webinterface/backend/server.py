@@ -5,6 +5,7 @@ from mongo_db.db_controller import DBConnection,DBController
 root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
 root = root.resolve()
 
+
 class Handler(object):
     """Classe con la funzionalità di server http.
     Ogni metodo della classe corrisponde a un url http gestito da cherrypy.
@@ -18,21 +19,13 @@ class Handler(object):
 
     @cherrypy.expose
     def index(self):
-        file = root / 'access.html'
-        page = file.read_text()
-        page = page.replace('*access*', '')
-        page = page.replace('*userid*', '')
-        return page
-
-    @cherrypy.expose
-    def addpreferences(self):
-        file = root / 'addpreferences.html'
-        page = file.read_text()
-        return page
-
-    @cherrypy.expose
-    def removepreferences(self):
-        file = root / 'removepreferences.html'
+        if cherrypy.session.get("userid") is None:
+            file = root / 'access.html'
+            page = file.read_text()
+            page = page.replace('*access*', '')
+            page = page.replace('*userid*', '')
+            return page
+        file = root / 'panel.html'
         page = file.read_text()
         return page
 
@@ -44,11 +37,8 @@ class Handler(object):
     ):
         with DBConnection('butterfly') as client:
             controller = DBController(client)
-            email = userid
-            telegram = userid
-
-
-            if True:
+            if controller.user_exists(userid):
+                cherrypy.session["userid"] = userid
                 file = root / 'panel.html'
                 page = file.read_text()
                 return page
@@ -56,7 +46,7 @@ class Handler(object):
         page = file.read_text()
         page = page.replace('*userid*', '%s' % userid)
         page = page.replace('*access*',
-                            '<div><p>userid errato</p></div>')
+                            '<div><p>Email/Telegram errato</p></div>')
         return page
 
     @cherrypy.expose
@@ -87,14 +77,9 @@ class Handler(object):
 
         with DBConnection('butterfly') as client:
             controller = DBController(client)
-            user = {
-                "name": nome,
-                "surname": cognome,
-                "email": email,
-                "telegram": telegram
-            }
-            controller.insert_user()
-            page = page.replace('*insert*',
+            if not (controller.user_exists(email) or controller.user_exists(telegram)):
+                controller.insert_user(name=nome,surname=cognome,email=email,telegram=telegram)
+                page = page.replace('*insert*',
                             '<div><p>Utente inserito</p></div>')
         page = page.replace('*userid*', '%s' % "")
         page = page.replace('*nome*', '%s' % nome)
@@ -164,6 +149,23 @@ class Handler(object):
                             '<div><p>Utente non modificato</p></div>')
         return page
 
+    @cherrypy.expose
+    def addpreferences(self):
+        file = root / 'addpreferences.html'
+        page = file.read_text()
+        return page
+
+    @cherrypy.expose
+    def removepreferences(self):
+        file = root / 'removepreferences.html'
+        page = file.read_text()
+        return page
+
 
 if __name__ == '__main__':
-    cherrypy.quickstart(Handler())
+    cherrypy.quickstart(Handler(), "/", {
+        "/": {
+            "tools.sessions.on": True,
+            }
+        }
+    )
