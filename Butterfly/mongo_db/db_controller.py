@@ -92,17 +92,40 @@ class DBController(object):
             'users',
         )
 
-    def insert_topic(self, topic):
+    def insert_topic(self, label: str, project: str):
         """Aggiunge il documento `topic` alla collezione `topics` se
         non già presente e restituisce il risultato, che può essere
         `None` in caso di chiave (`label`-`project`) duplicata.
         """
         # L'ultimo carattere dell'url di project non deve essere '/'
-        if topic['project'][-1:] == '/':
-            topic['project'] = topic['project'][:-1]
+        if project[-1:] == '/':
+            project = project[:-1]
+
         try:  # Tenta l'aggiunta del topic al DB
-            result = self.dbConnection.db['topics'].insert_one(topic)
+            # Ottiene l'id massimo
+            max_id = (
+                self.collection('topics')
+                    .find()
+                    .sort('_id', pymongo.DESCENDING)
+                    .limit(1)[0]['_id']
+            )
+            # print(max_id)
+
+            result = self.dbConnection.db['topics'].insert_one({
+                '_id': max_id+1,
+                'label': label,
+                'project': project,
+            })
             return result
+
+        except IndexError:  # Caso in cui nessun topic è presente
+            result = self.dbConnection.db['topics'].insert_one({
+                '_id': 0,
+                'label': label,
+                'project': project,
+            })
+            return result
+
         except pymongo.errors.DuplicateKeyError as err:
             print(err)
             return None
@@ -151,6 +174,152 @@ class DBController(object):
             },
             'projects'
         )
+
+    def collection(
+            self,
+            collection_name: str
+    ) -> pymongo.collection.Collection:
+        """Restituisce la collezione con il nome passato come
+        argomento."""
+        return self.dbConnection.db[collection_name]
+
+    def users(self, filter={}) -> pymongo.cursor.Cursor:
+        """Restituisce un `Cursor` che corrisponde al `filter` passato
+        alla collezione `users`.
+        Per accedere agli elementi del cursore, è possibile iterare con
+        un `for .. in ..`, oppure usare il subscripting `[i]`.
+        """
+        return self.collection('users').find(filter)
+
+    def projects(self, filter={}) -> pymongo.cursor.Cursor:
+        """Restituisce un `Cursor` che corrisponde al `filter` passato
+        alla collezione `projects`.
+        Per accedere agli elementi del cursore, è possibile iterare con
+        un `for .. in ..`, oppure usare il subscripting `[i]`.
+        """
+        return self.collection('projects').find(filter)
+
+    def topics(self, filter={}) -> pymongo.cursor.Cursor:
+        """Restituisce un `Cursor` che corrisponde al `filter` passato
+        alla collezione `topics`.
+        Per accedere agli elementi del cursore, è possibile iterare con
+        un `for .. in ..`, oppure usare il subscripting `[i]`.
+        """
+        return self.collection('topics').find(filter)
+
+    def user_keywords(self, id: str) -> list:
+        """Restituisce una lista contenente le parole chiave corrispondenti
+        all'`id`: esso può essere sia il contatto Telegram che Email.
+        """
+        cursor = self.users({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })
+        return cursor[0]['keywords']
+
+    def user_topics(self, id: str) -> list:
+        """Restituisce una `Cursor` contenente i topic corrispondenti
+        all'`id` del'utente: `id` può essere sia il contatto
+        Telegram che Email.
+        """
+        assert self.user_exists(id), f'User {id} inesistente'
+
+        cursor = self.users({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })
+        topic_ids = cursor[0]['topics']
+
+        # Match di tutti i topic che hanno un _id contenuto in topic_ids
+        return self.topics({
+            '_id': {
+                '$in': topic_ids,
+            }
+        })
+
+    def add_user_topic(self, id: str, label: str, project: str) -> list:
+        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.project_exists(project), 'Progetto sconosciuto'
+        assert self.topic_exists(label, project), 'Topic inesistente'
+
+        topic_id = self.topics({'label': label, 'project': project})[0]['_id']
+        return self.collection('users').find_one_and_update(
+            {'$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$addToSet': {  # Aggiunge all'array topics, senza duplicare
+                    'topics': topic_id,
+                }
+            }
+        )
+
+    def update_preference(self, id: str, preference: str):
+        assert preference.lower() in ('telegram', 'email'), \
+            f'Selezione {preference} non valida: scegli tra Telegram o Email'
+
+        assert self.user_exists(id), f'User {id} inesistente'
+
+        return self.collection('users').find_one_and_update(
+            {'$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$set': {
+                    'preferenza': preference
+                }
+            }
+        )
+
+    def add_keywords(self, id: str, *new_keywords):
+        assert self.user_exists(id), f'User {id} inesistente'
+        return self.collection('users').find_one_and_update(
+            {'$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
+                    'keywords': {
+                        '$each': [*new_keywords]  # Per ogni elemento
+                    }
+                }
+            }
+        )
+
+    def project_exists(self, url: str) -> bool:
+        count = self.collection('projects').count_documents({
+            'url': url,
+        })
+        if count == 0:
+            return False
+        return True
+
+    def topic_exists(self, label: str, project: str) -> bool:
+        count = self.collection('topics').count_documents({
+            'label': label,
+            'project': project,
+        })
+        if count == 0:
+            return False
+        return True
+
+    def user_exists(self, id: str) -> bool:
+        count = self.collection('users').count_documents({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })
+        if count == 0:
+            return False
+        return True
 
     @property
     def dbConnection(self):

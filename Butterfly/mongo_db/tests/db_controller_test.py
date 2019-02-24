@@ -1,5 +1,6 @@
 import unittest
-from mongo_db.db_controller import DBConnection, DBController
+# import pprint
+from mongo_db.db_controller import DBConnection, DBController  # pymongo
 
 
 class TestDBController(unittest.TestCase):
@@ -7,7 +8,18 @@ class TestDBController(unittest.TestCase):
     # Chiamato all'inizio
     @classmethod
     def setUpClass(cls):
-        cls.client = DBConnection('butterfly')
+        cls.client = DBConnection('butterfly_test')
+
+        # Droppa il database `butterfly_test`
+        cls.client._client.drop_database('butterfly_test')
+
+        # Copia il db `butterfly` in `butterfly_test`
+        cls.client._client.admin.command(
+            'copydb',
+            fromdb='butterfly',
+            todb='butterfly_test'
+        )
+
         cls.controller = DBController(cls.client, False)
 
     # Chiamato alla fine
@@ -16,6 +28,7 @@ class TestDBController(unittest.TestCase):
         cls.client.close()
 
     def test_db_instances(self):
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.users
         # Cerca un documento qualsiasi
         self.assertIsNotNone(collection.find_one({}))
@@ -104,6 +117,7 @@ class TestDBController(unittest.TestCase):
 
     # @unittest.expectedFailure
     def test_insert_user(self):
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.users
         documents_count = self.client.db.users.count_documents({})
 
@@ -136,6 +150,7 @@ class TestDBController(unittest.TestCase):
         )
 
     def test_insert_project(self):
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.projects
         documents_count = self.client.db.projects.count_documents({})
 
@@ -157,13 +172,19 @@ class TestDBController(unittest.TestCase):
         )
 
     def test_insert_topic(self):
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.topics
         documents_count = self.client.db.topics.count_documents({})
 
-        result = self.controller.insert_topic({
-            "label": "wip",
-            "project": "http://localhost/gitlab/project-10",
-        })
+        # result = self.controller.insert_topic({
+        #     "label": "wip",
+        #     "project": "http://localhost/gitlab/project-10",
+        # })
+
+        result = self.controller.insert_topic(
+            'wip',
+            'http://localhost/gitlab/project-10',
+        )
 
         self.assertIsNotNone(result)
         self.assertIsNotNone(
@@ -178,6 +199,7 @@ class TestDBController(unittest.TestCase):
 
     # @unittest.skip('debugging')
     def test_delete_user(self):
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.users
         documents_count = self.client.db.users.count_documents({})
 
@@ -204,6 +226,7 @@ class TestDBController(unittest.TestCase):
         )
 
     def test_delete_topic(self):
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.topics
         documents_count = self.client.db.topics.count_documents({})
 
@@ -234,6 +257,7 @@ class TestDBController(unittest.TestCase):
         )
 
     def test_delete_project(self):
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.projects
         documents_count = self.client.db.projects.count_documents({})
 
@@ -260,6 +284,264 @@ class TestDBController(unittest.TestCase):
             documents_count,
             self.client.db.projects.count_documents({}),
         )
+
+    # @unittest.expectedFailure
+    def test_collection(self):
+
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
+        users = self.controller.collection('users')
+
+        self.assertEqual(users.count_documents({}), 3)
+        # pprint.pprint(users)
+
+        index = 0
+        for value in users.find({}):
+            with self.subTest(i=index):
+                self.assertIsNotNone(value['name'])
+                self.assertIsNotNone(value['surname'])
+
+                if value['telegram'] is None:
+                    self.assertIsNotNone(value['email'])
+                else:
+                    self.assertIsNotNone(value['telegram'])
+
+                self.assertEqual(type(value['topics']), list)
+                self.assertEqual(type(value['keywords']), list)
+                self.assertEqual(type(value['irreperibilità']), list)
+
+    def test_users(self):
+
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
+        users = self.controller.users({
+            'name': 'Simone',
+            'surname': 'Granziero',
+        })
+        self.assertIsNotNone(users[0])
+
+    def test_projects(self):
+        projects = self.controller.projects({
+            'app': 'redmine',
+        })
+        self.assertIsNotNone(projects[0])
+
+    # @unittest.expectedFailure
+    def test_keywords(self):
+        keywords = self.controller.user_keywords('mattia.ridolfi@gmail.com')
+        self.assertIn('CI', keywords)
+        self.assertIn('jenkins', keywords)
+        self.assertNotIn('mango', keywords)
+        self.assertNotIn('ingranaggio', keywords)
+        self.controller.add_keywords(
+            'mattia.ridolfi@gmail.com',
+            'mango',
+            'ingranaggio',
+            'CI',  # Questa non verrà aggiunta perchè doppia
+        )
+        keywords = self.controller.user_keywords('mattia.ridolfi@gmail.com')
+        self.assertRaises(
+            AssertionError,
+            self.controller.add_keywords,
+            'User20@'
+        )
+        self.assertIn('mango', keywords)
+        self.assertIn('ingranaggio', keywords)
+
+    def test_topics(self):
+        t_id = '@user2'
+        topics = self.controller.user_topics(t_id)
+
+        count = self.controller.collection('users').count_documents({
+            'telegram': t_id,
+            'topics': {'$size': 2},
+        })
+        self.assertEqual(count, 1)
+
+        # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
+
+        for topic in topics:
+            self.assertIsNotNone(topic['_id'])
+            self.assertIsNotNone(topic['label'])
+            self.assertIsNotNone(topic['project'])
+
+        self.controller.add_user_topic(
+            '@user2', 'wontfix', 'http://localhost/gitlab/gitlab-2'
+        )
+
+        # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
+
+        count = self.controller.collection('users').count_documents({
+            'telegram': t_id,
+            'topics': {'$size': 3},
+        })
+        self.assertEqual(count, 1)
+
+        self.assertRaises(
+            AssertionError,
+            self.controller.add_user_topic,
+            '@user20',
+            'wontfix',
+            'http://localhost/gitlab/gitlab-2',
+        )
+        self.assertRaises(
+            AssertionError,
+            self.controller.add_user_topic,
+            '@user2',
+            'wontfixx',
+            'http://localhost/gitlab/gitlab-2',
+        )
+        self.assertRaises(
+            AssertionError,
+            self.controller.add_user_topic,
+            '@user2',
+            'wontfix',
+            'http:///localhost/gitlab/gitlab-2',
+        )
+        self.assertRaises(
+            AssertionError,
+            self.controller.user_topics,
+            '@@teleegram'
+        )
+
+    def test_exists(self):
+
+        # pprint(self.controller.users({'telegram': '@user2'})[0])
+        with self.subTest('projects'):
+            self.assertTrue(
+                self.controller.project_exists(
+                    'http://localhost/redmine/project-2'
+                )
+            )
+            self.assertTrue(
+                self.controller.project_exists(
+                    'http://localhost/gitlab/gitlab-2'
+                )
+            )
+            self.assertFalse(
+                self.controller.project_exists(
+                    'http://llocalhost/redmine/project-2'
+                )
+            )
+            self.assertFalse(
+                self.controller.project_exists(
+                    'http://localhost/redmine/project-2/'
+                )
+            )
+
+        with self.subTest('topics'):
+            self.assertTrue(
+                self.controller.topic_exists(
+                    label='enhancement',
+                    project='http://localhost/gitlab/gitlab-2',
+                )
+            )
+            self.assertTrue(
+                self.controller.topic_exists(
+                    label='wontfix',
+                    project='http://localhost/gitlab/gitlab-2',
+                )
+            )
+            self.assertFalse(
+                self.controller.topic_exists(
+                    label='enhancementt',
+                    project='http://localhost/gitlab/gitlab-2',
+                )
+            )
+            self.assertFalse(
+                self.controller.topic_exists(
+                    label='wontfix',
+                    project='http://localhostt/gitlab/gitlab-2',
+                )
+            )
+
+        with self.subTest('users'):
+            self.assertTrue(
+                self.controller.user_exists(
+                    '@user2',
+                )
+            )
+            self.assertTrue(
+                self.controller.user_exists(
+                    'mattia.ridolfi@gmail.com',
+                )
+            )
+            self.assertFalse(
+                self.controller.user_exists(
+                    'mattia.ridolfi@gmail.it',
+                )
+            )
+            self.assertFalse(
+                self.controller.user_exists(
+                    'banana',
+                )
+            )
+
+    def test_update_preference(self):
+
+        with self.subTest('Inserimento user'):
+            documents_count = self.client.db.users.count_documents({})
+            collection = self.client.db.users
+
+            # Inserimento nuovo utente per evitare data races
+            result = self.controller.insert_user({
+                '_id': 105,
+                'name': 'Giovanni',
+                'surname': 'Mastrota',
+                'email': 'revolver@hotmail.it',
+                'telegram': '@giovannimastrota',
+                'topics': [
+                    4,
+                    5
+                ],
+                'keywords': [
+                    'gear',
+                    'rotella',
+                    'java',
+                ],
+                'preferenza': 'telegram',
+                'sostituto': 3,
+            })
+
+            self.assertIsNotNone(result)
+            self.assertIsNotNone(
+                collection.find_one({
+                    '_id': 105,
+                })
+            )
+            self.assertEqual(
+                documents_count+1,
+                self.client.db.users.count_documents({}),
+            )
+            count = self.controller.collection('users').count_documents({
+                'email': 'revolver@hotmail.it',
+                "telegram": "@giovannimastrota",
+                'preferenza': 'telegram',
+            })
+            self.assertEqual(count, 1)
+
+        with self.subTest('Update preference'):
+            # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
+            self.controller.update_preference('@giovannimastrota', 'email')
+
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_preference,
+                '@user22',
+                'telegram'
+            )
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_preference,
+                '@user2',
+                'telegramm'
+            )
+
+            # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
+            count = self.controller.collection('users').count_documents({
+                'email': 'revolver@hotmail.it',
+                "telegram": "@giovannimastrota",
+                'preferenza': 'email',
+            })
+            self.assertEqual(count, 1)
 
 
 # Funzione chiamata solo con runner.run(...)

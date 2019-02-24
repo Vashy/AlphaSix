@@ -35,7 +35,11 @@ with DBConnection('butterfly') as client:
 
     # Popola la collezione topics da db.json
     for topic in topics_json:
-        result = controller.insert_topic(topic)
+        result = controller.insert_topic(
+            # topic['_id'],
+            topic['label'],
+            topic['project'],
+        )
         if result is not None:
             print(result.inserted_id)
     # for user in users.find({}):
