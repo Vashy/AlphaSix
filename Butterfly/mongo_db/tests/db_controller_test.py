@@ -1,5 +1,5 @@
 import unittest
-# import pprint
+import pprint
 from mongo_db.db_controller import DBConnection, DBController  # pymongo
 
 
@@ -521,17 +521,17 @@ class TestDBController(unittest.TestCase):
 
         with self.subTest('Update preference'):
             # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
-            self.controller.update_preference('@giovannimastrota', 'email')
+            self.controller.user_update_preference('@giovannimastrota', 'email')
 
             self.assertRaises(
                 AssertionError,
-                self.controller.update_preference,
+                self.controller.user_update_preference,
                 '@user22',
                 'telegram'
             )
             self.assertRaises(
                 AssertionError,
-                self.controller.update_preference,
+                self.controller.user_update_preference,
                 '@user2',
                 'telegramm'
             )
@@ -544,8 +544,130 @@ class TestDBController(unittest.TestCase):
             })
             self.assertEqual(count, 1)
 
+    def test_user_has_telegram(self):
+        self.assertTrue(
+            self.controller.user_has_telegram('@user2')
+        )
+        self.assertFalse(
+            self.controller.user_has_telegram('mattia.ridolfi@gmail.com')
+        )
+        self.assertRaises(
+            AssertionError,
+            self.controller.user_has_telegram,
+            'aaaaaaaa'
+        )
+
+    def test_user_has_email(self):
+        self.assertTrue(
+            self.controller.user_has_email('mattia.ridolfi@gmail.com')
+        )
+        self.assertFalse(
+            self.controller.user_has_email('@user1')
+        )
+        self.assertRaises(
+            AssertionError,
+            self.controller.user_has_email,
+            'aaaaaaaa'
+        )
+
+
+    # @unittest.skip('debugging')
     def test_update_user_data(self):
-        pass
+
+        with self.subTest('Insert user'):
+            collection = self.client.db.users
+            documents_count = self.client.db.users.count_documents({})
+
+            result = self.controller.insert_user({
+                '_id': 939,
+                'name': 'Mattia',
+                'surname': 'Masala',
+                'email': None,
+                'telegram': '@rodo',
+                'topics': [
+                    1,
+                    2,
+                    4
+                ],
+                'keywords': [
+                    'rotella',
+                    'java',
+                ],
+                'preferenza': 'telegram',
+                'sostituto': 2,
+            })
+
+            result = self.controller.insert_user({
+                '_id': 940,
+                'name': 'Michele',
+                'surname': 'Rapanello',
+                'email': 'michele.rapanello@hotmail.it',
+                'telegram': None,
+                'topics': [
+                    1,
+                    5,
+                    4
+                ],
+                'keywords': [
+                    'python',
+                    'java',
+                    'crudo'
+                ],
+                'preferenza': 'email',
+                'sostituto': 939,
+            })
+
+            self.assertIsNotNone(result)
+            self.assertIsNotNone(
+                collection.find_one({
+                    '_id': 939,
+                })
+            )
+            self.assertEqual(
+                documents_count+2,
+                self.client.db.users.count_documents({}),
+            )
+
+        with self.subTest('Update Telegram'):
+
+            self.controller.update_user_telegram('@rodo', '@sancrispino')
+
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_user_telegram,
+                '@rodo',
+                '@reverendo',
+            )
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_user_telegram,
+                '@reverendo',
+                '@user2',
+            )
+            self.assertTrue(self.controller.user_exists('@sancrispino'))
+            self.assertFalse(self.controller.user_exists('@rodo'))
+
+        with self.subTest('Update Email'):
+            self.controller.update_user_email(
+                'michele.rapanello@hotmail.it',
+                'ccc@gmail.com',
+            )
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_user_email,
+                'michele.rapanello@hotmail.it',
+                'aaaaa@cc.gmail.com',
+            )
+            self.assertRaises(
+                AssertionError,
+                self.controller.update_user_email,
+                '@user2',
+                'ccc@gmail.com'
+            )
+            self.assertTrue(self.controller.user_exists('ccc@gmail.com'))
+            self.assertFalse(self.controller.user_exists(
+                'michele.rapanello@hotmail.it'))
+
 
 
 # Funzione chiamata solo con runner.run(...)

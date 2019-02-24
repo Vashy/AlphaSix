@@ -1,4 +1,6 @@
 import pymongo
+import pprint
+import re
 
 from mongo_db.db_connection import DBConnection
 
@@ -259,7 +261,59 @@ class DBController(object):
             }
         )
 
-    def update_preference(self, id: str, preference: str):
+    def add_keywords(self, id: str, *new_keywords):
+        assert self.user_exists(id), f'User {id} inesistente'
+        return self.collection('users').find_one_and_update(
+            {'$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
+                    'keywords': {
+                        '$each': [*new_keywords]  # Per ogni elemento
+                    }
+                }
+            }
+        )
+
+    # -------------------
+    # | Esistenza campi |
+    # -------------------
+
+    def project_exists(self, url: str) -> bool:
+        count = self.collection('projects').count_documents({
+            'url': url,
+        })
+        if count == 0:
+            return False
+        return True
+
+    def topic_exists(self, label: str, project: str) -> bool:
+        count = self.collection('topics').count_documents({
+            'label': label,
+            'project': project,
+        })
+        if count == 0:
+            return False
+        return True
+
+    def user_exists(self, id: str) -> bool:
+        count = self.collection('users').count_documents({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })
+        if count == 0:
+            return False
+        return True
+
+    # --------------------
+    # | Update user data |
+    # --------------------
+
+    def user_update_preference(self, id: str, preference: str):
 
         # Controllo validità campo preference
         assert preference.lower() in ('telegram', 'email'), \
@@ -291,49 +345,93 @@ class DBController(object):
             }
         )
 
-    def add_keywords(self, id: str, *new_keywords):
+    def update_user_telegram(self, id, new_telegram):
         assert self.user_exists(id), f'User {id} inesistente'
-        return self.collection('users').find_one_and_update(
-            {'$or': [  # Confronta id sia con telegram che con email
+
+        assert not self.user_exists(new_telegram), \
+            f'User {new_telegram} già presente nel sistema'
+
+        if new_telegram == '':
+            new_telegram = None
+
+        if new_telegram is None and not self.user_has_email(id):
+            raise AssertionError('Operazione fallita. Impostare prima ' 
+                                 'una Email')
+
+        # self._print_user(id)
+        # print(new_telegram)
+        self.collection('users').find_one_and_update(
+            {'$or': [
                 {'telegram': id},
                 {'email': id},
             ]},
             {
-                '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
-                    'keywords': {
-                        '$each': [*new_keywords]  # Per ogni elemento
-                    }
+                '$set': {
+                    'telegram': new_telegram,
                 }
             }
         )
 
-    def project_exists(self, url: str) -> bool:
-        count = self.collection('projects').count_documents({
-            'url': url,
-        })
-        if count == 0:
-            return False
-        return True
+    def update_user_email(self, id, new_email):
+        assert self.user_exists(id), f'User {id} inesistente'
 
-    def topic_exists(self, label: str, project: str) -> bool:
-        count = self.collection('topics').count_documents({
-            'label': label,
-            'project': project,
-        })
-        if count == 0:
-            return False
-        return True
+        assert not self.user_exists(new_email), \
+            f'User {new_email} già presente nel sistema'
 
-    def user_exists(self, id: str) -> bool:
+        if new_email == '':
+            new_email = None
+
+        if new_email is None and not self.user_has_telegram(id):
+            raise AssertionError('Operazione fallita. Impostare prima ' 
+                                 'un account Telegram')
+
+        self.collection('users').find_one_and_update(
+            {'$or': [
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$set': {
+                    'email': new_email,
+                }
+            }
+        )
+
+    def user_has_telegram(self, id: str) -> bool:
+        assert self.user_exists(id), f'User {id} inesistente'
+
         count = self.collection('users').count_documents({
             '$or': [
                 {'telegram': id},
                 {'email': id},
-            ]
+            ],
+            'telegram': None,
         })
-        if count == 0:
+        if count == 1:
             return False
         return True
+
+    def user_has_email(self, id: str) -> bool:
+        assert self.user_exists(id), f'User {id} inesistente'
+
+        count = self.collection('users').count_documents({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ],
+            'email': None,
+        })
+        if count == 1:
+            return False
+        return True
+
+    def _print_user(self, id):
+        pprint.pprint(self.users({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })[0])
 
     @property
     def dbConnection(self):
