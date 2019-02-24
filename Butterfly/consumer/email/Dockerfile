@@ -1,7 +1,7 @@
 # Base image
 FROM python:alpine3.7
 
-# Expose port 5000
+# Port exposure
 EXPOSE 5000
 
 # Copying files from the correct folders
