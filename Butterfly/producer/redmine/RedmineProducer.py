@@ -28,9 +28,6 @@ Autori:
     ....
 """
 
-# Posizione: Butterfly/
-# Uso: python3 -m path.to.GLProducer
-
 import argparse
 from sys import stderr
 from kafka import KafkaProducer
@@ -39,7 +36,6 @@ import json
 from pathlib import Path
 from producer.producer import Producer
 from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
-# from redminelib import Redmine
 
 
 class RedmineProducer(Producer):
@@ -64,32 +60,37 @@ class RedmineProducer(Producer):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
+    def produce(self, topic: str, path: Path):
+        """Produce il messaggio in Kafka.
+
+        Arguments:
+        topic -- il topic dove salvare il messaggio.
+        path -- percorso fino al json
+        """
+
+        assert isinstance(path, Path), \
+            'path non è di tipo Path'
+
+        webhook = RedmineIssueWebhook(path)
+
+        # Parse del JSON associato al webhook ottenendo un oggetto Python
+        webhook.parse()
+        try:
+            print()
+            # Inserisce il messaggio in Kafka, serializzato in formato JSON
+            self.producer.send(topic, webhook.webhook)
+            self.producer.flush(10)   # Attesa 10 secondi
+        # Se non riesce a mandare il messaggio in 10 secondi
+        except kafka.errors.KafkaTimeoutError:
+            stderr.write('Errore di timeout\n')
+            exit(-1)
+
+
     @property
     def producer(self):
         """Restituisce il KafkaProducer"""
         return self._producer
 
-    def produce(self, topic, msg: RedmineIssueWebhook):
-        """Produce il messaggio in Kafka.
-        Precondizione: msg è di tipo RedmineIssueWebhook
-
-        Arguments:
-        topic -- il topic dove salvare il messaggio.
-        """
-        # Può mai accadere false??
-        assert isinstance(msg, RedmineIssueWebhook), \
-            'msg non è di tipo RedmineIssueWebhook'
-
-        # Parse del JSON associato al webhook ottenendo un oggetto Python
-        msg.parse()
-        try:
-            print()
-            # Inserisce il messaggio in Kafka, serializzato in formato JSON
-            self.producer.send(topic, msg.webhook())
-            self.producer.flush(10)   # Attesa 10 secondi
-        except kafka.errors.KafkaTimeoutError:
-            stderr.write('Errore di timeout\n')
-            exit(-1)
 
     # def close(self):
     #    """Rilascia il Producer associato"""
@@ -120,20 +121,18 @@ def main():
                         help='topic di destinazione')
     args = parser.parse_args()
 
-    # Inzializza RedmineIssueWebhook con il percorso
-    # a open_issue_redmine_webhook.json
-    webhook = RedmineIssueWebhook(
+    # Inzializza il percorso a open_issue_redmine_webhook.json
+    webhook_path = (
         Path(__file__).parents[2] /
         'webhook' /
         'redmine' /
         'open_issue_redmine_webhook.json'
     )
 
-    # print(topics[0]['label'])
     if args.topic:  # Topic passato con la flag -t
-        producer.produce(args.topic, webhook)
+        producer.produce(args.topic, webhook_path)
     else:  # Prende come Topic di default il primo del file webhook.json
-        producer.produce(topics[0]['label'], webhook)
+        producer.produce(topics[0]['label'], webhook_path)
 
 
 if __name__ == '__main__':

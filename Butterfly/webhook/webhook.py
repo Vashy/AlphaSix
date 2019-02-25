@@ -36,18 +36,6 @@ from pathlib import Path
 class Webhook(ABC):
     """Interfaccia Webhook"""
 
-    @property
-    @abstractmethod
-    def json_file(self):
-        """Restituisce il file JSON associato al webhook."""
-        pass
-
-    @json_file.setter
-    @abstractmethod
-    def json_file(self, jsonfile):
-        """Setter della property json_file"""
-        pass
-
     @abstractmethod
     def parse(self):
         """Parsing del file JSON associato al webhook."""

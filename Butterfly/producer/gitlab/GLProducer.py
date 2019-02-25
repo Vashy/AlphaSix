@@ -28,9 +28,6 @@ Autori:
     ....
 """
 
-# Posizione: Butterfly/
-# Uso: python3 -m path.to.GLProducer
-
 import argparse
 from sys import stderr
 from kafka import KafkaProducer
@@ -63,29 +60,30 @@ class GLProducer(Producer):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
-    def produce(self, topic: str, msg: GLIssueWebhook):
+    def produce(self, topic: str, path: Path):
         """Produce il messaggio in Kafka.
-        Precondizione: msg è di tipo GLIssueWebhook
 
         Arguments:
         topic -- il topic dove salvare il messaggio.
+        path -- percorso fino al json
         """
 
-        assert isinstance(msg, GLIssueWebhook), \
-            'msg non è di tipo GLIssueWebhook'
+        assert isinstance(path, Path), \
+            'path non è di tipo Path'
+
+        webhook = GLIssueWebhook(path)
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python
-        msg.parse()
+        webhook.parse()
         try:
             print()
-            # Inserisce il messaggio in Kafka, in formato JSON
-            self.producer.send(topic, msg.webhook())
+            # Inserisce il messaggio in Kafka, serializzato in formato JSON
+            self.producer.send(topic, webhook.webhook)
             self.producer.flush(10)  # Attesa 10 secondi
         # Se non riesce a mandare il messaggio in 10 secondi
         except kafka.errors.KafkaTimeoutError:
             stderr.write('Errore di timeout\n')
             exit(-1)
-
 
     @property
     def producer(self):
@@ -121,16 +119,17 @@ def main():
                         help='topic di destinazione')
     args = parser.parse_args()
 
-    # Inizializza il GLIssueWebhook con il path a webhook.json
-    webhook = GLIssueWebhook(
+    # Percorso fino a webhook.json
+    webhook_path = (
         Path(__file__).parents[2] /
         'webhook' /
         'webhook.json'
     )
+
     if args.topic:  # Topic passato con la flag -t
-        producer.produce(args.topic, webhook)
+        producer.produce(args.topic, webhook_path)
     else:  # Prende come Topic di default il primo del file webhook.json
-        producer.produce(topics[0]['label'], webhook)
+        producer.produce(topics[0]['label'], webhook_path)
 
 
 if __name__ == '__main__':
