@@ -199,7 +199,8 @@ class TelegramConsumer(Consumer):
                     parse_mode='markdown',
             )
 
-    def pretty(self, obj: object):
+    @classmethod
+    def pretty(cls, obj: object):
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
 

@@ -169,7 +169,8 @@ class EmailConsumer(Consumer):
 
             print()  # Per spaziare i messaggi sulla shell
 
-    def pretty(self, obj: object):
+    @classmethod
+    def pretty(cls, obj: object):
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
 
