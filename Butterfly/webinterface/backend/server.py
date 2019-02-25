@@ -6,6 +6,7 @@ root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
 root = root.resolve()
 
 
+
 class Handler(object):
     """Classe con la funzionalità di server http.
     Ogni metodo della classe corrisponde a un url http gestito da cherrypy.
@@ -19,6 +20,9 @@ class Handler(object):
     I metodi che iniziano con la parola `panel` sono usati per gestire
     l'interfaccia quando l'utente non invia dati tramite post http.
     """
+
+    def __init__(self, controller):
+        self._controller = controller
 
     @cherrypy.expose
     def index(self):
@@ -257,8 +261,11 @@ class Handler(object):
 
 
 if __name__ == '__main__':
-    cherrypy.quickstart(Handler(), "/", {
-        "/": {
-            "tools.sessions.on": True,
-        }
-    })
+    with DBConnection('butterfly') as connection:
+        controller = DBController(connection)
+
+        cherrypy.quickstart(Handler(controller), "/", {
+            "/": {
+                "tools.sessions.on": True,
+            }
+        })
