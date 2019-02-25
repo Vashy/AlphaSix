@@ -139,38 +139,20 @@ class DBController(object):
         else:
             id = new_user['telegram']
 
-
         # Via libera all'aggiunta al DB
-
-        if new_user['_id'] is None:
-            result = self._insert_document({
-                    'name': new_user['name'],
-                    'surname': new_user['surname'],
-                    'telegram': new_user['telegram'],
-                    'email': new_user['email'],
-                    'preferenza': None,
-                    'topics': [],
-                    'keywords': [],
-                    'irreperibilità': new_user['irreperibilità'],
-                    'sostituto': None,
-                },
-                'users'
+        if new_user['_id'] is None:  # Per non mettere _id = None sul DB
+            partial_result = DBController._user_dict_no_id(new_user)
+            result = self._insert_document(
+                partial_result,
+                'users',
             )
 
         else:
-            result = self._insert_document({
-                    '_id': new_user['_id'],
-                    'name': new_user['name'],
-                    'surname': new_user['surname'],
-                    'telegram': new_user['telegram'],
-                    'email': new_user['email'],
-                    'preferenza': None,
-                    'topics': [],
-                    'keywords': [],
-                    'irreperibilità': new_user['irreperibilità'],
-                    'sostituto': None,
-                },
-                'users'
+            partial_result = DBController._user_dict_no_id(new_user)
+            partial_result['_id'] = new_user['_id']
+            result = self._insert_document(
+                partial_result,
+                'users',
             )
 
         # NOTE: Se i dati precedenti sono validi, a questo punto sono
@@ -786,7 +768,7 @@ class DBController(object):
         })[0])
 
     @classmethod
-    def _user_without_id(cls, obj: object):
+    def _user_dict_no_id(cls, obj: dict):
         return {
             'name': obj['name'],
             'surname': obj['surname'],
