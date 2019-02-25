@@ -63,7 +63,7 @@ def api_root():
         producer = RedmineProducer(config)
 
         webhook = request.get_json()
-        print(f'\n\n\nMessaggio da GitLab:\n{webhook}\n\n\n')
+        print(f'\n\n\nMessaggio da Redmine:\n{webhook}\n\n\n')
 
         producer.produce(topics[0]['label'], webhook)
 

@@ -22,11 +22,11 @@ Per costruire le immagini necessarie per ciascun servizio creato da noi eseguire
 Il path relativo a ciacun Dockerfile è quello relativo al servizio di cui si vuole creare l'immagine.
 Per i **producer**:
 	
-	$ docker build --no-cache --tag consumer_telegram -f producer/redmine/Dockerfile . ;
-	$ docker build --no-cache --tag consumer_telegram -f producer/gitlab/Dockerfile . ;
+	$ docker build --no-cache --tag produer_redmine -f producer/redmine/Dockerfile . ;
+	$ docker build --no-cache --tag producer_gitlab -f producer/gitlab/Dockerfile . ;
 Per i **consumer**:
 	
-	$ docker build --no-cache --tag consumer_telegram -f consumer/email/Dockerfile . ;
+	$ docker build --no-cache --tag consumer_email -f consumer/email/Dockerfile . ;
 	$ docker build --no-cache --tag consumer_telegram -f consumer/telegram/Dockerfile . ;
 
 ## docker-compose
@@ -91,11 +91,11 @@ Per ulteriori informazioni sul Consumer Telegram fare riferimento al file [READM
 
 * **Apache kafka** e **Apache Zookeper**:
 Vengono istanziati i servizi di Apache Kafka e Zookeeper in modo tale da poter mettere in comunicazione fra di loro *producer* e *consumer* tramite immagini di confluent.
-Per ulteriori informazioni relativi all'istanza di Docker riferirsi alla [documentazione specifica](https://github.com/confluentinc/cp-demo)  alle immagini utilizzate.  
+Per ulteriori informazioni relativi all'istanza di Docker riferirsi alla [documentazione specifica](https://github.com/confluentinc/cp-demo)  alle immagini utilizzate.
 
 * **Gestore personale**
 TODO
-Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.  
+Per ulteriori informazioni sulla nostra configurazione di Apache Kafka fare riferimento al file [README.md](../kafka) presente nella cartella apposita.
  
 ## Visualizzazione dei file di log
 Per ciascun container, i file di log sono disponibili nella cartella  `/var/lib/docker/containers/ID_CONTAINER` e sono di tipo `*-json.log`.
