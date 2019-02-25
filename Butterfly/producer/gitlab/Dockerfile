@@ -1,9 +1,6 @@
 # Base image
 FROM python:3.7
 
-# Port exposure
-EXPOSE 5000
-
 # Copying files from the correct folders
 COPY /producer/gitlab/GLProducer.py ./Butterfly/producer/gitlab/
 COPY /producer/gitlab/requirements.txt ./Butterfly/producer/gitlab/

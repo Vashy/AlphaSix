@@ -1,9 +1,6 @@
 # Base image
 FROM python:alpine3.7
 
-# Port exposure
-EXPOSE 5000
-
 # Copying files from the correct folders
 COPY /producer/redmine/RedmineProducer.py ./Butterfly/producer/redmine/
 COPY /producer/redmine/requirements.txt ./Butterfly/producer/redmine/
