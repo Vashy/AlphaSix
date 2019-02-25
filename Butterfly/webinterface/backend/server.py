@@ -209,7 +209,7 @@ class Handler(object):
             else:
                 page = page.replace('*insert*',
                                     '<div>'
-                                    '<p>Utente già presente nel sistema'
+                                    '<p>Utente già presente nel sistema '
                                     'o id non inserito.</p>'
                                     '</div>'
                                     )
