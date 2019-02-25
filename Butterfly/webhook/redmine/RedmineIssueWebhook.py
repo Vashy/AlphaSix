@@ -29,7 +29,7 @@ Autori:
 """
 
 import json
-from pathlib import Path
+from pathlib import Path # gestione del File System in modo intelligente
 from webhook.webhook import Webhook
 
 # FIXME: Tim ~ Secondo me da rivedere, per renderlo stateless.
@@ -83,23 +83,26 @@ class RedmineIssueWebhook(Webhook):
 
         webhook = {}
         webhook["type"] = 'redmine'
-        # webhook["issue_id"] = self.json_file["payload"]["issue"]["id"]    NON USATA
         webhook["title"] = self.json_file["payload"]["issue"]["subject"]
         webhook["description"] = self.json_file["payload"]["issue"]["description"]
         webhook["project_id"] = self.json_file["payload"]["issue"]["project"]["id"]
         webhook["project_name"] = self.json_file["payload"]["issue"]["project"]["name"]
-        # webhook["status"] = self.json_file["payload"]["issue"]["status"]["name"]  NON USATA
-        # webhook["tracker"] = self.json_file["payload"]["issue"]["tracker"]["name"]    NON USATA
-        # webhook["priority"] = self.json_file["payload"]["issue"]["priority"]["name"]  NON USATA
         webhook["action"] = self.json_file["payload"]["action"]
         webhook["author"] = self.json_file["payload"]["issue"]["author"]["firstname"]
         webhook["assignees"] = self.json_file["payload"]["issue"]["assignee"]
 
+        self._webhook = webhook
+
+
+        # webhook["issue_id"] = self.json_file["payload"]["issue"]["id"]    NON USATA
+        # webhook["status"] = self.json_file["payload"]["issue"]["status"]["name"]  NON USATA
+        # webhook["tracker"] = self.json_file["payload"]["issue"]["tracker"]["name"]    NON USATA
+        # webhook["priority"] = self.json_file["payload"]["issue"]["priority"]["name"]  NON USATA
         # webhook["assignees"] = []
         # for value in self.json_file['payload']['issue']['assignee']:
         #     webhook["assignees"].append(value["firstname"])
 
-        self._webhook = webhook
+        
 
         # TODO: Da continuare, con tutti i campi di interesse
         #  definiti nel .json 

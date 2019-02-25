@@ -42,6 +42,7 @@ from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 
 class GLProducer(Producer):
+
     def __init__(self, config):
         notify = False
         while True:  # Attende una connessione con il Broker
@@ -62,15 +63,7 @@ class GLProducer(Producer):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
-    # def __del__(self):  # Utile?
-    #    self.close()
-
-    @property
-    def producer(self):
-        """Restituisce il KafkaProducer"""
-        return self._producer
-
-    def produce(self, topic, msg: GLIssueWebhook):
+    def produce(self, topic: str, msg: GLIssueWebhook):
         """Produce il messaggio in Kafka.
         Precondizione: msg è di tipo GLIssueWebhook
 
@@ -85,12 +78,19 @@ class GLProducer(Producer):
         msg.parse()
         try:
             print()
-            # Inserisce il messaggio in Kafka, serializzato in formato JSON
+            # Inserisce il messaggio in Kafka, in formato JSON
             self.producer.send(topic, msg.webhook())
             self.producer.flush(10)  # Attesa 10 secondi
+        # Se non riesce a mandare il messaggio in 10 secondi
         except kafka.errors.KafkaTimeoutError:
             stderr.write('Errore di timeout\n')
             exit(-1)
+
+
+    @property
+    def producer(self):
+        """Restituisce il KafkaProducer"""
+        return self._producer
 
     # def close(self):
     #    """Rilascia il Producer associato"""
@@ -124,7 +124,8 @@ def main():
     # Inizializza il GLIssueWebhook con il path a webhook.json
     webhook = GLIssueWebhook(
         Path(__file__).parents[2] /
-        'webhook/webhook.json'
+        'webhook' /
+        'webhook.json'
     )
     if args.topic:  # Topic passato con la flag -t
         producer.produce(args.topic, webhook)
