@@ -139,22 +139,39 @@ class DBController(object):
         else:
             id = new_user['telegram']
 
+
         # Via libera all'aggiunta al DB
-        result = self._insert_document(
-            {
-                '_id': new_user['_id'],
-                'name': new_user['name'],
-                'surname': new_user['surname'],
-                'telegram': new_user['telegram'],
-                'email': new_user['email'],
-                'preferenza': None,
-                'topics': [],
-                'keywords': [],
-                'irreperibilità': new_user['irreperibilità'],
-                'sostituto': None,
-            },
-            'users'
-        )
+
+        if new_user['_id'] is None:
+            result = self._insert_document({
+                    'name': new_user['name'],
+                    'surname': new_user['surname'],
+                    'telegram': new_user['telegram'],
+                    'email': new_user['email'],
+                    'preferenza': None,
+                    'topics': [],
+                    'keywords': [],
+                    'irreperibilità': new_user['irreperibilità'],
+                    'sostituto': None,
+                },
+                'users'
+            )
+
+        else:
+            result = self._insert_document({
+                    '_id': new_user['_id'],
+                    'name': new_user['name'],
+                    'surname': new_user['surname'],
+                    'telegram': new_user['telegram'],
+                    'email': new_user['email'],
+                    'preferenza': None,
+                    'topics': [],
+                    'keywords': [],
+                    'irreperibilità': new_user['irreperibilità'],
+                    'sostituto': None,
+                },
+                'users'
+            )
 
         # NOTE: Se i dati precedenti sono validi, a questo punto sono
         # già inseriti nel DB. I dati successivi vengono inseriti
@@ -767,3 +784,17 @@ class DBController(object):
                 {'email': id},
             ]
         })[0])
+
+    @classmethod
+    def _user_without_id(cls, obj: object):
+        return {
+            'name': obj['name'],
+            'surname': obj['surname'],
+            'telegram': obj['telegram'],
+            'email': obj['email'],
+            'preferenza': None,
+            'topics': [],
+            'keywords': [],
+            'irreperibilità': obj['irreperibilità'],
+            'sostituto': None,
+        }
