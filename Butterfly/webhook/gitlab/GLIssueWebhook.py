@@ -81,7 +81,7 @@ class GLIssueWebhook(Webhook):
             raise FileNotFoundError()
 
         webhook = {}
-        webhook["type"] = 'gitlab'
+        webhook["type"] = 'Gitlab'
         webhook["object_kind"] = self.json_file["object_kind"]
         webhook["title"] = self.json_file["object_attributes"]["title"]
         webhook["project"] = {}

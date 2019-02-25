@@ -82,7 +82,7 @@ class RedmineIssueWebhook(Webhook):
             raise FileNotFoundError()
 
         webhook = {}
-        webhook["type"] = 'redmine'
+        webhook["type"] = 'Redmine'
         webhook["title"] = self.json_file["payload"]["issue"]["subject"]
         webhook["description"] = self.json_file["payload"]["issue"]["description"]
         webhook["project_id"] = self.json_file["payload"]["issue"]["project"]["id"]

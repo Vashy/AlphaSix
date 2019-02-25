@@ -181,24 +181,25 @@ class EmailConsumer(Consumer):
         # Questa chiamata va bene sia per i webhook di rd che per gt
         res = "".join(
             [
-                'E` stata aperta una issue nel progetto: '
+                f'Provenienza: {obj["type"]}'
+                '\n\nE` stata aperta una issue nel progetto: '
                 f'{obj["project_name"]} ',
                 f'({obj["project_id"]})',
-                "\n\nAuthor: " + f'\n - {obj["author"]}'
-                "\n\n Issue's information: "
+                f'\n\nAuthor: {obj["author"]}'
+                '\n\n Issue\'s information: '
                 f'\n - Title: {obj["title"]}',
                 f'\n - Description: {obj["description"]}',
                 f'\n - Action: {obj["action"]}',
-                "\n\nAssegnee's information:"
+                '\n\nAssegnee\'s information:'
             ])
 
         # Avendo gitlab che può avere più assignees
         # e redmine che invece può averne soltanto uno
         # hanno due profondità diverse nel file json,
         # quindi vanno scorse in modo diverso
-        if obj['type'] == 'redmine':
+        if obj['type'] == 'Redmine':
             res += f'\n - {obj["assignees"]["firstname"]}'
-        elif obj['type'] == 'gitlab':
+        elif obj['type'] == 'Gitlab':
             for value in obj["assignees"]:
                 res += f'\n - {value["name"]}'
 
