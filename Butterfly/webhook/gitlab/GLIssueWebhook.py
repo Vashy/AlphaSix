@@ -32,7 +32,6 @@ import json
 from pathlib import Path
 from webhook.webhook import Webhook
 
-
 # FIXME: Tim ~ Secondo me da rivedere, per renderlo stateless.
 # e.g. passando come parametri alla funzione parse().
 # Di conseguenza, rivedere i metodi astratti dell'interfaccia Webhook
@@ -40,50 +39,42 @@ from webhook.webhook import Webhook
 class GLIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def __init__(self, path: str):
+    def __init__(self, whook: object):
         self._webhook = None
-
-        # Controlla che il percorso sia effettivamente valido
-        if not Path(path).is_file():
-            raise FileNotFoundError(f'{path} non è un file')
-
-        # Deserialize fp to a Python object.
-        # With chiude in automatico alla fine
-        with open(path) as f:
-            self._json_file = json.load(f)
+        self._json_webhook = whook
 
     def parse(self):
         """Parsing del file JSON associato al webhook."""
 
         webhook = {}
         webhook["type"] = 'Gitlab'
-        webhook["object_kind"] = self._json_file["object_kind"]
-        webhook["title"] = self._json_file["object_attributes"]["title"]
+        webhook["object_kind"] = self._json_webhook["object_kind"]
+        webhook["title"] = self._json_webhook["object_attributes"]["title"]
         webhook["project"] = {}
-        webhook["project_id"] = self._json_file["project"]["id"]
-        webhook["project_name"] = self._json_file["project"]["name"]
-        webhook["author"] = self._json_file["user"]["name"]
+        webhook["project_id"] = self._json_webhook["project"]["id"]
+        webhook["project_name"] = self._json_webhook["project"]["name"]
+        webhook["author"] = self._json_webhook["user"]["name"]
 
         webhook["assignees"] = []
-        for value in self._json_file["assignees"]:
+        for value in self._json_webhook["assignees"]:
             webhook["assignees"].append(value)
 
-        webhook["action"] = self._json_file["object_attributes"]["action"]
+        webhook["action"] = self._json_webhook["object_attributes"]["action"]
         webhook["description"] = (
-            self._json_file["object_attributes"]["description"]
+            self._json_webhook["object_attributes"]["description"]
         )
 
         webhook["labels"] = []
-        for value in self._json_file["labels"]:
+        for value in self._json_webhook["labels"]:
             webhook["labels"].append(value["title"])
 
         webhook["changes"] = {}
         webhook["changes"]["labels"] = {}
         webhook["changes"]["labels"]["previous"] = (
-            self._json_file["changes"]["labels"]["previous"]
+            self._json_webhook["changes"]["labels"]["previous"]
         )
         webhook["changes"]["labels"]["current"] = (
-            self._json_file["changes"]["labels"]["current"]
+            self._json_webhook["changes"]["labels"]["current"]
         )
         self._webhook = webhook
 

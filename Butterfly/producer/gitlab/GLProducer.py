@@ -28,6 +28,9 @@ Autori:
     ....
 """
 
+from flask import Flask
+from flask import json
+from flask import request
 import argparse
 from sys import stderr
 from kafka import KafkaProducer
@@ -37,6 +40,55 @@ from pathlib import Path
 from producer.producer import Producer
 from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
+# Parsing dei parametri da linea di comando
+# parser = argparse.ArgumentParser(description='Crea messaggi su Kafka')
+# parser.add_argument('-t', '--topic', type=str,
+#                     help='topic di destinazione')
+# args = parser.parse_args()
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def api_root():
+
+    # Percorso fino a webhook.json
+    # webhook_path = (
+    #     Path(__file__).parents[2] /
+    #     'webhook' /
+    #     'webhook.json'
+    # )
+
+    if request.headers['Content-Type'] == 'application/json':    
+
+        # Configurazione da config.json
+        with open(Path(__file__).parents[1] / 'config.json') as f:
+            config = json.load(f)
+
+        """Fetch dei topic dal file topics.json
+        Campi:
+        - topics['id']
+        - topics['label']
+        - topics['project']
+        """
+        with open(Path(__file__).parents[2] / 'topics.json') as f:
+            topics = json.load(f)
+
+        # Istanzia il Producer
+        producer = GLProducer(config)
+        
+        webhook = request.get_json()
+
+        # if args.topic:  # Topic passato con la flag -t
+        #     # #producer.produce(args.topic, webhook_path)
+        #     # producer.produce(args.topic, webhook)
+        # else:  # Prende come Topic di default il primo del file webhook.json
+        producer.produce(topics[0]['label'], webhook)
+    
+        return '', 200
+    
+    else:
+        
+        return '', 400
 
 class GLProducer(Producer):
 
@@ -60,7 +112,7 @@ class GLProducer(Producer):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
-    def produce(self, topic: str, path: Path):
+    def produce(self, topic: str, whook: object):
         """Produce il messaggio in Kafka.
 
         Arguments:
@@ -68,10 +120,9 @@ class GLProducer(Producer):
         path -- percorso fino al json
         """
 
-        assert isinstance(path, Path), \
-            'path non è di tipo Path'
+        # assert isinstance(path, Path), 'path non è di tipo Path'
 
-        webhook = GLIssueWebhook(path)
+        webhook = GLIssueWebhook(whook)
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook.parse()
@@ -96,41 +147,7 @@ class GLProducer(Producer):
 
 
 def main():
-
-    # Configurazione da config.json
-    with open(Path(__file__).parents[1] / 'config.json') as f:
-        config = json.load(f)
-
-    """Fetch dei topic dal file topics.json
-    Campi:
-    - topics['id']
-    - topics['label']
-    - topics['project']
-    """
-    with open(Path(__file__).parents[2] / 'topics.json') as f:
-        topics = json.load(f)
-
-    # Istanzia il Producer
-    producer = GLProducer(config)
-
-    # Parsing dei parametri da linea di comando
-    parser = argparse.ArgumentParser(description='Crea messaggi su Kafka')
-    parser.add_argument('-t', '--topic', type=str,
-                        help='topic di destinazione')
-    args = parser.parse_args()
-
-    # Percorso fino a webhook.json
-    webhook_path = (
-        Path(__file__).parents[2] /
-        'webhook' /
-        'webhook.json'
-    )
-
-    if args.topic:  # Topic passato con la flag -t
-        producer.produce(args.topic, webhook_path)
-    else:  # Prende come Topic di default il primo del file webhook.json
-        producer.produce(topics[0]['label'], webhook_path)
-
+    app.run(host='0.0.0.0', port='5000')
 
 if __name__ == '__main__':
     main()
