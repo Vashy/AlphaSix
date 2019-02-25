@@ -40,24 +40,28 @@ class Handler(object):
                      + user['email'] + '</option>'
         users += '</select>'
         return users
+    
 
     def check_user_insertable(self, email, telegram):
-        if email == '':
-            email = None
-        if telegram == '':
-            telegram = None
-        if email is not None or telegram is not None:
+        # if email == '':
+        #     email = None
+        # if telegram == '':
+        #     telegram = None
+        # print('check_user_insertable chiamato')
+        # print(f'telegram = {telegram}')
+        # print(f'email = {email}')
+        if email != '' or telegram != '':
             if (
                 (
-                    email is None and
+                    email == '' and
                     not self._controller.user_exists(telegram)
                 )
                 or (
-                    telegram is None and
+                    telegram == '' and
                     not self._controller.user_exists(email)
                 )
                 or (
-                    email is not None and telegram is not None and
+                    email != '' and telegram != '' and
                     not self._controller.user_exists(email)
                 )
             ):
@@ -92,7 +96,7 @@ class Handler(object):
         page = page.replace('*userid*', '%s' % userid)
         page = page.replace('*access*',
                             '<div>'
-                            '<p>Email/Telegram non presente nel sistema.'
+                            '<p>Email/ID Telegram non presente nel sistema.'
                             '</p>'
                             '</div>'
                             )
@@ -195,6 +199,15 @@ class Handler(object):
             file = root / 'insertuser.html'
             page = file.read_text()
             if self.check_user_insertable(email, telegram):
+
+                # print('adduser chiamato')
+                # print(f'telegram = {telegram}')
+                # print(f'email = {email}')
+                if email == '':
+                    email = None
+                if telegram == '':
+                    telegram = None
+
                 controller.insert_user(
                     name=nome,
                     surname=cognome,
