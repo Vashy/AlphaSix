@@ -41,6 +41,29 @@ class Handler(object):
         users += '</select>'
         return users
 
+    def check_user_insertable(self, email, telegram):
+        if email == '':
+            email = None
+        if telegram == '':
+            telegram = None
+        if email is not None or telegram is not None:
+            if (
+                (
+                    email is None and
+                    not self._controller.user_exists(telegram)
+                )
+                or (
+                    telegram is None and
+                    not self._controller.user_exists(email)
+                )
+                or (
+                    email is not None and telegram is not None and
+                    not self._controller.user_exists(email)
+                )
+            ):
+                return True
+        return False
+
     @cherrypy.expose
     def index(self):
         if cherrypy.session.get("userid") is None:
@@ -110,9 +133,10 @@ class Handler(object):
             self
     ):
         if cherrypy.session.get("userid") is not None:
+            users = self.select_user()
             file = root / 'modifyuser.html'
             page = file.read_text()
-            page = page.replace('*userid*', '')
+            page = page.replace('*userids*', users)
             page = page.replace('*nome*', '')
             page = page.replace('*cognome*', '')
             page = page.replace('*email*', '')
@@ -170,20 +194,7 @@ class Handler(object):
         if cherrypy.session.get("userid") is not None:
             file = root / 'insertuser.html'
             page = file.read_text()
-
-            if not (
-                    self._controller.user_exists(email)
-                    or
-                    self._controller.user_exists(telegram)
-            ) and not (
-                    nome == '*nome*'
-                    or
-                    cognome == '*cognome*'
-                    or
-                    email == '*email*'
-                    or
-                    telegram == '*telegram*'
-            ):
+            if self.check_user_insertable(email, telegram):
                 controller.insert_user(
                     name=nome,
                     surname=cognome,
@@ -195,23 +206,25 @@ class Handler(object):
                                     '<p>Utente inserito</p>'
                                     '</div>'
                                     )
-            page = page.replace('*userid*', '%s' % "")
+            else:
+                page = page.replace('*insert*',
+                                    '<div>'
+                                    '<p>Utente già presente nel sistema'
+                                    'o id non inserito.</p>'
+                                    '</div>'
+                                    )
+            if email is None:
+                email = ''
+            if telegram is None:
+                telegram = ''
             page = page.replace('*nome*', '%s' % nome)
             page = page.replace('*cognome*', '%s' % cognome)
             page = page.replace('*email*', '%s' % email)
             page = page.replace('*telegram*', '%s' % telegram)
-            page = page.replace('*userid*', '')
             page = page.replace('*nome*', '')
             page = page.replace('*cognome*', '')
             page = page.replace('*email*', '')
             page = page.replace('*telegram*', '')
-            page = page.replace('*insert*',
-                                '<div>'
-                                '<p>'
-                                'Utente già presente nel sistema'
-                                '</p>'
-                                '</div'
-                                )
             return page
         return self.index()
 
@@ -245,40 +258,48 @@ class Handler(object):
     def modifyuser(
             self,
             modifyuser=None,
-            userid='*userid*',
+            userid='*userids*',
             nome='*nome*',
             cognome='*cognome*',
             email='*email*',
             telegram='*telegram*'
     ):
         if cherrypy.session.get("userid") is not None:
+            users = self.select_user()
             file = root / 'modifyuser.html'
             page = file.read_text()
-
-            if self._controller.user_exists(userid):
-                self._controller.update_user_name(userid, nome)
-                self._controller.update_user_surname(userid, cognome)
-                # TODO: DEVO SAPERE COSA STO AGGIORNANDO A QUESTO PUNTO
-                self._controller.update_user_email(userid, email)
-                self._controller.update_user_telegram(userid, telegram)
-                page = page.replace('*modifyuser*',
-                                    '<div>'
-                                    '<p>Utente modificato</p>'
-                                    '</div>'
-                                    )
-            page = page.replace('*userid*', '%s' % userid)
+            if self.check_user_insertable(email, telegram):
+                if self._controller.user_exists(userid):
+                    self._controller.update_user_name(userid, nome)
+                    self._controller.update_user_surname(userid, cognome)
+                    # TODO: DEVO SAPERE COSA STO AGGIORNANDO A QUESTO PUNTO
+                    self._controller.update_user_email(userid, email)
+                    self._controller.update_user_telegram(userid, telegram)
+                    page = page.replace('*modifyuser*',
+                                        '<div>'
+                                        '<p>Utente modificato</p>'
+                                        '</div>'
+                                        )
+                else:
+                    page = page.replace('*modifyuser*',
+                                        '<div>'
+                                        '<p>Utente non presente nel '
+                                        'sistema.</p>'
+                                        '</div>'
+                                        )
+            page = page.replace('*userids*', users)
             page = page.replace('*nome*', '%s' % nome)
             page = page.replace('*cognome*', '%s' % cognome)
             page = page.replace('*email*', '%s' % email)
             page = page.replace('*telegram*', '%s' % telegram)
-            page = page.replace('*userid*', '')
             page = page.replace('*nome*', '')
             page = page.replace('*cognome*', '')
             page = page.replace('*email*', '')
             page = page.replace('*telegram*', '')
             page = page.replace('*modifyuser*',
                                 '<div>'
-                                '<p>Utente non presente nel sistema.</p>'
+                                '<p>Email/Telegram'
+                                ' già presente nel sistema.</p>'
                                 '</div>'
                                 )
             return page
