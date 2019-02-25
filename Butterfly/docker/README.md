@@ -22,11 +22,11 @@ Per costruire le immagini necessarie per ciascun servizio creato da noi eseguire
 Il path relativo a ciacun Dockerfile è quello relativo al servizio di cui si vuole creare l'immagine.
 Per i **producer**:
 	
-	$ docker build --no-cache --tag consumer_telegram -f producer/redmine/Dockerfile . ;
-	$ docker build --no-cache --tag consumer_telegram -f producer/gitlab/Dockerfile . ;
+	$ docker build --no-cache --tag producer_redmine -f producer/redmine/Dockerfile . ;
+	$ docker build --no-cache --tag producer_gitlab -f producer/gitlab/Dockerfile . ;
 Per i **consumer**:
 	
-	$ docker build --no-cache --tag consumer_telegram -f consumer/email/Dockerfile . ;
+	$ docker build --no-cache --tag consumer_email -f consumer/email/Dockerfile . ;
 	$ docker build --no-cache --tag consumer_telegram -f consumer/telegram/Dockerfile . ;
 
 ## docker-compose

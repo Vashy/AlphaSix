@@ -7,10 +7,10 @@
     },
     "telegram" : {
         "token_bot": "767404683:AAF6Fo4LP7wDWYmEbIRQ37KTX5GECMoTziA",
-        "receiver": "265266555"
+        "receiver": "38883960"
     },
     "email" : {
-        "receiver": "lauracameran@gmail.com",
+        "receiver": "timoty.granziero@gmail.com",
         "subject": "Butterfly"
     },
     "emailSettings": {

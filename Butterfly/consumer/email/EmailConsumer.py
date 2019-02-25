@@ -96,12 +96,12 @@ class EmailConsumer(Consumer):
             while True:
                 try:
                     # Prompt per l'inserimento della psw
-                    psw = getpass.getpass(
-                        '\nInserisci la password '
-                        f'di {self._sender}: '
-                    )
+                    # psw = getpass.getpass(
+                    #     '\nInserisci la password '
+                    #     f'di {self._sender}: '
+                    # )
 
-                    mailserver.login(self._sender, psw)  # Login al server SMTP
+                    mailserver.login(self._sender, 'alfa6swe')  # Login al server SMTP
                     break  # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova

@@ -124,7 +124,7 @@ class TelegramConsumer(Consumer):
         print()
 
         # Linea da commentare in caso qualcun altro abbia attivo il bot
-        # self._bot.message_loop(self._on_chat_message)
+        self._bot.message_loop(self._on_chat_message)
         for message in self._consumer:
             print(f'Tipo messaggio: {type(message.value)}')
 
