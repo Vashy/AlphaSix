@@ -147,49 +147,49 @@ services:
         max-file: "3"
     network_mode: host
 
-  # consumer_email:
-  #   image: consumer_email
-  #   container_name: consumer_email
-  #   hostname: consumer_email
-  #   restart: always
-  #   depends_on:
-  #     - kafka
-  #   build:
-  #     context: ../
-  #     dockerfile: ../consumer/email/Dockerfile
-  #   ports:
-  #     - 5001:5000
-  #   stdin_open: true
-  #   tty: true
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-size: 500k
-  #       max-file: "3"
-  #   network_mode: host
+  consumer_email:
+    image: consumer_email
+    container_name: consumer_email
+    hostname: consumer_email
+    restart: always
+    depends_on:
+      - kafka
+    build:
+      context: ../
+      dockerfile: ../consumer/email/Dockerfile
+    ports:
+      - 5001:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
 
 ## PRODUCER ##
 
-  # producer_redmine:
-  #   image: producer_redmine
-  #   container_name: producer_redmine
-  #   hostname: producer_redmine
-  #   restart: always
-  #   depends_on:
-  #     - kafka
-  #   build:
-  #     context: ../
-  #     dockerfile: ../producer/redmine/Dockerfile
-  #   ports:
-  #     - 5002:5000
-  #   stdin_open: true
-  #   tty: true
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-size: 500k
-  #       max-file: "3"
-  #   network_mode: host
+  producer_redmine:
+    image: producer_redmine
+    container_name: producer_redmine
+    hostname: producer_redmine
+    restart: always
+    depends_on:
+      - kafka
+    build:
+      context: ../
+      dockerfile: ../producer/redmine/Dockerfile
+    ports:
+      - 5002:5000
+    stdin_open: true
+    tty: true
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
+    network_mode: host
     
   producer_gitlab:
     image: producer_gitlab

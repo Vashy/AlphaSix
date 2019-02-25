@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def api_root():
-    print('Prova')
     if request.headers['Content-Type'] == 'application/json':        
         print(request.get_json())
         return '', 200

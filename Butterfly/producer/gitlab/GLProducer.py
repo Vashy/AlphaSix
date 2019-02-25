@@ -77,6 +77,7 @@ def api_root():
         producer = GLProducer(config)
         
         webhook = request.get_json()
+        print(f'\n\n\nMessaggio da GitLab:\n{webhook}\n\n\n')
 
         # if args.topic:  # Topic passato con la flag -t
         #     # #producer.produce(args.topic, webhook_path)
@@ -147,7 +148,7 @@ class GLProducer(Producer):
 
 
 def main():
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='0.0.0.0', port='5003')
 
 if __name__ == '__main__':
     main()

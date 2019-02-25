@@ -40,17 +40,9 @@ from webhook.webhook import Webhook
 class RedmineIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def __init__(self, path: str):
+    def __init__(self, whook: object):
         self._webhook = None
-
-        # Controlla che il percorso sia effettivamente valido
-        if not Path(path).is_file():
-            raise FileNotFoundError(f'{path} non è un file')
-
-        # Deserialize fp to a Python object.
-        # With chiude in automatico alla fine
-        with open(path) as f:
-            self._json_file = json.load(f)
+        self._json_webhook = whook
 
     def parse(self):
         """Parsing del file JSON associato al webhook."""
@@ -58,30 +50,30 @@ class RedmineIssueWebhook(Webhook):
         webhook = {}
 
         webhook["type"] = 'Redmine'
-        webhook["title"] = self._json_file["payload"]["issue"]["subject"]
+        webhook["title"] = self._json_webhook["payload"]["issue"]["subject"]
         webhook["description"] = (
-            self._json_file["payload"]["issue"]["description"]
+            self._json_webhook["payload"]["issue"]["description"]
         )
         webhook["project_id"] = (
-            self._json_file["payload"]["issue"]["project"]["id"]
+            self._json_webhook["payload"]["issue"]["project"]["id"]
         )
         webhook["project_name"] = (
-            self._json_file["payload"]["issue"]["project"]["name"]
+            self._json_webhook["payload"]["issue"]["project"]["name"]
         )
-        webhook["action"] = self._json_file["payload"]["action"]
+        webhook["action"] = self._json_webhook["payload"]["action"]
         webhook["author"] = (
-            self._json_file["payload"]["issue"]["author"]["firstname"]
+            self._json_webhook["payload"]["issue"]["author"]["firstname"]
         )
-        webhook["assignees"] = self._json_file["payload"]["issue"]["assignee"]
+        webhook["assignees"] = self._json_webhook["payload"]["issue"]["assignee"]
 
         self._webhook = webhook
 
-        # webhook["issue_id"] = self._json_file["payload"]["issue"]["id"]    NON USATA
-        # webhook["status"] = self._json_file["payload"]["issue"]["status"]["name"]  NON USATA
-        # webhook["tracker"] = self._json_file["payload"]["issue"]["tracker"]["name"]    NON USATA
-        # webhook["priority"] = self._json_file["payload"]["issue"]["priority"]["name"]  NON USATA
+        # webhook["issue_id"] = self._json_webhook["payload"]["issue"]["id"]    NON USATA
+        # webhook["status"] = self._json_webhook["payload"]["issue"]["status"]["name"]  NON USATA
+        # webhook["tracker"] = self._json_webhook["payload"]["issue"]["tracker"]["name"]    NON USATA
+        # webhook["priority"] = self._json_webhook["payload"]["issue"]["priority"]["name"]  NON USATA
         # webhook["assignees"] = []
-        # for value in self._json_file['payload']['issue']['assignee']:
+        # for value in self._json_webhook['payload']['issue']['assignee']:
         #     webhook["assignees"].append(value["firstname"])
 
         # TODO: Da continuare, con tutti i campi di interesse
