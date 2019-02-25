@@ -294,11 +294,10 @@ class Handler(object):
 if __name__ == '__main__':
     with DBConnection('butterfly') as connection:
         controller = DBController(connection)
-        print(root / 'a6.ico')
         cherrypy.quickstart(Handler(controller), "/", {
             '/favicon.ico':{
                 'tools.staticfile.on': True,
-                'tools.staticfile.filename': root / 'a6.ico'
+                'tools.staticfile.filename': str(root / 'a6.ico')
             },
             "/": {
                 "tools.sessions.on": True,
