@@ -24,6 +24,23 @@ class Handler(object):
     def __init__(self, controller):
         self._controller = controller
 
+    def select_user(self):
+        users = '<select name="userid" id = "userid">'
+        for user in self._controller.users():
+            value = user['telegram']
+            if user['telegram'] is None:
+                user['telegram'] = ''
+                value = user['email']
+            if user['email'] is None:
+                user['email'] = ''
+                value = user['telegram']
+            users += '<option value="' \
+                     + value + '">' \
+                     + user['telegram'] + ' ' \
+                     + user['email'] + '</option>'
+        users += '</select>'
+        return users
+
     @cherrypy.expose
     def index(self):
         if cherrypy.session.get("userid") is None:
@@ -42,13 +59,11 @@ class Handler(object):
             access=None,
             userid='*userid*'
     ):
-        with DBConnection('butterfly') as client:
-            controller = DBController(client)
-            if controller.user_exists(userid):
-                cherrypy.session["userid"] = userid
-                file = root / 'panel.html'
-                page = file.read_text()
-                return page
+        if self._controller.user_exists(userid):
+            cherrypy.session["userid"] = userid
+            file = root / 'panel.html'
+            page = file.read_text()
+            return page
         file = root / 'access.html'
         page = file.read_text()
         page = page.replace('*userid*', '%s' % userid)
@@ -64,46 +79,53 @@ class Handler(object):
     def paneladduser(
             self
     ):
-        file = root / 'insertuser.html'
-        page = file.read_text()
-        page = page.replace('*userid*', '')
-        page = page.replace('*nome*', '')
-        page = page.replace('*cognome*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*insert*', '')
-        return page
+        if cherrypy.session.get("userid") is not None:
+            file = root / 'insertuser.html'
+            page = file.read_text()
+            page = page.replace('*userid*', '')
+            page = page.replace('*nome*', '')
+            page = page.replace('*cognome*', '')
+            page = page.replace('*email*', '')
+            page = page.replace('*telegram*', '')
+            page = page.replace('*insert*', '')
+            return page
+        
+        return self.index()
 
     @cherrypy.expose
     def panelremoveuser(
             self
     ):
-        file = root / 'removeuser.html'
-        page = file.read_text()
-        page = page.replace('*userid*', '')
-        page = page.replace('*removeuser*', '')
-        return page
+        if cherrypy.session.get("userid") is not None:
+            users = self.select_user()
+            file = root / 'removeuser.html'
+            page = file.read_text()
+            page = page.replace('*userids*', users)
+            page = page.replace('*removeuser*', '')
+            return page
+        return self.index()
 
     @cherrypy.expose
     def panelmodifyuser(
             self
     ):
-        file = root / 'modifyuser.html'
-        page = file.read_text()
-        page = page.replace('*userid*', '')
-        page = page.replace('*nome*', '')
-        page = page.replace('*cognome*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*modifyuser*', '')
-        return page
+        if cherrypy.session.get("userid") is not None:
+            file = root / 'modifyuser.html'
+            page = file.read_text()
+            page = page.replace('*userid*', '')
+            page = page.replace('*nome*', '')
+            page = page.replace('*cognome*', '')
+            page = page.replace('*email*', '')
+            page = page.replace('*telegram*', '')
+            page = page.replace('*modifyuser*', '')
+            return page
+        return self.index()
 
     @cherrypy.expose
     def panelpreferences(self):
-        file = root / 'preferences.html'
-        page = file.read_text()
-        with DBConnection('butterfly') as client:
-            controller = DBController(client)
+        if cherrypy.session.get("userid") is not None:
+            file = root / 'preferences.html'
+            page = file.read_text()
             topics = ''
             for topic in controller.topics():
                 topics += '<fieldset><label for="'\
@@ -128,12 +150,13 @@ class Handler(object):
                 keywords += keyword + ','
             keywords = keywords.rstrip(',')
             page = page.replace('*textkeywords*', keywords)
-        page = page.replace('*subscriptiontopic*','')
-        page = page.replace('*indisponibilita*', '')
-        page = page.replace('*favouriteplatform*', '')
-        page = page.replace('*favouriteuser*', '')
-        page = page.replace('*keywords*', '')
-        return page
+            page = page.replace('*subscriptiontopic*','')
+            page = page.replace('*indisponibilita*', '')
+            page = page.replace('*favouriteplatform*', '')
+            page = page.replace('*favouriteuser*', '')
+            page = page.replace('*keywords*', '')
+            return page
+        return self.index()
 
     @cherrypy.expose
     def adduser(
@@ -144,15 +167,22 @@ class Handler(object):
             email='*email*',
             telegram='*telegram*'
     ):
-        file = root / 'insertuser.html'
-        page = file.read_text()
+        if cherrypy.session.get("userid") is not None:
+            file = root / 'insertuser.html'
+            page = file.read_text()
 
-        with DBConnection('butterfly') as client:
-            controller = DBController(client)
             if not (
-                    controller.user_exists(email)
+                    self._controller.user_exists(email)
                     or
-                    controller.user_exists(telegram)
+                    self._controller.user_exists(telegram)
+            ) and not (
+                    nome == '*nome*'
+                    or
+                    cognome == '*cognome*'
+                    or
+                    email == '*email*'
+                    or
+                    telegram == '*telegram*'
             ):
                 controller.insert_user(
                     name=nome,
@@ -165,50 +195,51 @@ class Handler(object):
                                     '<p>Utente inserito</p>'
                                     '</div>'
                                     )
-        page = page.replace('*userid*', '%s' % "")
-        page = page.replace('*nome*', '%s' % nome)
-        page = page.replace('*cognome*', '%s' % cognome)
-        page = page.replace('*email*', '%s' % email)
-        page = page.replace('*telegram*', '%s' % telegram)
-        page = page.replace('*userid*', '')
-        page = page.replace('*nome*', '')
-        page = page.replace('*cognome*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*insert*',
-                            '<div>'
-                            '<p>'
-                            'Utente già presente nel sistema'
-                            '</p>'
-                            '</div'
-                            )
-        return page
+            page = page.replace('*userid*', '%s' % "")
+            page = page.replace('*nome*', '%s' % nome)
+            page = page.replace('*cognome*', '%s' % cognome)
+            page = page.replace('*email*', '%s' % email)
+            page = page.replace('*telegram*', '%s' % telegram)
+            page = page.replace('*userid*', '')
+            page = page.replace('*nome*', '')
+            page = page.replace('*cognome*', '')
+            page = page.replace('*email*', '')
+            page = page.replace('*telegram*', '')
+            page = page.replace('*insert*',
+                                '<div>'
+                                '<p>'
+                                'Utente già presente nel sistema'
+                                '</p>'
+                                '</div'
+                                )
+            return page
+        return self.index()
 
     @cherrypy.expose
     def removeuser(
             self,
             removeuser=None,
-            userid='*userid*'
+            userid='*userids*'
     ):
-        file = root / 'removeuser.html'
-        page = file.read_text()
-        with DBConnection('butterfly') as client:
-            controller = DBController(client)
-            if controller.user_exists(userid):
-                controller.delete_one_user(userid)
+        if cherrypy.session.get("userid") is not None:
+            file = root / 'removeuser.html'
+            page = file.read_text()
+            if self._controller.user_exists(userid):
+                self._controller.delete_one_user(userid)
                 page = page.replace('*removeuser*',
                                     '<div>'
                                     '<p>Utente rimosso</p>'
                                     '</div>'
                                     )
-        page = page.replace('*userid*', '%s' % userid)
-        page = page.replace('*userid*', '')
-        page = page.replace('*removeuser*',
-                            '<div>'
-                            '<p>Utente non presente nel sistema.</p>'
-                            '</div>'
-                            )
-        return page
+            users = self.select_user()
+            page = page.replace('*userids*', users)
+            page = page.replace('*removeuser*',
+                                '<div>'
+                                '<p>Utente non presente nel sistema.</p>'
+                                '</div>'
+                                )
+            return page
+        return self.index()
 
     @cherrypy.expose
     def modifyuser(
@@ -220,38 +251,38 @@ class Handler(object):
             email='*email*',
             telegram='*telegram*'
     ):
-        file = root / 'modifyuser.html'
-        page = file.read_text()
-        with DBConnection('butterfly') as client:
-            controller = DBController(client)
-            if controller.user_exists(userid):
-                controller.update_user_name(userid, nome)
-                controller.update_user_surname(userid, cognome)
+        if cherrypy.session.get("userid") is not None:
+            file = root / 'modifyuser.html'
+            page = file.read_text()
+
+            if self._controller.user_exists(userid):
+                self._controller.update_user_name(userid, nome)
+                self._controller.update_user_surname(userid, cognome)
                 # TODO: DEVO SAPERE COSA STO AGGIORNANDO A QUESTO PUNTO
-                controller.update_user_email(userid, email)
-                controller.update_user_telegram(userid, telegram)
+                self._controller.update_user_email(userid, email)
+                self._controller.update_user_telegram(userid, telegram)
                 page = page.replace('*modifyuser*',
                                     '<div>'
                                     '<p>Utente modificato</p>'
                                     '</div>'
                                     )
-
-        page = page.replace('*userid*', '%s' % userid)
-        page = page.replace('*nome*', '%s' % nome)
-        page = page.replace('*cognome*', '%s' % cognome)
-        page = page.replace('*email*', '%s' % email)
-        page = page.replace('*telegram*', '%s' % telegram)
-        page = page.replace('*userid*', '')
-        page = page.replace('*nome*', '')
-        page = page.replace('*cognome*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
-        page = page.replace('*modifyuser*',
-                            '<div>'
-                            '<p>Utente non presente nel sistema.</p>'
-                            '</div>'
-                            )
-        return page
+            page = page.replace('*userid*', '%s' % userid)
+            page = page.replace('*nome*', '%s' % nome)
+            page = page.replace('*cognome*', '%s' % cognome)
+            page = page.replace('*email*', '%s' % email)
+            page = page.replace('*telegram*', '%s' % telegram)
+            page = page.replace('*userid*', '')
+            page = page.replace('*nome*', '')
+            page = page.replace('*cognome*', '')
+            page = page.replace('*email*', '')
+            page = page.replace('*telegram*', '')
+            page = page.replace('*modifyuser*',
+                                '<div>'
+                                '<p>Utente non presente nel sistema.</p>'
+                                '</div>'
+                                )
+            return page
+        return self.index()
 
     @cherrypy.expose
     def modifypreferences(self):
@@ -263,8 +294,11 @@ class Handler(object):
 if __name__ == '__main__':
     with DBConnection('butterfly') as connection:
         controller = DBController(connection)
-
         cherrypy.quickstart(Handler(controller), "/", {
+            '/favicon.ico':{
+                'tools.staticfile.on': True,
+                'tools.staticfile.filename': str(root / 'a6.ico')
+            },
             "/": {
                 "tools.sessions.on": True,
             }
