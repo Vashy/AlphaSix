@@ -245,8 +245,17 @@ TSWLatexianTemp*
 
 # Python
 __pycache__/
-*.pyc
 
+# NetBeans
+/Butterfly/webinterface/frontend/nbproject/
+
+# PyCharm
+/Butterfly/.idea/
+
+*.pyc
 bin/
 lib/
 include/
+*/bin/
+*/lib/
+*/include/

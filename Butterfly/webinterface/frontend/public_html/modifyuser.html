@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modifica utente | Butterfly</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body lang="it">
+        <div>
+            <h1>Butterfly</h1>
+            <form action="/modifyuser" method="post">
+                <label for="userid">User ID (Email o Telegram):</label>
+                <input id="userid" name="userid" value="*userid*" type="text" placeholder="Inserire email o telegram"/>
+                <label for="nome">Nome:</label>
+                <input id="nome" name="nome" value="*nome*" type="text" placeholder="Inserire nome"/>
+                <label for="cognome">Cognome:</label>
+                <input id="cognome" name="cognome" value="*cognome*" type="text" placeholder="Inserire cognome"/>
+                <label for="email">Email:</label>
+                <input id="email" name="email" value="*email*" type="email" placeholder="Inserire email"/>
+                <label for="telegram">Telegram:</label>
+                <input id="telegram" name="telegram" value="*telegram*" type="text" placeholder="Inserire Telegram ID"/>
+                <input id="modifyuser" name="modifyuser" type="submit" value="Modifica utente"/>
+            </form>
+            *modifyuser*
+        </div>
+    </body>
+</html>
