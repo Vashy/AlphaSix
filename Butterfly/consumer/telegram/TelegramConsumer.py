@@ -211,15 +211,16 @@ class TelegramConsumer(Consumer):
         # Questa chiamata va bene sia per i webhook di rd che per gt
         res = "".join(
             [
-                'È stata aperta una issue nel progetto: '
+                f'*Provenienza*: {obj["type"]}'
+                '\n\n*È stata aperta una issue nel progetto*: '
                 f'{obj["project_name"]} ',
                 f'({obj["project_id"]})',
-                "\n\n*Author*: " + f'\n - {obj["author"]}'
-                "\n\n *Issue's information: *"
+                f'\n\n*Author*: {obj["author"]}'
+                '\n\n *Issue\'s information: *'
                 f'\n - *Title*: \t\t{obj["title"]}',
                 f'\n - *Description*: \t\t{obj["description"]}',
                 f'\n - *Action*: \t{obj["action"]}',
-                "\n\n*Assegnee's information:*"
+                '\n\n*Assegnee\'s information:*'
             ]
         )
 
@@ -227,9 +228,9 @@ class TelegramConsumer(Consumer):
         # che invece può averne soltanto uno
         # hanno due profondità diverse nel file json,
         # quindi vanno scorse in modo diverso
-        if obj['type'] == 'redmine':
+        if obj["type"] == 'Redmine':
             res += f'\n - {obj["assignees"]["firstname"]}'
-        elif obj['type'] == 'gitlab':
+        elif obj["type"] == 'Gitlab':
             for value in obj["assignees"]:
                 res += f'\n - {value["name"]}'
 

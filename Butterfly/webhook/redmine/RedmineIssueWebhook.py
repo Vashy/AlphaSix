@@ -29,7 +29,7 @@ Autori:
 """
 
 import json
-from pathlib import Path # gestione del File System in modo intelligente
+from pathlib import Path  # Gestione del File System in modo intelligente
 from webhook.webhook import Webhook
 
 # FIXME: Tim ~ Secondo me da rivedere, per renderlo stateless.
@@ -40,73 +40,54 @@ from webhook.webhook import Webhook
 class RedmineIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def __init__(self, jsonfile=None):
-        self.json_file = jsonfile
+    def __init__(self, path: str):
         self._webhook = None
 
-    @property
-    def json_file(self):
-        """Restituisce il file JSON associato al webhook."""
-        return self._json_file
+        # Controlla che il percorso sia effettivamente valido
+        if not Path(path).is_file():
+            raise FileNotFoundError(f'{path} non è un file')
 
-    @json_file.setter
-    def json_file(self, jsonfile):
-        """Setter della property json_file"""
-
-        # Controlla se jsonfile è istanza di Path, str o None
-        if isinstance(jsonfile, Path):
-            path = jsonfile
-            if not path.is_file(): # Se non è un file
-                raise FileNotFoundError()
-
-            with open(path) as f:
-                self._json_file = json.load(f)
-
-        elif isinstance(jsonfile, str):
-            path = Path(jsonfile)
-            if not path.is_file(): # Se non è un file
-                raise FileNotFoundError()
-
-            with open(path) as f:
-                self._json_file = json.load(f)
-
-        elif jsonfile is not None:
-            raise TypeError()
-
-        else:
-            self._json_file = jsonfile
+        # Deserialize fp to a Python object.
+        # With chiude in automatico alla fine
+        with open(path) as f:
+            self._json_file = json.load(f)
 
     def parse(self):
         """Parsing del file JSON associato al webhook."""
-        if self.json_file is None:
-            raise FileNotFoundError()
 
         webhook = {}
-        webhook["type"] = 'redmine'
-        webhook["title"] = self.json_file["payload"]["issue"]["subject"]
-        webhook["description"] = self.json_file["payload"]["issue"]["description"]
-        webhook["project_id"] = self.json_file["payload"]["issue"]["project"]["id"]
-        webhook["project_name"] = self.json_file["payload"]["issue"]["project"]["name"]
-        webhook["action"] = self.json_file["payload"]["action"]
-        webhook["author"] = self.json_file["payload"]["issue"]["author"]["firstname"]
-        webhook["assignees"] = self.json_file["payload"]["issue"]["assignee"]
+
+        webhook["type"] = 'Redmine'
+        webhook["title"] = self._json_file["payload"]["issue"]["subject"]
+        webhook["description"] = (
+            self._json_file["payload"]["issue"]["description"]
+        )
+        webhook["project_id"] = (
+            self._json_file["payload"]["issue"]["project"]["id"]
+        )
+        webhook["project_name"] = (
+            self._json_file["payload"]["issue"]["project"]["name"]
+        )
+        webhook["action"] = self._json_file["payload"]["action"]
+        webhook["author"] = (
+            self._json_file["payload"]["issue"]["author"]["firstname"]
+        )
+        webhook["assignees"] = self._json_file["payload"]["issue"]["assignee"]
 
         self._webhook = webhook
 
-
-        # webhook["issue_id"] = self.json_file["payload"]["issue"]["id"]    NON USATA
-        # webhook["status"] = self.json_file["payload"]["issue"]["status"]["name"]  NON USATA
-        # webhook["tracker"] = self.json_file["payload"]["issue"]["tracker"]["name"]    NON USATA
-        # webhook["priority"] = self.json_file["payload"]["issue"]["priority"]["name"]  NON USATA
+        # webhook["issue_id"] = self._json_file["payload"]["issue"]["id"]    NON USATA
+        # webhook["status"] = self._json_file["payload"]["issue"]["status"]["name"]  NON USATA
+        # webhook["tracker"] = self._json_file["payload"]["issue"]["tracker"]["name"]    NON USATA
+        # webhook["priority"] = self._json_file["payload"]["issue"]["priority"]["name"]  NON USATA
         # webhook["assignees"] = []
-        # for value in self.json_file['payload']['issue']['assignee']:
+        # for value in self._json_file['payload']['issue']['assignee']:
         #     webhook["assignees"].append(value["firstname"])
 
-        
-
         # TODO: Da continuare, con tutti i campi di interesse
-        #  definiti nel .json 
+        #  definiti nel .json
 
+    @property
     def webhook(self):
         """Restituisce l'oggetto Python associato al Webhook, solo
         con i campi di interesse.
