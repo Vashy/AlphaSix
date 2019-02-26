@@ -81,13 +81,22 @@ def api_root():
         webhook = request.get_json()
         print(
             '\n\n\nMessaggio da GitLab:\n'
-            f'{pprint.pformat(webhook)}\n\n\n')
+            f'{pprint.pformat(webhook)}\n\n\n'
+            'Parsing del messaggio ...'
+        )
 
         # if args.topic:  # Topic passato con la flag -t
         #     # #producer.produce(args.topic, webhook_path)
         #     # producer.produce(args.topic, webhook)
         # else:  # Prende come Topic di default il primo del file webhook.json
-        producer.produce(topics[0]['label'], webhook)
+
+        try:
+            producer.produce(topics[0]['label'], webhook)
+            print('Messaggio inviato.\n\n')
+        except KeyError:
+            print('Warning: messaggio malformato. '
+                  'Non è stato possibile effettuare il parsing.\n'
+                  'In attesa di altri messaggi...\n\n')
 
         return '', 200
 
@@ -132,7 +141,6 @@ class GLProducer(Producer):
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook.parse()
         try:
-            print()
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self.producer.send(topic, webhook.webhook)
             self.producer.flush(10)  # Attesa 10 secondi
@@ -152,7 +160,7 @@ class GLProducer(Producer):
 
 
 def main():
-    app.run(host='0.0.0.0', port='5003')
+    app.run(host='0.0.0.0', port='5004')
 
 
 if __name__ == '__main__':

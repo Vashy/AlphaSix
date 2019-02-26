@@ -68,9 +68,16 @@ def api_root():
         print(
             '\n\n\nMessaggio da Redmine:\n'
             f'{pprint.pformat(webhook)}\n\n\n'
+            'Parsing del messaggio ...'
         )
 
-        producer.produce(topics[0]['label'], webhook)
+        try:
+            producer.produce(topics[0]['label'], webhook)
+            print('Messaggio inviato.\n\n')
+        except KeyError:
+            print('Warning: messaggio malformato. '
+                  'Non è stato possibile effettuare il parsing.\n'
+                  'In attesa di altri messaggi...\n\n')
 
         return '', 200
 
@@ -115,7 +122,6 @@ class RedmineProducer(Producer):
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook.parse()
         try:
-            print()
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self.producer.send(topic, webhook.webhook)
             self.producer.flush(10)   # Attesa 10 secondi
