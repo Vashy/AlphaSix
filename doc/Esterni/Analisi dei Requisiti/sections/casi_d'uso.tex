@@ -22,29 +22,12 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 \newcounter{uccount}
 
 \stepcounter{uccount}
-\subsubsection{UC\theuccount\ - Redmine/GitLab invia una segnalazione}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UC\theuccount - Redmine/GitLab invia una segnalazione}
-	\end{figure}
-	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.
-		\item \textbf{Titolo}: Redmine/GitLab invia una segnalazione.
-		\item \textbf{Attori primari}: Redmine/Gitlab.
-		\item \textbf{Descrizione}:
-		 il sistema qui è il Producer ed è interno al sistema \progetto.
-		 L'invio di una segnalazione avviene da parte di Redmine/GitLab in seguito all'apertura di una issue o di un commit.		 
-		\item \textbf{Precondizione}: l'applicazione esterna a \progetto\ ha subito una modifica e la segnala al sistema.
-		\item \textbf{Postcondizione}: il Producer riceve la segnalazione dell'applicativo esterno.
-		\item \textbf{Scenario principale}: 
-		\begin{enumerate}
-			\item Redmine/GitLab invia la segnalazione al Producer
-		\end{enumerate}
-		
-	\end{itemize}
 
-\stepcounter{uccount}
+\include{casi_d'uso/UCR}
+
+\include{casi_d'uso/UCGL}
+
+
 \subsubsection{UC\theuccount\ - Il Producer invia una segnalazione al Broker}
 	\begin{figure}[H]
 		\centering
