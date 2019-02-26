@@ -316,7 +316,16 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il sistema comunica all’utilizzatore l’errore.
 * **Estensioni**: -
 
-### UC12: Aggiunta nuovo utente
+### UC12 Uscita del'utente dal sistema
+
+* **Titolo**: Uscita del'utente dal sistema.
+* **Attori primari**: utente acceduto.
+* **Descrizione**: l'utente esce dal sistema ed ha la possibilità di rientrarci come un diverso utente o come lo stesso di prima.
+* **PRE**: l'utente è all'interno del sistema.
+* **POST**: l'utente si trova a poter accedere nuovamente nel sistema.
+* **Estensioni**: -
+
+### UC13: Aggiunta nuovo utente
 
 * **Titolo**: Aggiunta nuovo utente.
 * **Attori primari**: utente.
@@ -325,16 +334,16 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: un utente con le credenziali inserite viene aggiunto al sistema.
 * **Estensioni**:
 
-### UC12.1 Utente aggiunto con successo
+### UC13.1 Utente aggiunto con successo
 
 * **Titolo**: Utente aggiunto con successo.
 * **Attori primari**: utente.
 * **Descrizione**: un nuovo utente viene inserito con successo nel sistema.
 * **PRE**: un nuovo utente deve essere aggiunto nel sistema.
 * **POST**: un utente con le credenziali inserite viene aggiunto al sistema.
-* **Estensioni**: UC12.2
+* **Estensioni**: UC13.2
 
-### UC12.1.1 Inserimento nome utente
+### UC13.1.1 Inserimento nome utente
 
 * **Titolo**: Inserimento nome utente.
 * **Attori primari**: utente.
@@ -343,7 +352,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il nome è stato inserito.
 * **Estensioni**: -
 
-### UC12.1.2 Inserimento cognome utente
+### UC13.1.2 Inserimento cognome utente
 
 * **Titolo**: Inserimento cognome utente.
 * **Attori primari**: utente.
@@ -352,7 +361,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il cognome è stato inserito.
 * **Estensioni**: -
 
-### UC12.1.3 Inserimento contatto email
+### UC13.1.3 Inserimento contatto email
 
 * **Titolo**: Inserimento contatto email.
 * **Attori primari**: utente.
@@ -361,7 +370,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il contatto email è stato inserito.
 * **Estensioni**: -
 
-### UC12.1.4 Inserimento contatto Telegram
+### UC13.1.4 Inserimento contatto Telegram
 
 * **Titolo**: Inserimento contatto Telegram.
 * **Attori primari**: utente.
@@ -370,7 +379,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il contatto Telegram è stato inserito.
 * **Estensioni**: -
 
-### UC12.2 Errore utente già presente nel sistema
+### UC13.2 Errore utente già presente nel sistema
 
 * **Titolo**: errore utente già presente nel sistema.
 * **Attori primari**: utente.
@@ -379,7 +388,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il sistema comunica all’utilizzatore l’errore e l'utente non viene inserito.
 * **Estensioni**: -
 
-### UC13 Rimozione utente dal sistema
+### UC14 Rimozione utente dal sistema
 
 * **Titolo**: Rimozione utente dal sistema.
 * **Attori primari**: utente.
@@ -388,16 +397,16 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: uno user viene rimosso dal sistema.
 * **Estensioni**: -
 
-### UC13.1 Rimozione avvenuta con successo
+### UC14.1 Rimozione avvenuta con successo
 
 * **Titolo**: Rimozione utente dal sistema.
 * **Attori primari**: utente.
 * **Descrizione**: Il contatto email o Telegram desiderato è presente nel sistema, per cui la rimozione avviene con successo.
 * **PRE**: uno user già presente deve essere rimosso nel sistema.
 * **POST**: un utente con il contatto email o Telegram inserito viene rimosso dal sistema.
-* **Estensioni**: UC13.2
+* **Estensioni**: UC14.2
 
-### UC13.1.1 Inserimento contatto email
+### UC14.1.1 Inserimento contatto email
 
 * **Titolo**: Inserimento contatto email.
 * **Attori primari**: utente.
@@ -406,7 +415,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il contatto email è stato inserito.
 * **Estensioni**: -
 
-### UC13.1.2 Inserimento contatto Telegram
+### UC14.1.2 Inserimento contatto Telegram
 
 * **Titolo**: Inserimento contatto Telegram.
 * **Attori primari**: utente.
@@ -415,7 +424,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il contatto Telegram è stato inserito.
 * **Estensioni**: -
 
-### UC13.2 Errore contatto non presente nel sistema
+### UC14.2 Errore contatto non presente nel sistema
 
 * **Titolo**: errore contatto non presente nel sistema.
 * **Attori primari**: utente.
@@ -424,7 +433,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il sistema comunica all’utilizzatore l’errore e nessuno user viene rimosso.
 * **Estensioni**: -
 
-### UC14 Modifica user
+### UC15 Modifica user
 
 * **Titolo**: Modifica user.
 * **Attori primari**: utente.
@@ -433,16 +442,16 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: i campi dell'user sono stati modificati correttamente.
 * **Estensioni**: -
 
-### UC14.1 Selezione user ID
+### UC15.1 Selezione user ID
 
 * **Titolo**: Selezione user ID.
 * **Attori primari**: utente.
 * **Descrizione**: L'utente ha aggiunto il nuovo nome dello user che vuole modificare
 * **PRE**: l'utente vuole modificare uno user già presente.
 * **POST**: lo user ID è stato inserito.
-* **Estensioni**: UC14.2
+* **Estensioni**: UC15.2
 
-### UC14.1.1 Modifica user avvenuta con successo
+### UC15.1.1 Modifica user avvenuta con successo
 
 * **Titolo**: Modifica user avvenuta con successo.
 * **Attori primari**: utente.
@@ -451,7 +460,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: lo user è stato modificato con successo.
 * **Estensioni**: -
 
-### UC14.1.1.1 Inserimento del nuovo nome
+### UC15.1.1.1 Inserimento del nuovo nome
 
 * **Titolo**: Inserimento del nuovo nome.
 * **Attori primari**: utente.
@@ -460,7 +469,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il nome è stato inserito.
 * **Estensioni**: -
 
-### UC14.1.1.2 Inserimento del nuovo cognome
+### UC15.1.1.2 Inserimento del nuovo cognome
 
 * **Titolo**: Inserimento del nuovo cognome.
 * **Attori primari**: utente.
@@ -469,7 +478,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il cognome è stato inserito.
 * **Estensioni**: -
 
-### UC14.1.1.3 Inserimento nuovo contatto email
+### UC15.1.1.3 Inserimento nuovo contatto email
 
 * **Titolo**: Inserimento nuovo contatto email.
 * **Attori primari**: utente.
@@ -478,7 +487,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il contatto email è stato inserito.
 * **Estensioni**: -
 
-### UC14.1.1.4 Inserimento nuovo contatto Telegram
+### UC15.1.1.4 Inserimento nuovo contatto Telegram
 
 * **Titolo**: Inserimento nuovo contatto Telegram.
 * **Attori primari**: utente.
@@ -487,7 +496,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il contatto Telegram è stato inserito.
 * **Estensioni**: -
 
-### UC14.2 Errore user ID inesistente
+### UC15.2 Errore user ID inesistente
 
 * **Titolo**: errore user ID inesistente.
 * **Attori primari**: utente.
@@ -496,7 +505,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il sistema comunica all’utilizzatore l’errore.
 * **Estensioni**: -
 
-### UC15 Aggiunta preferenze
+### UC16 Aggiunta preferenze
 
 * **Titolo**: aggiunta preferenze.
 * **Attori primari**: utente.
@@ -504,7 +513,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da Butterfly.
 * **POST**: la nuova configurazione contiene una o più preferenze in aggiunta rispetto a quella precedente.
 
-### UC15.1 Iscrizione Topic
+### UC16.1 Iscrizione Topic
 
 * **Titolo**: iscrizione Topic.
 * **Attori primari**: utente.
@@ -512,7 +521,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **PRE**: l’utente ha acceduto correttamente nel sistema e non ha già selezionato tutti i Topic possibili proposti da Butterfly.
 * **POST**: il numero di Topic a cui è interessato l’utente è aumentato.
 
-### UC15.2 Aggiunta dei giorni di indisponibilità nel calendario
+### UC16.2 Aggiunta dei giorni di indisponibilità nel calendario
 
 * **Titolo**: aggiunta dei giorni di indisponibilità nel calendario.
 * **Attori primari**: utente.
@@ -520,7 +529,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **PRE**: l’utente ha acceduto correttamente nel sistema e non ha già selezionato tutti i giorni di calendario proposti da Butterfly.
 * **POST**: il numero di giorni in cui l’utente non si rende disponibile è aumentato.
 
-### UC15.3 Aggiunta della piattaforma di messaggistica preferita
+### UC16.3 Aggiunta della piattaforma di messaggistica preferita
 
 * **Titolo**: aggiunta della piattaforma di messaggistica preferita.
 * **Attori** primari: utente.
@@ -528,73 +537,14 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **PRE**: l’utente ha acceduto correttamente nel sistema e non ha già selezionato tutte le piattaforme di messaggistica possibili proposte da Butterfly.
 * **POST**: il numero di piattaforme di messaggistica selezionate dall’utente è aumentato.
 
-### UC15.4 Aggiunta persona di fiducia
+### UC16.4 Aggiunta persona di fiducia
 
 * **Titolo**: aggiunta persona di fiducia.
 * **Attori primari**: utente.
 * **Descrizione**: l’utente aggiunge lo user legato a un ID di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
 * **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
 * **POST**: la preferenza viene aggiunta correttamente.
-* **Estensioni**: UC15.4
-
-### UC15.5 Errore ID persona di fiducia inesistente
-
-* **Titolo**: Errore ID persona di fiducia inesistente.
-* **Attori primari**: utente.
-* **Descrizione**: l’utente viene avvisato che ha inserito uno user ID errato.
-* **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
-* **POST**: il sistema comunica all’utilizzatore l’errore di preferenza.
-* **Estensioni**: -
-
-### UC15.6 Aggiunta keyword per i push di GitLab
-
-* **Titolo**: Aggiunta keyword per i push di GitLab.
-* **Attori primari**: utente.
-* **Descrizione**: l’utente aggiunge le keyword che vuole che siano contenute nei messaggi di commit dei push di cui vuole ricevere la notifica.
-* **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema.
-* **POST**: nelle nuove configurazioni dell'utente selezionato sono presenti nuove keyword per ricevere notifiche da push di GitLab.
-* **Estensioni**: -
-
-### UC16 Rimozione preferenze
-
-* **Titolo**: rimozione preferenza.
-* **Attori primari**: utente.
-* **Descrizione**: l’utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o più. Le preferenze consistono in Topic, date di calendario, piattaforma di messaggistica (Telegram e email) e persona di fiducia che lo può sostituire.
-* **PRE**: l’utente ha eseguito l'accesso nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da Butterfly.
-* **POST**: la nuova configurazione contiene una o più preferenze in meno rispetto a quella precedente.
-
-### UC16.1 Disiscrizione Topic
-
-* **Titolo**: disiscrizione Topic.
-* **Attori primari**: utente.
-* **Descrizione**: l’utente si disiscrive da uno o più Topic dai quali prima riceveva delle notifiche.
-* **PRE**: l’utente ha acceduto correttamente nel sistema ed è presente almeno un Topic selezionato tra quelli proposti da Butterfly.
-* **POST**: il numero di Topic a cui è iscritto l’utente è diminuito.
-
-### UC16.2 Rimozione di uno o più giorni di irreperibilità nel calendario
-
-* **Titolo**: rimozione di uno o più giorni di irreperibilità nel calendario.
-* **Attori primari**: utente.
-* **Descrizione**: l’utente rimuove i giorni di calendario in cui precedentemente non era reperibile, tornando disponibile.
-* **PRE**: l’utente ha acceduto correttamente nel sistema ed è presente almeno un giorno di calendario selezionato tra quelli proposti da Butterfly.
-* **POST**: il numero di giorni di calendario in cui l’utente non è reperibile è diminuito.
-
-### UC16.3 Rimozione preferenza piattaforma di messaggistica
-
-* **Titolo**: rimozione piattaforma di messaggistica.
-* **Attori primari**: utente.
-* **Descrizione**: l’utente rimuove una o più preferenze tra Telegram e email dalle quali non vuole più ricevere notifiche tramite Butterfly.
-* **PRE**: l’utente ha acceduto correttamente nel sistema ed è presente almeno una piattaforma di messaggistica selezionata tra quelle proposte da Butterfly.
-* **POST**: il numero di piattaforme di messaggistica da cui l’utente vuole ricevere notifiche è diminuito.
-
-### UC16.4 Rimozione persona di fiducia
-
-* **Titolo**: rimozione persona di fiducia.
-* **Attori primari**: utente.
-* **Descrizione**: l’utente rimuove lo user legato a un ID di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
-* **PRE**: l’utente ha eseguito l'accesso nel sistema ed è presente almeno uno user con l'ID selezionato tra quelle proposte da Butterfly.
-* **POST**: la preferenza viene rimossa correttamente.
-* **Estensioni**: UC16.5
+* **Estensioni**: UC16.4
 
 ### UC16.5 Errore ID persona di fiducia inesistente
 
@@ -605,16 +555,75 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **POST**: il sistema comunica all’utilizzatore l’errore di preferenza.
 * **Estensioni**: -
 
-### UC16.6 Rimozione con successo di keyword per i push di GitLab
+### UC16.6 Aggiunta keyword per i push di GitLab
+
+* **Titolo**: Aggiunta keyword per i push di GitLab.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente aggiunge le keyword che vuole che siano contenute nei messaggi di commit dei push di cui vuole ricevere la notifica.
+* **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema.
+* **POST**: nelle nuove configurazioni dell'utente selezionato sono presenti nuove keyword per ricevere notifiche da push di GitLab.
+* **Estensioni**: -
+
+### UC17 Rimozione preferenze
+
+* **Titolo**: rimozione preferenza.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o più. Le preferenze consistono in Topic, date di calendario, piattaforma di messaggistica (Telegram e email) e persona di fiducia che lo può sostituire.
+* **PRE**: l’utente ha eseguito l'accesso nel sistema ed è presente almeno una preferenza selezionata tra quelle proposte da Butterfly.
+* **POST**: la nuova configurazione contiene una o più preferenze in meno rispetto a quella precedente.
+
+### UC17.1 Disiscrizione Topic
+
+* **Titolo**: disiscrizione Topic.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente si disiscrive da uno o più Topic dai quali prima riceveva delle notifiche.
+* **PRE**: l’utente ha acceduto correttamente nel sistema ed è presente almeno un Topic selezionato tra quelli proposti da Butterfly.
+* **POST**: il numero di Topic a cui è iscritto l’utente è diminuito.
+
+### UC17.2 Rimozione di uno o più giorni di irreperibilità nel calendario
+
+* **Titolo**: rimozione di uno o più giorni di irreperibilità nel calendario.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente rimuove i giorni di calendario in cui precedentemente non era reperibile, tornando disponibile.
+* **PRE**: l’utente ha acceduto correttamente nel sistema ed è presente almeno un giorno di calendario selezionato tra quelli proposti da Butterfly.
+* **POST**: il numero di giorni di calendario in cui l’utente non è reperibile è diminuito.
+
+### UC17.3 Rimozione preferenza piattaforma di messaggistica
+
+* **Titolo**: rimozione piattaforma di messaggistica.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente rimuove una o più preferenze tra Telegram e email dalle quali non vuole più ricevere notifiche tramite Butterfly.
+* **PRE**: l’utente ha acceduto correttamente nel sistema ed è presente almeno una piattaforma di messaggistica selezionata tra quelle proposte da Butterfly.
+* **POST**: il numero di piattaforme di messaggistica da cui l’utente vuole ricevere notifiche è diminuito.
+
+### UC17.4 Rimozione persona di fiducia
+
+* **Titolo**: rimozione persona di fiducia.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente rimuove lo user legato a un ID di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
+* **PRE**: l’utente ha eseguito l'accesso nel sistema ed è presente almeno uno user con l'ID selezionato tra quelle proposte da Butterfly.
+* **POST**: la preferenza viene rimossa correttamente.
+* **Estensioni**: UC17.5
+
+### UC17.5 Errore ID persona di fiducia inesistente
+
+* **Titolo**: Errore ID persona di fiducia inesistente.
+* **Attori primari**: utente.
+* **Descrizione**: l’utente viene avvisato che ha inserito uno user ID errato.
+* **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
+* **POST**: il sistema comunica all’utilizzatore l’errore di preferenza.
+* **Estensioni**: -
+
+### UC17.6 Rimozione con successo di keyword per i push di GitLab
 
 * **Titolo**: Rimozione con successo di keyword per i push di GitLab.
 * **Attori primari**: utente.
 * **Descrizione**: l’utente seleziona e rimuove una o più keyword già presente nel sistema per non ricevere la notifica di push in cui i messaggi di commit contengono la keyword rimossa.
 * **PRE**: l’utente ha acceduto con le sue credenziali corrette nel sistema.
 * **POST**: nelle nuove configurazioni dell'utente selezionato sono state rimosse delle keyword precedentemente presenti.
-* **Estensioni**: UC16.7
+* **Estensioni**: UC17.7
 
-### UC16.6 Errore keyword da rimuovere non presente
+### UC17.6 Errore keyword da rimuovere non presente
 
 * **Titolo**: Errore keyword da rimuovere non presente.
 * **Attori primari**: utente.
@@ -624,7 +633,7 @@ finale per poterlo inoltrare agli utenti di email interessati.
 * **Estensioni**: -
 
 <!-- 
-### UC15 Aggiunta nuovo progetto
+### UC16 Aggiunta nuovo progetto
 
 No, perchè l'informazione viene raccolta dagli webhook.
 In particolare, ogni segnalazione porta con se tutte le informazioni
@@ -637,16 +646,16 @@ relative a un progetto
 * **POST**: Il progetto è stato inserito nel sistema.
 * **Estensioni**: -
 
-### UC15.1 Aggiunta progetto avvenuta con successo
+### UC16.1 Aggiunta progetto avvenuta con successo
 
 * **Titolo**: Aggiunta progetto avvenuta con successo.
 * **Attori primari**: utente.
 * **Descrizione**: un nuovo progetto viene inserito con successo nel sistema.
 * **PRE**: un nuovo progetto deve essere aggiunto al sistema.
 * **POST**: un progetto che non è già presente viene aggiunto al sistema.
-* **Estensioni**: UC15.2, UC15.3
+* **Estensioni**: UC16.2, UC16.3
 
-### UC15.1.1 Inserimento URL progetto
+### UC16.1.1 Inserimento URL progetto
 
 * **Titolo**: Inserimento URL progetto.
 * **Attori primari**: utente.
@@ -655,7 +664,7 @@ relative a un progetto
 * **POST**: l'URL del progetto è stato inserito.
 * **Estensioni**: -
 
-### UC15.2 Errore progetto già presente nel sistema
+### UC16.2 Errore progetto già presente nel sistema
 
 * **Titolo**: Errore progetto già presente nel sistema.
 * **Attori primari**: utente.
@@ -664,7 +673,7 @@ relative a un progetto
 * **POST**: il sistema comunica all’utilizzatore l’errore e il progetto non viene inserito.
 * **Estensioni**: -
 
-### UC15.3 Errore URL non raggiungibile
+### UC16.3 Errore URL non raggiungibile
 
 * **Titolo**: Errore URL non raggiungibile.
 * **Attori primari**: utente.
@@ -673,7 +682,7 @@ relative a un progetto
 * **POST**: il sistema comunica all’utilizzatore l’errore e il progetto non viene inserito.
 * **Estensioni**: -
 
-### UC16 Rimozione Progetto
+### UC17 Rimozione Progetto
 -->
 ## Alternative
 
