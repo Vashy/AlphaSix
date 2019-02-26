@@ -1,5 +1,7 @@
 import unittest
-from Butterfly.butterfly.webhook import GLIssueWebhook, Path
+#from Butterfly.butterfly.webhook import GLIssueWebhook, Path
+from webhook.gitlab import GLIssueWebhook
+from pathlib import Path
 
 
 class TestWebhook(unittest.TestCase):

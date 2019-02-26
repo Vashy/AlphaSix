@@ -1,5 +1,7 @@
 import unittest
-from Butterfly.butterfly.consumer import KafkaConsumer
+# from Butterfly.butterfly.consumer import KafkaConsumer
+from kafka import KafkaConsumer
+
 
 class TestConsumer(unittest.TestCase):
     def test_consumer(self):
@@ -9,6 +11,7 @@ class TestConsumer(unittest.TestCase):
 
         self.assertIn('test1', topiclist)
         self.assertIn('test2', topiclist)
+
 
 if __name__ == '__main__':
     unittest.main()

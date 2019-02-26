@@ -40,7 +40,6 @@ import smtplib
 import getpass
 
 from consumer.consumer import Consumer
-# import webhook.webhook as GLIssueWebhook
 
 
 class EmailConsumer(Consumer):
@@ -50,7 +49,6 @@ class EmailConsumer(Consumer):
         self._receiver = configs['email']['receiver']
         self._subject = configs['email']['subject']
         self._sender = configs['emailSettings']['sender']
-        # self._pwd = configs['emailSettings']['pwd']
         self._topics = topics
 
         configs = configs['kafka']
@@ -156,8 +154,6 @@ class EmailConsumer(Consumer):
             final_msg = '{}{}{}Key: {}\n{}{}'.format(
                 'Topic: ',
                 message.topic,
-                # message.partition,
-                # message.offset,
                 '\n\n',
                 message.key,
                 '\n',
