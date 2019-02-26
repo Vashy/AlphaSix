@@ -2,8 +2,8 @@
 \section{Requisiti}
 Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{center}
-		\texttt{R[Numero][Tipo][Priorità]} 
-	\end{center} 
+		\texttt{R[Numero][Tipo][Priorità]}
+	\end{center}
 	in cui ogni parte ha un significato preciso:
 	\begin{itemize}
 		\item \textbf{R}: requisito.
@@ -21,209 +21,242 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\item \textbf{2}: obbligatorio.
 		\end{itemize}
 	\end{itemize}
-	
 
-	Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.\\
-	
+
+	Esempio: \texttt{R2Q1} indica il secondo requisito di qualità ed è desiderabile.
+
 	%I requisiti di seguito riportati sono elencati in modo tale da seguire la struttura dei documenti. Ovvero, si possono trovare raggruppati i requisiti derivanti dello stesso tipo, ad esempio solo i requisiti di funzionalità dal sesto al diciannovesimo derivano dai casi d'uso.
 	%TODO: rifare id requisiti
-	
+
 %inserire il fatto che una persona può aggiungere il proprio nickname o altro da interfaccia, come requisito opzionale	...
 
-% Generazione automatica dei numeri 
-\newcounter{vaZ} % valore
-\newcommand{\decrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
-\newcommand{\addNumber}[0]{\thevaZ \decrZ} % Comando per generare
-\addtocounter{vaZ}{1}%far partire il contatore da 1
+% Generazione automatica dei numeri
+%\newcounter{vaZ} % valore
+%\newcommand{\incrZ}{\addtocounter{vaZ}{+1}} % Comando per l'aumento automatico del counter vaZ
+%\newcommand{\addZNumber}[0]{\incrZ\thevaZ} % Comando per generare
+%
+%\newcommand{\Freq}[3]{R\addZNumber F#1 & #2 & #3 \\}
+%\newcommand{\Fsubreq}[3]{R\thevaZ F#1 & #2 & #3 \\} % Se c'è bisogno di sottocasi
 
+% Comando requisito generico
+\newcommand{\req}[3]{%
+#1 & #2 & #3 \\
+}
 
-	\subsection{Requisiti di funzionalità}
+	%COMANDI PER REQ DI FUNZIONALITÀ
+	% Generazione automatica dei numeri
+	\newcounter{vaF} % valore
+	\newcommand{\incrF}{\addtocounter{vaF}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addFNumber}{\incrF\thevaF} % Comando per generare il valore incrementato di uno rispetto a prima
 	
+	\newcounter{secondF} % per il secondo livello del requisito
+	\addtocounter{secondF}{1}
+	\newcommand{\secIncrF}{\addtocounter{secondF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addSecFNumber}{\secIncrF\thesecondF} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetFCounter}{\setcounter{secondF}{1}}
+	\newcommand{\decSecF}{\resetFCounter\thesecondF}
+	
+	\newcounter{thirdF} % per il terzo livello del requisito
+	\addtocounter{thirdF}{1}
+	\newcommand{\thirdIncrF}{\addtocounter{thirdF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addThirdFNumber}{\thirdIncrF\thethirdF} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetthirdFCounter}{\setcounter{thirdF}{1}}
+	\newcommand{\decThirdF}{\resetthirdFCounter\thethirdF}
+	
+	
+	\newcommand{\Freq}[3]{R\addFNumber F#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	\newcommand{\Fsubreq}[3]{R\thevaF F#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	\newcommand{\Fsecondreq}[3]{R\thevaF.\addSecFNumber F#1 & #2 & #3 \\}
+	\newcommand{\Finitsecondreq}[3]{R\thevaF.\decSecF F#1 & #2 & #3 \\}
+	\newcommand{\Fthirdreq}[3]{R\thevaF.\thesecondF.\addThirdFNumber F#1 & #2 & #3 \\}
+	\newcommand{\Finitthirdreq}[3]{R\thevaF.\thesecondF.\decThirdF F#1 & #2 & #3 \\}
+	
+
+	\subsection{Requisiti di funzionalità}\label{RequisitiFunzionalità}
+
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			
-			%da casi d'uso
-			R\addNumber
-			F2 & Redmine e GitLab devono essere in grado di inviare delle segnalazioni da inviare ai Producer & Interno UC1 \\
-			R\addNumber
-			F2 & Il Producer deve essere in grado di inviare delle segnalazioni al Broker & Interno UC2 \\
-			R\addNumber
-			F2 & Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio & Interno UC3 \\
-			R\addNumber
-			F2 & I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram & Interno UC4 \\
-			R\addNumber.1F0 & L'utente può eseguire l'accesso al gestore personale & Interno UC5.1 \\
-			R5.1.1F0 & L'utente può inserire il proprio username che lo identifica all'interno di \progetto & Interno UC5.1.1 \\
-			R5.2F0 & \progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine & Interno UC5.2 \\
-			R\addNumber.1.1F0 & L'utente può iscriversi a un Topic & Interno UC6.1.1	\\
-			R6.1.2F0 & L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile & Interno UC6.1.2 \\
-			R6.1.3F0 & L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche 
-			%e Slack
-			& Interno UC6.1.3 \\
-			R6.2.1F0 & L'utente può disiscriversi da un Topic & Interno UC6.2.1 \\
-			R6.2.2F0 & L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile & Interno UC6.2.2 \\
-			R6.2.3F0 & L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto & Interno UC6.2.3 \\
+
+			% da casi d'uso
+			\Freq{2}{Redmine deve essere in grado di inviare delle segnalazioni da inviare ai Producer}{Interno UC1}
+			\Freq{2}{GitLab deve essere in grado di inviare delle segnalazioni da inviare ai Producer}{Interno UC1}
+			\Freq{2}{Il Producer deve essere in grado di inviare delle segnalazioni al Broker}{Interno UC2}
+			\Freq{2}{Il Consumer deve essere in grado di richiedere al Broker l'invio di un messaggio}{Interno UC3}
+			\Freq{2}{I Consumer devono essere in grado di inviare delle segnalazioni al server e-mail e a Telegram}{Interno UC4}
+			\Finitsecondreq{0}{L'utente può eseguire l'accesso al gestore personale}{Interno UC5.1}
+			\Finitthirdreq{0}{L'utente può inserire il proprio username che lo identifica all'interno di \progetto}{Interno UC5.1.1}
+			\Fsecondreq{0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC5.2}
+			\req{R\addFNumber.1.1F0}{L'utente può iscriversi a un Topic}{Interno UC6.1.1}
+			\req{R\thevaF.1.2F0}{L'utente può aggiungere nel gestore personale i giorni in cui non è reperibile}{Interno UC6.1.2}
+			\req{R\thevaF.1.3F0}{L'utente può scegliere la piattaforma di messaggistica, tra Telegram ed e-mail, in cui ricevere le notifiche}{Interno UC6.1.3}
+			\req{R\thevaF.2.1F0}{L'utente può disiscriversi da un Topic}{Interno UC6.2.1}
+			\req{R\thevaF.2.2F0}{L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile}{Interno UC6.2.2}
+			\req{R\thevaF.2.3F0}{L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto}{Interno UC6.2.3}
+
 			\bottomrule\\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (1)}
 	\end{table}
-			
-	\begin{table}[H]		
+
+	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			%da capitolato
-			R\addNumber 
-			F2 & Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario & Capitolato \\ %stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
-			R\addNumber
-			F2 & Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti & Capitolato \\
-			R\addNumber
-			F2 & Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile & Capitolato \\
-			R\addNumber
-			F2 & Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic & Capitolato \\
-			R\addNumber
-			F2 & Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti & Capitolato \\
-		\bottomrule
+
+			% da capitolato
+			% stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
+			\Freq{2}{Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario}{Capitolato}
+			\Freq{2}{Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti}{Capitolato}
+			\Freq{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
+			\Freq{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
+			\Freq{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
+			\Freq{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
+
+			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (2)}
 	\end{table}
-		
-	
-	% Generazione automatica dei numeri 
+
+	%COMANDI PER REQUISITI DI FUNZIONALITÀ
+	% Generazione automatica dei numeri
 	\newcounter{vaQ} % valore
-	\newcommand{\decrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addQNumber}[0]{\thevaQ \decrQ} % Comando per generare
-	\addtocounter{vaQ}{1}
-	
-	%NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
-	\subsection{Requisiti di qualità}
-	
-	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
-			\toprule
-			%presi dal PdQ processi
-			R\addQNumber
-			Q1 & Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue & Interno QPR001\\
-			%presi dal PdQ prodotti
-			R\addQNumber
-			Q1  & L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito & Interno QPD001\\  
-			%			R\addQNumber
-			%			Q1 & Il diario di un documento dovrebbe essere aggiornato ad ogni modifica effettuata & Interno \\
-			%presi dal PdQ processi
-			R\addQNumber
-			Q1 & I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito & Interno QPR002\\ 
-			R\addQNumber 
-			Q1 & Il livello di maturità dell'\gloss{ISO/IEC 15504} che \gruppo\ si prefigge di raggiungere  deve essere almeno pari al livello stabilito & Interno QPR003\\
-			R\addQNumber
-			Q1 & Il team \gruppo\ si è accordato per una frequenza minima di commit effettuati in una settimana & Interno QPR004\\
-			R\addQNumber
-			Q2 & I requisiti obbligatori devono essere tutti completamente soddisfatti al termine del progetto & Interno QPR005\\
-			R\addQNumber
-			Q1 & \gruppo\ si prefigge di soddisfare un numero stabilito di requisiti desiderabili & Interno QPR006\\
-			R\addQNumber
-			Q1 & Nessun rischio non verificato precedentemente dovrebbe accadere nel corso del progetto & Interno QPR007\\
-			R\addQNumber
-			Q1 & Ogni documento dovrebbe attraversare tutte le fasi previste dal suo \gloss{ciclo di vita} & Interno QPR008\\
-			R\addQNumber
-			Q1 & Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato & Interno QPR009\\
-			R\addQNumber
-			Q1 & La fase di verifica di tutti i vari prodotti dovrebbe sempre essere eseguita in modo corretto & Interno QPR010\\
-			R\addQNumber
-			Q2 & Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate & Interno \\
-			R\addQNumber
-			Q2 & Tutti i vincoli presenti nel \PdQ\ devono essere rispettati & Interno \\
-			\bottomrule
-		\end{paddedtablex}
-		\caption{Elenco dei requisiti di qualità (1)}
-	\end{table}
-		
-	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-			%presi da capitolato
-			R\addQNumber
-			Q2 & Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd & Capitolato \Doc{VE\_12-12-2018}	\\
-			R\addQNumber
-			Q2 & È necessario presentare il \gloss{bug} reporting per ogni componente & Capitolato \\
-			R\addQNumber
-			Q2 & Deve essere redatta la documentazione sulle scelte progettuali effettuate & Capitolato \\
-			R\addQNumber
-			Q2 & Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni & Capitolato \\
-			R\addQNumber
-			Q2 & È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema & Capitolato \\
-			R18.1Q2 & È necessario fornire test unitari per ogni componente applicativo & Capitolato \\
-			R18.2Q2 & È necessario fornire test d'integrazione per ogni componente applicativo & Capitolato \\
-			R18.3Q2 & È necessario testare interamente il sistema con test di sistema & Capitolato \\
-			\bottomrule \\
-		\end{paddedtablex}
-		\caption{Elenco dei requisiti di qualità (2)}
-	\end{table}
-	
-	% Generazione automatica dei numeri 
-	\newcounter{vaV} % valore
-	\newcommand{\decrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addVNumber}[0]{\thevaV \decrV} % Comando per generare
-	\addtocounter{vaV}{1}
-	
-	%TODO: I requisiti di README vanno in vincolo o qualità? E quelli dei problemi?
-	\subsection{Requisiti di vincolo}
-			
-	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
-			\toprule
-			%R\addVNumber
-			%V2 & Le componenti Producer devono riuscire a recuperare delle segnalazioni & Capitolato \\ % stesso di "L'applicativo Consumer/Producer deve riuscire a recuperare i messaggi da un \gloss{Topic}"
-			%			R\addVNumber
-			%			V2 & Le segnalazioni devono poter essere accentrate e standardizzate & Capitolato \\
-			R\addVNumber
-			V2 & Devono essere sviluppati due componenti applicativi Producer tra Redmine, GitLab e SonarQube & Capitolato \\
-			R1.1V0 & È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori &  Capitolato \\
-			R\addVNumber
-			V2 & Devono essere sviluppati due componenti applicativi Consumer tra Telegram, Email e Slack & Capitolato \\
-			R2.1V0 & È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori & Capitolato \\
-			R\addVNumber
-			V2 & Docker deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti & Capitolato \\
-			R3.1V2 & È necessario presentare un Dockerfile per ogni componente & Capitolato \\
-			R\addVNumber
-			V1 & Per ogni problema aperto documentato è possibile allegare delle soluzioni da attuare in futuro & Capitolato\\
-			R4.1V2 & Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto & Capitolato \\
-			\bottomrule\\
-		\end{paddedtablex}
-		\caption{Elenco dei requisiti di vincolo (1)}
-	\end{table}	
+	%\addtocounter{vaQ}{1} % inizia da 1 il contatore
+	\newcommand{\incrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addQNumber}{\incrQ\thevaQ} % Comando per generare il valore incrementato di uno rispetto a prima
+
+	\newcounter{secondQ} % per il secondo livello del requisito
+	\addtocounter{secondQ}{1}
+	\newcommand{\secIncrQ}{\addtocounter{secondQ}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addSecQNumber}{\secIncrQ\thesecondQ} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetQCounter}{\setcounter{secondQ}{1}}
+	\newcommand{\decSecQ}{\resetQCounter\thesecondQ}
+
+
+	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	\newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	\newcommand{\Qsecondreq}[3]{R\thevaQ.\addSecQNumber Q#1 & #2 & #3 \\}
+	\newcommand{\Qinitsecondreq}[3]{R\thevaQ.\decSecQ Q#1 & #2 & #3 \\}
+
+
+
+	% NB: molti requisiti di qualità sono stati tolti perchè non sono veri requisiti del sistema, riguardano noi e il nostro modo di fare, non il sistema
+	\subsection{Requisiti di qualità}\label{RequisitiQualità}
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
-			R\addVNumber
-			V2 & È necessario presentare un file \gloss{README} per ogni componente & Capitolato \\
-			R5.1V2 & I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio & Capitolato \\
-			R5.2V2 & I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo & Capitolato \\
-			%TODO: R.. & I DockerFile devono essere comprensivi di script e file cfg..ecc?
-			R5.3V2 & È necessario presentare un file README per il Dockerfile & Capitolato \\
-			R5.4V2 & Il file README per il Dockerfile deve contenere le istruzioni per l'avvio & Capitolato \\
-			R5.5V2 & Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte & Capitolato \\
-			R\addVNumber
-			V2 & Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti & Capitolato \\
-			R\addVNumber
-			V0 & Come meccanismo di estensione per GitLab è possibile fare uso di Webhooks & Capitolato \\
-			R\addVNumber
-			V1 & Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{Python} o \gloss{Node.js} & Capitolato \\
-			R\addVNumber
-			V1 & È possibile utilizzare Apache Kafka come Broker & Capitolato \\
+			% presi dal PdQ
+			\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
+			\Qreq{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
+			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
+			\Qreq{1}{Ci siamo accordati per una frequenza minima di commit effettuati in una settimana}{Interno QPR004}
+			\Qreq{1}{Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili}{Interno QPR006}
+			\Qreq{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
+			\Qreq{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
+			\Qreq{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
+			\Qreq{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
+			\Qreq{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
+			\Qreq{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
+			\Qreq{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
+
+			\bottomrule
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di qualità (1)}
+	\end{table}
+
+
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+
+			\Qreq{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
+			%\req{R\thevaQ.1Q2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\Qinitsecondreq{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\Qreq{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema}{Capitolato}
+			%\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+			\Qinitsecondreq{2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+			%\req{R\thevaQ.2Q2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
+			\Qsecondreq{2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
+			\Qsecondreq{2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
+			\Qreq{1}{Per ogni problema aperto documentato, si allegano delle soluzioni da attuare in futuro}{Capitolato}
+			\Qinitsecondreq{2}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
+			\Qreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
+			%\req{R\thevaQ.1Q2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+			\Qinitsecondreq{2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+			\Qsecondreq{2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
+			\Qsecondreq{2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
+			\Qsecondreq{2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
+			\Qsecondreq{2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
+
+			\bottomrule \\
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di qualità (2)}
+	\end{table}
+
+	%COMANDI PER REQ DI VINCOLO
+	% Generazione automatica dei numeri
+	\newcounter{vaV} % valore
+	\newcommand{\incrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
+	\newcommand{\addVNumber}{\incrV\thevaV} % Comando per generare il valore incrementato di uno rispetto a prima
+	
+	\newcounter{secondV} % per il secondo livello del requisito
+	\addtocounter{secondV}{1}
+	\newcommand{\secIncrV}{\addtocounter{secondV}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	\newcommand{\addSecVNumber}{\secIncrV\thesecondV} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcommand{\resetVCounter}{\setcounter{secondV}{1}}
+	\newcommand{\decSecV}{\resetVCounter\thesecondV}
+	
+	
+	\newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	\newcommand{\Vsubreq}[3]{R\thevaV V#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	\newcommand{\Vsecondreq}[3]{R\thevaV.\addSecVNumber V#1 & #2 & #3 \\}
+	\newcommand{\Vinitsecondreq}[3]{R\thevaV.\decSecV V#1 & #2 & #3 \\}
+	
+
+	%TODO: aggiungere versione di Slack
+	\subsection{Requisiti di vincolo}\label{RequisitiVincolo}
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+			\toprule
+			\Vreq{2}{Devono essere sviluppati due componenti applicativi Producer tra \redmine, \gitlab\ e SonarQube 6.7}{Capitolato}
+			%\req{R\thevaV.1V0}
+			\Vinitsecondreq{0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
+			\Vreq{2}{Devono essere sviluppati due componenti applicativi Consumer tra \telegram, Email e Slack}{Capitolato}
+			%\req{R\thevaV.1V0}
+			\Vinitsecondreq{0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
+			\Vreq{2}{\docker\ deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
+			%\req{R\thevaV.1V2}
+			\Vinitsecondreq{2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
+			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{\python} o \gloss{Node.js} 10.15.1}{Capitolato}
+			\Vreq{1}{È possibile utilizzare \kafka\ come Broker}{Capitolato}
+
 			\bottomrule\\
 		\end{paddedtablex}
-		\caption{Elenco dei requisiti di vincolo (2)}
-	\end{table}	
-		
-					
-	
-	\subsection{Tracciamento}
-	
+		\caption{Elenco dei requisiti di vincolo (1)}
+	\end{table}
+
+%
+%	\begin{table}[H]
+%		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+%			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+%			\toprule
+%
+%
+%			\bottomrule\\
+%		\end{paddedtablex}
+%		\caption{Elenco dei requisiti di vincolo (2)}
+%	\end{table}
+
+
+
+	\subsection{Tracciamento}\label{Tracciamento}
+
 		\subsubsection{Tracciamento fonti-requisiti}
-			
+
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
@@ -233,7 +266,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\cellcolor{white} & R7F2 \\
 				\cellcolor{white} & R8F2 \\
 				\cellcolor{white} & R9F2 \\
-				\cellcolor{white} & R10F2 \\ 
+				\cellcolor{white} & R10F2 \\
 				\cellcolor{white} & R11F2 \\
 				\cmidrule{2-2}
 				\cellcolor{white} & R14Q2 \\
@@ -248,7 +281,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\end{tabularx}}
 			\caption{Elenco dei requisiti del capitolato (1)}
 		\end{table}
-		
+
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
@@ -277,7 +310,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\end{tabularx}}
 			\caption{Elenco dei requisiti del capitolato (2)}
 		\end{table}
-	    
+
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.5}
@@ -297,7 +330,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\rowcolors{2}{white}{\tablegray}
 			{\def\arraystretch{1.5}
 			\begin{tabularx}{\textwidth}{YY}
-				\textbf{Fonte} & \textbf{Requisito} \\				
+				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
 				UC1 & R1F2 \\
 				UC2 & R2F2 \\
@@ -316,13 +349,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\end{tabularx}}
 			\caption{Elenco dei requisiti per i casi d'uso}
 		\end{table}
-	
+
 		\begin{table}[H]
 		\centering
 		\rowcolors{2}{white}{\tablegray}
 		{\def\arraystretch{1.5}
 		\begin{tabularx}{\textwidth}{YY}
-			\textbf{Fonte} & \textbf{Requisito} \\				
+			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
 			QPR001 & R1Q1 \\
 			QPD001 & R2Q1 \\
@@ -335,29 +368,29 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			QPR008 & R9Q1 \\
 			QPR009 & R10Q1 \\
 			QPR010 & R11Q1 \\
-			\Doc{VE\_12-12-2018} & R14Q2 \\
+			\Doc{VE\_2018-12-12} & R14Q2 \\
 			\bottomrule\\
 		\end{tabularx}}
 		\caption{Elenco dei requisiti per gli obiettivi di qualità e verbali}
 	\end{table}
-		
+
 \newcounter{V} % valore
 \newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addC}[0]{\theV \deV} % Comando per generare
-\addtocounter{V}{1}		
+\addtocounter{V}{1}
 
 \newcounter{Vv} % valore
 \newcommand{\deVv}{\addtocounter{Vv}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addVC}[0]{\theVv \deVv} % Comando per generare
-\addtocounter{Vv}{1}		
+\addtocounter{Vv}{1}
 
 \newcounter{X} % valore
 \newcommand{\deX}{\addtocounter{X}{+1}} % Comando per l'aumento automatico del counter vaZ
 \newcommand{\addX}[0]{\theX \deX} % Comando per generare
-\addtocounter{X}{1}	
-		
+\addtocounter{X}{1}
+
 		\subsubsection{Tracciamento requisiti-fonte}
-		
+
 		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YY}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
@@ -395,8 +428,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti funzionali in rapporto alle fonti}
 		\end{table}
-			
-		\begin{table}[H]	
+
+		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YY}
 			\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di Q
@@ -427,7 +460,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			R\addVC
 			Q2 & Interno \\
 			R\addVC
-			Q2 & \Doc{VE\_12-12-2018} \\
+			Q2 & \Doc{VE\_2018-12-12} \\
 			R\addVC
 			Q2 & Capitolato \\
 			R\addVC
@@ -444,7 +477,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\caption{Elenco dei requisiti di qualità in rapporto alle fonti}
 	\end{table}
 
-\begin{table}[H]	
+\begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{YY}
 		\textbf{Requisito} & \textbf{Fonte} \\\toprule
 			%R di V
@@ -478,19 +511,18 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\bottomrule \\
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di vincolo in rapporto alle fonti}
-	\end{table}		
-				
-	\subsection{Riepilogo}
-	
+	\end{table}
+
+	\subsection{Riepilogo}\label{Riepilogo}
+
 		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YYYY}
 			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
 			Di funzionalità & 8 & 0 & 10 \\
 			Di qualità & 12 & 9 & 0 \\
-			Di vincolo & 12 & 3 & 3 			
+			Di vincolo & 12 & 3 & 3
 			\\\bottomrule
 		\end{paddedtablex}
 		\caption{Riepilogo dei requisiti}
 		\end{table}
-		
-	
+

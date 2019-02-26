@@ -1,0 +1,161 @@
+
+\newpage
+\section{Attualizzazione dei rischi} \label{AttualizzazioneDeiRischi}
+    Per dar senso ai rischi posti in analisi nel \PdP forniamo un resoconto di quanti si sono effettivamente verificati nei periodi di analisi dei requisiti e di progettazione della base tecnologica.\\
+    Poiché i rischi cambiano dinamicamente durante lo svolgersi del progetto, questo appendice verrà aggiornato a intervalli regolari come stabilito nelle \NdP.
+    I rischi che riportiamo sono quanto effettivamente abbiamo riscontrato nel portare a compimento le attività del progetto, possono anche differire da quelli presi precedentemente in analisi.\\
+
+	\subsection{Classificazione}
+    La classificazione dei rischi avverrà in modo simile a quella usata per l'analisi, riportando in questo caso anche la data in cui è stato riscontrato il rischio.
+    Viene riportata per comodità del lettore la classificazione adottata per l'analisi dei rischi.
+
+	A ciascun rischio viene assegnato un codice identificativo in modo da essere univoco e facilmente riconoscibile.
+
+	Questo codice è:
+
+	\begin{center}
+		\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]-[Data]}
+	\end{center}
+
+	composto da:
+	
+	\begin{itemize}
+		\item \textbf{Tipologia}:
+			\begin{itemize}
+				\item \textbf{O}: organizzativo.
+				\item \textbf{P}: personale.
+				\item \textbf{R}: requisiti.
+				\item \textbf{S}: strumentale.
+				\item \textbf{T}: tecnologico.
+			\end{itemize}
+
+		\item \textbf{ID}: numero progressivo di tre cifre che inizia da uno (001 - 999).
+		\item \textbf{Gravità}:
+			\begin{itemize}
+				\item \textbf{0}: accettabile.
+				\item \textbf{1}: tollerabile.
+				\item \textbf{2}: inaccettabile.
+			\end{itemize}
+
+		\item \textbf{Probabilità}:
+			\begin{itemize}
+				\item \textbf{0}: bassa.
+				\item \textbf{1}: media.
+				\item \textbf{2}: alta.
+			\end{itemize}
+
+		\item \textbf{Classe}: ci si riferisce ai livelli di rischio individuati dalla matrice in Figura \ref{fig:rischi}
+			\begin{itemize}
+				\item \textbf{0}: basso (verde).
+				\item \textbf{1}: medio (arancione).
+				\item \textbf{2}: alto (rosso).
+			\end{itemize}
+			
+		\item \textbf{Data}: data in cui si è verificato il rischio, nel formato riportato nelle \NdP.
+	\end{itemize}
+
+	Ad esempio, con P001-021-2018-11-10 si può capire, seguendo la legenda, che si tratta del primo rischio del personale, di gravità accettabile, probabilità alta e un valore di classe medio, verificatosi in data 2018-11-10.
+
+	\subsection{Lista rischi riscontrati}
+
+	Per elencare i rischi viene utilizzata una struttura tabellare che indica nella prima riga il codice identificativo e il nome di ciascun rischio,
+	mentre nelle righe successive vengono elencate e discusse la relativa descrizione, le strategie per la rilevazione e le eventuali contromisure e mitigazioni.\par
+
+	La tabella potrà essere modificata in qualsiasi momento data la dinamicità dei rischi, e si sceglie di riportarli in ordine cronologico.
+
+
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
+			\thead{P002-122-2018-11-16} &
+			Impreparazione del team a livello gestionale \\
+			\rowcolor{\tablegray}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: ci siamo ritrovati per iniziare a svolgere le attività del progetto, partendo dallo studio di fattibilità, senza la minima conoscenza dei ruoli.
+			}\\
+			\multicolumn{2}{X}{
+				\textbf{Strategia adottata}: ognuno ha studiato i vari ruoli e le attività da svolgere per avere una visione globale di quanto sarebbe successo.
+			}\\
+		\end{risktable}
+		\caption{Specifica rischio P002-122-2018-11-16}
+	\end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
+			\thead{P003-122-2019-01-13} &
+			Verifica e approvazione errata di documenti \\
+			\rowcolor{\tablegray}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: si sono verificate delle sviste durante la verifica dei documenti e l'approvazione è stata di conseguenza errata.
+			}\\
+			\multicolumn{2}{X}{
+				\textbf{Strategia adottata}: abbiamo ricontrollato i documenti con più attenzione. Servirà dedicare più tempo alle attività di verifica.
+			}\\
+		\end{risktable}
+		\caption{Specifica rischio P003-122-2019-01-13}
+	\end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
+			\thead{S001-100-2019-01-18} &
+			Problematiche hardware \\
+
+			\rowcolor{\tablegray}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: lo schermo del pc destinato alla presentazione è rimasto privo della retroilluminazione.
+			}\\
+
+			\multicolumn{2}{X}{
+				\textbf{Strategia adottata}: abbiamo usato il pc di un altro membro del gruppo.
+			}\\
+		\end{risktable}
+		\caption{Specifica rischio S001-100-2019-01-18}		
+	\end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+	
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
+			\thead{O002-111-2019-02-09} &
+			Mancanza di comunicazione con l'azienda \\
+
+			\rowcolor{\tablegray}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: la mancanza di una comunicazione abbastanza approfondita con la proponente ci ha portato a dover rivedere nel dettaglio i casi d'uso dell'\AdR.
+			}\\
+
+			\multicolumn{2}{X}{
+				\textbf{Strategia adottata}: abbiamo previsto più momenti in cui comunicare con l'azienda, in modo da evitare ulteriori malintesi.
+			}\\
+		\end{risktable}
+		\caption{Specifica rischio O002-111-2019-02-09}	
+	\end{table}
+
+	\mydoublerule{\linewidth}{0pt}{2pt}
+
+	\begin{table}[H]
+
+		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
+			\thead{P007-122-2019-02-12} &
+			Pianificazione errata dei tempi \\
+			\rowcolor{\tablegray}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: ci siamo ritrovati con alcuni membri che avevano tutti gli esami previsti per il terzo anno da ultimare, altri con influenza e febbre. Questo ha portato a un ritardo non previsto nello svolgimento delle attività.
+			}\\
+
+			\multicolumn{2}{X}{
+				\textbf{Strategia adottata}: abbiamo usato gli strumenti di pianificazione e coordinazione quali GitHub e Slack per coordinarci meglio e gestire il lavoro da ultimare.
+			}\\
+		\end{risktable}
+		\caption{Specifica rischio P007-122-2019-02-12}
+	\end{table}
+
+	
+	In seguito poniamo i rischi analizzati la cui priorità è cambiata nel corso del progetto:
+	\begin{itemize}
+	    \item \textbf{P005-011}: Intesa parziale tra i membri del team di sviluppo.
+	    \item \textbf{R001-111}: Interpretazione errata dei requisiti: aggiunta o modifica di requisiti in corso di sviluppo.
+	\end{itemize}

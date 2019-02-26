@@ -242,3 +242,20 @@ TSWLatexianTemp*
 *.spl
 
 .vscode/
+
+# Python
+__pycache__/
+
+# NetBeans
+/Butterfly/webinterface/frontend/nbproject/
+
+# PyCharm
+/Butterfly/.idea/
+
+*.pyc
+bin/
+lib/
+include/
+*/bin/
+*/lib/
+*/include/

@@ -1,6 +1,6 @@
 \section{Processi organizzativi}
 
-    \subsection{Gestione del progetto}
+    \subsection{Gestione del progetto}\label{GestioneProgetto}
 
 	    \subsubsection{Scopo}
 	    L'attività di gestione del progetto consiste nel delineare:
@@ -11,10 +11,6 @@
 	    	\item I \gloss{task} di risorsa umana
 	    	\item La verifica delle attività di processo
 	    \end{itemize}
-
-		%TODO: da mettere?
-	    % \subsubsection{Istanziazione dei processi}
-		% Derivano dagli standard...
 
 		\subsubsection{Pianificazione di attività}
 
@@ -28,7 +24,8 @@
 			\end{itemize}
 
 			\paragraph{Obiettivo}
-			L'obiettivo che ci si pone di raggiungere tramite il \PdP\ è organizzare il lavoro con \gloss{efficenza} ed \gloss{efficacia}, prevedendo anticipatamente le varie attività da svolgere e determinando dei precisi periodi di tempo da dedicare ad ognuna di esse. \par
+			L'obiettivo che ci poniamo di raggiungere tramite il \PdP\ è organizzare il lavoro con \gloss{efficenza} ed \gloss{efficacia},
+			prevedendo anticipatamente le varie attività da svolgere e determinando dei precisi periodi di tempo da dedicare ad ognuna di esse.\par
 			Più nello specifico, il \Doc{\PdPv} contiene:
 			\begin{itemize}
 				\item Introduzione e scopo
@@ -38,21 +35,25 @@
 				\item Prospetto economico del personale durante le attività
 				\item \gloss{Preventivo} di ore e costi
 				\item \gloss{Organigramma} comprendente i componenti del team di sviluppo
+				\item Attualizzazione dei rischi verificatisi nel corso del progetto
 			\end{itemize}
 
 			\paragraph{Ordine di esecuzione}
-			L'insieme di azioni che indicano in quale modo procedere sono riportate qui di seguito in ordine:
+			L'insieme di azioni che indicano in quale modo procedere sono riportate di seguito, in ordine:
 			\begin{enumerate}
-				\item Individuazione di tutte le attività da svolgere basandosi sulle varie revisione da affrontare
-				\item Riconoscimento dei vari problemi in cui è possibile incorrere nel corso del progetto con conseguente analisi approfondita di ognuno essi. Questo comporta l'identificazione di:
+				\item Individuazione di tutte le attività da svolgere basandosi sulle varie revisioni da affrontare
+				\item Riconoscimento dei vari problemi in cui è possibile incorrere nel corso del progetto, con conseguente analisi
+					approfondita di ognuno essi. Questo comporta l'identificazione di:
 				\begin{itemize}
-					\item La probabilità di verificarsi
-					\item La gravità della situazione
-					\item Le strategie da seguire per l'accertamento
-					\item Le contromisure da adottare per la risoluzione
+					\item Probabilità di verificarsi
+					\item Gravità della situazione
+					\item Strategie da seguire per l'accertamento
+					\item Contromisure da adottare per la risoluzione
 				\end{itemize}
+				\item Report dei problemi incorsi durante lo svolgersi delle attività del progetto, con soluzione adottata
 				%si può ampliare
-				\item Ordinamento delle attività tramite diagrammi di \gloss{Gantt} creati secondo alcuni fattori importanti da tenere in considerazione, quali:
+				\item Ordinamento delle attività tramite diagrammi di \gloss{Gantt} creati secondo alcuni fattori importanti da tenere
+				in considerazione, quali:
 				\begin{itemize}
 					\item Dipendenze tra attività
 					\item Sequenzialità
@@ -64,8 +65,9 @@
 			\item Assegnazione delle risorse umane alle attività secondo una precisa rotazione dei ruoli
 			\end{enumerate}
 
-			\paragraph{Classificazione dei rischi}
-			Le tipologie in cui suddividere i rischi sono state prese dal libro Software Engineering\footnote{Software Engineering, 10° edizione, Pagina 648, Capitolo 22: Project management} e sono:
+			\paragraph{Classificazione dei rischi}\label{ClassificazioneRischi}
+			Le tipologie in cui suddividere i rischi sono state prese dal libro Software
+			Engineering\footnote{Riferirsi alla voce ``Software Engineering, 10° edizione'' in \S\ref{rifinfo}} e possono essere di tipo:
 			\begin{itemize}
 				\item \textbf{Organizzativo}: dovuto alla gestione di persone che hanno diverse responsabilità all'interno del progetto.
 				\item \textbf{Personale}: riguarda le conoscenze, i tempi e la \gloss{formazione} personale.
@@ -74,14 +76,27 @@
 				\item \textbf{Tecnologico}: per problemi riguardanti l'utilizzo e le funzionalità degli strumenti software.
 			\end{itemize}
 
-			A ciascun rischio viene assegnato un codice identificativo in modo da essere facilmente riconoscibile e per comprenderne le generalità (classe, probabilità e severità), per poi non doverle cercare nelle tabelle che comprendono tutti i rischi del progetto analizzati.
+			A ciascun rischio viene assegnato un codice identificativo in modo da essere facilmente riconoscibile e per comprenderne le generalità
+			(classe, probabilità e severità), per poi non doverle cercare nelle tabelle che comprendono tutti i rischi del progetto analizzati.
 
 			Questo codice è composto da:
 
 			\begin{center}
 				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]}
 			\end{center}
-			\clearpage
+			
+			Nel caso dell'attualizzazione dei rischi, vengono aggiustati i valori di gravità, probabilità, classe e al codice viene aggiunta in coda la data in cui si è verificato il problema, in modo da tenere una traccia cronologica.\\
+			
+			Il codice in tal caso diventa:
+			
+			\begin{center}
+				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]-[Data]}
+			\end{center}
+		
+			
+			Nel caso i rischi non si siano verificati ma ne venga riconsiderata la probabilità, allora vengono posti in elenco in seguito ai rischi effettivamente riscontrati, con il vecchio codice per tipologia e id e con i valori aggiornati per gravità, probabilità e classe.
+			\\
+			
 			I valori che possono assumere sono:
 
 			\begin{itemize}
@@ -93,8 +108,7 @@
 					\item \textbf{S}: strumentale.
 					\item \textbf{T}: tecnologico.
 				\end{itemize}
-
-				\item \textbf{ID}: numero progressivo di tre cifre (001 - 999);
+				\item \textbf{ID}: numero progressivo di tre cifre (001 - 999).
 				\item \textbf{Gravità}:
 				\begin{itemize}
 					\item \textbf{0}: accettabile.
@@ -109,15 +123,19 @@
 					\item \textbf{2}: alta.
 				\end{itemize}
 
-				\item \textbf{Classe}:ci si riferisce ai livelli di rischio.
+				\item \textbf{Classe}: ci si riferisce ai livelli di rischio.
 				\begin{itemize}
 					\item \textbf{0}: basso.
 					\item \textbf{1}: medio.
 					\item \textbf{2}: alto.
 				\end{itemize}
+				
+				\item \textbf{Data}: data in cui si è verificato il problema.
 			\end{itemize}
 
-			Ad esempio con P001-021 si può intuitivamente capire che si tratta del primo rischio relativo al personale, di gravità accettabile, probabilità alta e un valore di classe medio.
+			Ad esempio con P001-021 si può intuitivamente capire che si tratta del primo rischio relativo al personale, di gravità accettabile,
+			probabilità alta e un valore di classe medio.\\
+			Invece P002-122-2019-01-13 è il secondo rischio attualizzato relativo al personale, di gravità tollerabile, probabilità alta, valore di classe alto e si è verificato in data 2019-01-13.
 
 			\paragraph{Ruoli di progetto}
 			I ruoli\footnote{Riferirsi alla voce ``Descrizione dei ruoli di progetto'' in \S\ref{rifinfo}.} adoperati per lo sviluppo del progetto sono:
@@ -130,7 +148,8 @@
 				\item Verificatore
 			\end{itemize}
 
-		\subsubsection{Pianificazione della qualità}\label{Pianificazione qualita}
+
+		\subsubsection{Pianificazione della qualità}\label{PianificazioneQualità}
 		%Per cercare la qualità nei prodotti è necessario che vengano misurate diverse caratteristiche di questi ultimi.
 		Per la ricerca della qualità nei prodotti è necessario che ne vengano misurate diverse caratteristiche associate.
 		Per ogni caratteristica devono essere fissati un livello minimo e un livello ottimale che questa deve avere.
@@ -190,7 +209,6 @@
 				\item \textbf{Tipo}: indica la tipologia di quello su cui viene applicata la metrica, può essere:
 				\begin{itemize}
 					\item \texttt{PR}: processi.
-%					\item \texttt{PD}: prodotti che risultano essere documenti;
 					\item \texttt{PD}: prodotti di documentazione.
 					\item \texttt{PS}: prodotti software.
 				\end{itemize}
@@ -224,6 +242,7 @@
 				\caption[Metrica Indice di Gulpease]{Metrica dell'Indice di Gulpease}%, usata per il calcolo della qualità della leggibilità del testo}
 			\end{table}
 
+
 		\subsubsection{Controllo del progetto}
 
 			\paragraph{Monitoraggio del progetto}
@@ -243,55 +262,62 @@
 
 			\subparagraph{Procedure di comunicazione}
 			%Per coordinare il team e il committente sullo stato del progetto sono state stabilite le seguenti norme:
-			Per la coordinazione del team e le comunicazioni con il cliente sullo stato del progetto, sono state stabilite le seguenti norme:
+			Per la coordinazione del team e le comunicazioni con il cliente sullo stato del progetto, abbiamo stabilito le seguenti norme:
 			\begin{itemize}
-				\item Per le comunicazioni interne verranno utilizzati gli strumenti segnalati in \S\ref{pianificazione e coordinamento}, in particolare con l'utilizzo di \gloss{Slack}.
-				\item All'occorrenza, verranno fissate riunioni per le questioni più importanti, concordando:
+				\item Per le comunicazioni interne utilizzeremo gli strumenti segnalati in \S\ref{pianificazione e coordinamento},
+					in particolare con l'utilizzo di \gloss{Slack}.
+				\item All'occorrenza, fisseremo riunioni per le questioni più importanti, concordando:
 					\begin{itemize}
 						\item Data, ora e luogo
 						\item Un ordine del giorno da discutere
 						\item La persona incaricata ad appuntare il contenuto della riunione per poter poi redigere formalmente il verbale dell'incontro
 					\end{itemize}
-				\item Per le comunicazioni esterne verrà utilizzata prevalentemente la comunicazione via email e in caso di necessità si concorderà con l'azienda per riunioni via Skype o in un luogo prestabilito. % HELP WANTED fissare riunioni con l'azienda?
+				\item Per le comunicazioni esterne verrà utilizzata prevalentemente la comunicazione via email e in caso di necessità si concorderà con
+				l'azienda per riunioni via Hangouts o in un luogo prestabilito. % HELP WANTED fissare riunioni con l'azienda?
 			\end{itemize}
 
 
     		\paragraph{Gestione dei problemi emersi}
-			Problemi emersi durante l'esecuzione dei processi verranno segnalati tramite \gloss{ticket}, utilizzando il sistema integrato di \gloss{Github} come descritto in dettaglio in \S\ref{Github}. Questo permette di tracciare i problemi insorti durante le attività e di pianificare la risoluzione degli stessi.
-			Per segnalazioni minori, verranno spesso utilizzati dei tag commentati nei \gloss{sorgenti} \LaTeX.
+			Problemi emersi durante l'esecuzione dei processi verranno segnalati tramite \gloss{ticket}, utilizzando il sistema integrato di
+			\gloss{GitHub} come descritto in dettaglio in \S\ref{GitHub}. Questo ci permetterà di tracciare i problemi insorti durante le attività
+			e di pianificare la risoluzione degli stessi.\par
+			Per segnalazioni minori, verranno spesso utilizzati dei tag commentati nei \gloss{sorgenti}.
 			\begin{samepage}
 				Saranno nella forma:
 				\begin{center}
 					\texttt{[TAG]: [Descrizione]}
 				\end{center}
 			\end{samepage}
-			I tipi di tag utilizzati dal team sono:
+			I tipi di tag che utilizzeremo sono:
 			\begin{itemize}
 				\item \textbf{TODO}: per segnalare la presenza di un lavoro da fare o lasciato a metà.
 				\item \textbf{FIXME}: per segnalare la presenza di una correzione da effettuare su del lavoro già svolto.
+				\item \textbf{NOTE}: per aggiugere una nota su cui porre particolare attenzione.
 			\end{itemize}
 
-    		% \paragraph{Riportare lo stato di avanzamento del progetto}
-			% vedere Breaking Bug, io non riesco a capire il senso di questo paragrafo e lo toglierei ~ Tim
 
 		\subsubsection{Chiusura dei processi}
 
     		\paragraph{Archiviazione dei prodotti}
 			I prodotti che, una volta terminate le attività e i processi per completarli, soddisfano le aspettative in termini di qualità,
-			verranno archiviati in apposite \gloss{repository}. Alla versione \textit{1.0.0} del presente documento, gli unici prodotti archiviati saranno i file \LaTeX\ per la generazione dei relativi PDF.
+			verranno archiviati in apposite \gloss{repository}. Alla versione \textit{2.0.0} del presente documento, saranno archiviati
+			i file \LaTeX\ per la generazione dei relativi PDF, i sorgenti Python per il Proof of Concept e gli eventuali file \gloss{JSON}.
 
     		\paragraph{Archiviazione delle misurazioni}
-			Oltre ai prodotti vengono archiviate le metriche, definite e classificate nel presente documento, con i limiti di accettazione riportati nel \Doc{\PdQv}.
-			Il calcolo delle metriche verrà effettuato su ciascun prodotto nel momento del suo inserimento nella repository, ove possibile; tali risultati o anomalie verranno opportunamente archiviati. % FIXME: Archiviate? Come? Dove?
+			Oltre ai prodotti archivieremo le metriche, definite e classificate nel presente documento, con i limiti di accettazione riportati nel \Doc{\PdQv}.
+			Il calcolo delle metriche verrà effettuato su ciascun prodotto nel momento del suo inserimento nella repository, ove possibile; tali risultati
+			o anomalie verranno opportunamente archiviati. % FIXME: Archiviate? Come? Dove?
 
-    	\subsubsection{Strumenti di pianificazione e coordinamento}\label{pianificazione e coordinamento}
+
+    	\subsubsection{Strumenti di pianificazione e coordinamento}\label{PianificazioneCoordinamento}
 
     		\paragraph{Slack}
 			Slack è uno strumento di collaborazione nato appositamente per coordinare il lavoro tra i team, permettendo la comunicazione in tempo
-			reale e mettendo a disposizione molte altre utilità indispensabili. Tra queste, c'è la possibilità di dividere il \gloss{workspace} in vari canali specifici, marcare parole o frasi importanti con diversi stili (grassetto, corsivo, codice, barrato), fissare i messaggi importanti, aprire una discussione sotto ogni messaggio per non creare troppi messaggi sul canale, ecc \dots
+			reale e mettendo a disposizione molte altre utilità indispensabili. Tra queste, c'è la possibilità di dividere il \gloss{workspace}
+			in vari canali specifici, marcare parole o frasi importanti con diversi stili (grassetto, corsivo, codice, barrato), fissare i messaggi
+			importanti, aprire una discussione sotto ogni messaggio per non creare troppi messaggi sul canale, ecc \dots
 
-			Il workspace usato dal team è stato suddiviso in diversi canali in base alle esigenze del periodo di lavoro.
-			%Nel periodo attuale, i vari canali sono:
+			Il workspace usato è stato suddiviso in diversi canali in base alle esigenze del periodo di lavoro.
 			Nel periodo relativo alla stesura della versione attuale del documento, i vari canali sono:
 			\begin{itemize}
 				\item \textbf{\# general}: canale in cui verranno discusse tematiche generali riguardanti il progetto e le sue attività.
@@ -302,10 +328,11 @@
 				\item \textbf{\# Studio di Fattibilità}: canale in cui verrà discussa la fattibilità di ogni capitolato proposto, convergenti nello \SdF.
 				\item \textbf{\# git}: canale in cui un \gloss{bot} correttamente configurato manderà una notifica ogni volta che verrà effettuato un \gloss{commit}, oppure alla chiusura o apertura di una \gloss{issue} nella repository principale.
 				\item \textbf{\# latex}: per discussioni riguardanti gli aspetti tecnici di \LaTeX.
-				\item \textbf{\# random}: per discussioni off-topic del team. %aka SPAM
+				\item \textbf{\# random}: per discussioni off-topic del team.
+				\item \textbf{\# Proof of Concept}: per discussioni inerenti alla realizzazione del Proof of Concept.
 			\end{itemize}
 
-    		\paragraph{GitHub}\label{Github}
+    		\paragraph{GitHub}\label{GitHub}
 			GitHub fornisce un \gloss{Issue Tracking System} per ogni repository che ospita. Questo strumento offre più funzionalità di quanto potrebbe sembrare,
 			poich\'e permette anche di trattare le issue come delle task, marcandole con una opportuna label. Infatti, questo sistema offre le seguenti funzionalità:
 			\begin{itemize}
@@ -320,12 +347,55 @@
 			\end{itemize}
 
 			%\paragraph{Redmine} % ? da vedere piu avanti.
-			% Per ora Github per issue-task tracker ~Tim
+			% Per ora GitHub per issue-task tracker ~Tim
+			
+			
+	\subsection{Metriche} \label{ProcessiOrganizzativiMetriche}
+	La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
+	
+	\subsubsection{MPR001 Varianza della pianificazione}
+	Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
+	Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
+	\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
+	
+	
+	\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività
+	viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
+
+	\subsubsection{MPR002 Varianza dei costi}
+	All'interno del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
+	In corso d'opera possono presentarsi dei problemi che richiedono un'aggiunta di costo in termini di $\frac{\text{tempo}}{\text{persona}}$.
+	Lo scopo del preventivo è infatti fare una stima non definitiva dei costi. Per verificare se il preventivo è rispettato faremo periodicamente
+	un consuntivo di periodo.
+
+	\textbf{Metrica}: viene misurata la differenza conteggiata in \euro\ tra il costo finale e il preventivo.
+	Viene seguito tale schema per la tariffa oraria dei vari ruoli del team di sviluppo:
+
+	\begin{table}[H]
+		\centering
+		\begin{paddedtablex}[1.7]{\textwidth / 2}{Xc}
+			\textbf{Ruolo} & \thead{Costo orario} \\
+			Responsabile & \euro\ 30 \\
+			Amministratore & \euro\ 20 \\
+			Analista & \euro\ 25 \\
+			Progettista & \euro\ 22 \\
+			Programmatore & \euro\ 15 \\
+			Verificatore & \euro\ 15 \\
+		\end{paddedtablex}
+		\caption{Testo}
+	\end{table}
+
+	\subsubsection{MPR004 Frequenza commit nella repository}
+	Per mantenere aggiornate le versioni dei prodotti è necessario che ognuno di noi effettui un commit ad ogni sua modifica significativa.
+	Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
+	Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
+	\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
+	\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
 
 
-	\subsection{Formazione}
+	\subsection{Formazione}\label{Formazione}
 
-		La formazione di ogni membro di AlphaSix avviene tramite studio autonomo dei \gloss{framework} menzionati da \II\ durante la presentazione del capitolato e incontri con \gruppo.
+		La formazione avviene tramite studio autonomo dei \gloss{framework} menzionati da \II\ durante la presentazione del capitolato e incontri interni.
 
 		\subsubsection{Piano di formazione}
 		Il piano di formazione prevede:

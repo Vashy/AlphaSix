@@ -1,0 +1,56 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_2018-12-12.pdf}
+\newcommand{\redazione}{\TG}
+\newcommand{\verifica}{\SG}
+\newcommand{\approvazione}{\CV}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{15 dicembre 2018}
+\newcommand{\datamodifica}{17 dicembre 2018}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VE_2019-02-09/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+    
+    \section{Informazioni incontro}
+    	\begin{itemize}
+    		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite una chiamata Hangouts.
+    		\item \textbf{Data}: 2019-02-09.
+    		\item \textbf{Ora inizio}: 14:00.
+    		\item \textbf{Ora fine}: 15:00.
+    		\item \textbf{Partecipanti di AlphaSix}: \NC, \SG, \TG~e \CV.
+    		\item \textbf{Partecipanti esterni}: \DZ~di \II.
+    		\item \textbf{Ordine del giorno}: discutere col proponente per il chiarimento di alcuni dubbi sorti sull'implementazione di \progetto~e sulla revisione dei suoi casi d'uso.
+    	\end{itemize}
+    
+    \section{Argomenti}
+    	Dato che il proponente lascia una discreta libertà sulle scelte tecnologiche ed implementative, le domande proposte avevano la finalità di suscitare una riflessione sulle scelte progettuali e non di sapere che tecnologia o che scelta implementativa sarebbe dovuta essere fatta.
+    	
+    	Le risposte, per motivi pratici, sono riportate in formato parziale. Le domande sono le seguenti:
+    	\begin{enumerate}
+    		\item \textbf{Le iscrizioni ai \gloss{topic} devo poter differenziare la presenza di più progetti?} Devono poter essere gestiti più progetti, considerando che per alcuni di essi solo determinati tipi di utenti possono riceverne la notifica.
+    		\item \textbf{Che tipologia di segnalazioni di Redmine deve valutare \progetto?} In Redmine è possibile assegnare ad ogni tipo di \gloss{issue} un \gloss{workflow}, perciò in base allo stato di queste la segnalazione può interessare utenti diversi. La tipologia di segnalazioni interessate può essere dunque molto ampia, importano però i destinatari delle issue.
+    		\item \textbf{Le \gloss{keyword} dei presenti nei commit come possono essere meglio gestite?} Le keyword potrebbero essere gestite direttamente dal gestore personale.
+    		\item \textbf{L'uso del linguaggio \gloss{Python} è una buona scelta?} Certamente.
+    		\item \textbf{\gruppo~pensa di un usare un campo "password" per identificare gli utenti, è una buone scelta implementativa?} Al momento il proponente pretende che il primo obiettivo per il gestore personale è che questo si possa poter configurare, l'autenticazione può essere inserita più avanti.
+    		\item \textbf{\gruppo~pensava alla figura di un \gloss{sistemista} che avrebbe agito direttamente nel \gloss{database} di \gloss{Kafka} per inserire nuovi utenti o topic, è una scelta implementativa ragionevole?} No, perché poter accedere direttamente al database è molto rischioso. La sua gestione può sempre essere effettuata attraverso il gestore personale.
+    	\end{enumerate}
+\end{document}
