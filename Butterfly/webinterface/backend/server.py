@@ -6,7 +6,6 @@ root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
 root = root.resolve()
 
 
-
 class Handler(object):
     """Classe con la funzionalità di server http.
     Ogni metodo della classe corrisponde a un url http gestito da cherrypy.
@@ -40,33 +39,20 @@ class Handler(object):
                      + user['email'] + '</option>'
         users += '</select>'
         return users
-    
 
     def check_user_insertable(self, email, telegram):
-        # if email == '':
-        #     email = None
-        # if telegram == '':
-        #     telegram = None
-        # print('check_user_insertable chiamato')
-        # print(f'telegram = {telegram}')
-        # print(f'email = {email}')
-        if email != '' or telegram != '':
-            if (
-                (
-                    email == '' and
-                    not self._controller.user_exists(telegram)
-                )
-                or (
-                    telegram == '' and
-                    not self._controller.user_exists(email)
-                )
-                or (
-                    email != '' and telegram != '' and
-                    not self._controller.user_exists(email)
-                )
-            ):
-                return True
-        return False
+
+        if email == '' and telegram == '':
+            return False
+
+        if email == '':
+            return not self._controller.user_exists(telegram)
+
+        if telegram == '':
+            return not self._controller.user_exists(email)
+
+        return (not self._controller.user_exists(telegram) and
+                not self._controller.user_exists(email))
 
     @cherrypy.expose
     def index(self):
@@ -94,12 +80,13 @@ class Handler(object):
         file = root / 'access.html'
         page = file.read_text()
         page = page.replace('*userid*', '%s' % userid)
-        page = page.replace('*access*',
-                            '<div>'
-                            '<p>Email/ID Telegram non presente nel sistema.'
-                            '</p>'
-                            '</div>'
-                            )
+        page = page.replace(
+            '*access*',
+            '<div>'
+            '<p>Email/ID Telegram non presente nel sistema.'
+            '</p>'
+            '</div>'
+        )
         return page
 
     @cherrypy.expose
@@ -116,7 +103,7 @@ class Handler(object):
             page = page.replace('*telegram*', '')
             page = page.replace('*insert*', '')
             return page
-        
+
         return self.index()
 
     @cherrypy.expose
@@ -155,30 +142,46 @@ class Handler(object):
             file = root / 'preferences.html'
             page = file.read_text()
             topics = ''
-            for topic in controller.topics():
-                topics += '<fieldset><label for="'\
-                          + str(topic['_id']) +\
-                          '">'\
-                          + str(topic['_id']) +\
-                          '</label>' \
-                          '<input name="'\
-                          + str(topic['_id']) +\
-                          '" type="checkbox"/>' \
-                          '<p>Etichetta: '\
-                          + topic['label'] +\
-                          '</p>' \
-                          '<p>Progetto: '\
-                          + topic['project'] +\
-                          '</p></fieldset>'
+            for topic in self._controller.topics():
+                # topics += '<fieldset><label for="'\
+                #           + str(topic['_id']) +\
+                #           '">'\
+                #           + str(topic['_id']) +\
+                #           '</label>' \
+                #           '<input name="'\
+                #           + str(topic['_id']) +\
+                #           '" type="checkbox"/>' \
+                #           '<p>Etichetta: '\
+                #           + topic['label'] +\
+                #           '</p>' \
+                #           '<p>Progetto: '\
+                #           + topic['project'] +\
+                #           '</p></fieldset>'
+                topics += ''.join([
+                    '<fieldset><label for="',
+                    str(topic['_id']),
+                    '">',
+                    str(topic['_id']),
+                    '</label>',
+                    '<input name="',
+                    str(topic['_id']),
+                    '" type="checkbox"/>',
+                    '<p>Etichetta: ',
+                    topic['label'],
+                    '</p>',
+                    '<p>Progetto: ',
+                    topic['project'],
+                    '</p></fieldset>',
+                ])
             page = page.replace('*topics*', topics)
             keywords = ''
-            for keyword in controller.user_keywords(
+            for keyword in self._controller.user_keywords(
                     cherrypy.session.get("userid")
             ):
                 keywords += keyword + ','
             keywords = keywords.rstrip(',')
             page = page.replace('*textkeywords*', keywords)
-            page = page.replace('*subscriptiontopic*','')
+            page = page.replace('*subscriptiontopic*', '')
             page = page.replace('*indisponibilita*', '')
             page = page.replace('*favouriteplatform*', '')
             page = page.replace('*favouriteuser*', '')
@@ -208,24 +211,27 @@ class Handler(object):
                 if telegram == '':
                     telegram = None
 
-                controller.insert_user(
+                self._controller.insert_user(
                     name=nome,
                     surname=cognome,
                     email=email,
                     telegram=telegram
                 )
-                page = page.replace('*insert*',
-                                    '<div>'
-                                    '<p>Utente inserito</p>'
-                                    '</div>'
-                                    )
+                page = page.replace(
+                    '*insert*',
+                    '<div>'
+                    '<p>Utente inserito</p>'
+                    '</div>'
+                )
             else:
-                page = page.replace('*insert*',
-                                    '<div>'
-                                    '<p>Utente già presente nel sistema '
-                                    'o id non inserito.</p>'
-                                    '</div>'
-                                    )
+                page = page.replace(
+                    '*insert*',
+                    '<div>'
+                    '<p>Utente già presente nel sistema '
+                    'o id non inserito.</p>'
+                    '</div>'
+                )
+
             if email is None:
                 email = ''
             if telegram is None:
@@ -252,18 +258,20 @@ class Handler(object):
             page = file.read_text()
             if self._controller.user_exists(userid):
                 self._controller.delete_one_user(userid)
-                page = page.replace('*removeuser*',
-                                    '<div>'
-                                    '<p>Utente rimosso</p>'
-                                    '</div>'
-                                    )
+                page = page.replace(
+                    '*removeuser*',
+                    '<div>'
+                    '<p>Utente rimosso</p>'
+                    '</div>'
+                )
             users = self.select_user()
             page = page.replace('*userids*', users)
-            page = page.replace('*removeuser*',
-                                '<div>'
-                                '<p>Utente non presente nel sistema.</p>'
-                                '</div>'
-                                )
+            page = page.replace(
+                '*removeuser*',
+                '<div>'
+                '<p>Utente non presente nel sistema.</p>'
+                '</div>'
+            )
             return page
         return self.index()
 
@@ -294,12 +302,13 @@ class Handler(object):
                                         '</div>'
                                         )
                 else:
-                    page = page.replace('*modifyuser*',
-                                        '<div>'
-                                        '<p>Utente non presente nel '
-                                        'sistema.</p>'
-                                        '</div>'
-                                        )
+                    page = page.replace(
+                        '*modifyuser*',
+                        '<div>'
+                        '<p>Utente non presente nel '
+                        'sistema.</p>'
+                        '</div>'
+                    )
             page = page.replace('*userids*', users)
             page = page.replace('*nome*', '%s' % nome)
             page = page.replace('*cognome*', '%s' % cognome)
@@ -309,12 +318,13 @@ class Handler(object):
             page = page.replace('*cognome*', '')
             page = page.replace('*email*', '')
             page = page.replace('*telegram*', '')
-            page = page.replace('*modifyuser*',
-                                '<div>'
-                                '<p>Email/Telegram'
-                                ' già presente nel sistema.</p>'
-                                '</div>'
-                                )
+            page = page.replace(
+                '*modifyuser*',
+                '<div>'
+                '<p>Email/Telegram'
+                ' già presente nel sistema.</p>'
+                '</div>'
+            )
             return page
         return self.index()
 
@@ -329,7 +339,7 @@ if __name__ == '__main__':
     with DBConnection('butterfly') as connection:
         controller = DBController(connection)
         cherrypy.quickstart(Handler(controller), "/", {
-            '/favicon.ico':{
+            '/favicon.ico': {
                 'tools.staticfile.on': True,
                 'tools.staticfile.filename': str(root / 'a6.ico')
             },
