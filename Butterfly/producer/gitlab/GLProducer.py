@@ -160,7 +160,7 @@ class GLProducer(Producer):
 
 
 def main():
-    app.run(host='0.0.0.0', port='5004')
+    app.run(host='0.0.0.0', port='5003')
 
 
 if __name__ == '__main__':
