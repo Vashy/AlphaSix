@@ -20,23 +20,24 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.0
+Versione: 0.3.1
 Creatore: Timoty Granziero, timoty.granziero@gmail.com
 Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
+    Laura Cameran, lauracameran@gmail.com
+    Samuele Gardin, samuelegardin@gmail.com
 """
 
-from flask import Flask
-from flask import json
-from flask import request
-import argparse
-from sys import stderr
-from kafka import KafkaProducer
-import kafka.errors
+# import argparse
 import json
 from pathlib import Path
+import pprint
+from sys import stderr
+
+from flask import Flask
+from flask import request
+from kafka import KafkaProducer
+import kafka.errors
+
 from producer.producer import Producer
 from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
@@ -48,6 +49,7 @@ from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET', 'POST'])
 def api_root():
 
@@ -58,7 +60,7 @@ def api_root():
     #     'webhook.json'
     # )
 
-    if request.headers['Content-Type'] == 'application/json':    
+    if request.headers['Content-Type'] == 'application/json':
 
         # Configurazione da config.json
         with open(Path(__file__).parents[1] / 'config.json') as f:
@@ -75,21 +77,32 @@ def api_root():
 
         # Istanzia il Producer
         producer = GLProducer(config)
-        
+
         webhook = request.get_json()
-        print(f'\n\n\nMessaggio da GitLab:\n{webhook}\n\n\n')
+        print(
+            '\n\n\nMessaggio da GitLab:\n'
+            f'{pprint.pformat(webhook)}\n\n\n'
+            'Parsing del messaggio ...'
+        )
 
         # if args.topic:  # Topic passato con la flag -t
         #     # #producer.produce(args.topic, webhook_path)
         #     # producer.produce(args.topic, webhook)
         # else:  # Prende come Topic di default il primo del file webhook.json
-        producer.produce(topics[0]['label'], webhook)
-    
+
+        try:
+            producer.produce(topics[0]['label'], webhook)
+            print('Messaggio inviato.\n\n')
+        except KeyError:
+            print('Warning: messaggio malformato. '
+                  'Non è stato possibile effettuare il parsing.\n'
+                  'In attesa di altri messaggi...\n\n')
+
         return '', 200
-    
+
     else:
-        
         return '', 400
+
 
 class GLProducer(Producer):
 
@@ -128,7 +141,6 @@ class GLProducer(Producer):
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook.parse()
         try:
-            print()
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self.producer.send(topic, webhook.webhook)
             self.producer.flush(10)  # Attesa 10 secondi
@@ -149,6 +161,7 @@ class GLProducer(Producer):
 
 def main():
     app.run(host='0.0.0.0', port='5003')
+
 
 if __name__ == '__main__':
     main()

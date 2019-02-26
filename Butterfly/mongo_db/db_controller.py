@@ -1,3 +1,29 @@
+"""
+File: db_controller.py
+Data creazione: 2019-02-22
+
+<descrizione>
+
+Licenza: Apache 2.0
+
+Copyright 2019 AlphaSix
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Versione: 0.3.0
+Creatore: Timoty Granziero, timoty.granziero@gmail.com
+"""
+
 import pprint
 import copy
 
@@ -122,15 +148,17 @@ class DBController(object):
             )
 
         # Se telegram è già presente
-        if (users.find_one({'telegram': new_user['telegram']}) and
-                new_user['telegram'] is not None):
+        # assert not self.controller.user_exists(new_user['telegram']), \
+        #     f'Username {new_user["telegram"]} già presente'
+        if (new_user['telegram'] is not None and
+                users.find_one({'telegram': new_user['telegram']})):
             raise AssertionError(
                 f'Username {new_user["telegram"]} già presente'
             )
 
         # Se email è già presente
-        if (users.find_one({'email': new_user['email']}) and
-                new_user['email'] is not None):
+        if (new_user['email'] is not None and
+                users.find_one({'email': new_user['email']})):
             raise AssertionError(f'Email {new_user["email"]} già presente')
 
         # Ottiene un id valido
@@ -139,38 +167,20 @@ class DBController(object):
         else:
             id = new_user['telegram']
 
-
         # Via libera all'aggiunta al DB
-
-        if new_user['_id'] is None:
-            result = self._insert_document({
-                    'name': new_user['name'],
-                    'surname': new_user['surname'],
-                    'telegram': new_user['telegram'],
-                    'email': new_user['email'],
-                    'preferenza': None,
-                    'topics': [],
-                    'keywords': [],
-                    'irreperibilità': new_user['irreperibilità'],
-                    'sostituto': None,
-                },
-                'users'
+        if new_user['_id'] is None:  # Per non mettere _id = None sul DB
+            partial_result = DBController._user_dict_no_id(new_user)
+            result = self._insert_document(
+                partial_result,
+                'users',
             )
 
         else:
-            result = self._insert_document({
-                    '_id': new_user['_id'],
-                    'name': new_user['name'],
-                    'surname': new_user['surname'],
-                    'telegram': new_user['telegram'],
-                    'email': new_user['email'],
-                    'preferenza': None,
-                    'topics': [],
-                    'keywords': [],
-                    'irreperibilità': new_user['irreperibilità'],
-                    'sostituto': None,
-                },
-                'users'
+            partial_result = DBController._user_dict_no_id(new_user)
+            partial_result['_id'] = new_user['_id']
+            result = self._insert_document(
+                partial_result,
+                'users',
             )
 
         # NOTE: Se i dati precedenti sono validi, a questo punto sono
@@ -786,7 +796,7 @@ class DBController(object):
         })[0])
 
     @classmethod
-    def _user_without_id(cls, obj: object):
+    def _user_dict_no_id(cls, obj: dict):
         return {
             'name': obj['name'],
             'surname': obj['surname'],

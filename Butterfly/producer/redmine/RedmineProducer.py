@@ -20,31 +20,33 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.0
+Versione: 0.2.0
 Creatore: Laura Cameran, lauracameran@gmail.com
 Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
 """
-from flask import Flask
-from flask import json
-from flask import request
-import argparse
-from sys import stderr
-from kafka import KafkaProducer
-import kafka.errors
+
+# import argparse
 import json
 from pathlib import Path
+import pprint
+from sys import stderr
+
+from flask import Flask
+from flask import request
+from kafka import KafkaProducer
+import kafka.errors
+
 from producer.producer import Producer
 from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
 
+
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def api_root():
 
-    if request.headers['Content-Type'] == 'application/json':        
+    if request.headers['Content-Type'] == 'application/json':
 
         # Configurazione da config.json
         with open(Path(__file__).parents[1] / 'config.json') as f:
@@ -63,15 +65,25 @@ def api_root():
         producer = RedmineProducer(config)
 
         webhook = request.get_json()
-        print(f'\n\n\nMessaggio da Redmine:\n{webhook}\n\n\n')
+        print(
+            '\n\n\nMessaggio da Redmine:\n'
+            f'{pprint.pformat(webhook)}\n\n\n'
+            'Parsing del messaggio ...'
+        )
 
-        producer.produce(topics[0]['label'], webhook)
+        try:
+            producer.produce(topics[0]['label'], webhook)
+            print('Messaggio inviato.\n\n')
+        except KeyError:
+            print('Warning: messaggio malformato. '
+                  'Non è stato possibile effettuare il parsing.\n'
+                  'In attesa di altri messaggi...\n\n')
 
         return '', 200
 
     else:
-
         return '', 400
+
 
 class RedmineProducer(Producer):
 
@@ -110,7 +122,6 @@ class RedmineProducer(Producer):
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook.parse()
         try:
-            print()
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self.producer.send(topic, webhook.webhook)
             self.producer.flush(10)   # Attesa 10 secondi
@@ -119,12 +130,10 @@ class RedmineProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-
     @property
     def producer(self):
         """Restituisce il KafkaProducer"""
         return self._producer
-
 
     # def close(self):
     #    """Rilascia il Producer associato"""
@@ -133,6 +142,7 @@ class RedmineProducer(Producer):
 
 def main():
     app.run(host='0.0.0.0', port='5002')
+
 
 if __name__ == '__main__':
     main()

@@ -21,11 +21,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Versione: 0.1.0
-Creatore: Timoty Granziero, timoty.granziero@gmail.com
+Creatore: Laura Cameran, lauracameran@gmail.com
 Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
+    Samuele Gardin, samuelegardin@gmail.com
 """
 
 import json

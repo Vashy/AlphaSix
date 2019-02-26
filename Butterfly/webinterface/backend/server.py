@@ -1,10 +1,35 @@
+"""
+File: server.py
+Data creazione: 2019-02-22
+
+<descrizione>
+
+Licenza: Apache 2.0
+
+Copyright 2019 AlphaSix
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Versione: 0.1.0
+Creatore: Matteo Marchiori, matteomarchiori@gmail.com
+"""
+
 import cherrypy
 import pathlib
 from mongo_db.db_controller import DBConnection, DBController
 
 root = pathlib.Path(__file__).parent / '..' / 'frontend' / 'public_html'
 root = root.resolve()
-
 
 
 class Handler(object):
@@ -42,27 +67,18 @@ class Handler(object):
         return users
 
     def check_user_insertable(self, email, telegram):
+
+        if email == '' and telegram == '':
+            return False
+
         if email == '':
-            email = None
+            return not self._controller.user_exists(telegram)
+
         if telegram == '':
-            telegram = None
-        if email is not None or telegram is not None:
-            if (
-                (
-                    email is None and
-                    not self._controller.user_exists(telegram)
-                )
-                or (
-                    telegram is None and
-                    not self._controller.user_exists(email)
-                )
-                or (
-                    email is not None and telegram is not None and
-                    not self._controller.user_exists(email)
-                )
-            ):
-                return True
-        return False
+            return not self._controller.user_exists(email)
+
+        return (not self._controller.user_exists(telegram) and
+                not self._controller.user_exists(email))
 
     @cherrypy.expose
     def index(self):
@@ -90,12 +106,13 @@ class Handler(object):
         file = root / 'access.html'
         page = file.read_text()
         page = page.replace('*userid*', '%s' % userid)
-        page = page.replace('*access*',
-                            '<div>'
-                            '<p>Email/Telegram non presente nel sistema.'
-                            '</p>'
-                            '</div>'
-                            )
+        page = page.replace(
+            '*access*',
+            '<div>'
+            '<p>Email/ID Telegram non presente nel sistema.'
+            '</p>'
+            '</div>'
+        )
         return page
 
     @cherrypy.expose
@@ -112,7 +129,7 @@ class Handler(object):
             page = page.replace('*telegram*', '')
             page = page.replace('*insert*', '')
             return page
-        
+
         return self.index()
 
     @cherrypy.expose
@@ -151,30 +168,46 @@ class Handler(object):
             file = root / 'preferences.html'
             page = file.read_text()
             topics = ''
-            for topic in controller.topics():
-                topics += '<fieldset><label for="'\
-                          + str(topic['_id']) +\
-                          '">'\
-                          + str(topic['_id']) +\
-                          '</label>' \
-                          '<input name="'\
-                          + str(topic['_id']) +\
-                          '" type="checkbox"/>' \
-                          '<p>Etichetta: '\
-                          + topic['label'] +\
-                          '</p>' \
-                          '<p>Progetto: '\
-                          + topic['project'] +\
-                          '</p></fieldset>'
+            for topic in self._controller.topics():
+                # topics += '<fieldset><label for="'\
+                #           + str(topic['_id']) +\
+                #           '">'\
+                #           + str(topic['_id']) +\
+                #           '</label>' \
+                #           '<input name="'\
+                #           + str(topic['_id']) +\
+                #           '" type="checkbox"/>' \
+                #           '<p>Etichetta: '\
+                #           + topic['label'] +\
+                #           '</p>' \
+                #           '<p>Progetto: '\
+                #           + topic['project'] +\
+                #           '</p></fieldset>'
+                topics += ''.join([
+                    '<fieldset><label for="',
+                    str(topic['_id']),
+                    '">',
+                    str(topic['_id']),
+                    '</label>',
+                    '<input name="',
+                    str(topic['_id']),
+                    '" type="checkbox"/>',
+                    '<p>Etichetta: ',
+                    topic['label'],
+                    '</p>',
+                    '<p>Progetto: ',
+                    topic['project'],
+                    '</p></fieldset>',
+                ])
             page = page.replace('*topics*', topics)
             keywords = ''
-            for keyword in controller.user_keywords(
+            for keyword in self._controller.user_keywords(
                     cherrypy.session.get("userid")
             ):
                 keywords += keyword + ','
             keywords = keywords.rstrip(',')
             page = page.replace('*textkeywords*', keywords)
-            page = page.replace('*subscriptiontopic*','')
+            page = page.replace('*subscriptiontopic*', '')
             page = page.replace('*indisponibilita*', '')
             page = page.replace('*favouriteplatform*', '')
             page = page.replace('*favouriteuser*', '')
@@ -195,24 +228,36 @@ class Handler(object):
             file = root / 'insertuser.html'
             page = file.read_text()
             if self.check_user_insertable(email, telegram):
-                controller.insert_user(
+
+                # print('adduser chiamato')
+                # print(f'telegram = {telegram}')
+                # print(f'email = {email}')
+                if email == '':
+                    email = None
+                if telegram == '':
+                    telegram = None
+
+                self._controller.insert_user(
                     name=nome,
                     surname=cognome,
                     email=email,
                     telegram=telegram
                 )
-                page = page.replace('*insert*',
-                                    '<div>'
-                                    '<p>Utente inserito</p>'
-                                    '</div>'
-                                    )
+                page = page.replace(
+                    '*insert*',
+                    '<div>'
+                    '<p>Utente inserito</p>'
+                    '</div>'
+                )
             else:
-                page = page.replace('*insert*',
-                                    '<div>'
-                                    '<p>Utente già presente nel sistema '
-                                    'o id non inserito.</p>'
-                                    '</div>'
-                                    )
+                page = page.replace(
+                    '*insert*',
+                    '<div>'
+                    '<p>Utente già presente nel sistema '
+                    'o id non inserito.</p>'
+                    '</div>'
+                )
+
             if email is None:
                 email = ''
             if telegram is None:
@@ -239,18 +284,20 @@ class Handler(object):
             page = file.read_text()
             if self._controller.user_exists(userid):
                 self._controller.delete_one_user(userid)
-                page = page.replace('*removeuser*',
-                                    '<div>'
-                                    '<p>Utente rimosso</p>'
-                                    '</div>'
-                                    )
+                page = page.replace(
+                    '*removeuser*',
+                    '<div>'
+                    '<p>Utente rimosso</p>'
+                    '</div>'
+                )
             users = self.select_user()
             page = page.replace('*userids*', users)
-            page = page.replace('*removeuser*',
-                                '<div>'
-                                '<p>Utente non presente nel sistema.</p>'
-                                '</div>'
-                                )
+            page = page.replace(
+                '*removeuser*',
+                '<div>'
+                '<p>Utente non presente nel sistema.</p>'
+                '</div>'
+            )
             return page
         return self.index()
 
@@ -281,12 +328,13 @@ class Handler(object):
                                         '</div>'
                                         )
                 else:
-                    page = page.replace('*modifyuser*',
-                                        '<div>'
-                                        '<p>Utente non presente nel '
-                                        'sistema.</p>'
-                                        '</div>'
-                                        )
+                    page = page.replace(
+                        '*modifyuser*',
+                        '<div>'
+                        '<p>Utente non presente nel '
+                        'sistema.</p>'
+                        '</div>'
+                    )
             page = page.replace('*userids*', users)
             page = page.replace('*nome*', '%s' % nome)
             page = page.replace('*cognome*', '%s' % cognome)
@@ -296,12 +344,13 @@ class Handler(object):
             page = page.replace('*cognome*', '')
             page = page.replace('*email*', '')
             page = page.replace('*telegram*', '')
-            page = page.replace('*modifyuser*',
-                                '<div>'
-                                '<p>Email/Telegram'
-                                ' già presente nel sistema.</p>'
-                                '</div>'
-                                )
+            page = page.replace(
+                '*modifyuser*',
+                '<div>'
+                '<p>Email/Telegram'
+                ' già presente nel sistema.</p>'
+                '</div>'
+            )
             return page
         return self.index()
 
@@ -316,7 +365,7 @@ if __name__ == '__main__':
     with DBConnection('butterfly') as connection:
         controller = DBController(connection)
         cherrypy.quickstart(Handler(controller), "/", {
-            '/favicon.ico':{
+            '/favicon.ico': {
                 'tools.staticfile.on': True,
                 'tools.staticfile.filename': str(root / 'a6.ico')
             },
