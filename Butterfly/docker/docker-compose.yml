@@ -19,68 +19,68 @@ services:
 
 ## REDMINE + POSTGRES ##
 
-#   postgres:
-#     image: postgres:11-alpine
-#     restart: always
-#     container_name: postgres_redmine
-#     hostname: postgres_redmine
-#     volumes:
-#       - postgres-data:/var/lib/postgresql/data
-#     environment:
-#       - 'POSTGRES_PASSWORD=password'
-#       - 'POSTGRES_DB=redmine'
-#     logging:
-#       driver: "json-file"
-#       options:
-#         max-size: 500k
-#         max-file: "3"
+  postgres:
+    image: postgres:11-alpine
+    restart: always
+    container_name: postgres_redmine
+    hostname: postgres_redmine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_DB=redmine'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
 
-#   redmine:
-#     image: redmine:3
-#     restart: always
-#     container_name: redmine
-#     hostname: redmine
-#     volumes:
-#       - ./plugins/redmine:/usr/src/redmine/plugins
-#       - redmine-data:/usr/src/redmine/files
-#     ports:
-#       - '3000:3000'
-#       - '3443:443'
-#       - '3022:22'
-#     depends_on:
-#       - postgres
-#     environment:
-#       - 'REDMINE_PLUGINS_MIGRATE=true'
-#       - 'REDMINE_HTTPS=false'
-#       - 'REDMINE_DB_POSTGRES=postgres'
-#       - 'REDMINE_DB_DATABASE=redmine'
-#       - 'REDMINE_DB_PASSWORD=password'
-#     logging:
-#       driver: "json-file"
-#       options:
-#         max-size: 500k
-#         max-file: "3"
+  redmine:
+    image: redmine:3
+    restart: always
+    container_name: redmine
+    hostname: redmine
+    volumes:
+      - ./plugins/redmine:/usr/src/redmine/plugins
+      - redmine-data:/usr/src/redmine/files
+    ports:
+      - '3000:3000'
+      - '3443:443'
+      - '3022:22'
+    depends_on:
+      - postgres
+    environment:
+      - 'REDMINE_PLUGINS_MIGRATE=true'
+      - 'REDMINE_HTTPS=false'
+      - 'REDMINE_DB_POSTGRES=postgres'
+      - 'REDMINE_DB_DATABASE=redmine'
+      - 'REDMINE_DB_PASSWORD=password'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
 
 ## GITLAB ##
 
-#   gitlab:
-#     image: 'gitlab/gitlab-ce:latest'
-#     container_name: gitlab
-#     hostname: gitlab
-#     restart: always
-#     ports:
-#       - '4080:80'
-#       - '4443:443'
-#       - '4022:22'
-#     volumes:
-#       - '/srv/gitlab/config:/etc/gitlab'
-#       - '/srv/gitlab/logs:/var/log/gitlab'
-#       - '/srv/gitlab/data:/var/opt/gitlab'
-#     logging:
-#       driver: "json-file"
-#       options:
-#         max-size: 500k
-#         max-file: "3"
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab
+    hostname: gitlab
+    restart: always
+    ports:
+      - '4080:80'
+      - '4443:443'
+      - '4022:22'
+    volumes:
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 500k
+        max-file: "3"
 
 ## KAFKA + ZOOKEEPER ###
 
@@ -214,6 +214,6 @@ services:
     
 ## VOLUMI ##
 
-# volumes:
-#   postgres-data:
-#   redmine-data:
+volumes:
+  postgres-data:
+  redmine-data:
