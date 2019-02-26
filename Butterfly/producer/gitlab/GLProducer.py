@@ -20,12 +20,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.0
+Versione: 0.3.1
 Creatore: Timoty Granziero, timoty.granziero@gmail.com
 Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
+    Laura Cameran, lauracameran@gmail.com
+    Samuele Gardin, samuelegardin@gmail.com
 """
 
 # import argparse
@@ -93,7 +92,6 @@ def api_root():
         return '', 200
 
     else:
-
         return '', 400
 
 
