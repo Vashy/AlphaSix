@@ -203,9 +203,6 @@ class Handler(object):
             page = file.read_text()
             if self.check_user_insertable(email, telegram):
 
-                # print('adduser chiamato')
-                # print(f'telegram = {telegram}')
-                # print(f'email = {email}')
                 if email == '':
                     email = None
                 if telegram == '':
@@ -290,6 +287,10 @@ class Handler(object):
             file = root / 'modifyuser.html'
             page = file.read_text()
             if self.check_user_insertable(email, telegram):
+                if email is None:
+                    email = ''
+                if telegram is None:
+                    telegram = ''
                 if self._controller.user_exists(userid):
                     self._controller.update_user_name(userid, nome)
                     self._controller.update_user_surname(userid, cognome)
