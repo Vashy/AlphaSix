@@ -75,9 +75,6 @@ class TelegramConsumer(Consumer):
         print('Connessione con il Broker stabilita')
 
         self._bot = telepot.Bot(configs['telegram']['token_bot'])
-        # Da modificare nel file config.json
-        # 38883960 Timoty
-        # 265266555 Laura
 
     def send(self, msg: str):
         """Manda il messaggio finale, tramite il bot,
@@ -93,7 +90,7 @@ class TelegramConsumer(Consumer):
         pre-formatted fixed-width code block
         ```
         """
-        # Warna se l'ID del destinatario non esiste,
+        # Warn se l'ID del destinatario non esiste,
         # e non invia nessun messaggio
         try:
             log = self._bot.sendMessage(
