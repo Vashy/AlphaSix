@@ -122,15 +122,17 @@ class DBController(object):
             )
 
         # Se telegram è già presente
-        if (users.find_one({'telegram': new_user['telegram']}) and
-                new_user['telegram'] is not None):
+        # assert not self.controller.user_exists(new_user['telegram']), \
+        #     f'Username {new_user["telegram"]} già presente'
+        if (new_user['telegram'] is not None and
+                users.find_one({'telegram': new_user['telegram']})):
             raise AssertionError(
                 f'Username {new_user["telegram"]} già presente'
             )
 
         # Se email è già presente
-        if (users.find_one({'email': new_user['email']}) and
-                new_user['email'] is not None):
+        if (new_user['email'] is not None and
+                users.find_one({'email': new_user['email']})):
             raise AssertionError(f'Email {new_user["email"]} già presente')
 
         # Ottiene un id valido
