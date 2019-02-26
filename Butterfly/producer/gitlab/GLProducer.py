@@ -28,15 +28,17 @@ Autori:
     ....
 """
 
-from flask import Flask
-from flask import json
-from flask import request
-import argparse
-from sys import stderr
-from kafka import KafkaProducer
-import kafka.errors
+# import argparse
 import json
 from pathlib import Path
+import pprint
+from sys import stderr
+
+from flask import Flask
+from flask import request
+from kafka import KafkaProducer
+import kafka.errors
+
 from producer.producer import Producer
 from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
@@ -48,6 +50,7 @@ from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET', 'POST'])
 def api_root():
 
@@ -58,7 +61,7 @@ def api_root():
     #     'webhook.json'
     # )
 
-    if request.headers['Content-Type'] == 'application/json':    
+    if request.headers['Content-Type'] == 'application/json':
 
         # Configurazione da config.json
         with open(Path(__file__).parents[1] / 'config.json') as f:
@@ -75,21 +78,24 @@ def api_root():
 
         # Istanzia il Producer
         producer = GLProducer(config)
-        
+
         webhook = request.get_json()
-        print(f'\n\n\nMessaggio da GitLab:\n{webhook}\n\n\n')
+        print(
+            '\n\n\nMessaggio da GitLab:\n'
+            f'{pprint.pformat(webhook)}\n\n\n')
 
         # if args.topic:  # Topic passato con la flag -t
         #     # #producer.produce(args.topic, webhook_path)
         #     # producer.produce(args.topic, webhook)
         # else:  # Prende come Topic di default il primo del file webhook.json
         producer.produce(topics[0]['label'], webhook)
-    
+
         return '', 200
-    
+
     else:
-        
+
         return '', 400
+
 
 class GLProducer(Producer):
 
@@ -149,6 +155,7 @@ class GLProducer(Producer):
 
 def main():
     app.run(host='0.0.0.0', port='5003')
+
 
 if __name__ == '__main__':
     main()
