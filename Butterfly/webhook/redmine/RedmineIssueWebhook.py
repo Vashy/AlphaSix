@@ -38,7 +38,7 @@ from webhook.webhook import Webhook
 class RedmineIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def __init__(self, whook: object):
+    def __init__(self, whook: dict):
         self._webhook = None
         self._json_webhook = whook
 

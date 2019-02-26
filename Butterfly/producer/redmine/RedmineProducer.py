@@ -107,15 +107,13 @@ class RedmineProducer(Producer):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
-    def produce(self, topic: str, whook: object):
+    def produce(self, topic: str, whook: dict):
         """Produce il messaggio in Kafka.
 
         Arguments:
         topic -- il topic dove salvare il messaggio.
-        path -- percorso fino al json
+        whook -- il file json
         """
-
-        # assert isinstance(path, Path), 'path non è di tipo Path'
 
         webhook = RedmineIssueWebhook(whook)
 

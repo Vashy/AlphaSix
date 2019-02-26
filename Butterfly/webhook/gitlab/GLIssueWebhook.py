@@ -34,6 +34,7 @@ from webhook.webhook import Webhook
 # e.g. passando come parametri alla funzione parse().
 # Di conseguenza, rivedere i metodi astratti dell'interfaccia Webhook
 
+
 class GLIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
