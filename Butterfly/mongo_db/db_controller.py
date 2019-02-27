@@ -122,15 +122,17 @@ class DBController(object):
             )
 
         # Se telegram è già presente
-        if (users.find_one({'telegram': new_user['telegram']}) and
-                new_user['telegram'] is not None):
+        # assert not self.controller.user_exists(new_user['telegram']), \
+        #     f'Username {new_user["telegram"]} già presente'
+        if (new_user['telegram'] is not None and
+                users.find_one({'telegram': new_user['telegram']})):
             raise AssertionError(
                 f'Username {new_user["telegram"]} già presente'
             )
 
         # Se email è già presente
-        if (users.find_one({'email': new_user['email']}) and
-                new_user['email'] is not None):
+        if (new_user['email'] is not None and
+                users.find_one({'email': new_user['email']})):
             raise AssertionError(f'Email {new_user["email"]} già presente')
 
         # Ottiene un id valido
@@ -140,21 +142,20 @@ class DBController(object):
             id = new_user['telegram']
 
         # Via libera all'aggiunta al DB
-        result = self._insert_document(
-            {
-                '_id': new_user['_id'],
-                'name': new_user['name'],
-                'surname': new_user['surname'],
-                'telegram': new_user['telegram'],
-                'email': new_user['email'],
-                'preferenza': None,
-                'topics': [],
-                'keywords': [],
-                'irreperibilità': new_user['irreperibilità'],
-                'sostituto': None,
-            },
-            'users'
-        )
+        if new_user['_id'] is None:  # Per non mettere _id = None sul DB
+            partial_result = DBController._user_dict_no_id(new_user)
+            result = self._insert_document(
+                partial_result,
+                'users',
+            )
+
+        else:
+            partial_result = DBController._user_dict_no_id(new_user)
+            partial_result['_id'] = new_user['_id']
+            result = self._insert_document(
+                partial_result,
+                'users',
+            )
 
         # NOTE: Se i dati precedenti sono validi, a questo punto sono
         # già inseriti nel DB. I dati successivi vengono inseriti
@@ -767,3 +768,17 @@ class DBController(object):
                 {'email': id},
             ]
         })[0])
+
+    @classmethod
+    def _user_dict_no_id(cls, obj: dict):
+        return {
+            'name': obj['name'],
+            'surname': obj['surname'],
+            'telegram': obj['telegram'],
+            'email': obj['email'],
+            'preferenza': None,
+            'topics': [],
+            'keywords': [],
+            'irreperibilità': obj['irreperibilità'],
+            'sostituto': None,
+        }
