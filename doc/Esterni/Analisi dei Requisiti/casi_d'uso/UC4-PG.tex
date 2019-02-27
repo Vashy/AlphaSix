@@ -1,15 +1,14 @@
-\subsubsection{UC\theuccount-GL - GitLab segnala evento di push a Producer GitLab}
+\subsubsection{UC\theuccount-G - GitLab segnala evento di push a Producer GitLab}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UC\theuccount-GL - GitLab segnala evento di push a Producer GitLab}
+		\caption{UC\theuccount-G - GitLab segnala evento di push a Producer GitLab}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount-GL.
+		\item \textbf{Codice}: UC\theuccount-G.
 		\item \textbf{Titolo}: GitLab segnala evento di push a Producer GitLab.
 		\item \textbf{Attori primari}: GitLab.
-		\item \textbf{Descrizione}: il sistema qui è Producer GitLab ed è interno al sistema Butterfly. L'invio di
-		una segnalazione avviene da parte di GitLab tramite webhook. L'evento di
+		\item \textbf{Descrizione}: l'invio di una segnalazione avviene da parte di GitLab tramite webhook. L'evento di
 		push può essere composto da uno o più commit.
 		\item \textbf{Precondizione}: Viene effettuato un push su GitLab e segnalato a \progetto.
 		\item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.

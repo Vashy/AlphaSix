@@ -1,15 +1,14 @@
-\subsubsection{UC\theuccount-PGL - Producer GitLab invia messaggio al Gestore Personale}
+\subsubsection{UC\theuccount-GP - Producer GitLab invia messaggio al Gestore Personale}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UC\theuccount-PGL - Producer GitLab invia messaggio al Gestore Personale}
+		\caption{UC\theuccount-GP - Producer GitLab invia messaggio al Gestore Personale}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount-PGL.
+		\item \textbf{Codice}: UC\theuccount-GP.
 		\item \textbf{Titolo}: Producer GitLab invia messaggio al Gestore Personale.
 		\item \textbf{Attori primari}: Producer GitLab.
-		\item \textbf{Descrizione}: il sistema qui è Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab,
-		dopo aver ricevuto una segnalazione da GitLab, elabora un messaggio da inviare al Gestore Personale.
+		\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione da GitLab, elabora un messaggio da inviare al Gestore Personale.
 		\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 		\item \textbf{Postcondizione}: l Producer GitLab ha inviato al Gestore Personale il messaggio elaborato.
 		\item \textbf{Scenario principale}: 
@@ -19,18 +18,17 @@
 		
 	\end{itemize}
 	
-	\paragraph{UC\theuccount.1-PGL - Producer GitLab invia uno o più messaggi di commit al Gestore Personale}
+	\paragraph{UC\theuccount.1-GP - Producer GitLab invia uno o più messaggi di commit al Gestore Personale}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UC\theuccount.1-PGL - Producer GitLab invia uno o più messaggi di commit al Gestore Personale}
+		\caption{UC\theuccount.1-GP - Producer GitLab invia uno o più messaggi di commit al Gestore Personale}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.1-PGL.
+		\item \textbf{Codice}: UC\theuccount.1-GP.
 		\item \textbf{Titolo}: Producer GitLab invia uno o più messaggi di commit al Gestore Personale.
 		\item \textbf{Attori primari}: Producer GitLab.
-		\item \textbf{Descrizione}: il sistema qui è Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo
-		aver ricevuto una segnalazione di push da GitLab, elabora un messaggio per commit che verrà catalogato sotto il Topic "commits".
+		\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di push da GitLab, elabora un messaggio per commit che verrà catalogato sotto il Topic "commits".
 		Il messaggio elaborato conterrà i campi:
 		\begin{itemize}
 			\item Project
@@ -47,18 +45,17 @@
 		
 	\end{itemize}
 
-	\paragraph{UC\theuccount.2-PGL -  Producer GitLab invia messaggio di issue al Gestore Personale}
+	\paragraph{UC\theuccount.2-GP -  Producer GitLab invia messaggio di issue al Gestore Personale}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UC\theuccount.2-PGL -  Producer GitLab invia messaggio di issue al Gestore Personale}
+		\caption{UC\theuccount.2-GP -  Producer GitLab invia messaggio di issue al Gestore Personale}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.2-PGL.
+		\item \textbf{Codice}: UC\theuccount.2-GP.
 		\item \textbf{Titolo}:  Producer GitLab invia messaggio di issue al Gestore Personale.
 		\item \textbf{Attori primari}: Producer GitLab.
-		\item \textbf{Descrizione}: il sistema qui è Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo
-		aver ricevuto una segnalazione di issue da GitLab, controlla se la issue è appena stata creata o si tratta di una modifica di
+		\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di issue da GitLab, controlla se la issue è appena stata creata o si tratta di una modifica di
 		una issue preesistente. Il messaggio elaborato, una volta elaborato, conterrà i campi:
 		\begin{itemize}
 			\item Project
@@ -81,18 +78,17 @@
 		
 	\end{itemize}
 	
-		\subparagraph{UC\theuccount.2.1-PGL - Producer GitLab invia messaggio di una nuova issue al Gestore Personale}
+		\subparagraph{UC\theuccount.2.1-GP - Producer GitLab invia messaggio di una nuova issue al Gestore Personale}
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-			\caption{UC\theuccount.2.1-PGL - Producer GitLab invia messaggio di una nuova issue al Gestore Personale}
+			\caption{UC\theuccount.2.1-GP - Producer GitLab invia messaggio di una nuova issue al Gestore Personale}
 		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: UC\theuccount.2.1-PGL.
+			\item \textbf{Codice}: UC\theuccount.2.1-GP.
 			\item \textbf{Titolo}: Producer GitLab invia messaggio di una nuova issue al Gestore Personale.
 			\item \textbf{Attori primari}: Producer GitLab.
-			\item \textbf{Descrizione}: il sistema qui è Gestore Personale ed è interno al sistema Butterfly. Il Producer GitLab, dopo
-			aver ricevuto una segnalazione di una nuova issue da GitLab, elabora il messaggio che conterrà i campi:
+			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di una nuova issue da GitLab, elabora il messaggio che conterrà i campi:
 			\begin{itemize}
 				\item Project
 				\item Topic
@@ -114,18 +110,17 @@
 			
 		\end{itemize}
 	
-		\subparagraph{UC\theuccount.2.2-PGL - Producer GitLab invia messaggio di modifica di una issue al Gestore Personale}
+		\subparagraph{UC\theuccount.2.2-GP - Producer GitLab invia messaggio di modifica di una issue al Gestore Personale}
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-			\caption{UC\theuccount.2.2-PGL - Producer GitLab invia messaggio di modifica di una issue al Gestore Personale}
+			\caption{UC\theuccount.2.2-GP - Producer GitLab invia messaggio di modifica di una issue al Gestore Personale}
 		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: UC\theuccount.2.2-PGL.
+			\item \textbf{Codice}: UC\theuccount.2.2-GP.
 			\item \textbf{Titolo}: Producer GitLab invia messaggio di modifica di una issue al Gestore Personale.
 			\item \textbf{Attori primari}: Producer GitLab.
-			\item \textbf{Descrizione}: il sistema qui è Gestore Personale ed è interno al sistema Butterfly. l Producer GitLab, dopo
-			aver ricevuto una segnalazione di modifica di una issue da GitLab, controlla se sono stati modificati i campi Label o Title.
+			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di modifica di una issue da GitLab, controlla se sono stati modificati i campi Label o Title.
 			In caso positivo, viene inviato un messaggio elaborato al Gestore Personale, il quale conterrà:
 			\begin{itemize}
 				\item Project
@@ -146,18 +141,18 @@
 			\end{enumerate}
 			\item \textbf{Estensioni}: 
 			\begin{enumerate}
-				\item Ci sono dei messaggi non validi e vengono scartati [UCPGL\theuccount.2.3].
+				\item Ci sono dei messaggi non validi e vengono scartati [UCGP\theuccount.2.3].
 			\end{enumerate}
 		\end{itemize}
 	
-		\subparagraph{UC\theuccount.2.3-PGL - Producer GitLab scarta i messaggi non validi}
+		\subparagraph{UC\theuccount.2.3-GP - Producer GitLab scarta i messaggi non validi}
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-			\caption{UC\theuccount.2.3-PGL - Producer GitLab scarta i messaggi non validi}
+			\caption{UC\theuccount.2.3-GP - Producer GitLab scarta i messaggi non validi}
 		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: UC\theuccount.2.3-PGL.
+			\item \textbf{Codice}: UC\theuccount.2.3-GP.
 			\item \textbf{Titolo}: Producer GitLab scarta i messaggi non validi.
 			\item \textbf{Attori primari}: Producer GitLab.
 			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di una modifica issue da GitLab, controlla
