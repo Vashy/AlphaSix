@@ -1,5 +1,4 @@
 import unittest
-# import pprint
 from mongo_db.db_controller import DBConnection, DBController, pymongo
 
 
@@ -7,7 +6,7 @@ class TestDBController(unittest.TestCase):
 
     # Chiamato all'inizio
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls):  # NOSONAR
         cls.client = DBConnection('butterfly_test')
 
         # Droppa il database `butterfly_test`
@@ -24,7 +23,7 @@ class TestDBController(unittest.TestCase):
 
     # Chiamato alla fine
     @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(cls):  # NOSONAR
         cls.client.close()
 
     def test_db_instances(self):
@@ -123,7 +122,6 @@ class TestDBController(unittest.TestCase):
             documents_count = self.client.db.users.count_documents({})
 
             result = self.controller.insert_user(
-                # _id=10,
                 name='Giovanni',
                 surname='Masala',
                 telegram='@giovanni',
@@ -303,12 +301,6 @@ class TestDBController(unittest.TestCase):
         with self.subTest('Insert topic'):
             collection = self.client.db.topics
             documents_count = self.client.db.topics.count_documents({})
-
-            # result = self.controller.insert_topic({
-            #     "label": "wip",
-            #     "project": "http://localhost/gitlab/project-10",
-            # })
-
             result = self.controller.insert_topic(
                 'wip',
                 'http://localhost/gitlab/project-1',
