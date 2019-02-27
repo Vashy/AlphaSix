@@ -9,7 +9,7 @@ import time
 
 def main():
     #rootdir = directory padre da cui verranno analizzati tutti i file delle subdirectories
-    rootdir = '../doc'
+    rootdir = 'doc'
     #extension = estensione dei file che si voglio analizzare. Insieme ad extension verranno annalizzati i file senza estensione
     extensions = '.pdf'
 
@@ -32,10 +32,10 @@ def main():
                     indiceG = (89+((300*punti)-(10*lettere))/parole)
                     indiceG = round(indiceG, 2)
                     #Viene creato o modificato il file nel path indicato
-                    with open("Risultati.txt", "a+") as fout:
+                    with open("Gulpease/Risultati.txt", "a+") as fout:
                         fout.write(f"{name}: {indiceG}\t")
-                    # print(f"Parole: {parole} Lettere: {lettere} Punti: {punti}")
-                    # print(f"L'indice di {path} è: {indiceG}")
+                    print(f"Parole: {parole} Lettere: {lettere} Punti: {punti}")
+                    print(f"L'indice di {path} è: {indiceG}")
             except IOError:
                 print("File doesn't exist")
     timestamp = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
