@@ -200,18 +200,18 @@ Il messaggio elaborato, una volta elaborato, conterrà i campi:
 * **POST**: il Producer GitLab ha scartato il messaggio
 * **Estensioni**: -
 
-### UC7: Gestore Personale inserisce il messaggio finale nella coda Telegram
+### UC7: Gestore Personale invia il messaggio finale al Producer Telegram
 
-* **Titolo**: Gestore Personale inserisce il messaggio finale nella coda Telegram
-* **Attori primari**: Producer GitLab
+* **Titolo**: Gestore Personale invia il messaggio finale al Producer Telegram
+* **Attori primari**: Gestore Personale
 * **Attori secondari**: -
-* **Descrizione**: sistema coda Telegram ed è interno al sistema
+* **Descrizione**: sistema è il producer Telegram ed è interno al sistema
 Butterfly. Il Gestore Personale, dopo aver ricevuto il messaggio
 elaborato dai Producer Redmine o GitLab, valuta il campo Topic del
 messaggio, controlla chi è iscritto a quel Topic, se la persona è
 disponibile, e se vuole ricevere il messaggio tramite Telegram.
 Se tutte queste condizioni sono verificate, viene preparato il messaggio
-finale da inviare all'utente e inserito nella coda Telegram.
+finale da inviare all'utente e inviato al Producer Telegram.
 Il messaggio finale, una volta elaborato, conterrà i campi:
     * Id della chat del destinatario
     * Applicazione di provenienza
@@ -225,21 +225,21 @@ Il messaggio finale, una volta elaborato, conterrà i campi:
         * Milestone
         * Assignee
 * **PRE**: il Gestore Personale ha ricevuto il messaggio elaborato dai Producer Redmine o GitLab.
-* **POST**: Il Gestore Personale ha inserito il messaggio finale nella coda Telegram.
+* **POST**: Il Gestore Personale ha inviato il messaggio finale al Producer Telegram.
 * **Estensioni**: -
 
-### UC8: Gestore Personale inserisce il messaggio finale nella coda email
+### UC8: Gestore Personale invia il messaggio finale al Producer Email
 
-* **Titolo**: Gestore Personale inserisce il messaggio finale nella coda email
-* **Attori primari**: Producer GitLab
+* **Titolo**: Gestore Personale invia il messaggio finale al Producer Email
+* **Attori primari**: Gestore Personale
 * **Attori secondari**: -
-* **Descrizione**: sistema coda email ed è interno al sistema
+* **Descrizione**: sistema Producer Email ed è interno al sistema
 Butterfly. Il Gestore Personale, dopo aver ricevuto il messaggio
 elaborato dai Producer Redmine o GitLab, valuta il campo Topic del
 messaggio, controlla chi è iscritto a quel Topic, se la persona è
 disponibile, e se vuole ricevere il messaggio tramite email.
 Se tutte queste condizioni sono verificate, viene preparato il messaggio
-finale da inviare all'utente e inserito nella coda email.
+finale da inviare al Producer Email.
 Il messaggio finale, una volta elaborato, conterrà i campi:
     * Email del destinatario
     * Applicazione di provenienza
@@ -253,31 +253,29 @@ Il messaggio finale, una volta elaborato, conterrà i campi:
         * Milestone
         * Assignee
 * **PRE**: il Gestore Personale ha ricevuto il messaggio elaborato dai Producer Redmine o GitLab.
-* **POST**: Il Gestore Personale ha inserito il messaggio finale nella coda email.
+* **POST**: Il Gestore Personale ha inviato il messaggio finale al Producer Email.
 * **Estensioni**: -
 
-### UC9: Consumer Telegram preleva il messaggio finale dalla coda Telegram
+### UC9: Consumer Telegram inoltra il messaggio finale al bot Telegram
 
-* **Titolo**: Consumer Telegram preleva il messaggio finale dalla coda Telegram
+* **Titolo**: Consumer Telegram inoltra il messaggio finale al bot Telegram
 * **Attori primari**: Consumer Telegram
-* **Attori secondari**: -
-* **Descrizione**: sistema coda Telegram ed è interno al sistema
-Butterfly. Il Consumer Telegram preleva dalla coda Telegram il messaggio
-finale per poterlo inoltrare agli utenti di Telegram interessati.
-* **PRE**: la coda Telegram contiene almeno un messaggio da prelevare.
-* **POST**: Il messaggio finale è stato prelevato con successo.
+* **Attori secondari**: Telegram
+* **Descrizione**: sistema è il bot Telegram ed è interno al sistema
+Butterfly. Il Consumer Telegram inoltra il messaggio finale al bot Telegram, il quale notifica il destinatario finale attraverso Telegram.
+* **PRE**: il Consumer Telegram ha ricevuto almeno un messaggio.
+* **POST**: il bot Telegram ha ricevuto il messaggio finale con successo.
 * **Estensioni**: -
 
-### UC10: Consumer email preleva il messaggio della coda email
+### UC10: Consumer Email inoltra il messaggio finale al server Email
 
-* **Titolo**: Gestore Personale inserisce il messaggio finale nella coda email
-* **Attori primari**: Producer GitLab
-* **Attori secondari**: -
-* **Descrizione**: sistema coda email ed è interno al sistema
-Butterfly. Il Consumer email preleva dalla coda email il messaggio
-finale per poterlo inoltrare agli utenti di email interessati.
-* **PRE**: la coda email contiene almeno un messaggio da prelevare.
-* **POST**: Il messaggio finale è stato prelevato con successo.
+* **Titolo**: Consumer Email inoltra il messaggio finale al server Email
+* **Attori primari**: Consumer Email
+* **Attori secondari**: Email
+* **Descrizione**: sistema server email ed è interno al sistema
+Butterfly. Il Consumer Email inoltra il messaggio finale al server Email, il quale notifica il destinatario finale attraverso una Email.
+* **PRE**: il Consumer Email ha ricevuto almeno un messaggio.
+* **POST**: il server Email ha ricevuto il messaggio finale con successo.
 * **Estensioni**: -
 
 ### UC11: Accesso
