@@ -1,19 +1,18 @@
-\subsubsection{UCGL\theuccount\ - GitLab segnala apertura issue al Producer GitLab}
+\subsubsection{UC\theuccount-GL - GitLab segnala apertura issue al Producer GitLab}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UCGL\theuccount\ - GitLab segnala apertura issue al Producer GitLab}
+		\caption{UC\theuccount-GL - GitLab segnala apertura issue al Producer GitLab}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UCGL\theuccount.
+		\item \textbf{Codice}: UC\theuccount-GL.
 		\item \textbf{Titolo}: GitLab segnala apertura issue al Producer GitLab.
 		\item \textbf{Attori primari}: GitLab.
-		\item \textbf{Descrizione}:
-		il sistema Producer GitLab ed è interno al sistema Butterfly. L'invio di
+		\item \textbf{Descrizione}: il sistema qui è Producer GitLab ed è interno al sistema Butterfly. L'invio di
 		una segnalazione avviene da parte di GitLab tramite webhook. L'apertura di
 		una issue su GitLab contiene:
 		\begin{itemize}
-			\item Title e opzionalmente
+			\item Title e opzionalmente:
 			\begin{itemize}
 				\item Label
 				\item Milestone
@@ -26,56 +25,55 @@
 		\item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
-			\item GitLab invia la segnalazione di issue al Producer GitLab
+			\item GitLab procede all'invio della segnalazione di issue al Producer GitLab.
 		\end{enumerate}
 		
 	\end{itemize}
 	
 	\stepcounter{uccount}
 	
-	\subsubsection{UCGL\theuccount\ - Gitlab segnala la modifica di una issue al Producer Gitlab}
+	\subsubsection{UC\theuccount-GL - Gitlab segnala la modifica di una issue al Producer Gitlab}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UCGL\theuccount\ - Gitlab segnala la modifica di una issue al Producer Gitlab}
+		\caption{UC\theuccount-GL - Gitlab segnala la modifica di una issue al Producer Gitlab}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UCGL\theuccount.
+		\item \textbf{Codice}: UC\theuccount-GL.
 		\item \textbf{Titolo}: Gitlab segnala la modifica di una issue al Producer Gitlab.
 		\item \textbf{Attori primari}: GitLab.
-		\item \textbf{Descrizione}:
-		il sistema Producer GitLab ed è interno al sistema Butterfly. L'invio di una segnalazione avviene da parte di GitLab tramite webhook, quando una issue viene modificata.
+		\item \textbf{Descrizione}: il sistema qui è Producer GitLab ed è interno al sistema Butterfly. L'invio di una segnalazione avviene
+		da parte di GitLab tramite webhook, quando una issue viene modificata.
 		\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
 		progetto di GitLab e segnalata a \progetto.
 		\item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
-			\item GitLab invia la segnalazione di modifica issue al Producer GitLab
+			\item GitLab procede all'invio della segnalazione di modifica issue al Producer GitLab
 		\end{enumerate}
 		
 	\end{itemize}
 	
 	\stepcounter{uccount}
 	
-	\subsubsection{UCGL\theuccount\ - GitLab segnala evento di push a Producer GitLab}
+	\subsubsection{UC\theuccount-GL - GitLab segnala evento di push a Producer GitLab}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/UC1.png}\\
-		\caption{UCGL\theuccount\ - GitLab segnala evento di push a Producer GitLab}
+		\caption{UC\theuccount-GL - GitLab segnala evento di push a Producer GitLab}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UCGL\theuccount.
+		\item \textbf{Codice}: UC\theuccount-GL.
 		\item \textbf{Titolo}: GitLab segnala evento di push a Producer GitLab.
 		\item \textbf{Attori primari}: GitLab.
-		\item \textbf{Descrizione}:
-		il sistema Producer GitLab ed è interno al sistema Butterfly. L'invio di
+		\item \textbf{Descrizione}: il sistema qui è Producer GitLab ed è interno al sistema Butterfly. L'invio di
 		una segnalazione avviene da parte di GitLab tramite webhook. L'evento di
 		push può essere composto da uno o più commit.
 		\item \textbf{Precondizione}: Viene effettuato un push su GitLab e segnalato a \progetto.
 		\item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
-			\item GitLab invia la segnalazione di push al Producer GitLab
+			\item GitLab procede all'invio della segnalazione di push al Producer GitLab.
 		\end{enumerate}
 		
 	\end{itemize}

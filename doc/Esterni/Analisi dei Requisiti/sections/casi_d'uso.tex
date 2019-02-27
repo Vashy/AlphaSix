@@ -25,7 +25,17 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 
 \include{casi_d'uso/UCR}
 
+\stepcounter{uccount}
+
 \include{casi_d'uso/UCGL}
+
+\stepcounter{uccount}
+
+\include{casi_d'uso/UCPR}
+
+\stepcounter{uccount}
+
+\include{casi_d'uso/UCPGL}
 
 
 \subsubsection{UC\theuccount\ - Il Producer invia una segnalazione al Broker}
@@ -38,7 +48,8 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: il Producer invia una segnalazione al Broker.
 		\item \textbf{Attori primari}: Producer.
-		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/ Gitlab, la inoltra al Broker. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
+		\item \textbf{Descrizione}: il Producer, dopo aver ricevuto una determinata segnalazione da Redmine/ Gitlab, la inoltra al Broker. Il sistema di
+		riferimento qui è il Broker ed è interno al sistema \progetto.
 		\item \textbf{Precondizione}: il Producer ha ricevuto una segnalazione da inoltrare.
 		\item \textbf{Postcondizione}: il Producer ha inviato al Broker la segnalazione.
 		\item \textbf{Scenario principale}:
@@ -59,8 +70,10 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: il Consumer interroga il Broker.
 		\item \textbf{Attori primari}: Consumer.
-		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dal Topic. Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
-		\item \textbf{Precondizione}: il Broker ha un messaggio pronto ad essere inoltrato da un Consumer verso un client delle tecnologie con cui il sistema si interfaccia.
+		\item \textbf{Descrizione}: il Consumer chiede al Broker di acquisire il messaggio da inoltrare verso il client della tecnologia specificata dal Topic.
+		Il sistema di riferimento qui è il Broker ed è interno al sistema \progetto.
+		\item \textbf{Precondizione}: il Broker ha un messaggio pronto ad essere inoltrato da un Consumer verso un client delle tecnologie con cui
+		il sistema si interfaccia.
 		%TODO: consumer
 		\item \textbf{Postcondizione}: il messaggio recuperato dal Consumer è inoltrato al client della tecnologia correlata.
 		\item \textbf{Scenario principale}: 
@@ -80,7 +93,9 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: Telegram/e-mail riceve un messaggio.
 		\item \textbf{Attori primari}: Telegram/server e-mail.
-		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema\\Butterfly\footnote{L'\gloss{attore} Telegram/e-mail è passivo, riceve e non agisce. Viene creato questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio a Telegram/e-mail", poiché Telegram/mail è esterno a \progetto, quindi non può essere considerato un suo sottosistema.}.
+		\item \textbf{Descrizione}: il sistema di riferimento qui è il Consumer ed è interno al sistema\\Butterfly\footnote{L'\gloss{attore} Telegram/e-mail
+			è passivo, riceve e non agisce. Viene creato questo caso d'uso al fine di inserire la funzionalità "Il Consumer invia un messaggio
+			a Telegram/e-mail", poiché Telegram/mail è esterno a \progetto, quindi non può essere considerato un suo sottosistema.}.
 		Il messaggio viene inviato dal Producer a un client esterno al sistema identificato tramite il Topic.
 		
 		\item \textbf{Precondizione}: il Consumer invia un messaggio a Telegram/server e-mail in seguito a un'interrogazione del Broker.
@@ -185,7 +200,8 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 		\item \textbf{Codice}: UC\theuccount.
 		\item \textbf{Titolo}: modifica delle preferenze.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: attraverso un'interfaccia l'utente può modificare i vari parametri per configurare l'applicazione per le proprie esigenze. Il sistema di riferimento considerato è tutto \progetto.
+		\item \textbf{Descrizione}: attraverso un'interfaccia l'utente può modificare i vari parametri per configurare l'applicazione per
+		le proprie esigenze. Il sistema di riferimento considerato è tutto \progetto.
 		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema.
 		\item \textbf{Postcondizione}: l'utente effettua zero o più modifiche nella configurazione personale dell'applicazione. 
 		\item \textbf{Scenario Principale}:
@@ -206,8 +222,10 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 		\item \textbf{Codice}: UC\theuccount.1.
 		\item \textbf{Titolo}: aggiunta preferenze.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra Topic, giorni di calendario e piattaforme di messaggistica come Telegram o e-mail.
-		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le preferenze possibili proposte da \progetto.
+		\item \textbf{Descrizione}: l'utente, date le varie opzioni per configurare \progetto, aggiunge una preferenza tra Topic, giorni di
+		calendario e piattaforme di messaggistica come Telegram o e-mail.
+		\item \textbf{Precondizione}: l'utente ha acceduto con le sue credenziali corrette nel sistema e non ha selezionato tutte le
+		preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in aggiunta rispetto a quella precedente.
 		\item \textbf{Scenario principale}: l'utente può scegliere, tra le varie opzioni disponibili, quale aggiungere alla sua configurazione personale.
 	\end{itemize}
@@ -217,7 +235,8 @@ Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al 
 		\item \textbf{Codice}: UC\theuccount.1.1.
 		\item \textbf{Titolo}: iscrizione Topic.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: data la lista di Topic presenti già inserita precedentemente, l'utente ne seleziona uno o più a cui è interessato, ricevendone una notifica. I Topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
+		\item \textbf{Descrizione}: data la lista di Topic presenti già inserita precedentemente, l'utente ne seleziona uno o più a cui è
+		interessato, ricevendone una notifica. I Topic sono divisi per categoria comprendendo etichette o parole chiave stabilite in precedenza.
 		\item \textbf{Precondizione}: l'utente ha acceduto correttamente nel sistema e non ha selezionato tutti i Topic possibili proposti da \progetto.
 		\item \textbf{Postcondizione}: il numero di Topic a cui è interessato l'utente è aumentato.
 		\item \textbf{Scenario principale}:
