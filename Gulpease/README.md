@@ -42,6 +42,6 @@ E' possibile crearlo in due modi:
 
 # Script python gulpeaseIndex
 
-1. Nella variabile `rootdir` indicare la directory padre da cui iniziare a cercare tutti i file
-2. Nella variabile `extensions` indicare l'estensione del file che si vuole analizzare
+1. Nella variabile `rootdir` indicare la directory padre da cui iniziare a cercare tutti i file (considerare il percorso partendo dalla root della cartella Git)
+2. Nella variabile `extensions` indicare l'estensione del file che si vuole analizzare (considerare il percorso partendo dalla root della cartella Git)
 3. Nella variabile `fout` indicare dove salvare i risultati
