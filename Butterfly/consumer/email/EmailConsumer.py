@@ -20,12 +20,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.0
-Creatore: Timoty Granziero, timoty.granziero@gmail.com
+Versione: 0.2.0
+Creatore: Samuele Gardin, samuelegardin@gmail.com
 Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
+    Matteo Marchiori, matteo.marchiori@gmail.com
+    Nicola Carlesso
 """
 
 # Posizione: Butterfly/
@@ -94,12 +93,12 @@ class EmailConsumer(Consumer):
             while True:
                 try:
                     # Prompt per l'inserimento della psw
-                    psw = getpass.getpass(
-                        '\nInserisci la password '
-                        f'di {self._sender}: '
-                    )
+                    # psw = getpass.getpass(
+                    #     '\nInserisci la password '
+                    #     f'di {self._sender}: '
+                    # )
 
-                    mailserver.login(self._sender, psw)  # Login al server SMTP
+                    mailserver.login(self._sender, 'alfa6swe')  # Login al server SMTP
                     break  # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova
