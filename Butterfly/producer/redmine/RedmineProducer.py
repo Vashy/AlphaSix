@@ -20,22 +20,69 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.0
+Versione: 0.2.0
 Creatore: Laura Cameran, lauracameran@gmail.com
 Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
 """
 
-import argparse
-from sys import stderr
-from kafka import KafkaProducer
-import kafka.errors
+# import argparse
 import json
 from pathlib import Path
+import pprint
+from sys import stderr
+
+from flask import Flask
+from flask import request
+from kafka import KafkaProducer
+import kafka.errors
+
 from producer.producer import Producer
 from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
+
+
+app = Flask(__name__)
+
+
+@app.route('/', methods=['GET', 'POST'])
+def api_root():
+
+    if request.headers['Content-Type'] == 'application/json':
+
+        # Configurazione da config.json
+        with open(Path(__file__).parents[1] / 'config.json') as f:
+            config = json.load(f)
+
+        """Fetch dei topic dal file topics.json
+        Campi:
+        - topics['id']
+        - topics['label']
+        - topics['project']
+        """
+        with open(Path(__file__).parents[2] / 'topics.json') as f:
+            topics = json.load(f)
+
+        # Istanzia il Producer
+        producer = RedmineProducer(config)
+
+        webhook = request.get_json()
+        print(
+            '\n\n\nMessaggio da Redmine:\n'
+            f'{pprint.pformat(webhook)}\n\n\n'
+            'Parsing del messaggio ...'
+        )
+
+        try:
+            producer.produce(topics[0]['label'], webhook)
+            print('Messaggio inviato.\n\n')
+        except KeyError:
+            print('Warning: messaggio malformato. '
+                  'Non è stato possibile effettuare il parsing.\n'
+                  'In attesa di altri messaggi...\n\n')
+
+        return '', 200
+
+    else:
+        return '', 400
 
 
 class RedmineProducer(Producer):
@@ -60,23 +107,19 @@ class RedmineProducer(Producer):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
-    def produce(self, topic: str, path: Path):
+    def produce(self, topic: str, whook: dict):
         """Produce il messaggio in Kafka.
 
         Arguments:
         topic -- il topic dove salvare il messaggio.
-        path -- percorso fino al json
+        whook -- il file json
         """
 
-        assert isinstance(path, Path), \
-            'path non è di tipo Path'
-
-        webhook = RedmineIssueWebhook(path)
+        webhook = RedmineIssueWebhook(whook)
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook.parse()
         try:
-            print()
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self.producer.send(topic, webhook.webhook)
             self.producer.flush(10)   # Attesa 10 secondi
@@ -85,12 +128,10 @@ class RedmineProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-
     @property
     def producer(self):
         """Restituisce il KafkaProducer"""
         return self._producer
-
 
     # def close(self):
     #    """Rilascia il Producer associato"""
@@ -98,41 +139,7 @@ class RedmineProducer(Producer):
 
 
 def main():
-
-    # Configurazione da config.json
-    with open(Path(__file__).parents[1] / 'config.json') as f:
-        config = json.load(f)
-
-    """Fetch dei topic dal file topics.json
-    Campi:
-    - topics['id']
-    - topics['label']
-    - topics['project']
-    """
-    with open(Path(__file__).parents[2] / 'topics.json') as f:
-        topics = json.load(f)
-
-    # Istanzia il Producer
-    producer = RedmineProducer(config)
-
-    # Parsing dei parametri da linea di comando
-    parser = argparse.ArgumentParser(description='Crea messaggi su Kafka')
-    parser.add_argument('-t', '--topic', type=str,
-                        help='topic di destinazione')
-    args = parser.parse_args()
-
-    # Inzializza il percorso a open_issue_redmine_webhook.json
-    webhook_path = (
-        Path(__file__).parents[2] /
-        'webhook' /
-        'redmine' /
-        'open_issue_redmine_webhook.json'
-    )
-
-    if args.topic:  # Topic passato con la flag -t
-        producer.produce(args.topic, webhook_path)
-    else:  # Prende come Topic di default il primo del file webhook.json
-        producer.produce(topics[0]['label'], webhook_path)
+    app.run(host='0.0.0.0', port='5002')
 
 
 if __name__ == '__main__':
