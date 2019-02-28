@@ -187,7 +187,7 @@
 			\end{itemize}
 
 			\subparagraph{Google Drive}\label{GoogleDrive}
-			Per la condivisione di file, tabelle informative e diagrammi dei casi d'uso e delle classi (utilizzando \hyperref[drawio]{draw.io}), utilizziamo lo strumento
+			Per la condivisione di file informali, tabelle informative e diagrammi dei casi d'uso e delle classi (con \hyperref[drawio]{draw.io}), utilizziamo lo strumento
 			di cloud Google Drive. Esso ci permette di tenere file informativi sempre aggiornati e condivisi tra tutti i membri del team, raggiungibili in qualunque momento
 			anche da smartphone. Altre informazioni sono reperibili tramite i link informativi in \S\ref{rifinfo}.
 
@@ -228,22 +228,22 @@
 
 		\subsubsection{Mantenimento}\label{Mantenimento}
 
-			\paragraph{Versionamento} \label{Versionamento}
-			Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
-			precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
-			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
-			\begin{center}
-				\texttt{X.Y.Z}
-			\end{center}
-			\indent dove:
-			\begin{itemize}
-				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento,
-					determinando una major release
-				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
-					Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
-				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta
-					di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
-			\end{itemize}
+			% \paragraph{Versionamento} \label{Versionamento}
+			% Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
+			% precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
+			% Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
+			% \begin{center}
+			% 	\texttt{X.Y.Z}
+			% \end{center}
+			% \indent dove:
+			% \begin{itemize}
+			% 	\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento,
+			% 		determinando una major release
+			% 	\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
+			% 		Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
+			% 	\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta
+			% 		di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
+			% \end{itemize}
 
 			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
 
@@ -352,6 +352,101 @@
 		Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
 
 		% \paragraph{Continous Delivery}\label{CD} % TODO Magari più avanti?
+
+	\subsection{Configurazione}\label{Configurazione}
+
+	\subsubsection{Descrizione}
+	I sorgenti e i documenti ufficiali del gruppo vengono versionati utilizzando il sistema di controllo versione \gloss{Git}, strumento scelto vista la sua ampia diffusione
+	e la sua integrazione con GitHub. La scelta di utilizzare un client grafico oppure i comandi da terminale è lasciata al singolo membro del team.
+
+	\subsubsection{Versionamento} \label{Versionamento}
+			Tutti i documenti redatti e i file sorgente supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
+			precedenti in qualsiasi punto del loro \gloss{ciclo di vita}.
+			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\par
+			La versione di un file è espressa secondo la notazione
+			\begin{center}
+				\texttt{X.Y.Z}
+			\end{center}
+			\indent dove:
+			\begin{itemize}
+				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento o il sorgente in esame,
+					determinando una major release
+				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
+					Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
+				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore.
+				Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
+			\end{itemize}
+
+	\subsubsection{Struttura delle Repository}
+	Abbiamo creato due repository principali fino a questo momento:
+	\begin{itemize}
+		\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
+		\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi. 
+	\end{itemize}
+
+	\subsubsection{Norme di branching}
+	Ogni repository che usiamo avrà due \gloss{branch} principali:
+	\begin{itemize}
+		\item \textbf{master}: branch principale che viene aggiornato solamente in vista di un rilascio, quando il \Res\ approva un file o documento, che causa
+			lo scatto del numero di versione più significativo.
+		\item \textbf{develop}: branch usato per lo sviluppo in vista di un rilascio, senza lasciare il master branch in uno stato di incompletezza. Viene aggiornato
+			quando una funzionalità è matura.
+	\end{itemize}
+
+	Sono presenti poi dei branch dedicati allo sviluppo e alla manutenzione, che verranno aperti in base alle necessità:
+	\begin{itemize}
+		\item \textbf{feature/nome-feature}: branch aperti in vista di uno sviluppo di una qualsiasi funzionalità (nome-feature è un placeholder) o bug fix sul develop.
+			Una volta che la funzionalità raggiunge un adatto stato di maturità, verrà fatto il merge sul develop e cancellato il branch relativo a quella funzionalità.
+		\item \textbf{hotfix/nome-hotfix}: branch aperti in vista di un bug non notato nel master branch che necessita di essere sistemato al più presto o in fase di
+			correzione delle problemi segnalati dai professori a seguito di una revisione.
+	\end{itemize}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{img/branches.png}\\
+		\caption[Albero dei branch da Gitkraken]{Visione generale dell'albero dei branch in un momento casuale da Gitkraken}
+		\label{fig:butterfly}
+	\end{figure}
+
+	\subsubsection{Aggiornamento della repository}
+
+	Per aggiornare la repository remota con i cambiamenti effettuati nella workcopy locale, la prassi da seguire è la seguente:
+	\begin{itemize}
+		\item Controllare di trovarsi nel branch corretto con il comando:
+			\begin{quote}
+				\texttt{\$\ git branch}
+			\end{quote}
+			In caso negativo, dare il comando \texttt{git checkout nomebranch} per spostarsi nel branch corretto prima di procedere.
+		\item Aggiornare la workcopy locale con eventuali cambiamenti presenti nella repository remota:
+			\begin{quote}
+				\texttt{\$\ git pull}
+			\end{quote}
+		\begin{itemize}
+			\item In caso di conflitti, dare la sequenza di comandi che segue per risolverli senza dover effettuare un commit
+				dedicato solo al merge:
+				\begin{quote}
+					\texttt{\$\ git stash}\par
+					\texttt{\$\ git pull}\par
+					\texttt{\$\ git stash pop}\par				
+				\end{quote}
+				A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
+				con le proprie modifiche applicate.
+		\end{itemize} 
+		\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
+			per aggiungere più file contemporaneamente):
+			\begin{quote}
+				\texttt{\$\ git add [nome-file1] [nome-file2] \dots}
+			\end{quote}
+		\item Fare il commit e riassumere i cambiamenti apportati:
+		\begin{quote}
+			\texttt{\$\ git commit -m "Cambiamenti apportati"}
+		\end{quote}
+		\item Effettuare il push per pubblicare le modifiche locali nella repository remota:
+		\begin{quote}
+			\texttt{\$\ git push}
+		\end{quote}
+	\end{itemize}
+
 
 	\subsection{Verifica}\label{Verifica}
 
