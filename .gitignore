@@ -319,3 +319,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# SonarQube
+.scannerwork/
