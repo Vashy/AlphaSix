@@ -84,19 +84,20 @@
 			\begin{center}
 				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]}
 			\end{center}
-			
-			Nel caso dell'attualizzazione dei rischi, vengono aggiustati i valori di gravità, probabilità, classe e al codice viene aggiunta in coda la data in cui si è verificato il problema, in modo da tenere una traccia cronologica.\\
-			
+
+			Nel caso dell'attualizzazione dei rischi, vengono aggiustati i valori di gravità,
+			probabilità, classe e al codice viene aggiunta in coda la data in cui si è verificato il problema, in modo da tenere una traccia cronologica.
+
 			Il codice in tal caso diventa:
-			
+
 			\begin{center}
 				\texttt{[Tipologia][ID]-[Gravità][Probabilità][Classe]-[Data]}
 			\end{center}
-		
-			
-			Nel caso i rischi non si siano verificati ma ne venga riconsiderata la probabilità, allora vengono posti in elenco in seguito ai rischi effettivamente riscontrati, con il vecchio codice per tipologia e id e con i valori aggiornati per gravità, probabilità e classe.
-			\\
-			
+
+
+			Nel caso i rischi non si siano verificati ma ne venga riconsiderata la probabilità, allora vengono posti in elenco in seguito ai rischi effettivamente
+			riscontrati, con il vecchio codice per tipologia e id e con i valori aggiornati per gravità, probabilità e classe.
+
 			I valori che possono assumere sono:
 
 			\begin{itemize}
@@ -129,7 +130,7 @@
 					\item \textbf{1}: medio.
 					\item \textbf{2}: alto.
 				\end{itemize}
-				
+
 				\item \textbf{Data}: data in cui si è verificato il problema.
 			\end{itemize}
 
@@ -264,7 +265,7 @@
 			%Per coordinare il team e il committente sullo stato del progetto sono state stabilite le seguenti norme:
 			Per la coordinazione del team e le comunicazioni con il cliente sullo stato del progetto, abbiamo stabilito le seguenti norme:
 			\begin{itemize}
-				\item Per le comunicazioni interne utilizzeremo gli strumenti segnalati in \S\ref{pianificazione e coordinamento},
+				\item Per le comunicazioni interne utilizzeremo gli strumenti segnalati in \S\ref{PianificazioneCoordinamento},
 					in particolare con l'utilizzo di \gloss{Slack}.
 				\item All'occorrenza, fisseremo riunioni per le questioni più importanti, concordando:
 					\begin{itemize}
@@ -348,17 +349,17 @@
 
 			%\paragraph{Redmine} % ? da vedere piu avanti.
 			% Per ora GitHub per issue-task tracker ~Tim
-			
-			
+
+
 	\subsection{Metriche} \label{ProcessiOrganizzativiMetriche}
 	La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
-	
+
 	\subsubsection{MPR001 Varianza della pianificazione}
 	Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
 	Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
 	\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
-	
-	
+
+
 	\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività
 	viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
 
@@ -382,7 +383,7 @@
 			Programmatore & \euro\ 15 \\
 			Verificatore & \euro\ 15 \\
 		\end{paddedtablex}
-		\caption{Testo}
+		\caption{Costo orario per ruolo}
 	\end{table}
 
 	\subsubsection{MPR004 Frequenza commit nella repository}
@@ -398,20 +399,22 @@
 		La formazione avviene tramite studio autonomo dei \gloss{framework} menzionati da \II\ durante la presentazione del capitolato e incontri interni.
 
 		\subsubsection{Piano di formazione}
-		Il piano di formazione prevede:
+		Il piano di formazione prevede lo studio di:
 		\begin{itemize}
-			\item Lo studio della documentazione\footnote{Vedere \S\ref{rifinfo} per i link alla documentazione.} di tecnologie e metodologie quali:
+			\item Tecnologie e metodologie per la realizzazione del Proof of Concept\footnote{Vedere \S\ref{rifinfo} per i link alla documentazione.}:
 			\begin{itemize}
-				\item \LaTeX
+				% \item \LaTeX
+				\item Python 3
+				\item Apache Kafka
 				\item Redmine
 				\item GitLab
-				%\item SonarQube
-				\item Apache Kafka
-				\item Telegram
-				%\item Slack
+				\item Telegram API per l'invio di messaggi su Telegram tramite un bot dedicato
+				\item Protocollo SMTP per l'invio di email tramite uno script Python
 				\item Docker
-				\item API Rest
-				\item The Twelve-Factor App
+				% \item SonarQube
+				% \item Slack
+				% \item API Rest
+				% \item The Twelve-Factor App
 			\end{itemize}
-			\item Lo studio delle possibilità d'integrazione tra di esse
+			\item Possibilità d'integrazione tra le tecnologie sopra elencate
 		\end{itemize}

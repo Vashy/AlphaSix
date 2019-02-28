@@ -283,17 +283,7 @@ def foo(a, b):		# No
 	return a + b
 \end{lstlisting}
 
-        % \paragraph{Costruttore} %TODO roba da js
-        %Contenuto
-
-        % \paragraph{Operatore di espansione} %TODO Altra roba da js
-        %Contenuto
-
-
         % \paragraph{Funzioni anonime} %TODO Solo in caso di necessità
-        %Contenuto
-
-        % \paragraph{Punti e virgola} %TODO Niente punti e virgola in Python!
         %Contenuto
 
         \paragraph{Indentazione}
@@ -350,6 +340,13 @@ def cheeseshop(kind, *arguments, **keywords):
         \paragraph{Complessità ciclomatica}
 		Va evitato il più possibile l'annidamento di più strutture di controllo. Per questo, stare sotto i tre livelli di annidamento è una buona
 		prassi che semplifica leggibilità e \gloss{debugging} e va rispettata il più possibile.
+
+
+		\paragraph{Ereditarietà}
+		Evitare l'ereditarietà tra classi che hanno stato. È invece possibile che una classe derivi da un'altra se quest'ultima è a tutti gli
+		effetti un'\gloss{interfaccia}, ossia definisce solo comportamenti astratti (i.e. è composta solo da metodi astratti).\par
+		Viene adottato, per ovviare alla assente ereditarietà, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce %
+		``Composition over inheritance'' in \S\ref{rifnorma}.}.
 
 
         \paragraph{Commenti}
