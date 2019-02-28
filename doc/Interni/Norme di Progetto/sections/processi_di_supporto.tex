@@ -292,8 +292,8 @@
 				con la convenzione \mbox{\texttt{CamelCase vX.Y.Z.pdf}}, dove CamelCase sarà il nome del documento generico mentre \texttt{vX.Y.Z}
 				sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
 			\end{itemize}
-
-		\subsubsection{Metriche}\label{ProcessiSupportoMetriche}
+		
+		\subsubsection{Metriche per i documenti}\label{ProcessiSupportoMetriche}
 		La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 		
 			\paragraph{MPD001 Indice di Gulpease}
@@ -318,7 +318,7 @@
 
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 			
-	\subsection{Codice}\label{PS:Codice}
+	\subsection{Codice sorgente}\label{PS:Codice}
 	
 	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
 	    
@@ -326,7 +326,7 @@
 		Anche per quanto riguarda il processo di codifica verrà adottato il principio di Continuous Integration.
 
 			\subparagraph{Jenkins}\label{Jenkins}
-			Per quanto concerne il codice sorgente useremo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\par
+			Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\par
 			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
 			\begin{itemize}
 				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
@@ -339,7 +339,7 @@
 			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
 
 		\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
-		Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creeremo dei container specifici per ogni componente. Per fare ciò, utilizziamo
+		Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creiamo dei container specifici per ogni componente. Per fare ciò, utilizziamo
 		\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
 		un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
 		\begin{itemize}
@@ -351,7 +351,8 @@
 		\end{itemize}
 		Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
 
-		% \paragraph{Continous Delivery}\label{CD} % TODO Magari più avanti?
+		% \paragraph{Continous Delivery}\label{CD} 
+		%TODO: Magari più avanti?
 
 	\subsection{Configurazione}\label{Configurazione}
 
@@ -531,12 +532,14 @@
 
 			\paragraph{Analisi dei documenti}
 			L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
-			Per l'analisi dei documenti vengono utilizzate:
+			Per l'analisi dei documenti vengono utilizzate due metriche:
 
 			\begin{itemize}
 				\item MPD001
 				\item MPD002
 			\end{itemize}
+			
+			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 
 			\paragraph{Analisi dei processi}
 			Per analizzare i processi usiamo gli standard sopra elencati. Ad ogni fase del processo, verranno valutati gli attributi richiesti secondo
@@ -551,8 +554,6 @@
 				% \item \textbf{MPR010 Norme di progetto non seguite}
 			\end{itemize}
 
-
-			\paragraph{Metriche}
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 		
 			\subparagraph{MPR009 Frequenza controllo prodotti}
@@ -570,36 +571,78 @@
 		\subsubsection{Analisi dinamica}\label{AnalisiDinamica} %TODO
 		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
 		Vengono presi in esame i prodotti software e i processi.
-		%Parlare dei test..
 		
-			\paragraph{Procedure} %TODO: prendere spunto da 3.2.6.2.4 Breaking Bug RA
-			%Ogni test deve essere ripetibile.. ogni test vengano segnati i seguenti riferimenti:
+		È oppurtono ricordare che i test devono essere:
+		\begin{itemize}
+			\item ripetibili
+			\item automatizzati tramite strumenti 
+			\item oggettivi e non personalizzati
+		\end{itemize}
+		
+		Quindi, perchè l'analisi dinamica avvenga in modo corretto, è necessario tenere conto di alcuni importanti elementi quali:
+		\begin{itemize}
+			\item \textbf{Ambiente di sviluppo}: il sistema hardware e software adottato durante il test.
+			\item \textbf{Stato iniziale}: primo stato del prodotto, antecedente all'inizio del test.
+			\item \textbf{Input}: dati inseriti.
+			\item \textbf{Output}: dati attesi.
+			\item \textbf{Notifica risultato}: notifiche riguardanti il risultato ottenuto dal test (opzionale).
+		\end{itemize}
+		
+			
+			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST:
+			%fino ad RP si fanno test d'integrazione, non unità
+			
+			\paragraph{Test di sistema} \label{testsistema} 
+			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
+			Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
+			
+			\paragraph{Test d'integrazione} \label{testintegrazione}
+			I test d'integrazione verificano il residuo mettendo insieme due unità. Queste unità in particolare sono considerati indipendenti, ma realizzate al fine di essere composte per collaborare.
+			Il test di integrazione ha tanti test quanti ne servono per accertarsi che tutti i dati scambiati attraverso ciascuna interfaccia siano conformi alla loro specifica e accertarsi che tutti i flussi di controllo previsti siano stati effettivamente provati.
+			La strategia che i test d'integrazione adottano è una strategia di tipo incrementale: si basa nella prosecuzione per passi, aggiungendo parti fino al completamento. 
+			Più test eseguiamo, più è piccola la parte che stiamo testando. \\
+			In una buona architettura, l'integrazione può anche essere parallelizzata.
+			In particolare, la logica dell'integrazione funzionale segue i passi:
 			\begin{itemize}
-				\item \textbf{Ambiente di sviluppo}:
-				\item \textbf{Stato iniziale}:
-				\item \textbf{Input}: inserito.
-				\item \textbf{Output}: atteso.
-				\item \textbf{Notifica risultato}:
+				\item Selezione delle funzionalità da integrare
+				\item Identificazione delle varie componenti che svolgono quelle funzionalità
+				\item Ordinamento delle componenti per numero di dipendenze crescenti
+				\item Esecuzione dell'integrazione in quel determinato ordine
 			\end{itemize}
+			Inoltre rileva problemi quali:
+			\begin{itemize}
+				\item Errori residui nella realizzazione dei componenti
+				\item Modifiche delle interfacce o cambiamenti nei requisiti
+				\item Riuso di componenti dal comportamento oscuro o inadatto
+				\item Integrazione con altre applicazioni non ben conosciute
+			\end{itemize}
+			
+			
+			\paragraph{Test di unità} \label{testunita} 
+			L'unità è un problema 
+			I test di unità sono l'attività di test di singole unità software.
+			Per unità si intende il minimo componente di un programma dotato di funzionamento autonomo, ma non è semplice individuare l'unità.
+			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}. 
+			
+			
+			\paragraph{Test di regressione} \label{testregressione}
+			I test di regressione sono una ripetizione selettiva dei test di unità, integrazione e sistema.
+			La utilizziamo per assicurarci che una modifica fatta su un unità per correggere un problema, non faccia danno ad altre causando regressione.
+			Ciò avviene quando il sistema è altamente accoppiato. 
+			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulamento}.
+			
+			\paragraph{Test di accettazione} \label{testaccettazione}
+			Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
+			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
 		
-			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST
-			
-			\paragraph{Test di sistema} %TODO
-			%Contenuto
-			
-			\paragraph{Test d'integrazione} %TODO
-			%Contenuto
-			
-			\paragraph{Test di unità} %TODO
-			%Contenuto
-			
-			\paragraph{Test di regressione} %TODO
-			%Contenuto
-			
-			\paragraph{Test di accettazione} %TODO
-			%Contenuto
 		
+		\subsubsection{Anomalie riscontrate}\label{Anomalie}
+		Durante i processi di verifica è possibile riscontrare a volte alcune anomalie.
+		Tali anomalie posso essere dovute:
+		\begin{itemize}
+			\item A qualche valore preso come riferimento diverso da quello prestabilito per la metrica
+			\item Al fallimento di un test
+		\end{itemize}
+		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
 		
-		\subsubsection{Tipologie e trattamento delle anomalie riscontrate}\label{TrattamentoAnomalie} %TODO
-		%Anomalie dovute al mancato rispetto dei valori di riferimento stabiliti per le metriche applicate... e Anomalie dovute al mancato superamento dei test pianificati.....
 		
