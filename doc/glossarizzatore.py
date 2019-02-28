@@ -1,3 +1,13 @@
+"""
+Per usare, basta eseguire python3 glossarizzatore.py
+Il controllo viene effettuato solo sui file necessari
+
+TODO
+Rimozione dei gloss presenti
+Controllo inclusione dei file (altrimenti non serve a un granche')
+"""
+
+
 import fileinput
 from pathlib import Path
 import re
@@ -25,7 +35,14 @@ glossario_copy = glossario
         
 localdir = Path('.')
 for i in localdir.glob('**/*.tex'):
-    if 'template' not in str(i) and 'Glossario' not in str(i) and 'diario' not in str(i) and ('sections' in str(i) or 'descrizione' in str(i) or 'Verbali' in str(i)):
+    if('template' not in str(i)
+       and 'Glossario' not in str(i)
+       and 'diario' not in str(i)
+       and ('sections' in str(i)
+            or 'descrizione' in str(i)
+            or 'Verbali' in str(i)
+            )
+       ):
         for line in fileinput.input(str(i), inplace=True):
             if fileinput.isfirstline():
                 glossario = glossario_copy
