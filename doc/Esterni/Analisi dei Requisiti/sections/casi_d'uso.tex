@@ -1,94 +1,121 @@
 \newpage
-\section{Casi d'uso}
+\section{Casi d'uso}\label{CasiDUso}
 Questa sezione elenca le funzionalità offerte da \progetto\ descritte attraverso il linguaggio \gloss{UML}.
 \progetto\ può essere visto come l'insieme di più sottosistemi che verranno di seguito elencati e che sono stati descritti in modo molto generale anche attraverso la Figura \ref{fig:butterfly}.\\
 Questa mostra la suddivisione di \progetto\ nei sottosistemi in cui è composto e ne facilita l'analisi per la stesura dei casi d'uso.
-Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al sistema ma anche componente inoltre quali Producer e Consumer che hanno interazioni con il Broker.
+Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al sistema, ma anche componenti quali i vari Producers e Consumers che interagiscono col Gestore Personale.
+All'interno dei casi d'uso il termine \textit{sistema} è inteso come l'intera applicazione \progetto, mentre \textit{piattaforma di messaggistica} fa sempre riferimento a Telegram o Email e il termine \textit{persona di fiducia} indica la persona a cui inoltrare le proprie notifiche nei giorni in cui non si è disponibili.
 	
 	\subsection{Attori}
 	\begin{itemize}
-		\item Redmine/GitLab
-		\item Producer
+		\item Redmine
+		\item GitLab
+		\item Producer Redmine
+		\item Producer GitLab
 		\item Utente non acceduto
-		\item Utente (acceduto), che interagisce col Gestore Personale
-		\item Consumer
-		\item Telegram/e-mail
+		\item Utente non registrato
+		\item Utente, inteso come acceduto e e registrato nel sistema
+		\item Consumer Telegram
+		\item Consumer Email
+		\item Telegram
+		\item Email
+	\end{itemize}
+
+	\subsection{Sistemi e sottosistemi}
+	Per indicare i vari sottosistemi nei codici dei casi d'uso sono allegati delle sigle per rendere più chiara la posizione del caso d'uso all'interno di \progetto.
+	\begin{itemize}
+		\item \textbf{B}: \progetto.
+		\item \textbf{PR}: Producer Redmine.
+		\item \textbf{PG}: Producer GitLab.
+		\item \textbf{GP}: Gestore Personale.
+		\item \textbf{CT}: Consumer telegram.
+		\item \textbf{CE}: Consumer Email.
+		\item \textbf{BT}: bot Telegram.
+		\item \textbf{SE}: server Email.
 	\end{itemize}
 	
+	\newpage
 	\subsection{Elenco casi d'uso}
 
 %TODO: da ricordarsi: se qualcuno è offline, c'è la possibilità che il messaggio venga perso.
 
 \newcounter{uccount}
+\newcounter{subuccount}[uccount]
+\newcounter{subsubuccount}[subuccount]
+\newcounter{subsubsubuccount}[subsubuccount]
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC1-PR}
+\include{casi_d'uso/UC1}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC2-PR}
+\include{casi_d'uso/UC2}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC3-PG}
+\include{casi_d'uso/UC3}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC4-PG}
+\include{casi_d'uso/UC4}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC5-PG}
+\include{casi_d'uso/UC5}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC6-GP}
+\include{casi_d'uso/UC6}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC7-GP}
+\include{casi_d'uso/UC7}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC8-CT}
+\include{casi_d'uso/UC8}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC9-CE}
+\include{casi_d'uso/UC9}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC10-BT}
+\include{casi_d'uso/UC10}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC11-SE}
+\include{casi_d'uso/UC11}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC12-GP}
+\include{casi_d'uso/UC12}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC13-GP}
+\include{casi_d'uso/UC13}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC14-GP}
+\include{casi_d'uso/UC14}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC15-GP}
+\include{casi_d'uso/UC15}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC16-GP}
+\include{casi_d'uso/UC16}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC17-GP}
+\include{casi_d'uso/UC17}
 
 \stepcounter{uccount}
 
-\include{casi_d'uso/UC18-GP}
+\include{casi_d'uso/UC18}
+
+\stepcounter{uccount}
+
+\include{casi_d'uso/UC19}
