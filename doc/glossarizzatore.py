@@ -15,9 +15,11 @@ import os
 
 re_label = re.compile(r'\\label{[a-zA-Z][a-zA-Z\s]+}')
 re_alfa = re.compile(r'[,\.!?()]')
-glossarydir = Path('./Esterni/Glosario/sections')
+glossarydir = Path('./Esterni/Glossario/sections')
 glossario=[]
-for letter in glossarydir.glob('**/*.tex'):
+
+#Cerco nel glossario le parole
+for file in glossarydir.glob('**/*.tex'):
     for line in fileinput.input(str(file)):
         check = re_label.search(line)
         if check:
@@ -29,21 +31,26 @@ for letter in glossarydir.glob('**/*.tex'):
             glossario.append(match.upper())
             glossario.append(match.capitalize())
             glossario.append(match.title())
-            print(match)
         
 glossario_copy = glossario
-        
+
+#Cerco nei documenti le parole
 localdir = Path('.')
 for i in localdir.glob('**/*.tex'):
-    if('template' not in str(i)
-       and 'Glossario' not in str(i)
-       and 'diario' not in str(i)
-       and ('sections' in str(i)
-            or 'descrizione' in str(i)
-            or 'Verbali' in str(i)
-            )
-       ):
+    #In alcuni posti non cerco
+    if ('template' not in str(i)
+        and 'Glossario' not in str(i)
+        and 'diario' not in str(i)
+        and ('sections' in str(i)
+             or 'descrizione' in str(i)
+             or 'Verbali' in str(i)
+             )
+        ):
         for line in fileinput.input(str(i), inplace=True):
+            
+            #TODO
+            #Controllare di aver cambiato documento, non file
+            
             if fileinput.isfirstline():
                 glossario = glossario_copy
             for parola in glossario:
@@ -64,6 +71,8 @@ for i in localdir.glob('**/*.tex'):
                     words = words.replace(parola,'\gloss{'+parola+'}',count)
                     if count > 0:
                         found = True
+                        
+                #Preservo l'indentazione
                 spaces=''
                 for i in range(0,len(line)):
                     if(line[i]==' ' or line[i]=='\t'):
@@ -71,10 +80,14 @@ for i in localdir.glob('**/*.tex'):
                     else:
                         break
                 line = spaces+words
+                
+                
+                #Rimuovo le parole trovate
                 if found:
                     if parola in glossario: glossario.remove(parola)
                     if parola.lower() in glossario: glossario.remove(parola.lower())
                     if parola.upper() in glossario: glossario.remove(parola.upper())
                     if parola.capitalize() in glossario: glossario.remove(parola.capitalize())
                     if parola.title() in glossario: glossario.remove(parola.title())
+            #Scrivo nel documento
             print(line)
