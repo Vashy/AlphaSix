@@ -125,7 +125,7 @@
 				\begin{itemize}
 					\item \texttt{YYYY} l'anno
 					\item \texttt{MM} il mese, da 01 a 12
-					\item \texttt{DD} indica il numero del giorno, da 01 a 31
+					\item \texttt{DD} il numero del giorno, da 01 a 31
 				\end{itemize}
 				\item \textbf{Nota a piè di pagina}: serve ad inserire elementi aggiuntivi, come osservazioni o riferimenti a parti interne al documento, utili alla comprensione del testo,
 				ma se inseriti all'interno del discorso, ne interromperebbero la lettura, rendendola meno scorrevole.
@@ -234,11 +234,26 @@
 
 			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
 
-			\paragraph{Continuous Integration}\label{ContinuousIntegration} % 
+			\paragraph{Continuous Integration}\label{ContinuousIntegration} %TODO: rivedere
 			Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
-			Per quanto riguarda la stesura dei documenti il principio sarà limitato in questo periodo a sincronizzarsi il prima possibile con la repository remota (non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota. 
+			%(non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
 			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
-			\paragraph{Nomenclatura}
+			
+			\subparagraph{Jenkins}\label{Jenkins}
+			Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
+			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			\begin{itemize}
+				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+				\item \textbf{Build}: build del codice su docker container.
+				\item \textbf{Unit Test}: test di unità tramite PyUnit.
+				\item \textbf{Integration Test}: test di integrazione tramite PyUnit.
+				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
+			\end{itemize}
+			
+			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
+			
+			\paragraph{Nomenclatura}%FIXME: cos'è?
 
 			\subparagraph{Verbali}	\label{NomenclaturaVerbali}
 			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II\ o il committente.
@@ -260,7 +275,7 @@
 			\end{itemize}
 		
 		\subsubsection{Metriche}\label{ProcessiSupportoMetriche}
-		La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
+		La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 		
 			\paragraph{MPD001 Indice di Gulpease}
 			Per il calcolo dell'indice di Gulpease, abbiamo creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
@@ -285,24 +300,6 @@
 
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 			
-	\subsection{Codice}\label{PS:Codice}
-	
-	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
-	    
-	    \paragraph{Continuous Integration}\label{CI}
-	    
-	        \subparagraph{Jenkins}\label{Jenkins}
-	            Per quanto concerne il codice sorgente useremo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
-			    Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
-			    \begin{itemize}
-			        \item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
-			        \item \textbf{Build}: build del codice su docker container.
-			        \item \textbf{Unit Test}: test di unità tramite PyUnit.
-			        \item \textbf{Integration Test}: test di integrazione tramite PyUnit.
-			        \item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
-			    \end{itemize}
-			    
-			    Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
 
 	\subsection{Verifica}\label{Verifica}
 
