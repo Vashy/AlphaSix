@@ -84,11 +84,7 @@
 		Un caso d'uso è una tecnica che identifica i requisiti funzionali descrivendo le interazioni tra il sistema di riferimento e un utente ad esso esterno.\\
 		Ogni caso d'uso che si vuol descrivere presenta:
 		\begin{itemize}
-		 	\item \textbf{Codice}: per l'identificazione del tipo:
-		 	\begin{itemize}
-		 		\item \texttt{UC[Numero]}: per un caso principale (e.g. per il primo caso d'uso avremo \texttt{UC1}).
-		 		\item \texttt{UC[Numero].[Numero]}: per un sotto caso (e.g. per il primo figlio del primo caso d'uso avremo \texttt{UC1.1}).
-		 	\end{itemize}
+		 	\item \textbf{Codice}: per l'identificazione.
 		 	\item \textbf{Titolo}: denominazione del caso d'uso, possibilmente breve.
 		 	\item \textbf{Attori primari}: tutti gli \gloss{attori} primari coinvolti.
 		 	\item \textbf{Attori secondari}: opzionale, tutti gli attori secondari coinvolti.		 	
@@ -97,6 +93,27 @@
 		 	\item \textbf{Postcondizione}: per rappresentare lo stato del sistema l'istante successivo.
 		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute.
 		 	\item \textbf{Estensioni}: opzionale, per azioni inerenti a scenari alternativi come d'eccezione o errore.
+		\end{itemize}
+	
+		\subparagraph{Denominazione del codice identificativo}
+		Ogni codice presenta una forma del tipo:
+		\begin{center}
+			\texttt{UC[Numero]-[Sottosistema]}
+		\end{center}
+	
+		\begin{itemize}
+			\item \textbf{UC}: sta per "User Case", l'equivalente inglese di "caso d'uso".
+			\item \textbf{Numero}: numero progressivo che si riferisce al caso. Se il caso d'uso è principale, è un semplice intero (e.g. 1 per il primo caso d'uso). Mentre se è un sotto caso, presenta due interi separati da un punto (e.g 1.1 per per il primo figlio del primo caso d'uso).
+			\item \textbf{Sottosistema}: indica il sottosistema di Butterfly preso come riferimento per il caso d'uso (se non specificato, il sistema è Butterfly) e può essere:
+			\begin{itemize}
+				\item \textbf{PR}: Producer Redmine.
+				\item \textbf{PG}: Producer Gitlab.
+				\item \textbf{GP}: Gestore Personale.
+				\item \textbf{CT}: Consumer Telegram.
+				\item \textbf{CE}: Consumer Email.
+				\item \textbf{BT}: bot Telegram.
+				\item \textbf{SE}: server Email.
+			\end{itemize}
 		\end{itemize}
 
         %\subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}	%PIÙ AVANTI
