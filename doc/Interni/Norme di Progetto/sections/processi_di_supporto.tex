@@ -446,11 +446,11 @@
 			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST
 			
 			
-			\paragraph{Test di sistema} 
+			\paragraph{Test di sistema} \label{testsistema} 
 			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
 			Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
 			
-			\paragraph{Test d'integrazione} 
+			\paragraph{Test d'integrazione} \label{testintegrazione}
 			I test d'integrazione verificano il residuo mettendo insieme due unità. Queste unità in particolare sono considerati indipendenti, ma realizzate al fine di essere composte per collaborare.
 			Il test di integrazione ha tanti test quanti ne servono per accertarsi che tutti i dati scambiati attraverso ciascuna interfaccia siano conformi alla loro specifica e accertarsi che tutti i flussi di controllo previsti siano stati effettivamente provati.
 			La strategia che i test d'integrazione adottano è una strategia di tipo incrementale: si basa nella prosecuzione per passi, aggiungendo parti fino al completamento. 
@@ -472,16 +472,16 @@
 			\end{itemize}
 			
 			
-			\paragraph{Test di unità} %TODO
+			\paragraph{Test di unità} \label{testunita} %TODO
 			%Contenuto
 			
-			\paragraph{Test di regressione}
+			\paragraph{Test di regressione} \label{testregressione}
 			I test di regressione sono una ripetizione selettiva dei test di unità, integrazione e sistema.
 			La utilizziamo per assicurarci che una modifica fatta su un unità per correggere un problema, non faccia danno ad altre causando regressione.
 			Ciò avviene quando il sistema è altamento accoppiato. 
 			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulazione}.
 			
-			\paragraph{Test di accettazione} %TODO
+			\paragraph{Test di accettazione} \label{testaccettazione} %TODO
 			%Contenuto
 		
 		
