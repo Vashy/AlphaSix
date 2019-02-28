@@ -177,7 +177,7 @@
 
 			\paragraph{Strumenti di supporto}\label{StrumentiDiSupporto}
 
-			\subparagraph{\LaTeX} \label{LaTeX}
+			\subparagraph{\LaTeX}\label{LaTeX}
 			Per la stesura della documentazione abbiamo deciso di utilizzare il linguaggio di \gloss{markup} \LaTeX\ perché presenta molti vantaggi, tra i quali:
 			\begin{itemize}
 				\item Supporta nativamente il \gloss{versionamento}, essendo un linguaggio compilato
@@ -186,7 +186,10 @@
 				\item Gestisce automaticamente indici e riferimenti
 			\end{itemize}
 
-			\subparagraph{Google Drive} % TODO: da fare sì
+			\subparagraph{Google Drive}\label{GoogleDrive}
+			Per la condivisione di file, tabelle informative e diagrammi dei casi d'uso e delle classi (utilizzando \hyperref[drawio]{draw.io}), utilizziamo lo strumento
+			di cloud Google Drive. Esso ci permette di tenere file informativi sempre aggiornati e condivisi tra tutti i membri del team, raggiungibili in qualunque momento
+			anche da smartphone. Altre informazioni sono reperibili tramite i link informativi in \S\ref{rifinfo}.
 
 			\subparagraph{TexStudio/Visual Studio Code}
 			TexStudio e Visual Studio Code sono i due ambienti di sviluppo scelti per stilare la documentazione.
@@ -203,7 +206,7 @@
 			strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità, generando automaticamente il relativo diagramma.
 			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}).
 
-			\subparagraph{Draw.io}
+			\subparagraph{Draw.io}\label{drawio}
 			Draw.io è un'applicazione web in grado di creare diagrammi UML, di Entità-Relazionale, di flusso e molto altro. Il motivo che ci ha portato
 			a scegliere questo strumento è la sua perfetta integrazione con \gloss{Google Drive}, oltre al suo alto livello di intuitività.
 			Questo permette la condivisione dei diagrammi creati tra tutti i collaboratori in ogni momento e in modo automatico.
@@ -212,6 +215,16 @@
 			\subparagraph{Indice di Gulpease}
 			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla
 			lunghezza delle parole in lettere e non in sillabe.
+
+			\subparagraph{Controllo ortografico}
+			Per il controllo ortografico utilizziamo:
+			\begin{itemize}
+				\item In fase di redazione dei documenti, il controllo ortografico integrato degli IDE utilizzati
+				\item In fase di verifica, lo strumento GNU Aspell, uno strumento open source per il controllo ortografico che permette tramite interfaccia
+					interattiva di cambiare parole non riconosciute dal dizionario e scegliere tra più suggerimenti. Maggiori informazioni alla fonte ufficiale,
+					reperibile in \S\ref{rifinfo}.
+				
+			\end{itemize}
 
 		\subsubsection{Mantenimento}\label{Mantenimento}
 
@@ -234,26 +247,32 @@
 
 			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
 
-			\paragraph{Continuous Integration}\label{ContinuousIntegration} %TODO: rivedere
-			Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
-			Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota. 
-			%(non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
-			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
+			% \paragraph{Continuous Integration}\label{ContinuousIntegration} %TODO: rivedere
+			% Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
+			% Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota. 
+			% %(non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			% Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
 			
-			\subparagraph{Jenkins}\label{Jenkins}
-			Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
-			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
-			\begin{itemize}
-				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
-				\item \textbf{Build}: build del codice su docker container.
-				\item \textbf{Unit Test}: test di unità tramite PyUnit.
-				\item \textbf{Integration Test}: test di integrazione tramite PyUnit.
-				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
-			\end{itemize}
+			% \subparagraph{Jenkins}\label{Jenkins}
+			% Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
+			% Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			% \begin{itemize}
+			% 	\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+			% 	\item \textbf{Build}: build del codice su docker container.
+			% 	\item \textbf{Unit Test}: test di unità tramite PyUnit.
+			% 	\item \textbf{Integration Test}: test di integrazione tramite PyUnit.
+			% 	\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
+			% \end{itemize}
 			
-			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
-			
-			\paragraph{Nomenclatura}%FIXME: cos'è?
+			% Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
+
+			\paragraph{Continuous Integration}\label{ContinuousIntegration}
+			Per la produzione dei documenti adotteremo la pratica della \gloss{Continuous Integration}.
+			Per questa attività il principio sarà limitato a sincronizzarsi il prima possibile con la repository remota (non essendoci una vera e propria build o dei test da effettuare),
+			sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.
+
+			\paragraph{Nomenclatura} %FIXME: cos'è?
 
 			\subparagraph{Verbali}	\label{NomenclaturaVerbali}
 			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II\ o il committente.
@@ -273,18 +292,18 @@
 				con la convenzione \mbox{\texttt{CamelCase vX.Y.Z.pdf}}, dove CamelCase sarà il nome del documento generico mentre \texttt{vX.Y.Z}
 				sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
 			\end{itemize}
-		
+
 		\subsubsection{Metriche}\label{ProcessiSupportoMetriche}
 		La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 		
 			\paragraph{MPD001 Indice di Gulpease}
 			Per il calcolo dell'indice di Gulpease, abbiamo creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
 			L'indice si calcola:
-			
+
 			\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
 			
 			\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
-			
+
 			\begin{itemize}
 				\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare.
 				\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media.
@@ -295,11 +314,44 @@
 			l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
 
 			\paragraph{MPD002 Correttezza ortografica}
-			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
-			% TODO: Aggiungere altri strumenti, vedi hunspell e aspell
+			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio} e da GNU Aspell.
 
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 			
+	\subsection{Codice}\label{PS:Codice}
+	
+	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
+	    
+		\paragraph{Continuous Integration}\label{CI}
+		Anche per quanto riguarda il processo di codifica verrà adottato il principio di Continuous Integration.
+
+			\subparagraph{Jenkins}\label{Jenkins}
+			Per quanto concerne il codice sorgente useremo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\par
+			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			\begin{itemize}
+				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+				\item \textbf{Build}: build del codice su docker container.
+				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce ``Pytest'' in \S\ref{rifinfo}}.
+				\item \textbf{Integration Test}: test di integrazione tramite Pytest.
+				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
+			\end{itemize}
+
+			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
+
+		\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
+		Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creeremo dei container specifici per ogni componente. Per fare ciò, utilizziamo
+		\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
+		un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
+		\begin{itemize}
+			\item Producer Redmine
+			\item Producer GitLab
+			\item Gestore Personale
+			\item Consumer Email
+			\item Consumer Telegram
+		\end{itemize}
+		Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
+
+		% \paragraph{Continous Delivery}\label{CD} % TODO Magari più avanti?
 
 	\subsection{Verifica}\label{Verifica}
 
