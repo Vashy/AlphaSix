@@ -443,8 +443,8 @@
 			\end{itemize}
 		
 			
-			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST
-			
+			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST:
+			%fino ad RP si fanno test d'integrazione, non unità
 			
 			\paragraph{Test di sistema} \label{testsistema} 
 			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
@@ -472,17 +472,22 @@
 			\end{itemize}
 			
 			
-			\paragraph{Test di unità} \label{testunita} %TODO
-			%Contenuto
+			\paragraph{Test di unità} \label{testunita} 
+			L'unità è un problema 
+			I test di unità sono l'attività di test di singole unità software.
+			Per unità si intende il minimo componente di un programma dotato di funzionamento autonomo, ma non è semplice individuare l'unità.
+			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}. 
+			
 			
 			\paragraph{Test di regressione} \label{testregressione}
 			I test di regressione sono una ripetizione selettiva dei test di unità, integrazione e sistema.
 			La utilizziamo per assicurarci che una modifica fatta su un unità per correggere un problema, non faccia danno ad altre causando regressione.
-			Ciò avviene quando il sistema è altamento accoppiato. 
-			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulazione}.
+			Ciò avviene quando il sistema è altamente accoppiato. 
+			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulamento}.
 			
-			\paragraph{Test di accettazione} \label{testaccettazione} %TODO
-			%Contenuto
+			\paragraph{Test di accettazione} \label{testaccettazione}
+			Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
+			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
 		
 		
 		\subsubsection{Tipologie e trattamento delle anomalie riscontrate}\label{TrattamentoAnomalie} %TODO
