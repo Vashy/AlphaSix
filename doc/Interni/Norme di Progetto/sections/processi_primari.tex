@@ -154,7 +154,7 @@
         
 
 		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} %TODO: notare se da scrivere ora tutti o solo alcuni (classi - attività -sequenza)
-
+               
 		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
 		Per i diagrammi delle classi utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\\
         Questi diagrammi strutturali descrivono ad alto livello i tipi di oggetto presenti nel sistema e le relazioni che intercorrono tra essi.
@@ -200,12 +200,24 @@
                 \item \textbf{Interfacce}: Indicate da un pallino vuoto e una linea continua verso classi, presentano solamente le operazioni che vengono implementate dalle classi collegate con la linea.\\
                 Possono essere indicate con un pallino vuoto e un semicerchio a destra per indicare che l'interfaccia viene usata da un componente in un punto qualsiasi (ritorno di un'operazione, attributo\dots).
             \end{itemize}
-        
-		
 
 		\subparagraph{Semantica} %TODO
 		%Dipendenza generica, Associazione, Aggregazione..
         %Meglio qui o lasciamo sopra?
+        
+        \paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
+        Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\\
+        Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
+        Rappresentiamo i package con un rettangolo che contiene altri package o classi, e una tab con il nome del package.
+        Ogni package identifica uno spazio dei nomi, che serve per dare un nome qualificato alle classi.
+        Gli elementi di un package possono avere visibilità pubblica(+) o privata(-) verso l'esterno.
+        Nella progettazione adottiamo il principio del common closure principle, secondo il quale elementi dello stesso package condividono la stessa causa di cambiamento.\\\\
+        Indichiamo le dipendenze tra package con frecce tratteggiate.
+        Rappresentiamo le dipendenze perché:
+        \begin{itemize}
+            \item individuiamo subito le dipendenze circolari, evitandole.
+            \item vediamo quali elementi dovrebbero essere più stabili (avendo più dipendenze entranti).
+        \end{itemize}
 
 
 		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività} %TODO
