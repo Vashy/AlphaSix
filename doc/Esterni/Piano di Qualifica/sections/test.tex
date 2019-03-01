@@ -14,13 +14,15 @@ Lo scopo del modello a V è quello di mostrare quali tipi di test accompagnano o
 	\caption{Modello a V\protect\footnotemark}
 \end{figure}
 
-\footnotetext{Vedere Riferimenti Informativi in \S\ref{riferimenti informativi}}
+\footnotetext{Vedere modello a V in \S\ref{riferimenti informativi}}
 
-\subsection{Classificazione e struttura dei test}
+
+
+\subsection{Classificazione dei test}
 Le varie tipologie di test sono classificati nel seguente modo:
 
 \begin{center}
-	\texttt{T[Tipo][ID] [Nome]}
+	\texttt{T[Tipo][ID]}
 \end{center}
 
 \begin{itemize}
@@ -31,11 +33,54 @@ Le varie tipologie di test sono classificati nel seguente modo:
 		\item \textbf{U}: unità.
 		\item \textbf{V}: validazione. %è la stessa cosa di collaudo e di accettazione??
 	\end{itemize}
-	\item \textbf{ID}: ogni tipologia di test prevede un numero incrementale di tre cifre che parte da uno.
-	\item \textbf{Nome}: breve frase esplicativa che descrive lo scopo del test.
+	%per la corrispondenza con i requisiti, non vanno bene le "tre cifre"
+	\item \textbf{ID}: numero incrementale che rispetta una struttura gerarchica.
 \end{itemize}
 
-\subsection{Test di sistema}
+Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
+\begin{itemize}
+	\item \textbf{Codice}: comprendente il codice identificativo del test.
+	\item \textbf{Test}: descrive cosa deve verificare il test.
+	\item \textbf{Stato}: indica lo stato del test e può essere:
+	\begin{itemize}
+		\item \textbf{NI}: non implementato.
+		\item \textbf{I}: implementato ma non ancora avviato.
+		\item \textbf{NS}: avviato e fallito.
+		\item \textbf{S}: avviato e superato.
+	\end{itemize}	
+\end{itemize}
+
+
+\subsection{Test di validazione}%TODO
+
+
+\begin{table}[H]
+	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer Gitlab & I \\
+		TI2 & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & I \\
+
+		\bottomrule\\
+	\end{paddedtablex}
+	\caption{Elenco dei test d'integrazione}
+\end{table}
+
+	\subsubsection{Tracciamento}
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			\textbf{Codice} & \textbf{Requisito} \\\toprule
+			TI1 & numero req da inserire \\
+			TI2 & numero req da inserire \\
+
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei test d'integrazione}
+	\end{table}
+
+
+
+\subsection{Test di sistema}%FIXME
 Tipo di test da effettuare durante l'attività di analisi dei requisiti. Servono per svolgere la validazione del prodotto.
 
 Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
@@ -186,3 +231,20 @@ Alcuni termini ed espressioni assumono il seguente significato:
 		
 		\paragraph*{Accettazione}
 		L'utente selezionato ricomincia a ricevere notifiche.
+
+
+\subsection{Test d'integrazione}%TODO
+
+
+\begin{table}[H]
+	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer Gitlab & I \\
+		TI2 & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & I \\
+
+		\bottomrule\\
+	\end{paddedtablex}
+	\caption{Elenco dei test d'integrazione}
+\end{table}
+
+	\subsubsection{Tracciamento}
