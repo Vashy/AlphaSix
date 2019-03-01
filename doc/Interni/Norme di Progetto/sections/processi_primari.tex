@@ -135,6 +135,27 @@
 		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute.
 		 	\item \textbf{Estensioni}: opzionale, per azioni inerenti a scenari alternativi come d'eccezione o errore.
 		\end{itemize}
+	
+		\subparagraph{Denominazione del codice identificativo}
+		Ogni codice presenta una forma del tipo:
+		\begin{center}
+			\texttt{UC[Numero]-[Sottosistema]}
+		\end{center}
+	
+		\begin{itemize}
+			\item \textbf{UC}: sta per "User Case", l'equivalente inglese di "caso d'uso".
+			\item \textbf{Numero}: numero progressivo che si riferisce al caso. Se il caso d'uso è principale, è un semplice intero (e.g. 1 per il primo caso d'uso). Mentre se è un sotto caso, presenta due interi separati da un punto (e.g 1.1 per per il primo figlio del primo caso d'uso).
+			\item \textbf{Sottosistema}: indica il sottosistema di Butterfly preso come riferimento per il caso d'uso (se non specificato, il sistema è Butterfly) e può essere:
+			\begin{itemize}
+				\item \textbf{PR}: Producer Redmine.
+				\item \textbf{PG}: Producer Gitlab.
+				\item \textbf{GP}: Gestore Personale.
+				\item \textbf{CT}: Consumer Telegram.
+				\item \textbf{CE}: Consumer Email.
+				\item \textbf{BT}: bot Telegram.
+				\item \textbf{SE}: server Email.
+			\end{itemize}
+		\end{itemize}
 
 		Vi possono essere al massimo tre livelli di annidamento, come nel seguente esempio:
 		\begin{itemize}

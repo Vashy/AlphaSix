@@ -1,0 +1,73 @@
+\subsubsection{UC\theuccount-GP - Accesso}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\columnwidth]{img/casi_d'uso/UC13.png}\\
+			\caption{UC\theuccount-GP - Accesso}
+		\end{figure}
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount-GP.
+		\item \textbf{Titolo}: accesso.
+		\item \textbf{Attori primari}: utente non acceduto.
+		\item \textbf{Descrizione}: l'utente richiede di accedere al sistema attraverso l'inserimento dell'username che viene creato nel momento della registrazione.
+		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto.
+		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore di esso come utente acceduto.
+		\item \textbf{Scenario Principale}:
+		\begin{enumerate}
+			\item L'utente non ancora riconosciuto dal sistema effettua l'accesso inserendo il proprio username
+		\end{enumerate}
+	\end{itemize}
+	
+	\stepcounter{subuccount}
+	\paragraph{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=\columnwidth]{img/casi_d'uso/UC13_1.png}\\
+			\caption{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
+		\end{figure}
+		\begin{itemize}
+			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+			\item \textbf{Titolo}: accesso dell'utente nel sistema.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente attende l'accesso al sistema.
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto.
+			\item \textbf{Postcondizione}: il sistema riconosce l'utente con successo.
+			\item \textbf{Scenario Principale}:
+			\begin{enumerate}
+				\item L’utente non ancora riconosciuto dal sistema richiede l'accesso attraverso l'inserimento dell'username.
+			\end{enumerate}
+			\item \textbf{Estensioni}:
+			\begin{enumerate}
+				\item L'accesso non va a buon fine e viene visualizzato un errore avvisando l'utente [UC\theuccount.2-GP]
+			\end{enumerate}
+		\end{itemize}
+		
+		\stepcounter{subsubuccount}
+		\subparagraph{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento username}
+			\begin{itemize}
+				\item \textbf{Codice}: UC\theuccount.1.1-GP.
+				\item \textbf{Titolo}: inserimento username.
+				\item \textbf{Attori primari}: utente non acceduto.
+				\item \textbf{Descrizione}: l'utente inserisce l'username.
+				\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e permette all'utente l'inserimento dell'username.
+				\item \textbf{Postcondizione}: l'utente ha inserito l'username desiderato.
+				\item \textbf{Scenario Principale}:
+				\begin{enumerate}
+					\item L'utente inserisce l'username per autenticarsi
+				\end{enumerate}
+			\end{itemize}
+	
+	\stepcounter{subuccount}
+	\paragraph{UC\theuccount.\thesubuccount-GP - Errore username inesistente}
+		\begin{itemize}
+			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+			\item \textbf{Titolo}: errore username inesistente.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito un username errato.
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e riceve una richiesta di accesso. 
+			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore.
+			\item \textbf{Scenario Principale}:
+			\begin{enumerate}
+				\item L'utente inserisce un username non esistente
+				\item L'utente visualizza il messaggio d'errore
+			\end{enumerate}
+		\end{itemize}
