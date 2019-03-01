@@ -10,7 +10,7 @@
 		\item \textbf{Attori primari}: Producer GitLab.
 		\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione da GitLab, elabora un messaggio da inviare al Gestore Personale.
 		\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
-		\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato.
+		\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio  \newline elaborato.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
 			\item il Producer GitLab riceve una segnalazione da GitLab
@@ -19,7 +19,7 @@
 		\end{enumerate}
 		
 	\end{itemize}
-	
+	\newpage
 	\stepcounter{subuccount}
 	\paragraph{UC\theuccount.\thesubuccount-GP - Producer GitLab invia uno o più messaggi di commit al Gestore Personale}
 		
@@ -27,7 +27,7 @@
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: Producer GitLab invia uno o più messaggi di commit al Gestore Personale.
 			\item \textbf{Attori primari}: Producer GitLab.
-			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di push da GitLab,	elabora un messaggio particolare per i commit che verrà catalogato sotto il Topic "commits".
+			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di push da  \newline GitLab, elabora un messaggio particolare per i commit che verrà catalogato sotto il Topic "commits".
 			Il messaggio elaborato conterrà i campi:
 			\begin{itemize}
 				\item Project
@@ -42,8 +42,6 @@
 				\item Il Producer GitLab prepara i messaggi in modo che vengano inseriti correttamente nel Gestore Personale
 				\item Il Poducer GitLab invia i messaggi di
 				commit al Gestore Personale
-				\item Producer GitLab invia uno o più messaggi
-			 	di commit al Gestore Personale
 			\end{enumerate}
 			
 		\end{itemize}
@@ -56,6 +54,7 @@
 			\caption{UC\theuccount.\thesubuccount-GP -  Producer GitLab invia messaggio di issue al Gestore Personale}
 		\end{figure}
 		\begin{itemize}
+			\newpage
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}:  Producer GitLab invia messaggio di issue al Gestore Personale.
 			\item \textbf{Attori primari}: Producer GitLab.
@@ -72,13 +71,12 @@
 				\end{itemize}
 			\end{itemize}
 			\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
-			\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato.
+			\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio  \newline elaborato.
 			\item \textbf{Scenario principale}: 
 			\begin{enumerate}
 				\item Il Producer GitLab riceve la segnalazione di issue da GitLab
-				\item Il Producer GitLab prepara il messaggio di issue in modo che venga inseriti correttamente nel Gestore Personale
+				\item Il Producer GitLab prepara il messaggio di issue in modo che venga inserito  \newline correttamente nel Gestore Personale
 				\item Il Poducer GitLab invia il messaggio di issue al Gestore Personale
-				\item Producer GitLab invia il messaggio di issue al Gestore Personale
 			\end{enumerate}
 			
 		\end{itemize}
@@ -103,11 +101,11 @@
 					\end{itemize}
 				\end{itemize}
 				\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
-				\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato di nuova issue.
+				\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio   \newline elaborato di nuova issue.
 				\item \textbf{Scenario principale}: 
 				\begin{enumerate}
 					\item Il Producer GitLab riceve la segnalazione di una nuova issue da GitLab
-					\item Il Producer GitLab prepara il messaggio di una nuova issue in modo che venga inseriti correttamente nel Gestore Personale
+					\item Il Producer GitLab prepara il messaggio di una nuova issue in modo che venga inserito correttamente nel Gestore Personale
 					\item Il Poducer GitLab invia il messaggio di una nuova issue al Gestore Personale
 				\end{enumerate}
 				
@@ -134,16 +132,16 @@
 					\end{itemize}
 				\end{itemize}
 				\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
-				\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio elaborato di modifica issue.
+				\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio   \newline elaborato di modifica issue.
 				\item \textbf{Scenario principale}: 
 				\begin{enumerate}
 					\item Il Producer GitLab riceve la segnalazione di modifica issue da GitLab
-					\item Il Producer GitLab prepara il messaggio di modifica issue in modo che venga inseriti correttamente nel Gestore Personale
+					\item Il Producer GitLab prepara il messaggio di modifica issue in modo che venga inserito correttamente nel Gestore Personale
 					\item Il Poducer GitLab invia il messaggio di modifica issue al Gestore Personale.
 				\end{enumerate}
 				\item \textbf{Estensioni}: 
 				\begin{enumerate}
-					\item Se ci sono dei messaggi non validi, questi vengono scartati [UCUC\theuccount.\thesubuccount.3-GP].
+					\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.\thesubuccount.3-GP].
 				\end{enumerate}
 			\end{itemize}
 		
@@ -155,7 +153,7 @@
 				\item \textbf{Titolo}: Producer GitLab scarta i messaggi non validi.
 				\item \textbf{Attori primari}: Producer GitLab.
 				\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di una modifica issue da GitLab, controlla
-				se sono state modificati i campi Label o Title. In caso negativo, il messaggio viene scartato.
+				se sono stati modificati i campi Label o Title. In caso negativo, il messaggio viene scartato.
 				\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 				\item \textbf{Postcondizione}: il Producer GitLab ha scartato il messaggio.
 				\item \textbf{Scenario principale}: 
