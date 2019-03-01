@@ -162,7 +162,7 @@
 		\begin{itemize}
 			\item \textbf{Attributi}: rappresentano lo stato dell'oggetto. Presentano le caratteristiche:
 			    \begin{itemize}
-			        \item \textbf{Visibilità}: pubblica (+), privata(-), protetta(#) o di package(~), rispetto alle altre classi.
+			        \item \textbf{Visibilità}: pubblica (+), privata(-) o protetta(\#) rispetto alle altre classi.
 			        \item \textbf{Nome}: nome dell'attributo.
 			        \item \textbf{Tipo}: tipo dell'attributo (intero, stringa\dots).
 			        \item \textbf{Molteplicità}: numero di occorrenze dell'attributo (opzionale).
@@ -188,7 +188,7 @@
         Tra le classi rappresentiamo le seguenti relazioni di dipendenza:
         \begin{itemize}
             \item \textbf{Dipendenza}: rappresentata da una linea orientata tratteggiata, indica che una classe usa un'operazione fornita dalla classe puntata.
-            %TODO: la mettiamo? \item \textbf{Associazione}: rappresentata da una linea continua semplice, indica che una classe posssiede uno o più attributi (a seconda delle molteplicità indicate sulla linea) dell'altra, o viceversa.
+            %TODO: la mettiamo? \item \textbf{Associazione}: rappresentata da una linea continua semplice, indica che una classe possiede uno o più attributi (a seconda delle molteplicità indicate sulla linea) dell'altra, o viceversa.
             \item \textbf{Aggregazione}: rappresentata da un diamante vuoto seguito da una linea continua, indica che una classe (puntata dal diamante) possiede un'istanza di un'altra classe tra gli attributi. Tale istanza può essere condivisa.
             \item \textbf{Composizione}: rappresentata da un diamante pieno seguito da una linea continua, è come l'aggregazione ma in tal caso l'aggregato non è condiviso tra più istanze.
             \item \textbf{Generalizzazione}: rappresentata da una freccia vuota, indica che ogni classe che punta verso un'altra è anche un'istanza di essa (eredita metodi e attributi).
@@ -209,7 +209,10 @@
 
 
 		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività} %TODO
-		%Contenuto
+		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.
+        Questi diagrammi presentano i seguenti componenti:
+        
+        
 
 		\subparagraph{Semantica} %TODO
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
