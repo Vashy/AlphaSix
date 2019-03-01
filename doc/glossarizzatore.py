@@ -12,11 +12,42 @@ from pathlib import Path
 import re
 import os
 
-re_label = re.compile(r'\\label{[a-zA-Z][a-zA-Z\s]+}')
+re_label = re.compile(r'\\label{[a-zA-Z][a-zA-Z,\.!?()\/\s]+}')
 re_alfa = re.compile(r'[,\.!?()]')
-re_glossary = re.compile(r'\\gloss{[a-zA-Z\s]*}')
+re_glossary = re.compile(r'\\gloss{[a-zA-Z,\.!?()\/\s]*}')
 glossarydir = Path('./Esterni/Glossario/sections')
 glossario=[]
+
+#TODO non funziona...
+#Rimuovo i \gloss presenti
+localdir = Path('.')
+for i in localdir.glob('**/*.tex'):
+    #In alcuni posti non cerco
+    if ('template' not in str(i)
+        and 'Glossario' not in str(i)
+        and 'diario' not in str(i)
+        and ('sections' in str(i)
+             or 'descrizione' in str(i)
+             or 'Verbali' in str(i)
+             )
+        ):
+        for line in fileinput.input(str(i), inplace=True):
+            words = line.split()
+            words = ' '.join(words)
+            check = re_glossary.search(words)
+            if check:
+                gloss = check.group(0)
+                match = gloss.replace('\gloss{','')
+                match = match.replace('}','')
+                words = words.replace(gloss,match)
+            spaces=''
+            for i in range(0,len(line)):
+                if(line[i]==' ' or line[i]=='\t'):
+                    spaces += line[i]
+                else:
+                    break
+            line = spaces+words
+            print(line)
 
 #Cerco nel glossario le parole
 for file in glossarydir.glob('**/*.tex'):
@@ -31,25 +62,6 @@ for file in glossarydir.glob('**/*.tex'):
             glossario.append(match.upper())
             glossario.append(match.capitalize())
             glossario.append(match.title())
-        
-#Rimuovo i \gloss presenti
-localdir = Path('.')
-for i in localdir.glob('**/*.tex'):
-    #In alcuni posti non cerco
-    if ('template' not in str(i)
-        and 'Glossario' not in str(i)
-        and 'diario' not in str(i)
-        and ('sections' in str(i)
-             or 'descrizione' in str(i)
-             or 'Verbali' in str(i)
-             )
-        ):
-        for line in fileinput.input(str(i), inplace=True):
-            check = re_glossary.search(line)
-            if check:
-                match = check.group(0)
-                line = line.replace(match,'')
-            print(line)
         
 glossario_copy = glossario
 
