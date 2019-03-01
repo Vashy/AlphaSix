@@ -1,15 +1,15 @@
-\section{Test}
+\section{Test} \label{test}
 
 Tale sezione ha lo scopo di spiegare il funzionamento, lo scopo e i risultati dei vari tipi di test proposti dal modello a V.
 
-\subsection{Modello a V}
+\subsection{Modello a V} \label{sezionemodelloV}
 Il modello a V descrive in modo sintetico il ciclo di vita della realizzazione del software, partendo dalla sua progettazione fino alla sua consegna al cliente escludendo la fase di manutenzione.
 
 Lo scopo del modello a V è quello di mostrare quali tipi di test accompagnano ogni fase del ciclo e di come anche questi siano propedeutici l'uno dall'altro.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{img/V-model.png}
+	\includegraphics[width=0.8\textwidth]{img/modellov-sweki.jpg}
 	\label{img:vmodel}
 	\caption{Modello a V\protect\footnotemark}
 \end{figure}
@@ -18,21 +18,22 @@ Lo scopo del modello a V è quello di mostrare quali tipi di test accompagnano o
 
 
 
-\subsection{Classificazione dei test}
-Le varie tipologie di test sono classificati nel seguente modo:
+\subsection{Classificazione e stuttura dei test} \label{classificazionetest}
+Ogni test viene identificato univocamente dal seguente codice:
 
 \begin{center}
 	\texttt{T[Tipo][ID]}
 \end{center}
 
 \begin{itemize}
-	\item \textbf{Tipo}: la tipologia di test, seguendo il modello a V, sono:
+	\item \textbf{T}: si riferisce a "Test".
+	\item \textbf{Tipo}: la tipologia a cui il test appertiene che, seguendo il modello a V, sono:
 	\begin{itemize}
+		\item \textbf{V}: validazione. %è la stessa cosa di collaudo e di accettazione??
 		\item \textbf{S}: sistema
 		\item \textbf{I}: integrazione.
 		\item \textbf{U}: unità.
-		\item \textbf{V}: validazione. %è la stessa cosa di collaudo e di accettazione??
-	\end{itemize}
+		\end{itemize}
 	%per la corrispondenza con i requisiti, non vanno bene le "tre cifre"
 	\item \textbf{ID}: numero incrementale che rispetta una struttura gerarchica.
 \end{itemize}
@@ -40,7 +41,7 @@ Le varie tipologie di test sono classificati nel seguente modo:
 Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
 \begin{itemize}
 	\item \textbf{Codice}: comprendente il codice identificativo del test.
-	\item \textbf{Test}: descrive cosa deve verificare il test.
+	\item \textbf{Test}: descrive cosa il test deve verificare.
 	\item \textbf{Stato}: indica lo stato del test e può essere:
 	\begin{itemize}
 		\item \textbf{NI}: non implementato.
@@ -51,78 +52,76 @@ Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
 \end{itemize}
 
 
-\subsection{Test di validazione}%TODO
+
+\subsection{Test di validazione} \label{testvalidazione} %TODO
+Tipo di test da determinare in parallelo con la comprensione del capitolato.
+Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
 
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-		TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer Gitlab & I \\
-		TI2 & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & I \\
+		TV1 & Verifica l'inserimento di un nuovo utente:
+		\begin{enumerate}
+			\item Inserire nel gestore personale le seguenti informazioni del nuovo utente:
+			\begin{itemize}
+				\item Nome
+				\item Cognome
+				\item Contatto Telegram
+				\item Contatto email
+			\end{itemize}
+			\item COnferma invio dei dati.
+		\end{enumerate}
+		& NI \\
+		TV2 & Verifica  & NI \\
 
 		\bottomrule\\
 	\end{paddedtablex}
-	\caption{Elenco dei test d'integrazione}
+	\caption{Elenco dei test di validazione}
 \end{table}
 
-	\subsubsection{Tracciamento}
+	\subsubsection{Tracciamento} \label{tracciamentovalidazione}
 
 	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			\textbf{Codice} & \textbf{Requisito} \\\toprule
-			TI1 & numero req da inserire \\
-			TI2 & numero req da inserire \\
-
+		\centering
+		{\def\arraystretch{1.4}
+		\begin{tabularx}{\textwidth}{YY}
+			\textbf{Codice} & \textbf{Requisito} \\
+			\toprule
+			TV1 & requisito da inserire \\
+			TV2 & requisito da inserire \\
 			\bottomrule\\
-		\end{paddedtablex}
-		\caption{Elenco dei test d'integrazione}
+		\end{tabularx}}
+		\caption{Elenco dei test in correlazioni con i requisiti.}
 	\end{table}
 
 
 
-\subsection{Test di sistema}%FIXME
-Tipo di test da effettuare durante l'attività di analisi dei requisiti. Servono per svolgere la validazione del prodotto.
-
-Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
+\subsection{Test di sistema} \label{testsistema} %FIXME
+Tipo di test da scegliere durante l'attività di analisi dei requisiti. Servono per svolgere la validazione del prodotto.
 
 I test di sistema servono per testare l'intero prodotto, in particolare le sue specifiche tecniche e funzionali.
 Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzionali presenti nell'\AdRd.
 
-Per ogni test vengono affrontati i seguenti punti:
+%Per ogni test vengono affrontati i seguenti punti:
+%
+%\begin{itemize}
+%	\item \textbf{Scopo}: lo scopo del test che; il titolo del punto non verrà inserito nei paragrafi dei test. %TODO: WHAT??
+%	\item \textbf{Procedura}: vengono descritti i passaggi da compiere per eseguire il test.
+%	\item \textbf{Approvazione}: vengono descritte le condizioni affinché il test sia considerato superato.
+%\end{itemize}
+%
+%Alcuni termini ed espressioni assumono il seguente significato:
+%
+%\begin{itemize}
+%	\item \textbf{Piattaforma di messaggistica}: s'intende sempre Telegram ed email.
+%	\item \textbf{Notifica}: s'intende una notifica in una delle piattaforme di messaggistica causata dall'applicazione.
+%	\item \textbf{Topic}: s'intende l'insieme delle etichette delle issue di GitLab e Redmine e delle keyword presenti nei messaggi di commit notificati dai push di GitLab.
+%	\item \textbf{Persona delegata}: s'intende l'utente a cui verranno inoltrate le notifiche nei giorni di indisponibilità dell'utente che sta usando l'applicazione. 
+%\end{itemize}
 
-\begin{itemize}
-	\item \textbf{Scopo}: lo scopo del test che; il titolo del punto non verrà inserito nei paragrafi dei test. %TODO: WHAT??
-	\item \textbf{Procedura}: vengono descritti i passaggi da compiere per eseguire il test.
-	\item \textbf{Approvazione}: vengono descritte le condizioni affinché il test sia considerato superato.
-\end{itemize}
-
-Alcuni termini ed espressioni assumono il seguente significato:
-
-\begin{itemize}
-	\item \textbf{Piattaforma di messaggistica}: s'intende sempre Telegram ed email.
-	\item \textbf{Notifica}: s'intende una notifica in una delle piattaforme di messaggistica causata dall'applicazione.
-	\item \textbf{Topic}: s'intende l'insieme delle etichette delle issue di GitLab e Redmine e delle keyword presenti nei messaggi di commit notificati dai push di GitLab.
-	\item \textbf{Persona delegata}: s'intende l'utente a cui verranno inoltrate le notifiche nei giorni di indisponibilità dell'utente che sta usando l'applicazione. 
-\end{itemize}
-
-	\subsubsection{TS001 Inserimento utente}
-		All'interno del gestore personale deve essere presente la possibilità di inserire e memorizzare la presenza di un nuovo utente che possa usare l'applicativo.
-		
-		\paragraph*{Procedura}
-			\begin{enumerate}
-				\item Inserire nel gestore personale le seguenti informazioni del nuovo utente:
-				\begin{itemize}
-					\item nome
-					\item cognome
-					\item contatto Telegram
-					\item contatto email
-				\end{itemize}
-				
-				\item Infine aggiungere l'utente.
-			\end{enumerate}
-	
-		\paragraph*{Accettazione}
-		Il nuovo utente deve comparire all'interno della lista degli utenti inseriti nell'applicazione.
+		%\paragraph*{Accettazione}
+		%Il nuovo utente deve comparire all'interno della lista degli utenti inseriti nell'applicazione.
 	
 	\subsubsection{TS002 Iscrizione ad una label, ad una piattaforma di messaggistica e apertura issue}
 		Un utente quando s'iscrive ad una label, lo fa con l'intenzione di ricevere le notifiche inerenti solo a quella label provenienti da GitLab o Redmine e l'iscrizione alla piattaforma di messaggistica (Telegram o email) per scegliere dove ricevere tali notifiche.
@@ -232,8 +231,24 @@ Alcuni termini ed espressioni assumono il seguente significato:
 		\paragraph*{Accettazione}
 		L'utente selezionato ricomincia a ricevere notifiche.
 
+	\subsubsection{Tracciamento}
 
-\subsection{Test d'integrazione}%TODO
+	\begin{table}[H]
+		\centering
+		{\def\arraystretch{1.4}
+		\begin{tabularx}{\textwidth}{YY}
+			\textbf{Codice} & \textbf{Requisito} \\
+			\toprule
+			TS1 & requisito da inserire \\
+			TS2 & requisito da inserire \\
+			\bottomrule\\
+		\end{tabularx}}
+		\caption{Elenco dei test in correlazioni con i requisiti.}
+	\end{table}
+		
+
+
+\subsection{Test d'integrazione} \label{testintegrazione} %TODO
 
 
 \begin{table}[H]
@@ -244,7 +259,20 @@ Alcuni termini ed espressioni assumono il seguente significato:
 
 		\bottomrule\\
 	\end{paddedtablex}
-	\caption{Elenco dei test d'integrazione}
+	\caption{Elenco dei test d'integrazione.}
 \end{table}
 
-	\subsubsection{Tracciamento}
+	\subsubsection{Tracciamento} \label{tracciamentointegrazione}
+
+	\begin{table}[H]
+		\centering
+		{\def\arraystretch{1.4}
+		\begin{tabularx}{\textwidth}{YY}
+			\textbf{Codice} & \textbf{Metodo} \\
+			\toprule
+			TI1 & metodo da inserire \\
+			TI2 & metodo da inserire \\
+			\bottomrule\\
+		\end{tabularx}}
+		\caption{Elenco dei test in correlazioni con le compoenti del codice.}
+	\end{table}
