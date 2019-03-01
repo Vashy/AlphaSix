@@ -18,7 +18,6 @@ re_glossary = re.compile(r'\\gloss{[a-zA-Z,\.!?()\/\s]*}')
 glossarydir = Path('./Esterni/Glossario/sections')
 glossario=[]
 
-#TODO non funziona...
 #Rimuovo i \gloss presenti
 localdir = Path('.')
 for i in localdir.glob('**/*.tex'):
@@ -34,12 +33,11 @@ for i in localdir.glob('**/*.tex'):
         for line in fileinput.input(str(i), inplace=True):
             words = line.split()
             words = ' '.join(words)
-            check = re_glossary.search(words)
-            if check:
-                gloss = check.group(0)
-                match = gloss.replace('\gloss{','')
+            checks = re_glossary.findall(words)
+            for check in checks:
+                match = check.replace('\gloss{','')
                 match = match.replace('}','')
-                words = words.replace(gloss,match)
+                words = words.replace(check,match)
             spaces=''
             for i in range(0,len(line)):
                 if(line[i]==' ' or line[i]=='\t'):
