@@ -3,7 +3,6 @@ Per usare, basta eseguire python3 glossarizzatore.py
 Il controllo viene effettuato solo sui file necessari
 
 TODO
-Rimozione dei gloss presenti
 Controllo inclusione dei file (altrimenti non serve a un granche')
 """
 
@@ -15,6 +14,7 @@ import os
 
 re_label = re.compile(r'\\label{[a-zA-Z][a-zA-Z\s]+}')
 re_alfa = re.compile(r'[,\.!?()]')
+re_glossary = re.compile(r'\\gloss{[a-zA-Z\s]*}')
 glossarydir = Path('./Esterni/Glossario/sections')
 glossario=[]
 
@@ -32,10 +32,28 @@ for file in glossarydir.glob('**/*.tex'):
             glossario.append(match.capitalize())
             glossario.append(match.title())
         
+#Rimuovo i \gloss presenti
+localdir = Path('.')
+for i in localdir.glob('**/*.tex'):
+    #In alcuni posti non cerco
+    if ('template' not in str(i)
+        and 'Glossario' not in str(i)
+        and 'diario' not in str(i)
+        and ('sections' in str(i)
+             or 'descrizione' in str(i)
+             or 'Verbali' in str(i)
+             )
+        ):
+        for line in fileinput.input(str(i), inplace=True):
+            check = re_glossary.search(line)
+            if check:
+                match = check.group(0)
+                line = line.replace(match,'')
+            print(line)
+        
 glossario_copy = glossario
 
 #Cerco nei documenti le parole
-localdir = Path('.')
 for i in localdir.glob('**/*.tex'):
     #In alcuni posti non cerco
     if ('template' not in str(i)
