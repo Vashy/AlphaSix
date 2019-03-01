@@ -38,36 +38,47 @@ Ogni test viene identificato univocamente dal seguente codice:
 	\item \textbf{ID}: numero incrementale che rispetta una struttura gerarchica.
 \end{itemize}
 
+% COLORI 
+\newcommand{\TNI}{{\color{gray}\textbf{NI}}}
+\newcommand{\TI}{{\color{blue}\textbf{I}}}
+\newcommand{\TNS}{{\color{red}\textbf{NS}}}
+\newcommand{\TS}{{\color{green}\textbf{S}}}
+
 Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
 \begin{itemize}
 	\item \textbf{Codice}: comprendente il codice identificativo del test.
 	\item \textbf{Test}: descrive cosa il test deve verificare.
 	\item \textbf{Stato}: indica lo stato del test e può essere:
 	\begin{itemize}
-		\item \textbf{NI}: non implementato.
-		\item \textbf{I}: implementato ma non ancora avviato.
-		\item \textbf{NS}: avviato e fallito.
-		\item \textbf{S}: avviato e superato.
+		\item \TNI: non implementato.
+		\item \TI: implementato ma non ancora avviato.
+		\item \TNS: avviato e fallito.
+		\item \TS: avviato e superato.
 	\end{itemize}	
 \end{itemize}
 
 
 
-\subsection{Test di validazione} \label{testvalidazione} %TODO
+\subsection{Test di validazione} \label{testvalidazione} % TODO
 Tipo di test da determinare in parallelo con la comprensione del capitolato.
 Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
 
+\newenvironment{VTtable}[1][1]{%
+	\renewcommand*{\arraystretch}{#1}%
+	\renewcommand\theadfont{\bfseries}%
+	\oldtabularx%
+}{\endoldtabularx}
 
 \begin{table}[H]
-	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
 		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-		Tv1 & Verfica la segnalazione dell' apertura di una issue da parte di Redmine:
+		TV1 & Verfica la segnalazione dell' apertura di una issue da parte di Redmine:
 		\begin{enumerate}
 			\item Redmine apre una issue
 			\item La segnalazione contiene tutti i campi di interesse
 			\item Redmine invia la segnalazione
 		\end{enumerate}
-		& NI \\
+		& \TNI \\\midrule
 
 		TV1 & Verifica l'inserimento di un nuovo utente:
 		\begin{enumerate}
@@ -80,11 +91,9 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\end{itemize}
 			\item Conferma invio dei dati.
 		\end{enumerate}
-		& NI \\
-		TV2 & Verifica  & NI \\
-
-		\bottomrule\\
-	\end{paddedtablex}
+		& \TNI \\\midrule
+		TV2 & Verifica  & \TNI \\\bottomrule
+	\end{VTtable}
 	\caption{Elenco dei test di validazione}
 \end{table}
 
