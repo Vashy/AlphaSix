@@ -156,24 +156,56 @@
 		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} %TODO: notare se da scrivere ora tutti o solo alcuni (classi - attività -sequenza)
 
 		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
-		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0. Questi diagrammi descrivono ad alto livello i tipi di oggetto presenti nel sistema e le relazioni che intercorrono tra essi.
+		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\\
+        Questi diagrammi strutturali descrivono ad alto livello i tipi di oggetto presenti nel sistema e le relazioni che intercorrono tra essi.
 		I diagrammi delle classi sono composti dalle seguenti proprietà:
 		\begin{itemize}
 			\item \textbf{Attributi}: rappresentano lo stato dell'oggetto. Presentano le caratteristiche:
 			    \begin{itemize}
-			        \item \textbf{Visibilità}: pubblica, privata, protetta o di package, rispetto alle altre classi.
+			        \item \textbf{Visibilità}: pubblica (+), privata(-), protetta(#) o di package(~), rispetto alle altre classi.
 			        \item \textbf{Nome}: nome dell'attributo.
 			        \item \textbf{Tipo}: tipo dell'attributo (intero, stringa\dots).
 			        \item \textbf{Molteplicità}: numero di occorrenze dell'attributo (opzionale).
-			        \item \textbf{Default}: valore di default dell'attributo (opzionale)
+			        \item \textbf{Default}: valore di default dell'attributo (opzionale).
+                    \item \textbf{Altro}: molteplicità\dots (opzionali)
 			    \end{itemize}
-			\item \textbf{Associazioni}: 
-			\item 
+			\item \textbf{Associazioni}: rappresentano legami tra classi.\\
+                        Le rappresentiamo con linee continue orientate tra due classi, hanno un nome.
 		\end{itemize}
+        Nella parte bassa del rettangolo delle classi rappresentiamo le operazioni fornite dalla classe, composte da:
+        \begin{itemize}
+            \item \textbf{Visibilità}: come per gli attributi.
+            \item \textbf{Nome}: nome dell'operazione.
+            \item \textbf{Lista dei parametri}: parametri necessari all'operazione. Sono formati da:
+            \begin{itemize}
+                \item \textbf{Direzione}: indica se il parametro è in lettura (in), scrittura (out) o entrambi (inout). Opzionale, di default è in lettura.
+                \item \textbf{Nome}: nome del parametro.
+                \item \textbf{Tipo}: tipo del parametro.
+                \item \textbf{Default}: valore di default del parametro (opzionale).
+            \end{itemize}
+            \item \textbf{Tipo di ritorno}: tipo ritornato dall'operazione.
+        \end{itemize}
+        Tra le classi rappresentiamo le seguenti relazioni di dipendenza:
+        \begin{itemize}
+            \item \textbf{Dipendenza}: rappresentata da una linea orientata tratteggiata, indica che una classe usa un'operazione fornita dalla classe puntata.
+            %TODO: la mettiamo? \item \textbf{Associazione}: rappresentata da una linea continua semplice, indica che una classe posssiede uno o più attributi (a seconda delle molteplicità indicate sulla linea) dell'altra, o viceversa.
+            \item \textbf{Aggregazione}: rappresentata da un diamante vuoto seguito da una linea continua, indica che una classe (puntata dal diamante) possiede un'istanza di un'altra classe tra gli attributi. Tale istanza può essere condivisa.
+            \item \textbf{Composizione}: rappresentata da un diamante pieno seguito da una linea continua, è come l'aggregazione ma in tal caso l'aggregato non è condiviso tra più istanze.
+            \item \textbf{Generalizzazione}: rappresentata da una freccia vuota, indica che ogni classe che punta verso un'altra è anche un'istanza di essa (eredita metodi e attributi).
+        \end{itemize}
+        Vengono inoltre usati i seguenti costrutti:
+            \begin{itemize}
+                \item \textbf{Classi astratte}: il nome è indicato in corsivo, non possono essere istanziate. Presentano almeno un'operazione astratta (con il nome in corsivo) e possono avere attributi.\\
+                Tali classi generalizzano altre classi che devono implementare le operazioni astratte per essere istanziate, altrimenti sono anch'esse astratte e generalizzano altre classi.
+                \item \textbf{Interfacce}: Indicate da un pallino vuoto e una linea continua verso classi, presentano solamente le operazioni che vengono implementate dalle classi collegate con la linea.\\
+                Possono essere indicate con un pallino vuoto e un semicerchio a destra per indicare che l'interfaccia viene usata da un componente in un punto qualsiasi (ritorno di un'operazione, attributo\dots).
+            \end{itemize}
+        
 		
 
 		\subparagraph{Semantica} %TODO
 		%Dipendenza generica, Associazione, Aggregazione..
+        %Meglio qui o lasciamo sopra?
 
 
 		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività} %TODO
