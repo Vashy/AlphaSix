@@ -197,7 +197,7 @@
             \begin{itemize}
                 \item \textbf{Classi astratte}: il nome è indicato in corsivo, non possono essere istanziate. Presentano almeno un'operazione astratta (con il nome in corsivo) e possono avere attributi.\\
                 Tali classi generalizzano altre classi che devono implementare le operazioni astratte per essere istanziate, altrimenti sono anch'esse astratte e generalizzano altre classi.
-                \item \textbf{Interfacce}: Indicate da un pallino vuoto e una linea continua verso classi, presentano solamente le operazioni che vengono implementate dalle classi collegate con la linea.\\
+                \item \textbf{Interfacce}: indicate da un pallino vuoto e una linea continua verso classi, presentano solamente le operazioni che vengono implementate dalle classi collegate con la linea.\\
                 Possono essere indicate con un pallino vuoto e un semicerchio a destra per indicare che l'interfaccia viene usata da un componente in un punto qualsiasi (ritorno di un'operazione, attributo\dots).
             \end{itemize}
 
@@ -206,22 +206,23 @@
         %Meglio qui o lasciamo sopra?
         
         \paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
-        Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\\
+        Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
         Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
         Rappresentiamo i package con un rettangolo che contiene altri package o classi, e una tab con il nome del package.
         Ogni package identifica uno spazio dei nomi, che serve per dare un nome qualificato alle classi.
         Gli elementi di un package possono avere visibilità pubblica(+) o privata(-) verso l'esterno.
-        Nella progettazione adottiamo il principio del common closure principle, secondo il quale elementi dello stesso package condividono la stessa causa di cambiamento.\\\\
+		Nella progettazione adottiamo il principio del common closure principle, secondo il quale elementi dello stesso
+		package condividono la stessa causa di cambiamento.
         Indichiamo le dipendenze tra package con frecce tratteggiate.
         Rappresentiamo le dipendenze perché:
         \begin{itemize}
-            \item individuiamo subito le dipendenze circolari, evitandole.
-            \item vediamo quali elementi dovrebbero essere più stabili (avendo più dipendenze entranti).
+            \item Individuiamo subito le dipendenze circolari, evitandole
+            \item Vediamo quali elementi dovrebbero essere più stabili (avendo più dipendenze entranti)
         \end{itemize}
 
 
 		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività} %TODO
-        Per i diagrammi delle attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\\
+        Per i diagrammi delle attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
 		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.\\
         Le attività sono insiemi di azioni ordinate dei tipi:
         \begin{itemize}
@@ -266,7 +267,8 @@
 
 
 		\paragraph{Diagrammi dei casi d'uso}\label{PP:Sviluppo:DiagrammiCasiUso}
-		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0. Essi descrivono la visione di un utente
+		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
+		Essi descrivono la visione di un utente
 		esterno al sistema e non danno nessun dettaglio implementativo. I \gloss{componenti} contenuti in questo tipo di diagrammi sono:
 		\begin{itemize}
 			\item \gloss{Attore}
@@ -362,7 +364,7 @@ def foo(a, b):		# No
         %Contenuto
 
         \paragraph{Indentazione}
-		Per l'indentazione, come da PEP 8, si usano 4 spazi. L'IDE utilizzato dovrà essere configurato in modo che, premendo il
+		Per l'indentazione, come da PEP 8, vanno usano 4 spazi. L'IDE utilizzato dovrà essere configurato in modo che, premendo il
 		tasto TAB, verranno generati 4 spazi.
 
 		\paragraph{Stringhe}
@@ -437,7 +439,7 @@ def cheeseshop(kind, *arguments, **keywords):
         % TODO: Per altri formalismi da aggiungere, vedere un po' dei punti del link: http://checkstyle.sourceforge.net/checks.html
 
         \subsubsection{Metriche per la codifica} % TODO: prendere spunto da 3.2.4.2.4 della RA di Breaking Bug
-		DA FARE
+		TODO: DA FARE
 
         \subsubsection{Strumenti di base}\label{PP:Sviluppo:Strumenti}
 
