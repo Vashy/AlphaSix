@@ -46,33 +46,45 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	%COMANDI PER REQ DI FUNZIONALITÀ
 	% Generazione automatica dei numeri
 	\newcounter{vaF} % valore
-	\newcommand{\incrF}{\addtocounter{vaF}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addFNumber}{\incrF\thevaF} % Comando per generare il valore incrementato di uno rispetto a prima
+	% \newcommand{\incrF}{\addtocounter{vaF}{+1}} % Comando per l'aumento automatico del counter vaZ
+	% \newcommand{\addFNumber}{\incrF\thevaF} % Comando per generare il valore incrementato di uno rispetto a prima
 	
 	\newcounter{secF}[vaF] % per il secondo livello del requisito
-
-
-	\newcounter{secondF} % per il secondo livello del requisito
-	\addtocounter{secondF}{1}
-	\newcommand{\secIncrF}{\addtocounter{secondF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
-	\newcommand{\addSecFNumber}{\secIncrF\thesecondF} % Comando per generare il valore incrementato di uno rispetto a prima
-	\newcommand{\resetFCounter}{\setcounter{secondF}{1}}
-	\newcommand{\decSecF}{\resetFCounter\thesecondF}
+	\newcounter{thF}[secF] % terzo livello
+	\newcounter{fourthF}[thF] % quarto livello
 	
-	\newcounter{thirdF} % per il terzo livello del requisito
-	\addtocounter{thirdF}{1}
-	\newcommand{\thirdIncrF}{\addtocounter{thirdF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
-	\newcommand{\addThirdFNumber}{\thirdIncrF\thethirdF} % Comando per generare il valore incrementato di uno rispetto a prima
-	\newcommand{\resetthirdFCounter}{\setcounter{thirdF}{1}}
-	\newcommand{\decThirdF}{\resetthirdFCounter\thethirdF}
+	\newcommand{\ReqF}[3]{\stepcounter{vaF}R\thevaF F#1 & #2 & #3 \\} % Primo livello
+
+	\newcommand{\subReqF}[3]{\stepcounter{secF}R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello
+	\newcommand{\getsubReqF}[3]{R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello, get senza incremento
+
+	\newcommand{\subsubReqF}[3]{\stepcounter{thF}R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Terzo livello
+	\newcommand{\getsubsubReqF}[3]{R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Quarto livello, get senza incremento
+
+	\newcommand{\subsubsubReqF}[3]{\stepcounter{fourthF}R\thevaF.\thesecF.\thethF.\thefourthF F#1 & #2 & #3 \\} % Quarto livello
+	\newcommand{\getsubsubsubReqF}[3]{R\thevaF.\thesecF.\thethF.\thefourthF F#1 & #2 & #3 \\} % Quarto livello, get senza incremento
+
+	% \newcounter{secondF} % per il secondo livello del requisito
+	% \addtocounter{secondF}{1}
+	% \newcommand{\secIncrF}{\addtocounter{secondF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	% \newcommand{\addSecFNumber}{\secIncrF\thesecondF} % Comando per generare il valore incrementato di uno rispetto a prima
+	% \newcommand{\resetFCounter}{\setcounter{secondF}{1}}
+	% \newcommand{\decSecF}{\resetFCounter\thesecondF}
+	
+	% \newcounter{thirdF} % per il terzo livello del requisito
+	% \addtocounter{thirdF}{1}
+	% \newcommand{\thirdIncrF}{\addtocounter{thirdF}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	% \newcommand{\addThirdFNumber}{\thirdIncrF\thethirdF} % Comando per generare il valore incrementato di uno rispetto a prima
+	% \newcommand{\resetthirdFCounter}{\setcounter{thirdF}{1}}
+	% \newcommand{\decThirdF}{\resetthirdFCounter\thethirdF}
 
 
-	\newcommand{\Freq}[3]{R\addFNumber F#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
-	\newcommand{\Fsubreq}[3]{R\thevaF F#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
-	\newcommand{\Fsecondreq}[3]{R\thevaF.\addSecFNumber F#1 & #2 & #3 \\}
-	\newcommand{\Finitsecondreq}[3]{R\thevaF.\decSecF F#1 & #2 & #3 \\}
-	\newcommand{\Fthirdreq}[3]{R\thevaF.\thesecondF.\addThirdFNumber F#1 & #2 & #3 \\}
-	\newcommand{\Finitthirdreq}[3]{R\thevaF.\thesecondF.\decThirdF F#1 & #2 & #3 \\}
+	% \newcommand{\Freq}[3]{R\addFNumber F#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	% \newcommand{\Fsubreq}[3]{R\thevaF F#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	% \newcommand{\Fsecondreq}[3]{R\thevaF.\addSecFNumber F#1 & #2 & #3 \\}
+	% \newcommand{\Finitsecondreq}[3]{R\thevaF.\decSecF F#1 & #2 & #3 \\}
+	% \newcommand{\Fthirdreq}[3]{R\thevaF.\thesecondF.\addThirdFNumber F#1 & #2 & #3 \\}
+	% \newcommand{\Finitthirdreq}[3]{R\thevaF.\thesecondF.\decThirdF F#1 & #2 & #3 \\}
 	
 
 	\subsection{Requisiti di funzionalità}\label{RequisitiFunzionalità}
@@ -81,41 +93,115 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
+			\stepcounter{vaF} % Per allineare i requisiti ai casi d'uso
+
 			% da casi d'uso
-			\Freq{2}{Redmine deve poter inviare la segnalazione di apertura issue al Producer Redmine}{Interno UC2-PR}
-			\Freq{2}{Redmine deve poter inviare la segnalazione di modifica issue al Producer Redmine}{Interno UC3-PR}
-			\Freq{2}{GitLab deve essere in grado di segnalare l'apertura di issue al Producer GitLab}{Interno UC4-PG}
-			\Freq{2}{GitLab deve essere in grado di segnalare la modifica issue al Producer GitLab}{Interno UC5-PG}
-			\Freq{2}{GitLab deve poter segnalare un evento di push a Producer GitLab}{Interno UC6-PG}
-			\Freq{2}{Il Producer Redmine deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC7-GP}
-			\Freq{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di apertura issue al Gestore Personale}{Interno UC7.1-GP}
-			\Freq{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC7.2-GP}
-			\Freq{2}{Il Producer Redmine deve essere in grado di scartare i messaggi non validi}{Interno UC7.3-GP}
-			\Freq{2}{Il Producer GitLab deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC8-GP}
-			\Freq{2}{Il Producer GitLab deve essere in grado di inviare messaggi di commit al Gestore Personale}{Interno UC8.1-GP}
-			\Freq{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di issue al Gestore Personale}{Interno UC8.2-GP}
-			\Freq{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di nuova issue al Gestore Personale}{Interno UC8.2.1-GP}
-			\Freq{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC8.2.2-GP}
-			\Freq{2}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC8.2.3-GP}
-			\Freq{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Telegram}{Interno UC9-CT}
-			\Freq{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Email}{Interno UC10-CE}
-			\Freq{2}{Il Consumer Telegram deve poter inoltrare il messaggio finale al bot Telegram}{Interno UC11-BT}
-			\Freq{2}{Il Consumer Email deve poter inoltrare il messaggio finale al server Email}{Interno UC12-SE}
-			\Freq{2}{L'utente può eseguire l'accesso al Gestore Personale}{Interno UC13.1-GP}
-			\Freq{2}{L'utente può inserire il proprio identificativo che lo fa riconoscere dal sistema}{Interno UC13.1.1}
-			\Freq{2}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC13.1.2}
-			\Freq{2}{L'utente acceduto deve poter uscire dal sistema}{Interno UC14-GP}
-			\Freq{2}{L'utente acceduto deve poter aggiungere un nuovo utente}{Interno UC15-GP}
-			\Freq{2}{L'utente deve poter inserire il nome dell'utente da aggiungere}{Interno UC15.1.1-GP}
-			\Freq{2}{L'utente deve poter inserire il cognome dell'utente da aggiungere}{Interno UC15.1.2-GP}
-			\Freq{2}{L'utente deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC15.1.3-GP}
-			\Freq{2}{L'utente deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC15.1.4-GP}
-			\Freq{2}{L'utente deve poter visualizzare un messaggio di errore se il contatto Telegram non è univoco}{Interno UC15.2-GP}
-			\Freq{2}{L'utente deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC15.2-GP}
-			\Freq{2}{L'utente acceduto deve poter rimuovere un utente già presente}{Interno UC16-GP}
-			\Freq{2}{L'utente deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC16.1.1-GP}
-			\Freq{2}{L'utente deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC16.1.2-GP}
-			\Freq{2}{L'utente deve potersi rimuovere dal sistema}{Interno UC16.3}
+			\ReqF{2}{Redmine deve poter inviare la segnalazione di apertura issue al Producer Redmine}{Interno UC2-PR}
+			\ReqF{2}{Redmine deve poter inviare la segnalazione di modifica issue al Producer Redmine}{Interno UC3-PR}
+			\ReqF{2}{GitLab deve essere in grado di segnalare l'apertura di issue al Producer GitLab}{Interno UC4-PG}
+			\ReqF{2}{GitLab deve essere in grado di segnalare la modifica issue al Producer GitLab}{Interno UC5-PG}
+			\ReqF{2}{GitLab deve poter segnalare un evento di push a Producer GitLab}{Interno UC6-PG}
+			\ReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC7-GP}
+			\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di apertura issue al Gestore Personale}{Interno UC7.1-GP}
+			\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC7.2-GP}
+			\subReqF{2}{Il Producer Redmine deve essere in grado di scartare i messaggi non validi}{Interno UC7.3-GP}
+			\ReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC8-GP}
+			\subReqF{2}{Il Producer GitLab deve essere in grado di inviare messaggi di commit al Gestore Personale}{Interno UC8.1-GP}
+			\subReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di issue al Gestore Personale}{Interno UC8.2-GP}
+			\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di nuova issue al Gestore Personale}{Interno UC8.2.1-GP}
+			\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC8.2.2-GP}
+			\subsubReqF{2}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC8.2.3-GP}
+			\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Telegram}{Interno UC9-CT}
+
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di funzionalità (1)}
+	\end{table}
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+
+			\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Email}{Interno UC10-CE}
+			\ReqF{2}{Il Consumer Telegram deve poter inoltrare il messaggio finale al bot Telegram}{Interno UC11-BT}
+			\ReqF{2}{Il Consumer Email deve poter inoltrare il messaggio finale al server Email}{Interno UC12-SE}
+			% \stepcounter{vaF} e usare \subReqF per rientrare di un livello
+			\ReqF{2}{L'utente può eseguire l'accesso al Gestore Personale}{Interno UC13.1-GP}
+			\subReqF{2}{L'utente può inserire il proprio identificativo che lo fa riconoscere dal sistema}{Interno UC13.1.1}
+			\subReqF{2}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC13.1.2}
+			\ReqF{2}{L'utente acceduto deve poter uscire dal sistema}{Interno UC14-GP}
+
+			\ReqF{2}{L'utente acceduto deve poter aggiungere un nuovo utente}{Interno UC15-GP}
+			\stepcounter{secF}
+			\subsubReqF{2}{L'utente acceduto deve poter inserire il nome dell'utente da aggiungere}{Interno UC15.1.1-GP}
+			\subsubReqF{2}{L'utente acceduto deve poter inserire il cognome dell'utente da aggiungere}{Interno UC15.1.2-GP}
+			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC15.1.3-GP}
+			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC15.1.4-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram non è univoco}{Interno UC15.2-GP}
+			\getsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC15.2-GP}
+
+			\ReqF{2}{L'utente acceduto deve poter rimuovere un utente già presente}{Interno UC16-GP}
+			\stepcounter{secF}
+			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC16.1.1-GP}
+			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC16.1.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è presente nel sistema}{Interno UC16.2-GP}
+
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di funzionalità (2)}
+	\end{table}
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+
+			\subReqF{2}{L'utente acceduto deve potersi rimuovere dal sistema}{Interno UC16.3-GP}
+			\ReqF{2}{L'utente acceduto deve poter modificare le informazioni relative a un utente}{Interno UC17-GP}
+			\subReqF{2}{L'utente acceduto deve poter selezionare l'identificativo dell'utente da modificare}{Interno UC17.1-GP}
+
+			\stepcounter{thF}
+			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo nome dell'utente da modificare}{Interno UC17.1.1.1-GP}
+			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo cognome dell'utente da modificare}{Interno UC17.1.1.2-GP}
+			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Email dell'utente da modificare}{Interno UC17.1.1.3-GP}
+			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Telegram dell'utente da modificare}{Interno UC17.1.1.4-GP}
+			\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email è già presente}{Interno UC17.1.2-GP}
+			\getsubsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram è già presente}{Interno UC17.1.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è riconosciuto dal sistema}{Interno UC17.2-GP}
+
+			\stepcounter{vaF}
+			\subReqF{2}{L'utente acceduto deve poter aggiungere nuovi Topic di iscrizione}{Interno UC18.1-GP}
+			\subReqF{2}{L'utente acceduto deve poter aggungere nuovi giorni di indisponibilità nel calendario}{Interno UC18.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter aggungere una nuova piattaforma di messaggistica preferita}{Interno UC18.3-GP}
+			\subReqF{2}{L'utente acceduto deve poter aggungere la propria persona di fiducia}{Interno UC18.4-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
+
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di funzionalità (3)}
+	\end{table}
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+
+			\getsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
+			\subReqF{2}{L'utente acceduto deve poter aggiungere nuove keyword di interesse per i messaggi di commit}{Interno UC18.6-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword inserita era già nella sua lista}{Interno UC18.7-GP}
+
+			\stepcounter{vaF}
+			\subReqF{2}{L'utente acceduto deve poter rimuovere i Topic a cui è iscritto}{Interno UC19.1-GP}
+			\subReqF{2}{L'utente acceduto deve poter rimuovere giorni di indisponibilità nel calendario}{Interno UC19.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter rimuovoere una piattaforma di messaggistica preferita}{Interno UC19.3-GP}
+			\subReqF{2}{L'utente acceduto deve poter rimuovere la propria persona di fiducia}{Interno UC19.4-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC19.5-GP}
+			\getsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC19.5-GP}
+			\subReqF{2}{L'utente acceduto deve poter rimuovere keyword di interesse per i messaggi di commit}{Interno UC19.6-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword da rimuovere è assente dalla sua lista}{Interno UC19.7-GP}
+
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di funzionalità (4)}
+	\end{table}
 			% \Finitsecondreq{0}{L'utente può eseguire l'accesso al gestore personale}{Interno UC5.1}
 			% \Finitthirdreq{0}{L'utente può inserire il proprio username che lo identifica all'interno di \progetto}{Interno UC5.1.1}
 			% \Fsecondreq{0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC5.2}
@@ -126,10 +212,6 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			% \req{R\thevaF.2.2F0}{L'utente può rimuovere i giorni in cui aveva selezionato precedentemente di non essere reperibile}{Interno UC6.2.2}
 			% \req{R\thevaF.2.3F0}{L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto}{Interno UC6.2.3}
 
-			\bottomrule\\
-		\end{paddedtablex}
-		\caption{Elenco dei requisiti di funzionalità (1)}
-	\end{table}
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
@@ -137,16 +219,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 			% da capitolato
 			% stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
-			\Freq{2}{Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario}{Capitolato}
-			\Freq{2}{Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti}{Capitolato}
-			\Freq{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
-			\Freq{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
-			\Freq{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
-			\Freq{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
+			\ReqF{2}{Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario}{Capitolato}
+			\ReqF{2}{Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti}{Capitolato}
+			\ReqF{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
+			\ReqF{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
+			\ReqF{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
+			\ReqF{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
 
 			\bottomrule
 		\end{paddedtablex}
-		\caption{Elenco dei requisiti di funzionalità (2)}
+		\caption{Elenco dei requisiti di funzionalità (5)}
 	\end{table}
 
 	%COMANDI PER REQUISITI DI FUNZIONALITÀ
