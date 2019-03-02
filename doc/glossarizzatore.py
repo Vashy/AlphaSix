@@ -61,7 +61,7 @@ for file in glossarydir.glob('**/*.tex'):
             glossario.append(match.capitalize())
             glossario.append(match.title())
         
-glossario_copy = glossario
+glossario_copy = glossario[:]
 
 #Cerco nei documenti le parole
 for i in localdir.glob('**/*.tex'):
@@ -80,7 +80,7 @@ for i in localdir.glob('**/*.tex'):
             #Controllare di aver cambiato documento, non file
             
             if fileinput.isfirstline():
-                glossario = glossario_copy
+                glossario = glossario_copy[:]
             for parola in glossario:
                 found = False
                 if(not(' ' in parola)):
