@@ -125,7 +125,7 @@
 				\begin{itemize}
 					\item \texttt{YYYY} l'anno
 					\item \texttt{MM} il mese, da 01 a 12
-					\item \texttt{DD} indica il numero del giorno, da 01 a 31
+					\item \texttt{DD} il numero del giorno, da 01 a 31
 				\end{itemize}
 				\item \textbf{Nota a piè di pagina}: serve ad inserire elementi aggiuntivi, come osservazioni o riferimenti a parti interne al documento, utili alla comprensione del testo,
 				ma se inseriti all'interno del discorso, ne interromperebbero la lettura, rendendola meno scorrevole.
@@ -164,21 +164,20 @@
 
 			% Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \PdP, \PdQ\ e \AdR. Si chiamano esterni perché accessibili al committente.
 
-
-			\subparagraph{Verbali}%TODO: da ricontrollare
-			Questi documenti vengono redatti successivamente alle riunioni tenute da \gruppo\
-			o, in caso di incontri con \gloss{stakeholder} esterni, per esempio con \II. Una singola persona ha il compito di stendere
+            \subparagraph{Verbali}
+			Redigiamo questi documenti successivamente alle riunioni tenute	o in caso di incontri con \gloss{stakeholder} esterni, per esempio con \II. Una singola persona ha il compito di stendere
 			la relazione relativa al verbale, presentando le seguenti sezioni:
 			\begin{itemize}
 				\item \textbf{Informazioni incontro}: lista delle informazioni principali riguardanti la riunione quali luogo, data, orario, ordine del giorno, ecc\dots
-				\item \textbf{Argomenti}: lista dei principali argomenti trattati con descrizione di cosa si è discusso nel dettaglio.
+				\item \textbf{Agenda}: lista dei principali argomenti trattati, con breve descrizione.
+				\item \textbf{Riepilogo}: contiene il resoconto delle decisioni prese nella riunione, tracciate con un codice nel formato yyyy-mm-dd-n, dove yyyy-mm-dd è la data in cui si è tenuta la riunione e n è il numero della decisione presa.
 				
 			\end{itemize}
 
 
 			\paragraph{Strumenti di supporto}\label{StrumentiDiSupporto}
 
-			\subparagraph{\LaTeX} \label{LaTeX}
+			\subparagraph{\LaTeX}\label{LaTeX}
 			Per la stesura della documentazione abbiamo deciso di utilizzare il linguaggio di \gloss{markup} \LaTeX\ perché presenta molti vantaggi, tra i quali:
 			\begin{itemize}
 				\item Supporta nativamente il \gloss{versionamento}, essendo un linguaggio compilato
@@ -187,7 +186,10 @@
 				\item Gestisce automaticamente indici e riferimenti
 			\end{itemize}
 
-			\subparagraph{Google Drive} % TODO: da fare sì
+			\subparagraph{Google Drive}\label{GoogleDrive}
+			Per la condivisione di file informali, tabelle informative e diagrammi dei casi d'uso e delle classi (con \hyperref[drawio]{draw.io}), utilizziamo lo strumento
+			di cloud Google Drive. Esso ci permette di tenere file informativi sempre aggiornati e condivisi tra tutti i membri del team, raggiungibili in qualunque momento
+			anche da smartphone. Altre informazioni sono reperibili tramite i link informativi in \S\ref{rifinfo}.
 
 			\subparagraph{TexStudio/Visual Studio Code}
 			TexStudio e Visual Studio Code sono i due ambienti di sviluppo scelti per stilare la documentazione.
@@ -204,7 +206,7 @@
 			strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità, generando automaticamente il relativo diagramma.
 			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}).
 
-			\subparagraph{Draw.io}
+			\subparagraph{Draw.io}\label{drawio}
 			Draw.io è un'applicazione web in grado di creare diagrammi UML, di Entità-Relazionale, di flusso e molto altro. Il motivo che ci ha portato
 			a scegliere questo strumento è la sua perfetta integrazione con \gloss{Google Drive}, oltre al suo alto livello di intuitività.
 			Questo permette la condivisione dei diagrammi creati tra tutti i collaboratori in ogni momento e in modo automatico.
@@ -214,43 +216,63 @@
 			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla
 			lunghezza delle parole in lettere e non in sillabe.
 
+			\subparagraph{Controllo ortografico}
+			Per il controllo ortografico utilizziamo:
+			\begin{itemize}
+				\item In fase di redazione dei documenti, il controllo ortografico integrato degli IDE utilizzati
+				\item In fase di verifica, lo strumento GNU Aspell, uno strumento open source per il controllo ortografico che permette tramite interfaccia
+					interattiva di cambiare parole non riconosciute dal dizionario e scegliere tra più suggerimenti. Maggiori informazioni alla fonte ufficiale,
+					reperibile in \S\ref{rifinfo}.
+				
+			\end{itemize}
+
 		\subsubsection{Mantenimento}\label{Mantenimento}
 
-			\paragraph{Versionamento} \label{Versionamento}
-			Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
-			precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
-			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
-			\begin{center}
-				\texttt{X.Y.Z}
-			\end{center}
-			\indent dove:
-			\begin{itemize}
-				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento,
-					determinando una major release
-				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
-					Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
-				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta
-					di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
-			\end{itemize}
+			% \paragraph{Versionamento} \label{Versionamento}
+			% Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
+			% precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
+			% Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
+			% \begin{center}
+			% 	\texttt{X.Y.Z}
+			% \end{center}
+			% \indent dove:
+			% \begin{itemize}
+			% 	\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento,
+			% 		determinando una major release
+			% 	\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
+			% 		Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
+			% 	\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta
+			% 		di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
+			% \end{itemize}
 
 			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
 
-			\paragraph{Continuous Integration}\label{ContinuousIntegration} % TODO: Da aggiornare per il codice
-			Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
-			Per quanto riguarda la stesura dei documenti il principio sarà limitato in questo periodo a sincronizzarsi il prima possibile con la repository remota (non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
-			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
-			Per quanto concerne il codice sorgente useremo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
-			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
-			\begin{itemize}
-			    \item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
-			    \item \textbf{Build}: build del codice su docker container.
-			    \item \textbf{Unit Test}: test di unità tramite PyUnit.
-			    \item \textbf{Integration Test}: test di integrazione ... %TODO
-			    \item \textbf{System Test}: test per verificare il comportamento dell'intero sistema. 
-			\end{itemize}
+			% \paragraph{Continuous Integration}\label{ContinuousIntegration} %TODO: rivedere
+			% Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
+			% Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota. 
+			% %(non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			% Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
+			
+			% \subparagraph{Jenkins}\label{Jenkins}
+			% Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
+			% Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			% \begin{itemize}
+			% 	\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+			% 	\item \textbf{Build}: build del codice su docker container.
+			% 	\item \textbf{Unit Test}: test di unità tramite PyUnit.
+			% 	\item \textbf{Integration Test}: test di integrazione tramite PyUnit.
+			% 	\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
+			% \end{itemize}
+			
+			% Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
 
+			\paragraph{Continuous Integration}\label{ContinuousIntegration}
+			Per la produzione dei documenti adotteremo la pratica della \gloss{Continuous Integration}.
+			Per questa attività il principio sarà limitato a sincronizzarsi il prima possibile con la repository remota (non essendoci una vera e propria build o dei test da effettuare),
+			sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.
 
-			\paragraph{Nomenclatura}
+			\paragraph{Nomenclatura} %FIXME: cos'è?
 
 			\subparagraph{Verbali}	\label{NomenclaturaVerbali}
 			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II\ o il committente.
@@ -271,17 +293,17 @@
 				sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
 			\end{itemize}
 		
-		\subsubsection{Metriche}\label{ProcessiSupportoMetriche}
-		La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
+		\subsubsection{Metriche per i documenti}\label{ProcessiSupportoMetriche}
+		La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 		
 			\paragraph{MPD001 Indice di Gulpease}
 			Per il calcolo dell'indice di Gulpease, abbiamo creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
 			L'indice si calcola:
-			
+
 			\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
 			
 			\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
-			
+
 			\begin{itemize}
 				\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare.
 				\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media.
@@ -292,10 +314,140 @@
 			l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
 
 			\paragraph{MPD002 Correttezza ortografica}
-			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
-			% TODO: Aggiungere altri strumenti, vedi hunspell e aspell
+			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio} e da GNU Aspell.
 
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
+			
+	\subsection{Codice sorgente}\label{PS:Codice}
+	
+	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
+	    
+		\paragraph{Continuous Integration}\label{CI}
+		Anche per quanto riguarda il processo di codifica verrà adottato il principio di Continuous Integration.
+
+			\subparagraph{Jenkins}\label{Jenkins}
+			Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\par
+			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			\begin{itemize}
+				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+				\item \textbf{Build}: build del codice su docker container.
+				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce ``Pytest'' in \S\ref{rifinfo}}.
+				\item \textbf{Integration Test}: test di integrazione tramite Pytest.
+				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
+			\end{itemize}
+
+			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
+
+		\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
+		Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creiamo dei container specifici per ogni componente. Per fare ciò, utilizziamo
+		\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
+		un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
+		\begin{itemize}
+			\item Producer Redmine
+			\item Producer GitLab
+			\item Gestore Personale
+			\item Consumer Email
+			\item Consumer Telegram
+		\end{itemize}
+		Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
+
+		% \paragraph{Continous Delivery}\label{CD} 
+		%TODO: Magari più avanti?
+
+	\subsection{Configurazione}\label{Configurazione}
+
+	\subsubsection{Descrizione}
+	I sorgenti e i documenti ufficiali del gruppo vengono versionati utilizzando il sistema di controllo versione \gloss{Git}, strumento scelto vista la sua ampia diffusione
+	e la sua integrazione con GitHub. La scelta di utilizzare un client grafico oppure i comandi da terminale è lasciata al singolo membro del team.
+
+	\subsubsection{Versionamento} \label{Versionamento}
+			Tutti i documenti redatti e i file sorgente supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
+			precedenti in qualsiasi punto del loro \gloss{ciclo di vita}.
+			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\par
+			La versione di un file è espressa secondo la notazione
+			\begin{center}
+				\texttt{X.Y.Z}
+			\end{center}
+			\indent dove:
+			\begin{itemize}
+				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento o il sorgente in esame,
+					determinando una major release
+				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
+					Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
+				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore.
+				Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
+			\end{itemize}
+
+	\subsubsection{Struttura delle Repository}
+	Abbiamo creato due repository principali fino a questo momento:
+	\begin{itemize}
+		\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
+		\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi. 
+	\end{itemize}
+
+	\subsubsection{Norme di branching}
+	Ogni repository che usiamo avrà due \gloss{branch} principali:
+	\begin{itemize}
+		\item \textbf{master}: branch principale che viene aggiornato solamente in vista di un rilascio, quando il \Res\ approva un file o documento, che causa
+			lo scatto del numero di versione più significativo.
+		\item \textbf{develop}: branch usato per lo sviluppo in vista di un rilascio, senza lasciare il master branch in uno stato di incompletezza. Viene aggiornato
+			quando una funzionalità è matura.
+	\end{itemize}
+
+	Sono presenti poi dei branch dedicati allo sviluppo e alla manutenzione, che verranno aperti in base alle necessità:
+	\begin{itemize}
+		\item \textbf{feature/nome-feature}: branch aperti in vista di uno sviluppo di una qualsiasi funzionalità (nome-feature è un placeholder) o bug fix sul develop.
+			Una volta che la funzionalità raggiunge un adatto stato di maturità, verrà fatto il merge sul develop e cancellato il branch relativo a quella funzionalità.
+		\item \textbf{hotfix/nome-hotfix}: branch aperti in vista di un bug non notato nel master branch che necessita di essere sistemato al più presto o in fase di
+			correzione delle problemi segnalati dai professori a seguito di una revisione.
+	\end{itemize}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{img/branches.png}\\
+		\caption[Albero dei branch da Gitkraken]{Visione generale dell'albero dei branch in un momento casuale da Gitkraken}
+		\label{fig:butterfly}
+	\end{figure}
+
+	\subsubsection{Aggiornamento della repository}
+
+	Per aggiornare la repository remota con i cambiamenti effettuati nella workcopy locale, la prassi da seguire è la seguente:
+	\begin{itemize}
+		\item Controllare di trovarsi nel branch corretto con il comando:
+			\begin{quote}
+				\texttt{\$\ git branch}
+			\end{quote}
+			In caso negativo, dare il comando \texttt{git checkout nomebranch} per spostarsi nel branch corretto prima di procedere.
+		\item Aggiornare la workcopy locale con eventuali cambiamenti presenti nella repository remota:
+			\begin{quote}
+				\texttt{\$\ git pull}
+			\end{quote}
+		\begin{itemize}
+			\item In caso di conflitti, dare la sequenza di comandi che segue per risolverli senza dover effettuare un commit
+				dedicato solo al merge:
+				\begin{quote}
+					\texttt{\$\ git stash}\par
+					\texttt{\$\ git pull}\par
+					\texttt{\$\ git stash pop}\par				
+				\end{quote}
+				A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
+				con le proprie modifiche applicate.
+		\end{itemize} 
+		\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
+			per aggiungere più file contemporaneamente):
+			\begin{quote}
+				\texttt{\$\ git add [nome-file1] [nome-file2] \dots}
+			\end{quote}
+		\item Fare il commit e riassumere i cambiamenti apportati:
+		\begin{quote}
+			\texttt{\$\ git commit -m "Cambiamenti apportati"}
+		\end{quote}
+		\item Effettuare il push per pubblicare le modifiche locali nella repository remota:
+		\begin{quote}
+			\texttt{\$\ git push}
+		\end{quote}
+	\end{itemize}
+
 
 	\subsection{Verifica}\label{Verifica}
 
@@ -380,12 +532,14 @@
 
 			\paragraph{Analisi dei documenti}
 			L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
-			Per l'analisi dei documenti vengono utilizzate:
+			Per l'analisi dei documenti vengono utilizzate due metriche:
 
 			\begin{itemize}
 				\item MPD001
 				\item MPD002
 			\end{itemize}
+			
+			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 
 			\paragraph{Analisi dei processi}
 			Per analizzare i processi usiamo gli standard sopra elencati. Ad ogni fase del processo, verranno valutati gli attributi richiesti secondo
@@ -400,8 +554,6 @@
 				% \item \textbf{MPR010 Norme di progetto non seguite}
 			\end{itemize}
 
-
-			\paragraph{Metriche}
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 		
 			\subparagraph{MPR009 Frequenza controllo prodotti}
@@ -419,35 +571,78 @@
 		\subsubsection{Analisi dinamica}\label{AnalisiDinamica} %TODO
 		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
 		Vengono presi in esame i prodotti software e i processi.
-		%Parlare dei test..
 		
-			\paragraph{Procedure} %TODO: prendere spunto da 3.2.6.2.4 Breaking Bug RA
-			%Ogni test deve essere ripetibile.. ogni test vengano segnati i seguenti riferimenti:
+		È oppurtono ricordare che i test devono essere:
+		\begin{itemize}
+			\item ripetibili
+			\item automatizzati tramite strumenti 
+			\item oggettivi e non personalizzati
+		\end{itemize}
+		
+		Quindi, perchè l'analisi dinamica avvenga in modo corretto, è necessario tenere conto di alcuni importanti elementi quali:
+		\begin{itemize}
+			\item \textbf{Ambiente di sviluppo}: il sistema hardware e software adottato durante il test.
+			\item \textbf{Stato iniziale}: primo stato del prodotto, antecedente all'inizio del test.
+			\item \textbf{Input}: dati inseriti.
+			\item \textbf{Output}: dati attesi.
+			\item \textbf{Notifica risultato}: notifiche riguardanti il risultato ottenuto dal test (opzionale).
+		\end{itemize}
+		
+			
+			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST:
+			%fino ad RP si fanno test d'integrazione, non unità
+			
+			\paragraph{Test di sistema} \label{testsistema} 
+			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
+			Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
+			
+			\paragraph{Test d'integrazione} \label{testintegrazione}
+			I test d'integrazione verificano il residuo mettendo insieme due unità. Queste unità in particolare sono considerati indipendenti, ma realizzate al fine di essere composte per collaborare.
+			Il test di integrazione ha tanti test quanti ne servono per accertarsi che tutti i dati scambiati attraverso ciascuna interfaccia siano conformi alla loro specifica e accertarsi che tutti i flussi di controllo previsti siano stati effettivamente provati.
+			La strategia che i test d'integrazione adottano è una strategia di tipo incrementale: si basa nella prosecuzione per passi, aggiungendo parti fino al completamento. 
+			Più test eseguiamo, più è piccola la parte che stiamo testando. \\
+			In una buona architettura, l'integrazione può anche essere parallelizzata.
+			In particolare, la logica dell'integrazione funzionale segue i passi:
 			\begin{itemize}
-				\item \textbf{Ambiente di sviluppo}:
-				\item \textbf{Stato iniziale}:
-				\item \textbf{Input}: inserito.
-				\item \textbf{Output}: atteso.
-				\item \textbf{Notifica risultato}:
+				\item Selezione delle funzionalità da integrare
+				\item Identificazione delle varie componenti che svolgono quelle funzionalità
+				\item Ordinamento delle componenti per numero di dipendenze crescenti
+				\item Esecuzione dell'integrazione in quel determinato ordine
 			\end{itemize}
+			Inoltre rileva problemi quali:
+			\begin{itemize}
+				\item Errori residui nella realizzazione dei componenti
+				\item Modifiche delle interfacce o cambiamenti nei requisiti
+				\item Riuso di componenti dal comportamento oscuro o inadatto
+				\item Integrazione con altre applicazioni non ben conosciute
+			\end{itemize}
+			
+			
+			\paragraph{Test di unità} \label{testunita} 
+			L'unità è un problema 
+			I test di unità sono l'attività di test di singole unità software.
+			Per unità si intende il minimo componente di un programma dotato di funzionamento autonomo, ma non è semplice individuare l'unità.
+			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}. 
+			
+			
+			\paragraph{Test di regressione} \label{testregressione}
+			I test di regressione sono una ripetizione selettiva dei test di unità, integrazione e sistema.
+			La utilizziamo per assicurarci che una modifica fatta su un unità per correggere un problema, non faccia danno ad altre causando regressione.
+			Ciò avviene quando il sistema è altamente accoppiato. 
+			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulamento}.
+			
+			\paragraph{Test di accettazione} \label{testaccettazione}
+			Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
+			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
 		
-			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST
-			
-			\paragraph{Test di sistema} %TODO
-			%Contenuto
-			
-			\paragraph{Test d'integrazione} %TODO
-			%Contenuto
-			
-			\paragraph{Test di unità} %TODO
-			%Contenuto
-			
-			\paragraph{Test di regressione} %TODO
-			%Contenuto
-			
-			\paragraph{Test di accettazione} %TODO
-			%Contenuto
+		
+		\subsubsection{Anomalie riscontrate}\label{Anomalie}
+		Durante i processi di verifica è possibile riscontrare a volte alcune anomalie.
+		Tali anomalie posso essere dovute:
+		\begin{itemize}
+			\item A qualche valore preso come riferimento diverso da quello prestabilito per la metrica
+			\item Al fallimento di un test
+		\end{itemize}
+		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
 		
 		
-		\subsubsection{Tipologie e trattamento delle anomalie riscontrate}\label{TrattamentoAnomalie} %TODO
-		%Anomalie dovute al mancato rispetto dei valori di riferimento stabiliti per le metriche applicate... e Anomalie dovute al mancato superamento dei test pianificati.....

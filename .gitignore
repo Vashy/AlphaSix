@@ -324,3 +324,6 @@ target/
 .scannerwork/
 
 *.swp
+
+#Gummi
+*.swp
