@@ -46,16 +46,17 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	%COMANDI PER REQ DI FUNZIONALITÀ
 	% Generazione automatica dei numeri
 	\newcounter{vaF} % valore
-	% \newcommand{\incrF}{\addtocounter{vaF}{+1}} % Comando per l'aumento automatico del counter vaZ
-	% \newcommand{\addFNumber}{\incrF\thevaF} % Comando per generare il valore incrementato di uno rispetto a prima
-	
 	\newcounter{secF}[vaF] % per il secondo livello del requisito
-	% \newcounter{thF}[secF] % terzo livello
-	% \newcounter{fourthF}[thF] % quarto livello
-	
+
 	\newcommand{\ReqF}[3]{\stepcounter{vaF}R\thevaF F#1 & #2 & #3 \\} % Primo livello
 	\newcommand{\subReqF}[3]{\stepcounter{secF}R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello
 
+	% \newcommand{\incrF}{\addtocounter{vaF}{+1}} % Comando per l'aumento automatico del counter vaZ
+	% \newcommand{\addFNumber}{\incrF\thevaF} % Comando per generare il valore incrementato di uno rispetto a prima
+	
+	% \newcounter{thF}[secF] % terzo livello
+	% \newcounter{fourthF}[thF] % quarto livello
+	
 	% \newcommand{\getsubReqF}[3]{R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello, get senza incremento
 
 	% \newcommand{\subsubReqF}[3]{\stepcounter{thF}R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Terzo livello
