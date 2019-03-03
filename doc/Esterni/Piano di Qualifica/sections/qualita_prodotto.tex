@@ -76,9 +76,20 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 
 		\paragraph*{Metriche} 
 		\begin{itemize}
-			\item MPD001 \gloss{Indice di Gulpease}
-			\item MPD002 Correttezza ortografica
+			\item MPS001 Presenza di bug
+			\item MPS002 Presenza di vulnerabilità
+			\item MPS003 Presenza di code smell
+			\item MPS004 Duplicazione del codice
 		\end{itemize} 
+
+		\paragraph*{Obiettivi} 	
+		L'intero nostro prodotto sofwtare mira a raggiungere:
+		\begin{itemize}
+			\item \textbf{QPS001 Assenza di bug}: la totale assenza di bug è essenziale per la buona riuscita del rilascio del nostro software.
+			\item \textbf{QPS002 Assenza di vulnerabilità}: miriamo a rimuovere qualunque tipo di vulnerabilità che possa compromettere la sicurezza del nostro prodotto.
+			\item \textbf{QPS003 Assenza di \gloss{code smell}}: vogliamo che il nostro codice non abbia code smell, al fine di migliorarne la struttura e abbassarne la complessità, in modo che esso ci risulti facilmente leggibile.
+			\item \textbf{QPS004 Minima duplicazione del codice}: tendiamo a raggiungere la minor quantità di codice duplicato possibile, poichè grande quantità di codice ripetuto abbassa la qualità di esso, ma non sempre si riesce ad ottenere del codice completamente non ridondante.
+		\end{itemize}
 
 
 \subsection{Tabella qualità di prodotto}
@@ -126,7 +137,46 @@ Ogni obiettivo di qualità è indicato con:
 %		\rowcolor{gray!15}
 %		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ad ogni modifica di un documento viene indicata al suo interno la modifica attuata con data e versione del documento.} \\
 	\end{tabularx}}
-\caption{Obiettivi di qualità per i Documenti}
+\caption{Obiettivi di qualità per i documenti}
+\end{table}
+
+\mydoublerule{\linewidth}{0pt}{2pt}
+
+
+\begin{table}[H]
+	{\def\arraystretch{1.5}
+	\begin{tabularx}{\textwidth}{YYY}
+		\rowcolor{white}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{Software}} \\
+		\rowcolor{gray!30}
+		\textbf{Obiettivo} &
+		\textbf{Metrica} &
+		\textbf{Valore desiderato}\\
+
+		\toprule\rowcolor{white}
+		QPS001 Assenza di bug & MPS001 Presenza di bug & 0\\
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il numero di bug deve essere nullo al termine del progetto.} \\
+		
+		\hline \rowcolor{white}
+		QPS002 Assenza di vulnerabilità & MPS002 Presenza di vulnerabilità & 0\\
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il numero di vulnerabilità deve essere nullo al termine del progetto.} \\
+		
+		\rowcolor{gray!15}
+		\hline \rowcolor{white}
+		QPS003 Assenza dicode smell & MPS003 Presenza di code smell & 0\\
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il numero di code smell deve essere nullo al termine del progetto.} \\
+		
+		\hline \rowcolor{white}
+		QPS004 Minima duplicazione del codice & MPS004 Duplicazione del codice & 0 - 20\%\\
+		\rowcolor{gray!15}
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: una percentuale tollerabile di linee di codice duplicato non deve eccedere del 20\% rispetto al numero totale.} \\
+
+		\hline 
+	\end{tabularx}}
+\caption{Obiettivi di qualità per il software}
 \end{table}
 
 %\mydoublerule{\linewidth}{0pt}{2pt}
