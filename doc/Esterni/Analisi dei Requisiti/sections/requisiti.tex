@@ -50,12 +50,12 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	% \newcommand{\addFNumber}{\incrF\thevaF} % Comando per generare il valore incrementato di uno rispetto a prima
 	
 	\newcounter{secF}[vaF] % per il secondo livello del requisito
-	\newcounter{thF}[secF] % terzo livello
-	\newcounter{fourthF}[thF] % quarto livello
+	% \newcounter{thF}[secF] % terzo livello
+	% \newcounter{fourthF}[thF] % quarto livello
 	
 	\newcommand{\ReqF}[3]{\stepcounter{vaF}R\thevaF F#1 & #2 & #3 \\} % Primo livello
-
 	\newcommand{\subReqF}[3]{\stepcounter{secF}R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello
+
 	% \newcommand{\getsubReqF}[3]{R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello, get senza incremento
 
 	% \newcommand{\subsubReqF}[3]{\stepcounter{thF}R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Terzo livello
@@ -234,22 +234,28 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	%COMANDI PER REQUISITI DI FUNZIONALITÀ
 	% Generazione automatica dei numeri
 	\newcounter{vaQ} % valore
+
+	\newcounter{secQ}[vaQ]
+	\newcommand{\ReqQ}[3]{\stepcounter{vaQ}R\thevaQ Q#1 & #2 & #3 \\}
+	\newcommand{\subReqQ}[3]{\stepcounter{secQ}R\thevaQ.\thesecQ Q#1 & #2 & #3 \\}
+
+
 	%\addtocounter{vaQ}{1} % inizia da 1 il contatore
-	\newcommand{\incrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addQNumber}{\incrQ\thevaQ} % Comando per generare il valore incrementato di uno rispetto a prima
+	% \newcommand{\incrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
+	% \newcommand{\addQNumber}{\incrQ\thevaQ} % Comando per generare il valore incrementato di uno rispetto a prima
 
-	\newcounter{secondQ} % per il secondo livello del requisito
-	\addtocounter{secondQ}{1}
-	\newcommand{\secIncrQ}{\addtocounter{secondQ}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
-	\newcommand{\addSecQNumber}{\secIncrQ\thesecondQ} % Comando per generare il valore incrementato di uno rispetto a prima
-	\newcommand{\resetQCounter}{\setcounter{secondQ}{1}}
-	\newcommand{\decSecQ}{\resetQCounter\thesecondQ}
+	% \newcounter{secondQ} % per il secondo livello del requisito
+	% \addtocounter{secondQ}{1}
+	% \newcommand{\secIncrQ}{\addtocounter{secondQ}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	% \newcommand{\addSecQNumber}{\secIncrQ\thesecondQ} % Comando per generare il valore incrementato di uno rispetto a prima
+	% \newcommand{\resetQCounter}{\setcounter{secondQ}{1}}
+	% \newcommand{\decSecQ}{\resetQCounter\thesecondQ}
 
 
-	\newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
-	\newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
-	\newcommand{\Qsecondreq}[3]{R\thevaQ.\addSecQNumber Q#1 & #2 & #3 \\}
-	\newcommand{\Qinitsecondreq}[3]{R\thevaQ.\decSecQ Q#1 & #2 & #3 \\}
+	% \newcommand{\Qreq}[3]{R\addQNumber Q#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	% \newcommand{\Qsubreq}[3]{R\thevaQ Q#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	% \newcommand{\Qsecondreq}[3]{R\thevaQ.\addSecQNumber Q#1 & #2 & #3 \\}
+	% \newcommand{\Qinitsecondreq}[3]{R\thevaQ.\decSecQ Q#1 & #2 & #3 \\}
 
 
 
@@ -261,18 +267,18 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			% presi dal PdQ
-			\Qreq{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
-			\Qreq{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
+			\ReqQ{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
+			\ReqQ{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
 			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
-			\Qreq{1}{Ci siamo accordati per una frequenza minima di commit effettuati in una settimana}{Interno QPR004}
-			\Qreq{1}{Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili}{Interno QPR006}
-			\Qreq{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
-			\Qreq{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
-			\Qreq{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
-			\Qreq{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
-			\Qreq{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
-			\Qreq{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
-			\Qreq{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
+			\ReqQ{1}{Ci siamo accordati per una frequenza minima di commit effettuati in una settimana}{Interno QPR004}
+			\ReqQ{1}{Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili}{Interno QPR006}
+			\ReqQ{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
+			\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
+			\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
+			\ReqQ{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
+			\ReqQ{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
+			\ReqQ{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
+			\ReqQ{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
 
 			\bottomrule
 		\end{paddedtablex}
@@ -285,24 +291,24 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-			\Qreq{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
+			\ReqQ{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
 			%\req{R\thevaQ.1Q2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
-			\Qinitsecondreq{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
-			\Qreq{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema}{Capitolato}
+			\subReqQ{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\ReqQ{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unita, d'integrazione e di sistema}{Capitolato}
 			%\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
-			\Qinitsecondreq{2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+			\subReqQ{2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
 			%\req{R\thevaQ.2Q2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
-			\Qsecondreq{2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
-			\Qsecondreq{2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
-			\Qreq{1}{Per ogni problema aperto documentato, si allegano delle soluzioni da attuare in futuro}{Capitolato}
-			\Qinitsecondreq{2}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
-			\Qreq{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
+			\subReqQ{2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
+			\subReqQ{2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
+			\ReqQ{1}{Per ogni problema aperto documentato, si allegano delle soluzioni da attuare in futuro}{Capitolato}
+			\subReqQ{2}{Deve essere redatta una documentazione su eventuali problemi riscontrati rimasti ancora aperti al termine del progetto}{Capitolato}
+			\ReqQ{2}{È necessario presentare un file \gloss{README} per ogni componente}{Capitolato}
 			%\req{R\thevaQ.1Q2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
-			\Qinitsecondreq{2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
-			\Qsecondreq{2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
-			\Qsecondreq{2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
-			\Qsecondreq{2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
-			\Qsecondreq{2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
+			\subReqQ{2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
+			\subReqQ{2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
+			\subReqQ{2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
+			\subReqQ{2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
+			\subReqQ{2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
 
 			\bottomrule \\
 		\end{paddedtablex}
@@ -311,22 +317,28 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 	%COMANDI PER REQ DI VINCOLO
 	% Generazione automatica dei numeri
+
 	\newcounter{vaV} % valore
-	\newcommand{\incrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
-	\newcommand{\addVNumber}{\incrV\thevaV} % Comando per generare il valore incrementato di uno rispetto a prima
+	\newcounter{secV}[vaV]
+
+	\newcommand{\ReqV}[3]{\stepcounter{vaV}R\thevaV V#1 & #2 & #3 \\}
+	\newcommand{\subReqV}[3]{\stepcounter{secV}R\thevaV.\thesecV V#1 & #2 & #3 \\}
+
+	% \newcommand{\incrV}{\addtocounter{vaV}{+1}} % Comando per l'aumento automatico del counter vaZ
+	% \newcommand{\addVNumber}{\incrV\thevaV} % Comando per generare il valore incrementato di uno rispetto a prima
 	
-	\newcounter{secondV} % per il secondo livello del requisito
-	\addtocounter{secondV}{1}
-	\newcommand{\secIncrV}{\addtocounter{secondV}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
-	\newcommand{\addSecVNumber}{\secIncrV\thesecondV} % Comando per generare il valore incrementato di uno rispetto a prima
-	\newcommand{\resetVCounter}{\setcounter{secondV}{1}}
-	\newcommand{\decSecV}{\resetVCounter\thesecondV}
+	% \newcounter{secondV} % per il secondo livello del requisito
+	% \addtocounter{secondV}{1}
+	% \newcommand{\secIncrV}{\addtocounter{secondV}{+1}} % Comando per l'aumento automatico del counter per il secondo livello
+	% \newcommand{\addSecVNumber}{\secIncrV\thesecondV} % Comando per generare il valore incrementato di uno rispetto a prima
+	% \newcommand{\resetVCounter}{\setcounter{secondV}{1}}
+	% \newcommand{\decSecV}{\resetVCounter\thesecondV}
 	
 	
-	\newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
-	\newcommand{\Vsubreq}[3]{R\thevaV V#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
-	\newcommand{\Vsecondreq}[3]{R\thevaV.\addSecVNumber V#1 & #2 & #3 \\}
-	\newcommand{\Vinitsecondreq}[3]{R\thevaV.\decSecV V#1 & #2 & #3 \\}
+	% \newcommand{\Vreq}[3]{R\addVNumber V#1 & #2 & #3 \\} % Nuovo requisito, maggiore del precedente
+	% \newcommand{\Vsubreq}[3]{R\thevaV V#1 & #2 & #3 \\} % Requisito diverso ma con stesso numero progressivo
+	% \newcommand{\Vsecondreq}[3]{R\thevaV.\addSecVNumber V#1 & #2 & #3 \\}
+	% \newcommand{\Vinitsecondreq}[3]{R\thevaV.\decSecV V#1 & #2 & #3 \\}
 	
 
 	%TODO: aggiungere versione di Slack
@@ -334,19 +346,19 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
-			\toprule
-			\Vreq{2}{Devono essere sviluppati due componenti applicativi Producer tra \redmine, \gitlab\ e SonarQube 6.7}{Capitolato}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+
+			\ReqV{2}{Devono essere sviluppati due componenti applicativi Producer tra \redmine, \gitlab\ e SonarQube 6.7}{Capitolato}
 			%\req{R\thevaV.1V0}
-			\Vinitsecondreq{0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
-			\Vreq{2}{Devono essere sviluppati due componenti applicativi Consumer tra \telegram, Email e Slack}{Capitolato}
+			\subReqV{0}{È possibile avere un terzo componente applicativo Producer oltre ai due obbligatori}{Capitolato}
+			\ReqV{2}{Devono essere sviluppati due componenti applicativi Consumer tra \telegram, Email e Slack}{Capitolato}
 			%\req{R\thevaV.1V0}
-			\Vinitsecondreq{0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
-			\Vreq{2}{\docker\ deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
+			\subReqV{0}{È possibile avere un terzo componente applicativo Consumer oltre ai due obbligatori}{Capitolato}
+			\ReqV{2}{\docker\ deve essere la tecnologia di riferimento per l'istanziazione di tutte le componenti}{Capitolato}
 			%\req{R\thevaV.1V2}
-			\Vinitsecondreq{2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
-			\Vreq{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{\python} o \gloss{Node.js} 10.15.1}{Capitolato}
-			\Vreq{1}{È possibile utilizzare \kafka\ come Broker}{Capitolato}
+			\subReqV{2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
+			\ReqV{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{\python} o \gloss{Node.js} 10.15.1}{Capitolato}
+			\ReqV{1}{È possibile utilizzare \kafka\ come Broker}{Capitolato}
 
 			\bottomrule\\
 		\end{paddedtablex}
