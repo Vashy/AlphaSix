@@ -241,7 +241,7 @@
 
 
 		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività} %TODO
-        Per i diagrammi delle attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
+        Per i diagrammi di attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
 		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.\\
         Le attività sono insiemi di azioni ordinate dei tipi:
         \begin{itemize}
@@ -334,17 +334,25 @@
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
 
 
-		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione} %TODO
-		%Di seguito elenchiamo le linee guida da seguire per garantire una progettazione di qualità.
+		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione}
+		Per garantire una progettazione che rispetti gli standard di qualità posti nel {\PdQd}, seguiamo le linee guida date dalle best practice.
 
-		\paragraph{Qualità dei diagrammi delle classi} %TODO
-		%Evitare le dipendenze circolari....
+		\paragraph{Qualità dei diagrammi delle classi}
+		Teniamo gli attributi delle classi privati per quanto possibile.
+        Evitiamo ove possibile di usare attributi modificabili dai metodi delle classi, in quanto ostacolano la scrittura dei test ed è meno comprensibile la responsabilità sull'attributo.\\
+        Evitiamo le relazioni bidirezionali perché si crea confusione su quale classe ha la responsabilità sulla relazione.\\
+        Minimizziamo le dipendenze tra le classi in modo da rendere il diagramma più comprensibile e cerchiamo di usare le relazioni di dipendenza debole rispetto alle dipendenze forti, per favorire il riuso del codice ed evitare modifiche inutili e a cascata.
+        
+        \paragraph{Qualità dei diagrammi dei package} % TODO
+        Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.\\		
 
-		\paragraph{Qualità dei diagrammi di attività} %TODO
-		%Contenuto
+		\paragraph{Qualità dei diagrammi di attività}
+		Poiché descrivono gli aspetti dinamici dei casi d'uso, non devono risultare eccesivamente complessi, ma descrivere quanto riportato da casi d'uso e requisiti.\\
+        Li usiamo in modo da aggiungere comprensibilità, non per toglierne.
 
-		\paragraph{Qualità dei diagrammi di sequenza} %TODO
-		%Contenuto
+		\paragraph{Qualità dei diagrammi di sequenza}
+		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\\
+        Per modellare la logica di controllo è meglio usare i diagrammi di attività perché di più semplice lettura.
 
 		\paragraph{Qualità dei diagrammi dei casi d'uso} %TODO: facoltativo..
 		%Contenuto
@@ -354,7 +362,6 @@
 
 
 		\subsubsection{Codifica}\label{PP:Sviluppo:Codifica}
-		% TODO: scrivere nei prossimi paragrafi tutto quello che potrebbe essere idealmente scritto in un file di checkstyle. Struttura presa come spunto da Breaking Bug RA.
 
 		\paragraph{Scopo}
 		La presente sezione ha lo scopo di normare l'attività di codifica che svolgeremo nel corso della realizzazione del progetto \progetto, per
