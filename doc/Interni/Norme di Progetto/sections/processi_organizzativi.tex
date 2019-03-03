@@ -65,6 +65,49 @@
 			\item Assegnazione delle risorse umane alle attività secondo una precisa rotazione dei ruoli
 			\end{enumerate}
 
+
+			\paragraph{Metriche di pianificazione} \label{ProcessiOrganizzativiMetriche}
+
+			\begin{itemize}
+				\item MPR001 Varianza della pianificazione
+				\item MPR002 Varianza dei costi
+			\end{itemize}
+
+			La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
+
+			\subparagraph{MPR001 Varianza della pianificazione}
+			Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
+			Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
+			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
+
+
+			\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività
+			viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
+
+			\subparagraph{MPR002 Varianza dei costi}
+			All'interno del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
+			In corso d'opera possono presentarsi dei problemi che richiedono un'aggiunta di costo in termini di $\frac{\text{tempo}}{\text{persona}}$.
+			Lo scopo del preventivo è infatti fare una stima non definitiva dei costi. Per verificare se il preventivo è rispettato faremo periodicamente
+			un consuntivo di periodo.
+
+			\textbf{Metrica}: viene misurata la differenza conteggiata in \euro\ tra il costo finale e il preventivo.
+			Viene seguito tale schema per la tariffa oraria dei vari ruoli del team di sviluppo:
+
+			\begin{table}[H]
+				\centering
+				\begin{paddedtablex}[1.7]{\textwidth / 2}{Xc}
+					\textbf{Ruolo} & \thead{Costo orario} \\
+					Responsabile & \euro\ 30 \\
+					Amministratore & \euro\ 20 \\
+					Analista & \euro\ 25 \\
+					Progettista & \euro\ 22 \\
+					Programmatore & \euro\ 15 \\
+					Verificatore & \euro\ 15 \\
+				\end{paddedtablex}
+				\caption{Costo orario per ruolo}
+			\end{table}
+
+
 			\paragraph{Classificazione dei rischi}\label{ClassificazioneRischi}
 			Le tipologie in cui suddividere i rischi sono state prese dal libro Software
 			Engineering\footnote{Riferirsi alla voce ``Software Engineering, 10° edizione'' in \S\ref{rifinfo}} e possono essere di tipo:
@@ -351,48 +394,7 @@
 			% Per ora GitHub per issue-task tracker ~Tim
 
 
-	\subsection{Metriche} \label{ProcessiOrganizzativiMetriche}
-	La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
-
-	\subsubsection{MPR001 Varianza della pianificazione}
-	Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
-	Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
-	\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
-
-
-	\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività
-	viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
-
-	\subsubsection{MPR002 Varianza dei costi}
-	All'interno del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
-	In corso d'opera possono presentarsi dei problemi che richiedono un'aggiunta di costo in termini di $\frac{\text{tempo}}{\text{persona}}$.
-	Lo scopo del preventivo è infatti fare una stima non definitiva dei costi. Per verificare se il preventivo è rispettato faremo periodicamente
-	un consuntivo di periodo.
-
-	\textbf{Metrica}: viene misurata la differenza conteggiata in \euro\ tra il costo finale e il preventivo.
-	Viene seguito tale schema per la tariffa oraria dei vari ruoli del team di sviluppo:
-
-	\begin{table}[H]
-		\centering
-		\begin{paddedtablex}[1.7]{\textwidth / 2}{Xc}
-			\textbf{Ruolo} & \thead{Costo orario} \\
-			Responsabile & \euro\ 30 \\
-			Amministratore & \euro\ 20 \\
-			Analista & \euro\ 25 \\
-			Progettista & \euro\ 22 \\
-			Programmatore & \euro\ 15 \\
-			Verificatore & \euro\ 15 \\
-		\end{paddedtablex}
-		\caption{Costo orario per ruolo}
-	\end{table}
-
-	\subsubsection{MPR004 Frequenza commit nella repository}
-	Per mantenere aggiornate le versioni dei prodotti è necessario che ognuno di noi effettui un commit ad ogni sua modifica significativa.
-	Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
-	Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
-	\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
-	\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
-
+	
 
 	\subsection{Formazione}\label{Formazione}
 

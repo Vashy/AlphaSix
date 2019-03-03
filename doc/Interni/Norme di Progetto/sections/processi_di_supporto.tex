@@ -293,31 +293,7 @@
 				sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
 			\end{itemize}
 		
-		\subsubsection{Metriche per i documenti}\label{ProcessiSupportoMetriche}
-		La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
-		
-			\paragraph{MPD001 Indice di Gulpease}
-			Per il calcolo dell'indice di Gulpease, abbiamo creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
-			L'indice si calcola:
 
-			\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
-			
-			\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
-
-			\begin{itemize}
-				\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare.
-				\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media.
-				\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore.
-			\end{itemize}
-
-			Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in PDF per valutarne
-			l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
-
-			\paragraph{MPD002 Correttezza ortografica}
-			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio} e da GNU Aspell.
-
-			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
-			
 	\subsection{Codice sorgente}\label{PS:Codice}
 	
 	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
@@ -528,7 +504,9 @@
 		
 		
 		\subsubsection{Analisi statica}\label{AnalisiStatica}
-		L'analisi statica verifica solo i prodotti che non sono o che non possono essere eseguiti, come i documenti.
+		L'analisi statica attua una verifica non dinamica, ovvero senza eseguire codice.
+		Può essere effettuata sui documenti o sul codice in maniera statica. 
+
 
 			\paragraph{Analisi dei documenti}
 			L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
@@ -541,14 +519,36 @@
 			
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 
+			\subparagraph{MPD001 Indice di Gulpease}
+			Per il calcolo dell'indice di Gulpease, abbiamo creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
+			L'indice si calcola:
+
+			\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
+			
+			\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
+
+			\begin{itemize}
+				\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare.
+				\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media.
+				\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore.
+			\end{itemize}
+
+			Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in PDF per valutarne
+			l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
+
+			\subparagraph{MPD002 Correttezza ortografica}
+			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio} e da GNU Aspell.
+
+			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
+			
+
+
 			\paragraph{Analisi dei processi}
 			Per analizzare i processi usiamo gli standard sopra elencati. Ad ogni fase del processo, verranno valutati gli attributi richiesti secondo
 			l'ISO 15504, in che misura questi sono stati rispettati e in che fase del Ciclo di Deming il processo si trova.
 			Per l'analisi dei processi vengono utilizzate:
 
 			\begin{itemize}
-				\item MPR001 Varianza della pianificazione
-				\item MPR002 Varianza dei costi
 				\item MPR004 Frequenza commit nella repository
 				\item MPR009 Frequenza controllo prodotti
 				% \item \textbf{MPR010 Norme di progetto non seguite}
@@ -556,6 +556,14 @@
 
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 		
+			\subparagraph{MPR004 Frequenza commit nella repository}
+			Per mantenere aggiornate le versioni dei prodotti è necessario che ognuno di noi effettui un commit ad ogni sua modifica significativa.
+			Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
+			Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
+			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
+			\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
+
+
 			\subparagraph{MPR009 Frequenza controllo prodotti}
 			I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
 		
@@ -566,6 +574,40 @@
 		
 			\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
 
+
+			\paragraph{Analisi del software} \label{analisisw}
+			L'analisi statica del codice, insieme alle norme di codifica stabilite in \S\ref{PP:Sviluppo:Codifica}, serve per permetterci di scrivere programmi verificabili.
+			In particolare ci aiuta per assicurare un comportamento predicibile, per darci dei criteri di programmazione ben fondati da usare e per ragioni pragmatiche.
+			Un potente mezzo che ci permette di eseguire analisi statica sul codice è \gloss{SonarQube}.
+			Da esso, traiamo le seguenti metriche:
+			\begin{itemize}%TODO: si può aggiungere (più avanti magari) la copertura del codice
+				\item MPS001 Presenza di bug
+				\item MPS002 Presenza di vulnerabilità
+				\item MPS003 Presenza di code smell
+				\item MPS004 Duplicazione del codice
+			\end{itemize} 
+
+			\subparagraph{SonarQube} \label{sonarqube}
+			È una piattaforma open-source per realizzare controlli sulla qualità del codice tramite analisi statica.
+			Con essa è possibile rilevare bug, \gloss{code smell}, duplicazione del codice e vulnerabilità varie.
+			In particolare, ci è molto utile perchè supporta il linguaggio di programmazione che noi utilizziamo: Python.
+			%TODO: inserire screen
+
+			\subparagraph{MPS001 Presenza di bug} \label{presenzabug}
+
+			\textbf{Metrica}: numero di bug presenti.
+
+			\subparagraph{MPS002 Presenza di vulnerabilità} \label{presenzavulnerabilita}
+
+			\textbf{Metrica}: numero di vulnerabilità presenti.
+
+			\subparagraph{MPS003 Presenza di code smell} \label{presenzacodesmell}
+
+			\textbf{Metrica}: numero di code smell presenti.
+
+			\subparagraph{MPS004 Duplicazione del codice} \label{duplicazionecodice}
+
+			\textbf{Metrica}: percentuale di codice duplicato.
 		
 		
 		\subsubsection{Analisi dinamica}\label{AnalisiDinamica} %TODO
