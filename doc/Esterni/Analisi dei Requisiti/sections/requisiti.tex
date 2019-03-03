@@ -56,13 +56,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\newcommand{\ReqF}[3]{\stepcounter{vaF}R\thevaF F#1 & #2 & #3 \\} % Primo livello
 
 	\newcommand{\subReqF}[3]{\stepcounter{secF}R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello
-	\newcommand{\getsubReqF}[3]{R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello, get senza incremento
+	% \newcommand{\getsubReqF}[3]{R\thevaF.\thesecF F#1 & #2 & #3 \\} % Secondo livello, get senza incremento
 
-	\newcommand{\subsubReqF}[3]{\stepcounter{thF}R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Terzo livello
-	\newcommand{\getsubsubReqF}[3]{R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Quarto livello, get senza incremento
+	% \newcommand{\subsubReqF}[3]{\stepcounter{thF}R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Terzo livello
+	% \newcommand{\getsubsubReqF}[3]{R\thevaF.\thesecF.\thethF F#1 & #2 & #3 \\} % Quarto livello, get senza incremento
 
-	\newcommand{\subsubsubReqF}[3]{\stepcounter{fourthF}R\thevaF.\thesecF.\thethF.\thefourthF F#1 & #2 & #3 \\} % Quarto livello
-	\newcommand{\getsubsubsubReqF}[3]{R\thevaF.\thesecF.\thethF.\thefourthF F#1 & #2 & #3 \\} % Quarto livello, get senza incremento
+	% \newcommand{\subsubsubReqF}[3]{\stepcounter{fourthF}R\thevaF.\thesecF.\thethF.\thefourthF F#1 & #2 & #3 \\} % Quarto livello
+	% \newcommand{\getsubsubsubReqF}[3]{R\thevaF.\thesecF.\thethF.\thefourthF F#1 & #2 & #3 \\} % Quarto livello, get senza incremento
 
 	% \newcounter{secondF} % per il secondo livello del requisito
 	% \addtocounter{secondF}{1}
@@ -93,7 +93,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-			\stepcounter{vaF} % Per allineare i requisiti ai casi d'uso
+			% \stepcounter{vaF} % Per allineare i requisiti ai casi d'uso
 
 			% da casi d'uso
 			\ReqF{2}{Redmine deve poter inviare la segnalazione di apertura issue al Producer Redmine}{Interno UC2-PR}
@@ -108,9 +108,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC8-GP}
 			\subReqF{2}{Il Producer GitLab deve essere in grado di inviare messaggi di commit al Gestore Personale}{Interno UC8.1-GP}
 			\subReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di issue al Gestore Personale}{Interno UC8.2-GP}
-			\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di nuova issue al Gestore Personale}{Interno UC8.2.1-GP}
-			\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC8.2.2-GP}
-			\subsubReqF{2}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC8.2.3-GP}
+			\subReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di nuova issue al Gestore Personale}{Interno UC8.2.1-GP}
+			\subReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC8.2.2-GP}
+			\subReqF{2}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC8.2.3-GP}
 			\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Telegram}{Interno UC9-CT}
 
 			\bottomrule\\
@@ -132,18 +132,18 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqF{2}{L'utente acceduto deve poter uscire dal sistema}{Interno UC14-GP}
 
 			\ReqF{2}{L'utente acceduto deve poter aggiungere un nuovo utente}{Interno UC15-GP}
-			\stepcounter{secF}
-			\subsubReqF{2}{L'utente acceduto deve poter inserire il nome dell'utente da aggiungere}{Interno UC15.1.1-GP}
-			\subsubReqF{2}{L'utente acceduto deve poter inserire il cognome dell'utente da aggiungere}{Interno UC15.1.2-GP}
-			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC15.1.3-GP}
-			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC15.1.4-GP}
+			% \stepcounter{secF}
+			\subReqF{2}{L'utente acceduto deve poter inserire il nome dell'utente da aggiungere}{Interno UC15.1.1-GP}
+			\subReqF{2}{L'utente acceduto deve poter inserire il cognome dell'utente da aggiungere}{Interno UC15.1.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC15.1.3-GP}
+			\subReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC15.1.4-GP}
 			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram non è univoco}{Interno UC15.2-GP}
-			\getsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC15.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC15.2-GP}
 
 			\ReqF{2}{L'utente acceduto deve poter rimuovere un utente già presente}{Interno UC16-GP}
-			\stepcounter{secF}
-			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC16.1.1-GP}
-			\subsubReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC16.1.2-GP}
+			% \stepcounter{secF}
+			\subReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC16.1.1-GP}
+			\subReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC16.1.2-GP}
 			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è presente nel sistema}{Interno UC16.2-GP}
 
 			\bottomrule\\
@@ -159,13 +159,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqF{2}{L'utente acceduto deve poter modificare le informazioni relative a un utente}{Interno UC17-GP}
 			\subReqF{2}{L'utente acceduto deve poter selezionare l'identificativo dell'utente da modificare}{Interno UC17.1-GP}
 
-			\stepcounter{thF}
-			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo nome dell'utente da modificare}{Interno UC17.1.1.1-GP}
-			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo cognome dell'utente da modificare}{Interno UC17.1.1.2-GP}
-			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Email dell'utente da modificare}{Interno UC17.1.1.3-GP}
-			\subsubsubReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Telegram dell'utente da modificare}{Interno UC17.1.1.4-GP}
-			\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email è già presente}{Interno UC17.1.2-GP}
-			\getsubsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram è già presente}{Interno UC17.1.2-GP}
+			% \stepcounter{thF}
+			\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo nome dell'utente da modificare}{Interno UC17.1.1.1-GP}
+			\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo cognome dell'utente da modificare}{Interno UC17.1.1.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Email dell'utente da modificare}{Interno UC17.1.1.3-GP}
+			\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Telegram dell'utente da modificare}{Interno UC17.1.1.4-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email è già presente}{Interno UC17.1.2-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram è già presente}{Interno UC17.1.2-GP}
 			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è riconosciuto dal sistema}{Interno UC17.2-GP}
 
 			\stepcounter{vaF}
@@ -184,7 +184,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-			\getsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
 			\subReqF{2}{L'utente acceduto deve poter aggiungere nuove keyword di interesse per i messaggi di commit}{Interno UC18.6-GP}
 			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword inserita era già nella sua lista}{Interno UC18.7-GP}
 
@@ -194,7 +194,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\subReqF{2}{L'utente acceduto deve poter rimuovoere una piattaforma di messaggistica preferita}{Interno UC19.3-GP}
 			\subReqF{2}{L'utente acceduto deve poter rimuovere la propria persona di fiducia}{Interno UC19.4-GP}
 			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC19.5-GP}
-			\getsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC19.5-GP}
+			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC19.5-GP}
 			\subReqF{2}{L'utente acceduto deve poter rimuovere keyword di interesse per i messaggi di commit}{Interno UC19.6-GP}
 			\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword da rimuovere è assente dalla sua lista}{Interno UC19.7-GP}
 
