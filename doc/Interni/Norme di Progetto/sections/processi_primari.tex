@@ -172,8 +172,8 @@
 		\end{itemize}
         
 
-		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} %TODO: notare se da scrivere ora tutti o solo alcuni (classi - attività -sequenza)
-               
+		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} 
+        
 		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
 		Per i diagrammi delle classi utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\\
         Questi diagrammi strutturali descrivono ad alto livello i tipi di oggetto presenti nel sistema e le relazioni che intercorrono tra essi.
@@ -220,7 +220,7 @@
                 Possono essere indicate con un pallino vuoto e un semicerchio a destra per indicare che l'interfaccia viene usata da un componente in un punto qualsiasi (ritorno di un'operazione, attributo\dots).
             \end{itemize}
 
-		\subparagraph{Semantica} %TODO
+		%\subparagraph{Semantica} %TODO
 		%Dipendenza generica, Associazione, Aggregazione..
         %Meglio qui o lasciamo sopra?
         
@@ -240,7 +240,7 @@
         \end{itemize}
 
 
-		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività} %TODO
+		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività}
         Per i diagrammi di attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
 		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.\\
         Le attività sono insiemi di azioni ordinate dei tipi:
@@ -274,7 +274,7 @@
         Le indichiamo con un rettangolo tratteggiato ad angoli arrotondati, e rettangoli piccoli presenti sui lati di inizio e fine regione, che rappresentano le liste di elementi processati.\\
         Le frecce di entrata e uscita indicano in quale verso viene svolta l'attività che include la regione di espansione.
 
-		\subparagraph{Semantica} %TODO
+		%\subparagraph{Semantica} %TODO
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
 
 
@@ -311,7 +311,7 @@
         Cerchiamo di usare per quanto possibile la modellazione a controllo distribuito, per non dare troppe responsabilità a una singola entità che diventerebbe il punto critico dell'architettura.
         
 
-		\subparagraph{Semantica} %TODO
+		%\subparagraph{Semantica} %TODO
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
 
 
@@ -332,7 +332,8 @@
 			\end{itemize}
 		\end{itemize}
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
-
+        
+        \newpage
 
 		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione}
 		Per garantire una progettazione che rispetti gli standard di qualità posti nel {\PdQd}, seguiamo le linee guida date dalle best practice.
@@ -343,7 +344,7 @@
         Evitiamo le relazioni bidirezionali perché si crea confusione su quale classe ha la responsabilità sulla relazione.\\
         Minimizziamo le dipendenze tra le classi in modo da rendere il diagramma più comprensibile e cerchiamo di usare le relazioni di dipendenza debole rispetto alle dipendenze forti, per favorire il riuso del codice ed evitare modifiche inutili e a cascata.
         
-        \paragraph{Qualità dei diagrammi dei package} % TODO
+        \paragraph{Qualità dei diagrammi dei package}
         Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.\\		
 
 		\paragraph{Qualità dei diagrammi di attività}
@@ -354,12 +355,14 @@
 		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\\
         Per modellare la logica di controllo è meglio usare i diagrammi di attività perché di più semplice lettura.
 
-		\paragraph{Qualità dei diagrammi dei casi d'uso} %TODO: facoltativo..
+		%\paragraph{Qualità dei diagrammi dei casi d'uso} %TODO: facoltativo..
 		%Contenuto
 
 		%manuale utente da presentare in RQ, quindi da fare più avanti
 		%\subsubsection{Produzione del manuale utente}
-
+        
+        
+        \newpage
 
 		\subsubsection{Codifica}\label{PP:Sviluppo:Codifica}
 
@@ -371,7 +374,7 @@
 		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce ``PEP 8'' in \S\ref{rifnorma}},
 		lo standard Python che definisce lo stile da seguire nella codifica e in attività correlate ad essa.
 
-        \paragraph{Intestazione} %TODO
+        \paragraph{Intestazione}
 		Ogni sorgente Python conterrà la seguente intestazione:
 		\begin{verbatim}
 			"""
@@ -437,7 +440,6 @@ f_stringa = f'{stringa} parametrizzata!'
 \end{lstlisting}
 
         \paragraph{Lunghezza massima delle righe}
-        %Contenuto
 		Le righe di codice devono avere una lunghezza massima di 79 caratteri. Le righe di documentazione relative ad esempio a un metodo,
 		invece, non devono contenere più di 72 caratteri.
 		A tal fine, vengono divisi in più righe le istruzioni che superano il limite massimo di caratteri, per migliorare la leggibilità.
