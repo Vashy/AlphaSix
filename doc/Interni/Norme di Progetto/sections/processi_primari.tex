@@ -278,8 +278,38 @@
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
 
 
-		\paragraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza} %TODO
-		%Contenuto
+		\paragraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza}
+		Per i diagrammi di sequenza utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
+        Usiamo questi diagrammi per descrivere come la collaborazione tramite messaggi di un gruppo di oggetti realizza un comportamento.\\
+        Essi mostrano come gli oggetti interagiscono nel tempo, leggendo il diagramma dall'alto al basso.\\
+        I principali costrutti usati sono:
+        \begin{itemize}
+            \item \textbf{Partecipanti}: rappresentati da un rettangolo contenente il nome dell'entità (spesso coincide col nome di una classe) e da una barra di attivazione (rettangolo che si prolunga per tutta la durata in cui l'entità è attiva), descrivono l'entità che detiene il flusso nel caso d'uso.
+            \item \textbf{Messaggi}: rappresentano le operazioni chiamate tra le entità e i dati scambiati.\\
+            Sono di diverse tipologie:
+            \begin{itemize}
+                \item \textbf{Sincroni}: rappresentati da una freccia piena con il nome del messaggio ed eventuali parametri tra parentesi tonde, descrivono la chiamata di un messaggio in cui l'entità chiamante attende la risposta dall'entità chiamata.
+                \item \textbf{Asincroni}: rappresentati da una linea direzionata con il nome del messaggio ed eventuali parametri tra parentesi tonde, descrivono la chiamata di un messaggio in cui l'entità chiamante non attende la risposta dall'entità chiamata.
+                \item \textbf{Ritorno}: rappresentati da una linea tratteggiata direzionata, indicano un messaggio di ritorno che risponde a un precedente messaggio di chiamata.
+                \item \textbf{Creazione}: rappresentati da una linea tratteggiata direzionata e dalla notazione <<create>>, indicano la creazione di una nuova entità da parte dell'entità chiamante.
+                \item \textbf{Distruzione}: rappresentati da una freccia piena e dalla notazione <<detroy>>, indicano la distruzione di un'entità da parte dell'entità chiamante.
+            \end{itemize}
+        \end{itemize}
+        Per descrivere i cicli e le condizioni vengono utilizzati frame di interazione, rappresentati con un rettangolo che circonda i messaggi e le barre di attivazione coinvolte, con una label per indicare il tipo di frame, e da una guardia tra parentesi quadre nell'entità che ne scatena l'inizio.
+        Vi sono i seguenti tipi di frame di interazione:
+        \begin{itemize}
+            \item \textbf{Alt}: più frame in alternativa, si sceglie in base alla guardia.
+            \item \textbf{Opt}: opzionale, in base alla guardia si esegue o meno il frame.
+            \item \textbf{Par}: parallelo, frame eseguiti in parallelo.
+            \item \textbf{Loop}: ciclo eseguito più volte in base alla guardia.
+            \item \textbf{Region}: regione critica eseguibile da un thread alla volta.
+            \item \textbf{Ref}: l'interazione è definita in un altro diagramma.
+            \item \textbf{Sd}: rachiude un diagramma di sequenza intero.
+        \end{itemize}
+        I diagrammi di sequenza sono inoltre utili per modellare la collaborazione tra entità.\\
+        In caso di controllo centralizzato vi sarà un'entità che gestirà i messaggi verso tutte le altre, mentre in caso di controllo distribuito ogni entità avrà compiti ben delineati, quindi avrà la responsabilità della chiamata dei messaggi verso le altre entità coinvolte.\\
+        Cerchiamo di usare per quanto possibile la modellazione a controllo distribuito, per non dare troppe responsabilità a una singola entità che diventerebbe il punto critico dell'architettura.
+        
 
 		\subparagraph{Semantica} %TODO
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
