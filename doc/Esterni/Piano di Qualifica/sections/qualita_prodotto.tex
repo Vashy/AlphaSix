@@ -8,35 +8,46 @@ Abbiamo scelto di prendere come modello gli standard ISO 9126 e 90003:2004 indiv
 La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
 
 	\begin{itemize}
+
+		\item \textbf{Metriche}:
+		
+		\begin{center}
+			\texttt{M[Prodotto][ID] [Nome]}
+		\end{center}
+	
+		\begin{itemize}
+			\item \textbf{Prodotto}: può essere:
+			\begin{itemize}
+				\item \textbf{PD}: indica "Metrica del prodotto documento".
+				\item \textbf{PS}: indica "Metrica del prodotto software".
+			\end{itemize}
+			\item \textbf{ID}: numero progressivo di tre cifre.
+			\item \textbf{Nome}: descrive brevemente la metrica.
+		\end{itemize}
+
 		\item \textbf{Obiettivi}: 
 		
 		\begin{center}
-			\texttt{QPD[ID] [Nome]}
+			\texttt{Q[Prodotto][ID] [Nome]}
 		\end{center} 
 		
 		\begin{itemize}
-			\item \textbf{QPD}: indica "Qualità dei documenti".
+			\item \textbf{Prodotto}: può essere:
+			\begin{itemize}
+				\item \textbf{PD}: indica "Qualità del prodotto documento".
+				\item \textbf{PS}: indica "Qualità del prodotto software".
+			\end{itemize}
 			\item \textbf{ID}: numero progressivo di tre cifre.
 			\item \textbf{Nome}: descrive brevemente il processo.
 		\end{itemize}
 		
-		\item \textbf{Metriche}:
-		
-		\begin{center}
-			\texttt{MPD[ID] [Nome]}
-		\end{center}
-	
-		\begin{itemize}
-			\item \textbf{MPD}: indica "Metrica dei documenti".
-			\item \textbf{ID}: numero progressivo di tre cifre.
-			\item \textbf{Nome}: descrive brevemente la metrica.
-		\end{itemize}
 		
 	\end{itemize}
 
 
 \subsection{Prodotti} 
-Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile. Nel contesto di questo progetto i prodotti sono documenti e software.
+Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile.
+Nel contesto di questo progetto i prodotti sono documenti e software.
 
 	\subsubsection{Documenti}
 	I documenti rilasciati devono presentarsi leggibili e comprensibili già ad una prima lettura, con contenuti che rispecchino le premesse del documento.
@@ -57,6 +68,10 @@ Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabil
 			\item \textbf{QPD003 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati.
 %			\item \textbf{QPD004 Manutenibilità del documento}: i documenti devono possedere un diario delle modifiche prontamente aggiornato per agevolarne la manutenibilità.
 		\end{itemize}
+
+	\subsubsection{Software}	
+	Il software che realizziamo vogliamo che sia di qualità 
+
 
 \subsection{Tabella qualità di prodotto}
 Le tabelle indicano gli obiettivi di qualità che ogni prodotto deve possedere.
