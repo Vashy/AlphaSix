@@ -589,13 +589,21 @@
 
 			\subparagraph{SonarQube} \label{sonarqube}
 			È una piattaforma open-source per realizzare controlli sulla qualità del codice tramite analisi statica.
-			Con essa è possibile rilevare bug, \gloss{code smell}, duplicazione del codice e vulnerabilità varie.
-			In particolare, ci è molto utile perchè supporta il linguaggio di programmazione che noi utilizziamo: Python.
-			%TODO: inserire screen
+			Lo utiliazziamo perchè è possibile creare dei progetti che scansionano il nostro progetto locale e ci mostrano in una dashboard le attività più significative che lo strumento rileva.
+			Si possono rilevare bug, \gloss{code smell}, duplicazione e vulnerabilità del codice.
+			Viene inoltre assegnato una valore "passato" o "non passato" denominato Quality gate, che ci consente di valutare immediatamente la qualità generale del nostro codice. 
+			In particolare, SonarQube rispetto ad altri strumenti simili, ci è molto utile perchè supporta parecchio linguaggi di programmazione, tra cui quello che noi più utilizziamo: Python.
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{img/sonar.png}\\
+				\caption[Screen SonarQube]{Esempio di immagine catturata del progetto Butterfly in SonarQube.}
+				\label{fig:butterfly}
+			\end{figure}
 
 			\subparagraph{MPS001 Presenza di bug} \label{presenzabug}
 			I bug sono difetti nel codice che vogliamo assolutamente tenere sotto controllo e rimuovere se rilevati.
-			A questo scopo, SonarQube ci dà la possibilità di visualizzare quanti bug sono presenti nel codice. \\
+			A questo scopo, SonarQube ci dà la possibilità di conteggiare il numero di bug presenti nel codice. \\
 			\textbf{Metrica}: numero di bug presenti nel codice al momento della scansione.
 
 			\subparagraph{MPS002 Presenza di vulnerabilità} \label{presenzavulnerabilita}
