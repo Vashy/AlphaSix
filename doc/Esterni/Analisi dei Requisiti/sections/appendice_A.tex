@@ -2,34 +2,86 @@
 \section{Approfondimenti tecnologici}
 	
 	\subsection{Webhook}
-		Gli Webhook sono un pattern HTTP leggero che fornisce un modello publisher/subscriber semplice
+		I Webhook sono un pattern HTTP leggero che fornisce un modello publisher/subscriber semplice
 		per collegare tra loro API Web.	
 		Quando si verifica un evento in un servizio, sotto forma di una richiesta HTTP viene inviata una
 		notifica ai sottoscritti registrati. La richiesta contiene informazioni sull'evento che rende
 		possibile per il ricevitore agire di conseguenza.
 		Le tecnologie Redmine e GitLab li integrano e utilizzando una specifica porta, dove i nostri
 		Producer sono in ascolto, viene inviato un file Json. Questa tecnologia ci fornisce
-		collezioni di dati organizzati, facilitandoci così la lettura e la scrittura.
+		collezioni di dati organizzati, facilitandoci così la lettura e la scrittura.\\
+        Per quanto riguarda i file Json usiamo un \gloss{dizionario python} chiamato obj, contiene i campi interessanti e sono:
+            \begin{itemize}
+                \item GitLab Issue Event:
+\begin{lstlisting}[language = json]
+   obj["object_kind"]
+   obj["project"]["id"]/obj["object_attributes"]["project_id"]
+   obj["project"]["name"]
+   obj["assignees"][k]["nome utente"]
+   obj["object_attributes"]["action"]
+   obj["object_attributes"]["description"]
+   obj["labels"][k]["title"]
+   obj["labels"][k]["project_id"]
+   obj["changes"]["title"]
+   obj["changes"]["labels"]["previous"][k]["title"]
+   obj["changes"]["labels"]["current"][k]["title"]
+\end{lstlisting}
+                \item GitLab Push Event:
+\begin{lstlisting}[language = json]
+    obj["object_kind"]
+    obj["utente_id"]
+    obj["utente_nome utente"]
+    obj["project_id"]
+    obj["commits"][k]["id"]
+    obj["commits"][k]["message"]
+    obj["commits"][k]["timestamp"]
+    obj["commits"][k]["author"]["name"]
+    obj["total_commits_count"]
+\end{lstlisting}
+                \item Redmine Issue Event:
+\begin{lstlisting}[language = json]
+    obj["payload"]["issue"]["priority"]["name"]
+    obj["payload"]["issue"]["tracker"]["name"]
+    obj["payload"]["issue"]["subject"]
+    obj["payload"]["issue"]["status"]["name"]
+    obj["payload"]["issue"]["description"]
+    obj["payload"]["issue"]["project"]["id"]
+    obj["payload"]["issue"]["project"]["name"]
+    obj["payload"]["issue"]["action"]
+\end{lstlisting}
+            \end{itemize}
 	
 		\subsection{Redmine}
-		Ciascuna istanza di Redmine permette l'utilizzo di webhook\footnote{Riferirsi alla voce ``Webhook di Redmine'' alla sezione \S\ref{sec:RiferimentiInformativi}} che inviano segnalazioni al Producer alla modifica del progetto.
-		Queste vengono ricevute dal server tramite un microservizio che resta in ascolto, aggiornando in base a quello che riceve i dati presenti sul gestore personale e inoltrando le notifiche ai Consumer interessati.
+		Ciascuna istanza di Redmine permette l'utilizzo di webhook
+        \footnote{Riferirsi alla voce Webhook di Redmine'' alla sezione \S\ref{sec:RiferimentiInformativi}}
+        che inviano segnalazioni al Producer alla modifica del progetto.
+		Queste vengono ricevute dal server tramite un microservizio che resta
+        in ascolto, aggiornando in base a quello che riceve i dati presenti sul gestore
+        personale e inoltrando le notifiche ai Consumer interessati.
 		
 		\subsection{GitLab}
-		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda, mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce ``Webhook di GitLab'' alla sezione \S\ref{sec:RiferimentiInformativi}} che, alla modifica della repository, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di aggiornare i dati presenti nel gestore personale e, come per Redmine, inoltrare le notifiche ai Consumer interessati.
+		Ciascuna istanza di GitLab, online o in un server locale interno dell'azienda,
+        mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce Webhook di GitLab'' alla sezione \S\ref{sec:RiferimentiInformativi}}
+        che, alla modifica della repository, manda un messaggio con le informazioni dei cambiamenti, inseriti nella repository, a un microservizio capace di
+        aggiornare i dati presenti nel gestore personale e, come per Redmine, inoltrare le notifiche ai Consumer interessati.
 		
 		\subsection{Apache Kafka}
 		Apache Kafka è un software \gloss{open source} che permette la lettura e la scrittura di messaggi su differenti canali di comunicazioni per i dati.
-		Questi messaggi arrivano dai Producer che ricevono le notifiche di applicazioni di terze parti mandandole verso il Broker. Questo le elabora analizzandone il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic.
+		Questi messaggi arrivano dai Producer che ricevono le notifiche di applicazioni di terze parti mandandole verso il Broker. Questo le elabora analizzandone
+        il contenuto e contrassegnandole con Topic che verranno utilizzati per l'inoltro ai Consumer e successivamente agli utenti finali, i quali possono abbonarsi a più Topic.
 		
 		\subsection{Telegram}
-		Telegram permette l'interazione in maniera automatica con gli utenti tramite \gloss{bot}\footnote{Riferirsi alla voce ``Bot di Telegram'' alla sezione \S\ref{sec:RiferimentiInformativi}} che possono essere configurati per mandare messaggi ricevuti da strumenti di terze parti, in questo caso \progetto.
+		Telegram permette l'interazione in maniera automatica con gli utenti tramite
+        \gloss{bot}\footnote{Riferirsi alla voce Bot di Telegram'' alla sezione \S\ref{sec:RiferimentiInformativi}}
+        che possono essere configurati per mandare messaggi ricevuti da strumenti di terze parti, in questo caso \progetto.
 		Il Consumer interroga il Broker per acquisire i messaggi da inoltrare e li trasmette effettivamente al bot di Telegram.
 		
 		\subsection{E-mail}
-		Per inoltrare le e-mail agli utenti finali è necessario che sviluppiamo un Consumer associato che sfrutta un server di posta in modo tale da poter ricevere i messaggi dal Broker e poi mandarli all'indirizzo specificato.
+		Per inoltrare le e-mail agli utenti finali è necessario che sviluppiamo un Consumer associato che sfrutta un server di posta
+        in modo tale da poter ricevere i messaggi dal Broker e poi mandarli all'indirizzo specificato.
 		
 		\subsection{Docker}
 		L'azienda ci consiglia di utilizzare \gloss{Docker} per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
-		La configurazione avverrà tramite un \gloss{Dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio, numero di istanze ed altri parametri specifici.
+		La configurazione avverrà tramite un \gloss{Dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio,
+        numero di istanze ed altri parametri specifici.
 			
