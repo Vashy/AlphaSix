@@ -504,7 +504,7 @@
 		
 		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
 
-		\paragraph{Test Driven Development}
+		\paragraph{Test Driven Development}\label{tdd}
 		Come metodologia di sviluppo del software adottiamo il Test Driven Development (TDD) per ogni componente.
 		Questa metodologia prevede tre fasi nello sviluppo che, ripetute ciclicamente, costituiscono il Ciclo TDD:
 		\begin{itemize}
@@ -512,7 +512,7 @@
 				il nome del metodo o la sua implementazione. Questo porterà ad un fallimento assicurato poiché il metodo non esiste o non fa nulla.
 			\item \textbf{Fase verde}: il \Progr\ scrive il codice della funzionalità minimo indispensabile a far superare il test.
 			\item \textbf{Fase grigia (Refactoring)}: il \Progr\ riscrive il codice per far sì che il codice rispetti
-				gli standard di qualità definiti nel \PdQd\ e al contempo superi il test. 
+				gli obiettivi di qualità definiti nel \PdQd\ e al contempo superi il test. 
 		\end{itemize}
 
 		\begin{figure}[H]
@@ -605,6 +605,15 @@
 			\end{itemize}
 		
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
+
+			\subparagraph{Controllo del Python coding style}\label{pycodestyle}
+			Per l'analisi statica dello stile di codifica dei sorgenti Python, utilizziamo due strumenti che segnalano se lo stile di codifica non rispetta
+			le norme definite nel PEP 8:
+			\begin{itemize}
+				\item \texttt{pycodestyle}: un tool che segnala, tramite comando da terminale, se e quali righe di codice di un file non rispettano lo standard PEP 8.
+				\item \texttt{pylama}: un linter che segnala dinamicamente se ciò che viene digitato contiene degli errori o non rispetta
+					lo standard PEP 8.
+			\end{itemize}
 
 			\subparagraph{SonarQube} \label{sonarqube}
 			È una piattaforma open-source per realizzare controlli sulla qualità del codice tramite analisi statica.
