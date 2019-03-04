@@ -374,7 +374,7 @@
 		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce ``PEP 8'' in \S\ref{rifnorma}},
 		lo standard Python che definisce lo stile da seguire nella codifica e in attività correlate ad essa.
 
-        \paragraph{Intestazione}
+        \paragraph{Intestazione}\label{PP:Sviluppo:Codifica:Intestazione}
 		Ogni sorgente Python conterrà la seguente intestazione:
 		\begin{verbatim}
 			"""
@@ -392,13 +392,17 @@
 				....
 			"""
 		\end{verbatim}
+        
+        \begin{enumerate}
+            \item 
+        \end{enumerate}
 
-		\paragraph{Formattazione}
+		\paragraph{Formattazione}\label{PP:Sviluppo:Codifica:Formattazione}
 		Viene utilizzato uno spazio per separare simboli e identificatori.
 		\lstinputlisting{py/format.py}
 
 
-		\paragraph{Convenzioni di nominazione}
+		\paragraph{Convenzioni di nominazione}\label{PP:Sviluppo:Codifica:ConvenzioniDiNominazione}
 		\begin{itemize}
 			\item Per i nomi delle classi, viene usato \texttt{PascalCase}\footnote{Riferirsi alla voce ``Naming convention'' in \S\ref{rifinfo}}
 			\item Per le costanti, viene usato \texttt{MACRO\_CASE}
@@ -422,11 +426,11 @@ def foo(a, b):		# No
         % \paragraph{Funzioni anonime} %TODO Solo in caso di necessità
         %Contenuto
 
-        \paragraph{Indentazione}
+        \paragraph{Indentazione}\label{PP:Sviluppo:Codifica:Indentazione}
 		Per l'indentazione, come da PEP 8, vanno usano 4 spazi. L'IDE utilizzato dovrà essere configurato in modo che, premendo il
 		tasto TAB, verranno generati 4 spazi.
 
-		\paragraph{Stringhe}
+		\paragraph{Stringhe}\label{PP:Sviluppo:Codifica:Stringhe}
 		Preferire l'uso del carattere di apice singolo (') per circondare le stringhe. Usare il doppio apice (") solo per aumentare la
 		leggibilità in caso sia presente nella stringa un apice singolo, o per le stringhe di documentazione (circondate da tripli apici doppi).\par
 		Per ottenere stringhe formattabili con parametri, usare le f-stringhe introdotte con Python 3.6, o, in caso di migliore leggibilità, usare la funzione \texttt{format()}.
@@ -439,7 +443,7 @@ def foo(x):
 f_stringa = f'{stringa} parametrizzata!'
 \end{lstlisting}
 
-        \paragraph{Lunghezza massima delle righe}
+        \paragraph{Lunghezza massima delle righe}\label{PP:Sviluppo:Codifica:LunghezzaMassimaDelleRighe}
 		Le righe di codice devono avere una lunghezza massima di 79 caratteri. Le righe di documentazione relative ad esempio a un metodo,
 		invece, non devono contenere più di 72 caratteri.
 		A tal fine, vengono divisi in più righe le istruzioni che superano il limite massimo di caratteri, per migliorare la leggibilità.
@@ -451,12 +455,12 @@ with open('/path/to/some/file/you/want/to/read') as file_1, \
 		\end{lstlisting}
 
 
-		\paragraph{Lunghezza massima di metodi e funzioni}
+		\paragraph{Lunghezza massima di metodi e funzioni}\label{PP:Sviluppo:Codifica:LunghezzaMassimaDeiMetodi}
 		Il numero massimo di righe per ogni metodo o funzione viene fissato a 50 linee di codice, numero necessario ad occupare un'intera
 		schermata su un comune IDE. Funzioni più lunghe di 50 righe sono quasi sicuramente sintomo di una funzione che svolge troppi compiti,
 		che sarebbe spacchettabile in più funzioni.
 
-		\paragraph{Parametri delle funzioni}
+		\paragraph{Parametri delle funzioni}\label{PP:Sviluppo:Codifica:ParametriDelleFunzioni}
 		Per i parametri delle funzioni, usare dei nomi esplicativi se il numero dei parametri non supera i 6. Altrimenti, preferire l'uso di liste
 		arbitrarie di parametri e l'uso di coppie chiavi-valori. Documentare, di conseguenza,
 		i nomi dei parametri che l'operatore ** (per le coppie chiave-valore) si aspetta, e sollevare una eccezione appropriata in caso si ottenga una chiave
@@ -472,33 +476,140 @@ def cheeseshop(kind, *arguments, **keywords):
         print(kw, ":", keywords[kw])
 \end{lstlisting}
 
-        \paragraph{Complessità ciclomatica}
+        \paragraph{Complessità ciclomatica}\label{PP:Sviluppo:Codifica:ComplessitàCiclomatica}
 		Va evitato il più possibile l'annidamento di più strutture di controllo. Per questo, stare sotto i tre livelli di annidamento è una buona
 		prassi che semplifica leggibilità e \gloss{debugging} e va rispettata il più possibile.
 
 
-		\paragraph{Ereditarietà}
+		\paragraph{Ereditarietà}\label{PP:Sviluppo:Codifica:Ereditarietà}
 		Evitare l'ereditarietà tra classi che hanno stato. È invece possibile che una classe derivi da un'altra se quest'ultima è a tutti gli
 		effetti un'\gloss{interfaccia}, ossia definisce solo comportamenti astratti (i.e. è composta solo da metodi astratti).\par
 		Viene adottato, per ovviare alla assente ereditarietà, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce %
 		``Composition over inheritance'' in \S\ref{rifnorma}.}. 
 
 
-        \paragraph{Commenti}
+        \paragraph{Commenti}\label{PP:Sviluppo:Codifica:Commenti}
 		Il \Progr\ è tenuto ad inserire commenti ove ritiene che questo possa migliorare la leggibilità del codice. Per contro, i commenti vanno
 		omessi dove il codice è auto esplicatorio.\par
 		Per inserire un commento, far seguire al simbolo di commento (\texttt{\#}) uno spazio, e iniziare con una lettera maiuscola (e.g.
 		\texttt{\#\ Cerca il match del parametro x nella lista}). In caso di commento su più righe, solo la prima riga va iniziata con carattere
 		maiuscolo.
+        
+        \paragraph{Documentazione dei metodi}\label{PP:Sviluppo:Codifica:DocumentazioneDeiMetodi}
+        Ogni metodo è necessario che sia il più chiaro possibile. Oltre che a non dover avere una lunghezza non troppo elevata (visibile in \S\ref{PP:Sviluppo:Codifica:LunghezzaMassimaDeiMetodi}), un metodo deve essere anche ben documentato, indicando il tipo dei parametri e quelli delle variabili ritornate.
+        
+        La documentazione di un metodo deve avere la seguente forma:
+\begin{verbatim}
+def complex(real=0.0, imag=0.0):
+    """
+    Form a complex number.
+    
+    Keyword arguments:
+    real -- the real part (default 0.0)
+    imag -- the imaginary part (default 0.0)
+    
+    Return arguments:
+    complex_zero -- the merge of real and imag
+    """
+    if imag == 0.0 and real == 0.0:
+    return complex_zero
+    ...
+\end{verbatim}
 
         % \paragraph{Codetags} % TODO: e mettere parola in gloss
         % Già presente nei processi organizzativi, alla sezione "Gestione dei problemi emersi"
 
         % TODO: Per altri formalismi da aggiungere, vedere un po' dei punti del link: http://checkstyle.sourceforge.net/checks.html
 
-        \subsubsection{Metriche per la codifica} % TODO: prendere spunto da 3.2.4.2.4 della RA di Breaking Bug
-		
-
+        \subsubsection{Metriche per la codifica}\label{PP:Sviluppo:MetricheCodifica}
+        Tutti i paragrafi sulle norme di codifica precedentemente descritte devono corrispondere ad una metrica in modo tale da tenere traccia dei cambiamenti nella qualità dei prodotti contenenti codice in Python.
+        
+        La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
+        
+        Le seguenti metriche possiedono le seguenti regole:
+        \begin{itemize}
+            \item Il titolo del metodo sottintende prima del loro inizio "numero di/dei" (e.g. "File senza intestazione" è inteso come "numero di file senza intestazione")
+            \item Il termine "righe" intente "righe di codice"
+            \item I termini "metodi", "classi", "righe" o "variabili" appartengono tutti al campo semantico dei linguaggi di programmazione
+        \end{itemize}
+    
+        Le metriche inerenti alla codifica sono riferite ad una specifica regola di codifica:
+        \begin{itemize}
+            \item \textbf{MPS005 File senza intestazione}: \S\ref{PP:Sviluppo:Codifica:Intestazione}.
+            \item \textbf{MPS006 Righe non formattate}: \S\ref{PP:Sviluppo:Codifica:Formattazione}.
+            \item \textbf{MPS007 Nomi di variabili, metodi e classi non normati}: \S\ref{PP:Sviluppo:Codifica:ConvenzioniDiNominazione}.
+            \item \textbf{MPS008 Righe non indentate}: \S\ref{PP:Sviluppo:Codifica:Indentazione}.
+            \item \textbf{MPS009 Stringhe non normate}: \S\ref{PP:Sviluppo:Codifica:Stringhe}.
+            \item \textbf{MPS010 Righe troppo lunghe}: \S\ref{PP:Sviluppo:Codifica:LunghezzaMassimaDelleRighe}.
+            \item \textbf{MPS011 Metodi troppo lunghi}: \S\ref{PP:Sviluppo:Codifica:LunghezzaMassimaDeiMetodi}.
+            \item \textbf{MPS012 Metodi con troppi parametri}: \S\ref{PP:Sviluppo:Codifica:ParametriDelleFunzioni}.
+            \item \textbf{MPS013 Metodi con troppa complessità ciclomatica}: \S\ref{PP:Sviluppo:Codifica:ComplessitàCiclomatica}.
+            \item \textbf{MPS014 Classi che implementano classi concrete}: \S\ref{PP:Sviluppo:Codifica:Ereditarietà}.
+            \item \textbf{MPS015 Commenti non normati}: \S\ref{PP:Sviluppo:Codifica:Commenti}.
+            \item \textbf{MPS016 Metodi non documentati}: \S\ref{PP:Sviluppo:Codifica:DocumentazioneDeiMetodi}.
+        \end{itemize}
+    
+        \paragraph{MPS005 File senza intestazione}
+        Ogni file deve possedere l'intestazione definita per avere subito l'idea di cosa questo contiene.
+        
+        \textbf{Metrica:} il numero di file che non possiedono l'intestazione definita.
+        
+        \paragraph{MPS006 Righe non formattate}
+        Il codice, per essere più leggibile deve contenere delle adeguate spaziature.
+        
+        \textbf{Metrica:} numero adeguato di spaziature non eseguite.
+        
+        \paragraph{MPS007 Nomi di variabili, metodi e classi non normati}
+        I nomi delle variabili o i titoli delle classi o dei metodi devono seguire delle specifiche regole per essere il più possibile parlanti.
+        
+        \textbf{Metrica:} numero di nomi di variabili o di titoli di metodi o classi che non rispettano le norme stabilite.
+        
+        \paragraph{MPS008 Righe non indentate}
+        Per rendere più chiaro l'inizio e la fine di un ciclo, metodo, classe
+        o di una condizione è obbligatorio eseguire le dovute tabulazioni.
+        
+        \textbf{Metrica:} numero di tabulazioni non eseguite.
+        
+        \paragraph{MPS009 Stringhe non normate}
+        In Python le stringhe possono essere create in vari modi, secondo le norme noi ne scegliamo una in particolare.
+        
+        \textbf{Metrica:} numero di volte in cui le stringhe non vengono create nel modo stabilito.
+        
+        \paragraph{MPS010 Righe troppo lunghe}
+        Perché del codice sia leggibile, le sue istruzioni non possono essere troppo lunghe. Per questo è stata stabilita una soglia massima di caratteri per istruzione.
+        
+        \textbf{Metrica:} numero di righe di codice che superano i 79 caratteri.
+        
+        \paragraph{MPS011 Metodi troppo lunghi}
+        Un metodo trasversale per impedire che un metodo compia troppe azioni è quello di limitarne la lunghezza.
+        
+        \textbf{Metrica:} il numero di metodi o funzioni che sono più lunghi di 50 righe di codice.
+        
+        \paragraph{MPS012 Metodi con troppi parametri}
+        Limitare il numero di parametri in un metodo è un altro modo per evitare di caricarlo di troppe mansioni.
+        
+        \textbf{Metrica:} il numero di metodi con più di 6 parametri.
+        
+        \paragraph{MPS013 Metodi con troppa complessità ciclomatica}
+        Un metodo che possiede molte istruzioni condizionali o cicli è difficile da testare e nel peggiore dei casi lento da eseguire. Perciò è buona norma limitare l'uso di queste istruzioni.
+        
+        \textbf{Metrica:} numero di metodi che possiedono più di 3 cicli annidati.
+        
+        \paragraph{MPS014 Classi che implementano classi concrete}
+        L'ereditarietà tra classi deve essere evitata perché la presenza di dipendenze tra più componenti ne ostacola la modifica e la verifica.
+        
+        \textbf{Metrica:} numero di classi che ereditano un'altra classe concreta.
+        
+        \paragraph{MPS015 Commenti non normati}
+        I commenti, per essere significativi devono essere scritti seguendo le norme indicate.
+        
+        \textbf{Metrica:} numero di commenti che seguono le norme indicate.
+        
+        \paragraph{MPS016 Metodi non documentati}
+        La documentazione dei metodi, come per i file, serve per far saltare subito all'occhio il loro compito. La loro documentazione deve seguire le norme precedentemente indicate.
+        
+        \textbf{Metrica:} numero di metodi che non possiede una documentazione a norma.
+        
         \subsubsection{Strumenti di base}\label{PP:Sviluppo:Strumenti}
 
 	    \paragraph{Ambiente di sviluppo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo}

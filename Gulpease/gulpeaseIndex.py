@@ -26,12 +26,9 @@ def main():
                     testo = parser.from_file(path)['content']
                     parole = len(re.findall(r'\w+', testo))
                     lettere = len(re.findall(r'\w', testo))
-                    punti = len(re.findall('[.]+\s', testo)) + (
-                        len(re.findall('[;]+\s', testo)) - len(re.findall('[.]+\s+[.]', testo))
-                    )
-
+                    punti = len(re.findall(r'[;]\s', testo)) + len(re.findall(r'[^0-9][.]', testo))
                     name = os.path.basename(path)
-                    indiceG = (89+((300*punti)-(10*lettere))/parole)
+                    indiceG = (89+(300*punti - 10*lettere)/parole)
                     indiceG = round(indiceG, 2)
                     #Viene creato o modificato il file nel path indicato
                     with open(foutdir, "a+") as fout:

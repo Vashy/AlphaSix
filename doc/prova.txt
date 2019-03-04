@@ -1,0 +1,55 @@
+2.2 Processo di sviluppo
+2.2.1 Scopo
+Lo sviluppo consiste nell'arontare le attività volte a produrre il software richiesto dal propo-
+nente. Per una corretta implementazione di questo processoG, è necessario:
+
+ Fissare degli obiettivi di sviluppo
+
+ Realizzare un prodotto che sia conforme a:
+
+ RequisitiG deniti dal proponente
+
+ Test deniti dalle norme di qualitàG
+1Lo standard ISO/IEC 12207:1995
+ denisce il processo di sviluppo quel processo contenente tutte
+le attività relative al prodotto nale, quali:
+
+ Analisi dei requisiti
+
+ Progettazione
+
+ Codica
+
+ Integrazione ed installazione
+2.2.2 Analisi dei requisiti
+Gli Analisti si occupano di redigere l'
+AnalisiDeiRequisiti v2.0.0 D, composta come segue:
+
+ Descrizione generale del prodotto
+
+ Modellazione concettuale del sistemaG tramite la denizione dei vari casi d'usoG
+
+ Classicazione e tracciamento dei requisiti
+2.2.2.1 Denominazione dei requisiti
+Ogni requisito che è stato individuato durante l'analisi presenta il seguente identicativo univoco:
+R[Numero][Tipo][Priorità]
+ R:
+ si riferisce a requisito.
+ Numero:
+ corrisponde ad un numero che cerca di seguire la struttura del documento ed è
+progressivo. Inizia da 1.
+ Tipo:
+ segnala la tipologia di requisito che può essere di:
+ F: funzionalità, che ha a che vedere con le funzionalità del sistema software.
+ Q: qualità, che riguarda tecniche ad hoc.
+ V: vincolo, proposto da Imola Informatica.
+ Priorità:
+ indica il grado di urgenza per il soddisfacimento di un requisito, come:
+ 0:
+ opzionale, di grado basso e solo marginalmente utile.
+ 1:
+ desiderabile, di medio livello quindi non strettamente necessario ma che dà valore
+aggiunto.
+ 2:
+ obbligatorio, di grado alto quindi irrinunciabile per il committenteG e impossibile
+da tralasciare.
