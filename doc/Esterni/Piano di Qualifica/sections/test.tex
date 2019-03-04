@@ -466,7 +466,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{0.7\textwidth}{YY}
+		\begin{tabularx}{\textwidth}{YY}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
 			TS1 & requisito da inserire \\
@@ -480,49 +480,25 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \subsection{Test d'integrazione} \label{testintegrazione}
 
-\newcounter{nTI}
-\newcounter{subnTI}[nTI]
-\newcommand{\newTI}[2]{\stepcounter{nTI}TI\thenTI & #1 & #2 \\}
-\newcommand{\subTI}[2]{\stepcounter{subnTI}TI\thenTI.\thesubnTI & #1 & #2 \\}
-
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-		\newTI{Verifica l'integrazione tra Webhook di Gitlab e Producer Gitlab}{\TNI}
-		\newTI{Verifica l'integrazione tra Webhook di Redmine e Producer Redmine}{\TNI}
-		\newTI{Verifica l'integrazione del Cosumer Telegram con il bot Telegram}{\TNI}
-		\newTI{Verifica l'integrazione del Consumer Email con il server Email}{\TNI}
-		\newTI{Verifica l'integrazione di un file JSON con le componenti Producer}{\TNI}
-			\subTI{Verifica l'integrazione di un file JSON con il Producer Gitlab}{\TNI}
-			\subTI{Verifica l'integrazione di un file JSON con il Producer Redmine}{\TNI}
-		\newTI{Verifica l'integrazione di un file JSON con le componenti Consumer}{\TNI}
-			\subTI{Verifica l'integrazione di un file JSON con il Consumer Telegram}{\TNI}
-			\subTI{Verifica l'integrazione di un file JSON con il Consumer Email}{\TNI}
-		\newTI{Verifica l'integrazione di Kafka con le componenti Producer}{\TNI}
-			\subTI{Verifica l'integrazione di Kafka nel Producer Gitlab}{\TNI}
-			\subTI{Verifica l'integrazione di Kafka nel Producer Redmine}{\TNI}
-		\newTI{Verifica l'integrazione di Kafka con le componenti Consumer}{\TNI}
-			\subTI{Verifica l'integrazione di Kafka nel Cosumer Telegram}{\TNI}
-			\subTI{Verifica l'integrazione di Kafka nel Consumer Email}{\TNI}
-		\newTI{Verifica l'integrazione del database MONGODB con l'interfaccia del Gestore Personale}{\TNI}
-		\newTI{Verifica l'integrazione delle componenti HTML con il server}{\TNI}
-
-		% TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer Gitlab & \TNI \\
-		% TI2 & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & \TNI \\
-		% TI3 & Verifica l'integrazione del Cosumer Telegram con il bot Telegram & \TNI \\
-		% TI4 & Verifica l'integrazione del Consumer Email con il server mail & \TNI \\
-		% TI5 & Verifica l'integrazione di un file JSON con le componenti Producer e Consumer & \TNI \\
-		% TI5.1 & Verifica l'integrazione di un file JSON con il Producer Gitlab & \TNI \\
-		% TI5.2 & Verifica l'integrazione di un file JSON con il Producer Redmine & \TNI \\
-		% TI5.3 & Verifica l'integrazione di un file JSON con il Consumer Telegram & \TNI \\
-		% TI5.4 & Verifica l'integrazione di un file JSON con il Consumer Email & \TNI \\
-		% TI6 & Verifica l'integrazione di Kafka con le componenti Producer e Consumer & \TNI \\
-		% TI6.1 & Verifica l'integrazione di Kafka nel Producer Gitlab & \TNI \\
-		% TI6.2 & Verifica l'integrazione di Kafka nel Producer Redmine & \TNI \\
-		% TI6.3 & Verifica l'integrazione di Kafka nel Cosumer Telegram & \TNI \\
-		% TI6.4 & Verifica l'integrazione di Kafka nel Consumer Email & \TNI \\
-		% TI7 & Verifica l'integrazione del database MONGODB con l'interfaccia del Gestore Personale & \TNI \\
+		TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer Gitlab & NI \\
+		TI2 & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & NI \\
+		TI3 & Verifica l'integrazione del Cosumer Telegram con il bot Telegram & NI \\
+		TI4 & Verifica l'integrazione del Consumer Email con il server mail & NI \\
+		TI5 & Verifica l'integrazione di un file JSON con le componenti Producer e Consumer & NI \\
+		TI5.1 & Verifica l'integrazione di un file JSON con il Producer Gitlab & NI \\
+		TI5.2 & Verifica l'integrazione di un file JSON con il Producer Redmine & NI \\
+		TI5.3 & Verifica l'integrazione di un file JSON con il Consumer Telegram & NI \\
+		TI5.4 & Verifica l'integrazione di un file JSON con il Consumer Email & NI \\
+		TI6 & Verifica l'integrazione di Kafka con le componenti Producer e Consumer & NI \\
+		TI6.1 & Verifica l'integrazione di Kafka nel Producer Gitlab & NI \\
+		TI6.2 & Verifica l'integrazione di Kafka nel Producer Redmine & NI \\
+		TI6.3 & Verifica l'integrazione di Kafka nel Cosumer Telegram & NI \\
+		TI6.4 & Verifica l'integrazione di Kafka nel Consumer Email & NI \\
+		TI7 & Verifica l'integrazione del database MONGODB con l'interfaccia del Gestore Personale & NI \\
 		\bottomrule\\
 	\end{paddedtablex}
 	\caption{Elenco dei test d'integrazione.}
@@ -533,28 +509,25 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{0.7\textwidth}{YY}
+		\begin{tabularx}{\textwidth}{YY}
 			\textbf{Codice} & \textbf{Componente} \\
 			\toprule
 			TI1 & Producer Gitlab \\
 			TI2 & Producer Redmine \\
 			TI3 & Consumer Telegram \\
 			TI4 & Consuer Email \\
-			TI5 & Producer \\
+			TI5 & Producer/Consumer \\
 			TI5.1 & Producer Gitlab \\
 			TI5.2 & Producer Redmine \\
-			TI6 & Consumer \\
-			TI6.1 & Consumer Telegram \\
-			TI6.2 & Consuer Email \\
-			TI7 & Producer \\
-			TI7.1 & Producer Gitlab \\
-			TI7.2 & Producer Redmine \\
-			TI8 & Consumer \\
-			TI8.1 & Consumer Telegram \\
-			TI8.2 & Consuer Email \\
-			TI9 & Interfaccia Gestore Personale \\
-			TI10 & Interfaccia Gestore Personale \\
+			TI5.3 & Consumer Telegram \\
+			TI5.4 & Consuer Email \\
+			TI6 & Producer/Consumer \\
+			TI6.1 & Producer Gitlab \\
+			TI6.2 & Producer Redmine \\
+			TI6.3 & Consumer Telegram \\
+			TI6.4 & Consuer Email \\
+			TI7 & Interfaccia Gestore Personale \\
 			\bottomrule\\
 		\end{tabularx}}
-		\caption{Elenco dei test in correlazioni con le componenti.}
+		\caption{Elenco dei test in correlazioni con le compoenti.}
 	\end{table}
