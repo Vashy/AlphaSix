@@ -72,27 +72,240 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
 		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-		TV1 & Verfica la segnalazione dell' apertura di una issue da parte di Redmine:
+		TV1 & Verifica la segnalazione dell' apertura di una issue da parte di Redmine:
 		\begin{enumerate}
-			\item Redmine apre una issue
-			\item La segnalazione contiene tutti i campi di interesse
-			\item Redmine invia la segnalazione
+			\item Redmine apre una issue.
+			\item Redmine invia la segnalazione.
+            \item Producer Redmine riceve la segnalazione da Redmine.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV2 & Verifica la segnalazione della modifica di una issue da parte di Redmine:
+		\begin{enumerate}
+			\item Redmine modifica una issue.
+			\item Redmine invia la segnalazione.
+            \item Producer Redmine riceve la segnalazione da Redmine.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV3 & Verifica la segnalazione dell' apertura di una issue da parte di GitLab:
+		\begin{enumerate}
+			\item GitLab apre una issue.
+			\item GitLab invia la segnalazione.
+            \item Producer GitLab riceve la segnalazione da GitLab.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV4 & Verifica la segnalazione della modifica di una issue da parte di GitLab:
+		\begin{enumerate}
+			\item GitLab modifica una issue.
+			\item GitLab invia la segnalazione.
+            \item Producer GitLab riceve la segnalazione da GitLab.
+		\end{enumerate}
+		& \TNI \\\midrule
+    \end{VTtable}
+	\caption{Elenco dei test di validazione (1)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+        TV5 & Verifica di un evento di push da parte di GitLab:
+		\begin{enumerate}
+			\item GitLab segnala un evento di push.
+			\item GitLab invia la segnalazione.
+            \item Producer GitLab riceve la segnalazione da GitLab.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV6 & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale:
+		\begin{enumerate}
+			\item Producer Redmine genera un messaggio di apertura issue.
+			\item Producer Redmine invia il messaggio.
+            \item Gestore personale riceve il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV7 & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale:
+		\begin{enumerate}
+			\item Producer Redmine genera un messaggio di modifica issue.
+			\item Producer Redmine invia il messaggio.
+            \item Gestore personale riceve il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV8 & Verifica di scarto di messaggi non validi nel Producer Redmine:
+		\begin{enumerate}
+			\item Producer Redmine riceve un messaggio di modifica issue non valido (non è stato modificato né il campo Subject né il campo Assignee).
+			\item Producer Redmine scarta il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV9 & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale:
+		\begin{enumerate}
+			\item Producer GitLab genera dei messaggi di commit.
+			\item Producer GitLab invia i messaggi.
+            \item Gestore personale riceve i messaggi.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+    \end{VTtable}
+	\caption{Elenco dei test di validazione (2)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+        TV10 & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale:
+		\begin{enumerate}
+			\item Producer GitLab genera un messaggio di apertura issue.
+			\item Producer GitLab invia il messaggio.
+            \item Gestore personale riceve il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+    
+        TV11 & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale:
+		\begin{enumerate}
+			\item Producer GitLab genera un messaggio di modifica issue.
+			\item Producer GitLab invia il messaggio.
+            \item Gestore personale riceve il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV12 & Verifica di scarto di messaggi non validi nel Producer GitLab:
+		\begin{enumerate}
+			\item Producer GitLab riceve un messaggio di modifica issue non valido (non è stato modificato né il campo Label né il campo Title).
+			\item Producer GitLab scarta il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV13 & Verifica di invio di messaggi al Consumer Telegram:
+		\begin{enumerate}
+			\item Gestore Personale riceve un messaggio da un Producer (Redmine o GitLab).
+            \item Gestore Personale rielabora il messaggio ricevuto.
+			\item Gestore Personale invia il messaggio rielaborato.
+            \item Consumer Telegram riceve il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV14 & Verifica di invio di messaggi al Consumer Email:
+		\begin{enumerate}
+			\item Gestore Personale riceve un messaggio da un Producer (Redmine o GitLab).
+            \item Gestore Personale rielabora il messaggio ricevuto.
+			\item Gestore Personale invia il messaggio rielaborato.
+            \item Consumer Email riceve il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+    
+    \end{VTtable}
+	\caption{Elenco dei test di validazione (3)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+        
+        TV15 & Verifica di invio di messaggi al bot Telegram:
+		\begin{enumerate}
+			\item Consumer Telegram riceve un messaggio dal Gestore Personale.
+			\item Consumer Telegram invia il messaggio.
+            \item Bot Telegram riceve il messaggio.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV16 & Verifica di invio di messaggi al server email:
+		\begin{enumerate}
+			\item Consumer Email riceve un messaggio dal Gestore Personale.
+			\item Consumer Email invia il messaggio.
+            \item Server email riceve il messaggio.
 		\end{enumerate}
 		& \TNI \\\midrule
 
-		TV1 & Verifica l'inserimento di un nuovo utente:
+		TV17 & Verifica di accesso di un utente al sistema:
 		\begin{enumerate}
-			\item Inserire nel gestore personale le seguenti informazioni del nuovo utente:
-			\begin{itemize}
-				\item Nome
-				\item Cognome
-				\item Contatto Telegram
-				\item Contatto email
-			\end{itemize}
-			\item Conferma invio dei dati.
+			\item Inserire nel gestore personale l'identificativo dell'utente (email o telegram)
+			\item Confermare l' invio dei dati.
 		\end{enumerate}
 		& \TNI \\\midrule
-		TV2 & Verifica  & \TNI \\\bottomrule
+        
+        TV18 & Verifica di errore per identificativo inesistente:
+		\begin{enumerate}
+			\item Inserire nel gestore personale l'identificativo dell'utente (email o telegram)
+			\item Confermare l' invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV19 & Verifica di uscita dell'utente dal sistema:
+		\begin{enumerate}
+			\item Confermare l' uscita dal sistema.
+            \item L'utente viene riportato all'accesso al sistema.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV20 & Verifica di registrazione di un nuovo utente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV21 & Verifica di errore per identificativo già esistente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV22 & Verifica di rimozione utente dal sistema tramite Telegram:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire l'id Telegram dell'utente da rimuovere.
+            \item Confermare l'invio dei dati.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV23 & Verifica di rimozione utente dal sistema tramite email:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire l'email dell'utente da rimuovere.
+            \item Confermare l'invio dei dati.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV24 & Verifica di errore nella rimozione di un utente inesistente dal sistema:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire l'id Telegram o l'email dell'utente da rimuovere.
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV25 & Verifica di rimozione dell'utente acceduto dal sistema:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire il proprio id Telegram o la propria email.
+            \item Confermare l'invio dei dati.
+            \item Si esce dal sistema e si viene riportati alla schermata di accesso.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        TV26 & Verifica di modifica di un utente:
+		\begin{enumerate}
+			\item TODO
+		\end{enumerate}
+		& \TNI \\\midrule
+        
 	\end{VTtable}
 	\caption{Elenco dei test di validazione}
 \end{table}
