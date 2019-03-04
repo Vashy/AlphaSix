@@ -479,7 +479,9 @@
 			prodotti e processi da verificare viene effettuato Walkthrough; nel momento in cui il metodo di verifica è ben consolidato da tutti noi,
 			si passa ad effettuare verifica secondo Inspection.	
 
-		\subsubsection{The Twelve-Factor App}
+		\subsubsection{Metodologie di sviluppo del software}
+
+		\paragraph{The Twelve-Factor App}
 		\gloss{The Twelve-Factor App} è una serie di dodici regole destinate a chi vuole sviluppare \gloss{software-as-a-service} (SaaS). Sono utili per verificare in corso d'opera la qualità del progetto, valutando quali punti riesce a rispettare l'applicazione.
 		
 		I suoi principi sono:
@@ -501,8 +503,24 @@
 		\end{enumerate}
 		
 		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
-		
-		
+
+		\paragraph{Test Driven Development}
+		Come metodologia di sviluppo del software adottiamo il Test Driven Development (TDD) per ogni componente.
+		Questa metodologia prevede tre fasi nello sviluppo che, ripetute ciclicamente, costituiscono il Ciclo TDD:
+		\begin{itemize}
+			\item \textbf{Fase rossa}: il \Progr\ scrive il test relativo alla funzionalità che vuole implementare, prima di scrivere
+				il nome del metodo o la sua implementazione. Questo porterà ad un fallimento assicurato poiché il metodo non esiste o non fa nulla.
+			\item \textbf{Fase verde}: il \Progr\ scrive il codice della funzionalità minimo indispensabile a far superare il test.
+			\item \textbf{Fase grigia (Refactoring)}: il \Progr\ riscrive il codice per far sì che il codice rispetti
+				gli standard di qualità definiti nel \PdQd\ e al contempo superi il test. 
+		\end{itemize}
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{img/tdd.png}\\
+			\caption{Test Driven Development}
+		\end{figure}
+
 		\subsubsection{Analisi statica}\label{AnalisiStatica}
 		L'analisi statica attua una verifica non dinamica, ovvero senza eseguire codice.
 		Può essere effettuata sui documenti o sul codice in maniera statica. 
@@ -540,7 +558,6 @@
 			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio} e da GNU Aspell.
 
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
-			
 
 
 			\paragraph{Analisi dei processi}
