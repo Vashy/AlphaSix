@@ -15,7 +15,7 @@
 		L'attività di normazione prevede l'inremento del documento corrente ogni qual volta lo si ritiene necessario.
 		Essendo infatti un documento incrementale, è possibile che vengano aggiunte delle nuove regole o aggiornate quelle già presenti.
 		Facendo un esempio: arrivati al momento di riscrittura dei casi d'uso, dopo la prima revisione, abbiamo dovuto suddividere i casi in categorie ben distinte, in modo che fosse evidente il sottosistema di Butterfly di riferimento.
-		Di conseguenza, cambiare il codice identificativo di ognuno e cambiare la relativa norma nel paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}. 
+		Di conseguenza, cambiare il codice identificativo di ognuno e cambiare la relativa norma nel paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
 
         \subsubsection{Studio di fattibilità}\label{PP:Fornitura:SdF}
         In quest'attività viene prodotto il documento \Doc{\SdFv} al fine di analizzare ogni \gloss{capitolato} e scegliere quale contratto accettare.
@@ -95,28 +95,28 @@
 		\paragraph{Metriche sui requisiti}\label{MetricheAdR}
 		Dato che non è fisso il numero dei requisiti di un progetto, abbiamo scelto una serie di metriche dove il valore ottimale da raggiungere è sempre uguale, lo zero. Abbiamo anche scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto	riguarda i rischi che possono verificarsi nel corso del progetto.
 		Gli obiettivi che si vogliono raggiungere attraverso tali metriche possono essere stabiliti solo a progetto concluso.
-		
+
 		La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
-		
+
 		\subparagraph{MPR005 Requisiti obbligatori non soddisfatti}
 		Per adempiere completamente alla richiesta del cliente, ci serve individuare tutti i requisiti presenti nella sua richiesta, impliciti, espliciti, diretti e derivati. Alcuni sono imprescindibili, detti obbligatori, e il loro soddisfacimento determina la buona riuscita del progetto.
-		
+
 		\textbf{Metrica}: numero dei requisiti obbligatori non soddisfatti.
-		
+
 		\subparagraph{MPR006 Requisiti desiderabili non soddisfatti}
 		I requisiti desiderabili non sono necessari, ma offrono un valore aggiunto al progetto.
-		
+
 		\textbf{Metrica}: numero dei requisiti desiderabili non soddisfatti.
-		
+
 		\subparagraph{MPR007 Requisiti opzionali non soddisfatti}
 		Tali requisiti dovranno essere adempiuti solo nel momento in cui tutti i requisiti obbligatori saranno soddisfatti.
 		Possono essere concordati col cliente in corso d'opera.
-		
+
 		\textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
-	
+
 
 		\paragraph{Casi d'uso}\label{PP:Sviluppo:AdR:CasiUso}
-		Un caso d'uso è una tecnica che identifica i requisiti funzionali descrivendo le interazioni tra il sistema di riferimento e un utente ad esso esterno.\\
+		Un caso d'uso è una tecnica che identifica i requisiti funzionali descrivendo le interazioni tra il sistema di riferimento e un utente ad esso esterno.\par
 		Ogni caso d'uso che si vuol descrivere presenta:
 		\begin{itemize}
 		 	\item \textbf{Codice}: per l'identificazione.
@@ -129,13 +129,13 @@
 		 	\item \textbf{Scenario principale}: contenente la serie di azioni da compiere numerate nell'ordine in cui vengono compiute.
 		 	\item \textbf{Estensioni}: opzionale, per azioni inerenti a scenari alternativi come d'eccezione o errore.
 		\end{itemize}
-	
+
 		\subparagraph{Denominazione del codice identificativo}
 		Ogni codice presenta una forma del tipo:
 		\begin{center}
 			\texttt{UC[Numero]-[Sottosistema]}
 		\end{center}
-	
+
 		\begin{itemize}
 			\item \textbf{UC}: sta per "User Case", l'equivalente inglese di "caso d'uso".
 			\item \textbf{Numero}: numero progressivo che si riferisce al caso. Se il caso d'uso è principale, è un semplice intero (e.g. 1 per il primo caso d'uso). Mentre se è un sotto caso, presenta due interi separati da un punto (e.g 1.1 per per il primo figlio del primo caso d'uso).
@@ -170,12 +170,12 @@
 			\item Organizzare le responsabilità di realizzazione.
 			\item Garantire la qualità del prodotto finale.
 		\end{itemize}
-        
 
-		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML} 
-        
+
+		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML}
+
 		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
-		Per i diagrammi delle classi utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\\
+		Per i diagrammi delle classi utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
         Questi diagrammi strutturali descrivono ad alto livello i tipi di oggetto presenti nel sistema e le relazioni che intercorrono tra essi.
 		I diagrammi delle classi sono composti dalle seguenti proprietà:
 		\begin{itemize}
@@ -188,7 +188,7 @@
 			        \item \textbf{Default}: valore di default dell'attributo (opzionale).
                     \item \textbf{Altro}: molteplicità\dots (opzionali)
 			    \end{itemize}
-			\item \textbf{Associazioni}: rappresentano legami tra classi.\\
+			\item \textbf{Associazioni}: rappresentano legami tra classi.\par
                         Le rappresentiamo con linee continue orientate tra due classi, hanno un nome.
 		\end{itemize}
         Nella parte bassa del rettangolo delle classi rappresentiamo le operazioni fornite dalla classe, composte da:
@@ -214,16 +214,16 @@
         \end{itemize}
         Usiamo inoltre i seguenti costrutti:
             \begin{itemize}
-                \item \textbf{Classi astratte}: il nome è indicato in corsivo, non possono essere istanziate. Presentano almeno un'operazione astratta (con il nome in corsivo) e possono avere attributi.\\
+                \item \textbf{Classi astratte}: il nome è indicato in corsivo, non possono essere istanziate. Presentano almeno un'operazione astratta (con il nome in corsivo) e possono avere attributi.\par
                 Tali classi generalizzano altre classi che devono implementare le operazioni astratte per essere istanziate, altrimenti sono anch'esse astratte e generalizzano altre classi.
-                \item \textbf{Interfacce}: indicate da un pallino vuoto e una linea continua verso classi, presentano solamente le operazioni che vengono implementate dalle classi collegate con la linea.\\
+                \item \textbf{Interfacce}: indicate da un pallino vuoto e una linea continua verso classi, presentano solamente le operazioni che vengono implementate dalle classi collegate con la linea.\par
                 Possono essere indicate con un pallino vuoto e un semicerchio a destra per indicare che l'interfaccia viene usata da un componente in un punto qualsiasi (ritorno di un'operazione, attributo\dots).
             \end{itemize}
 
 		%\subparagraph{Semantica} %TODO
 		%Dipendenza generica, Associazione, Aggregazione..
         %Meglio qui o lasciamo sopra?
-        
+
         \paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
         Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
         Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
@@ -242,36 +242,36 @@
 
 		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività}
         Per i diagrammi di attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
-		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.\\
+		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.\par
         Le attività sono insiemi di azioni ordinate dei tipi:
         \begin{itemize}
             \item \textbf{Nodo iniziale}: rappresentato da un pallino pieno, è l'inizio dell'attività.
             \item \textbf{Fork}: rappresentato da un tratto marcato, indica l'inizio di elaborazioni parallele.
-            \item \textbf{Join}: rappresentato da un tratto marcato, indica un punto di sincronizzazione tra elaborazioni parallele.\\
+            \item \textbf{Join}: rappresentato da un tratto marcato, indica un punto di sincronizzazione tra elaborazioni parallele.\par
                 Vengono indicate specifiche di join tra parentesi quadre (espressioni booleane).
             \item \textbf{Branch}: rappresentato da un rombo vuoto, indica che si può intraprendere solo uno dei possibili percorsi.
             \item \textbf{Merge}: rappresentato da un rombo vuoto, è simile alla join. Differisce per il fatto che unisce più possibili elaborazioni non parallele ma in alternativa tra esse, porvenienti da uno o più branch.
             \item \textbf{Pin parametro}: rappresentati da box, sono parametri che rappresentano risorse prodotte da azioni e consumate da altre azioni.
             \item \textbf{Nodo finale}: rappresentato da un pallino pieno circondato da un cerchio, indica il termine dell'attività con successo.
-            \item \textbf{Nodo di fine flusso}: rappresentato da un cerchio con una croce, non termina l'attività.\\
+            \item \textbf{Nodo di fine flusso}: rappresentato da un cerchio con una croce, non termina l'attività.\par
                 Viene usata per casi speciali (eccezione, ramo del branch\dots).
         \end{itemize}
-        Ogni attività può comporre un'azione. In tal caso si tratta di una sotto attività, e viene indicata con un simbolo a forca e da un rettangolo esterno con il nome dell'attività che ne rappresenta le azioni dall'input fino all'output.\\
+        Ogni attività può comporre un'azione. In tal caso si tratta di una sotto attività, e viene indicata con un simbolo a forca e da un rettangolo esterno con il nome dell'attività che ne rappresenta le azioni dall'input fino all'output.\par
         Usiamo inoltre i seguenti costrutti:
         \begin{itemize}
-            \item \textbf{Swimlanes}: sono rappresentate da riquadri che suddividono la responsabilità delle azioni presenti nelle attività.\\
+            \item \textbf{Swimlanes}: sono rappresentate da riquadri che suddividono la responsabilità delle azioni presenti nelle attività.\par
                 Le azioni possono far capo a più swimlanes, per esempio l'azione di merge.
-            \item \textbf{Segnali}: indicano eventi provenienti da processi esterni.\\
+            \item \textbf{Segnali}: indicano eventi provenienti da processi esterni.\par
             Sono indicati in modo diverso a seconda dell'evento scatenante, che può essere dei seguenti tipi:
             \begin{itemize}
                 \item \textbf{Eventi esterni}: l'evento generato viene rappresentato da un rettangolo con un lato a punta uscente, mentre l'azione che attende l'evento viene rappresentata con un rettangolo con un lato a punta entrante.
-                \item \textbf{Eventi temporali}: viene rappresentato con una clessidra e ne viene indicato il tempo di ripetizione.\\
+                \item \textbf{Eventi temporali}: viene rappresentato con una clessidra e ne viene indicato il tempo di ripetizione.\par
                     Può trovarsi all'inizio del flusso, sostituendo il nodo iniziale, per indicare che un'attività verrà eseguita ogni volta che l'evento temporale consuma il tempo indicato.
             \end{itemize}
         \end{itemize}
         %TODO verificare se parlare di flussi e archi
         Per indicare azioni che si ripetono su più elementi, ad esempio su una lista di elementi, usiamo le regioni di espansione.
-        Le indichiamo con un rettangolo tratteggiato ad angoli arrotondati, e rettangoli piccoli presenti sui lati di inizio e fine regione, che rappresentano le liste di elementi processati.\\
+        Le indichiamo con un rettangolo tratteggiato ad angoli arrotondati, e rettangoli piccoli presenti sui lati di inizio e fine regione, che rappresentano le liste di elementi processati.\par
         Le frecce di entrata e uscita indicano in quale verso viene svolta l'attività che include la regione di espansione.
 
 		%\subparagraph{Semantica} %TODO
@@ -280,12 +280,12 @@
 
 		\paragraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza}
 		Per i diagrammi di sequenza utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
-        Usiamo questi diagrammi per descrivere come la collaborazione tramite messaggi di un gruppo di oggetti realizza un comportamento.\\
-        Essi mostrano come gli oggetti interagiscono nel tempo, leggendo il diagramma dall'alto al basso.\\
+        Usiamo questi diagrammi per descrivere come la collaborazione tramite messaggi di un gruppo di oggetti realizza un comportamento.\par
+        Essi mostrano come gli oggetti interagiscono nel tempo, leggendo il diagramma dall'alto al basso.\par
         I principali costrutti usati sono:
         \begin{itemize}
             \item \textbf{Partecipanti}: rappresentati da un rettangolo contenente il nome dell'entità (spesso coincide col nome di una classe) e da una barra di attivazione (rettangolo che si prolunga per tutta la durata in cui l'entità è attiva), descrivono l'entità che detiene il flusso nel caso d'uso.
-            \item \textbf{Messaggi}: rappresentano le operazioni chiamate tra le entità e i dati scambiati.\\
+            \item \textbf{Messaggi}: rappresentano le operazioni chiamate tra le entità e i dati scambiati.\par
             Sono di diverse tipologie:
             \begin{itemize}
                 \item \textbf{Sincroni}: rappresentati da una freccia piena con il nome del messaggio ed eventuali parametri tra parentesi tonde, descrivono la chiamata di un messaggio in cui l'entità chiamante attende la risposta dall'entità chiamata.
@@ -306,10 +306,10 @@
             \item \textbf{Ref}: l'interazione è definita in un altro diagramma.
             \item \textbf{Sd}: rachiude un diagramma di sequenza intero.
         \end{itemize}
-        I diagrammi di sequenza sono inoltre utili per modellare la collaborazione tra entità.\\
-        In caso di controllo centralizzato vi sarà un'entità che gestirà i messaggi verso tutte le altre, mentre in caso di controllo distribuito ogni entità avrà compiti ben delineati, quindi avrà la responsabilità della chiamata dei messaggi verso le altre entità coinvolte.\\
+        I diagrammi di sequenza sono inoltre utili per modellare la collaborazione tra entità.\par
+        In caso di controllo centralizzato vi sarà un'entità che gestirà i messaggi verso tutte le altre, mentre in caso di controllo distribuito ogni entità avrà compiti ben delineati, quindi avrà la responsabilità della chiamata dei messaggi verso le altre entità coinvolte.\par
         Cerchiamo di usare per quanto possibile la modellazione a controllo distribuito, per non dare troppe responsabilità a una singola entità che diventerebbe il punto critico dell'architettura.
-        
+
 
 		%\subparagraph{Semantica} %TODO
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
@@ -332,7 +332,7 @@
 			\end{itemize}
 		\end{itemize}
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
-        
+
         \newpage
 
 		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione}
@@ -340,19 +340,19 @@
 
 		\paragraph{Qualità dei diagrammi delle classi}
 		Teniamo gli attributi delle classi privati per quanto possibile.
-        Evitiamo ove possibile di usare attributi modificabili dai metodi delle classi, in quanto ostacolano la scrittura dei test ed è meno comprensibile la responsabilità sull'attributo.\\
-        Evitiamo le relazioni bidirezionali perché si crea confusione su quale classe ha la responsabilità sulla relazione.\\
+        Evitiamo ove possibile di usare attributi modificabili dai metodi delle classi, in quanto ostacolano la scrittura dei test ed è meno comprensibile la responsabilità sull'attributo.\par
+        Evitiamo le relazioni bidirezionali perché si crea confusione su quale classe ha la responsabilità sulla relazione.\par
         Minimizziamo le dipendenze tra le classi in modo da rendere il diagramma più comprensibile e cerchiamo di usare le relazioni di dipendenza debole rispetto alle dipendenze forti, per favorire il riuso del codice ed evitare modifiche inutili e a cascata.
-        
+
         \paragraph{Qualità dei diagrammi dei package}
-        Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.\\		
+        Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.
 
 		\paragraph{Qualità dei diagrammi di attività}
-		Poiché descrivono gli aspetti dinamici dei casi d'uso, non devono risultare eccesivamente complessi, ma descrivere quanto riportato da casi d'uso e requisiti.\\
+		Poiché descrivono gli aspetti dinamici dei casi d'uso, non devono risultare eccesivamente complessi, ma descrivere quanto riportato da casi d'uso e requisiti.\par
         Li usiamo in modo da aggiungere comprensibilità, non per toglierne.
 
 		\paragraph{Qualità dei diagrammi di sequenza}
-		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\\
+		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\par
         Per modellare la logica di controllo è meglio usare i diagrammi di attività perché di più semplice lettura.
 
 		%\paragraph{Qualità dei diagrammi dei casi d'uso} %TODO: facoltativo..
@@ -360,8 +360,8 @@
 
 		%manuale utente da presentare in RQ, quindi da fare più avanti
 		%\subsubsection{Produzione del manuale utente}
-        
-        
+
+
         \newpage
 
 		\subsubsection{Codifica}\label{PP:Sviluppo:Codifica}
