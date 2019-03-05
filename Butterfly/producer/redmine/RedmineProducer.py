@@ -25,7 +25,6 @@ Creatore: Laura Cameran, lauracameran@gmail.com
 Autori:
 """
 
-# import argparse
 import json
 from pathlib import Path
 import pprint
@@ -62,7 +61,7 @@ def api_root():
             topics = json.load(f)
 
         # Istanzia il Producer
-        producer = RedmineProducer(config)
+        producer = RedmineProducer(config['kafka'])
 
         webhook = request.get_json()
         print(
@@ -139,7 +138,9 @@ class RedmineProducer(Producer):
 
 
 def main():
-    app.run(host='0.0.0.0', port='5002')
+    with open(Path(__file__).parents[1] / 'config.json') as f:
+        config = json.load(f)
+    app.run(host=config['redmine']['ip'], port=config['redmine']['port'])
 
 
 if __name__ == '__main__':
