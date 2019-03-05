@@ -100,7 +100,7 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 			\item \textbf{QPS001 Assenza di bug}: la totale assenza di bug è essenziale per la buona riuscita del rilascio del nostro software.
 			\item \textbf{QPS002 Assenza di vulnerabilità}: miriamo a rimuovere qualunque tipo di vulnerabilità che possa compromettere la sicurezza del nostro prodotto.
 			\item \textbf{QPS003 Assenza di \gloss{code smell}}: vogliamo che il nostro codice non abbia code smell, al fine di migliorarne la struttura e abbassarne la complessità, in modo che esso ci risulti facilmente leggibile.
-			\item \textbf{QPS004 Minima duplicazione del codice}: tendiamo a raggiungere la minor quantità di codice duplicato possibile, poiché grande quantità di codice ripetuto abbassa la qualità di esso, ma non sempre si riesce ad ottenere del codice completamente non ridondante.
+			\item \textbf{QPS004 Minima duplicazione del codice}: tendiamo a raggiungere la minor quantità di codice duplicato possibile, poiché grande quantità di codice ripetuto è segno di inefficienza, ma non sempre si riesce ad ottenere del codice completamente non ridondante.
             \item \textbf{QPS005 Rispetto delle norme di PEP 8}: per produrre codice di qualità è necessario seguire delle norme per uniformare tutti i file e per renderli comprensibili ed efficienti. Tali norme è meglio che provengano da uno standard creato da persone con molta più esperienza di noi, per questo abbiamo scelto di seguire lo standard PEP 8. 
 		\end{itemize}
 
@@ -289,7 +289,7 @@ Ogni obiettivo di qualità è indicato con:
             QPS005 Rispetto delle norme di PEP 8 & MPS016 Metodi non documentati & 0
             \\
             \rowcolor{gray!15}
-            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: come per i file, anche per i metodi una documentazione è necessaria per capire subito il compito di un metodo, per questo il numero di classi che implementano una o più classi concrete deve essere nullo al termine del progetto.}\\
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: come per i file, anche per i metodi una documentazione è necessaria per capire subito il compito di un metodo, per questo il numero di metodi non documentati deve essere nullo al termine del progetto.}\\
             
             \hline
         \end{tabularx}}

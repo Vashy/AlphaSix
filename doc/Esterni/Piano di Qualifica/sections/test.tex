@@ -295,7 +295,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item L'utente è stato rimosso dal sistema.
 		\end{enumerate}
 		& \TNI \\
-        \bottomrule\\
+        %\bottomrule\\
         \end{VTtable}
 	\caption{Elenco dei test di validazione (5)}
 \end{table}
@@ -484,7 +484,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item La persona di fiducia è stata rimossa alle preferenze.
 		\end{enumerate}
 		& \TNI \\
-        \bottomrule\\
+        %\bottomrule\\
         \end{VTtable}
 	\caption{Elenco dei test di validazione (9)}
 \end{table}
@@ -609,10 +609,19 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica che il sistema riceva la segnalazione dell' apertura di una issue da parte di GitLab & NI \\
         \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di GitLab & NI \\
         \addtots & Verifica che il sistema riceva eventi di push da parte di GitLab & NI \\
-        \addtots & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale & NI \\
-        \addtots & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale & NI \\
-        \addtots & Verifica di scarto di messaggi non validi nel Producer Redmine & NI \\
-        \addtots & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale & NI \\
+		\addtots & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale & NI \\
+        \bottomrule\\
+	\end{paddedtablex}
+	\caption{Elenco dei test di sistema (1)}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		\addtots & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale & NI \\
+		\addtots & Verifica di scarto di messaggi non validi nel Producer Redmine & NI \\
+		\addtots & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale & NI \\
         \addtots & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale & NI \\
         \addtots & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale & NI \\
         \addtots & Verifica di scarto di messaggi non validi nel Producer GitLab & NI \\
@@ -634,13 +643,23 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica di errore nella modifica di un utente inesistente & NI \\
         \addtots & Verifica di iscrizione a un nuovo topic & NI \\
         \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & NI \\
-        \addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & NI \\
+        \bottomrule\\
+	\end{paddedtablex}
+	\caption{Elenco dei test di sistema (2)}
+\end{table}
+
+
+\begin{table}[H]
+	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & NI \\
         \addtots & Verifica di aggiunta della persona di fiducia & NI \\
         \addtots & Verifica di errore nell'aggiunta di una persona di fiducia inesistente & NI \\
         \bottomrule\\
 	\end{paddedtablex}
-	\caption{Elenco dei test di sistema.}
+	\caption{Elenco dei test di sistema (3)}
 \end{table}
+
 
 %Per ogni test vengono affrontati i seguenti punti:
 %
