@@ -69,10 +69,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 	\oldtabularx%
 }{\endoldtabularx}
 
+\newcounter{tv}
+\newcommand{\addtotv}{\stepcounter{tv}TV\thetv}
+
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
 		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-		TV1 & Verifica la segnalazione dell' apertura di una issue da parte di Redmine:
+		\addtotv & Verifica la segnalazione dell' apertura di una issue da parte di Redmine:
 		\begin{enumerate}
 			\item Redmine apre una issue.
 			\item Redmine invia la segnalazione.
@@ -80,7 +83,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV2 & Verifica la segnalazione della modifica di una issue da parte di Redmine:
+        \addtotv & Verifica la segnalazione della modifica di una issue da parte di Redmine:
 		\begin{enumerate}
 			\item Redmine modifica una issue.
 			\item Redmine invia la segnalazione.
@@ -88,7 +91,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV3 & Verifica la segnalazione dell' apertura di una issue da parte di GitLab:
+        \addtotv & Verifica la segnalazione dell' apertura di una issue da parte di GitLab:
 		\begin{enumerate}
 			\item GitLab apre una issue.
 			\item GitLab invia la segnalazione.
@@ -96,19 +99,20 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV4 & Verifica la segnalazione della modifica di una issue da parte di GitLab:
+        \addtotv & Verifica la segnalazione della modifica di una issue da parte di GitLab:
 		\begin{enumerate}
 			\item GitLab modifica una issue.
 			\item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TNI \\
+        \bottomrule\\
     \end{VTtable}
 	\caption{Elenco dei test di validazione (1)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-        TV5 & Verifica di un evento di push da parte di GitLab:
+        \addtotv & Verifica di un evento di push da parte di GitLab:
 		\begin{enumerate}
 			\item GitLab segnala un evento di push.
 			\item GitLab invia la segnalazione.
@@ -116,7 +120,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV6 & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale:
+        \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale:
 		\begin{enumerate}
 			\item Producer Redmine genera un messaggio di apertura issue.
 			\item Producer Redmine invia il messaggio.
@@ -124,7 +128,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV7 & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale:
+        \addtotv & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale:
 		\begin{enumerate}
 			\item Producer Redmine genera un messaggio di modifica issue.
 			\item Producer Redmine invia il messaggio.
@@ -132,27 +136,27 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV8 & Verifica di scarto di messaggi non validi nel Producer Redmine:
+        \addtotv & Verifica di scarto di messaggi non validi nel Producer Redmine:
 		\begin{enumerate}
 			\item Producer Redmine riceve un messaggio di modifica issue non valido (non è stato modificato né il campo Subject né il campo Assignee).
 			\item Producer Redmine scarta il messaggio.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV9 & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale:
+        \addtotv & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
 			\item Producer GitLab genera dei messaggi di commit.
 			\item Producer GitLab invia i messaggi.
             \item Gestore personale riceve i messaggi.
 		\end{enumerate}
-		& \TNI \\\midrule
-        
+		& \TNI \\
+        \bottomrule\\
     \end{VTtable}
 	\caption{Elenco dei test di validazione (2)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-        TV10 & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale:
+        \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
 			\item Producer GitLab genera un messaggio di apertura issue.
 			\item Producer GitLab invia il messaggio.
@@ -160,7 +164,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
     
-        TV11 & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale:
+        \addtotv & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
 			\item Producer GitLab genera un messaggio di modifica issue.
 			\item Producer GitLab invia il messaggio.
@@ -168,14 +172,14 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV12 & Verifica di scarto di messaggi non validi nel Producer GitLab:
+        \addtotv & Verifica di scarto di messaggi non validi nel Producer GitLab:
 		\begin{enumerate}
 			\item Producer GitLab riceve un messaggio di modifica issue non valido (non è stato modificato né il campo Label né il campo Title).
 			\item Producer GitLab scarta il messaggio.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV13 & Verifica di invio di messaggi al Consumer Telegram:
+        \addtotv & Verifica di invio di messaggi al Consumer Telegram:
 		\begin{enumerate}
 			\item Gestore Personale riceve un messaggio da un Producer (Redmine o GitLab).
             \item Gestore Personale rielabora il messaggio ricevuto.
@@ -184,22 +188,22 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV14 & Verifica di invio di messaggi al Consumer Email:
+        \addtotv & Verifica di invio di messaggi al Consumer Email:
 		\begin{enumerate}
 			\item Gestore Personale riceve un messaggio da un Producer (Redmine o GitLab).
             \item Gestore Personale rielabora il messaggio ricevuto.
 			\item Gestore Personale invia il messaggio rielaborato.
             \item Consumer Email riceve il messaggio.
 		\end{enumerate}
-		& \TNI \\\midrule
-    
+		& \TNI \\
+        \bottomrule\\
     \end{VTtable}
 	\caption{Elenco dei test di validazione (3)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
         
-        TV15 & Verifica di invio di messaggi al bot Telegram:
+        \addtotv & Verifica di invio di messaggi al bot Telegram:
 		\begin{enumerate}
 			\item Consumer Telegram riceve un messaggio dal Gestore Personale.
 			\item Consumer Telegram invia il messaggio.
@@ -207,7 +211,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV16 & Verifica di invio di messaggi al server email:
+        \addtotv & Verifica di invio di messaggi al server email:
 		\begin{enumerate}
 			\item Consumer Email riceve un messaggio dal Gestore Personale.
 			\item Consumer Email invia il messaggio.
@@ -215,14 +219,15 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
 
-		TV17 & Verifica di accesso di un utente al sistema:
+		\addtotv & Verifica di accesso di un utente al sistema:
 		\begin{enumerate}
 			\item Inserire nel gestore personale l'identificativo dell'utente (email o telegram)
 			\item Confermare l' invio dei dati.
+            \item L'accesso al sistema è avvenuto.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV18 & Verifica di errore per identificativo inesistente:
+        \addtotv & Verifica di errore per accesso con identificativo inesistente:
 		\begin{enumerate}
 			\item Inserire nel gestore personale l'identificativo dell'utente (email o telegram)
 			\item Confermare l' invio dei dati.
@@ -230,14 +235,20 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV19 & Verifica di uscita dell'utente dal sistema:
+        \addtotv & Verifica di uscita dell'utente dal sistema:
 		\begin{enumerate}
 			\item Confermare l' uscita dal sistema.
             \item L'utente viene riportato all'accesso al sistema.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TNI \\
+        \bottomrule\\
+        \end{VTtable}
+	\caption{Elenco dei test di validazione (4)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
         
-        TV20 & Verifica di registrazione di un nuovo utente:
+        \addtotv & Verifica di registrazione di un nuovo utente:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -248,10 +259,11 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
+            \item L'utente viene registrato.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV21 & Verifica di errore per identificativo già esistente:
+        \addtotv & Verifica di errore per identificativo già esistente:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -266,23 +278,31 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV22 & Verifica di rimozione utente dal sistema tramite Telegram:
+        \addtotv & Verifica di rimozione utente dal sistema tramite Telegram:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire l'id Telegram dell'utente da rimuovere.
             \item Confermare l'invio dei dati.
+            \item L'utente è stato rimosso dal sistema.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV23 & Verifica di rimozione utente dal sistema tramite email:
+        \addtotv & Verifica di rimozione utente dal sistema tramite email:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire l'email dell'utente da rimuovere.
             \item Confermare l'invio dei dati.
+            \item L'utente è stato rimosso dal sistema.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TNI \\
+        \bottomrule\\
+        \end{VTtable}
+	\caption{Elenco dei test di validazione (5)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
         
-        TV24 & Verifica di errore nella rimozione di un utente inesistente dal sistema:
+        \addtotv & Verifica di errore nella rimozione di un utente inesistente dal sistema:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire l'id Telegram o l'email dell'utente da rimuovere.
@@ -291,7 +311,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV25 & Verifica di rimozione dell'utente acceduto dal sistema:
+        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire il proprio id Telegram o la propria email.
@@ -300,38 +320,327 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        TV26 & Verifica di modifica di un utente:
+        \addtotv & Verifica di modifica di un utente:
 		\begin{enumerate}
-			\item TODO
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Identificativo dell'utente da modificare
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item L'utente è stato modificato.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+        \end{VTtable}
+	\caption{Elenco dei test di validazione (6)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+        
+        \addtotv & Verifica di errore nella modifica di un utente con dati già esistenti (identificativi):
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Identificativo dell'utente da modificare
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
 		\end{enumerate}
 		& \TNI \\\midrule
         
+        \addtotv & Verifica di errore nella modifica di un utente inesistente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Identificativo dell'utente da modificare (non esistente)
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di iscrizione a un nuovo topic:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare un nuovo topic a cui iscriversi.
+            \item Confermare l'invio dei dati.
+            \item Il topic è stato aggiunto alle preferenze.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+        \end{VTtable}
+	\caption{Elenco dei test di validazione (7)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+        
+        \addtotv & Verifica di aggiunta dei giorni di indisponibilità al calendario:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare i giorni di indisponibilità da aggiungere.
+            \item Confermare l'invio dei dati.
+            \item I giorni sono stati aggiunti alle preferenze.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di aggiunta della piattaforma di messaggistica preferita:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare la piattaforma preferita per la ricezione dei messaggi da aggiungere.
+            \item Confermare l'invio dei dati.
+            \item La piattaforma è stata aggiunta alle preferenze.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di aggiunta della persona di fiducia:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare la persona di fiducia da aggiungere.
+            \item Confermare l'invio dei dati.
+            \item La persona di fiducia è stata aggiunta alle preferenze.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di errore nell'aggiunta di una persona di fiducia inesistente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare la persona di fiducia da aggiungere (non esistente).
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di aggiunta delle keyword per i push di GitLab:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Aggiungere le keyword GitLab.
+            \item Confermare l'invio dei dati.
+            \item Le keyword GitLab sono state aggiornate.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+        \end{VTtable}
+	\caption{Elenco dei test di validazione (8)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+        
+        \addtotv & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Aggiungere delle keyword GitLab già presenti.
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di rimozione di un topic:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare un topic da rimuovere.
+            \item Confermare l'invio dei dati.
+            \item Il topic è stato rimosso dalle preferenze.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di rimozione dei giorni di indisponibilità dal calendario:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare i giorni di indisponibilità da rimuovere.
+            \item Confermare l'invio dei dati.
+            \item I giorni sono stati rimossi dalle preferenze.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di rimozione della piattaforma di messaggistica preferita:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare la piattaforma preferita per la ricezione dei messaggi da rimuovere.
+            \item Confermare l'invio dei dati.
+            \item La piattaforma è stata rimossa dalle preferenze.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di rimozione della persona di fiducia:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare la persona di fiducia da rimuovere.
+            \item Confermare l'invio dei dati.
+            \item La persona di fiducia è stata rimossa alle preferenze.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+        \end{VTtable}
+	\caption{Elenco dei test di validazione (9)}
+\end{table}
+
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+        
+        \addtotv & Verifica di errore nella rimozione di una persona di fiducia inesistente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Selezionare la persona di fiducia da rimuovere (non esistente).
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di rimozione delle keyword per i push di GitLab:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Aggiungere le keyword GitLab.
+            \item Confermare l'invio dei dati.
+            \item Le keyword GitLab sono state aggiornate.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di errore nella rimozione delle keyword per i push di GitLab inesistenti:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Aggiungere delle keyword GitLab non presenti.
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\    
+        \bottomrule\\
 	\end{VTtable}
 	\caption{Elenco dei test di validazione}
 \end{table}
 
-	\subsubsection{Tracciamento} \label{tracciamentovalidazione}
+\newpage
 
+	\subsubsection{Tracciamento} \label{tracciamentovalidazione}
+    
+    \setcounter{tv}{0}
+    
 	\begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
-			TV1 & requisito da inserire \\
-			TV2 & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+            \bottomrule\\
+            \end{tabularx}}
+		\caption{Elenco dei test in correlazioni con i requisiti (1)}
+	\end{table}
+    \begin{table}[H]
+		\centering
+		{\def\arraystretch{1.4}
+		\begin{tabularx}{\textwidth}{YY}
+			\textbf{Codice} & \textbf{Requisito} \\
+			\toprule
+            \addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
 			\bottomrule\\
 		\end{tabularx}}
-		\caption{Elenco dei test in correlazioni con i requisiti.}
+		\caption{Elenco dei test in correlazioni con i requisiti (2)}
 	\end{table}
 
-
+\newcounter{ts}
+\newcommand{\addtots}{\stepcounter{ts}TS\thets}
 
 \subsection{Test di sistema} \label{testsistema} %FIXME
 Tipo di test da scegliere durante l'attività di analisi dei requisiti. Servono per svolgere la validazione del prodotto.
 
 I test di sistema servono per testare l'intero prodotto, in particolare le sue specifiche tecniche e funzionali.
 Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzionali presenti nell'\AdRd.
+
+\begin{table}[H]
+	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        \addtots & Verifica che il sistema riceva la segnalazione dell' apertura di una issue da parte di Redmine & NI \\
+        \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di Redmine & NI \\
+        \addtots & Verifica che il sistema riceva la segnalazione dell' apertura di una issue da parte di GitLab & NI \\
+        \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di GitLab & NI \\
+        \addtots & Verifica che il sistema riceva eventi di push da parte di GitLab & NI \\
+        \addtots & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale & NI \\
+        \addtots & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale & NI \\
+        \addtots & Verifica di scarto di messaggi non validi nel Producer Redmine & NI \\
+        \addtots & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale & NI \\
+        \addtots & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale & NI \\
+        \addtots & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale & NI \\
+        \addtots & Verifica di scarto di messaggi non validi nel Producer GitLab & NI \\
+        \addtots & Verifica di invio di messaggi al Consumer Telegram & NI \\
+        \addtots & Verifica di invio di messaggi al Consumer Email & NI \\
+        \addtots & Verifica di invio di messaggi al bot Telegram & NI \\
+        \addtots & Verifica di invio di messaggi al server email & NI \\
+        \addtots & Verifica di accesso di un utente al sistema & NI \\
+        \addtots & Verifica di errore per accesso con identificativo inesistente & NI \\
+        \addtots & Verifica di uscita dell'utente dal sistema & NI \\
+        \addtots & Verifica di registrazione di un nuovo utente & NI \\
+        \addtots & Verifica di errore per identificativo già esistente & NI \\
+        \addtots & Verifica di rimozione utente dal sistema tramite Telegram & NI \\
+        \addtots & Verifica di rimozione utente dal sistema tramite email & NI \\
+        \addtots & Verifica di errore nella rimozione di un utente inesistente dal sistema & NI \\
+        \addtots & Verifica di rimozione dell'utente acceduto dal sistema & NI \\
+        \addtots & Verifica di modifica di un utente & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con dati già esistenti (identificativi) & NI \\
+        \addtots & Verifica di errore nella modifica di un utente inesistente & NI \\
+        \addtots & Verifica di iscrizione a un nuovo topic & NI \\
+        \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & NI \\
+        \addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & NI \\
+        \addtots & Verifica di aggiunta della persona di fiducia & NI \\
+        \addtots & Verifica di errore nell'aggiunta di una persona di fiducia inesistente & NI \\
+        \bottomrule\\
+	\end{paddedtablex}
+	\caption{Elenco dei test di sistema.}
+\end{table}
 
 %Per ogni test vengono affrontati i seguenti punti:
 %
@@ -353,113 +662,113 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		%\paragraph*{Accettazione}
 		%Il nuovo utente deve comparire all'interno della lista degli utenti inseriti nell'applicazione.
 	
-	\subsubsection{TS002 Iscrizione ad una label, ad una piattaforma di messaggistica e apertura issue}
-		Un utente quando s'iscrive ad una label, lo fa con l'intenzione di ricevere le notifiche inerenti solo a quella label provenienti da GitLab o Redmine e l'iscrizione alla piattaforma di messaggistica (Telegram o email) per scegliere dove ricevere tali notifiche.
-		
-		\paragraph*{Procedura}
-			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalle label è possibile capire quali notifiche derivano da Redmine e quali da GitLab.
-				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche della label.
-				\item Aprire una issue da Gitlab se l'iscrizione è stata fatta da una label proveniente da GitLab, o aprire una issue da Redmine se l'iscrizione è stata fatta da una label proveniente da Redmine.
-			\end{enumerate}
-		
-		\paragraph*{Accettazione}
-		Alla piattaforma di messaggistica selezionata arriva una notifica dell'apertura della issue inerente al topic selezionato.
-		
-	\subsubsection{TS003 Iscrizione a una label, a una piattaforma di messaggistica e modifica issue}
-		Come descritto nel test precedente, un utente può iscriversi a una label e a una piattaforma di messaggistica per ricevere una notifica.
-		
-		\paragraph*{Procedura}
-			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalla label è possibile capire quali derivano da Redmine e quali da GitLab.
-				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche delle label.
-				\item Selezionare su Redmine, se ci si è iscritti ad una label di Redmine, o su GitLab, se ci si è inscritti ad una label su GitLab, una issue già aperta e modificarla in termini di label o titolo della issue.
-				\item Se tra i campi modificati nella issue ci sono anche le label, iscriversi nel gestore personale alla label della issue modificata.
-			\end{enumerate}
-		
-		\paragraph*{Accettazione}
-		La modifica del titolo o delle label di una issue di Redmine o GitLab comporta l'invio della notifica a tutti gli iscritti alle nuove label, se queste sono cambiate, altrimenti agli iscritti delle solite label se è cambiato solo il titolo della issue. La modifica di qualsiasi altro campo non comporta l'invio di una notifica.
-		
-	\subsubsection{TS004 Disiscrizione da una label}
-		La disiscrizione ad una label deve terminare la notifica delle segnalazioni legate a quella label.
-		
-		\paragraph*{Procedura}
-			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-				\item Disiscriversi da una label a cui precedentemente si era iscritti.
-				\item Aprire o modificare una issue da Redmine o GitLab con la label da cui ci si è disiscritti precedentemente.
-			\end{enumerate}
-		
-		\paragraph*{Accettazione}
-		Una volta disiscritti ad una label non vengono più ricevute notifica riguardanti quella label.
-		
-	\subsubsection{TS005 Aggiunta di una keyword, iscrizione ad una piattaforma di messaggistica e push di Gitlab}
-		Per ricevere le notifiche dei push di GitLab è possibile selezionare delle keyword che possono essere presenti nei messaggi di commit.
-		
-		\paragraph*{Procedura}
-		\begin{itemize}
-			\item Selezionare l'utente con cui si vuole usare l'applicativo.
-			\item Aggiungere una keyword nel gestore personale.
-			\item Effettuare un push su Gitlab dove il messaggio di commit contiene la keyword appena inserita.
-		\end{itemize}
-	
-		\paragraph*{Accettazione}
-		L'utente le notifiche dei push che nel loro messaggio di commit contengo la keyword aggiunta.
-	
-	\subsubsection{TS006 Rimozione di una keyword}
-		La rimozione di una delle keyword aggiunta precedentemente evita di ricevere la notifica dei push di GitLab con il messaggio di commit con la keyword rimossa.
-		
-		\paragraph*{Procedura}
-			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-				\item Rimuovere una delle keyword selezionate in precedenza.
-				\item Effettuare un push su GitLab dove il messaggio di commit contiene la keyword appena rimossa.
-			\end{enumerate}
-		
-		\paragraph*{Accettazione}
-		Non arrivano le notifiche dei push di Gitlab in cui nel messaggio di commit è presente la keyword appena rimossa.
-		
-	\subsubsection{TS007 Rimozione di una piattaforma di messaggistica}
-		Come per il test precedente, anche rimuovendo una piattaforma di messaggistica (Telegram o email), le notifiche a quella piattaforma non dovrebbero più arrivare.
-		
-		\paragraph*{Procedura}
-		\begin{enumerate}
-			\item Selezionare l'utente con cui si vuole usare l'applicativo.
-			\item Deselezionare una piattaforma di messaggistica precedentemente selezionata
-			\item Creare o modificare una issue da Redmine o Gitlab, oppure effettuare un \gloss{push}. 
-		\end{enumerate}
-	
-		\paragraph*{Accettazione}
-		Dopo aver aperto una issue o effettuato un push da Gitlab o Redmine, non si ricevono più notifiche dalle piattaforme di messaggistica rimosse.
-		
-	\subsubsection{TS008 Aggiunta della persona delegata e dei giorni di indisponibilità}
-		All'interno del gestore personale è possibile indicare i giorni di calendario in cui si è irreperibili ed è possibile selezionare una persona a cui inoltrare le notifiche che arrivano nei giorni selezionati.
-		
-		\paragraph*{Procedura}
-			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-				\item Aggiungere nel gestore personale il giorno di esecuzione del test come giorno di indisponibilità in cui non si vogliono ricevere notifiche dall'applicativo.
-				\item Aggiungere, tra gli utenti inseriti nell'applicazione, l'utente a cui inoltrare le notifiche nei giorni di indisponibilità.
-				\item Creare o modificare una issue da Redmine o Gitlab, oppure effettuare un \gloss{push}. 
-			\end{enumerate}
-		
-		\paragraph*{Accettazione}
-		La persona delegata riceve la notifica del messaggio che sarebbe dovuta arrivare all'utente che non è disponibile.
-		
-	\subsubsection{TS009 Rimozione giorni di indisponibilità}
-		Nel momento in cui si rimuovono i giorni in cui ci si considera non reperibili, le notifiche dei topic a cui ci si è iscritti tornano ad essere inviate.
-		
-		\paragraph*{Procedura}
-			\begin{enumerate}
-				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-				\item Deselezionare tra i giorni di irreperibilità il giorno di esecuzione del test (se il giorno è già selezionato, selezionarlo e poi deselezionarlo).
-				\item Effettuare un push da GitLab oppure aprire o modificare una issue su Redmine o GitLab.
-			\end{enumerate}
-		
-		\paragraph*{Accettazione}
-		L'utente selezionato ricomincia a ricevere notifiche.
+%	\subsubsection{TS002 Iscrizione ad una label, ad una piattaforma di messaggistica e apertura issue}
+%		Un utente quando s'iscrive ad una label, lo fa con l'intenzione di ricevere le notifiche inerenti solo a quella label provenienti da GitLab o Redmine e l'iscrizione alla piattaforma di messaggistica (Telegram o email) per scegliere dove ricevere tali notifiche.
+%		
+%		\paragraph*{Procedura}
+%			\begin{enumerate}
+%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalle label è possibile capire quali notifiche derivano da Redmine e quali da GitLab.
+%				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche della label.
+%				\item Aprire una issue da Gitlab se l'iscrizione è stata fatta da una label proveniente da GitLab, o aprire una issue da Redmine se l'iscrizione è stata fatta da una label proveniente da Redmine.
+%			\end{enumerate}
+%		
+%		\paragraph*{Accettazione}
+%		Alla piattaforma di messaggistica selezionata arriva una notifica dell'apertura della issue inerente al topic selezionato.
+%		
+%	\subsubsection{TS003 Iscrizione a una label, a una piattaforma di messaggistica e modifica issue}
+%		Come descritto nel test precedente, un utente può iscriversi a una label e a una piattaforma di messaggistica per ricevere una notifica.
+%		
+%		\paragraph*{Procedura}
+%			\begin{enumerate}
+%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalla label è possibile capire quali derivano da Redmine e quali da GitLab.
+%				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche delle label.
+%				\item Selezionare su Redmine, se ci si è iscritti ad una label di Redmine, o su GitLab, se ci si è inscritti ad una label su GitLab, una issue già aperta e modificarla in termini di label o titolo della issue.
+%				\item Se tra i campi modificati nella issue ci sono anche le label, iscriversi nel gestore personale alla label della issue modificata.
+%			\end{enumerate}
+%		
+%		\paragraph*{Accettazione}
+%		La modifica del titolo o delle label di una issue di Redmine o GitLab comporta l'invio della notifica a tutti gli iscritti alle nuove label, se queste sono cambiate, altrimenti agli iscritti delle solite label se è cambiato solo il titolo della issue. La modifica di qualsiasi altro campo non comporta l'invio di una notifica.
+%		
+%	\subsubsection{TS004 Disiscrizione da una label}
+%		La disiscrizione ad una label deve terminare la notifica delle segnalazioni legate a quella label.
+%		
+%		\paragraph*{Procedura}
+%			\begin{enumerate}
+%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%				\item Disiscriversi da una label a cui precedentemente si era iscritti.
+%				\item Aprire o modificare una issue da Redmine o GitLab con la label da cui ci si è disiscritti precedentemente.
+%			\end{enumerate}
+%		
+%		\paragraph*{Accettazione}
+%		Una volta disiscritti ad una label non vengono più ricevute notifica riguardanti quella label.
+%		
+%	\subsubsection{TS005 Aggiunta di una keyword, iscrizione ad una piattaforma di messaggistica e push di Gitlab}
+%		Per ricevere le notifiche dei push di GitLab è possibile selezionare delle keyword che possono essere presenti nei messaggi di commit.
+%		
+%		\paragraph*{Procedura}
+%		\begin{itemize}
+%			\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%			\item Aggiungere una keyword nel gestore personale.
+%			\item Effettuare un push su Gitlab dove il messaggio di commit contiene la keyword appena inserita.
+%		\end{itemize}
+%	
+%		\paragraph*{Accettazione}
+%		L'utente le notifiche dei push che nel loro messaggio di commit contengo la keyword aggiunta.
+%	
+%	\subsubsection{TS006 Rimozione di una keyword}
+%		La rimozione di una delle keyword aggiunta precedentemente evita di ricevere la notifica dei push di GitLab con il messaggio di commit con la keyword rimossa.
+%		
+%		\paragraph*{Procedura}
+%			\begin{enumerate}
+%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%				\item Rimuovere una delle keyword selezionate in precedenza.
+%				\item Effettuare un push su GitLab dove il messaggio di commit contiene la keyword appena rimossa.
+%			\end{enumerate}
+%		
+%		\paragraph*{Accettazione}
+%		Non arrivano le notifiche dei push di Gitlab in cui nel messaggio di commit è presente la keyword appena rimossa.
+%		
+%	\subsubsection{TS007 Rimozione di una piattaforma di messaggistica}
+%		Come per il test precedente, anche rimuovendo una piattaforma di messaggistica (Telegram o email), le notifiche a quella piattaforma non dovrebbero più arrivare.
+%		
+%		\paragraph*{Procedura}
+%		\begin{enumerate}
+%			\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%			\item Deselezionare una piattaforma di messaggistica precedentemente selezionata
+%			\item Creare o modificare una issue da Redmine o Gitlab, oppure effettuare un \gloss{push}. 
+%		\end{enumerate}
+%	
+%		\paragraph*{Accettazione}
+%		Dopo aver aperto una issue o effettuato un push da Gitlab o Redmine, non si ricevono più notifiche dalle piattaforme di messaggistica rimosse.
+%		
+%	\subsubsection{TS008 Aggiunta della persona delegata e dei giorni di indisponibilità}
+%		All'interno del gestore personale è possibile indicare i giorni di calendario in cui si è irreperibili ed è possibile selezionare una persona a cui inoltrare le notifiche che arrivano nei giorni selezionati.
+%		
+%		\paragraph*{Procedura}
+%			\begin{enumerate}
+%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%				\item Aggiungere nel gestore personale il giorno di esecuzione del test come giorno di indisponibilità in cui non si vogliono ricevere notifiche dall'applicativo.
+%				\item Aggiungere, tra gli utenti inseriti nell'applicazione, l'utente a cui inoltrare le notifiche nei giorni di indisponibilità.
+%				\item Creare o modificare una issue da Redmine o Gitlab, oppure effettuare un \gloss{push}. 
+%			\end{enumerate}
+%		
+%		\paragraph*{Accettazione}
+%		La persona delegata riceve la notifica del messaggio che sarebbe dovuta arrivare all'utente che non è disponibile.
+%		
+%	\subsubsection{TS009 Rimozione giorni di indisponibilità}
+%		Nel momento in cui si rimuovono i giorni in cui ci si considera non reperibili, le notifiche dei topic a cui ci si è iscritti tornano ad essere inviate.
+%		
+%		\paragraph*{Procedura}
+%			\begin{enumerate}
+%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
+%				\item Deselezionare tra i giorni di irreperibilità il giorno di esecuzione del test (se il giorno è già selezionato, selezionarlo e poi deselezionarlo).
+%				\item Effettuare un push da GitLab oppure aprire o modificare una issue su Redmine o GitLab.
+%			\end{enumerate}
+%		
+%		\paragraph*{Accettazione}
+%		L'utente selezionato ricomincia a ricevere notifiche.
 
 	\subsubsection{Tracciamento}
 
