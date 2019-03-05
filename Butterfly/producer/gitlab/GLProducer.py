@@ -27,7 +27,6 @@ Autori:
     Samuele Gardin, samuelegardin@gmail.com
 """
 
-# import argparse
 import json
 from pathlib import Path
 import pprint
@@ -76,7 +75,8 @@ def api_root():
             topics = json.load(f)
 
         # Istanzia il Producer
-        producer = GLProducer(config)
+        # TODO: Potrebbe essere rotto, da verificare
+        producer = GLProducer(config['kafka'])
 
         webhook = request.get_json()
         print(
@@ -158,7 +158,9 @@ class GLProducer(Producer):
 
 
 def main():
-    app.run(host='0.0.0.0', port='5003')
+    with open(Path(__file__).parents[1] / 'config.json') as f:
+        config = json.load(f)
+    app.run(host=config['gitlab']['ip'], port=config['gitlab']['port'])
 
 
 if __name__ == '__main__':
