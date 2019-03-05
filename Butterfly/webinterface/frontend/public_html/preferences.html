@@ -42,6 +42,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
             *subscriptiontopic*
             <form action="/indisponibilita" method="post">
                 <fieldset>
+                    <legend>Giorni di indisponibilità</legend>
                     <label for="calendario">Indisponibilità</label>
                     <input id="indisponibilita" name="indisponibilita" type="submit" value="Modifica indisponibilità"/>
                 </fieldset>
@@ -49,6 +50,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
             *indisponibilita*
             <form action="/favouriteplatform" method="post">
                 <fieldset>
+                    <legend>Piattaforma preferita</legend>
                     <label for="email">Email</label>
                     <input name="platform" id="email" type="radio" />
                     <label for="telegram">Telegram</label>
@@ -59,6 +61,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
             *favouriteplatform*
             <form action="/favouriteuser" method="post">
                 <fieldset>
+                    <legend>Persona di fiducia</legend>
                     <label for="userid">User ID (email o telegram)</label>
                     <input name="userid" type="text" />
                     <input id="favouriteuser" name="favouriteuser" type="submit" value="Modifica utente preferito"/>
@@ -67,6 +70,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
             *favouriteuser*
             <form action="/keywords" method="post">
                 <fieldset>
+                    <legend>Keyword di interesse</legend>
                     <label for="textkeywords">Gitlab keywords</label>
                     <textarea id="textkeywords" name="keywords">*textkeywords*</textarea>
                     <input id="keywords" name="keywords" type="submit" value="Modifica parole chiave"/>

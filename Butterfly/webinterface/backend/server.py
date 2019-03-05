@@ -169,20 +169,6 @@ class Handler(object):
             page = file.read_text()
             topics = ''
             for topic in self._controller.topics():
-                # topics += '<fieldset><label for="'\
-                #           + str(topic['_id']) +\
-                #           '">'\
-                #           + str(topic['_id']) +\
-                #           '</label>' \
-                #           '<input name="'\
-                #           + str(topic['_id']) +\
-                #           '" type="checkbox"/>' \
-                #           '<p>Etichetta: '\
-                #           + topic['label'] +\
-                #           '</p>' \
-                #           '<p>Progetto: '\
-                #           + topic['project'] +\
-                #           '</p></fieldset>'
                 topics += ''.join([
                     '<fieldset><label for="',
                     str(topic['_id']),
