@@ -5,6 +5,15 @@ In questa sezione viene riportata una sintesi conclusiva dei risultati ottenuti 
 
 I test che vengono introdotti nel corso del progetto non vanno a sostituire i test precedentemente sviluppati. Ogni test, appena è creato viene eseguito periodicamente fino alla fine del progetto, per evitare che i nuovi cambiamenti possano reintrodurre errori precedentemente risolti.
 
+	\subsection{Classificazione dei risultati} \label{classificazionerisultati}
+	I risultati ottenuti tramite una metrica, rispetto all'obiettivo che vogliamo raggiungere e ai valori da noi desiderati, sono classificati in:
+    
+    \begin{itemize}
+    	\item \textbf{Soddisfacente}: il risultato è quello atteso.
+    	\item \textbf{Poco soddisfacente}: il risultato non è quello atteso, ma gli è vicino.
+    	\item \textbf{Insoddisfacente}: il risultato non è per niente quello atteso.
+    \end{itemize} 
+
 	\subsection{Primo periodo (RR)}
 	Periodo individuato come \AdR\ che dura circa un mese di tempo e un quarto del tempo complessivo per realizzare il progetto.
 
@@ -21,13 +30,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
     
     \subsubsection{Risultati delle verifiche tramite analisi}
     Nelle tabelle seguenti vengono riportati i risultati ottenuti applicando le metriche in correlazione all'obiettivo scelto. 
-    In ogni tabella sono indicati i prodotti o i processi sottoposti alle metriche e i risultati ottenuti sono classificati in:
-    
-    \begin{itemize}
-    	\item \textbf{Soddisfacente}: il risultato è quello atteso.
-    	\item \textbf{Poco soddisfacente}: il risultano non è quello atteso, ma gli è vicino.
-    	\item \textbf{Insoddisfacente}: il risultato non è per niente quello atteso.
-    \end{itemize} 
+    In ogni tabella sono indicati i prodotti o i processi sottoposti alle metriche e i risultati ottenuti sono presenti in "Valutazione", classificati secondo \S\ref{classificazionerisultati}.
 
     \paragraph{Documenti}
 
@@ -174,8 +177,58 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	%\mydoublerule{\linewidth}{0pt}{2pt}
 	
 	\subsection{Secondo periodo (RP)}
-	Periodo individuato come Revisione Progettuale la quale dura all'incirca un mese ed quarto dell'intera durata del progetto.
+	Periodo individuato come Revisione Progettuale la quale dura all'incirca un mese ed un quarto dell'intera durata del progetto.
 	
 	\subsubsection{Riassunto delle attività di verifica}
+	In questo periodo di tempo abbiamo per lo più attuato verifiche sui documenti, come per il periodo di RR, ma in maniera più approfondita e  sistematica, e verifiche sul software, in particolare sul codice scritto per il \gloss{Proof of Concept}.
+
 	
 	\subsubsection{Risultati delle verifiche tramite analisi}
+	In questa sezione riportiamo i diagrammi contenenti tutti i valori di nostro interesse per dare un giudizio sul lavoro svolto fino alla fine di questo periodo.
+	Essi contengono i valori ottenuti nel tempo e mostrano con chiarezza l'andamento delle misurazioni che abbiamo effettuato.
+	Per questo motivo, ogni diagramma è intitolato con la metrica utilizzata ed è accompagnato da:
+	\begin{itemize}
+		\item \textbf{Obiettivo}: codice dell'obiettivo di qualità.
+		\item \textbf{Valore desiderato}: il valore desiderato ottenibile da una determinata metrica.
+		\item \textbf{Descrizione}: breve descrizione del diagramma.
+		\item \textbf{Valutazione}: la nostra valutazione classificata secondo \S\ref{classificazionerisultati}.
+		\item \textbf{Considerazioni}: nostro commento in relazione ai 
+	\end{itemize}
+
+
+	\paragraph{Documenti}
+
+	\subparagraph{MPD001 Indice di Gulpease}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/MPD001Gulpease.png}
+		\label{immaginegulpease}
+		\caption{Diagramma con valori misurati tramite MPD001 Indice di Gulpease}
+	\end{figure}
+
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPD001 Leggibilità del testo.
+		\item \textbf{Valore desiderato}: 50-60.
+		\item \textbf{Descrizione}: ogni documento ha degli alti e bassi nel corso della stesura, ma infine rispetta i valori desiderati.
+		\item \textbf{Valutazione}: Soddisfacente.
+		\item \textbf{Considerazioni}: prevediamo di rimanere in questi valori anche per i prossimi periodi.
+	\end{itemize}
+
+
+	\subparagraph{MPD002 Correttezza ortografica}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/MPD001Gulpease.png}
+		\label{immaginegulpease}
+		\caption{Diagramma con valori misurati tramite MPD002 Correttezza ortografica}
+	\end{figure}
+
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPD002 Correttezza ortografica.
+		\item \textbf{Valore desiderato}: 0.
+		\item \textbf{Descrizione}: ogni documento presenta qualche errore nel corso della stesura, ma infine rispetta i valori desiderati.
+		\item \textbf{Valutazione}: Soddisfacente.
+		\item \textbf{Considerazioni}: prevediamo di rimanere in questi valori anche per i prossimi periodi.
+	\end{itemize}
