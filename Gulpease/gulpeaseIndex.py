@@ -13,7 +13,7 @@ def main():
     # foutdir = directory del file coi risultati (considerare il percorso partendo dalla root della cartella Git)
     foutdir = 'Gulpease/Risultati.txt'
     #extension = estensione dei file che si voglio analizzare. Insieme ad extension verranno annalizzati i file senza estensione
-    extensions = '.pdf'
+    extensions = '.tex'
 
     for subdir, dirs, files in os.walk(rootdir):
         for file in files:
@@ -26,20 +26,24 @@ def main():
                     testo = parser.from_file(path)['content']
                     parole = len(re.findall(r'\w+', testo))
                     lettere = len(re.findall(r'\w', testo))
-                    punti = len(re.findall(r'[;]\s', testo)) + len(re.findall(r'[^0-9][.]', testo))
+                    # punti = len(re.findall(r'[;]\s', testo)) + len(re.findall(r'[^0-9][.]', testo))
+                    punti = len(re.findall(r'[.]([^0-9]?)', testo)) - len(re.findall(r'\u2022', testo)) - len(re.findall(r'\\.+\{', testo)) - len(re.findall(r'%.*', testo))
+
                     name = os.path.basename(path)
                     indiceG = (89+(300*punti - 10*lettere)/parole)
                     indiceG = round(indiceG, 2)
+                    
                     #Viene creato o modificato il file nel path indicato
-                    with open(foutdir, "a+") as fout:
-                        fout.write(f"{name}: {indiceG}\t")
+                    # with open(foutdir, "a+") as fout:
+                    #     fout.write(f"{name}: {indiceG}\t")
                     print(f"Parole: {parole} Lettere: {lettere} Punti: {punti}")
                     print(f"L'indice di {path} è: {indiceG}")
             except IOError:
                 print("File doesn't exist")
     timestamp = datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-    with open(foutdir, "a+") as fout:
-        fout.write(f"\t{timestamp}\n")
+    # with open(foutdir, "a+") as fout:
+    #     fout.write(f"\t{timestamp}\n")
+    print("\u2022")
 
 
 if __name__ == '__main__':
