@@ -14,7 +14,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
     	\item \textbf{Insoddisfacente}: il risultato non è per niente quello atteso.
     \end{itemize} 
 
-	\subsection{Primo periodo (RR)}
+	\subsection{Primo periodo (RR)}\label{ResocontoAttivitaVerifica:RP}
 	Periodo individuato come \AdR\ che dura circa un mese di tempo e un quarto del tempo complessivo per realizzare il progetto.
 
     \subsubsection{Riassunto delle attività di verifica}
@@ -185,7 +185,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	
 	\subsubsection{Risultati delle verifiche tramite analisi}
 	In questa sezione riportiamo i diagrammi contenenti tutti i valori di nostro interesse per dare un giudizio sul lavoro svolto fino alla fine di questo periodo.
-	Essi contengono i valori ottenuti nel tempo e mostrano con chiarezza l'andamento delle misurazioni che abbiamo effettuato.
+	Essi contengono i valori ottenuti nel tempo partendo dall'ultima consegna dei documenti (il 2019-01-14) e mostrano con chiarezza l'andamento delle misurazioni che abbiamo effettuato.
 	Per questo motivo, ogni diagramma è intitolato con la metrica utilizzata ed è accompagnato da:
 	\begin{itemize}
 		\item \textbf{Obiettivo}: codice dell'obiettivo di qualità.
@@ -202,7 +202,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/MPD001Gulpease.png}
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/MPD001.png}
 		\label{immaginegulpease}
 		\caption{Diagramma con valori misurati tramite MPD001 Indice di Gulpease}
 	\end{figure}
@@ -210,9 +210,9 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPD001 Leggibilità del testo.
 		\item \textbf{Valore desiderato}: 50-60.
-		\item \textbf{Descrizione}: ogni documento ha degli alti e bassi nel corso della stesura, ma infine rispetta i valori desiderati.
+		\item \textbf{Descrizione}: vengono mostrati i cambiamenti dei valori dell'indice di Gulpease nei documenti e la soglia minima e massima (in grigio e nero) in cui devono rientrare i valori dei documenti. 
 		\item \textbf{Valutazione}: Soddisfacente.
-		\item \textbf{Considerazioni}: prevediamo di rimanere in questi valori anche per i prossimi periodi.
+		\item \textbf{Considerazioni}: ogni documento ha degli alti e bassi nel corso della stesura, ma infine tutti, eccetto l'\AdR, rispettano i valori desiderati.
 	\end{itemize}
 
 
@@ -220,17 +220,17 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/MPD001Gulpease.png}
-		\label{immaginegulpease}
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/MPD002.png}
+		\label{immagineCorrettezzaOrtografica}
 		\caption{Diagramma con valori misurati tramite MPD002 Correttezza ortografica}
 	\end{figure}
 
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPD002 Correttezza ortografica.
 		\item \textbf{Valore desiderato}: 0.
-		\item \textbf{Descrizione}: ogni documento presenta qualche errore nel corso della stesura, ma infine rispetta i valori desiderati.
+		\item \textbf{Descrizione}: per ogni documento è mostrato l'andamento del numero di errori ortografici e la soglia (in nero) messa a zero.
 		\item \textbf{Valutazione}: Soddisfacente.
-		\item \textbf{Considerazioni}: prevediamo di rimanere in questi valori anche per i prossimi periodi.
+		\item \textbf{Considerazioni}: dopo la modifica iniziale dei documenti il numero di errori è diminuito, tendendo ad annullarsi per la fine del periodo RP.
 	\end{itemize}
 
 
@@ -241,17 +241,17 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/MPD001Gulpease.png}
-		\label{immaginegulpease}
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/MPR001.png}
+		\label{immagineVarianzaPianificazione}
 		\caption{Diagramma con valori misurati tramite MPR001 Varianza della pianificazione}
 	\end{figure}
 
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPR001 Rispetto dei periodi della pianificazione.
 		\item \textbf{Valore desiderato}: 0-2 giorni.
-		\item \textbf{Descrizione}: .%TODO
-		\item \textbf{Valutazione}: Soddisfacente.
-		\item \textbf{Considerazioni}: %prevediamo di rimanere in questi valori anche per i prossimi periodi.
+		\item \textbf{Descrizione}: oltre a mostrare le ore di varianza di ogni ruolo, viene mostrato anche il totale delle ore di variazione in viola. 
+		\item \textbf{Valutazione}: poco soddisfacente.
+		\item \textbf{Considerazioni}:Nelle ultime settimane ci siamo costretti a ridurre drasticamente le ore al \Prog\ per darne al \Progr\ essendo a ridosso della consegna del Proof of Concept.
 	\end{itemize}
 
 
@@ -259,17 +259,17 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/MPD001Gulpease.png}
-		\label{immaginegulpease}
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/MPR002.png}
+		\label{immagineVarianzaCosti}
 		\caption{Diagramma con valori misurati tramite MPR002 Varianza dei costi}
 	\end{figure}
 
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPR002 Varianza del budget.
 		\item \textbf{Valore desiderato}: 0-200\EUR.
-		\item \textbf{Descrizione}: .%TODO
-		\item \textbf{Valutazione}: Soddisfacente.
-		\item \textbf{Considerazioni}: %prevediamo di rimanere in questi valori anche per i prossimi periodi.
+		\item \textbf{Descrizione}: vengono mostrate le variazioni della spesa attribuita ad ogni ruolo, inoltre ne viene mostrato il totale attraverso delle colonne (in viola).
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: la diminuzione delle ore assegnate al \Prog\ a favore di quelle per il \Progr, ha portato ad una diminuzione di 156\euro del preventivo, un dato che comunque risulta essere soddisfacente.
 	\end{itemize}
 	
 
@@ -277,17 +277,31 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/MPD001Gulpease.png}
-		\label{immaginegulpease}
-		\caption{Diagramma con valori misurati tramite MPR003 Aderenza agli standard}
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/MPR003_(1).png}
+		\label{immagineAderenzaStandard1}
+		\caption{Diagramma con valori misurati tramite MPR003 Aderenza agli standard (1)}
 	\end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/cruscotti/MPR003_(2).png}
+        \label{immagineAderenzaStandard2}
+        \caption{Diagramma con valori misurati tramite MPR003 Aderenza agli standard (2)}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/cruscotti/MPR003_(3).png}
+        \label{immagineAderenzaStandard3}
+        \caption{Diagramma con valori misurati tramite MPR003 Aderenza agli standard (3)}
+    \end{figure}
 
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPR003 Risetto delle fasi del ciclo di vita.
 		\item \textbf{Valore desiderato}: Livello di maturità: 3, Valutazione attributi: L.
-		\item \textbf{Descrizione}: .%TODO
-		\item \textbf{Valutazione}: Soddisfacente.
-		\item \textbf{Considerazioni}: %prevediamo di rimanere in questi valori anche per i prossimi periodi.
+		\item \textbf{Descrizione}: per ogni attributo dei processi viene mostrato in che percentuale sono soddisfatti attraverso le colonne (in blu), mostrando anche la soglia minima e massima (in grigio e nero) che questi valori dovrebbero avere.
+		\item \textbf{Valutazione}: poco soddisfacente.
+		\item \textbf{Considerazioni}: il miglioramento per quanto riguarda l'aderenza agli standard è presente, ma non ancora sufficiente per gli obiettivi prefissati.
 	\end{itemize}
 	
 
@@ -296,3 +310,69 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	\paragraph{Software}
 
 	\subparagraph{MPS001 Presenza di bug}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/cruscotti/MPS001.png}
+        \label{immaginePresenzaBug}
+        \caption{Diagramma con valori misurati tramite MPS001 Presenza di bug}
+    \end{figure}
+    
+    \begin{itemize}
+        \item \textbf{Obiettivo}: QPS005 Rispetto delle norme di PEP 8.
+        \item \textbf{Valore desiderato}: 0.
+        \item \textbf{Descrizione}: viene mostrato il numero totale di bug rilevati da \gloss{Sonarcube}.
+        \item \textbf{Valutazione}: soddisfacente.
+        \item \textbf{Considerazioni}: per la consegna del Proof of Concept abbiamo cercato di togliere tutti i bug presenti nel codice.
+    \end{itemize}
+
+    \subparagraph{MPS002 Presenza di vulnerabilità}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/cruscotti/MPS002.png}
+        \label{immaginePresenzaVulnerabilità}
+        \caption{Diagramma con valori misurati tramite MPS002 Presenza di vulnerabilità}
+    \end{figure}
+    
+    \begin{itemize}
+        \item \textbf{Obiettivo}: QPS005 Rispetto delle norme di PEP 8.
+        \item \textbf{Valore desiderato}: 0.
+        \item \textbf{Descrizione}: viene mostrato il numero totale di vulnerabilità rilevate da Sonarcube.
+        \item \textbf{Valutazione}: soddisfacente.
+        \item \textbf{Considerazioni}: per la consegna del Proof of Concept abbiamo cercato di togliere tutte le vulnerabilità presenti nel codice.
+    \end{itemize}
+
+    \subparagraph{MPS003 Presenza di code smell}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/cruscotti/MPS003.png}
+        \label{immaginePresenzaCodeSmell}
+        \caption{Diagramma con valori misurati tramite MPS003 Presenza di code smell}
+    \end{figure}
+    
+    \begin{itemize}
+        \item \textbf{Obiettivo}: QPS005 Rispetto delle norme di PEP 8.
+        \item \textbf{Valore desiderato}: 0.
+        \item \textbf{Descrizione}: viene mostrato il numero totale di \gloss{code smell} rilevati da Sonarcube.
+        \item \textbf{Valutazione}: poco soddisfacente.
+        \item \textbf{Considerazioni}: dato che non risultano essere errori particolarmente gravi all'interno del codice si ha dato priorità a correggere altri tipi di errori prima della consegna del Proof of Concept.
+    \end{itemize}
+
+    \subparagraph{MPS004 Duplicazione del codice}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/cruscotti/MPS004.png}
+        \label{immaginePresenzaDupplicazioneCodice}
+        \caption{Diagramma con valori misurati tramite MPS004 Duplicazione del codice}
+    \end{figure}
+    
+    \begin{itemize}
+        \item \textbf{Obiettivo}: QPS005 Rispetto delle norme di PEP 8.
+        \item \textbf{Valore desiderato}: 20\%.
+        \item \textbf{Descrizione}: viene mostrata la percentuale di codice duplicato rilevato da Sonarcube.
+        \item \textbf{Valutazione}: soddisfacente.
+        \item \textbf{Considerazioni}: La quantità di codice duplicato, dopo la prima verifica, è rimasto molto basso.
+    \end{itemize}
