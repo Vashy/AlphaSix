@@ -107,11 +107,12 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
-    \end{VTtable}
+	\end{VTtable}
 	\caption{Elenco dei test di validazione (1)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule 
         \addtotv & Verifica di un evento di push da parte di GitLab:
 		\begin{enumerate}
 			\item GitLab segnala un evento di push.
@@ -151,11 +152,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
-    \end{VTtable}
+	\end{VTtable}
 	\caption{Elenco dei test di validazione (2)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        
         \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
 			\item Producer GitLab genera un messaggio di apertura issue.
@@ -197,11 +200,12 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
-    \end{VTtable}
+	\end{VTtable}
 	\caption{Elenco dei test di validazione (3)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di invio di messaggi al bot Telegram:
 		\begin{enumerate}
@@ -219,17 +223,40 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
 
-		\addtotv & Verifica di accesso di un utente al sistema:
+		\addtotv & Verifica di accesso di un utente al sistema tramite email:
 		\begin{enumerate}
-			\item Inserire nel gestore personale l'identificativo dell'utente (email o telegram)
+			\item Inserire nel gestore personale l'email dell'utente
 			\item Confermare l' invio dei dati.
             \item L'accesso al sistema è avvenuto.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore per accesso con identificativo inesistente:
+        \addtotv & Verifica di accesso di un utente al sistema tramite id Telegram:
 		\begin{enumerate}
-			\item Inserire nel gestore personale l'identificativo dell'utente (email o telegram)
+			\item Inserire nel gestore personale l'id Telegram dell'utente
+			\item Confermare l' invio dei dati.
+            \item L'accesso al sistema è avvenuto.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di errore per accesso con email inesistente:
+		\begin{enumerate}
+			\item Inserire nel gestore personale l'email dell'utente
+			\item Confermare l' invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (4)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        
+        \addtotv & Verifica di errore per accesso con id Telegram inesistente:
+		\begin{enumerate}
+			\item Inserire nel gestore personale l'id Telegram dell'utente
 			\item Confermare l' invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
@@ -240,13 +267,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\item Confermare l' uscita dal sistema.
             \item L'utente viene riportato all'accesso al sistema.
 		\end{enumerate}
-		& \TNI \\
-        \bottomrule\\
-        \end{VTtable}
-	\caption{Elenco dei test di validazione (4)}
-\end{table}
-\begin{table}[H]
-	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		& \TNI \\ \\\midrule
         
         \addtotv & Verifica di registrazione di un nuovo utente:
 		\begin{enumerate}
@@ -263,7 +284,29 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore per identificativo già esistente:
+        \addtotv & Verifica di errore per email già esistente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (5)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        
+        \addtotv & Verifica di errore per id Telegram già esistente:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -285,13 +328,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item Confermare l'invio dei dati.
             \item L'utente è stato rimosso dal sistema.
 		\end{enumerate}
-		& \TNI \\
-        \bottomrule\\
-        \end{VTtable}
-	\caption{Elenco dei test di validazione (5)}
-\end{table}
-\begin{table}[H]
-	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		& \TNI \\ \\\midrule
         
         \addtotv & Verifica di rimozione utente dal sistema tramite email:
 		\begin{enumerate}
@@ -302,36 +339,62 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore nella rimozione di un utente inesistente dal sistema:
+        \addtotv & Verifica di errore nella rimozione di un utente con email inesistente dal sistema:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire l'id Telegram o l'email dell'utente da rimuovere.
+            \item Inserire l'email dell'utente da rimuovere.
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (5)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        
+        \addtotv & Verifica di errore nella rimozione di un utente con id Telegram inesistente dal sistema:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire l'id Telegram dell'utente da rimuovere.
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema:
+        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema tramite email:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire il proprio id Telegram o la propria email.
+            \item Inserire la propria email.
             \item Confermare l'invio dei dati.
             \item Si esce dal sistema e si viene riportati alla schermata di accesso.
 		\end{enumerate}
-		& \TNI \\    
+		& \TNI \\
+        
+        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema tramite id Telegram:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire la propria email.
+            \item Confermare l'invio dei dati.
+            \item Si esce dal sistema e si viene riportati alla schermata di accesso.
+		\end{enumerate}
+		& \TNI \\
         \bottomrule\\
-        \end{VTtable}
+	\end{VTtable}
 	\caption{Elenco dei test di validazione (6)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
         
-        \addtotv & Verifica di modifica di un utente:
+        \addtotv & Verifica di modifica di un utente tramite email:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
                 \begin{itemize}
-                    \item Identificativo dell'utente da modificare
+                    \item Email dell'utente da modificare
                     \item Nome
                     \item Cognome
                     \item Contatto email
@@ -342,15 +405,38 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore nella modifica di un utente con dati già esistenti (identificativi):
+        \addtotv & Verifica di modifica di un utente tramite id Telegram:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
                 \begin{itemize}
-                    \item Identificativo dell'utente da modificare
+                    \item Email dell'utente da modificare
                     \item Nome
                     \item Cognome
                     \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item L'utente è stato modificato.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (7)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        
+        \addtotv & Verifica di errore nella modifica di un utente con email già esistente tramite email:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Email dell'utente da modificare
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email già esistente
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -358,12 +444,74 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore nella modifica di un utente inesistente:
+        \addtotv & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite email:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
                 \begin{itemize}
-                    \item Identificativo dell'utente da modificare (non esistente)
+                    \item Email dell'utente da modificare
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram già esistente
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (8)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        
+        \addtotv & Verifica di errore nella modifica di un utente con email già esistente tramite id Telegram:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Id Telegram dell'utente da modificare
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email già esistente
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\\midrule
+        
+        \addtotv & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite id Telegram:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Id Telegram dell'utente da modificare
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram già esistente
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (9)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        
+        \addtotv & Verifica di errore nella modifica di un utente con email inesistente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Email dell'utente da modificare non esistente
                     \item Nome
                     \item Cognome
                     \item Contatto email
@@ -372,13 +520,23 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
-		& \TNI \\        
-        \bottomrule\\
-        \end{VTtable}
-	\caption{Elenco dei test di validazione (7)}
-\end{table}
-\begin{table}[H]
-	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		& \TNI \\ 
+        
+        \addtotv & Verifica di errore nella modifica di un utente con id Telegram inesistente:
+		\begin{enumerate}
+			\item Accedere al sistema.
+            \item Inserire i seguenti campi:
+                \begin{itemize}
+                    \item Id Telegram dell'utente da modificare non esistente
+                    \item Nome
+                    \item Cognome
+                    \item Contatto email
+                    \item Contatto Telegram
+                \end{itemize}
+            \item Confermare l'invio dei dati.
+            \item Viene segnalato un errore.
+		\end{enumerate}
+		& \TNI \\ \\\midrule
         
         \addtotv & Verifica di iscrizione a un nuovo topic:
 		\begin{enumerate}
@@ -387,7 +545,14 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item Confermare l'invio dei dati.
             \item Il topic è stato aggiunto alle preferenze.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (10)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di aggiunta dei giorni di indisponibilità al calendario:
 		\begin{enumerate}
@@ -425,12 +590,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
-        \end{VTtable}
-	\caption{Elenco dei test di validazione (8)}
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (11)}
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-        
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+                
         \addtotv & Verifica di aggiunta delle keyword per i push di GitLab:
 		\begin{enumerate}
 			\item Accedere al sistema.
@@ -465,7 +631,14 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item Confermare l'invio dei dati.
             \item I giorni sono stati rimossi dalle preferenze.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (12)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di rimozione della piattaforma di messaggistica preferita:
 		\begin{enumerate}
@@ -474,14 +647,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item Confermare l'invio dei dati.
             \item La piattaforma è stata rimossa dalle preferenze.
 		\end{enumerate}
-		& \TNI \\
-        %\bottomrule\\
-        \end{VTtable}
-	\caption{Elenco dei test di validazione (9)}
-\end{table}
-
-\begin{table}[H]
-	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		& \TNI \\ \\\midrule
         
         \addtotv & Verifica di rimozione della persona di fiducia:
 		\begin{enumerate}
@@ -508,7 +674,14 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item Confermare l'invio dei dati.
             \item Le keyword GitLab sono state aggiornate.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TNI \\
+        \bottomrule\\
+	\end{VTtable}
+	\caption{Elenco dei test di validazione (13)}
+\end{table}
+\begin{table}[H]
+	\begin{VTtable}[1.7]{\textwidth}{cXc}
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab:
 		\begin{enumerate}
@@ -517,10 +690,10 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
-		& \TNI \\    
+		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione}
+	\caption{Elenco dei test di validazione (14)}
 \end{table}
 
 \newpage
@@ -535,29 +708,29 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\begin{tabularx}{\textwidth}{YY}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
-			\addtotv & R1F2 \\
-			\addtotv & R2F2 \\
-			\addtotv & R3F2 \\
-			\addtotv & R4F2 \\
-			\addtotv & R5F2 \\
-			\addtotv & R6.1F2 \\
-			\addtotv & R6.2F2 \\
-			\addtotv & R7F2 \\
-			\addtotv & R8.1F2 \\
-			\addtotv & R8.2.1F2 \\
-			\addtotv & R8.2.2F2 \\
-			\addtotv & R9F2 \\
-			\addtotv & R10F2 \\
-			\addtotv & R11F2 \\
-			\addtotv & R12F2 \\
-			\addtotv & R13F2 \\
-			\addtotv & R14F2 \\
-			\addtotv & R15F2 \\
-			\addtotv & R16F2 \\
-			\addtotv & R17F2 \\
-			\addtotv & R17.5F2, R17.6F2 \\
-			\addtotv & R18.1F2 \\
-			\addtotv & R18.2F2 \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
 			\addtotv & requisito da inserire \\
 			\addtotv & requisito da inserire \\
 			\addtotv & requisito da inserire \\
@@ -577,6 +750,16 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
             \addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
+			\addtotv & requisito da inserire \\
 			\addtotv & requisito da inserire \\
 			\addtotv & requisito da inserire \\
 			\addtotv & requisito da inserire \\
@@ -612,15 +795,6 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di GitLab & NI \\
         \addtots & Verifica che il sistema riceva eventi di push da parte di GitLab & NI \\
 		\addtots & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale & NI \\
-        \bottomrule\\
-	\end{paddedtablex}
-	\caption{Elenco dei test di sistema (1)}
-\end{table}
-
-
-\begin{table}[H]
-	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
 		\addtots & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale & NI \\
 		\addtots & Verifica di scarto di messaggi non validi nel Producer Redmine & NI \\
 		\addtots & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale & NI \\
@@ -630,37 +804,45 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica di invio di messaggi al Consumer Telegram & NI \\
         \addtots & Verifica di invio di messaggi al Consumer Email & NI \\
         \addtots & Verifica di invio di messaggi al bot Telegram & NI \\
-        \addtots & Verifica di invio di messaggi al server email & NI \\
-        \addtots & Verifica di accesso di un utente al sistema & NI \\
         \bottomrule\\
 	\end{paddedtablex}
 	\caption{Elenco dei test di sistema (1)}
 \end{table}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-        \textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        \addtots & Verifica di errore per accesso con identificativo inesistente & NI \\
+		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        \addtots & Verifica di invio di messaggi al server email & NI \\
+        \addtots & Verifica di accesso di un utente al sistema tramite email & NI \\
+        \addtots & Verifica di accesso di un utente al sistema tramite id Telegram & NI \\
+        \addtots & Verifica di errore per accesso con email inesistente & NI \\
+        \addtots & Verifica di errore per accesso con id Telegram inesistente & NI \\
         \addtots & Verifica di uscita dell'utente dal sistema & NI \\
         \addtots & Verifica di registrazione di un nuovo utente & NI \\
-        \addtots & Verifica di errore per identificativo già esistente & NI \\
+        \addtots & Verifica di errore per email già esistente & NI \\
+        \addtots & Verifica di errore per id Telegram già esistente & NI \\
         \addtots & Verifica di rimozione utente dal sistema tramite Telegram & NI \\
         \addtots & Verifica di rimozione utente dal sistema tramite email & NI \\
-        \addtots & Verifica di errore nella rimozione di un utente inesistente dal sistema & NI \\
-        \addtots & Verifica di rimozione dell'utente acceduto dal sistema & NI \\
-        \addtots & Verifica di modifica di un utente & NI \\
-        \addtots & Verifica di errore nella modifica di un utente con dati già esistenti (identificativi) & NI \\
-        \addtots & Verifica di errore nella modifica di un utente inesistente & NI \\
-        \addtots & Verifica di iscrizione a un nuovo topic & NI \\
-        \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & NI \\
+        \addtots & Verifica di errore nella rimozione di un utente con email inesistente dal sistema & NI \\
+        \addtots & Verifica di errore nella rimozione di un utente con id Telegram inesistente dal sistema & NI \\
+        \addtots & Verifica di rimozione dell'utente acceduto dal sistema tramite email & NI \\
+        \addtots & Verifica di rimozione dell'utente acceduto dal sistema tramite id Telegram & NI \\
+        \addtots & Verifica di modifica di un utente tramite email & NI \\
+        \addtots & Verifica di modifica di un utente tramite id Telegram & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con email già esistente tramite email & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite email & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con email già esistente tramite id Telegram & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite id Telegram & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con email inesistente & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con id Telegram inesistente & NI \\
         \bottomrule\\
 	\end{paddedtablex}
 	\caption{Elenco dei test di sistema (2)}
 \end{table}
-
-
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+        \addtots & Verifica di iscrizione a un nuovo topic & NI \\
+        \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & NI \\
 		\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & NI \\
         \addtots & Verifica di aggiunta della persona di fiducia & NI \\
         \addtots & Verifica di errore nell'aggiunta di una persona di fiducia inesistente & NI \\
@@ -861,6 +1043,16 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
             \addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
+			\addtots & requisito da inserire \\
 			\addtots & requisito da inserire \\
 			\addtots & requisito da inserire \\
 			\addtots & requisito da inserire \\
