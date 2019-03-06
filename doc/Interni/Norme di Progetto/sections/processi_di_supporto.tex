@@ -213,18 +213,19 @@
 			Per maggiori informazioni, visualizzare la fonte ufficiale (\S\ref{rifinfo}).
 
 			\subparagraph{Indice di Gulpease}
-			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla
-			lunghezza delle parole in lettere e non in sillabe.
+			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla lunghezza delle parole in lettere e non in sillabe. In base al valore indicato si può capire che livello di istruzione deve possedere una persona per comprendere il documento.\\
+            Per automatizzare il calcolo di questo indice è stato prodotto uno \gloss{script} che viene eseguito ad ogni \gloss{commit} nella \gloss{repository}, il quale riporta in un file i risultati ottenuti. Tale indice è descritto anche in \S\ref{AnalisiStatica:Gulpease}.
 
 			\subparagraph{Controllo ortografico}
 			Per il controllo ortografico utilizziamo:
 			\begin{itemize}
 				\item In fase di redazione dei documenti, il controllo ortografico integrato degli IDE utilizzati
-				\item In fase di verifica, lo strumento GNU Aspell, uno strumento open source per il controllo ortografico che permette tramite interfaccia
-					interattiva di cambiare parole non riconosciute dal dizionario e scegliere tra più suggerimenti. Maggiori informazioni alla fonte ufficiale,
-					reperibile in \S\ref{rifinfo}.
-				
+				\item In fase di verifica, lo strumento GNU Aspell, uno strumento open source per il controllo ortografico che permette tramite interfaccia interattiva di cambiare parole non riconosciute dal dizionario e scegliere tra più suggerimenti. Maggiori informazioni alla fonte ufficiale, reperibile in \S\ref{rifinfo}.
+				La correttezza ortografica possiede una metrica presente in \S\ref{AnalisiStatica:CorrettezzaOrtografica}.
 			\end{itemize}
+        
+            \subparagraph{Glossarizzazione dei ternimi}
+            Come spiegato in \S\ref{GlossarioDocumentiEsterni}, i termini con un particolare significato vengono riportati e definiti all'interno di \Gld. Per automatizzare questo processo è stato creato uno script che valuta le voci all'interno di \Gld\ e ed inserisce i riferimenti a queste voci alla prima occorrenza di ogni parola in tutti i documenti prodotti.
 
 		\subsubsection{Mantenimento}\label{Mantenimento}
 
@@ -537,7 +538,7 @@
 			
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 
-			\subparagraph{MPD001 Indice di Gulpease}
+			\subparagraph{MPD001 Indice di Gulpease}\label{AnalisiStatica:Gulpease}
 			Per il calcolo dell'indice di Gulpease, abbiamo creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
 			L'indice si calcola:
 
@@ -554,7 +555,7 @@
 			Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in PDF per valutarne
 			l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
 
-			\subparagraph{MPD002 Correttezza ortografica}
+			\subparagraph{MPD002 Correttezza ortografica}\label{AnalisiStatica:CorrettezzaOrtografica}
 			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio} e da GNU Aspell.
 
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
@@ -638,7 +639,7 @@
 				\centering
 				\includegraphics[width=\textwidth]{img/sonar.png}\\
 				\caption[Screen SonarQube]{Esempio di immagine catturata del progetto Butterfly in SonarQube.}
-				\label{fig:butterfly}
+				\label{fig:butterflySonar}
 			\end{figure}
 
 			\subparagraph{MPS001 Presenza di bug} \label{presenzabug}
