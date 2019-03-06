@@ -32,7 +32,7 @@
     
     \section{Informazioni incontro}
     	\begin{itemize}
-    		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite una chiamata Hangouts.
+    		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite una chiamata \gloss{Hangouts}.
     		\item \textbf{Data}: 2019-02-19.
     		\item \textbf{Ora inizio}: 12:30.
     		\item \textbf{Ora fine}: 13:00.
@@ -43,18 +43,26 @@
     	\end{itemize}
     
     \section{Argomenti}
-    	A seguito delle correzioni effettuate sui documenti consegnati alla \RR sono stati revisionati alcuni paragrafi del documento AnalisiDeiRequisiti v1.0.0, tra cui anche quello contenente i casi d'uso.
+    	A seguito delle correzioni effettuate sui documenti consegnati alla \RR, sono stati revisionati alcuni paragrafi del documento \Doc{AnalisiDeiRequisiti v1.0.0}, tra cui anche quello contenente i casi d'uso.
     	
-    	Le risposte, per motivi pratici, sono riportate in formato parziale. Le domande sono le seguenti:
+    	Le risposte, per motivi pratici, sono riportate in formato parziale.\\
+        Le domande sono le seguenti:
     	
     	\begin{enumerate}
-    		\item \textbf{Ciascun webhook presenta campi informativi differenti, bisogna specificare tutti quelli presenti oppure solo quelli mandati all'utente?} Siccome abbiamo già la lista di tutti i campi contenuti nei webhook delle tecnologie, possiamo quindi metterli in un'appendice.
-    		\item \textbf{Apertura e chiusura delle Issue in GitLab sono casi separati?} \'E indifferente, va bene anche che vengano rappresentati separatamente.
-    		\item \textbf{Nel caso d'uso che rappresenta l'invio del messaggio da parte del Consumer Telegram a Telegram stesso, com'è meglio descrivere Telegram?} Possiamo rappresentare il Consumer come attore principale, mentre Telegram come attore secondario. L'obbiettivo è far arrivare un messaggio al client Telegram dell'utente, quindi Telegram è di per sè un attore passivo.
-    		\item \textbf{La modifica dei file di configurazione del sistema si può vedere come caso d'uso?} No, non è classificabile come caso d'uso.
-    		\item \textbf{Servono diagrammi per la progettazione?} \'E una scelta che spetta a noi.
-    		\item \textbf{Quanto in dettaglio deve essere la presentazione del Proof of Concept?} Il Proof of Concept deve dimostrare che abbiamo capito il corretto funzionamento delle tecnologie e dei linguaggi utilizzati per lo sviluppo e come vengono integrati fra loro.
-    		\item \textbf{In caso andasse male il Proof of Concept è possibile rifarlo?} Sì, entro i tempi limite.
+    		\item \textbf{Ciascun webhook presenta campi informativi differenti, bisogna specificare tutti quelli presenti oppure solo quelli mandati all'utente?}\\
+            Dato che abbiamo già la lista di tutti i campi contenuti nei webhook delle tecnologie, questi possono essere inseriti in un'appendice. All'interno però della descrizione dei casi d'uso devono essere inseriti i campi che ritenete necessari per il funzionamento di \progetto.
+    		\item \textbf{L'apertura e la chiusura delle issue in GitLab sono casi d'uso separati?}\\
+            \'E indifferente, va bene anche che vengano rappresentati separatamente.
+    		\item \textbf{Nel caso d'uso che rappresenta l'invio del messaggio da parte del Consumer Telegram a Telegram stesso, com'è meglio descrivere Telegram?}\\
+            Possiamo rappresentare il Consumer come attore principale, mentre Telegram come attore secondario. L'obbiettivo è far arrivare un messaggio al client Telegram dell'utente, quindi Telegram è di per sè un attore passivo.
+    		\item \textbf{La modifica dei file di configurazione del sistema si può vedere come caso d'uso?}\\
+            No, non è classificabile come caso d'uso.
+    		\item \textbf{Servono diagrammi delle classi all'interno della fase di progettazione?}\\
+            \'E una scelta che spetta a noi membri del gruppo.
+    		\item \textbf{Quanto in dettaglio deve essere la presentazione del \glossary{PoC}?}\\
+            Il PoC deve dimostrare che abbiamo capito il corretto funzionamento delle tecnologie e dei linguaggi utilizzati per lo sviluppo del progetto, e come queste vengono integrate fra loro.
+    		\item \textbf{In caso andasse male il PoC è possibile presentarsi una seconda volta?}\\
+            Sì, entro la finestra di tempo messa a disposizione per la prenotione dei colloqui per il PoC.
     	\end{enumerate}
-    	Una nota fata dal docente è la modifica dei titoli dei casi d'uso aggiungendo alcuni caratteri per identificare a quale sotto-sistema si riferiscono.
+    	Una nota fata dal docente è la modifica dei titoli dei casi d'uso aggiungendo alcuni caratteri per identificare a quale sotto sistema questi si riferiscono.
 \end{document}
