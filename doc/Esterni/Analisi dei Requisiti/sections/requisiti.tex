@@ -105,13 +105,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC6-GP}
 				\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di apertura issue al Gestore Personale}{Interno UC6.1-GP}
 				\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC6.2-GP}
-			\ReqF{2}{Il Producer Redmine deve essere in grado di scartare i messaggi non validi}{Interno UC6.3-GP}
+			\ReqF{1}{Il Producer Redmine deve essere in grado di scartare i messaggi non validi}{Interno UC6.3-GP}
 			\ReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC7-GP}
 				\subReqF{2}{Il Producer GitLab deve essere in grado di inviare messaggi di commit al Gestore Personale}{Interno UC7.1-GP}
 				\subReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di issue al Gestore Personale}{Interno UC7.2-GP}
 					\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di nuova issue al Gestore Personale}{Interno UC7.2.1-GP}
 					\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC7.2.2-GP}
-			\ReqF{2}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC7.2.3-GP}
+			\ReqF{1}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC7.2.3-GP}
 			\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Telegram}{Interno UC8-CT}
 
 			\bottomrule\\
@@ -127,22 +127,22 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqF{2}{Il Consumer Telegram deve poter inoltrare il messaggio finale al bot Telegram}{Interno UC10-BT}
 			\ReqF{2}{Il Consumer Email deve poter inoltrare il messaggio finale al server Email}{Interno UC11-SE}
 			% \stepcounter{vaF} e usare \subReqF per rientrare di un livello
-			\ReqF{2}{L'utente può eseguire l'accesso al Gestore Personale}{Interno UC12.1-GP}
-				\subReqF{2}{L'utente può inserire il proprio identificativo all'interno del sistema}{Interno UC12.1.1}
-			\ReqF{2}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC12.1.2}
-			\ReqF{2}{L'utente acceduto deve poter uscire dal sistema}{Interno UC13-GP}
-			\ReqF{2}{L'utente acceduto deve poter aggiungere un nuovo utente}{Interno UC14-GP}
-				\subReqF{2}{L'utente acceduto deve poter inserire il nome dell'utente da aggiungere}{Interno UC14.1.1-GP}
-				\subReqF{2}{L'utente acceduto deve poter inserire il cognome dell'utente da aggiungere}{Interno UC14.1.2-GP}
-				\subReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC14.1.3-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC14.2-GP}
-				\subReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC14.1.4-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram non è univoco}{Interno UC14.2-GP}
-			\ReqF{2}{L'utente acceduto deve poter rimuovere un utente presente nel sistema}{Interno UC15-GP}
+			\ReqF{0}{L'utente può eseguire l'accesso al Gestore Personale}{Interno UC12.1-GP}
+				\subReqF{0}{L'utente può inserire il proprio identificativo all'interno del sistema}{Interno UC12.1.1}
+			\ReqF{0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC12.1.2}
+			\ReqF{0}{L'utente acceduto deve poter uscire dal sistema}{Interno UC13-GP}
+			\ReqF{0}{L'utente acceduto deve poter aggiungere un nuovo utente}{Interno UC14-GP}
+				\subReqF{0}{L'utente acceduto deve poter inserire il nome dell'utente da aggiungere}{Interno UC14.1.1-GP}
+				\subReqF{0}{L'utente acceduto deve poter inserire il cognome dell'utente da aggiungere}{Interno UC14.1.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC14.1.3-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC14.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC14.1.4-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram non è univoco}{Interno UC14.2-GP}
+			\ReqF{0}{L'utente acceduto deve poter rimuovere un utente presente nel sistema}{Interno UC15-GP}
 			% \stepcounter{secF}
-				\subReqF{2}{L'utente acceduto deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC15.1.1-GP}
-				\subReqF{2}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC15.1.2-GP}
-				\subReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è presente nel sistema}{Interno UC15.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC15.1.1-GP}
+				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC15.1.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è presente nel sistema}{Interno UC15.2-GP}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -153,24 +153,24 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-				\subReqF{2}{L'utente acceduto deve potersi rimuovere dal sistema}{Interno UC15.3-GP}
-			\ReqF{2}{L'utente acceduto deve poter modificare le informazioni relative a un utente}{Interno UC16-GP}
-				\subReqF{2}{L'utente acceduto deve poter selezionare l'identificativo dell'utente da modificare}{Interno UC16.1-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è riconosciuto dal sistema}{Interno UC16.2-GP}
-				\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo nome dell'utente da modificare}{Interno UC16.1.1.1-GP}
-				\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo cognome dell'utente da modificare}{Interno UC16.1.1.2-GP}
-				\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Email dell'utente da modificare}{Interno UC16.1.1.3-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email è già presente}{Interno UC16.1.2-GP}				
-				\subReqF{2}{L'utente acceduto deve poter scegliere il nuovo contatto Telegram dell'utente da modificare}{Interno UC16.1.1.4-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram è già presente}{Interno UC16.1.2-GP}
+				\subReqF{0}{L'utente acceduto deve potersi rimuovere dal sistema}{Interno UC15.3-GP}
+			\ReqF{0}{L'utente acceduto deve poter modificare le informazioni relative a un utente}{Interno UC16-GP}
+				\subReqF{0}{L'utente acceduto deve poter selezionare l'identificativo dell'utente da modificare}{Interno UC16.1-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è riconosciuto dal sistema}{Interno UC16.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo nome dell'utente da modificare}{Interno UC16.1.1.1-GP}
+				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo cognome dell'utente da modificare}{Interno UC16.1.1.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo contatto Email dell'utente da modificare}{Interno UC16.1.1.3-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email è già presente}{Interno UC16.1.2-GP}				
+				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo contatto Telegram dell'utente da modificare}{Interno UC16.1.1.4-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram è già presente}{Interno UC16.1.2-GP}
 
 			%\stepcounter{vaF}
-			\ReqF{2}{L'utente acceduto deve poter aggiungere le proprie preferenze sistema}{Interno UC17-GP}
-				\subReqF{2}{L'utente acceduto deve poter aggiungere nuovi Topic di iscrizione}{Interno UC17.1-GP}
-				\subReqF{2}{L'utente acceduto deve poter aggungere nuovi giorni di indisponibilità nel calendario}{Interno UC17.2-GP}
-				\subReqF{2}{L'utente acceduto deve poter aggungere una nuova piattaforma di messaggistica preferita}{Interno UC17.3-GP}
-				\subReqF{2}{L'utente acceduto deve poter aggungere la propria persona di fiducia}{Interno UC17.4-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC17.5-GP}
+			\ReqF{0}{L'utente acceduto deve poter aggiungere le proprie preferenze sistema}{Interno UC17-GP}
+				\subReqF{0}{L'utente acceduto deve poter aggiungere nuovi Topic di iscrizione}{Interno UC17.1-GP}
+				\subReqF{0}{L'utente acceduto deve poter aggungere nuovi giorni di indisponibilità nel calendario}{Interno UC17.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter aggungere una nuova piattaforma di messaggistica preferita}{Interno UC17.3-GP}
+				\subReqF{0}{L'utente acceduto deve poter aggungere la propria persona di fiducia}{Interno UC17.4-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC17.5-GP}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -181,20 +181,20 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC17.5-GP}
-				\subReqF{2}{L'utente acceduto deve poter aggiungere nuove keyword di interesse per i messaggi di commit}{Interno UC17.6-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword inserita era già nella sua lista}{Interno UC17.7-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC17.5-GP}
+				\subReqF{0}{L'utente acceduto deve poter aggiungere nuove keyword di interesse per i messaggi di commit}{Interno UC17.6-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword inserita era già nella sua lista}{Interno UC17.7-GP}
 
 			%\stepcounter{vaF}
-			\ReqF{2}{L'utente acceduto deve poter rimuovere le proprie preferenze sistema}{Interno UC18-GP}
-				\subReqF{2}{L'utente acceduto deve poter rimuovere i Topic a cui è iscritto}{Interno UC18.1-GP}
-				\subReqF{2}{L'utente acceduto deve poter rimuovere giorni di indisponibilità nel calendario}{Interno UC18.2-GP}
-				\subReqF{2}{L'utente acceduto deve poter rimuovoere una piattaforma di messaggistica preferita}{Interno UC18.3-GP}
-				\subReqF{2}{L'utente acceduto deve poter rimuovere la propria persona di fiducia}{Interno UC18.4-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
-				\subReqF{2}{L'utente acceduto deve poter rimuovere keyword di interesse per i messaggi di commit}{Interno UC18.6-GP}
-					\subsubReqF{2}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword da rimuovere è assente dalla sua lista}{Interno UC18.7-GP}
+			\ReqF{0}{L'utente acceduto deve poter rimuovere le proprie preferenze sistema}{Interno UC18-GP}
+				\subReqF{0}{L'utente acceduto deve poter rimuovere i Topic a cui è iscritto}{Interno UC18.1-GP}
+				\subReqF{0}{L'utente acceduto deve poter rimuovere giorni di indisponibilità nel calendario}{Interno UC18.2-GP}
+				\subReqF{0}{L'utente acceduto deve poter rimuovoere una piattaforma di messaggistica preferita}{Interno UC18.3-GP}
+				\subReqF{0}{L'utente acceduto deve poter rimuovere la propria persona di fiducia}{Interno UC18.4-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram della persona di fiducia non è presente nel sistema}{Interno UC18.5-GP}
+				\subReqF{0}{L'utente acceduto deve poter rimuovere keyword di interesse per i messaggi di commit}{Interno UC18.6-GP}
+					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se la keyword da rimuovere è assente dalla sua lista}{Interno UC18.7-GP}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -237,7 +237,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 	\newcommand{\ReqQ}[3]{\stepcounter{vaQ}R\thevaQ Q#1 & #2 & #3 \\}
 	\newcommand{\subReqQ}[3]{\stepcounter{secQ}R\thevaQ.\thesecQ Q#1 & #2 & #3 \\}
-	\newcommand{\subsubReqQ}[3]{\stepcounter{thQ}R\thevaQ.\thesecQ.\thethQ F#1 & #2 & #3 \\} % Terzo livello
+	\newcommand{\subsubReqQ}[3]{\stepcounter{thQ}R\thevaQ.\thesecQ.\thethQ Q#1 & #2 & #3 \\} % Terzo livello
 
 	%\addtocounter{vaQ}{1} % inizia da 1 il contatore
 	% \newcommand{\incrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
@@ -430,8 +430,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				& R15.1Q2 \\\cline{2-2}
 				& R15.2Q2 \\\cline{2-2}
 				& R15.3Q2 \\\cline{2-2}
-				& R15.3.1F2 \\\cline{2-2}
-				& R15.3.2F2 \\\bottomrule
+				& R15.3.1Q2 \\\cline{2-2}
+				& R15.3.2Q2 \\\bottomrule
 			\end{oldtabularx}}
 			\caption{Elenco dei requisiti del capitolato (1)}
 		\end{table}
@@ -499,13 +499,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				UC6-GP & R6F2 \\
 				UC6.1-GP & R6.1F2 \\
 				UC6.2-GP & R6.2F2 \\
-				UC6.3-GP & R7F2 \\
+				UC6.3-GP & R7F1 \\
 				UC7-GP & R8F2 \\
 				UC7.1-GP & R8.1F2 \\
 				UC7.2-GP & R8.2F2 \\
 				UC7.2.1-GP & R8.2.1F2 \\
 				UC7.2.2-GP & R8.2.2F2 \\
-				UC7.2.3-GP & R9F2 \\
+				UC7.2.3-GP & R9F1 \\
 				UC8-CT & R10F2 \\
 				UC9-CE & R11F2 \\
 				\bottomrule \\
@@ -523,37 +523,37 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\toprule
 				UC10-BT & R12F2 \\\cline{2-2}
 				UC11-SE & R13F2 \\\cline{2-2}
-				UC12.1-GP & R14F2 \\\cline{2-2}
-				UC12.1.1 & R14.1F2 \\\cline{2-2}
-				UC12.1.2 & R15F2 \\\cline{2-2}
-				UC13-GP & R16F2 \\\cline{2-2}
-				UC14-GP & R17F2 \\\cline{2-2}
-				UC14.1.1-GP & R17.1F2 \\\cline{2-2}
-				UC14.1.2-GP & R17.2F2 \\\cline{2-2}
-				UC14.1.3-GP & R17.3F2 \\\cline{2-2}
+				UC12.1-GP & R14F0 \\\cline{2-2}
+				UC12.1.1 & R14.1F0 \\\cline{2-2}
+				UC12.1.2 & R15F0 \\\cline{2-2}
+				UC13-GP & R16F0 \\\cline{2-2}
+				UC14-GP & R17F0 \\\cline{2-2}
+				UC14.1.1-GP & R17.1F0 \\\cline{2-2}
+				UC14.1.2-GP & R17.2F0 \\\cline{2-2}
+				UC14.1.3-GP & R17.3F0 \\\cline{2-2}
 				\multirow{2}{*}{UC14.2-GP}
-				 & R17.3.1F2 \\
-				 & R17.4.1F2 \\\cline{2-2}
-				UC14.1.4-GP & R17.4F2 \\\cline{2-2}
-				UC15-GP & R18F2 \\\cline{2-2}
-				UC15.1.1-GP & R18.1F2 \\\cline{2-2}
-				UC15.1.2-GP & R18.2F2 \\\cline{2-2}
-				UC15.2-GP & R18.3F2 \\\cline{2-2}
-				UC15.3-GP & R18.4F2 \\\cline{2-2}
-				UC16-GP & R19F2 \\\cline{2-2}
-				UC16.1-GP & R19.1F2 \\\cline{2-2}
-				UC16.2-GP & R19.1.1F2 \\\cline{2-2}
-				UC16.1.1.1-GP & R19.2F2 \\\cline{2-2}
-				UC16.1.1.2-GP & R19.3F2 \\\cline{2-2}
-				UC16.1.1.3-GP & R19.4F2 \\\cline{2-2}
+				 & R17.3.1F0 \\
+				 & R17.4.1F0 \\\cline{2-2}
+				UC14.1.4-GP & R17.4F0 \\\cline{2-2}
+				UC15-GP & R18F0 \\\cline{2-2}
+				UC15.1.1-GP & R18.1F0 \\\cline{2-2}
+				UC15.1.2-GP & R18.2F0 \\\cline{2-2}
+				UC15.2-GP & R18.3F0 \\\cline{2-2}
+				UC15.3-GP & R18.4F0 \\\cline{2-2}
+				UC16-GP & R19F0 \\\cline{2-2}
+				UC16.1-GP & R19.1F0 \\\cline{2-2}
+				UC16.2-GP & R19.1.1F0 \\\cline{2-2}
+				UC16.1.1.1-GP & R19.2F0 \\\cline{2-2}
+				UC16.1.1.2-GP & R19.3F0 \\\cline{2-2}
+				UC16.1.1.3-GP & R19.4F0 \\\cline{2-2}
 				\multirow{2}{*}{UC16.1.2-GP}
-				 & R19.4.1F2 \\
-				 & R19.5.1F2 \\\cline{2-2}
-				 UC16.1.1.4-GP & R19.5F2 \\\cline{2-2}
-				 UC17-GP & R20F2 \\\cline{2-2}
-				 UC17.1-GP & R20.1F2 \\\cline{2-2}
-				 UC17.2-GP & R20.2F2 \\\cline{2-2}
-				 UC17.3-GP & R20.3F2 \\\cline{2-2} 
+				 & R19.4.1F0 \\
+				 & R19.5.1F0 \\\cline{2-2}
+				 UC16.1.1.4-GP & R19.5F0 \\\cline{2-2}
+				 UC17-GP & R20F0 \\\cline{2-2}
+				 UC17.1-GP & R20.1F0 \\\cline{2-2}
+				 UC17.2-GP & R20.2F0 \\\cline{2-2}
+				 UC17.3-GP & R20.3F0 \\\cline{2-2} 
 			   \bottomrule \\
 		   \end{oldtabularx}}
 		   \caption{Elenco dei requisiti per i casi d'uso (2)}
@@ -567,22 +567,22 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{oldtabularx}{\textwidth}{YY}
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule	   
-			UC17.4-GP & R20.4F2 \\\cline{2-2}
+			UC17.4-GP & R20.4F0 \\\cline{2-2}
 			\multirow{2}{*}{UC17.5-GP}
-			 & R20.4.1F2 \\
-			 & R20.4.2F2 \\\cline{2-2}
-			 UC17.6-GP & R20.5F2 \\\cline{2-2}   
-			 UC17.7-GP & R20.5.1F2 \\\cline{2-2}
-			 UC18-GP & R21F2 \\\cline{2-2}
-			 UC18.1-GP & R21.1F2 \\\cline{2-2}
-			 UC18.2-GP & R21.2F2 \\\cline{2-2} 	   
-			 UC18.3-GP & R21.3F2 \\\cline{2-2}
-			 UC18.4-GP & R21.4F2 \\\cline{2-2}
+			 & R20.4.1F0 \\
+			 & R20.4.2F0 \\\cline{2-2}
+			 UC17.6-GP & R20.5F0 \\\cline{2-2}   
+			 UC17.7-GP & R20.5.1F0 \\\cline{2-2}
+			 UC18-GP & R21F0 \\\cline{2-2}
+			 UC18.1-GP & R21.1F0 \\\cline{2-2}
+			 UC18.2-GP & R21.2F0 \\\cline{2-2} 	   
+			 UC18.3-GP & R21.3F0 \\\cline{2-2}
+			 UC18.4-GP & R21.4F0 \\\cline{2-2}
 			 \multirow{2}{*}{UC18.5-GP}
-			 & R21.4.1F2 \\
-			 & R21.4.2F2 \\\cline{2-2}	   
-			 UC18.6-GP & R21.5F2 \\\cline{2-2}
-			 UC18.7-GP & R21.5.1F2 \\
+			 & R21.4.1F0 \\
+			 & R21.4.2F0 \\\cline{2-2}	   
+			 UC18.6-GP & R21.5F0 \\\cline{2-2}
+			 UC18.7-GP & R21.5.1F0 \\
 		  \bottomrule \\
 	  	\end{oldtabularx}}
 	  	\caption{Elenco dei requisiti per i casi d'uso (3)}
@@ -625,27 +625,26 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			& R6F2 \\\cline{2-2}
 			& R6.1F2 \\\cline{2-2}
 			& R6.2F2 \\\cline{2-2}
-			& R7F2 \\\cline{2-2}
-			& R7F2 \\\cline{2-2}
+			& R7F1 \\\cline{2-2}
 			& R8.1F2 \\\cline{2-2}
 			& R8.2F2 \\\cline{2-2}
 			& R8.2.1F2 \\\cline{2-2}
 			& R8.2.2F2 \\\cline{2-2}
-			& R9F2 \\\cline{2-2}
+			& R9F1 \\\cline{2-2}
 			& R10F2 \\\cline{2-2}
 			& R11F2 \\\cline{2-2}
 			& R12F2 \\\cline{2-2}
 			& R13F2 \\\cline{2-2}
-			& R14F2 \\\cline{2-2}
-			& R14.1F2 \\\cline{2-2}
-			& R15F2 \\\cline{2-2}
-			& R16F2 \\\cline{2-2}
-			& R17F2 \\\cline{2-2}
-			& R17.1F2 \\\cline{2-2}
-			& R17.2F2 \\\cline{2-2}
-			& R17.3F2 \\\cline{2-2}
-			& R17.3.1F2 \\\cline{2-2}
-			& R17.4F2 \\
+			& R14F0 \\\cline{2-2}
+			& R14.1F0 \\\cline{2-2}
+			& R15F0 \\\cline{2-2}
+			& R16F0 \\\cline{2-2}
+			& R17F0 \\\cline{2-2}
+			& R17.1F0 \\\cline{2-2}
+			& R17.2F0 \\\cline{2-2}
+			& R17.3F0 \\\cline{2-2}
+			& R17.3.1F0 \\\cline{2-2}
+			& R17.4F0 \\
 			\bottomrule
 		\end{oldtabularx}}
 		\caption{Elenco dei requisiti da fonte interna (1)}
@@ -659,35 +658,35 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
 			\multirow{29}{*}{Interno}
-			& R17.4.1F2 \\\cline{2-2}
-			& R18F2 \\\cline{2-2}
-			& R18.1F2 \\\cline{2-2}
-			& R18.2F2 \\\cline{2-2}
-			& R18.3F2 \\\cline{2-2}
-			& R18.4F2 \\\cline{2-2}
-			& R19F2 \\\cline{2-2}
-			& R19.1F2 \\\cline{2-2}
-			& R19.1.1F2 \\\cline{2-2}
-			& R19.2F2 \\\cline{2-2}
-			& R19.3F2 \\\cline{2-2}
-			& R19.4F2 \\\cline{2-2}
-			& R19.4.1F2 \\\cline{2-2}
-			& R19.5F2 \\\cline{2-2}
-			& R19.5.1F2 \\\cline{2-2}
-			& R20F2 \\\cline{2-2}
-			& R20.1F2 \\\cline{2-2}
-			& R20.2F2 \\\cline{2-2}
-			& R20.3F2 \\\cline{2-2}
-			& R20.4F2 \\\cline{2-2}
-			& R20.4.1F2 \\\cline{2-2}
-			& R20.4.2F2 \\\cline{2-2}
-			& R20.5F2 \\\cline{2-2}
-			& R20.5.1F2 \\\cline{2-2}
-			& R21F2 \\\cline{2-2}
-			& R21.1F2 \\\cline{2-2}
-			& R21.2F2 \\\cline{2-2}
-			& R21.3F2 \\\cline{2-2}
-			& R21.4F2 \\
+			& R17.4.1F0 \\\cline{2-2}
+			& R18F0 \\\cline{2-2}
+			& R18.1F0 \\\cline{2-2}
+			& R18.2F0 \\\cline{2-2}
+			& R18.3F0 \\\cline{2-2}
+			& R18.4F0 \\\cline{2-2}
+			& R19F0 \\\cline{2-2}
+			& R19.1F0 \\\cline{2-2}
+			& R19.1.1F0 \\\cline{2-2}
+			& R19.2F0 \\\cline{2-2}
+			& R19.3F0 \\\cline{2-2}
+			& R19.4F0 \\\cline{2-2}
+			& R19.4.1F0 \\\cline{2-2}
+			& R19.5F0 \\\cline{2-2}
+			& R19.5.1F0 \\\cline{2-2}
+			& R20F0 \\\cline{2-2}
+			& R20.1F0 \\\cline{2-2}
+			& R20.2F0 \\\cline{2-2}
+			& R20.3F0 \\\cline{2-2}
+			& R20.4F0 \\\cline{2-2}
+			& R20.4.1F0 \\\cline{2-2}
+			& R20.4.2F0 \\\cline{2-2}
+			& R20.5F0 \\\cline{2-2}
+			& R20.5.1F0 \\\cline{2-2}
+			& R21F0 \\\cline{2-2}
+			& R21.1F0 \\\cline{2-2}
+			& R21.2F0 \\\cline{2-2}
+			& R21.3F0 \\\cline{2-2}
+			& R21.4F0 \\
 			\bottomrule
 		\end{oldtabularx}}
 		\caption{Elenco dei requisiti da fonte interna (2)}
@@ -700,10 +699,10 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
 			\multirow{18}{*}{Interno}
-			& R21.4.1F2 \\\cline{2-2}
-			& R21.4.2F2 \\\cline{2-2}
-			& R21.5F2 \\\cline{2-2}
-			& R21.5.1F2 \\\cline{2-2}
+			& R21.4.1F0 \\\cline{2-2}
+			& R21.4.2F0 \\\cline{2-2}
+			& R21.5F0 \\\cline{2-2}
+			& R21.5.1F0 \\\cline{2-2}
 			& R1Q1 \\\cline{2-2}
 			& R2Q1 \\\cline{2-2}
 			& R3Q1 \\\cline{2-2}
@@ -809,7 +808,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				 \multirow{2}{*}{R6.2F2}
 				 & Interno \\
 				 & UC6.2-GP \\\cline{2-2}
-				 \multirow{2}{*}{R7F2}
+				 \multirow{2}{*}{R7F1}
 				 & Interno \\
 				 & UC6.3-GP \\\cline{2-2}
 				 \multirow{2}{*}{R8F2}
@@ -840,7 +839,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\multirow{2}{*}{R8.2.2F2}
 				& Interno \\
 				& UC7.2.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R9F2}
+				\multirow{2}{*}{R9F1}
 				& Interno \\
 				& UC7.2.3-GP \\\cline{2-2}
 				\multirow{2}{*}{R10F2}
@@ -855,25 +854,25 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\multirow{2}{*}{R13F2}
 				& Interno \\
 				& UC11-SE \\\cline{2-2}
-				\multirow{2}{*}{R14F2}
+				\multirow{2}{*}{R14F0}
 				& Interno \\
 				& UC12.1-GP \\\cline{2-2}
-				\multirow{2}{*}{R14.1F2}
+				\multirow{2}{*}{R14.1F0}
 				& Interno \\
 				& UC12.1.1 \\\cline{2-2}
-				\multirow{2}{*}{R15F2}
+				\multirow{2}{*}{R15F0}
 				& Interno \\
 				& UC12.1.2 \\\cline{2-2}
-				\multirow{2}{*}{R16F2}
+				\multirow{2}{*}{R16F0}
 				& Interno \\
 				& UC13-GP \\\cline{2-2}
-				\multirow{2}{*}{R17F2}
+				\multirow{2}{*}{R17F0}
 				& Interno \\
 				& UC14-GP \\\cline{2-2}
-				\multirow{2}{*}{R17.1F2}
+				\multirow{2}{*}{R17.1F0}
 				& Interno \\
 				& UC14.1.1-GP \\\cline{2-2}
-				\multirow{2}{*}{R17.2F2}
+				\multirow{2}{*}{R17.2F0}
 				& Interno \\
 				& UC14.1.2-GP \\
 				\bottomrule
@@ -889,43 +888,43 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
 				
-				\multirow{2}{*}{R17.3F2}
+				\multirow{2}{*}{R17.3F0}
 				& Interno \\
 				& UC14.1.3-GP \\\cline{2-2}
-				\multirow{2}{*}{R17.3.1F2}
+				\multirow{2}{*}{R17.3.1F0}
 				& Interno \\
 				& UC14.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R17.4F2}
+				\multirow{2}{*}{R17.4F0}
 				& Interno \\
 				& UC14.1.4-GP \\\cline{2-2}
-				\multirow{2}{*}{R17.4.1F2}
+				\multirow{2}{*}{R17.4.1F0}
 				& Interno \\
 				& UC14.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R18F2}
+				\multirow{2}{*}{R18F0}
 				& Interno \\
 				& UC15-GP \\\cline{2-2}
-				\multirow{2}{*}{R18.1F2}
+				\multirow{2}{*}{R18.1F0}
 				& Interno \\
 				& UC15.1.1-GP \\\cline{2-2}
-				\multirow{2}{*}{R18.2F2}
+				\multirow{2}{*}{R18.2F0}
 				& Interno \\
 				& UC15.1.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R18.3F2}
+				\multirow{2}{*}{R18.3F0}
 				& Interno \\
 				& UC15.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R18.4F2}
+				\multirow{2}{*}{R18.4F0}
 				& Interno \\
 				& UC15.3-GP \\\cline{2-2}
-				\multirow{2}{*}{R19F2}
+				\multirow{2}{*}{R19F0}
 				& Interno \\
 				& UC16-GP \\\cline{2-2}
-				\multirow{2}{*}{R19.1F2}
+				\multirow{2}{*}{R19.1F0}
 				& Interno \\
 				& UC16.1-GP \\\cline{2-2}
-				\multirow{2}{*}{R19.1.1F2}
+				\multirow{2}{*}{R19.1.1F0}
 				& Interno \\
 				& UC16.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R19.2F2}
+				\multirow{2}{*}{R19.2F0}
 				& Interno \\
 				& UC16.1.1.1-GP \\
 				\bottomrule
@@ -941,43 +940,43 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
 				
-				\multirow{2}{*}{R19.3F2}
+				\multirow{2}{*}{R19.3F0}
 				& Interno \\
 				& UC16.1.1.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R19.4F2}
+				\multirow{2}{*}{R19.4F0}
 				& Interno \\
 				& UC16.1.1.3-GP \\\cline{2-2}
-				\multirow{2}{*}{R19.4.1F2}
+				\multirow{2}{*}{R19.4.1F0}
 				& Interno \\
 				& UC16.1.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R19.5F2}
+				\multirow{2}{*}{R19.5F0}
 				& Interno \\
 				& UC16.1.1.4-GP \\\cline{2-2}
-				\multirow{2}{*}{R19.5.1F2}
+				\multirow{2}{*}{R19.5.1F0}
 				& Interno \\
 				& UC16.1.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R20F2}
+				\multirow{2}{*}{R20F0}
 				& Interno \\
 				& UC17-GP \\\cline{2-2}
-				\multirow{2}{*}{R20.1F2}
+				\multirow{2}{*}{R20.1F0}
 				& Interno \\
 				& UC17.1-GP \\\cline{2-2}
-				\multirow{2}{*}{R20.2F2}
+				\multirow{2}{*}{R20.2F0}
 				& Interno \\
 				& UC17.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R20.3F2}
+				\multirow{2}{*}{R20.3F0}
 				& Interno \\
 				& UC17.3-GP \\\cline{2-2}
-				\multirow{2}{*}{R20.4F2}
+				\multirow{2}{*}{R20.4F0}
 				& Interno \\
 				& UC17.4-GP \\\cline{2-2}
-				\multirow{2}{*}{R20.4.1F2}
+				\multirow{2}{*}{R20.4.1F0}
 				& Interno \\
 				& UC17.5-GP \\\cline{2-2}
-				\multirow{2}{*}{R20.4.2F2}
+				\multirow{2}{*}{R20.4.2F0}
 				& Interno \\
 				& UC17.5-GP \\\cline{2-2}
-				\multirow{2}{*}{R20.5F2}
+				\multirow{2}{*}{R20.5F0}
 				& Interno \\
 				& UC17.6-GP \\
 				\bottomrule
@@ -992,34 +991,34 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
-				\multirow{2}{*}{R20.5.1F2}
+				\multirow{2}{*}{R20.5.1F0}
 				& Interno \\
 				& UC17.7-GP \\\cline{2-2}
-				\multirow{2}{*}{R21F2}
+				\multirow{2}{*}{R21F0}
 				& Interno \\
 				& UC18-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.1F2}
+				\multirow{2}{*}{R21.1F0}
 				& Interno \\
 				& UC18.1-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.2F2}
+				\multirow{2}{*}{R21.2F0}
 				& Interno \\
 				& UC18.2-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.3F2}
+				\multirow{2}{*}{R21.3F0}
 				& Interno \\
 				& UC18.3-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.4F2}
+				\multirow{2}{*}{R21.4F0}
 				& Interno \\
 				& UC18.4-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.4.1F2}
+				\multirow{2}{*}{R21.4.1F0}
 				& Interno \\
 				& UC18.5-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.4.2F2}
+				\multirow{2}{*}{R21.4.2F0}
 				& Interno \\
 				& UC18.5-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.5F2}
+				\multirow{2}{*}{R21.5F0}
 				& Interno \\
 				& UC18.6-GP \\\cline{2-2}
-				\multirow{2}{*}{R21.5.1F2}
+				\multirow{2}{*}{R21.5.1F0}
 				& Interno \\
 				& UC18.7-GP \\\cline{2-2}
 				R22F2 & Capitolato \\\cline{2-2}
@@ -1067,23 +1066,14 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				& Capitolato \\
 				& \Doc{VE\_2018-12-12} \\\cline{2-2}
 				R11Q2 & Capitolato \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}		
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				%  &  \\\cline{2-2}
-				 &  \\
+				R12Q2 & Capitolato \\\cline{2-2}
+				R12.1Q2 & Capitolato \\\cline{2-2}
+				R13Q2 & Capitolato \\\cline{2-2}
+				R13.1Q2 & Capitolato \\\cline{2-2}
+				R13.2Q2 & Capitolato \\\cline{2-2}
+				R13.3Q2 & Capitolato \\\cline{2-2}
+				R14Q1 & Capitolato \\\cline{2-2}
+				R14.1Q2 & Capitolato \\
 				\bottomrule
 			\end{oldtabularx}}
 			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (1)}
@@ -1096,36 +1086,41 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}		
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\\cline{2-2}
-				 &  \\
+				R15Q2 & Capitolato \\\cline{2-2}
+				R15.1Q2 & Capitolato \\\cline{2-2}
+				R15.2Q2 & Capitolato \\\cline{2-2}
+				R15.3Q2 & Capitolato \\\cline{2-2}		
+				R15.3.1F2 & Capitolato \\\cline{2-2}
+				R15.3.2F2 & Capitolato \\
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti di vincolo in rapporto alle fonti (1)}
+			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (2)}
+		\end{table}
+
+
+
+		\begin{table}[H]
+			\centering
+			{\def\arraystretch{1.6}
+			\begin{oldtabularx}{0.7\textwidth}{YY}
+				\textbf{Requisito} & \textbf{Fonte} \\
+				\toprule
+				R1V2 & Capitolato \\\cline{2-2}
+				R1.1V0 & Capitolato \\\cline{2-2}
+				R2V2 & Capitolato \\\cline{2-2}
+				R2.1V0 & Capitolato \\\cline{2-2}
+				R3V2 & Capitolato \\\cline{2-2}
+				R3.1V2 & Capitolato \\\cline{2-2}
+				R4V1 & Capitolato \\\cline{2-2}
+				R5V1 & Capitolato \\\cline{2-2}
+				R6V0 & Interno \\\cline{2-2}
+				R7V0 & Interno \\\cline{2-2}
+				R7V0 & Interno \\\cline{2-2}
+				R9V0 & Interno \\\cline{2-2}
+				R10V0 & Interno \\
+				\bottomrule
+			\end{oldtabularx}}
+			\caption{Elenco dei requisiti di vincolo in rapporto alle fonti}
 		\end{table}
 
 
@@ -1220,9 +1215,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{YYYY}
 			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
-			Di funzionalità & 8 & 0 & 10 \\
-			Di qualità & 12 & 9 & 0 \\
-			Di vincolo & 12 & 3 & 3
+			Di funzionalità & 23 & 2 & 43 \\
+			Di qualità & 17 & 8 & 0 \\
+			Di vincolo & 4 & 2 & 7
 			\\\bottomrule
 		\end{paddedtablex}
 		\caption{Riepilogo dei requisiti}
