@@ -1,0 +1,68 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_2019-02-19.pdf}
+\newcommand{\redazione}{\TG}
+\newcommand{\verifica}{\SG}
+\newcommand{\approvazione}{\CV}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{19 febbraio 2019}
+\newcommand{\datamodifica}{21 febbraio 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VE_2019-02-19/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+    
+    \section{Informazioni incontro}
+    	\begin{itemize}
+    		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite una chiamata \gloss{Hangouts}.
+    		\item \textbf{Data}: 2019-02-19.
+    		\item \textbf{Ora inizio}: 12:30.
+    		\item \textbf{Ora fine}: 13:00.
+    		\item \textbf{Partecipanti di AlphaSix}: team al completo.
+    		\item \textbf{Partecipanti esterni}: \RC.
+    		\item \textbf{Ordine del giorno}: proposta dei casi d'uso rivisitati dopo le correzioni a seguito del \RR~e alcuni chiarimenti riguardo al Proof of Concept.
+    		
+    	\end{itemize}
+    
+    \section{Argomenti}
+    	A seguito delle correzioni effettuate sui documenti consegnati alla \RR, sono stati revisionati alcuni paragrafi del documento \Doc{AnalisiDeiRequisiti v1.0.0}, tra cui anche quello contenente i casi d'uso.
+    	
+    	Le risposte, per motivi pratici, sono riportate in formato parziale.\\
+        Le domande sono le seguenti:
+    	
+    	\begin{enumerate}
+    		\item \textbf{Ciascun webhook presenta campi informativi differenti, bisogna specificare tutti quelli presenti oppure solo quelli mandati all'utente?}\\
+            Dato che abbiamo già la lista di tutti i campi contenuti nei webhook delle tecnologie, questi possono essere inseriti in un'appendice. All'interno però della descrizione dei casi d'uso devono essere inseriti i campi che ritenete necessari per il funzionamento di \progetto.
+    		\item \textbf{L'apertura e la chiusura delle issue in GitLab sono casi d'uso separati?}\\
+            \'E indifferente, va bene anche che vengano rappresentati separatamente.
+    		\item \textbf{Nel caso d'uso che rappresenta l'invio del messaggio da parte del Consumer Telegram a Telegram stesso, com'è meglio descrivere Telegram?}\\
+            Possiamo rappresentare il Consumer come attore principale, mentre Telegram come attore secondario. L'obbiettivo è far arrivare un messaggio al client Telegram dell'utente, quindi Telegram è di per sè un attore passivo.
+    		\item \textbf{La modifica dei file di configurazione del sistema si può vedere come caso d'uso?}\\
+            No, non è classificabile come caso d'uso.
+    		\item \textbf{Servono diagrammi delle classi all'interno della fase di progettazione?}\\
+            \'E una scelta che spetta a noi membri del gruppo.
+    		\item \textbf{Quanto in dettaglio deve essere la presentazione del \glossary{PoC}?}\\
+            Il PoC deve dimostrare che abbiamo capito il corretto funzionamento delle tecnologie e dei linguaggi utilizzati per lo sviluppo del progetto, e come queste vengono integrate fra loro.
+    		\item \textbf{In caso andasse male il PoC è possibile presentarsi una seconda volta?}\\
+            Sì, entro la finestra di tempo messa a disposizione per la prenotione dei colloqui per il PoC.
+    	\end{enumerate}
+    	Una nota fata dal docente è la modifica dei titoli dei casi d'uso aggiungendo alcuni caratteri per identificare a quale sotto sistema questi si riferiscono.
+\end{document}
