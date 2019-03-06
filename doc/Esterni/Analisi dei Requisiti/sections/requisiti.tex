@@ -232,11 +232,12 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	%COMANDI PER REQUISITI DI FUNZIONALITÀ
 	% Generazione automatica dei numeri
 	\newcounter{vaQ} % valore
-
 	\newcounter{secQ}[vaQ]
+	\newcounter{thQ}[secQ] % terzo livello
+
 	\newcommand{\ReqQ}[3]{\stepcounter{vaQ}R\thevaQ Q#1 & #2 & #3 \\}
 	\newcommand{\subReqQ}[3]{\stepcounter{secQ}R\thevaQ.\thesecQ Q#1 & #2 & #3 \\}
-
+	\newcommand{\subsubReqQ}[3]{\stepcounter{thQ}R\thevaQ.\thesecQ.\thethQ F#1 & #2 & #3 \\} % Terzo livello
 
 	%\addtocounter{vaQ}{1} % inizia da 1 il contatore
 	% \newcommand{\incrQ}{\addtocounter{vaQ}{+1}} % Comando per l'aumento automatico del counter vaZ
@@ -265,11 +266,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			% presi dal PdQ
-			\ReqQ{1}{Viene stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
-			\ReqQ{1}{L'\gloss{indice di Gulpease} di ogni documento dovrebbe rientrare all'interno di un intervallo stabilito}{Interno QPD001}
+			\ReqQ{1}{È stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
+			\ReqQ{1}{L'\gloss{indice di Gulpease} di ogni documento deve rientrare all'interno di un intervallo stabilito}{Interno QPD001}
 			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
-			\ReqQ{1}{Ci siamo accordati per una frequenza minima di commit effettuati in una settimana}{Interno QPR004}
-			\ReqQ{1}{Ci siamo prefissati di soddisfare un numero stabilito di requisiti desiderabili}{Interno QPR006}
+			\ReqQ{1}{Una frequenza minima di commit devono essere effettuati in una settimana}{Interno QPR004}
+			\ReqQ{1}{Un numero stabilito di requisiti desiderabili deve essere soddisfatto}{Interno QPR006}
 			\ReqQ{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
 			\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
 			\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
@@ -295,7 +296,6 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqQ{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unità, d'integrazione e di sistema}{Capitolato}
 			%\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
 			\subReqQ{2}{È necessario fornire test d'unità per ogni componente applicativo}{Capitolato}
-			%\req{R\thevaQ.2Q2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
 			\subReqQ{2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
 			\subReqQ{2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
 			\ReqQ{1}{Per ogni problema aperto documentato, si allegano delle soluzioni da attuare in futuro}{Capitolato}
@@ -305,8 +305,8 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\subReqQ{2}{I file README delle componenti applicative devono contenere la documentazione delle \gloss{API} esposte dal servizio}{Capitolato}
 			\subReqQ{2}{I file README delle componenti applicative devono contenere le istruzioni per il loro utilizzo}{Capitolato}
 			\subReqQ{2}{È necessario presentare un file README per il Dockerfile}{Capitolato}
-			\subReqQ{2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
-			\subReqQ{2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
+				\subsubReqQ{2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
+				\subsubReqQ{2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
 
 			\bottomrule \\
 		\end{paddedtablex}
@@ -357,10 +357,10 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\subReqV{2}{È necessario presentare un Dockerfile per ogni componente}{Capitolato}
 			\ReqV{1}{Per lo sviluppo dei componenti applicativi è possibile usare come linguaggio \gloss{Java} 8 o una versione più recente, \gloss{\python} o \gloss{Node.js} 10.15.1}{Capitolato}
 			\ReqV{1}{È possibile utilizzare \kafka\ come Broker}{Capitolato}
-			\ReqV{0}{L'interfaccia è sviluppata utilizzando \html e \css}{Interno}
-			\ReqV{0}{Il database è sviluppato utilizzando \mongodb}{Interno}
+			\ReqV{0}{L'interfaccia è sviluppata utilizzando \html\ e \css}{Interno}
+			\ReqV{0}{Il database viene sviluppato utilizzando \mongodb}{Interno}
 			\ReqV{0}{Il server web viene sviluppato utilizzando \python con la libreria \gloss{CherryPy}}{Interno}
-			\ReqV{0}{Gli URL dell'interfaccia web rispettano lo standard REST}{Interno}
+			\ReqV{0}{Gli URL dell'interfaccia web devono rispettare lo standard REST}{Interno}
 			\ReqV{0}{Ciascun componente Docker viene istanziato tramite un file \dockercompose}{Interno}
 						
 			
@@ -368,7 +368,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 			\bottomrule\\
 		\end{paddedtablex}
-		\caption{Elenco dei requisiti di vincolo (1)}
+		\caption{Elenco dei requisiti di vincolo}
 	\end{table}
 
 %
