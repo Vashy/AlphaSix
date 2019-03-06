@@ -1,10 +1,8 @@
 """
 Per usare, basta eseguire python3 glossarizzatore.py
 Il controllo viene effettuato solo sui file necessari
-
-TODO
-Manca l'albero di struttura in json per controllo
 """
+
 import fileinput
 from pathlib import Path
 import re
@@ -51,27 +49,79 @@ for file in glossarydir.glob('**/*.tex'):
         
 glossario_copy = glossario[:]
 
+snippets = [
+    "snippets/riferimenti_esterni.tex",
+    "snippets/scopo_prodotto.tex"
+]
+
+ndp = [
+    "Interni/Norme di Progetto/descrizione.tex",
+    "Interni/Norme di Progetto/sections/introduzione.tex",
+    "Interni/Norme di Progetto/sections/processi_primari.tex",
+    "Interni/Norme di Progetto/sections/processi_organizzativi.tex",
+    "Interni/Norme di Progetto/sections/processi_di_supporto.tex"
+]
+
+vi = [
+    "Interni/Verbali/descrizione.tex",
+    "Interni/Verbali/VI_2019-01-07.tex",
+    "Interni/Verbali/VI_2018-12-17.tex",
+    "Interni/Verbali/VI_2018-11-26.tex",
+    "Interni/Verbali/VI_2018-11-22.tex"
+]
+
+ve = [
+    "Esterni/Verbali/descrizione.tex",
+    "Esterni/Verbali/VE_2018-12-12.tex",
+    "Esterni/Verbali/VE_2019-02-09.tex"
+]
+
+adr = [
+    "Esterni/Analisi dei Requisiti/descrizione.tex",
+    "Esterni/Analisi dei Requisiti/sections/introduzione.tex",
+    "Esterni/Analisi dei Requisiti/sections/descrizione_generale.tex",
+    "Esterni/Analisi dei Requisiti/sections/use_cases.tex",
+    "Esterni/Analisi dei Requisiti/sections/requisiti.tex",
+    "Esterni/Analisi dei Requisiti/sections/appendice_A.tex"
+]
+
+pdp = [
+    "Esterni/Piano di Progetto/descrizione.tex",
+    "Esterni/Piano di Progetto/sections/introduzione.tex",
+    "Esterni/Piano di Progetto/sections/analisi_dei_rischi.tex",
+    "Esterni/Piano di Progetto/sections/pianificazione.tex",
+    "Esterni/Piano di Progetto/sections/suddivisione_del_lavoro.tex",
+    "Esterni/Piano di Progetto/sections/prospetto_economico.tex",
+    "Esterni/Piano di Progetto/sections/preventivo.tex",
+    "Esterni/Piano di Progetto/sections/organigramma.tex",
+    "Esterni/Piano di Progetto/sections/consuntivo.tex",
+    "Esterni/Piano di Progetto/sections/attualizzazione_rischi.tex"
+]
+
+pdq = [
+    "Esterni/Piano di Qualifica/descrizione.tex",
+    "Esterni/Piano di Qualifica/sections/introduzione.tex",
+    "Esterni/Piano di Qualifica/sections/qualita_processo.tex",
+    "Esterni/Piano di Qualifica/sections/qualita_prodotto.tex",
+    "Esterni/Piano di Qualifica/sections/test.tex",
+    "Esterni/Piano di Qualifica/sections/standard_qualita.tex",    
+    "Esterni/Piano di Qualifica/sections/resoconto_attivita_verifica.tex",    
+    "Esterni/Piano di Qualifica/sections/mitigazione_variazioni.tex",    
+    "Esterni/Piano di Qualifica/sections/valutazioni.tex"
+]
+
+documents = [snippets,ndp,vi,ve,adr,pdp,pdq]
 #Cerco nei documenti le parole
-for i in localdir.glob('**/*.tex'):
-    #In alcuni posti non cerco
-    if ('template' not in str(i)
-        and 'Glossario' not in str(i)
-        and 'diario' not in str(i)
-        and ('sections' in str(i)
-             or 'descrizione' in str(i)
-             or 'Verbali' in str(i)
-             )
-        ):
-        for line in fileinput.input(str(i), inplace = True):
+for document in documents:
+    for numfile,file in enumerate(document):
+        if numfile == 0:
+            glossario = glossario_copy[:]
+        for line in fileinput.input(file, inplace = True):
             words = line.split();
             for i,word in enumerate(words):
                 word_escaped = re_word_escaper.sub(' ', word)
                 word_escaped = word_escaped.replace(' ','')
                 words[i] = word_escaped
-            #TODO
-            #Controllare di aver cambiato documento, non file
-            if fileinput.isfirstline():
-                glossario = glossario_copy[:]
             for parola in glossario:
                 parola_escaped = parola.replace(' ','')
                 if parola_escaped in words and line[0]!='%':
