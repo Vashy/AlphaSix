@@ -1,0 +1,58 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_2019-02-23.pdf}
+\newcommand{\redazione}{\TG}
+\newcommand{\verifica}{\SG}
+\newcommand{\approvazione}{\CV}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{23 febbraio 2019}
+\newcommand{\datamodifica}{25 febbraio 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VE_2019-02-23/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+    
+    \section{Informazioni incontro}
+    	\begin{itemize}
+    		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite una chiamata Hangouts e un successivo scambio di email.
+    		\item \textbf{Data}: 2019-02-23.
+    		\item \textbf{Ora inizio}: 19:00.
+    		\item \textbf{Ora fine}: 19:30.
+    		\item \textbf{Partecipanti di AlphaSix}: team al completo.
+    		\item \textbf{Partecipanti esterni}: \DZ~di \II.
+    		\item \textbf{Ordine del giorno}: presentazione del lavoro svolto in vista della Proof of Concept.
+    		
+    	\end{itemize}
+    
+    \section{Argomenti}
+    
+    	In vista della Proof of Concept abbiamo scelto di chiedere a \DZ~cosa ne pensa del lavoro svolto fino a questo momento in modo da poter, se necessario, effettuare eventuali modifiche prima della presentazione al \RC.
+    	
+    	Abbiamo mostrato a \DZ~la bozza delle slide da utilizzare durante la presentazione e ci ha detto che secondo lui vanno bene, quindi tra noi è stato concordato che possiamo completarle.
+    	
+    	Successivamente gli abbiamo mostrato il funzionamento della demo in container Docker su condivisione schermo sul computer locale di \CV.
+		Anche qui ha detto che va bene e che copre i casi principali che sono richiesti dall'azienda nel capitolato.
+		
+    	Nella chiamata è stato inoltre stabilito che possiamo utilizzare i server che ci sono stati messi a disposizione dall'azienda per poter dimostrare il funzionamento del prodotto allo stato attuale.
+    	
+    	Successivamente ci sono stati mandati per mail le credenziali e le istruzioni da utilizzare per poter accedere ai server aziendali ed effettuare il deploy dell'applicazione via SSH.
+    	
+\end{document}
