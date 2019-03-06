@@ -11,7 +11,7 @@
     \begin{itemize}
         \item Ricezione delle segnalazioni provenienti da Redmine e GitLab
         \item Gestione dei Topic tramite un Broker
-        \item Inoltro dei messaggi verso Telegram ed e-mail
+        \item Inoltro dei messaggi verso Telegram ed \mail
         \item Personalizzazione da parte dell'utente finale di impostazioni riguardanti le segnalazioni interessate
 	\end{itemize}
 
@@ -20,7 +20,7 @@
     Gli utenti che useranno il prodotto saranno team di sviluppatori software che lavorano abitualmente usando gli strumenti per realizzare \gloss{CI/CD}.
     Tramite Butterfly, essi potranno configurare la \gloss{pipeline} per lo sviluppo del proprio progetto, in modo da ottenere le notifiche in tempo reale direttamente sulle piattaforme di messaggistica selezionate.
     Nel caso in cui la persona non sia reperibile, verrà effettuata una segnalazione in un apposito calendario sul quale il sistema farà riferimento per l'inoltro alla seconda persona più appropriata a riceverla all'interno del contesto lavorativo.
-	
+
 %	\subsection{Vincoli del progetto}
 %	
 %		\subsubsection{Requisiti minimi}
@@ -52,54 +52,82 @@
 \newpage
 	L'immagine precedente rappresenta una suddivisione del sistema in quattro sezioni principali:
 	\begin{itemize}
-		\item \progetto\ (arancione)
-		\item Producer (azzurro)
-		\item Broker (rosso)
-		\item Consumer (verde)
+		\item \textbf{Arancione}: \progetto, il sistema nella sua interezza.
+		\item \textbf{Azzurro}: I Producer.
+		\item \textbf{Rosso}: Il Broker. Per \progetto\ useremo Apache Kafka.
+		\item \textbf{Verde}: I Consumer.
 	\end{itemize}
-	Questa scomposizione ci ha permesso di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed e-mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
-	
+	Questa scomposizione ci ha permesso di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed \mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
+
 	\subsubsection{Producer}\label{TecnologieProducer}
 	
 		Per ciascuno degli strumenti che invia messaggi verso il sistema è necessario creare una componente applicativa di tipo Producer che li riceva e li elabori inoltrandoli successivamente verso il Broker.
-		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal \gloss{committente}.
+		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dalla \gloss{proponente}.
 		\begin{enumerate}
 			\item Redmine
 			\item GitLab
 			\item SonarQube
 		\end{enumerate}
 		Abbiamo scelto di sviluppare i Producer per le prime due applicazioni in base alle priorità suggerite da \II\ nel capitolato, lasciando l'applicativo relativo a SonarQube come opzionale.
-		Ciascun messaggio ricevuto da queste tecnologie verrà analizzato dal Producer associato in modo da inserirli nel Topic appropriato.\\
-		In particolare, le modifiche relative alla \gloss{repository} (GitLab) o al progetto (Redmine) prese in considerazione sono:
+		Ciascun messaggio ricevuto da queste tecnologie verrà analizzato dal Producer associato in modo da inserirli nel Topic appropriato.
+
+		\paragraph{Producer GitLab}
+		Gli eventi relativi alle \gloss{repository} di GitLab presi in considerazione sono:
 		\begin{itemize}
-			\item Commit (solo GitLab)
-			\item Apertura \gloss{issue} 
-			\item Chiusura issue (solo GitLab)
+			\item Push
+			\item \gloss{Issue}, che verranno suddivisi in:
+			\begin{itemize}
+				\item Apertura issue
+				\item Chiusura issue
+			\end{itemize}
 		\end{itemize}
 		Le segnalazioni sono generate in base alle \gloss{keyword} contenute nei messaggi di commit e nelle etichette assegnate alle issue.
 		Da quest'ultime verrà creato il Topic corrispondente in caso non sia già esistente.
-		
-		
+
+		\paragraph{Producer Redmine}
+		Gli eventi relativi ai progetti di Redmine presi in considerazione, sono:
+		\begin{itemize}
+			\item Issue, che verranno suddivisi in:
+			\begin{itemize}
+				\item Apertura issue
+				\item Chiusura issue
+			\end{itemize}
+		\end{itemize}
+
+
 %		\subsubsection{SonarQube}
 %		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
 		
-	\subsubsection{Broker}\label{TecnologieBroker}
-	
-		Il ruolo del Broker è quello di smistare i messaggi in base ai Topic con cui questi sono contrassegnati verso i vari microservizi con cui l'utente ha deciso che gli venga inoltrata la notifica.
-		L'azienda ci consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
-	
-	
+	\subsubsection{Apache Kafka}\label{TecnologieBroker}
+	Il ruolo di Apache Kafka è quello di restare in ascolto dei messaggi provenienti dai
+	Producer, e smistarli in determinati Topic, in base al contenuto degli stessi.
+	Il Gestore Personale potrà poi reperire i messaggi dai Topic specifici e,
+	in base ai Topic ai quali gli utenti sono abbonati, immettere quei messaggi rielaborati alle code specifiche del Broker relative ai Consumer, che si occuperanno di
+	inoltrare il messaggio all'utente finale.
+
+		% Il ruolo del Broker è quello di smistare i messaggi in base ai Topic con cui questi sono contrassegnati verso i vari microservizi con cui l'utente ha deciso che gli venga inoltrata la notifica.
+		% L'azienda ci consiglia di utilizzare come Broker per i messaggi \gloss{Apache Kafka}.
+
 	\subsubsection{Consumer}\label{TecnologieConsumer}
 		Come per gli strumenti precedentemente elencati, anche per quelli su cui il messaggio andrà ad essere inoltrato, è necessaria la creazione di un microservizio in grado di fare da tramite tra Broker e \gloss{client} dello strumento di messaggistica scelto dall'utente.
-		Le tecnologie verso le quali vengono inoltrati i messaggi rielaborati dal sistema sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
+		Le tecnologie verso le quali vengono inoltrati i messaggi rielaborati dal sistema sono elencate di seguito in ordine di priorità in base a quanto richiesto dalla proponente.
 		\begin{enumerate}
 			\item Telegram
-			\item E-mail
+			\item \mail
 			\item Slack
 		\end{enumerate}
 		Allo stesso modo dei Producer, abbiamo scelto di sviluppare i Consumer per le prime due applicazioni in base alle priorità suggeriteci da \II\ nel capitolato, lasciando l'applicativo relativo a Slack come opzionale.
-		Le tecnologie alle quali vengono inoltrati i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
-			
+
+		\paragraph{Consumer Telegram}
+		Il Consumer Telegram ha il ruolo di restare in ascolto del Topic specifico
+		per Telegram di Apache Kafka e, usando come tramite un bot Telegram dedicato, inoltrare i messaggi agli utenti che hanno impostato Telegram come piattaforma di
+		messaggistica preferita.
+
+		Questo richiederà uno step aggiuntivo per gli utenti, che dovranno mettersi
+		in contatto con il bot la prima volta in modo che quest'ultimo abbia il permesso di inviare
+		loro i messaggi tramite la piattaforma.
+		% Le tecnologie alle quali vengono inoltrati i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
+
 		%https://realpython.com/python-send-email/
 		
 %		\subsubsection{Slack}
@@ -112,7 +140,7 @@
 	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, con la possibilità di aggiungere e rimuovere, determinate impostazioni riguardanti le proprie preferenze.
 	Quest'ultime sono:
 	\begin{itemize}
-		\item Scelta dell'applicativo sul quale ricevere le notifiche (Telegram / Email)
+		\item Scelta dell'applicativo sul quale ricevere le notifiche (Telegram \mail)
 		\item Iscrizione / disiscrizione a determinati Topic e keyword
 		\item Selezione dei giorni di calendario in cui l'utente segnala la sua assenza
 		\item Aggiunta / rimozione persona di fiducia
