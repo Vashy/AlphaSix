@@ -73,6 +73,11 @@
         che possono essere configurati per mandare messaggi ricevuti da strumenti di terze parti, in questo caso \progetto.
 		Il Consumer interroga il Broker per acquisire i messaggi da inoltrare e li trasmette effettivamente al bot di Telegram.
 		
+		\subsubsection{BotFather}
+		
+		Per mandare il messaggio al client Telegram sul dispositivo dell'utente finale, è stato necessario utilizzare un bot creato con BotFather.
+		Quest'ultimo è un servizio offerto da Telegram che permette la creazione di bot configurabili che possono fare da tramite tra utenti e servizi esterni dai quali ricevere, o a cui mandare, informazioni o comandi.
+		
 		\subsection{E-mail}
 		Per inoltrare le e-mail agli utenti finali è necessario che sviluppiamo un Consumer associato che sfrutta un server di posta
         in modo tale da poter ricevere i messaggi dal Broker e poi mandarli all'indirizzo specificato.
@@ -89,6 +94,9 @@
         \paragraph{Differenza tra container e macchina virtuale}
         A differenza delle \gloss{macchine virtuali}, dove lo stato dell'ambiente viene salvato su disco, occupando memoria, i container si adattano in maniera più performante all'applicativo richiesto, in quanto il loro scopo è quello di massimizzare la quantità delle applicazioni in esecuzione riducendo al minimo il numero delle macchine per eseguirla.
         Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse.
-        %Sebbene.. Purtroppo al termine della loro esecuzione non viene salvato lo stato, a meno che non sia esplicitamente richiesto.
+        
+        \subsubsection{DockStation}
+        Per la gestione dei container in locale è stato possibile utilizzare DockStation in quanto fornisce una GUI dalla quale si possono effettuare i comandi impartiti a Docker via Terminale.
+        \'E inoltre possibile avere la visione dello stato di ciascun container e vedere in tempo reale i log che questo genera, oltre che a poter controllare le risorse utilizzate da ciascun container.
         
 			
