@@ -102,13 +102,13 @@
 		\item \textbf{Titolo}: Producer Redmine scarta i messaggi non validi.
 		\item \textbf{Attori primari}: Producer Redmine.
 		\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto una segnalazione di una modifica issue da Redmine, controlla
-		se è stato modificato il campo Subject o Assignee. In caso negativo, il messaggio viene scartato.
+		se è stato modificato il campo ``subject'' o ``assignee''. In caso negativo, il messaggio viene scartato.
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da GitLab.
 		\item \textbf{Postcondizione}: il Producer Redmine ha scartato il messaggio.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
 			\item Il Producer Redmine riceve la segnalazione di modifica issue da Redmine
-			\item Il Producer Redmine vede che non è stato modificato il campo Subject
+			\item Il Producer Redmine vede che non è stato modificato il campo ``subject'' o ``assignee''
 			\item Il Producer Redmine scarta il messaggio non valido.
 		\end{enumerate}
 	\end{itemize}

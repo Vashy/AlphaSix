@@ -13,9 +13,9 @@
 		\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio  \newline elaborato.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
-			\item il Producer GitLab riceve una segnalazione da GitLab
-			\item il Producer GitLab prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
-			\item il Poducer GitLab invia il messaggio al Gestore Personale
+			\item Il Producer GitLab riceve una segnalazione da GitLab
+			\item Il Producer GitLab prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
+			\item Il Poducer GitLab invia il messaggio al Gestore Personale
 		\end{enumerate}
 		
 	\end{itemize}
@@ -40,7 +40,7 @@
 			\begin{enumerate}
 				\item Il Producer GitLab riceve la segnalazione di uno o più commit da GitLab
 				\item Il Producer GitLab prepara i messaggi in modo che vengano inseriti correttamente nel Gestore Personale
-				\item Il Poducer GitLab invia i messaggi di
+				\item Il Producer GitLab invia i messaggi di
 				commit al Gestore Personale
 			\end{enumerate}
 			
@@ -76,7 +76,7 @@
 			\begin{enumerate}
 				\item Il Producer GitLab riceve la segnalazione di issue da GitLab
 				\item Il Producer GitLab prepara il messaggio di issue in modo che venga inserito  \newline correttamente nel Gestore Personale
-				\item Il Poducer GitLab invia il messaggio di issue al Gestore Personale
+				\item Il Producer GitLab invia il messaggio di issue al Gestore Personale
 			\end{enumerate}
 			
 		\end{itemize}
@@ -88,25 +88,26 @@
 				\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 				\item \textbf{Titolo}: Producer GitLab invia messaggio di una nuova issue al Gestore Personale.
 				\item \textbf{Attori primari}: Producer GitLab.
-				\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di una nuova issue da GitLab, elabora il messaggio che conterrà i campi:
-				\begin{itemize}
-					\item Project
-					\item Topic
-					\item Subject e opzionalmente:
-					\begin{itemize}
-						\item Description
-						\item Due Date
-						\item Milestone
-						\item Assignee
-					\end{itemize}
-				\end{itemize}
+				\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di una nuova issue da GitLab, elabora il messaggio da inoltrare al Gestore Personale.
+				% che conterrà i campi:
+				% \begin{itemize}
+				% 	\item Project
+				% 	\item Topic
+				% 	\item Subject e opzionalmente:
+				% 	\begin{itemize}
+				% 		\item Description
+				% 		\item Due Date
+				% 		\item Milestone
+				% 		\item Assignee
+				% 	\end{itemize}
+				% \end{itemize}
 				\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 				\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio   \newline elaborato di nuova issue.
 				\item \textbf{Scenario principale}: 
 				\begin{enumerate}
 					\item Il Producer GitLab riceve la segnalazione di una nuova issue da GitLab
 					\item Il Producer GitLab prepara il messaggio di una nuova issue in modo che venga inserito correttamente nel Gestore Personale
-					\item Il Poducer GitLab invia il messaggio di una nuova issue al Gestore Personale
+					\item Il Producer GitLab invia il messaggio di una nuova issue al Gestore Personale
 				\end{enumerate}
 				
 			\end{itemize}
@@ -118,19 +119,20 @@
 				\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 				\item \textbf{Titolo}: Producer GitLab invia messaggio di modifica di una issue al Gestore Personale.
 				\item \textbf{Attori primari}: Producer GitLab.
-				\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di modifica di una issue da GitLab, controlla se sono stati modificati i campi Label o Title.
-				In caso positivo, viene inviato un messaggio elaborato al Gestore Personale, il quale conterrà:
-				\begin{itemize}
-					\item Project
-					\item Topic
-					\item Subject e opzionalmente:
-					\begin{itemize}
-						\item Description
-						\item Due Date
-						\item Milestone
-						\item Assignee
-					\end{itemize}
-				\end{itemize}
+				\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di modifica di una issue da GitLab, controlla se sono stati modificati i campi ``label'' o ``title''.
+				In caso positivo, viene inviato un messaggio elaborato al Gestore Personale.
+				% , il quale conterrà:
+				% \begin{itemize}
+				% 	\item Project
+				% 	\item Topic
+				% 	\item Subject e opzionalmente:
+				% 	\begin{itemize}
+				% 		\item Description
+				% 		\item Due Date
+				% 		\item Milestone
+				% 		\item Assignee
+				% 	\end{itemize}
+				% \end{itemize}
 				\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 				\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio   \newline elaborato di modifica issue.
 				\item \textbf{Scenario principale}: 
@@ -153,13 +155,13 @@
 				\item \textbf{Titolo}: Producer GitLab scarta i messaggi non validi.
 				\item \textbf{Attori primari}: Producer GitLab.
 				\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di una modifica issue da GitLab, controlla
-				se sono stati modificati i campi Label o Title. In caso negativo, il messaggio viene scartato.
+				se sono stati modificati i campi ``label'' o ``title''. In caso negativo, il messaggio viene scartato.
 				\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 				\item \textbf{Postcondizione}: il Producer GitLab ha scartato il messaggio.
 				\item \textbf{Scenario principale}: 
 				\begin{enumerate}
 					\item Il Producer GitLab riceve la segnalazione di modifica issue da GitLab
-					\item Il Producer GitLab vede che non sono stati modificati i campi Label o Title
+					\item Il Producer GitLab vede che non sono stati modificati i campi ``label'' o ``title''
 					\item Il Producer GitLab scarta i messaggi non validi
 				\end{enumerate}
 			\end{itemize}

@@ -8,12 +8,12 @@
 		\item \textbf{Codice}: UC\theuccount-CE.
 		\item \textbf{Titolo}: Gestore Personale invia il messaggio finale al Consumer Email.
 		\item \textbf{Attori primari}: Gestore Personale.
-		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato dai
+		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato dal
 		Producer Redmine o GitLab, controlla i messaggi sullo specifico Topic "commits", se ce ne sono
 		vengono analizzati in base alla	lista di keyword. Se gli utenti iscritti a quella determinata
 		keyword sono disponibili e se vogliono ricevere il messaggio tramite Email viene preparato il
 		messaggio finale da inviare e inviato al Consumer Email. Altrimenti valuta il campo Topic del
-		messaggio e controlla chi è iscritto a quel Topic, se gli utenti iscritti a quel Topic sono
+		messaggio e controlla se qualcuno è iscritto a quel Topic, se gli utenti iscritti a quel Topic sono
 		disponibili e se vogliono ricevere il messaggio tramite Email. Se tutte queste condizioni sono
 		verificate, viene preparato il messaggio finale da inviare e inviato al Consumer Email.\\
 		Il messaggio finale, una volta elaborato, conterrà i campi:
@@ -32,7 +32,7 @@
 				\item Assignee
 			\end{itemize}
 		\end{itemize}
-		\item \textbf{Precondizione}: il Gestore Personale ha ricevuto il messaggio elaborato dai Producer Redmine o GitLab.
+		\item \textbf{Precondizione}: il Gestore Personale ha ricevuto il messaggio elaborato dal Producer Redmine o GitLab.
 		\item \textbf{Postcondizione}: Il Gestore Personale ha inviato il messaggio finale al Consumer Email.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
