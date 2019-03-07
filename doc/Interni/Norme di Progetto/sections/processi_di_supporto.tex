@@ -160,7 +160,7 @@
 			Le \NdP\ e lo \SdF\ sono documenti interni, consultabili solo dal team e dal committente, per motivi didattici.
 
 			\subparagraph{Documenti esterni}
-			Sono considerati esterni, invece, il \PdP, il \PdQ\, il \Gl\ e l'\AdR\ che, al contrario dei precedenti, vengono consegnati al proponente.
+			Sono considerati esterni, invece, il \PdP, il \PdQ, il \Gl\ e l'\AdR\ che, al contrario dei precedenti, vengono consegnati al proponente.
 
 			% Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \PdP, \PdQ\ e \AdR. Si chiamano esterni perché accessibili al committente.
 
@@ -310,7 +310,7 @@
 				\item \textbf{Build}: build del codice su docker container.
 				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce ``Pytest'' in \S\ref{rifinfo}}.
 				\item \textbf{Integration Test}: test di integrazione tramite Pytest.
-				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
+				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite \gloss{tox}.
 			\end{itemize}
 
 			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
@@ -464,13 +464,13 @@
 			\end{enumerate}
 
 			\paragraph{Inspection}
-			Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati sei precedenti test.
+			Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati dei precedenti test.
 			Questo metodo dunque, a differenza di Walkthrough, prevede l'esecuzione con dei presupposti.
 	
 			Le fasi di Inspection sono:
 	
 			\begin{enumerate}
-				\item \textbf{Pianificazione}: viene sempre pianificato in gruppo come effettuare la pianificazione.
+				\item \textbf{Pianificazione}: viene sempre deciso in gruppo come effettuare la pianificazione.
 				\item \textbf{Definizione di una lista di controllo}: dato che le parti da verificare sono specificate, queste possono essere
 				riportate in una lista in modo da velocizzare il processo di verifica.
 				\item \textbf{Correzione dei difetti}: attuazione dei punti della lista di controllo.
@@ -584,7 +584,7 @@
                 \item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziare una fase del Ciclo di Deming senza aver finito completamente le fasi precedenti.
             \end{itemize}
             
-            \textbf{Metrica}: il livello di maturità è descritto in \S\ref{iso15504}.
+	        \textbf{Metrica}: il livello di maturità è descritto in appendice A.1 del Piano di Qualifica.
 		
 			\subparagraph{MPR004 Frequenza commit nella repository}
 			Per mantenere aggiornate le versioni dei prodotti è necessario che ognuno di noi effettui un commit ad ogni sua modifica significativa.
@@ -633,7 +633,7 @@
 			Lo utiliazziamo perché è possibile creare dei progetti che scansionano il nostro progetto locale e ci mostrano in una dashboard le attività più significative che lo strumento rileva.
 			Si possono rilevare bug, \gloss{code smell}, duplicazione e vulnerabilità del codice.
 			Viene inoltre assegnato una valore "passato" o "non passato" denominato Quality gate, che ci consente di valutare immediatamente la qualità generale del nostro codice. 
-			In particolare, SonarQube rispetto ad altri strumenti simili, ci è molto utile perchè supporta parecchio linguaggi di programmazione, tra cui quello che noi più utilizziamo: Python.
+			In particolare, SonarQube rispetto ad altri strumenti simili, ci è molto utile perchè supporta parecchi linguaggi di programmazione, tra cui quello che noi più utilizziamo: Python.
 
 			\begin{figure}[H]
 				\centering
@@ -716,7 +716,6 @@
 			
 			
 			\paragraph{Test di unità} \label{testunita} 
-			L'unità è un problema 
 			I test di unità sono l'attività di test di singole unità software.
 			Per unità si intende il minimo componente di un programma dotato di funzionamento autonomo, ma non è semplice individuare l'unità.
 			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}. 
