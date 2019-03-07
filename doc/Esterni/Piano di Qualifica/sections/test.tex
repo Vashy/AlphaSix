@@ -1,6 +1,6 @@
 \section{Test} \label{test}
 
-Tale sezione ha lo scopo di spiegare il funzionamento, lo scopo e i risultati dei vari tipi di test proposti dal modello a V.
+Tale sezione ha lo scopo di spiegare il funzionamento, lo scopo e i risultati dei vari tipi di test proposti dal modello a V e che adottiamo.
 
 \subsection{Modello a V} \label{sezionemodelloV}
 Il modello a V descrive in modo sintetico il ciclo di vita della realizzazione del software, partendo dalla sua progettazione fino alla sua consegna al cliente escludendo la fase di manutenzione.
@@ -9,14 +9,13 @@ Lo scopo del modello a V è quello di mostrare quali tipi di test accompagnano o
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{img/modellov-sweki.jpg}
+	%\includegraphics[width=0.8\textwidth]{img/modellov-sweki.jpg}
+	\includegraphics[width=0.8\textwidth]{img/modellov-sweki_inv.png}
 	\label{img:vmodel}
-	\caption{Modello a V\protect\footnotemark}
+	\caption[Modello a V]{Modello a V\protect\footnotemark}
 \end{figure}
 
 \footnotetext{Vedere modello a V in \S\ref{riferimenti informativi}}
-
-
 
 \subsection{Classificazione e stuttura dei test} \label{classificazionetest}
 Ogni test viene identificato univocamente dal seguente codice:
@@ -26,8 +25,8 @@ Ogni test viene identificato univocamente dal seguente codice:
 \end{center}
 
 \begin{itemize}
-	\item \textbf{T}: si riferisce a "Test".
-	\item \textbf{Tipo}: la tipologia a cui il test appertiene che, seguendo il modello a V, sono:
+	\item \textbf{T}: si riferisce a ``Test''.
+	\item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V, può essere:
 	\begin{itemize}
 		\item \textbf{V}: validazione. %è la stessa cosa di collaudo e di accettazione??
 		\item \textbf{S}: sistema
@@ -57,10 +56,8 @@ Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
 	\end{itemize}	
 \end{itemize}
 
-
-
 \subsection{Test di validazione} \label{testvalidazione} % TODO
-Tipo di test da determinare in parallelo con la comprensione del capitolato.
+\'E un tipo di test da determinare e sviluppare in parallelo con la comprensione del capitolato.
 Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
 
 \newenvironment{VTtable}[1][1]{%
@@ -74,34 +71,35 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-		\addtotv & Verifica la segnalazione dell' apertura di una issue da parte di Redmine:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+		\addtotv & Verifica la segnalazione dell'apertura di una issue in Redmine:
 		\begin{enumerate}
-			\item Redmine apre una issue.
+			\item Viene aperta una issue in Redmine.
 			\item Redmine invia la segnalazione.
             \item Producer Redmine riceve la segnalazione da Redmine.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica la segnalazione della modifica di una issue da parte di Redmine:
+        \addtotv & Verifica la segnalazione della modifica di una issue in Redmine:
 		\begin{enumerate}
-			\item Redmine modifica una issue.
+			\item Viene modificata una issue in Redmine.
 			\item Redmine invia la segnalazione.
             \item Producer Redmine riceve la segnalazione da Redmine.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica la segnalazione dell' apertura di una issue da parte di GitLab:
+        \addtotv & Verifica la segnalazione dell'apertura di una issue in GitLab:
 		\begin{enumerate}
-			\item GitLab apre una issue.
+			\item Viene aperta una issue in GitLab.
 			\item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica la segnalazione della modifica di una issue da parte di GitLab:
+        \addtotv & Verifica la segnalazione della modifica di una issue in GitLab:
 		\begin{enumerate}
-			\item GitLab modifica una issue.
+			\item Viene modificata una issue in GitLab.
 			\item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
 		\end{enumerate}
@@ -112,10 +110,11 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule 
-        \addtotv & Verifica di un evento di push da parte di GitLab:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule 
+        \addtotv & Verifica di un evento di push in GitLab:
 		\begin{enumerate}
-			\item GitLab segnala un evento di push.
+			\item Viene effettuato un push su GitLab.
 			\item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
 		\end{enumerate}
@@ -123,7 +122,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         
         \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale:
 		\begin{enumerate}
-			\item Producer Redmine genera un messaggio di apertura issue.
+			\item Producer Redmine rielabora un messaggio di apertura issue precedentemente ricevuto. 
 			\item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
 		\end{enumerate}
@@ -131,7 +130,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         
         \addtotv & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale:
 		\begin{enumerate}
-			\item Producer Redmine genera un messaggio di modifica issue.
+			\item Producer Redmine rielabora un messaggio di modifica issue precedentemente ricevuto.
 			\item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
 		\end{enumerate}
@@ -146,9 +145,9 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         
         \addtotv & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
-			\item Producer GitLab genera dei messaggi di commit.
-			\item Producer GitLab invia i messaggi.
-            \item Gestore personale riceve i messaggi.
+			\item Producer GitLab rielabora une messaggio di commit.
+			\item Producer GitLab invia il messaggio.
+            \item Gestore personale riceve il messaggio.
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
@@ -157,24 +156,24 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule        
         \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
-			\item Producer GitLab genera un messaggio di apertura issue.
+			\item Producer GitLab rielabora un messaggio di apertura issue.
 			\item Producer GitLab invia il messaggio.
-            \item Gestore personale riceve il messaggio.
+            \item Gestore Personale riceve il messaggio.
 		\end{enumerate}
 		& \TNI \\\midrule
     
         \addtotv & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
-			\item Producer GitLab genera un messaggio di modifica issue.
+			\item Producer GitLab rielabora un messaggio di modifica issue.
 			\item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
 		\end{enumerate}
 		& \TNI \\\midrule
-        
+    	
         \addtotv & Verifica di scarto di messaggi non validi nel Producer GitLab:
 		\begin{enumerate}
 			\item Producer GitLab riceve un messaggio di modifica issue non valido (non è stato modificato né il campo Label né il campo Title).
@@ -205,8 +204,8 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di invio di messaggi al bot Telegram:
 		\begin{enumerate}
 			\item Consumer Telegram riceve un messaggio dal Gestore Personale.
@@ -215,34 +214,34 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di invio di messaggi al server email:
+        \addtotv & Verifica di invio di messaggi al server Email:
 		\begin{enumerate}
 			\item Consumer Email riceve un messaggio dal Gestore Personale.
 			\item Consumer Email invia il messaggio.
-            \item Server email riceve il messaggio.
+            \item Server Email riceve il messaggio.
 		\end{enumerate}
 		& \TNI \\\midrule
 
-		\addtotv & Verifica di accesso di un utente al sistema tramite email:
+		\addtotv & Verifica di accesso di un utente al sistema tramite Email:
 		\begin{enumerate}
-			\item Inserire nel gestore personale l'email dell'utente
-			\item Confermare l' invio dei dati.
-            \item L'accesso al sistema è avvenuto.
+			\item Inserire nel Gestore Personale l'Email dell'utente
+			\item Confermare l'invio dei dati.
+            \item L'accesso al sistema è avvenuto correttamente.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di accesso di un utente al sistema tramite id Telegram:
+        \addtotv & Verifica di accesso di un utente al sistema tramite ID Telegram:
 		\begin{enumerate}
-			\item Inserire nel gestore personale l'id Telegram dell'utente
-			\item Confermare l' invio dei dati.
-            \item L'accesso al sistema è avvenuto.
+			\item Inserire nel Gestore Personale l'ID Telegram dell'utente
+			\item Confermare l'invio dei dati.
+            \item L'accesso al sistema è avvenuto correttamente.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore per accesso con email inesistente:
+        \addtotv & Verifica di errore per accesso con Email inesistente:
 		\begin{enumerate}
-			\item Inserire nel gestore personale l'email dell'utente
-			\item Confermare l' invio dei dati.
+			\item Inserire nel Gestore Personale l'Email dell'utente
+			\item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
 		& \TNI \\
@@ -252,46 +251,46 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
-        \addtotv & Verifica di errore per accesso con id Telegram inesistente:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtotv & Verifica di errore per accesso con ID Telegram inesistente:
 		\begin{enumerate}
-			\item Inserire nel gestore personale l'id Telegram dell'utente
-			\item Confermare l' invio dei dati.
+			\item Inserire nel Gestore Personale l'ID Telegram dell'utente
+			\item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
 		& \TNI \\\midrule
         
         \addtotv & Verifica di uscita dell'utente dal sistema:
 		\begin{enumerate}
-			\item Confermare l' uscita dal sistema.
+			\item Confermare l'uscita dal sistema.
             \item L'utente viene riportato all'accesso al sistema.
 		\end{enumerate}
-		& \TNI \\ \\\midrule
+		& \TNI \\ \midrule
         
         \addtotv & Verifica di registrazione di un nuovo utente:
 		\begin{enumerate}
-			\item Accedere al sistema.
+			\item Accedere al sistema (utente non registrato).
             \item Inserire i seguenti campi:
                 \begin{itemize}
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
-            \item L'utente viene registrato.
+            \item L'utente viene registrato correttamente.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore per email già esistente:
+        \addtotv & Verifica di errore per Email già esistente:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
                 \begin{itemize}
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -304,16 +303,16 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
-        \addtotv & Verifica di errore per id Telegram già esistente:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtotv & Verifica di errore per ID Telegram già esistente:
 		\begin{enumerate}
-			\item Accedere al sistema.
+			\item Accedere al sistema (utente non registrato).
             \item Inserire i seguenti campi:
                 \begin{itemize}
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -321,28 +320,28 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di rimozione utente dal sistema tramite Telegram:
+        \addtotv & Verifica di rimozione di un utente dal sistema tramite Telegram:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire l'id Telegram dell'utente da rimuovere.
+            \item Inserire l'ID Telegram dell'utente da rimuovere.
             \item Confermare l'invio dei dati.
-            \item L'utente è stato rimosso dal sistema.
+            \item L'utente è stato correttamente rimosso dal sistema.
 		\end{enumerate}
 		& \TNI \\ \\\midrule
         
-        \addtotv & Verifica di rimozione utente dal sistema tramite email:
+        \addtotv & Verifica di rimozione di un utente dal sistema tramite Email:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire l'email dell'utente da rimuovere.
+            \item Inserire l'Email dell'utente da rimuovere.
             \item Confermare l'invio dei dati.
-            \item L'utente è stato rimosso dal sistema.
+            \item L'utente è stato correttamente rimosso dal sistema.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore nella rimozione di un utente con email inesistente dal sistema:
+        \addtotv & Verifica di errore nella rimozione di un utente con Email inesistente dal sistema:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire l'email dell'utente da rimuovere.
+            \item Inserire l'Email dell'utente da rimuovere.
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
@@ -353,30 +352,31 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         
-        \addtotv & Verifica di errore nella rimozione di un utente con id Telegram inesistente dal sistema:
+        \addtotv & Verifica di errore nella rimozione di un utente con ID Telegram inesistente dal sistema:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire l'id Telegram dell'utente da rimuovere.
+            \item Inserire l'ID Telegram dell'utente da rimuovere.
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema tramite email:
+        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema tramite Email:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire la propria email.
+            \item Inserire la propria Email.
             \item Confermare l'invio dei dati.
             \item Si esce dal sistema e si viene riportati alla schermata di accesso.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema tramite id Telegram:
+        \addtotv & Verifica di rimozione dell'utente acceduto dal sistema tramite ID Telegram:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Inserire la propria email.
+            \item Inserire la propria Email.
             \item Confermare l'invio dei dati.
             \item Si esce dal sistema e si viene riportati alla schermata di accesso.
 		\end{enumerate}
@@ -387,9 +387,9 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
-        \addtotv & Verifica di modifica di un utente tramite email:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtotv & Verifica di modifica di un utente tramite Email:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -397,15 +397,15 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                     \item Email dell'utente da modificare
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
-            \item L'utente è stato modificato.
+            \item L'utente è stato modificato correttamente.
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di modifica di un utente tramite id Telegram:
+        \addtotv & Verifica di modifica di un utente tramite ID Telegram:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -413,11 +413,11 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                     \item Email dell'utente da modificare
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
-            \item L'utente è stato modificato.
+            \item L'utente è stato modificato correttamente.
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
@@ -426,9 +426,9 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
-        \addtotv & Verifica di errore nella modifica di un utente con email già esistente tramite email:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtotv & Verifica di errore nella modifica di un utente con Email già esistente tramite Email:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -436,7 +436,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                     \item Email dell'utente da modificare
                     \item Nome
                     \item Cognome
-                    \item Contatto email già esistente
+                    \item Contatto Email già esistente
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -444,7 +444,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite email:
+        \addtotv & Verifica di errore nella modifica di un utente con ID Telegram già esistente tramite Email:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -452,7 +452,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                     \item Email dell'utente da modificare
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram già esistente
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -465,17 +465,17 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
-        \addtotv & Verifica di errore nella modifica di un utente con email già esistente tramite id Telegram:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtotv & Verifica di errore nella modifica di un utente con Email già esistente tramite ID Telegram:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
                 \begin{itemize}
-                    \item Id Telegram dell'utente da modificare
+                    \item ID Telegram dell'utente da modificare
                     \item Nome
                     \item Cognome
-                    \item Contatto email già esistente
+                    \item Contatto Email già esistente
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -483,15 +483,15 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite id Telegram:
+        \addtotv & Verifica di errore nella modifica di un utente con ID Telegram già esistente tramite ID Telegram:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
                 \begin{itemize}
-                    \item Id Telegram dell'utente da modificare
+                    \item ID Telegram dell'utente da modificare
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram già esistente
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -504,9 +504,9 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
-        \addtotv & Verifica di errore nella modifica di un utente con email inesistente:
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtotv & Verifica di errore nella modifica di un utente con Email inesistente:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
@@ -514,7 +514,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                     \item Email dell'utente da modificare non esistente
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
@@ -522,28 +522,28 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\end{enumerate}
 		& \TNI \\\midrule
         
-        \addtotv & Verifica di errore nella modifica di un utente con id Telegram inesistente:
+        \addtotv & Verifica di errore nella modifica di un utente con ID Telegram inesistente:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Inserire i seguenti campi:
                 \begin{itemize}
-                    \item Id Telegram dell'utente da modificare non esistente
+                    \item ID Telegram dell'utente da modificare non esistente
                     \item Nome
                     \item Cognome
-                    \item Contatto email
+                    \item Contatto Email
                     \item Contatto Telegram
                 \end{itemize}
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
-		& \TNI \\ \\\midrule
+		& \TNI \\\midrule
         
         \addtotv & Verifica di iscrizione a un nuovo topic:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Selezionare un nuovo topic a cui iscriversi.
             \item Confermare l'invio dei dati.
-            \item Il topic è stato aggiunto alle preferenze.
+            \item Il topic è stato correttamente aggiunto alle preferenze dell'utente.
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
@@ -552,14 +552,14 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di aggiunta dei giorni di indisponibilità al calendario:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Selezionare i giorni di indisponibilità da aggiungere.
             \item Confermare l'invio dei dati.
-            \item I giorni sono stati aggiunti alle preferenze.
+            \item I giorni sono stati aggiunti correttamente alle preferenze dell'utente.
 		\end{enumerate}
 		& \TNI \\\midrule
         
@@ -568,7 +568,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\item Accedere al sistema.
             \item Selezionare la piattaforma preferita per la ricezione dei messaggi da aggiungere.
             \item Confermare l'invio dei dati.
-            \item La piattaforma è stata aggiunta alle preferenze.
+            \item La piattaforma è stata correttamente aggiunta alle preferenze dell'utente. 
 		\end{enumerate}
 		& \TNI \\\midrule
         
@@ -577,14 +577,14 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\item Accedere al sistema.
             \item Selezionare la persona di fiducia da aggiungere.
             \item Confermare l'invio dei dati.
-            \item La persona di fiducia è stata aggiunta alle preferenze.
+            \item La persona di fiducia è stata correttamente aggiunta alle preferenze dell'utente.
 		\end{enumerate}
 		& \TNI \\\midrule
         
         \addtotv & Verifica di errore nell'aggiunta di una persona di fiducia inesistente:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Selezionare la persona di fiducia da aggiungere (non esistente).
+            \item Inserire la persona di fiducia da aggiungere (non esistente).
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
@@ -595,14 +595,14 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-                
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di aggiunta delle keyword per i push di GitLab:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Aggiungere le keyword GitLab.
             \item Confermare l'invio dei dati.
-            \item Le keyword GitLab sono state aggiornate.
+            \item Le keyword di GitLab sono state aggiornate correttamente.
 		\end{enumerate}
 		& \TNI \\\midrule
         
@@ -620,7 +620,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\item Accedere al sistema.
             \item Selezionare un topic da rimuovere.
             \item Confermare l'invio dei dati.
-            \item Il topic è stato rimosso dalle preferenze.
+            \item Il topic è stato rimosso correttamente dalle preferenze.
 		\end{enumerate}
 		& \TNI \\\midrule
         
@@ -629,7 +629,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\item Accedere al sistema.
             \item Selezionare i giorni di indisponibilità da rimuovere.
             \item Confermare l'invio dei dati.
-            \item I giorni sono stati rimossi dalle preferenze.
+            \item I giorni sono stati rimossi dalle preferenze correttamente.
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
@@ -638,23 +638,24 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di rimozione della piattaforma di messaggistica preferita:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Selezionare la piattaforma preferita per la ricezione dei messaggi da rimuovere.
             \item Confermare l'invio dei dati.
-            \item La piattaforma è stata rimossa dalle preferenze.
+            \item La piattaforma è stata correttamente rimossa dalle preferenze.
 		\end{enumerate}
-		& \TNI \\ \\\midrule
+		& \TNI \\\midrule
         
         \addtotv & Verifica di rimozione della persona di fiducia:
 		\begin{enumerate}
 			\item Accedere al sistema.
             \item Selezionare la persona di fiducia da rimuovere.
             \item Confermare l'invio dei dati.
-            \item La persona di fiducia è stata rimossa alle preferenze.
+            \item La persona di fiducia è stata correttamente rimossa alle preferenze.
 		\end{enumerate}
 		& \TNI \\\midrule
         
@@ -672,7 +673,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\item Accedere al sistema.
             \item Aggiungere le keyword GitLab.
             \item Confermare l'invio dei dati.
-            \item Le keyword GitLab sono state aggiornate.
+            \item Le keyword GitLab sono state aggiornate correttamente.
 		\end{enumerate}
 		& \TNI \\
         \bottomrule\\
@@ -681,7 +682,8 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \end{table}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab:
 		\begin{enumerate}
@@ -706,6 +708,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
+			\rowcolor{gray!30}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
 			\addtotv & R1F2 \\
@@ -747,6 +750,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
+			\rowcolor{gray!30}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
             \addtotv & R19.1F2 \\
@@ -788,10 +792,11 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        \addtots & Verifica che il sistema riceva la segnalazione dell' apertura di una issue da parte di Redmine & NI \\
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtots & Verifica che il sistema riceva la segnalazione dell'apertura di una issue da parte di Redmine & NI \\
         \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di Redmine & NI \\
-        \addtots & Verifica che il sistema riceva la segnalazione dell' apertura di una issue da parte di GitLab & NI \\
+        \addtots & Verifica che il sistema riceva la segnalazione dell'apertura di una issue da parte di GitLab & NI \\
         \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di GitLab & NI \\
         \addtots & Verifica che il sistema riceva eventi di push da parte di GitLab & NI \\
 		\addtots & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale & NI \\
@@ -810,37 +815,39 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \end{table}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-        \addtots & Verifica di invio di messaggi al server email & NI \\
-        \addtots & Verifica di accesso di un utente al sistema tramite email & NI \\
-        \addtots & Verifica di accesso di un utente al sistema tramite id Telegram & NI \\
-        \addtots & Verifica di errore per accesso con email inesistente & NI \\
-        \addtots & Verifica di errore per accesso con id Telegram inesistente & NI \\
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \addtots & Verifica di invio di messaggi al server Email & NI \\
+        \addtots & Verifica di accesso di un utente al sistema tramite Email & NI \\
+        \addtots & Verifica di accesso di un utente al sistema tramite ID Telegram & NI \\
+        \addtots & Verifica di errore per accesso con Email inesistente & NI \\
+        \addtots & Verifica di errore per accesso con ID Telegram inesistente & NI \\
         \addtots & Verifica di uscita dell'utente dal sistema & NI \\
         \addtots & Verifica di registrazione di un nuovo utente & NI \\
-        \addtots & Verifica di errore per email già esistente & NI \\
-        \addtots & Verifica di errore per id Telegram già esistente & NI \\
+        \addtots & Verifica di errore per Email già esistente & NI \\
+        \addtots & Verifica di errore per ID Telegram già esistente & NI \\
         \addtots & Verifica di rimozione utente dal sistema tramite Telegram & NI \\
-        \addtots & Verifica di rimozione utente dal sistema tramite email & NI \\
-        \addtots & Verifica di errore nella rimozione di un utente con email inesistente dal sistema & NI \\
-        \addtots & Verifica di errore nella rimozione di un utente con id Telegram inesistente dal sistema & NI \\
-        \addtots & Verifica di rimozione dell'utente acceduto dal sistema tramite email & NI \\
-        \addtots & Verifica di rimozione dell'utente acceduto dal sistema tramite id Telegram & NI \\
-        \addtots & Verifica di modifica di un utente tramite email & NI \\
-        \addtots & Verifica di modifica di un utente tramite id Telegram & NI \\
-        \addtots & Verifica di errore nella modifica di un utente con email già esistente tramite email & NI \\
-        \addtots & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite email & NI \\
-        \addtots & Verifica di errore nella modifica di un utente con email già esistente tramite id Telegram & NI \\
-        \addtots & Verifica di errore nella modifica di un utente con id Telegram già esistente tramite id Telegram & NI \\
-        \addtots & Verifica di errore nella modifica di un utente con email inesistente & NI \\
-        \addtots & Verifica di errore nella modifica di un utente con id Telegram inesistente & NI \\
+        \addtots & Verifica di rimozione utente dal sistema tramite Email & NI \\
+        \addtots & Verifica di errore nella rimozione di un utente con Email inesistente dal sistema & NI \\
+        \addtots & Verifica di errore nella rimozione di un utente con ID Telegram inesistente dal sistema & NI \\
+        \addtots & Verifica di rimozione dell'utente acceduto dal sistema tramite Email & NI \\
+        \addtots & Verifica di rimozione dell'utente acceduto dal sistema tramite ID Telegram & NI \\
+        \addtots & Verifica di modifica di un utente tramite Email & NI \\
+        \addtots & Verifica di modifica di un utente tramite ID Telegram & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con Email già esistente tramite Email & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con ID Telegram già esistente tramite Email & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con Email già esistente tramite ID Telegram & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con ID Telegram già esistente tramite ID Telegram & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con Email inesistente & NI \\
+        \addtots & Verifica di errore nella modifica di un utente con ID Telegram inesistente & NI \\
         \bottomrule\\
 	\end{paddedtablex}
 	\caption{Elenco dei test di sistema (2)}
 \end{table}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica di iscrizione a un nuovo topic & NI \\
         \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & NI \\
 		\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & NI \\
@@ -872,7 +879,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 %Alcuni termini ed espressioni assumono il seguente significato:
 %
 %\begin{itemize}
-%	\item \textbf{Piattaforma di messaggistica}: s'intende sempre Telegram ed email.
+%	\item \textbf{Piattaforma di messaggistica}: s'intende sempre Telegram ed Email.
 %	\item \textbf{Notifica}: s'intende una notifica in una delle piattaforme di messaggistica causata dall'applicazione.
 %	\item \textbf{Topic}: s'intende l'insieme delle etichette delle issue di GitLab e Redmine e delle keyword presenti nei messaggi di commit notificati dai push di GitLab.
 %	\item \textbf{Persona delegata}: s'intende l'utente a cui verranno inoltrate le notifiche nei giorni di indisponibilità dell'utente che sta usando l'applicazione. 
@@ -882,13 +889,13 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		%Il nuovo utente deve comparire all'interno della lista degli utenti inseriti nell'applicazione.
 	
 %	\subsubsection{TS002 Iscrizione ad una label, ad una piattaforma di messaggistica e apertura issue}
-%		Un utente quando s'iscrive ad una label, lo fa con l'intenzione di ricevere le notifiche inerenti solo a quella label provenienti da GitLab o Redmine e l'iscrizione alla piattaforma di messaggistica (Telegram o email) per scegliere dove ricevere tali notifiche.
+%		Un utente quando s'iscrive ad una label, lo fa con l'intenzione di ricevere le notifiche inerenti solo a quella label provenienti da GitLab o Redmine e l'iscrizione alla piattaforma di messaggistica (Telegram o Email) per scegliere dove ricevere tali notifiche.
 %		
 %		\paragraph*{Procedura}
 %			\begin{enumerate}
 %				\item Selezionare l'utente con cui si vuole usare l'applicativo.
 %				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalle label è possibile capire quali notifiche derivano da Redmine e quali da GitLab.
-%				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche della label.
+%				\item Selezionare Telegram o Email per decidere in che piattaforma di messaggistica ricevere le notifiche della label.
 %				\item Aprire una issue da Gitlab se l'iscrizione è stata fatta da una label proveniente da GitLab, o aprire una issue da Redmine se l'iscrizione è stata fatta da una label proveniente da Redmine.
 %			\end{enumerate}
 %		
@@ -902,9 +909,9 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 %			\begin{enumerate}
 %				\item Selezionare l'utente con cui si vuole usare l'applicativo.
 %				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalla label è possibile capire quali derivano da Redmine e quali da GitLab.
-%				\item Selezionare Telegram o email per decidere in che piattaforma di messaggistica ricevere le notifiche delle label.
+%				\item Selezionare Telegram o Email per decidere in che piattaforma di messaggistica ricevere le notifiche delle label.
 %				\item Selezionare su Redmine, se ci si è iscritti ad una label di Redmine, o su GitLab, se ci si è inscritti ad una label su GitLab, una issue già aperta e modificarla in termini di label o titolo della issue.
-%				\item Se tra i campi modificati nella issue ci sono anche le label, iscriversi nel gestore personale alla label della issue modificata.
+%				\item Se tra i campi modificati nella issue ci sono anche le label, iscriversi nel Gestore Personale alla label della issue modificata.
 %			\end{enumerate}
 %		
 %		\paragraph*{Accettazione}
@@ -929,7 +936,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 %		\paragraph*{Procedura}
 %		\begin{itemize}
 %			\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%			\item Aggiungere una keyword nel gestore personale.
+%			\item Aggiungere una keyword nel Gestore Personale.
 %			\item Effettuare un push su Gitlab dove il messaggio di commit contiene la keyword appena inserita.
 %		\end{itemize}
 %	
@@ -950,7 +957,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 %		Non arrivano le notifiche dei push di Gitlab in cui nel messaggio di commit è presente la keyword appena rimossa.
 %		
 %	\subsubsection{TS007 Rimozione di una piattaforma di messaggistica}
-%		Come per il test precedente, anche rimuovendo una piattaforma di messaggistica (Telegram o email), le notifiche a quella piattaforma non dovrebbero più arrivare.
+%		Come per il test precedente, anche rimuovendo una piattaforma di messaggistica (Telegram o Email), le notifiche a quella piattaforma non dovrebbero più arrivare.
 %		
 %		\paragraph*{Procedura}
 %		\begin{enumerate}
@@ -963,12 +970,12 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 %		Dopo aver aperto una issue o effettuato un push da Gitlab o Redmine, non si ricevono più notifiche dalle piattaforme di messaggistica rimosse.
 %		
 %	\subsubsection{TS008 Aggiunta della persona delegata e dei giorni di indisponibilità}
-%		All'interno del gestore personale è possibile indicare i giorni di calendario in cui si è irreperibili ed è possibile selezionare una persona a cui inoltrare le notifiche che arrivano nei giorni selezionati.
+%		All'interno del Gestore Personale è possibile indicare i giorni di calendario in cui si è irreperibili ed è possibile selezionare una persona a cui inoltrare le notifiche che arrivano nei giorni selezionati.
 %		
 %		\paragraph*{Procedura}
 %			\begin{enumerate}
 %				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%				\item Aggiungere nel gestore personale il giorno di esecuzione del test come giorno di indisponibilità in cui non si vogliono ricevere notifiche dall'applicativo.
+%				\item Aggiungere nel Gestore Personale il giorno di esecuzione del test come giorno di indisponibilità in cui non si vogliono ricevere notifiche dall'applicativo.
 %				\item Aggiungere, tra gli utenti inseriti nell'applicazione, l'utente a cui inoltrare le notifiche nei giorni di indisponibilità.
 %				\item Creare o modificare una issue da Redmine o Gitlab, oppure effettuare un \gloss{push}. 
 %			\end{enumerate}
@@ -997,6 +1004,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
+			\rowcolor{gray!30}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
 			\addtots & R1F2 \\
@@ -1074,11 +1082,12 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\textbf{Codice} & \textbf{Test} & \textbf{Stato} \\\toprule
-		TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer Gitlab & NI \\
+		\rowcolor{gray!30}
+		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+		TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer GitLab & NI \\
 		TI2 & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & NI \\
 		TI3 & Verifica l'integrazione del Cosumer Telegram con il bot Telegram & NI \\
-		TI4 & Verifica l'integrazione del Consumer Email con il server mail & NI \\
+		TI4 & Verifica l'integrazione del Consumer Email con il server Email & NI \\
 		% TI5 & Verifica l'integrazione di un file JSON con le componenti Producer e Consumer & NI \\
 		% TI5.1 & Verifica l'integrazione di un file JSON con il Producer Gitlab & NI \\
 		% TI5.2 & Verifica l'integrazione di un file JSON con il Producer Redmine & NI \\
@@ -1092,7 +1101,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		TI5 & Verifica l'integrazione del database MongoDB con l'interfaccia del Gestore Personale & NI \\
 		\bottomrule\\
 	\end{paddedtablex}
-	\caption{Elenco dei test d'integrazione.}
+	\caption{Elenco dei test d'integrazione}
 \end{table}
 
 	\subsubsection{Tracciamento} \label{tracciamentointegrazione}
@@ -1101,12 +1110,13 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
+			\rowcolor{gray!30}
 			\textbf{Codice} & \textbf{Componente} \\
 			\toprule
 			TI1 & Producer Gitlab \\
 			TI2 & Producer Redmine \\
 			TI3 & Consumer Telegram \\
-			TI4 & Consuer Email \\
+			TI4 & Consumer Email \\
 			TI5 & Interfaccia Gestore Personale \\
 			% TI5 & Producer/Consumer \\
 			% TI5.1 & Producer Gitlab \\
@@ -1120,5 +1130,5 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			% TI6.4 & Consuer Email \\
 			\bottomrule\\
 		\end{tabularx}}
-		\caption{Elenco dei test in correlazioni con le compoenti.}
+		\caption{Elenco dei test in correlazioni con le componenti}
 	\end{table}

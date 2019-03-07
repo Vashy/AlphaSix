@@ -2,7 +2,7 @@
 \section{Qualità di prodotto}\label{qualità di prodotto}
 
 \subsection{Scopo}
-Abbiamo scelto di prendere come modello gli standard ISO 9126 e 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per raggiungere la qualità desiderata.
+Abbiamo scelto di prendere come modello gli standard ISO 9126 e ISO 90003:2004 individuando alcune caratteristiche a cui i prodotti dovrebbero puntare per raggiungere la qualità desiderata.
 
 \subsection{Nomenclatura metriche ed obiettivi di qualità}	\label{nomenclaturaprodotti}
 La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
@@ -18,8 +18,8 @@ La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionam
 		\begin{itemize}
 			\item \textbf{Prodotto}: può essere:
 			\begin{itemize}
-				\item \textbf{PD}: indica "Metrica del prodotto documento".
-				\item \textbf{PS}: indica "Metrica del prodotto software".
+				\item \textbf{PD}: indica ``Metrica del prodotto documento''.
+				\item \textbf{PS}: indica ``Metrica del prodotto software''.
 			\end{itemize}
 			\item \textbf{ID}: numero progressivo di tre cifre.
 			\item \textbf{Nome}: descrive brevemente la metrica.
@@ -34,8 +34,8 @@ La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionam
 		\begin{itemize}
 			\item \textbf{Prodotto}: può essere:
 			\begin{itemize}
-				\item \textbf{PD}: indica "Qualità del prodotto documento".
-				\item \textbf{PS}: indica "Qualità del prodotto software".
+				\item \textbf{PD}: indica ``Qualità del prodotto documento''.
+				\item \textbf{PS}: indica ``Qualità del prodotto software''.
 			\end{itemize}
 			\item \textbf{ID}: numero progressivo di tre cifre.
 			\item \textbf{Nome}: descrive brevemente il processo.
@@ -62,7 +62,7 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 		Le caratteristiche di un documento che vengono analizzate sono:
 		
 		\begin{itemize}
-			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido, evitando perciò periodo troppo lunghi o un alto numero di subordinate.
+			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido, evitando perciò periodi troppo lunghi o un alto numero di subordinate.
 			\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici.
 %			\item \textbf{QPD002 Correttezza contenuti}: i contenuti devono rispecchiare ciò che è scritto nei titoli dei paragrafi e devono dare valore aggiunto al documento.
 			\item \textbf{QPD003 Organizzazione del documento}: i contenuti devono essere inseriti nelle sezioni e nei documenti appropriati.
@@ -70,15 +70,15 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 		\end{itemize}
 
 	\subsubsection{Software} \label{prodottosw}
-	Il software che realizziamo vogliamo che sia di qualità.
-	Per fare ciò, utilizziamo i dati che ci rende disponibile SonarQube e le norme dello standard PEP 8\footnote{Vedere in \S\ref{riferimenti informativi}} per l'analisi statica del codice.
+	Vogliamo che software realizzato da noi sia di qualità.
+	Per fare ciò, utilizziamo i dati che ci vengono resi disponibili da \gloss{SonarQube} e le norme dello standard PEP 8\footnote{Vedere in \S\ref{riferimenti informativi}} per l'analisi statica del codice.
 	Essi ci consentono di definire delle semplici metriche con dei grandi obiettivi da raggiungere nel corso del tempo.
 
 		\paragraph*{Metriche} 
 		\begin{itemize}
 			\item MPS001 Presenza di bug
 			\item MPS002 Presenza di vulnerabilità
-			\item MPS003 Presenza di code smell
+			\item MPS003 Presenza di \gloss{code smell}
 			\item MPS004 Duplicazione del codice
             \item MPS005 File senza intestazione
             \item MPS006 Righe non formattate
@@ -95,11 +95,11 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 		\end{itemize} 
 
 		\paragraph*{Obiettivi} 	
-		L'intero nostro prodotto sofwtare mira a raggiungere:
+		L'intero nostro prodotto software mira a raggiungere:
 		\begin{itemize}
-			\item \textbf{QPS001 Assenza di bug}: la totale assenza di bug è essenziale per la buona riuscita del rilascio del nostro software.
+			\item \textbf{QPS001 Assenza di bug}: la totale assenza di bug è essenziale per la buona riuscita al rilascio del nostro software.
 			\item \textbf{QPS002 Assenza di vulnerabilità}: miriamo a rimuovere qualunque tipo di vulnerabilità che possa compromettere la sicurezza del nostro prodotto.
-			\item \textbf{QPS003 Assenza di \gloss{code smell}}: vogliamo che il nostro codice non abbia code smell, al fine di migliorarne la struttura e abbassarne la complessità, in modo che esso ci risulti facilmente leggibile.
+			\item \textbf{QPS003 Assenza di code smell}: vogliamo che il nostro codice non abbia code smell, al fine di migliorarne la struttura e abbassarne la complessità, in modo da risultare facilmente leggibile.
 			\item \textbf{QPS004 Minima duplicazione del codice}: tendiamo a raggiungere la minor quantità di codice duplicato possibile, poiché grande quantità di codice ripetuto è segno di inefficienza, ma non sempre si riesce ad ottenere del codice completamente non ridondante.
             \item \textbf{QPS005 Rispetto delle norme di PEP 8}: per produrre codice di qualità è necessario seguire delle norme per uniformare tutti i file e per renderli comprensibili ed efficienti. Tali norme è meglio che provengano da uno standard creato da persone con molta più esperienza di noi, per questo abbiamo scelto di seguire lo standard PEP 8. 
 		\end{itemize}
@@ -107,7 +107,6 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 
 \subsection{Tabelle qualità di prodotto} \label{tabellequalitaprodotto}
 Le tabelle indicano gli obiettivi di qualità che ogni prodotto deve possedere.
-
 Ogni obiettivo di qualità è indicato con:
 
 \begin{itemize}
@@ -116,8 +115,6 @@ Ogni obiettivo di qualità è indicato con:
 	\item \textbf{Valore desiderato}: il valore che si vuole ottenere attraverso la metrica indicata per soddisfare appieno l'obiettivo di qualità, qualora una metrica sia presente.
 	\item \textbf{Descrizione}: descrizione generale dell'obiettivo di qualità.
 \end{itemize}
-
-
 
 \begin{table}[H]
 	{\def\arraystretch{1.5}
@@ -144,7 +141,7 @@ Ogni obiettivo di qualità è indicato con:
 		\hline \rowcolor{white}
 		QPD003 Organizzazione del documento & - & -\\
 		\rowcolor{gray!15}
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica viene controllata dal \Ver~e dall'\Amm.} \\
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'organizzazione dei documenti e la loro struttura logica vengono controllate dal \Ver~e dall'\Amm.} \\
 		\hline %\rowcolor{white}
 %		QPD004 Manutenibilità del documento & - & -\\
 %		\rowcolor{gray!15}
@@ -153,7 +150,7 @@ Ogni obiettivo di qualità è indicato con:
 \caption{Obiettivi di qualità per i documenti}
 \end{table}
 
-\mydoublerule{\linewidth}{0pt}{2pt}
+%\mydoublerule{\linewidth}{0pt}{2pt}
 
 
 \begin{table}[H]
@@ -190,7 +187,7 @@ Ogni obiettivo di qualità è indicato con:
 		\hline \rowcolor{white}
 		QPS005 Assenza di file senza intestazione & MPS005 File senza intestazione & 0 \\
 		\rowcolor{gray!15}
-		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: per comprendere ad una prima occhiata i compiti di un file, qusto deve possedere un'intestazione scritta in una certa forma. Dunque il numero di file senza la corretta intestazione deve essere nullo al termine del progetto.} \\
+		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: per comprendere ad una prima occhiata i compiti di un file, questo deve possedere un'intestazione scritta in una certa forma prestabilita da noi membri di \gruppo. Dunque il numero di file senza la corretta intestazione deve essere nullo al termine del progetto.} \\
 
 		\hline \rowcolor{white}
 		QPS006 Assenza di righe non formattate & MPS006 Righe non formattate & 0 \\
@@ -198,23 +195,23 @@ Ogni obiettivo di qualità è indicato con:
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: nel momento in cui le righe di codice sono formattate secondo le \NdP, questo risulta essere più leggibile, perciò  il numero di righe non formattate deve essere nullo al termine del progetto.} \\
 
 		\hline \rowcolor{white}
-        QPS005 Rispetto delle norme di PEP 8 & MPS007 Nomi di variabili, metodi e classi non normati & 0
-        \\
+        QPS005 Rispetto delle norme di PEP 8 & MPS007 Nomi di variabili, metodi e classi non normati & 0 \\
+        
         \rowcolor{gray!15}
-        \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i nomi delle variabili, classi e metodi devono risultare il più parlanti possibile, per questo sono presenti delle norme per la loro dichiarazione. Il numero di nomi di variabili, metodi e classi non normati deve essere nullo al termine del progetto.}\\
+        \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i nomi delle variabili, classi e metodi devono risultare il più descrittivi possibile, per questo sono presenti delle norme per la loro dichiarazione. Il numero di nomi di variabili, metodi e classi non normati deve essere nullo al termine del progetto.}\\
         
         \hline \rowcolor{white}
         QPS005 Rispetto delle norme di PEP 8 & MPS008 Righe non indentate & 0
         \\
         \rowcolor{gray!15}
-        \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la lunghezza delle tabulazioni nel codice deve essere sempre uguale per favorirne la leggibilità, per questo il numero di righe non indentate deve essere nullo al termine del progetto.}\\
+        \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la lunghezza delle tabulazioni nel codice deve essere sempre uguale per favorirne la leggibilità, per questo il numero di righe non correttamente indentate deve essere nullo al termine del progetto.}\\
         
         \hline
 	\end{tabularx}}
 \caption{Obiettivi di qualità per il software (1)}
 \end{table}
 
-\mydoublerule{\linewidth}{0pt}{2pt}
+%\mydoublerule{\linewidth}{0pt}{2pt}
 
 \begin{table}[H]
     {\def\arraystretch{1.5}
@@ -236,19 +233,19 @@ Ogni obiettivo di qualità è indicato con:
             QPS005 Rispetto delle norme di PEP 8 & MPS010 Righe troppo lunghe & 0
             \\
             \rowcolor{gray!15}
-            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: scrivere righe di una lunghezza eccessiva obbliga il lettore a scorrere in orizzontale la finestra che mostra il codice, dunque è stato normato di limitare a 79 caratteri la lunghezza di una linea di codice. Il numero di righe troppo lunghe deve essere nullo al termine del progetto.}\\
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: scrivere righe di una lunghezza eccessiva obbliga il lettore a scorrere in orizzontale la finestra che mostra il codice, dunque è stato normato di limitare a 79 caratteri la lunghezza di una linea di codice. Il numero di righe che eccedono questo limite deve essere nullo al termine del progetto.}\\
 
             \hline\rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS011 Metodi troppo lunghi & 0
             \\
             \rowcolor{gray!15}
-            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: perché un metodo sia facilmente testabile questo deve avere il minor numero di compiti, un modo per limitarne il numero è stabilire una lunghezza massima di righe (50) dei metodi. Il numero di metodi troppo lunghi deve essere nullo al termine del progetto.}\\
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: perché un metodo sia facilmente testabile questo deve avere il minor numero di compiti, un modo per limitarne il numero è stabilire una lunghezza massima di righe (50) dei metodi. Il numero di metodi che eccedono questo limite deve essere nullo al termine del progetto.}\\
             
             \hline\rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS012 Metodi con troppi parametri & 0
             \\
             \rowcolor{gray!15}
-            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: anche un numero alto di parametri in un metodi è sintomo che questo esegua troppe attività; per questo il numero di parametri non dovrebbe essere superiore di 6. Il numero di metodi troppo lunghi deve essere nullo al termine del progetto.}\\
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: anche un numero alto di parametri in un metodi è sintomo che questo può eseguire troppe attività; per questo il numero di parametri non dovrebbe essere superiore di 6. Il numero di metodi che eccedono questo limite deve essere nullo al termine del progetto.}\\
 
             \hline\rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS013 Metodi con troppa complessità ciclomatica & 0
@@ -267,7 +264,7 @@ Ogni obiettivo di qualità è indicato con:
     \caption{Obiettivi di qualità per il software (2)}
 \end{table}
 
-\mydoublerule{\linewidth}{0pt}{2pt}
+%\mydoublerule{\linewidth}{0pt}{2pt}
 
 \begin{table}[H]
     {\def\arraystretch{1.5}
@@ -283,17 +280,17 @@ Ogni obiettivo di qualità è indicato con:
             QPS005 Rispetto delle norme di PEP 8 & MPS015 Commenti non normati & 0
             \\
             \rowcolor{gray!15}
-            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i commenti, per essere utili devono essere coerenti col codice che commentano, sintetici e ben strutturati; nel nostro caso devono possedere un spazio prima dell'inizio ed iniziare con la lettera maiuscola. Il numero di classi che implementano una o più classi concrete deve essere nullo al termine del progetto.}\\
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i commenti, per essere utili devono essere coerenti col codice che commentano, sintetici e ben strutturati; nel nostro caso devono possedere uno spazio prima dell'inizio e cominciare con la lettera maiuscola.}\\
             
             \hline\rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS016 Metodi non documentati & 0
             \\
             \rowcolor{gray!15}
-            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: come per i file, anche per i metodi una documentazione è necessaria per capire subito il compito di un metodo, per questo il numero di metodi non documentati deve essere nullo al termine del progetto.}\\
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: come per i file, anche per i metodi è necessaria una documentazione per capire subito il compito di tale metodo, per questo il numero di metodi non documentati deve essere nullo al termine del progetto.}\\
             
             \hline
         \end{tabularx}}
     \caption{Obiettivi di qualità per il software (3)}
 \end{table}
 
-\mydoublerule{\linewidth}{0pt}{2pt}
+%\mydoublerule{\linewidth}{0pt}{2pt}
