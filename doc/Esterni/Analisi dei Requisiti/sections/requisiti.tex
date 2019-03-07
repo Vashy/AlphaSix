@@ -113,7 +113,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC15.1.2-GP}
 				\subReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è presente nel sistema}{Interno UC15.2-GP}
 
-			\bottomrule\\
+			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di funzionalità (\thetableCounter)}
 	\end{table}
@@ -257,7 +257,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\end{table}
 
 
-
+	\stepcounter{tableCounter}
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
@@ -280,7 +280,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\subsubReqQ{2}{Il file README per il Dockerfile deve contenere le istruzioni per l'avvio}{Capitolato}
 				\subsubReqQ{2}{Il file README per il Dockerfile deve contenere la documentazione delle configurazioni custom scelte}{Capitolato}
 
-			\bottomrule \\
+			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei requisiti di qualità (\thetableCounter)}
 	\end{table}
@@ -371,58 +371,62 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		% 	\caption{Elenco dei requisiti del capitolato (1)}
 		% \end{table}
 
+		\setcounter{tableCounter}{1}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
-				\multirow{22}{*}{Capitolato}
-				& R22F2 \\\cline{2-2}
-				& R23F2 \\\cline{2-2}
-				& R24F2 \\\cline{2-2}
-				& R25F2 \\\cline{2-2}
-				& R26F2 \\\cline{2-2}
-				& R27F2 \\\cline{2-2}
+				& \cellcolor{\tablegray} R22F2 \\
+				& R23F2 \\
+				& \cellcolor{\tablegray} R24F2 \\
+				& R25F2 \\
+				& \cellcolor{\tablegray} R26F2 \\
+				& R27F2 \\
 				% \cmidrule{2-2}
-				& R10Q2 \\\cline{2-2}
-				& R11Q2 \\\cline{2-2}
-				& R12Q2 \\\cline{2-2}
-				& R12.1Q2 \\\cline{2-2}
-				& R13Q2 \\\cline{2-2}
-				& R13.1Q2 \\\cline{2-2}
-				& R13.2Q2 \\\cline{2-2}
-				& R13.3Q2 \\\cline{2-2}
-				& R14Q1 \\\cline{2-2}
-				& R14.1Q2 \\\cline{2-2}
-				& R15Q2 \\\cline{2-2}
-				& R15.1Q2 \\\cline{2-2}
-				& R15.2Q2 \\\cline{2-2}
-				& R15.3Q2 \\\cline{2-2}
-				& R15.3.1Q2 \\\cline{2-2}
-				& R15.3.2Q2 \\\bottomrule
+				& \cellcolor{\tablegray} R10Q2 \\
+				& R11Q2 \\
+				& \cellcolor{\tablegray} R12Q2 \\
+				& R12.1Q2 \\
+				& \cellcolor{\tablegray} R13Q2 \\
+				& R13.1Q2 \\
+				& \cellcolor{\tablegray} R13.2Q2 \\
+				& R13.3Q2 \\
+				& \cellcolor{\tablegray} R14Q1 \\
+				& R14.1Q2 \\
+				& \cellcolor{\tablegray} R15Q2 \\
+				& R15.1Q2 \\
+				& \cellcolor{\tablegray} R15.2Q2 \\
+				& R15.3Q2 \\
+				& \cellcolor{\tablegray} R15.3.1Q2 \\ 
+				\multirow{-22}{*}{Capitolato} & R15.3.2Q2 \\
+
+				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti del capitolato (1)}
+			\caption{Elenco dei requisiti del capitolato (\thetableCounter)}
 		\end{table}
 
-
+		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
-				\multirow{8}{*}{Capitolato}
-				& R1V2 \\\cline{2-2}
-				& R1.1V0 \\\cline{2-2}
-				& R2V2 \\\cline{2-2}
-				& R2.1V0 \\\cline{2-2}
-				& R3V2 \\\cline{2-2}
-				& R3.1V2 \\\cline{2-2}
-				& R4V1 \\\cline{2-2}
-				& R5V1 \\\bottomrule
+				
+				& \cellcolor{\tablegray} R1V2 \\
+				& R1.1V0 \\
+				& \cellcolor{\tablegray} R2V2 \\
+				& R2.1V0 \\
+				& \cellcolor{\tablegray} R3V2 \\
+				& R3.1V2 \\
+				& \cellcolor{\tablegray} R4V1 \\
+				\multirow{-8}{*}{Capitolato} & R5V1 \\
+
+				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti del capitolato (2)}
+			\caption{Elenco dei requisiti del capitolato (\thetableCounter)}
 		\end{table}
 
 		% \begin{table}[H]
@@ -453,6 +457,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		% 	\caption{Elenco dei requisiti interni}
 		% \end{table}
 
+		\setcounter{tableCounter}{1}
 		\begin{table}[H]
 			\centering
 			\rowcolors{2}{white}{\tablegray}
@@ -479,10 +484,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				UC9-CE & R11F2 \\
 				\bottomrule \\
 			\end{tabularx}}
-			\caption{Elenco dei requisiti per i casi d'uso (1)}
+			\caption{Elenco dei requisiti per i casi d'uso (\thetableCounter)}
 		\end{table}
 
 
+		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
 			%\rowcolors{2}{white}{\tablegray}
@@ -532,10 +538,10 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\rowcolor{\tablegray}UC17.3-GP & R20.3F0 \\
 			   \bottomrule
 		   \end{oldtabularx}}
-		   \caption{Elenco dei requisiti per i casi d'uso (2)}
+		   \caption{Elenco dei requisiti per i casi d'uso (\thetableCounter)}
 	    \end{table}
 
-
+		\stepcounter{tableCounter}
 	    \begin{table}[H]
 		\centering
 		%\rowcolors{2}{white}{\tablegray}
@@ -567,7 +573,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 			\bottomrule
 	  	\end{oldtabularx}}
-	  	\caption{Elenco dei requisiti per i casi d'uso (3)}
+	  	\caption{Elenco dei requisiti per i casi d'uso (\thetableCounter)}
   		\end{table}
 
 
@@ -599,35 +605,36 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{oldtabularx}{0.7\textwidth}{YY}
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
-			\multirow{29}{*}{Interno}
-			& R1F2 \\\cline{2-2}
-			& R2F2 \\\cline{2-2}
-			& R3F2 \\\cline{2-2}
-			& R4F2 \\\cline{2-2}
-			& R5F2 \\\cline{2-2}
-			& R6F2 \\\cline{2-2}
-			& R6.1F2 \\\cline{2-2}
-			& R6.2F2 \\\cline{2-2}
-			& R7F1 \\\cline{2-2}
-			& R8.1F2 \\\cline{2-2}
-			& R8.2F2 \\\cline{2-2}
-			& R8.2.1F2 \\\cline{2-2}
-			& R8.2.2F2 \\\cline{2-2}
-			& R9F1 \\\cline{2-2}
-			& R10F2 \\\cline{2-2}
-			& R11F2 \\\cline{2-2}
-			& R12F2 \\\cline{2-2}
-			& R13F2 \\\cline{2-2}
-			& R14F0 \\\cline{2-2}
-			& R14.1F0 \\\cline{2-2}
-			& R15F0 \\\cline{2-2}
-			& R16F0 \\\cline{2-2}
-			& R17F0 \\\cline{2-2}
-			& R17.1F0 \\\cline{2-2}
-			& R17.2F0 \\\cline{2-2}
-			& R17.3F0 \\\cline{2-2}
-			& R17.3.1F0 \\\cline{2-2}
-			& R17.4F0 \\
+			
+			& \cellcolor{\tablegray} R1F2 \\
+			& R2F2 \\
+			& \cellcolor{\tablegray} R3F2 \\
+			& R4F2 \\
+			& \cellcolor{\tablegray} R5F2 \\
+			& R6F2 \\
+			& \cellcolor{\tablegray} R6.1F2 \\
+			& R6.2F2 \\
+			& \cellcolor{\tablegray} R7F1 \\
+			& R8.1F2 \\
+			& \cellcolor{\tablegray} R8.2F2 \\
+			& R8.2.1F2 \\
+			& \cellcolor{\tablegray} R8.2.2F2 \\
+			& R9F1 \\
+			& \cellcolor{\tablegray} R10F2 \\
+			& R11F2 \\
+			& \cellcolor{\tablegray} R12F2 \\
+			& R13F2 \\
+			& \cellcolor{\tablegray} R14F0 \\
+			& R14.1F0 \\
+			& \cellcolor{\tablegray} R15F0 \\
+			& R16F0 \\
+			& \cellcolor{\tablegray} R17F0 \\
+			& R17.1F0 \\
+			& \cellcolor{\tablegray} R17.2F0 \\
+			& R17.3F0 \\
+			& \cellcolor{\tablegray} R17.3.1F0 \\
+			\multirow{-29}{*}{Interno} & R17.4F0 \\
+
 			\bottomrule
 		\end{oldtabularx}}
 		\caption{Elenco dei requisiti da fonte interna (\thetableCounter)}
@@ -640,36 +647,37 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{oldtabularx}{0.7\textwidth}{YY}
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
-			\multirow{29}{*}{Interno}
-			& R17.4.1F0 \\\cline{2-2}
-			& R18F0 \\\cline{2-2}
-			& R18.1F0 \\\cline{2-2}
-			& R18.2F0 \\\cline{2-2}
-			& R18.3F0 \\\cline{2-2}
-			& R18.4F0 \\\cline{2-2}
-			& R19F0 \\\cline{2-2}
-			& R19.1F0 \\\cline{2-2}
-			& R19.1.1F0 \\\cline{2-2}
-			& R19.2F0 \\\cline{2-2}
-			& R19.3F0 \\\cline{2-2}
-			& R19.4F0 \\\cline{2-2}
-			& R19.4.1F0 \\\cline{2-2}
-			& R19.5F0 \\\cline{2-2}
-			& R19.5.1F0 \\\cline{2-2}
-			& R20F0 \\\cline{2-2}
-			& R20.1F0 \\\cline{2-2}
-			& R20.2F0 \\\cline{2-2}
-			& R20.3F0 \\\cline{2-2}
-			& R20.4F0 \\\cline{2-2}
-			& R20.4.1F0 \\\cline{2-2}
-			& R20.4.2F0 \\\cline{2-2}
-			& R20.5F0 \\\cline{2-2}
-			& R20.5.1F0 \\\cline{2-2}
-			& R21F0 \\\cline{2-2}
-			& R21.1F0 \\\cline{2-2}
-			& R21.2F0 \\\cline{2-2}
-			& R21.3F0 \\\cline{2-2}
-			& R21.4F0 \\
+
+			& \cellcolor{\tablegray} R17.4.1F0 \\
+			& R18F0 \\
+			& \cellcolor{\tablegray} R18.1F0 \\
+			& R18.2F0 \\
+			& \cellcolor{\tablegray} R18.3F0 \\
+			& R18.4F0 \\
+			& \cellcolor{\tablegray} R19F0 \\
+			& R19.1F0 \\
+			& \cellcolor{\tablegray} R19.1.1F0 \\
+			& R19.2F0 \\
+			& \cellcolor{\tablegray} R19.3F0 \\
+			& R19.4F0 \\
+			& \cellcolor{\tablegray} R19.4.1F0 \\
+			& R19.5F0 \\
+			& \cellcolor{\tablegray} R19.5.1F0 \\
+			& R20F0 \\
+			& \cellcolor{\tablegray} R20.1F0 \\
+			& R20.2F0 \\
+			& \cellcolor{\tablegray} R20.3F0 \\
+			& R20.4F0 \\
+			& \cellcolor{\tablegray} R20.4.1F0 \\
+			& R20.4.2F0 \\
+			& \cellcolor{\tablegray} R20.5F0 \\
+			& R20.5.1F0 \\
+			& \cellcolor{\tablegray} R21F0 \\
+			& R21.1F0 \\
+			& \cellcolor{\tablegray} R21.2F0 \\
+			& R21.3F0 \\
+			\multirow{-29}{*}{Interno} & \cellcolor{\tablegray} R21.4F0 \\
+
 			\bottomrule
 		\end{oldtabularx}}
 		\caption{Elenco dei requisiti da fonte interna (\thetableCounter)}
@@ -682,45 +690,45 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{oldtabularx}{0.7\textwidth}{YY}
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
-			\multirow{18}{*}{Interno}
-			& R21.4.1F0 \\\cline{2-2}
-			& R21.4.2F0 \\\cline{2-2}
-			& R21.5F0 \\\cline{2-2}
-			& R21.5.1F0 \\\cline{2-2}
-			& R1Q1 \\\cline{2-2}
-			& R2Q1 \\\cline{2-2}
-			& R3Q1 \\\cline{2-2}
-			& R4Q1 \\\cline{2-2}
-			& R5Q1 \\\cline{2-2}
-			& R6Q1 \\\cline{2-2}
-			& R7Q1 \\\cline{2-2}
-			& R7Q1 \\\cline{2-2}
-			& R9Q2 \\\cline{2-2}
-			& R6V0 \\\cline{2-2}
-			& R7V0 \\\cline{2-2}
-			& R8V0 \\\cline{2-2}
-			& R9V0 \\\cline{2-2}
-			& R10V0 \\
+
+			& \cellcolor{\tablegray} R21.4.1F0 \\
+			& R21.4.2F0 \\
+			& \cellcolor{\tablegray} R21.5F0 \\
+			& R21.5.1F0 \\
+			& \cellcolor{\tablegray} R1Q1 \\
+			& R2Q1 \\
+			& \cellcolor{\tablegray} R3Q1 \\
+			& R4Q1 \\
+			& \cellcolor{\tablegray} R5Q1 \\
+			& R6Q1 \\
+			& \cellcolor{\tablegray} R7Q1 \\
+			& R7Q1 \\
+			& \cellcolor{\tablegray} R9Q2 \\
+			& R6V0 \\
+			& \cellcolor{\tablegray} R7V0 \\
+			& R8V0 \\
+			& \cellcolor{\tablegray} R9V0 \\
+			\multirow{-18}{*}{Interno} & R10V0 \\
 			\bottomrule
 		\end{oldtabularx}}
 		\caption{Elenco dei requisiti da fonte interna (\thetableCounter)}
 	\end{table}
 
 
-\newcounter{V} % valore
-\newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
-\newcommand{\addC}[0]{\theV \deV} % Comando per generare
-\addtocounter{V}{1}
+% \newcounter{V} % valore
+% \newcommand{\deV}{\addtocounter{V}{+1}} % Comando per l'aumento automatico del counter vaZ
+% \newcommand{\addC}[0]{\theV \deV} % Comando per generare
+% \addtocounter{V}{1}
 
-\newcounter{Vv} % valore
-\newcommand{\deVv}{\addtocounter{Vv}{+1}} % Comando per l'aumento automatico del counter vaZ
-\newcommand{\addVC}[0]{\theVv \deVv} % Comando per generare
-\addtocounter{Vv}{1}
+% \newcounter{Vv} % valore
+% \newcommand{\deVv}{\addtocounter{Vv}{+1}} % Comando per l'aumento automatico del counter vaZ
+% \newcommand{\addVC}[0]{\theVv \deVv} % Comando per generare
+% \addtocounter{Vv}{1}
 
-\newcounter{X} % valore
-\newcommand{\deX}{\addtocounter{X}{+1}} % Comando per l'aumento automatico del counter vaZ
-\newcommand{\addX}[0]{\theX \deX} % Comando per generare
-\addtocounter{X}{1}
+% \newcounter{X} % valore
+% \newcommand{\deX}{\addtocounter{X}{+1}} % Comando per l'aumento automatico del counter vaZ
+% \newcommand{\addX}[0]{\theX \deX} % Comando per generare
+% \addtocounter{X}{1}
 
 		\subsubsection{Tracciamento requisito-fonte}
 
@@ -762,6 +770,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		% \caption{Elenco dei requisiti funzionali in rapporto alle fonti}
 		% \end{table}
 
+		\setcounter{tableCounter}{1}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
@@ -837,11 +846,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (1)}
+			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
-
-
+		
+		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
@@ -917,10 +926,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (2)}
+			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
 
+		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
@@ -996,10 +1006,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (3)}
+			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
 
+		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
@@ -1075,10 +1086,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (4)}
+			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
 
+		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
@@ -1144,10 +1156,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				R27F2 & Capitolato \\
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (5)}
+			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
 
+		\setcounter{tableCounter}{1}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
@@ -1210,10 +1223,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (1)}
+			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
 
+		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.6}
@@ -1228,7 +1242,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				R15.3.2F2 & Capitolato \\
 				\bottomrule
 			\end{oldtabularx}}
-			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (2)}
+			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
 
