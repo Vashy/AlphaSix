@@ -10,12 +10,11 @@
 		\item \textbf{Attori primari}: Gestore Personale.
 		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato
 		dal Producer Redmine o GitLab, controlla i messaggi sullo specifico Topic ``commits''.
-		Se ce ne sono, vengono analizzati in base alla	lista di keyword.
-		Se gli utenti iscritti a quella determinata keyword sono disponibili e se vogliono ricevere il messaggio tramite Telegram viene preparato
-		il messaggio finale da inviare e inviato al Consumer Telegram.
-		Altrimenti valuta il campo Topic del messaggio e controlla se qualcuno è iscritto a quel Topic, se gli utenti iscritti a quel Topic sono disponibili e
+		Se ce ne sono, vengono analizzati in base alla lista di keyword.
+		Valuta i Topic relativi a quelle determinate keyword e controlla se qualcuno è iscritto a quel Topic, se gli utenti iscritti a quel Topic sono disponibili e
 		se vogliono ricevere il messaggio tramite Telegram.
-		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare e inviato al Consumer Telegram.\\
+		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare e inviato al Consumer Telegram. 
+		Altrimenti, se il destinatario è iscritto a quel Topic ma non è disponibile, il destinatario viene cambiato, ma si prosegue comunque all'invio verso il Consumer Telegram.\\
 		Il messaggio finale, una volta elaborato, conterrà i campi:
 		\begin{itemize}
 			\item Id della chat del destinatario
@@ -37,7 +36,7 @@
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
 			\item ll Gestore Personale riceve un messaggio dal Producer Redmine o dal Producer GitLab
-			\item Il Gestore Personale valuta quali utenti sono iscritti al Topic del messaggio ricevuto, se sono disponibili e se vogliono ricevere il messaggio tramite Telegram
+			\item Il Gestore Personale valuta quali utenti sono iscritti al Topic del messaggio ricevuto e se vogliono ricevere il messaggio tramite Telegram
 			\item Gestore Personale procede all'invio del messaggio finale al Consumer Telegram
 		\end{enumerate}
 		
