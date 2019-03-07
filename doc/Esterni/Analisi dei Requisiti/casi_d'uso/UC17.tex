@@ -16,7 +16,7 @@
 			\item L'utente modifica i dati relativi ad un utente
 		\end{enumerate}
 	\end{itemize}
-	
+	%TODO: perchè modifico tramite ID ma non rimuovo tramite ID?
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
 		\begin{figure}[H]
@@ -136,12 +136,14 @@
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 			\item \textbf{Titolo}: errore, nuovi dati dell'utente già esistenti.
 			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: i nuovi dati dell'utente da modificare che sono stati inseriti sono già presenti nel sistema.
-			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
-			\item \textbf{Postcondizione}: l'utente non è stato modificato.
+			\item \textbf{Descrizione}: i nuovi dati dell'utente da modificare che sono stati inseriti sono già presenti nel sistema, ovvero i nuovi campi corrispondono a quelli di un utente già esistente. In particolare il contatto Telegram o Email, perchè una persona può avere lo stesso nome e cognome di un altro.
+			\item \textbf{Precondizione}: l'utente vuole modificare un utente esistente nel sistema.
+			\item \textbf{Postcondizione}: l'utente non è stato modificato e viene visualizzato un messaggio di errore.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
-				\item L'utente non viene modificato perché i nuovi campi corrispondono a quelli di un utente già esistente
+				\item L'utente inserisce i campi richiesti dal sistema
+				\item L'utente non viene modificato
+				\item L'utente visualizza un messaggio di errore
 			\end{enumerate}
 		\end{itemize}
 	\stepcounter{subuccount}
@@ -154,8 +156,9 @@
 			\item \textbf{Descrizione}:  l’utente viene avvisato che ha inserito un'identificativo errato.
 			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
 			\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore.
-			\item \textbf{Scenario Principale}:
+			\item \textbf{Scenario principale}:
 			\begin{enumerate}
-				\item L'utente ha inserito un identificativo errato e il sistema comunica all’utilizzatore l’errore.
+				\item L'utente inserisce un identificativo errato 
+				\item Il sistema comunica all’utilizzatore l’errore
 			\end{enumerate}
 		\end{itemize}
