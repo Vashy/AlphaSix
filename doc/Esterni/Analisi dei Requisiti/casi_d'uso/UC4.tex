@@ -9,9 +9,10 @@
 		\item \textbf{Titolo}: GitLab segnala apertura issue al Producer GitLab.
 		\item \textbf{Attori primari}: GitLab.
 		\item \textbf{Descrizione}: GitLab segnala l'apertura di una nuova issue tramite webhook a \progetto.
-		
 		L'apertura di una issue su GitLab contiene:
 		\begin{itemize}
+			\item Object kind
+			\item Action
 			\item Title e opzionalmente:
 			\begin{itemize}
 				\item Label
@@ -20,6 +21,7 @@
 				\item Due Date
 			\end{itemize}
 		\end{itemize}
+		Il campo object kind ci permette di capire il tipo di oggetto, in questo caso infatti contiene ``issue'', mentre il campo action ha ``open''.
 		\item \textbf{Precondizione}: viene aperta una issue su GitLab da 
 		segnalare a \progetto.
 		\item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
