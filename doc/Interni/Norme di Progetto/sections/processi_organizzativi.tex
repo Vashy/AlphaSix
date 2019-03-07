@@ -11,6 +11,100 @@
 	    	\item I \gloss{task} di risorsa umana
 	    	\item La verifica delle attività di processo
 	    \end{itemize}
+    
+        \subsubsection{Pianificazione della qualità}\label{PianificazioneQualità}
+        %Per cercare la qualità nei prodotti è necessario che vengano misurate diverse caratteristiche di questi ultimi.
+        Per la ricerca della qualità nei prodotti è necessario che ne vengano misurate diverse caratteristiche associate.
+        Per ogni caratteristica devono essere fissati un livello minimo e un livello ottimale che questa deve avere.
+        In tale sezione, viene descritto il modo di utilizzo sia delle metriche che degli strumenti utili ad ottenere qualità nei processi, nei documenti e nei prodotti.
+        Gli strumenti utilizzati possono essere software, descritti nelle \Doc{\NdPv}, o standard di qualità, descritti nel \Doc{\PdQv}.\\
+        Gli obiettivi che ci si pone di raggiungere sono descritti nel \Doc{\PdQv}.
+        
+        \paragraph{Classificazione dei processi}
+        I processi analizzati nel \Doc{\PdQv} sono classificati nel seguente modo:
+        
+        \begin{center}
+            \texttt{PROC[ID] [Nome]}
+        \end{center}
+        
+        \begin{itemize}
+            \item \textbf{ID}: un numero incrementale per indicare in modo univoco il processo.
+            \item \textbf{Nome}: una breve frase per indicare la funzione del processo.
+        \end{itemize}
+        
+        \paragraph{Classificazione degli obiettivi}
+        Gli obiettivi per la qualità (Q) concordati dall'\Amm\ e dal \Ver, descritti nel \PdQ, avranno il seguente codice identificativo:
+        
+        \begin{center}
+            \texttt{Q[Tipo][ID] [Nome]}
+        \end{center}
+        
+        \begin{itemize}
+            \item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene valutata la qualità, e questa può essere:
+            \begin{itemize}
+                \item \texttt{PR}: processi.
+                \item \texttt{PD}: prodotti di documentazione.
+                \item \texttt{PS}: prodotti software.
+            \end{itemize}
+            
+            \item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre.
+            \item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase.
+        \end{itemize}
+        
+        Ad esempio:
+        
+        \begin{itemize}
+            \item QPD001 Leggibilità del testo
+        \end{itemize}
+        
+        
+        \paragraph{Classificazione delle metriche}\label{Classificazione metriche}
+        Ogni obiettivo della qualità deve, per quanto possibile, essere collegato ad una metrica, anch'essa scelta dall'\Amm\ e dal \Ver. Questo per valutare
+        quantitativamente il raggiungimento o meno degli obiettivi stabiliti.
+        
+        Le metriche (M) verranno classificate nel seguente modo:
+        
+        \begin{center}
+            \texttt{M[Tipo][ID] [Nome]}
+        \end{center}
+        
+        \begin{itemize}
+            \item \textbf{Tipo}: indica la tipologia di quello su cui viene applicata la metrica, può essere:
+            \begin{itemize}
+                \item \texttt{PR}: processi.
+                \item \texttt{PD}: prodotti di documentazione.
+                \item \texttt{PS}: prodotti software.
+            \end{itemize}
+            
+            \item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre.
+            \item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase.
+        \end{itemize}
+        
+        Ad esempio:
+        
+        \begin{itemize}
+            \item MPD001 Indice Gulpease
+        \end{itemize}
+        
+        Quando sarà possibile, la metrica e l'obiettivo di qualità collegati fra loro avranno lo stesso Tipo e ID.
+        
+        Ad esempio:
+        
+        \begin{table}[H]
+            \begin{detailtable}{\textwidth}{YYY}
+                \rowcolor{gray!30}
+                \thead{Obiettivo} &
+                \thead{Metrica} &
+                \thead{Valore desiderato}\\\toprule
+                % \hline
+                QPD001 Leggibilità del testo & MPD001 Indice Gulpease & 50-60\\
+                % \hline
+                \rowcolor{gray!15}
+                \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'\gloss{indice di Gulpease} e una verifica da parte del \Ver.}
+            \end{detailtable}
+            \caption[Metrica Indice di Gulpease]{Metrica dell'Indice di Gulpease}%, usata per il calcolo della qualità della leggibilità del testo}
+        \end{table}
+    
 
 		\subsubsection{Pianificazione di attività}
 
@@ -78,11 +172,10 @@
 			\subparagraph{MPR001 Varianza della pianificazione}
 			Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
 			Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
-			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
+			\[\dfrac{\sum_{i=1}^{n} |x_i|}{n} \qquad x_i=\text{numero di ore di variazione rispetto al preventivo per l'i-esimo ruolo.}\]
 
 
-			\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività
-			viene conclusa in anticipo, il numero di giorni di ritardo non è negativo ma nullo.
+			\textbf{Metrica}: viene indicato il numero di ore di variazione presenti nel momento della verifica rispetto al preventivo effettuato per un preciso periodo. Questo viene svolto per ogni ruolo del progetto ed infine fatta la somma delle variazioni in valore assoluto. Per misurare il numero di ore di varianza viene usato lo strumento Toggl in \S\ref{toggl} per misurare le ore di lavoro effettive. I valori vengono infine confrontati col preventivo.
 
 			\subparagraph{MPR002 Varianza dei costi}
 			All'interno del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
@@ -181,7 +274,7 @@
 			probabilità alta e un valore di classe medio.\\
 			Invece P002-122:2019-01-13 è il secondo rischio attualizzato relativo al personale, di gravità tollerabile, probabilità alta, valore di classe alto e si è verificato in data 2019-01-13.
             
-            \subsubsection{MPR008 Rischi non previsti avvenuti}
+            \subparagraph{MPR008 Rischi non previsti avvenuti}
             La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
             
             
@@ -200,101 +293,6 @@
 				\item Programmatore
 				\item Verificatore
 			\end{itemize}
-
-
-		\subsubsection{Pianificazione della qualità}\label{PianificazioneQualità}
-		%Per cercare la qualità nei prodotti è necessario che vengano misurate diverse caratteristiche di questi ultimi.
-		Per la ricerca della qualità nei prodotti è necessario che ne vengano misurate diverse caratteristiche associate.
-		Per ogni caratteristica devono essere fissati un livello minimo e un livello ottimale che questa deve avere.
-		In tale sezione, viene descritto il modo di utilizzo sia delle metriche che degli strumenti utili ad ottenere qualità nei processi, nei documenti e nei prodotti.
-		Gli strumenti utilizzati possono essere software, descritti nelle \Doc{\NdPv}, o standard di qualità, descritti nel \Doc{\PdQv}.\\
-		Gli obiettivi che ci si pone di raggiungere sono descritti nel \Doc{\PdQv}.
-
-			\paragraph{Classificazione dei processi}
-			I processi analizzati nel \Doc{\PdQv} sono classificati nel seguente modo:
-
-			\begin{center}
-				\texttt{PROC[ID] [Nome]}
-			\end{center}
-
-			\begin{itemize}
-				\item \textbf{ID}: un numero incrementale per indicare in modo univoco il processo.
-				\item \textbf{Nome}: una breve frase per indicare la funzione del processo.
-			\end{itemize}
-
-			\paragraph{Classificazione degli obiettivi}
-			Gli obiettivi per la qualità (Q) concordati dall'\Amm\ e dal \Ver, descritti nel \PdQ, avranno il seguente codice identificativo:
-
-			\begin{center}
-				\texttt{Q[Tipo][ID] [Nome]}
-			\end{center}
-
-			\begin{itemize}
-				\item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene valutata la qualità, e questa può essere:
-				\begin{itemize}
-					\item \texttt{PR}: processi.
-					\item \texttt{PD}: prodotti di documentazione.
-					\item \texttt{PS}: prodotti software.
-				\end{itemize}
-
-				\item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre.
-				\item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase.
-			\end{itemize}
-
-			Ad esempio:
-
-			\begin{itemize}
-				\item QPD001 Leggibilità del testo
-			\end{itemize}
-
-
-			\paragraph{Classificazione delle metriche}\label{Classificazione metriche}
-			Ogni obiettivo della qualità deve, per quanto possibile, essere collegato ad una metrica, anch'essa scelta dall'\Amm\ e dal \Ver. Questo per valutare
-			quantitativamente il raggiungimento o meno degli obiettivi stabiliti.
-
-			Le metriche (M) verranno classificate nel seguente modo:
-
-			\begin{center}
-				\texttt{M[Tipo][ID] [Nome]}
-			\end{center}
-
-			\begin{itemize}
-				\item \textbf{Tipo}: indica la tipologia di quello su cui viene applicata la metrica, può essere:
-				\begin{itemize}
-					\item \texttt{PR}: processi.
-					\item \texttt{PD}: prodotti di documentazione.
-					\item \texttt{PS}: prodotti software.
-				\end{itemize}
-
-				\item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre.
-				\item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase.
-			\end{itemize}
-
-			Ad esempio:
-
-			\begin{itemize}
-				\item MPD001 Indice Gulpease
-			\end{itemize}
-
-			Quando sarà possibile, la metrica e l'obiettivo di qualità collegati fra loro avranno lo stesso Tipo e ID.
-
-			Ad esempio:
-
-			\begin{table}[H]
-				\begin{detailtable}{\textwidth}{YYY}
-					\rowcolor{gray!30}
-					\thead{Obiettivo} &
-					\thead{Metrica} &
-					\thead{Valore desiderato}\\\toprule
-					% \hline
-					QPD001 Leggibilità del testo & MPD001 Indice Gulpease & 50-60\\
-					% \hline
-					\rowcolor{gray!15}
-					\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: quanto il testo è leggibile e comprensibile a livello sintattico lo stabilisce l'\gloss{indice di Gulpease} e una verifica da parte del \Ver.}
-				\end{detailtable}
-				\caption[Metrica Indice di Gulpease]{Metrica dell'Indice di Gulpease}%, usata per il calcolo della qualità della leggibilità del testo}
-			\end{table}
-
 
 		% \subsubsection{Controllo del progetto}
 

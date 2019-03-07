@@ -85,14 +85,14 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 			{\def\arraystretch{1.5}
 				\begin{tabularx}{\textwidth}{YYY}
 					\rowcolor{white}
-					\textbf{QPR001 Rispetto dei periodi della pianificazione} & \textbf{MPR001 Varianza della pianificazione} & \textbf{0-2 Giorni} \\
+					\textbf{QPR001 Rispetto dei periodi della pianificazione} & \textbf{MPR001 Varianza della pianificazione} & \textbf{96 ore} \\
 					\hline
 					\rowcolor{gray!30}
 					\textbf{Prodotto/processo testato} & \textbf{Risultato ottenuto} & \textbf{Valutazione} \\
 					\toprule
-					\rowcolor{white} \PdP & 1.23 & Soddisfacente \\
+					\rowcolor{white} \PdP & 7 & Soddisfacente \\
 					\toprule
-					\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: non tutte le scadenze sono state rispettate, ma i ritardi sono rientrati nei valori tollerati. Il valore ottenuto è la media sul totale di ritardi.} \\
+					\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Nota}: non tutte le scadenze sono state rispettate, ma i ritardi sono rientrati nei valori tollerati. Il valore ottenuto è la somma delle ore di variazione dei vari ruoli.} \\
 			\end{tabularx}}
 			\caption{Risultati di MPR001 Varianza della pianificazione}
 		\end{table}
@@ -248,10 +248,10 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPR001 Rispetto dei periodi della pianificazione.
-		\item \textbf{Valore desiderato}: 0-2 giorni.
+		\item \textbf{Valore desiderato}: 96 ore.
 		\item \textbf{Descrizione}: oltre a mostrare le ore di varianza di ogni ruolo, viene mostrato anche il totale delle ore di variazione (in viola) coi relativi valori. 
 		\item \textbf{Valutazione}: poco soddisfacente.
-		\item \textbf{Considerazioni}:Nelle ultime settimane ci siamo costretti a ridurre drasticamente le ore al \Prog\ per darne al \Progr\ essendo a ridosso della consegna del Proof of Concept.
+		\item \textbf{Considerazioni}:Nelle ultime settimane siamo stati costretti a ridurre drasticamente le ore al \Prog\ per darne al \Progr\ essendo a ridosso della consegna del Proof of Concept. Questo purtroppo ha portato ad una variazione troppo elevata del preventivo in termini di ore.
 	\end{itemize}
 
 
@@ -266,10 +266,10 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPR002 Varianza del budget.
-		\item \textbf{Valore desiderato}: 0-200\EUR.
+		\item \textbf{Valore desiderato}: \EUR{0-200}.
 		\item \textbf{Descrizione}: vengono mostrate le variazioni della spesa attribuita ad ogni ruolo, inoltre ne viene mostrato il totale attraverso delle colonne (in viola) coi relativi valori.
 		\item \textbf{Valutazione}: soddisfacente.
-		\item \textbf{Considerazioni}: la diminuzione delle ore assegnate al \Prog\ a favore di quelle per il \Progr, ha portato ad una diminuzione di 156\euro del preventivo, un dato che comunque risulta essere soddisfacente.
+		\item \textbf{Considerazioni}: la diminuzione delle ore assegnate al \Prog\ a favore di quelle per il \Progr, ha portato ad una diminuzione di \EUR{156} del preventivo, un dato che comunque risulta essere soddisfacente.
 	\end{itemize}
 	
 
