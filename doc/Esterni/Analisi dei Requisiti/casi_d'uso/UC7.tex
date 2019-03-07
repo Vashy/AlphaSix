@@ -12,7 +12,7 @@
 		 segnalazione da Redmine, elabora il messaggio e lo invia al Gestore Personale.
 		 Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
 		 \begin{itemize}
-		 	\item Poject
+		 	\item Project
 		 	\item Topic
 		 	\item Subject e opzionalmente:
 		 	\begin{itemize}
@@ -20,9 +20,9 @@
 		 	\end{itemize}
 		 \end{itemize}
 	 	Il messaggio non può contenere campi errati o mancanti per il corretto funzionamenti di \progetto, perché i campi selezionati sono obbligatori per l'apertura di una issue su Redmine.
-		\item \textbf{Pecondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
+		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio.
-		\item \textbf{Scenario GPincipale}: 
+		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
 			\item Il Producer Redmine riceve la segnalazione di issue da Redmine
 			\item Il Producer Redmine prepara il messaggio di issue in modo che venga inserito correttamente nel Gestore Personale
@@ -40,17 +40,17 @@
 		\item \textbf{Attori Pimari}: Producer Redmine.
 		\item \textbf{Descrizione}: il Producer Redmine, dopo aver
 		ricevuto una segnalazione di apertura issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
-		Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
-		\begin{itemize}
-			\item Poject
-			\item Topic
-			\item Subject e opzionalmente:
-			\begin{itemize}
-				\item Description
-			\end{itemize}
-		\end{itemize}
-		\item \textbf{Pecondizione}: il Poducer Redmine ha ricevuto una segnalazione da Redmine.
-		\item \textbf{Postcondizione}: il Poducer Redmine ha elaborato e inviato al Gestore Personale il messaggio di apertura issue.
+		% Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
+		% \begin{itemize}
+		% 	\item Project
+		% 	\item Topic
+		% 	\item Subject e opzionalmente:
+		% 	\begin{itemize}
+		% 		\item Description
+		% 	\end{itemize}
+		% \end{itemize}
+		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
+		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di apertura issue.
 
 		\item \textbf{Scenario Pincipale}: 
 		\begin{enumerate}
@@ -69,18 +69,17 @@
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: Producer Redmine invia messaggio di modifica issue al Gestore Personale
 			\item \textbf{Attori Pimari}: Producer Redmine.
-			\item \textbf{Descrizione}: il Producer Redmine, dopo aver
-			ricevuto una segnalazione di modifica issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
-			Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
-			\begin{itemize}
-				\item Poject
-				\item Topic
-				\item Subject e opzionalmente:
-				\begin{itemize}
-					\item Description
-				\end{itemize}
-			\end{itemize}
-			\item \textbf{Pecondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
+			\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto una segnalazione di modifica issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
+			% Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
+			% \begin{itemize}
+			% 	\item Project
+			% 	\item Topic
+			% 	\item Subject e opzionalmente:
+			% 	\begin{itemize}
+			% 		\item Description
+			% 	\end{itemize}
+			% \end{itemize}
+			\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 			\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di modifica issue.
 			\item \textbf{Scenario Pincipale}: 
 			\begin{enumerate}
