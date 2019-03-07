@@ -11,10 +11,10 @@
 		quelle di interesse comune e di utilità per il progetto. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo
 		per acquisirne una buona padronanza.
 
-		\subsubsection{Normazione}\label{Normazione} % TODO: aggiungere PoC a Glossario
-		L'attività di normazione prevede l'inremento del documento corrente ogni qual volta lo si ritiene necessario.
+		\subsubsection{Normazione}\label{Normazione}
+		L'attività di normazione prevede l'incremento del documento corrente ogni qual volta lo si ritiene necessario.
 		Essendo infatti un documento incrementale, è possibile che vengano aggiunte delle nuove regole o aggiornate quelle già presenti.
-		Facendo un esempio: arrivati al momento di riscrittura dei casi d'uso, dopo la prima revisione, abbiamo dovuto suddividere i casi in categorie ben distinte, in modo che fosse evidente il sottosistema di Butterfly di riferimento.
+		Facendo un esempio: arrivati al momento di riscrittura dei casi d'uso, dopo la prima revisione, abbiamo dovuto suddividere i casi in categorie ben distinte, in modo che fosse evidente il sottosistema di riferimento di Butterfly.
 		Di conseguenza, cambiare il codice identificativo di ognuno e cambiare la relativa norma nel paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
 
         \subsubsection{Studio di fattibilità}\label{PP:Fornitura:SdF}
@@ -31,7 +31,7 @@
 		In questa attività prepariamo tutto il materiale necessario per il buon superamento della revisione:
 		\begin{itemize}
 			\item I vari documenti, i verbali e la lettera di presentazione per quanto riguarda la documentazione in ingresso
-			\item I diagrammi dei package e il codice necessari per la realizzazione del \gloss{Proof of Concept}
+			\item I diagrammi dei package e il codice necessario per la realizzazione del \gloss{Proof of Concept}
 			\item Le diapositive per l'esposizione
 		\end{itemize}
 
@@ -226,7 +226,7 @@
         \paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
         Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
         Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
-        Rappresentiamo i package con un rettangolo che contiene altri package o classi, e una tab con il nome del package.
+        Rappresentiamo i package con un rettangolo che contiene altri package o classi, e un'etichetta con il nome del package.
         Ogni package identifica uno spazio dei nomi, che serve per dare un nome qualificato alle classi.
         Gli elementi di un package possono avere visibilità pubblica(+) o privata(-) verso l'esterno.
 		Nella progettazione adottiamo il principio del common closure principle, secondo il quale elementi dello stesso
@@ -291,7 +291,7 @@
                 \item \textbf{Asincroni}: rappresentati da una linea direzionata con il nome del messaggio ed eventuali parametri tra parentesi tonde, descrivono la chiamata di un messaggio in cui l'entità chiamante non attende la risposta dall'entità chiamata.
                 \item \textbf{Ritorno}: rappresentati da una linea tratteggiata direzionata, indicano un messaggio di ritorno che risponde a un precedente messaggio di chiamata.
                 \item \textbf{Creazione}: rappresentati da una linea tratteggiata direzionata e dalla notazione <<create>>, indicano la creazione di una nuova entità da parte dell'entità chiamante.
-                \item \textbf{Distruzione}: rappresentati da una freccia piena e dalla notazione <<detroy>>, indicano la distruzione di un'entità da parte dell'entità chiamante.
+                \item \textbf{Distruzione}: rappresentati da una freccia piena e dalla notazione <<destroy>>, indicano la distruzione di un'entità da parte dell'entità chiamante.
             \end{itemize}
         \end{itemize}
         Per descrivere i cicli e le condizioni vengono utilizzati frame di interazione, rappresentati con un rettangolo che circonda i messaggi e le barre di attivazione coinvolte, con una label per indicare il tipo di frame, e da una guardia tra parentesi quadre nell'entità che ne scatena l'inizio.
