@@ -14,25 +14,6 @@ glossarydir = Path('./Esterni/Glossario/sections')
 glossario=[]
 localdir = Path('.')
 
-#Rimuovo i \gloss presenti
-for i in localdir.glob('**/*.tex'):
-    #In alcuni posti non cerco
-    if ('template' not in str(i)
-        and 'Glossario' not in str(i)
-        and 'diario' not in str(i)
-        and ('sections' in str(i)
-             or 'descrizione' in str(i)
-             or 'Verbali' in str(i)
-             )
-        ):
-        for line in fileinput.input(str(i), inplace=True):
-            checks = re_glossary.findall(line)
-            for check in checks:
-                match = check.replace('\gloss{','')
-                match = match.replace('}','')
-                line = line.replace(check,match)
-            print(line, end='')
-
 #Cerco nel glossario le parole
 for file in glossarydir.glob('**/*.tex'):
     for line in fileinput.input(str(file)):
@@ -55,29 +36,13 @@ snippets = [
 ]
 
 ndp = [
-    "Interni/Norme di Progetto/descrizione.tex",
     "Interni/Norme di Progetto/sections/introduzione.tex",
     "Interni/Norme di Progetto/sections/processi_primari.tex",
     "Interni/Norme di Progetto/sections/processi_organizzativi.tex",
     "Interni/Norme di Progetto/sections/processi_di_supporto.tex"
 ]
 
-vi = [
-    "Interni/Verbali/descrizione.tex",
-    "Interni/Verbali/VI_2019-01-07.tex",
-    "Interni/Verbali/VI_2018-12-17.tex",
-    "Interni/Verbali/VI_2018-11-26.tex",
-    "Interni/Verbali/VI_2018-11-22.tex"
-]
-
-ve = [
-    "Esterni/Verbali/descrizione.tex",
-    "Esterni/Verbali/VE_2018-12-12.tex",
-    "Esterni/Verbali/VE_2019-02-09.tex"
-]
-
 adr = [
-    "Esterni/Analisi dei Requisiti/descrizione.tex",
     "Esterni/Analisi dei Requisiti/sections/introduzione.tex",
     "Esterni/Analisi dei Requisiti/sections/descrizione_generale.tex",
     "Esterni/Analisi dei Requisiti/sections/use_cases.tex",
@@ -86,7 +51,6 @@ adr = [
 ]
 
 pdp = [
-    "Esterni/Piano di Progetto/descrizione.tex",
     "Esterni/Piano di Progetto/sections/introduzione.tex",
     "Esterni/Piano di Progetto/sections/analisi_dei_rischi.tex",
     "Esterni/Piano di Progetto/sections/pianificazione.tex",
@@ -99,7 +63,6 @@ pdp = [
 ]
 
 pdq = [
-    "Esterni/Piano di Qualifica/descrizione.tex",
     "Esterni/Piano di Qualifica/sections/introduzione.tex",
     "Esterni/Piano di Qualifica/sections/qualita_processo.tex",
     "Esterni/Piano di Qualifica/sections/qualita_prodotto.tex",
@@ -110,7 +73,20 @@ pdq = [
     "Esterni/Piano di Qualifica/sections/valutazioni.tex"
 ]
 
-documents = [snippets,ndp,vi,ve,adr,pdp,pdq]
+#documents = [snippets,ndp,adr,pdp,pdq]
+documents = [pdp]
+
+#Rimuovo i \gloss presenti
+for document in documents:
+    for line in fileinput.input(document, inplace=True):
+        checks = re_glossary.findall(line)
+        for check in checks:
+            match = check.replace('\gloss{','')
+            match = match.replace('}','')
+            line = line.replace(check,match)
+        print(line, end='')
+
+
 #Cerco nei documenti le parole
 for document in documents:
     for numfile,file in enumerate(document):
