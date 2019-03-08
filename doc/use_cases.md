@@ -796,3 +796,21 @@ Creare un caso d'uso per ogni coppia Producer-Consumer
 * `obj["payload"]["issue"]["project"]["id"]`
 * `obj["payload"]["issue"]["project"]["name"]`
 * `obj["payload"]["issue"]["action"]`
+
+### Da aggiungere in AdR
+
+* Aggiungere un **include** al caso d'uso 15.1 dove l'utente **esce dall'applicazione**?
+
+* Aggiungere caso d'uso dove il **Gestore Personale** guarda se una persona è disponibile e dunque fare l'inoltro (tra il 7 e l'8)
+
+* Dire che l'identificativo è conposto dalla mail o dall'ID Telegram, peciò uno dei due è necessario
+
+* Pensare ad una figura a cui inoltrare i messaggi in caso di inoltro infinito (**amministratore**)
+
+* Pensare ad una figura già iscritta nel sistema che inizialmente possa aggiungere tutti gli altri utenti (**amministratore**)
+
+* Scrivere **tutto** in §2
+
+* Capire meglio il contesto del termine **registrazione**
+
+* La registrazione deve poter essere fatta fuori dal sistema (perciò l'utente pre registrato non c'è più)

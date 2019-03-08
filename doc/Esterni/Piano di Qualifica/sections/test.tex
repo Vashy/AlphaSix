@@ -69,9 +69,12 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 \newcounter{tv}
 \newcommand{\addtotv}{\stepcounter{tv}TV\thetv}
 
+\newcounter{tableCounter}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 		\addtotv & Verifica la segnalazione dell'apertura di una issue in Redmine:
 		\begin{enumerate}
@@ -106,11 +109,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (1)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule 
         \addtotv & Verifica di un evento di push in GitLab:
 		\begin{enumerate}
@@ -152,11 +157,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (2)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule        
         \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
@@ -200,11 +207,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (3)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di invio di messaggi al bot Telegram:
 		\begin{enumerate}
@@ -247,11 +256,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (4)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di errore per accesso con ID Telegram inesistente:
 		\begin{enumerate}
@@ -299,11 +310,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (5)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di errore per ID Telegram già esistente:
 		\begin{enumerate}
@@ -348,11 +361,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (5)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di errore nella rimozione di un utente con ID Telegram inesistente dal sistema:
@@ -383,11 +398,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (6)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di modifica di un utente tramite Email:
 		\begin{enumerate}
@@ -422,11 +439,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (7)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di errore nella modifica di un utente con Email già esistente tramite Email:
 		\begin{enumerate}
@@ -461,11 +480,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (8)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di errore nella modifica di un utente con Email già esistente tramite ID Telegram:
 		\begin{enumerate}
@@ -500,11 +521,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (9)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di errore nella modifica di un utente con Email inesistente:
 		\begin{enumerate}
@@ -548,11 +571,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (10)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di aggiunta dei giorni di indisponibilità al calendario:
 		\begin{enumerate}
@@ -591,11 +616,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (11)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtotv & Verifica di aggiunta delle keyword per i push di GitLab:
 		\begin{enumerate}
@@ -634,11 +661,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (12)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di rimozione della piattaforma di messaggistica preferita:
@@ -678,11 +707,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (13)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{VTtable}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         
         \addtotv & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab:
@@ -695,7 +726,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		& \TNI \\
         \bottomrule\\
 	\end{VTtable}
-	\caption{Elenco dei test di validazione (14)}
+	\caption{Elenco dei test di validazione (\thetableCounter)}
 \end{table}
 
 \newpage
@@ -703,12 +734,13 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 	\subsubsection{Tracciamento} \label{tracciamentovalidazione}
     
     \setcounter{tv}{0}
-    
+	
+	\setcounter{tableCounter}{1}
 	\begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{\textwidth}{YY}
-			\rowcolor{gray!30}
+		\begin{tabularx}{0.7\textwidth}{YY}
+			% \rowcolor{\tablegray}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
 			\addtotv & R1F2 \\
@@ -744,13 +776,15 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\addtotv & R19.1F2 \\
             \bottomrule\\
             \end{tabularx}}
-		\caption{Elenco dei test in correlazioni con i requisiti (1)}
+		\caption{Elenco dei test in correlazioni con i requisiti (\thetableCounter)}
 	\end{table}
+
+	\stepcounter{tableCounter}
     \begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{\textwidth}{YY}
-			\rowcolor{gray!30}
+		\begin{tabularx}{0.7\textwidth}{YY}
+			% \rowcolor{\tablegray}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
             \addtotv & R19.1F2 \\
@@ -776,7 +810,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\addtotv & R21.5.1F2 \\
 			\bottomrule\\
 		\end{tabularx}}
-		\caption{Elenco dei test in correlazioni con i requisiti (2)}
+		\caption{Elenco dei test in correlazioni con i requisiti (\thetableCounter)}
 	\end{table}
 
 \newpage
@@ -790,9 +824,10 @@ Tipo di test da scegliere durante l'attività di analisi dei requisiti. Servono 
 I test di sistema servono per testare l'intero prodotto, in particolare le sue specifiche tecniche e funzionali.
 Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzionali presenti nell'\AdRd.
 
+\setcounter{tableCounter}{1}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica che il sistema riceva la segnalazione dell'apertura di una issue da parte di Redmine & NI \\
         \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di Redmine & NI \\
@@ -811,11 +846,13 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica di invio di messaggi al bot Telegram & NI \\
         \bottomrule\\
 	\end{paddedtablex}
-	\caption{Elenco dei test di sistema (1)}
+	\caption{Elenco dei test di sistema (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica di invio di messaggi al server Email & NI \\
         \addtots & Verifica di accesso di un utente al sistema tramite Email & NI \\
@@ -842,29 +879,31 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica di errore nella modifica di un utente con ID Telegram inesistente & NI \\
         \bottomrule\\
 	\end{paddedtablex}
-	\caption{Elenco dei test di sistema (2)}
+	\caption{Elenco dei test di sistema (\thetableCounter)}
 \end{table}
+
+\stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
-		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
-        \addtots & Verifica di iscrizione a un nuovo topic & NI \\
-        \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & NI \\
-		\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & NI \\
-        \addtots & Verifica di aggiunta della persona di fiducia & NI \\
-        \addtots & Verifica di errore nell'aggiunta di una persona di fiducia inesistente & NI \\
-        \addtots & Verifica di aggiunta delle keyword per i push di GitLab & NI \\
-        \addtots & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti & NI \\
-        \addtots & Verifica di rimozione di un topic & NI \\
-        \addtots & Verifica di rimozione dei giorni di indisponibilità dal calendario & NI \\
-        \addtots & Verifica di rimozione della piattaforma di messaggistica preferita & NI \\
-        \addtots & Verifica di rimozione della persona di fiducia & NI \\
-        \addtots & Verifica di errore nella rimozione di una persona di fiducia inesistente & NI \\
-        \addtots & Verifica di rimozione delle keyword per i push di GitLab & NI \\
-        \addtots & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab & NI \\
-        \bottomrule\\
+		\rowcolor{white}\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        \rowcolor{\tablegray}\addtots & Verifica di iscrizione a un nuovo topic & NI \\
+        \rowcolor{white}\addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & NI \\
+		\rowcolor{\tablegray}\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & NI \\
+        \rowcolor{white}\addtots & Verifica di aggiunta della persona di fiducia & NI \\
+        \rowcolor{\tablegray}\addtots & Verifica di errore nell'aggiunta di una persona di fiducia inesistente & NI \\
+        \rowcolor{white}\addtots & Verifica di aggiunta delle keyword per i push di GitLab & NI \\
+        \rowcolor{\tablegray}\addtots & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti & NI \\
+        \rowcolor{white}\addtots & Verifica di rimozione di un topic & NI \\
+        \rowcolor{\tablegray}\addtots & Verifica di rimozione dei giorni di indisponibilità dal calendario & NI \\
+        \rowcolor{white}\addtots & Verifica di rimozione della piattaforma di messaggistica preferita & NI \\
+        \rowcolor{\tablegray}\addtots & Verifica di rimozione dellas persona di fiducia & NI \\
+        \rowcolor{white}\addtots & Verifica di errore nella rimozione di una persona di fiducia inesistente & NI \\
+        \rowcolor{\tablegray}\addtots & Verifica di rimozione delle keyword per i push di GitLab & NI \\
+        \rowcolor{white}\addtots & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab & NI \\
+
+		\bottomrule
 	\end{paddedtablex}
-	\caption{Elenco dei test di sistema (3)}
+	\caption{Elenco dei test di sistema (\thetableCounter)}
 \end{table}
 
 
@@ -999,12 +1038,13 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\subsubsection{Tracciamento}
     
     \setcounter{ts}{0}
-    
+	
+	\setcounter{tableCounter}{1}
 	\begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{\textwidth}{YY}
-			\rowcolor{gray!30}
+		\begin{tabularx}{0.7\textwidth}{YY}
+			% \rowcolor{\tablegray}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
 			\addtots & R1F2 \\
@@ -1040,9 +1080,10 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\addtots & R19.1F2 \\
             \bottomrule\\
 			\end{tabularx}}
-		\caption{Elenco dei test in correlazioni con i requisiti (1)}
+		\caption{Elenco dei test in correlazioni con i requisiti (\thetableCounter)}
 	\end{table}
-    
+	
+	\stepcounter{tableCounter}
     \begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
@@ -1072,7 +1113,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\addtots & R21.5.1F2 \\
 			\bottomrule\\
 		\end{tabularx}}
-		\caption{Elenco dei test in correlazioni con i requisiti (2)}
+		\caption{Elenco dei test in correlazioni con i requisiti (\thetableCounter)}
 	\end{table}
 		
 
@@ -1082,7 +1123,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		\rowcolor{gray!30}
+		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 		TI1 & Verifica l'integrazione tra Webhook di Gitlab e Producer GitLab & NI \\
 		TI2 & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & NI \\
@@ -1110,7 +1151,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
-			\rowcolor{gray!30}
+			% \rowcolor{\tablegray}
 			\textbf{Codice} & \textbf{Componente} \\
 			\toprule
 			TI1 & Producer Gitlab \\

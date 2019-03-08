@@ -8,20 +8,10 @@
 		\item \textbf{Codice}: UC\theuccount-CE.
 		\item \textbf{Titolo}: Gestore Personale invia il messaggio finale al Consumer Email.
 		\item \textbf{Attori primari}: Gestore Personale.
-		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato dal
-		Producer Redmine o GitLab, controlla i messaggi sullo specifico Topic "commits".
-		Se ce ne sono
-		vengono analizzati in base alla	lista di keyword.
-		% Se gli utenti iscritti a quella determinata
-		% keyword sono disponibili e se vogliono ricevere il messaggio tramite Email viene preparato il
-		% messaggio finale da inviare e inviato al Consumer Email. Altrimenti valuta il campo Topic del
-		% messaggio e controlla se qualcuno è iscritto a quel Topic, se gli utenti iscritti a quel Topic sono
-		% disponibili e se vogliono ricevere il messaggio tramite Email. Se tutte queste condizioni sono
-		% verificate, viene preparato il messaggio finale da inviare e inviato al Consumer Email.\\
-		Valuta i Topic relativi a quelle determinate keyword e controlla se qualcuno è iscritto a quel Topic, se gli utenti iscritti a quel Topic sono disponibili e
-		se vogliono ricevere il messaggio sotto forma di mail.
-		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare e inviato al Consumer Email. 
-		Altrimenti, se il destinatario è iscritto a quel Topic ma non è disponibile, il destinatario viene cambiato, ma si prosegue comunque all'invio verso il Consumer Email.\\
+		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato
+		dal Producer Redmine o GitLab, controlla i Topic del messaggio, gli utenti iscritti, la loro disponibilità e se la loro preferenza è Email.
+		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare successivamente viene inviato al Consumer Email. 
+		Se il destinatario è iscritto a quel Topic ma non è disponibile, il destinatario viene cambiato con la persona di fiducia. \par
 		Il messaggio finale, una volta elaborato, conterrà i campi:
 		\begin{itemize}
 			\item Email del destinatario

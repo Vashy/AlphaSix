@@ -7,7 +7,7 @@
     Quando si verifica un evento in un servizio, viene inviata una
     notifica ai sottoscritti registrati sotto forma di una richiesta HTTP. La richiesta contiene informazioni sull'evento che rende possibile per il ricevitore agire di conseguenza.
     Le tecnologie Redmine e GitLab li integrano e utilizzando una specifica porta, dove i nostri
-    Producer sono in ascolto, viene inviato un file JSON contenente tutte le informazioni riguardanti l'evento.
+    Producer sono in ascolto, viene inviato un file \gloss{Json} contenente tutte le informazioni riguardanti l'evento.
     Questa tecnologia ha forma tale da fornirci collezioni di dati organizzati, facilitandoci così la lettura e la scrittura.\par
     % Per quanto riguarda i file JSON usiamo un \gloss{dizionario python} chiamato obj, contiene i campi interessanti e sono:
     Seguono \gloss{dizionari Python} chiamati genericamente \texttt{obj} contenenti i campi dei webhook di nostro interesse:
@@ -82,18 +82,18 @@
         occuperà dell'invio all'utente finale.
 
 		\subsubsection{BotFather}
-		Per mandare messaggi a tramite Telegram all'utente finale, è necessario utilizzare un bot creato con BotFather.
+		Per mandare messaggi tramite Telegram all'utente finale, è necessario utilizzare un bot creato con BotFather.
         Quest'ultimo è esso stesso un bot offerto da Telegram che permette la creazione e la configurazione di bot che
         possono fare da tramite tra utenti
         e servizi esterni dai quali ricevere, o a cui mandare, informazioni o comandi.
 
-		\subsection{E-mail}
-		Per inoltrare le e-mail agli utenti finali utilizziamo un Consumer associato che sfrutta il server SMTP di posta
+		\subsection{Email}
+		Per inoltrare le Email agli utenti finali utilizziamo un Consumer associato che sfrutta il \gloss{server SMTP} di posta
         in modo tale da poter inoltrare i messaggi ottenuti dal Broker all'indirizzo specificato.
 
 		\subsection{Docker}
-		L'azienda ci consiglia di utilizzare Docker per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
-		La configurazione avverrà tramite un Dockerfile in cui verranno specificate informazioni come sistema operativo, script di avvio,
+		L'azienda ci consiglia di utilizzare \gloss{Docker} per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
+		La configurazione avverrà tramite un \gloss{Dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio,
         numero di istanze ed altri parametri specifici.
         
         \subsubsection{Container software}\label{TecnologieContainer}
@@ -105,7 +105,7 @@
         Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse.
         
         \subsubsection{DockStation}
-        Per la gestione dei container in locale è stato possibile utilizzare DockStation in quanto fornisce una GUI dalla quale si possono effettuare i comandi impartiti a Docker via Terminale.
+        Per la gestione dei container in locale è stato possibile utilizzare \gloss{DockStation} in quanto fornisce una GUI dalla quale si possono effettuare i comandi impartiti a Docker via Terminale.
         \'E inoltre possibile avere la visione dello stato di ciascun container e vedere in tempo reale i log che questo genera, oltre che a poter controllare le risorse utilizzate da ciascun container.
         
 			
