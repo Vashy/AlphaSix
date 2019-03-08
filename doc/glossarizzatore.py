@@ -9,7 +9,7 @@ import re
 
 re_label = re.compile(r'\\label{[a-zA-Z][^}]+}')
 re_glossary = re.compile(r'\\gloss{[^}]*}')
-re_word_escaper = re.compile(r'[\.?!;:,()]')
+re_word_escaper = re.compile(r'\b.*\b')
 glossarydir = Path('./Esterni/Glossario/sections')
 glossario=[]
 localdir = Path('.')
@@ -23,10 +23,6 @@ for file in glossarydir.glob('**/*.tex'):
             match = match.replace('\label{','')
             match = match.replace('}','')
             glossario.append(match)
-            glossario.append(match.lower())
-            glossario.append(match.upper())
-            glossario.append(match.capitalize())
-            glossario.append(match.title())
         
 glossario_copy = glossario[:]
 
@@ -73,7 +69,7 @@ pdq = [
     "Esterni/Piano di Qualifica/sections/valutazioni.tex"
 ]
 
-#documents = [snippets,ndp,adr,pdp,pdq]
+#Array con i documenti da glossarizzare
 documents = [pdp]
 
 #Rimuovo i \gloss presenti
@@ -93,19 +89,17 @@ for document in documents:
         if numfile == 0:
             glossario = glossario_copy[:]
         for line in fileinput.input(file, inplace = True):
+            #NON SPLITTARE, COME FARE?
             words = line.split();
             for i,word in enumerate(words):
-                word_escaped = re_word_escaper.sub(' ', word)
-                word_escaped = word_escaped.replace(' ','')
-                words[i] = word_escaped
+                if re_word_escaper.search(word) is not None:
+                    word_escaped = re_word_escaper.search(word).group().lower()
+                    #word_escaped = word_escaped.replace(' ','')
+                    words[i] = word_escaped
             for parola in glossario:
-                parola_escaped = parola.replace(' ','')
-                if parola_escaped in words and line[0]!='%':
+                #parola_escaped = parola.replace(' ','')
+                if parola.lower() in words and line[0]!='%':
                     line = line.replace(parola,'\gloss{'+parola+'}', 1)
                     if parola in glossario: glossario.remove(parola)
-                    if parola.lower() in glossario: glossario.remove(parola.lower())
-                    if parola.upper() in glossario: glossario.remove(parola.upper())
-                    if parola.capitalize() in glossario: glossario.remove(parola.capitalize())
-                    if parola.title() in glossario: glossario.remove(parola.title())
 
             print(line, end='')
