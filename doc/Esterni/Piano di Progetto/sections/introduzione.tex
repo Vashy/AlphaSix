@@ -1,50 +1,54 @@
 \newpage
 \section{Introduzione} \label{Introduzione}
 	
+	\input{../../snippets/riferimenti_esterni}
+
 	\subsection{Scopo del documento}
-	Questo \gloss{documento} ha l'intento di specificare la \gloss{pianificazione} e l'approccio che \gruppo\ adotterà per portare a termine il \gloss{progetto} Butterfly.
-	All'interno vengono illustrate le strategie, le suddivisioni dei compiti, l'utilizzo delle \gloss{risorse}, la gestione dei rischi e le attività secondo le quali il team di sviluppo ha intenzione di lavorare.
+	Questo \gloss{documento} ha l'intento di specificare la \gloss{pianificazione} e l'approccio che adotteremo per portare a termine il \gloss{progetto} Butterfly.
+	All'interno vengono illustrate le strategie, le suddivisioni dei compiti, l'utilizzo delle \gloss{risorse}, la gestione dei rischi e le attività secondo le quali
+	il team di sviluppo ha intenzione di lavorare.
 
     \input{../../snippets/scopo_prodotto}
 
-	\input{../../snippets/riferimenti_esterni}
 	\subsection{Riferimenti}
 		\subsubsection{Riferimenti Normativi}\label{rifnorma}
 			\begin{itemize}
 				\item \NdPd
-				\item \gloss{Capitolato} d'appalto C1:\\
+				\item \gloss{Capitolato} d'appalto C1\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1.pdf}
-				\item Vincoli di \gloss{organigramma} e specifiche economiche\\
+				\item Vincoli dell'\gloss{organigramma} e specifiche economiche\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/RO.html}
-				\item \gloss{The Twelve-Factor App}, \gloss{norme} per lo sviluppo di un prodotto software consigliate dall'azienda.\\
-				\url{https://12factor.net/}
 			\end{itemize}
-		
+
 		\subsubsection{Riferimenti Informativi}\label{rifinfo}
 			\begin{itemize}
-				\item Presentazione capitolato d'appalto C1:\\
+				\item Presentazione capitolato d'appalto C1\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1p.pdf}
-				\item Software Engineering - Ian Sommerville - 10 th Edition (2016)
-				\item Slide dell’insegnamento Ingegneria del Software\\
-				\url{http://www.math.unipd.it/~tullio/IS-1/2018/}
-				\item I sistemi per la gestione dei rischi (presentazione rilasciata dalla Bocconi per la gestione dei rischi).\\
+				\item Software Engineering (Ian Sommerville), 10° edizione, Capitolo 16: Component-based software engineering
+				\item \gloss{Slide} dell’insegnamento Ingegneria del Software
+				% TODO: specificare quali slide
+				\begin{itemize}
+					\item Gestione di progetto:\\
+					\url{https://www.math.unipd.it/~tullio/IS-1/2018/Dispense/L06.pdf} 
+				\end{itemize}
+				\item I sistemi per la gestione dei rischi (presentazione rilasciata dalla Bocconi per la gestione dei rischi)\\
 				\url{https://www2.deloitte.com/content/dam/Deloitte/it/Documents/risk/Board\%20Academy\%20Corso\%20C6\%2020\%20dic\%202012\%20SDA\%20Bocconi.pdf}
-				\item Fonte Figura \ref{fig:modello_incrementale}:\\
+				\item Fonte Figura \ref{fig:modello_incrementale}\\
 				\url{https://it.wikipedia.org/wiki/Modello_incrementale}
 			\end{itemize}
 		
 	\subsection{Scadenze}\label{Scadenze}
-	\gruppo\ ha deciso di rispettare le scadenze indicate dal professor Vardanega, riportate di seguito:
+	Abbiamo deciso di rispettare le scadenze indicate dal professor Vardanega, le quali sono riportate di seguito:
 	\begin{itemize}
-		\item \textbf{Revisione dei Requisiti}: 21-01-2019.
-		\item \textbf{Revisione di Progetto}: 15-03-2019.
-		\item \textbf{Revisione di Qualifica}: 19-04-2019.
-		\item \textbf{Revisione di Accettazione}: 17-05-2019.
+		\item \textbf{Revisione dei Requisiti}: 2019-01-21.
+		\item \textbf{Revisione di Progetto}: 2019-03-15.
+		\item \textbf{Revisione di Qualifica}: 2019-04-19.
+		\item \textbf{Revisione di Accettazione}: 2019-05-17.
 	\end{itemize}
 	
-	\subsection{Modello di sviluppo}
-	Data la natura del progetto, composto da più parti modulari e con un basso valore di accoppiamento, si è scelto di adottare un \gloss{modello di
-	sviluppo} ibrido tra quello a \gloss{componenti} e quello incrementale.
+	\subsection{Modello di sviluppo}\label{modello di sviluppo}
+	Data la natura del progetto, composto da più parti modulari e con un basso valore di accoppiamento, abbiamo scelto di adottare un \gloss{modello di
+	sviluppo} ibrido tra quello a \gloss{componenti} e quello \gloss{incrementale}.
 	Essi si adattano particolarmente bene a questo tipo di progetto, in quanto:
 	\begin{itemize}
 		\item Il modello incrementale prevede ripetizioni identificate come cicli di incremento,
@@ -54,27 +58,27 @@
 			\item \textbf{System reuse}: un \gloss{sistema} può essere riutilizzato come sottosistema all'interno di uno più ampio.
 			\item \textbf{Application reuse}: un'applicazione può essere riusata incorporandola in altri sistemi senza apportare cambiamenti, 
 				oppure configurandola.
-			\item \textbf{Component reuse}: i \gloss{componenti} di un'applicazione, che possono essere da sotto-sistemi a singoli oggetti, risiedono
+			\item \textbf{Component reuse}: i componenti di un'applicazione, che possono essere da sotto-sistemi a singoli oggetti, risiedono
 				in un \gloss{cloud} o in server privati e possono essere accessibili tramite \gloss{Application Programming Interface} (API).
 			\item \textbf{Object and function reuse}: componenti software che implementano una singola funzione o una classe oggetto. Si 
 				possono riusare collegandole con lo sviluppo di nuovo codice. Molte di queste sono liberamente disponibili. 
 		\end{itemize}
 		Oppure, nel caso in cui le componenti siano così specifiche da risultare troppo costose da adattare,
-		è possibile fare ``concept reuse'', ovvero riusare le idee che stanno alla base del componente (e.g. riutilizzare un \gloss{way of working} o un algoritmo). \\
+		è possibile fare ``concept reuse'', ovvero riusare le idee che stanno alla base del \gloss{componente} (e.g. riutilizzare un \gloss{way of working} o un algoritmo). \\
 		In particolare, i benefici che si possono trarre dal riuso sono:
 		\begin{itemize}
 			\item \textbf{Costo complessivo di sviluppo più basso}: perché il numero di componenti software che devono essere progettati, implementati e validati è minore.
 			\item \textbf{Sviluppo accelerato}
 			\item \textbf{Aumento dell'affidabilità}: un software che è stato provato e testato in altri sistemi risulta più affidabile di un software appena implementato.
 			Buona parte dei suoi difetti di progettazione e implementazione dovrebbero già esser stati individuati e corretti.
-			%\item  Ridotto rischio di processo, vero specialmente per grandi componenti software riusate come sottosistemi. È un fattore importante per il Project Manager perché riduce il margine di errore nella stima dei costi di un progetto.
+			%\item  Ridotto rischio di \gloss{processo}, vero specialmente per grandi componenti software riusate come sottosistemi. È un fattore importante per il Project Manager perché riduce il margine di errore nella stima dei costi di un progetto.
 			\item \textbf{Conformità con gli standard}: alcuni standard
 			%, come gli interface standard, 
 			possono essere applicati come set di componenti riusabili.
 		\end{itemize}
 		%e prevede che venga riutilizzata una base per lo sviluppo dei vari pezzi che formano il progetto, fra loro indipendenti
 	\end{itemize}
-	Inizialmente, si possono spendere le risorse nella realizzazione di una base di partenza per le componenti, che verrà successivamente sviluppata per ciascun requisito richiesto, rappresentando il nucleo del prodotto finale.
+	Inizialmente, si possono spendere le risorse nella realizzazione di una base di partenza per le componenti, che verrà successivamente sviluppata per ciascun \gloss{requisito} richiesto, rappresentando il nucleo del prodotto finale.
 	A tale \gloss{milestone}, si potranno integrare le funzionalità secondarie richieste dal cliente insieme ai possibili requisiti impliciti desiderabili presenti nel capitolato. In base alla pianificazione svolta, le risorse disponibili saranno ridistribuite in modo da garantire lo sviluppo completo del prodotto.
 	L'immagine che segue rappresenta il modello incrementale e come il progetto viene composto da componenti sviluppati, ciascuno secondo cicli con fasi ben definite.
 	\begin{figure}[H]

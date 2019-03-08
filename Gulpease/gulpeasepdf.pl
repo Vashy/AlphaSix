@@ -2,9 +2,9 @@ use strict;
 use warnings;
 
 my $f = $ARGV[0];
-open(FILE, "pdftotext $f $f.txt|") or die "Could not open file: $!";
+open(FILE, "pdftotext $f $f.pdf|") or die "Could not open file: $!";
 close(FILE);
-open(FILE, "$f.txt") or die "Could not open file: $!";
+open(FILE, "$f.pdf") or die "Could not open file: $!";
 my ($phrases, $words, $letters) = (0,0,0);
 
 my $numberOfPoints = 0;

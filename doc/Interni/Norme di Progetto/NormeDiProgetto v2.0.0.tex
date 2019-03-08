@@ -1,0 +1,48 @@
+% \input{config.tex}
+
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\NdP}
+\newcommand{\nomedocumentofisico}{\NdPv.pdf}
+\newcommand{\redazione}{\CV}
+\newcommand{\verifica}{\LC \\ & \MM}
+\newcommand{\approvazione}{\SG}
+\newcommand{\versione}{2.0.0}
+\newcommand{\uso}{Interno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \gruppo}
+\newcommand{\datacreazione}{26 novembre 2018}
+\newcommand{\datamodifica}{06 marzo 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{true}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{true} 	% abilita - disabilita l'indice delle figure
+%nessuna figura presente nelle Norme
+
+\input{template/layout}
+\input{template/comandi}
+
+\input{sections/diario}
+
+% Serve per vedere i paragraph nell'indice
+\setcounter{secnumdepth}{7}
+\setcounter{tocdepth}{7}
+
+% \includeonly{sections/processi_primari}
+
+\begin{document}
+
+    % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice 
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+
+    \input{template/diario_due_pag}
+    \input{template/index}
+
+    \include{sections/introduzione}
+    \include{sections/processi_primari}
+    \include{sections/processi_organizzativi}
+    \include{sections/processi_di_supporto}
+
+\end{document}

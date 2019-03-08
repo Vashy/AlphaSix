@@ -1,0 +1,80 @@
+{
+    "users" : [
+        {
+            "id" : 123,
+            "nome" : "timoty",
+            "cognome" : "granziero",
+            "telegram" : "@user1",
+            "email" : null,
+            "topics" : [
+                1,
+                2,
+                3
+            ],
+            "keywords" : [
+                "kw1",
+                "kw2"
+            ],
+            "irreperibilità" : [
+                "2019-06-17",
+                "2019-06-18"
+            ],
+            "preferenza": "telegram",
+            "sostituto" : 124
+        },
+        {
+            "id" : 124,
+            "nome" : "timoty",
+            "cognome" : "granziero",
+            "telegram" : "@user2",
+            "email" : "example@gmail.com",
+            "topics" : [
+                "bug-r-23434",
+                "wontfix-r-301358",
+                "enhancement-g-2",
+                "pacco-r-0",
+                "commits"
+            ],
+            "keywords" : [
+                "kw1",
+                "kw2"
+            ],
+            "irreperibilità" : [
+                "2019-07-17",
+                "2019-07-20"
+            ],
+            "preferenza": "email",
+            "sostituto" : 123
+        }
+    ],
+    "projects" : [
+        {
+            "id" : 1,
+            "name": "Nome",
+            "app" : "redmine",
+            "url" : "http://"
+        },
+        {
+            "id" : 2,
+            "app" : "gitlab",
+            "url" : "https://"
+        }
+    ],
+    "topics" : [
+        {
+            "id" : 1,
+            "label" : "bug",
+            "project" : 1
+        },
+        {
+            "id" : 2,
+            "label" : "enhancement",
+            "project" : 3
+        },
+        {
+            "id" : 3,
+            "label" : "bug",
+            "project" : 3
+        }
+    ]
+}

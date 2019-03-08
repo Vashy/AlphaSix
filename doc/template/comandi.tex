@@ -16,13 +16,13 @@
 \newcommand{\MU}{Manuale Utente}
 \newcommand{\Gl}{Glossario}
 \newcommand{\LdP}{Lettera di Presentazione}
-\newcommand{\AdRv}{AnalisiDeiRequisiti v1.0.0}
-\newcommand{\NdPv}{NormeDiProgetto v1.0.0}
-\newcommand{\PdPv}{PianoDiProgetto v1.0.0}
-\newcommand{\PdQv}{PianoDiQualifica v1.0.0}
+\newcommand{\AdRv}{AnalisiDeiRequisiti v2.0.0}
+\newcommand{\NdPv}{NormeDiProgetto v2.0.0}
+\newcommand{\PdPv}{PianoDiProgetto v2.0.0}
+\newcommand{\PdQv}{PianoDiQualifica v2.0.0}
 \newcommand{\SdFv}{StudioDiFattibilità v1.0.0}
 \newcommand{\DdPv}{DefinizioneDiprodotto v1.0.0}
-\newcommand{\Glv}{Glossario v1.0.0}
+\newcommand{\Glv}{Glossario v2.0.0}
 
 % Componenti del gruppo
 \newcommand{\LC}{Laura Cameran}
@@ -97,43 +97,98 @@
 \definecolor{delim}{RGB}{20,105,176}
 \colorlet{numb}{magenta!60!black}
 \lstdefinelanguage{json}{
-	basicstyle=\small\ttfamily,
-	numbers=left,
-	numberstyle=\scriptsize,
-	stepnumber=1,
-	numbersep=8pt,
-	showstringspaces=false,
-	breaklines=true,
-	frame=lines,
-	backgroundcolor=\color{background},
-	literate=
-	*{0}{{{\color{numb}0}}}{1}
-	{1}{{{\color{numb}1}}}{1}
-	{2}{{{\color{numb}2}}}{1}
-	{3}{{{\color{numb}3}}}{1}
-	{4}{{{\color{numb}4}}}{1}
-	{5}{{{\color{numb}5}}}{1}
-	{6}{{{\color{numb}6}}}{1}
-	{7}{{{\color{numb}7}}}{1}
-	{8}{{{\color{numb}8}}}{1}
-	{9}{{{\color{numb}9}}}{1}
-	{:}{{{\color{punct}{:}}}}{1}
-	{,}{{{\color{punct}{,}}}}{1}
-	{\{}{{{\color{delim}{\{}}}}{1}
-	{\}}{{{\color{delim}{\}}}}}{1}
-	{[}{{{\color{delim}{[}}}}{1}
-	{]}{{{\color{delim}{]}}}}{1},
+ 	basicstyle=\small\ttfamily,
+ 	numbers=left,
+ 	numberstyle=\scriptsize,
+ 	stepnumber=1,
+ 	numbersep=8pt,
+ 	showstringspaces=false,
+ 	breaklines=true,
+ 	frame=lines,
+ 	backgroundcolor=\color{background},
+ 	literate=
+ 	*{0}{{{\color{numb}0}}}{1}
+ 	{1}{{{\color{numb}1}}}{1}
+ 	{2}{{{\color{numb}2}}}{1}
+ 	{3}{{{\color{numb}3}}}{1}
+ 	{4}{{{\color{numb}4}}}{1}
+ 	{5}{{{\color{numb}5}}}{1}
+ 	{6}{{{\color{numb}6}}}{1}
+ 	{7}{{{\color{numb}7}}}{1}
+ 	{8}{{{\color{numb}8}}}{1}
+ 	{9}{{{\color{numb}9}}}{1}
+ 	{:}{{{\color{punct}{:}}}}{1}
+ 	{,}{{{\color{punct}{,}}}}{1}
+ 	{\{}{{{\color{delim}{\{}}}}{1}
+ 	{\}}{{{\color{delim}{\}}}}}{1}
+ 	{[}{{{\color{delim}{[}}}}{1}
+ 	{]}{{{\color{delim}{]}}}}{1},
 }
 \lstset{language=json}
 \lstset{literate=%
-	{Ö}{{\"O}}1
-	{Ä}{{\"A}}1
-	{Ü}{{\"U}}1
-	{é}{{\"s}}1
-	{è}{{\"e}}1
-	{à}{{\"a}}1
+    {Ö}{{\"O}}1
+ 	{Ä}{{\"A}}1
+ 	{Ü}{{\"U}}1
+ 	{é}{{\"s}}1
+ 	{è}{{\"e}}1
+ 	{à}{{\"a}}1
 	{ö}{{\"o}}1
 }
+
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+
+\lstset{
+  backgroundcolor=\color{lbcolor},
+  tabsize=4,
+  language=Python,
+  captionpos=b,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  basicstyle=\footnotesize,
+  % identifierstyle=\color{magenta},
+  keywordstyle=\bfseries\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0,0.6,0},
+  stringstyle=\color{red}
+}
+
+% \definecolor{mygreen}{rgb}{0,0.6,0}
+% \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+% \definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% \lstset{ 
+%   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+%   basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+%   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+%   breaklines=true,                 % sets automatic line breaking
+%   captionpos=b,                    % sets the caption-position to bottom
+%   commentstyle=\color{mygreen},    % comment style
+%   deletekeywords={...},            % if you want to delete keywords from the given language
+%   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+%   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+%   firstnumber=1000,                % start line enumeration with line 1000
+%   frame=single,	                   % adds a frame around the code
+%   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+%   keywordstyle=\color{blue},       % keyword style
+%   language=Octave,                 % the language of the code
+%   morekeywords={*,...},            % if you want to add more keywords to the set
+%   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+%   numbersep=5pt,                   % how far the line-numbers are from the code
+%   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+%   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+%   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+%   showstringspaces=false,          % underline spaces within strings only
+%   showtabs=false,                  % show tabs within strings adding particular underscores
+%   stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+%   stringstyle=\color{mymauve},     % string literal style
+%   tabsize=2,	                   % sets default tabsize to 2 spaces
+%   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+% }
 
 \newcommand{\impl}{\textcolor{Green}{Implementato}}
 \newcommand{\implno}{\textcolor{Red}{Non Implementato}}
@@ -160,7 +215,7 @@
 \newcommand{\NdPd}{\Doc{\NdPv}}
 \newcommand{\AdRd}{\Doc{\AdRv}}
 \newcommand{\SdFd}{\Doc{\SdFv}}
-\newcommand{\Gld}{\Doc{\Gld}}
+\newcommand{\Gld}{\Doc{\Glv}}
 
 % Le sottosezioni paragraph, subparagraph ecc.. vengono visualizzate come section
 \titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
@@ -191,6 +246,7 @@
 \newcommand{\decrvY}{\addtocounter{vY}{-1}} % Comando per decrementare vY
 \newcommand{\decrvZ}{\addtocounter{vZ}{-1}} % Comando per decrementare vZ
 \newcommand{\addToDiary}[4]{\thevX.\thevY.\thevZ & #1 & #2 & #3 & #4\decrvZ\\} % Comando per generare una riga di diario delle modifiche (\addToDiary{desc}{ruolo}{nominativo}{data})
+\newcommand{\diaryEntry}[5]{#1 & #2 & #3 & #4 & #5\\}
 
 % Colore righe grigie
 \newcommand{\tablegray}{gray!20}
@@ -203,3 +259,23 @@
 % \renewcommand\labelitemiv{\textperiodcentered} % ., quarto livello
 % \setlist[itemize,2]{label=$\circ$}
 % \setlist[itemize,2]{label=$\diamond$}
+
+% Placeholder sui diari
+\newcommand{\pl}{Placeholder}
+
+%Comandi per le versioni delle tecnologie
+\newcommand{\python}{Python 3.6.7}
+\newcommand{\gitlab}{GitLab 11.7}
+\newcommand{\redmine}{Redmine 4.0.1}
+\newcommand{\kafka}{Apache Kafka 2.12}
+\newcommand{\docker}{Docker 18.09}
+\newcommand{\telegram}{Telegram (Bot API 4.0)}
+\newcommand{\slack}{Slack}
+\newcommand{\jenkins}{Jenkins 2.146}
+\newcommand{\html}{HTML5}
+\newcommand{\css}{CSS3}
+\newcommand{\mongodb}{MongoDB 4.0.6}
+\newcommand{\dockercompose}{Docker Compose 3.7}
+
+
+

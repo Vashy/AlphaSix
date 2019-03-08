@@ -1,0 +1,20 @@
+{
+    "kafka" : { 
+        "bootstrap_servers": "localhost:9092",
+        "enable_auto_commit" : true,
+        "consumer_timeout_ms" : "inf",
+        "auto_offset_reset" : "latest"
+    },
+    "telegram" : {
+        "token_bot": "767404683:AAF6Fo4LP7wDWYmEbIRQ37KTX5GECMoTziA",
+        "receiver": "38883960"
+    },
+    "email" : {
+        "receiver": "timoty.granziero@gmail.com",
+        "subject": "Butterfly"
+    },
+    "emailSettings": {
+        "sender": "alpha.six.unipd@gmail.com",
+        "pwd": "7ef989497ef040318894f580e9b9bf5ac0a32e07ac04c545dd3983932f426749:7d66ef6b24074b819712bffd5fd45400"
+    }
+}

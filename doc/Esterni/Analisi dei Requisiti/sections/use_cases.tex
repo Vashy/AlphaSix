@@ -1,0 +1,125 @@
+\clearpage
+\section{Casi d'uso}\label{CasiDUso}
+Questa sezione elenca le funzionalità offerte da \progetto\ descritte attraverso il linguaggio \gloss{UML}.
+\progetto\ può essere visto come l'insieme di più sottosistemi che verranno in seguito elencati e che sono stati descritti in modo molto generale anche attraverso la Figura \ref{fig:butterfly}.\par
+Questa mostra in maniera un po' più chiarificante la suddivisione e ne facilita l'analisi per la stesura dei casi d'uso.
+Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al sistema, ma anche componenti quali i vari Producer e Consumer che interagiscono col Gestore Personale. \par
+All'interno dei casi d'uso il termine ``sistema'' è inteso come l'intera applicazione \progetto, mentre ``piattaforma di messaggistica'' fa sempre riferimento a Telegram o Email, il termine ``persona di fiducia'' indica la persona a cui inoltrare le proprie notifiche nei giorni in cui non si è disponibili e con ``indisponibilità'' e ``irreperibilità'' di una persona si intendono proprio quei giorni in cui una persona non è raggiungibile nè disponibile per proseguire con le proprie mansioni e quindi non vuole ricevere notifiche. \par
+Il termine ``identificativo'' fa riferimento indifferentemente al contatto Email o all'ID Telegram.
+	
+	\subsection{Attori}
+	\begin{itemize}
+		\item Redmine
+		\item GitLab
+		\item Producer Redmine
+		\item Producer GitLab
+		\item Utente non acceduto
+		\item Utente non registrato
+		\item Utente (inteso come acceduto e registrato nel sistema)
+		\item Consumer Telegram
+		\item Consumer Email
+		\item Telegram
+		\item Email
+	\end{itemize}
+
+	\subsection{Sistemi e sottosistemi}
+	Per indicare i vari sottosistemi nei codici dei casi d'uso sono allegati delle sigle per rendere più chiara la posizione del caso d'uso all'interno di \progetto.
+	\begin{itemize}
+		%\item \textbf{B}: \progetto.
+		\item \textbf{PR}: Producer Redmine.
+		\item \textbf{PG}: Producer GitLab.
+		\item \textbf{GP}: Gestore Personale.
+		\item \textbf{CT}: Consumer telegram.
+		\item \textbf{CE}: Consumer Email.
+		\item \textbf{BT}: bot Telegram.
+		\item \textbf{SE}: server Email.
+	\end{itemize}
+
+	\clearpage
+
+	\subsection{Elenco casi d'uso}
+
+%TODO: da ricordarsi: se qualcuno è offline, c'è la possibilità che il messaggio venga perso.
+
+\newcounter{uccount}
+\newcounter{subuccount}[uccount]
+\newcounter{subsubuccount}[subuccount]
+\newcounter{subsubsubuccount}[subsubuccount]
+
+%\stepcounter{uccount}
+%
+%\input{casi_d'uso/UC1}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC2}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC3}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC4}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC5}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC6}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC7}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC8}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC9}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC10}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC11}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC12}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC13}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC14}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC15}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC16}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC17}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC18}
+
+\stepcounter{uccount}
+%\clearpage
+\input{casi_d'uso/UC19}
+
+\clearpage

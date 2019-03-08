@@ -6,7 +6,8 @@
 		\subsubsection{Implementazione}\label{PS:Documentazione:Implementazione}
 
 			\paragraph{Template}\label{PS:Documentazione:Implementazione:Template}
-			Prima di iniziare a redigere i documenti, è stato creato un \gloss{template} per \LaTeX \ (\S\ref{LaTeX}) contenente tutte le impostazioni grafiche condivise tra questi, per sfruttare il riutilizzo del codice e semplificare enormemente la manutenzione dei sorgenti.\par
+			Prima di iniziare a redigere i documenti, abbiamo creato un \gloss{template} per \LaTeX \ (\S\ref{LaTeX}) contenente tutte le impostazioni grafiche
+			condivise tra questi, per sfruttare il riutilizzo del codice e semplificare enormemente la manutenzione dei sorgenti.\par
 			Nello specifico, è presente un file per ognuna delle seguenti utilità:
 			\begin{itemize}
 				\item \gloss{Layout} delle pagine
@@ -87,8 +88,11 @@
 		\subsubsection{Design}\label{PS:Documentazione:Design}
 
 			\paragraph{Norme tipografiche}\label{PS:Documentazione:Design:NormeT}
-			Le norme tipografiche qui di seguito elencate sono state decise in modo che ogni membro di \gruppo\ concorra a mantenere una forma coerente e univoca
+			Le norme tipografiche qui di seguito elencate sono state decise in modo che ognuno di noi concorra a mantenere una forma coerente e univoca
 			per tutti i documenti redatti.
+			
+			\subparagraph{Stile redazionale}
+			Lo stile redazionale dei vari documenti sarà prevalentemente personale, in prima persona, per rendere chiaro il soggetto delle frasi.
 
 			\subparagraph{Stile del testo}\label{PS:Documentazione:Design:NormeT:StileTesto}
 			\begin{itemize}
@@ -117,11 +121,11 @@
 					\item \texttt{HH} indica le ore, da 00 a 23
 					\item \texttt{MM} i minuti, da 00 a 59
 				\end{itemize}
-				\item \textbf{Date}: \texttt{DD-MM-YYYY} formato adottato in Europa dove:
+				\item \textbf{Date}: \texttt{YYYY-MM-DD} formato adottato in Europa dove:
 				\begin{itemize}
-					\item \texttt{DD} indica il numero del giorno, da 01 a 31
-					\item \texttt{MM} il mese, da 01 a 12
 					\item \texttt{YYYY} l'anno
+					\item \texttt{MM} il mese, da 01 a 12
+					\item \texttt{DD} il numero del giorno, da 01 a 31
 				\end{itemize}
 				\item \textbf{Nota a piè di pagina}: serve ad inserire elementi aggiuntivi, come osservazioni o riferimenti a parti interne al documento, utili alla comprensione del testo,
 				ma se inseriti all'interno del discorso, ne interromperebbero la lettura, rendendola meno scorrevole.
@@ -135,7 +139,7 @@
 			accompagnata da una breve \gloss{caption} che permetta al lettore di capire esattamente che cosa sta guardando.\\
 			È presente nell'indice l'elenco delle figure che raccoglie la lista di tutte le immagini presenti.
 
-			\subparagraph{Tabelle}
+			\subparagraph{Tabelle}\label{StrumentiDiSupportoTabelle}
 			Come per le figure, ogni tabella sarà accompagnata da una caption e sarà della dimensione del testo, o se più piccola, centrata.
 			Tutte le tabelle saranno raccolte nell'elenco delle tabelle.\par
 			Saranno presenti due tipologie di tabelle:
@@ -150,37 +154,31 @@
 
 		\subsubsection{Produzione}
 
-			\paragraph{Suddivisione dei documenti}
+			\paragraph{Suddivisione dei documenti}\label{SuddivisioneDeiDocumenti}
 
 			\subparagraph{Documenti interni}
-			Sono considerati interni documenti quali \SdF\ e \NdP, che non sono visibili ad entità esterne, ma solo ad \gruppo.
+			Le \NdP\ e lo \SdF\ sono documenti interni, consultabili solo dal team e dal committente, per motivi didattici.
 
 			\subparagraph{Documenti esterni}
-			Sono considerati esterni, invece, documenti quali \PdP, \PdQ\ e \AdR\ che, al contrario dei precedenti, sono visibili al committente.
+			Sono considerati esterni, invece, il \PdP, il \PdQ, il \Gl\ e l'\AdR\ che, al contrario dei precedenti, vengono consegnati al proponente.
 
-			%Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \PdP, \PdQ\ e \AdR. Si chiamano esterni perché accessibili al committente.
+			% Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \PdP, \PdQ\ e \AdR. Si chiamano esterni perché accessibili al committente.
 
-			%\subparagraph{Glossario}
-			% TODO: già scritto nell'introduzione, eliminare? L: anche sì
-			%Il documento denominato \Doc{\Gl}  raccoglie in ordine alfabetico tutti i termini utilizzati che necessitano di una spiegazione più approfondita.
-			%Sono identificabili all'interno degli altri documenti da un font differente e una G a pedice la prima volta che appaiono.
-
-
-			\subparagraph{Verbali}
-			Questi documenti vengono redatti successivamente alle riunioni tenute da \gruppo\
-			o in caso di incontri con \gloss{stakeholder} esterni, per esempio con \II. Una singola persona ha il compito di stendere
+            \subparagraph{Verbali}
+			Redigiamo questi documenti successivamente alle riunioni tenute	o in caso di incontri con \gloss{stakeholder} esterni, per esempio con \II. Una singola persona ha il compito di stendere
 			la relazione relativa al verbale, presentando le seguenti sezioni:
 			\begin{itemize}
 				\item \textbf{Informazioni incontro}: lista delle informazioni principali riguardanti la riunione quali luogo, data, orario, ordine del giorno, ecc\dots
-				\item \textbf{Argomenti}: lista dei principali argomenti trattati con descrizione di cosa si è discusso nel dettaglio.
-				%TODO: da riempire se viene aggiunto altro
+				\item \textbf{Agenda}: lista dei principali argomenti trattati, con breve descrizione.
+				\item \textbf{Riepilogo}: contiene il resoconto delle decisioni prese nella riunione, tracciate con un codice nel formato yyyy-mm-dd-n, dove yyyy-mm-dd è la data in cui si è tenuta la riunione e n è il numero della decisione presa.
+				
 			\end{itemize}
 
 
-			\paragraph{Strumenti di supporto}
+			\paragraph{Strumenti di supporto}\label{StrumentiDiSupporto}
 
-			\subparagraph{\LaTeX} \label{LaTeX}
-			Per la stesura della documentazione è stato scelto di usare il linguaggio di \gloss{markup} \LaTeX \ perché presenta molti vantaggi, tra i quali:
+			\subparagraph{\LaTeX}\label{LaTeX}
+			Per la stesura della documentazione abbiamo deciso di utilizzare il linguaggio di \gloss{markup} \LaTeX\ perché presenta molti vantaggi, tra i quali:
 			\begin{itemize}
 				\item Supporta nativamente il \gloss{versionamento}, essendo un linguaggio compilato
 				\item Supporta la modularità, rendendo più facile organizzare un documento dividendone logicamente i vari moduli
@@ -188,8 +186,13 @@
 				\item Gestisce automaticamente indici e riferimenti
 			\end{itemize}
 
+			\subparagraph{Google Drive}\label{GoogleDrive}
+			Per la condivisione di file informali, tabelle informative e diagrammi dei casi d'uso e delle classi (con \hyperref[drawio]{draw.io}), utilizziamo lo strumento
+			di cloud Google Drive. Esso ci permette di tenere file informativi sempre aggiornati e condivisi tra tutti i membri del team, raggiungibili in qualunque momento
+			anche da smartphone. Altre informazioni sono reperibili tramite i link informativi in \S\ref{rifinfo}.
+
 			\subparagraph{TexStudio/Visual Studio Code}
-			TexStudio e Visual Studio Code sono i due ambienti di sviluppo scelti da \gruppo\ per stilare la documentazione.
+			TexStudio e Visual Studio Code sono i due ambienti di sviluppo scelti per stilare la documentazione.
 			TexStudio è un \gloss{IDE} nativo per l'utilizzo di \LaTeX. Visual Studio Code è un editor intelligente moderno (alla pari di un \gloss{IDE}) che, tramite
 			estensioni, permette il supporto di praticamente ogni linguaggio.
 			Entrambi permettono una rapida compilazione e un'istantanea visualizzazione dell'anteprima del PDF prodotto, oltre agli altri vantaggi che ogni IDE offre,
@@ -199,84 +202,254 @@
 			% \subparagraph{Visual Studio Code}
 
 			\subparagraph{GanttProject}
-			GanttProject è un programma gratuito dedicato alla formazione dei diagrammi di Gantt. Permette di creare task e milestone, organizzare le task in lavoro strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità, generando automaticamente il relativo diagramma.
+			GanttProject è un programma gratuito dedicato alla formazione dei diagrammi di Gantt. Permette di creare task e milestone, organizzare le task in lavoro
+			strutturato a interruzioni, disegnare i vincoli di dipendenza tra di esse e molte altre utilità, generando automaticamente il relativo diagramma.
 			Per maggiori informazioni, si rimanda alla fonte ufficiale (consultare \S\ref{rifinfo}).
 
-			\subparagraph{Draw.io}
-			Draw.io è un'applicazione web in grado di creare diagrammi UML, di Entità-Relazionale, di flusso e molto altro. Il motivo che ha portato AlphaSix
+			\subparagraph{Draw.io}\label{drawio}
+			Draw.io è un'applicazione web in grado di creare diagrammi UML, di Entità-Relazionale, di flusso e molto altro. Il motivo che ci ha portato
 			a scegliere questo strumento è la sua perfetta integrazione con \gloss{Google Drive}, oltre al suo alto livello di intuitività.
 			Questo permette la condivisione dei diagrammi creati tra tutti i collaboratori in ogni momento e in modo automatico.
 			Per maggiori informazioni, visualizzare la fonte ufficiale (\S\ref{rifinfo}).
 
 			\subparagraph{Indice di Gulpease}
-			Per il calcolo dell'indice di Gulpease, è stato creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
+			Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla lunghezza delle parole in lettere e non in sillabe. In base al valore indicato si può capire che livello di istruzione deve possedere una persona per comprendere il documento.\\
+            Per automatizzare il calcolo di questo indice è stato prodotto uno \gloss{script} che viene eseguito ad ogni \gloss{commit} nella \gloss{repository}, il quale riporta in un file i risultati ottenuti. Tale indice è descritto anche in \S\ref{AnalisiStatica:Gulpease}.
 
-		\subsubsection{Mantenimento}
+			\subparagraph{Controllo ortografico}
+			Per il controllo ortografico utilizziamo:
+			\begin{itemize}
+				\item In fase di redazione dei documenti, il controllo ortografico integrato degli IDE utilizzati
+				\item In fase di verifica, lo strumento GNU Aspell, uno strumento open source per il controllo ortografico che permette tramite interfaccia interattiva di cambiare parole non riconosciute dal dizionario e scegliere tra più suggerimenti. Maggiori informazioni alla fonte ufficiale, reperibile in \S\ref{rifinfo}.
+				La correttezza ortografica possiede una metrica presente in \S\ref{AnalisiStatica:CorrettezzaOrtografica}.
+			\end{itemize}
+        
+            \subparagraph{Glossarizzazione dei ternimi}
+            Come spiegato in \S\ref{GlossarioDocumentiEsterni}, i termini con un particolare significato vengono riportati e definiti all'interno di \Gld. Per automatizzare questo processo è stato creato uno script che valuta le voci all'interno di \Gld\ e ed inserisce i riferimenti a queste voci alla prima occorrenza di ogni parola in tutti i documenti prodotti.
 
-			\paragraph{Versionamento} \label{Versionamento}
-			Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
-			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
+		\subsubsection{Mantenimento}\label{Mantenimento}
+
+			% \paragraph{Versionamento} \label{Versionamento}
+			% Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
+			% precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
+			% Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
+			% \begin{center}
+			% 	\texttt{X.Y.Z}
+			% \end{center}
+			% \indent dove:
+			% \begin{itemize}
+			% 	\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento,
+			% 		determinando una major release
+			% 	\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
+			% 		Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
+			% 	\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta
+			% 		di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
+			% \end{itemize}
+
+			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
+
+			% \paragraph{Continuous Integration}\label{ContinuousIntegration} %TODO: rivedere
+			% Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
+			% Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota. 
+			% %(non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			% Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
+			
+			% \subparagraph{Jenkins}\label{Jenkins}
+			% Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
+			% Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			% \begin{itemize}
+			% 	\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+			% 	\item \textbf{Build}: build del codice su docker container.
+			% 	\item \textbf{Unit Test}: test di unità tramite PyUnit.
+			% 	\item \textbf{Integration Test}: test di integrazione tramite PyUnit.
+			% 	\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
+			% \end{itemize}
+			
+			% Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
+
+			\paragraph{Continuous Integration}\label{ContinuousIntegration}
+			Per la produzione dei documenti adotteremo la pratica della \gloss{Continuous Integration}.
+			Per questa attività il principio sarà limitato a sincronizzarsi il prima possibile con la repository remota (non essendoci una vera e propria build o dei test da effettuare),
+			sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.
+
+			\paragraph{Nomenclatura} %FIXME: cos'è?
+
+			\subparagraph{Verbali}	\label{NomenclaturaVerbali}
+			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II\ o il committente.
+			Il nominativo del file in cui sono formalizzati è il seguente:
+			\begin{itemize}
+				\item \texttt{VI\_yyyy-mm-dd.pdf} per i verbali interni
+				\item \texttt{VE\_yyyy-mm-dd.pdf} per i verbali esterni
+			\end{itemize}
+			dove yyyy-mm-dd è la data in cui sono stati tenuti, nel formato descritto nel paragrafo \S\ref{PS:Documentazione:Design:NormeT:AltriFormati}.
+
+			\subparagraph{Documenti vari}
+			Saranno presenti due tipologie di file: file interni ad \gruppo\ e file esterni.
+			\begin{itemize}
+				\item La prima categoria include moduli di \LaTeX\ contenenti le varie sezioni e che non verranno mai esposti esternamente. Questi file verranno
+					denominati usando la convenzione \texttt{snake\_case.tex}, dove snake\_case è il nome della sezione o modulo
+				\item La seconda categoria include i file \texttt{.tex} principali che produrranno i PDF da consegnare al committente. Essi verranno denominati
+				con la convenzione \mbox{\texttt{CamelCase vX.Y.Z.pdf}}, dove CamelCase sarà il nome del documento generico mentre \texttt{vX.Y.Z}
+				sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
+			\end{itemize}
+		
+
+	\subsection{Codice sorgente}\label{PS:Codice}
+	
+	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
+	    
+		\paragraph{Continuous Integration}\label{CI}
+		Anche per quanto riguarda il processo di codifica verrà adottato il principio di Continuous Integration.
+
+			\subparagraph{Jenkins}\label{Jenkins}
+			Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\par
+			Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
+			\begin{itemize}
+				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
+				\item \textbf{Build}: build del codice su docker container.
+				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce ``Pytest'' in \S\ref{rifinfo}}.
+				\item \textbf{Integration Test}: test di integrazione tramite Pytest.
+				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite \gloss{tox}.
+			\end{itemize}
+
+			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
+
+		\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
+		Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creiamo dei container specifici per ogni componente. Per fare ciò, utilizziamo
+		\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
+		un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
+		\begin{itemize}
+			\item Producer Redmine
+			\item Producer GitLab
+			\item Gestore Personale
+			\item Consumer Email
+			\item Consumer Telegram
+		\end{itemize}
+		Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
+
+		% \paragraph{Continous Delivery}\label{CD} 
+		%TODO: Magari più avanti?
+
+	\subsection{Configurazione}\label{Configurazione}
+
+	\subsubsection{Descrizione}
+	I sorgenti e i documenti ufficiali del gruppo vengono versionati utilizzando il sistema di controllo versione \gloss{Git}, strumento scelto vista la sua ampia diffusione
+	e la sua integrazione con GitHub. La scelta di utilizzare un client grafico oppure i comandi da terminale è lasciata al singolo membro del team.
+
+	\subsubsection{Versionamento} \label{Versionamento}
+			Tutti i documenti redatti e i file sorgente supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
+			precedenti in qualsiasi punto del loro \gloss{ciclo di vita}.
+			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\par
+			La versione di un file è espressa secondo la notazione
 			\begin{center}
 				\texttt{X.Y.Z}
 			\end{center}
 			\indent dove:
 			\begin{itemize}
-				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento, determinando una major release
-				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente. Inizia da 0. 	Viene azzerato ad ogni incremento della \texttt{X}
-				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
+				\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento o il sorgente in esame,
+					determinando una major release
+				\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
+					Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
+				\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore.
+				Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
 			\end{itemize}
 
-			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
+	\subsubsection{Struttura delle Repository}
+	Abbiamo creato due repository principali fino a questo momento:
+	\begin{itemize}
+		\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
+		\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi. 
+	\end{itemize}
 
-			\paragraph{Continuous Integration}
-			Per quanto riguarda la stesura dei documenti, verrà adottato il principio di \gloss{Continuous Integration}, che sarà tuttavia limitato in questo periodo
-			a sincronizzarsi il prima possibile con la repository remota (non essendoci
-			una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
+	\subsubsection{Norme di branching}
+	Ogni repository che usiamo avrà due \gloss{branch} principali:
+	\begin{itemize}
+		\item \textbf{master}: branch principale che viene aggiornato solamente in vista di un rilascio, quando il \Res\ approva un file o documento, che causa
+			lo scatto del numero di versione più significativo.
+		\item \textbf{develop}: branch usato per lo sviluppo in vista di un rilascio, senza lasciare il master branch in uno stato di incompletezza. Viene aggiornato
+			quando una funzionalità è matura.
+	\end{itemize}
 
-			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.
+	Sono presenti poi dei branch dedicati allo sviluppo e alla manutenzione, che verranno aperti in base alle necessità:
+	\begin{itemize}
+		\item \textbf{feature/nome-feature}: branch aperti in vista di uno sviluppo di una qualsiasi funzionalità (nome-feature è un placeholder) o bug fix sul develop.
+			Una volta che la funzionalità raggiunge un adatto stato di maturità, verrà fatto il merge sul develop e cancellato il branch relativo a quella funzionalità.
+		\item \textbf{hotfix/nome-hotfix}: branch aperti in vista di un bug non notato nel master branch che necessita di essere sistemato al più presto o in fase di
+			correzione delle problemi segnalati dai professori a seguito di una revisione.
+	\end{itemize}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth]{img/branches.png}\\
+		\caption[Albero dei branch da Gitkraken]{Visione generale dell'albero dei branch in un momento casuale da Gitkraken}
+		\label{fig:butterfly}
+	\end{figure}
+
+	\subsubsection{Aggiornamento della repository}
+
+	Per aggiornare la repository remota con i cambiamenti effettuati nella workcopy locale, la prassi da seguire è la seguente:
+	\begin{itemize}
+		\item Controllare di trovarsi nel branch corretto con il comando:
+			\begin{quote}
+				\texttt{\$\ git branch}
+			\end{quote}
+			In caso negativo, dare il comando \texttt{git checkout nomebranch} per spostarsi nel branch corretto prima di procedere.
+		\item Aggiornare la workcopy locale con eventuali cambiamenti presenti nella repository remota:
+			\begin{quote}
+				\texttt{\$\ git pull}
+			\end{quote}
+		\begin{itemize}
+			\item In caso di conflitti, dare la sequenza di comandi che segue per risolverli senza dover effettuare un commit
+				dedicato solo al merge:
+				\begin{quote}
+					\texttt{\$\ git stash}\par
+					\texttt{\$\ git pull}\par
+					\texttt{\$\ git stash pop}\par				
+				\end{quote}
+				A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
+				con le proprie modifiche applicate.
+		\end{itemize} 
+		\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
+			per aggiungere più file contemporaneamente):
+			\begin{quote}
+				\texttt{\$\ git add [nome-file1] [nome-file2] \dots}
+			\end{quote}
+		\item Fare il commit e riassumere i cambiamenti apportati:
+		\begin{quote}
+			\texttt{\$\ git commit -m "Cambiamenti apportati"}
+		\end{quote}
+		\item Effettuare il push per pubblicare le modifiche locali nella repository remota:
+		\begin{quote}
+			\texttt{\$\ git push}
+		\end{quote}
+	\end{itemize}
 
 
-			\paragraph{Nomenclatura}
-
-			\subparagraph{Verbali}	\label{NomenclaturaVerbali}
-			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II.
-			Il nominativo del file in cui sono formalizzati è il seguente:
-			\begin{itemize}
-				\item \texttt{VI\_dd-mm-yyyy.pdf} per i verbali interni
-				\item \texttt{VE\_dd-mm-yyyy.pdf} per i verbali esterni
-			\end{itemize}
-			dove dd-mm-yyyy è la data in cui sono stati tenuti, nel formato descritto nel paragrafo \S\ref{PS:Documentazione:Design:NormeT:AltriFormati}.
-
-			\subparagraph{Documenti vari}
-			Saranno presenti due tipologie di file: file interni ad \gruppo\ e file esterni.
-			\begin{itemize}
-				\item La prima categoria include moduli di \LaTeX\ contenenti le varie sezioni e che non verranno mai esposti esternamente. Questi file verranno	denominati usando la convenzione \texttt{snake\_case.tex}, dove snake\_case è il nome della sezione o modulo
-				\item La seconda categoria include i file \texttt{.tex} principali che produrranno i PDF da consegnare al committente. Essi verranno denominati con la convenzione \mbox{\texttt{CamelCase vX.Y.Z.pdf}}, dove CamelCase sarà il nome del documento generico mentre \texttt{vX.Y.Z} sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
-			\end{itemize}
-
-	\subsection{Verifica}
+	\subsection{Verifica}\label{Verifica}
 
 		\subsubsection{Scopo}
-		Questa sezione vuole descrivere come il team di sviluppo esegue la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci si attende.
+		Questa sezione vuole descrivere come eseguiamo la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci attendiamo.
 		La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il
 		ritorno ad una fase stabile del progetto per poi ripartire da lì, prendendo in considerazione i risultati della precedente verifica.
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
 		\subsubsection{Descrizione}
-		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole raggiungere.
+		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole
+		raggiungere.
 
 		Come indicato dal \gloss{Ciclo di Deming} nel \Doc{\PdQv}, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
 		servirà come ``base'' per alzare il livello di qualità di quel processo o prodotto.
 
-		I risultati ottenuti nella fase di verifica sono riportati nel \PdQ, in questo modo, confrontandoli con gli esiti attesi,
+		I risultati ottenuti nella fase di verifica sono riportati nel \PdQ: in questo modo, confrontandoli con gli esiti attesi,
 		è possibile valutare un miglioramento per i vari processi e prodotti sempre nel \PdQ.
 
-		\subsection{Walkthrough e Inspection}
+		\subsubsection{Walkthrough e Inspection}
 		Due modi di effettuare la verifica sono attraverso \gloss{Walkthrough} e Inspection.
-		Il team di sviluppo li adotta entrambi, ma non contemporaneamente, per i vantaggi che comporta ogni metodo.
+		Li adotteremo entrambi, ma non contemporaneamente, per i vantaggi che comporta ogni metodo.
 
-			\subsubsection{Walkthrough}
+			\paragraph{Walkthrough}
 			Metodo di verifica che effettua un controllo ad ampio spettro senza l’assunzione di presupposti. Dato che per mettere in atto tale metodo ci
 			si deve dividere in gruppi dove ognuno ha un ruolo ben distinto, Walkthrough è ideale per le verifiche effettuate all'inizio dei vari periodi,
 			dove i membri del team di sviluppo non possiedono le conoscenze adeguate per una verifica efficiente.
@@ -290,160 +463,284 @@
 				\item \textbf{Correzione di difetti}: si attuano i risultati ottenuti dalla fase di discussione.
 			\end{enumerate}
 
-		\subsubsection{Inspection}
-		Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati sei precedenti test. Questo metodo dunque, a differenza di Walkthrough, prevede l'esecuzione con dei presupposti.
+			\paragraph{Inspection}
+			Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati dei precedenti test.
+			Questo metodo dunque, a differenza di Walkthrough, prevede l'esecuzione con dei presupposti.
+	
+			Le fasi di Inspection sono:
+	
+			\begin{enumerate}
+				\item \textbf{Pianificazione}: viene sempre deciso in gruppo come effettuare la pianificazione.
+				\item \textbf{Definizione di una lista di controllo}: dato che le parti da verificare sono specificate, queste possono essere
+				riportate in una lista in modo da velocizzare il processo di verifica.
+				\item \textbf{Correzione dei difetti}: attuazione dei punti della lista di controllo.
+			\end{enumerate}
+	
+			Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di
+			prodotti e processi da verificare viene effettuato Walkthrough; nel momento in cui il metodo di verifica è ben consolidato da tutti noi,
+			si passa ad effettuare verifica secondo Inspection.	
 
-		Le fasi di Inspection sono:
+		\subsubsection{Metodologie di sviluppo del software}
 
+		\paragraph{The Twelve-Factor App}
+		\gloss{The Twelve-Factor App} è una serie di dodici regole destinate a chi vuole sviluppare \gloss{software-as-a-service} (SaaS). Sono utili per verificare in corso d'opera la qualità del progetto, valutando quali punti riesce a rispettare l'applicazione.
+		
+		I suoi principi sono:
+		
 		\begin{enumerate}
-			\item \textbf{Pianificazione}: viene sempre pianificato in gruppo come effettuare la pianificazione.
-			\item \textbf{Definizione di una lista di controllo}: dato che le parti da verificare sono specificate, queste possono essere riportate in una lista in modo da velocizzare il processo di verifica.
-			\item \textbf{Correzione dei difetti}: attuazione dei punti della lista di controllo.
+			\item \textbf{\gloss{Codebase}}: deve essere presente una sola codebase versionata da un \gloss{Version Control System} (VCS) come \gloss{GitLAb} da cui
+			possono derivare diversi \gloss{deploy}.
+			\item \textbf{Dipendenze}: le librerie usate dal codice devono essere presenti nella directory della singola applicazione e non attive a livello di \gloss{sistema}. In questo modo l'applicazione è il meno dipendente possibile dal sistema di esecuzione.
+			\item \textbf{Configurazione}: i parametri di configurazione dell'applicazione devono essere completamente separati dalla sua implementazione.
+			\item \textbf{Backing Service}: l'applicazione non deve far distinzione tra funzionalità uguali usate in locale o remoto.
+			\item \textbf{Build, release, esecuzione}: bisogna separare in modo netto la fase di build, quella di deploy e quella esecuzione, usando \gloss{tool} differenti e diverse repository per salvare i risultati delle varie fasi.
+			\item \textbf{Processi}: l'esecuzione dell'applicazione deve essere vista come l'insieme di uno o più processi che restituiscono un risultato. Questi sono di tipo \gloss{stateless}.
+			\item \textbf{\gloss{Binding} delle Porte}: l'applicazione è completamente contenuta in se stessa e non fa affidamento ad un altro servizio nell'ambiente di esecuzione. Effettua invece il binding delle porte diventando un servizio per le richieste esterne.
+			\item \textbf{Concorrenza}: sviluppare i processi in modo tale che possano lavorare su un sistema decentralizzato.
+			\item \textbf{Rilasciabilità}: i processi dell'applicazione devono poter essere avviati e fermati quando se ne ha bisogno senza passaggi bruschi.
+			\item \textbf{Parità tra sviluppo e produzione}: deve esserci meno differenza possibile tra lo stato di sviluppo e quello di produzione. Questo si ottiene facendo un rilascio continuo del prodotto.
+			\item \textbf{Log}: l'applicazione dovrebbe poter offrire un sistema di login.
+			\item \textbf{Processi di Amministrazione}: porre attenzione a quei processi che devono essere eseguiti una tantum dagli sviluppatori ad esempio. Questi processi devono poter essere accessibili solo ad alcuni e indicati in una specifica release.
 		\end{enumerate}
+		
+		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
 
-	Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di prodotti e processi da verificare viene effettuato Walkthrough, nel momento in cui il metodo di verifica è ben consolidato da tutti i membri del team di sviluppo si passa ad effettuare verifica secondo Inspection.
+		\paragraph{Test Driven Development}\label{tdd}
+		Come metodologia di sviluppo del software adottiamo il Test Driven Development (TDD) per ogni componente.
+		Questa metodologia prevede tre fasi nello sviluppo che, ripetute ciclicamente, costituiscono il Ciclo TDD:
+		\begin{itemize}
+			\item \textbf{Fase rossa}: il \Progr\ scrive il test relativo alla funzionalità che vuole implementare, prima di scrivere
+				il nome del metodo o la sua implementazione. Questo porterà ad un fallimento assicurato poiché il metodo non esiste o non fa nulla.
+			\item \textbf{Fase verde}: il \Progr\ scrive il codice della funzionalità minimo indispensabile a far superare il test.
+			\item \textbf{Fase grigia (Refactoring)}: il \Progr\ riscrive il codice per far sì che il codice rispetti
+				gli obiettivi di qualità definiti nel \PdQd\ e al contempo superi il test. 
+		\end{itemize}
 
-		\subsubsection{Metriche}
-		La denominazione delle metriche è già stata descritta in \S\ref{Classificazione metriche}, qui viene descritto il loro funzionamento.
-			\paragraph{Metriche per i documenti}
-				\subparagraph{MPD001 Indice di Gulpease}
-				Si tratta di un indice di leggibilità dei documenti in lingua italiana. A differenza degli indici per le altre lingue, questo si basa sulla
-				lunghezza delle parole in lettere e non in sillabe. L'indice si calcola:
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{img/tdd.png}\\
+			\caption[Test Driven Development]{Test Driven Development\protect\footnotemark}
+		\end{figure}
+	
+		\footnotetext{Riferirsi alla voce ``Fonte Figura 3'' in \S\ref{rifinfo}}
 
-				\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
-
-				\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
-
-				\begin{itemize}
-					\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare.
-					\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media.
-					\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore.
-				\end{itemize}
-
-				Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in PDF per valutarne l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
-
-				\subparagraph{MPD002 Correttezza ortografica}
-				Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio}.
-
-				\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
-
-			\paragraph{Metriche per i processi}
-				\subparagraph{MPR001 Varianza della pianificazione}
-				Nel documento \Doc{\PdPv}, sono stabilite le \gloss{baseline} e le scadenze di consegna dei vari prodotti.
-				Nonostante il tempo di slack che ogni fase possiede, è possibile che delle date non vengano rispettate causa incidenti di vario tipo.
-				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di giorni di ritardo per la i-esima scadenza.}\]
+		\subsubsection{Analisi statica}\label{AnalisiStatica}
+		L'analisi statica attua una verifica non dinamica, ovvero senza eseguire codice.
+		Può essere effettuata sui documenti o sul codice in maniera statica. 
 
 
-				\textbf{Metrica}: viene indicata la media di giorni di ritardo nel rispettare una scadenza durante il macro-periodo. Se un'attività viene conclusa con in d'anticipo, il numero di giorni di ritardo non è negativo ma nullo.
+			\paragraph{Analisi dei documenti}\label{ProcessiSupportoMetriche}
+			L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
+			Per l'analisi dei documenti vengono utilizzate due metriche:
 
-				\subparagraph{MPR002 Varianza dei costi}
-				All'interno del \Doc{\PdPv} è indicato il costo approssimativo del progetto.
-				In corso d'opera possono presentarsi dei problemi che richiedono un'aggiunta di costo in termini di $\frac{\text{tempo}}{\text{persona}}$.
-				Lo scopo del preventivo è infatti fare una stima non definitiva dei costi. Per verificare se il preventivo è rispettato viene fatto periodicamente un consuntivo di periodo.
+			\begin{itemize}
+				\item MPD001
+				\item MPD002
+			\end{itemize}
+			
+			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 
-				\textbf{Metrica}: viene misurata la differenza conteggiata in \euro\ tra il costo finale e il preventivo.
-				Viene seguito tale schema per la tariffa oraria dei vari ruoli del team di sviluppo:
+			\subparagraph{MPD001 Indice di Gulpease}\label{AnalisiStatica:Gulpease}
+			Per il calcolo dell'indice di Gulpease, abbiamo creato uno script ad hoc che, preso in input un file PDF, produce in output l'indice di Gulpease.
+			L'indice si calcola:
 
-				\begin{itemize} % TODO: tabellina?
-					\item \textbf{Responsabile}: \euro\ 30
-					\item \textbf{Amministratore}: \euro\ 20
-					\item \textbf{Analista}: \euro\ 25
-					\item \textbf{Progettista}: \euro\ 22
-					\item \textbf{Programmatore}: \euro\ 15
-					\item \textbf{Verificatore}: \euro\ 15
-				\end{itemize}
+			\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
+			
+			\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
 
-				\subparagraph{MPR003 Aderenza agli standard}
-				Per misurare e verificare i processi sono stati scelti alcuni specifici standard di qualità descritti nel \PdQ\ che possono offrire una valutazione quantitativa.
-				Gli standard scelti sono:
+			\begin{itemize}
+				\item \textbf{<80}: documento  difficile da leggere per chi ha la licenza elementare.
+				\item \textbf{<60}: documento  difficile da leggere per chi ha la licenza media.
+				\item \textbf{<40}: documento difficile da leggere per chi ha un diploma superiore.
+			\end{itemize}
 
-				\begin{itemize}
-				\item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità. Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
-				\item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziare una fase del Ciclo di Deming senza aver finito completamente le fasi precedenti.
-				\end{itemize}
+			Nel momento in cui avviene un commit all'interno di repository, in automatico si avvia uno script che analizza tutti i documenti in PDF per valutarne
+			l'indice di Gulpease. I risultati vengono poi riportati in un apposito file di testo per verificarne la qualità ed un possibile miglioramento.
 
-				\textbf{Metrica}: il livello di maturità è descritto nell'ISO/IEC 15504 nel \Doc{\PdQv}.
+			\subparagraph{MPD002 Correttezza ortografica}\label{AnalisiStatica:CorrettezzaOrtografica}
+			Gli errori ortografici possono essere segnalati dallo strumento di Controllo Ortografico presente in \textit{TexStudio} e da GNU Aspell.
 
-				\subparagraph{MPR004 Frequenza commit nella repository}
-				Per mantenere aggiornate le versioni dei prodotti è necessario che ogni membro di \gruppo\ effettui un commit ad ogni sua modifica significativa.
-				Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
-				Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
-				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
-				\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
-
-				\subparagraph*{Metriche sui requisiti e i rischi}
-				Dato che non è fisso il numero dei requisiti di un progetto, sono state scelte una serie di metriche dove il valore ottimale da raggiungere è sempre uguale,
-				lo zero. È stato scelto di contare il numero di requisiti non soddisfatti invece che il contrario. Lo stesso ragionamento è valido per quanto
-				riguarda i rischi che possono verificarsi nel corso del progetto.
-
-				Gli obiettivi che si vogliono raggiungere attraverso tali metriche possono essere stabiliti solo a progetto concluso.
-
-				\subparagraph{MPR005 Requisiti obbligatori non soddisfatti}
-				Per adempiere completamente alla richiesta del cliente, serve individuare tutti i requisiti presenti nella sua richiesta, impliciti, espliciti, diretti e derivati. Alcuni sono imprescindibili, detti obbligatori, e il loro soddisfacimento determina la buona riuscita del progetto.
-
-				\textbf{Metrica}: numero dei requisiti obbligatori non soddisfatti.
-
-				\subparagraph{MPR006 Requisiti desiderabili non soddisfatti}
-				I requisiti desiderabili non sono necessari, ma offrono un valore aggiunto al progetto.
-
-				\textbf{Metrica}: numero dei requisiti desiderabili non soddisfatti.
-
-				\subparagraph{MPR007 Requisiti opzionali non soddisfatti}
-				Tali requisiti dovranno essere adempiuti solo nel momento in cui tutti i requisiti obbligatori saranno soddisfatti.
-				Possono essere concordati col cliente in corso d'opera.
-
-				\textbf{Metrica}: numero dei requisiti opzionali non soddisfatti.
-
-				\subparagraph{MPR008 Rischi non previsti avvenuti}
-				Nell'Analisi dei rischi presente nel \Doc{\PdPv}, sono presenti i rischi ritenuti possibili per i quali è proposta una soluzione.
-				Possono presentarsi anche rischi non previsti in tale analisi. Questi devono essere il meno possibili (nulli) perché la loro soluzione sarà decisa al momento causando ritardi all'interno del progetto.
-
-				\textbf{Metrica}: numero di rischi non previsti avvenuti nel corso dell'intero progetto.
-
-				\paragraph{MPR009 Frequenza controllo prodotti}
-				I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
-
-				Chi esegue la modifica deve controllare ciò che ha fatto prima di poterla ufficializzare, mentre la verifica fatta dal \Ver\ deve essere fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
-
-				\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
-
-				\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
-
-			\paragraph{Analisi statica}
-			L'analisi statica verifica solo i prodotti che non sono o che non possono essere eseguiti, come i documenti.
-
-				\subparagraph{Analisi dei documenti}
-				L'analisi statica per i documenti si limita a valutare come e con che contenuti questi vengono scritti.
-				Per l'analisi dei documenti vengono utilizzate:
-
-				\begin{itemize}
-					\item MPD001
-					\item MPD002
-				\end{itemize}
-
-%TODO: non facciamo ora analisi dinamica!
-%			\paragraph{Analisi dinamica}
-%			L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
-%			Vengono presi in esame i prodotti software e i processi.
-
-				\subparagraph{Analisi dei processi}
-				Per analizzare i processi vengono usati gli standard sopra elencati. Ad ogni fase del processo verranno valutati gli attributi richiesti secondo l'ISO 15504, in che misura questi sono stati rispettati e in che fase del Ciclo di Deming il processo si trova.
-				Per l'analisi dei processi vengono utilizzate:
-
-				\begin{itemize}
-					\item MPR001 Varianza della pianificazione
-					\item MPR002 Varianza dei costi
-					\item MPR004 Frequenza commit nella repository
-					\item MPR009 Frequenza controllo prodotti
-					% \item \textbf{MPR010 Norme di progetto non seguite}
-				\end{itemize}
+			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 
 
-				%\paragraph{...Tutti i test}	%UTILE??
+			\paragraph{Analisi dei processi}
+			Per analizzare i processi usiamo gli standard sopra elencati. Ad ogni fase del processo, verranno valutati gli attributi richiesti secondo
+			l'ISO 15504, in che misura questi sono stati rispettati e in che fase del Ciclo di Deming il processo si trova.
+			Per l'analisi dei processi vengono utilizzate:
 
-				%\paragraph{Strumenti}
+			\begin{itemize}
+                \item MPR003 Aderenza agli standard
+				\item MPR004 Frequenza commit nella repository
+				\item MPR009 Frequenza controllo prodotti
+				% \item \textbf{MPR010 Norme di progetto non seguite}
+			\end{itemize}
 
-				%\subparagraph{Verifica di documentazione}
-				%Google Docs?
+			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
+            
+            \paragraph{MPR003 Aderenza agli standard}
+            Per misurare e verificare i processi sono stati scelti alcuni specifici standard di qualità descritti nel \PdQ\ che possono offrire una valutazione quantitativa.
+            Gli standard scelti sono:
+            
+            \begin{itemize}
+                \item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità. Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
+                \item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziare una fase del Ciclo di Deming senza aver finito completamente le fasi precedenti.
+            \end{itemize}
+            
+	        \textbf{Metrica}: il livello di maturità è descritto in appendice A.1 del Piano di Qualifica.
+		
+			\subparagraph{MPR004 Frequenza commit nella repository}
+			Per mantenere aggiornate le versioni dei prodotti è necessario che ognuno di noi effettui un commit ad ogni sua modifica significativa.
+			Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
+			Misurare quanti commit sono stati effettuati inoltre serve per monitorare l'attività del team di sviluppo.
+			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di commit alla i-esima settimana del macro periodo.}\]
+			\textbf{Metrica}: numero minimo di commit da effettuare in media ogni settimana lavorativa durante un macro-periodo.
 
-				%\subparagraph{Integrazione continua} % Jenkins? Più avanti?
+
+			\subparagraph{MPR009 Frequenza controllo prodotti}
+			I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
+		
+			Chi esegue la modifica deve controllare ciò che ha fatto prima di poterla ufficializzare, mentre la verifica fatta dal \Ver\ deve essere
+			fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
+		
+			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
+		
+			\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
+
+
+			\paragraph{Analisi del software} \label{analisisw}
+			L'analisi statica del codice, insieme alle norme di codifica stabilite in \S\ref{PP:Sviluppo:Codifica}, serve per permetterci di scrivere programmi verificabili.
+			In particolare ci aiuta per assicurare un comportamento predicibile, per darci dei criteri di programmazione ben fondati da usare e per ragioni pragmatiche.
+			Un potente mezzo che ci permette di eseguire analisi statica sul codice è \gloss{SonarQube}.
+			Da esso, traiamo le seguenti metriche:
+			\begin{itemize}%TODO: si può aggiungere (più avanti magari) la copertura del codice
+				\item MPS001 Presenza di bug
+				\item MPS002 Presenza di vulnerabilità
+				\item MPS003 Presenza di code smell
+				\item MPS004 Duplicazione del codice
+			\end{itemize}
+		
+			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
+
+			\subparagraph{Controllo del Python coding style}\label{pycodestyle}
+			Per l'analisi statica dello stile di codifica dei sorgenti Python, utilizziamo due strumenti che segnalano se lo stile di codifica non rispetta
+			le norme definite nel PEP 8:
+			\begin{itemize}
+				\item \texttt{pycodestyle}: un tool che segnala, tramite comando da terminale, se e quali righe di codice di un file non rispettano lo standard PEP 8.
+				\item \texttt{pylama}: un linter che segnala dinamicamente se ciò che viene digitato contiene degli errori o non rispetta
+					lo standard PEP 8.
+			\end{itemize}
+
+			\subparagraph{SonarQube} \label{sonarqube}
+			È una piattaforma open-source per realizzare controlli sulla qualità del codice tramite analisi statica.
+			Lo utiliazziamo perché è possibile creare dei progetti che scansionano il nostro progetto locale e ci mostrano in una dashboard le attività più significative che lo strumento rileva.
+			Si possono rilevare bug, \gloss{code smell}, duplicazione e vulnerabilità del codice.
+			Viene inoltre assegnato una valore ``passato'' o ``non passato'' denominato Quality gate, che ci consente di valutare immediatamente la qualità generale del nostro codice. 
+			In particolare, SonarQube rispetto ad altri strumenti simili, ci è molto utile perchè supporta parecchi linguaggi di programmazione, tra cui quello che noi più utilizziamo: Python.
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{img/sonar.png}\\
+				\caption[Screen SonarQube]{Esempio di immagine catturata del progetto Butterfly in SonarQube.}
+				\label{fig:butterflySonar}
+			\end{figure}
+
+			\subparagraph{MPS001 Presenza di bug} \label{presenzabug}
+			I bug sono difetti nel codice che vogliamo assolutamente tenere sotto controllo e rimuovere se rilevati.
+			A questo scopo, SonarQube ci dà la possibilità di conteggiare il numero di bug presenti nel codice. \\
+			\textbf{Metrica}: numero di bug presenti nel codice al momento della scansione.
+
+			\subparagraph{MPS002 Presenza di vulnerabilità} \label{presenzavulnerabilita}
+			Le vulnerabilità hanno un peso di gravità minore per noi, ma è comunque buona prassi cercare di minimizzarle il più possibile in modo da non incorrere in problemi di sicurezza.
+			SonarQube ci dà la possibilità di visualizzare le vulnerabilità presenti nel codice. \\
+			\textbf{Metrica}: numero di vulnerabilità presenti nel codice al momento della scansione.
+
+			\subparagraph{MPS003 Presenza di code smell} \label{presenzacodesmell}
+			I code smell non sono errori, ma indicano delle debolezze nel codice.
+			La maggior parte di code smell segnalati da SonarQube, riguardano spesso linee di commenti che decrementano la leggibilità del codice.  \\
+			\textbf{Metrica}: numero di code smell presenti nel codice al momento della scansione.
+
+			\subparagraph{MPS004 Duplicazione del codice} \label{duplicazionecodice}
+			Linee di codice duplicate segnalano inefficienza all'interno del nostro codice.
+			Del buon codice infatti non è ridondante.
+			Se lo è, vuol dire che può essere migliorato organizzandolo in modo differente.
+			Per questo SonarQube ci dà la possibilità di visualizzare esattamente il numero percentuale di codice duplicato all'interno di un file, sul suo totale di righe. \\
+			\textbf{Metrica}: percentuale di linee di codice duplicate presenti nel codice al momento della scansione.
+		
+		
+		\subsubsection{Analisi dinamica}\label{AnalisiDinamica}
+		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
+		Vengono presi in esame i prodotti software e i processi.
+		
+		È oppurtono ricordare che i test devono essere:
+		\begin{itemize}
+			\item Ripetibili
+			\item Automatizzati tramite strumenti 
+			\item Oggettivi e non personalizzati
+		\end{itemize}
+		
+		Quindi, perché l'analisi dinamica avvenga in modo corretto, è necessario tenere conto di alcuni importanti elementi quali:
+		\begin{itemize}
+			\item \textbf{Ambiente di sviluppo}: il sistema hardware e software adottato durante il test.
+			\item \textbf{Stato iniziale}: primo stato del prodotto, antecedente all'inizio del test.
+			\item \textbf{Input}: dati inseriti.
+			\item \textbf{Output}: dati attesi.
+			\item \textbf{Notifica risultato}: notifiche riguardanti il risultato ottenuto dal test (opzionale).
+		\end{itemize}
+		
+			
+			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST:
+			%fino ad RP si fanno test d'integrazione, non unità
+			
+			\paragraph{Test di sistema} \label{testsistema} 
+			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
+			Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
+			
+			\paragraph{Test d'integrazione} \label{testintegrazione}
+			I test d'integrazione verificano il residuo mettendo insieme due unità. Queste unità in particolare sono considerati indipendenti, ma realizzate al fine di essere composte per collaborare.
+			Il test di integrazione ha tanti test quanti ne servono per accertarsi che tutti i dati scambiati attraverso ciascuna interfaccia siano conformi alla loro specifica e accertarsi che tutti i flussi di controllo previsti siano stati effettivamente provati.
+			La strategia che i test d'integrazione adottano è una strategia di tipo incrementale: si basa nella prosecuzione per passi, aggiungendo parti fino al completamento. 
+			Più test eseguiamo, più è piccola la parte che stiamo testando. \\
+			In una buona architettura, l'integrazione può anche essere parallelizzata.
+			In particolare, la logica dell'integrazione funzionale segue i passi:
+			\begin{itemize}
+				\item Selezione delle funzionalità da integrare
+				\item Identificazione delle varie componenti che svolgono quelle funzionalità
+				\item Ordinamento delle componenti per numero di dipendenze crescenti
+				\item Esecuzione dell'integrazione in quel determinato ordine
+			\end{itemize}
+			Inoltre rileva problemi quali:
+			\begin{itemize}
+				\item Errori residui nella realizzazione dei componenti
+				\item Modifiche delle interfacce o cambiamenti nei requisiti
+				\item Riuso di componenti dal comportamento oscuro o inadatto
+				\item Integrazione con altre applicazioni non ben conosciute
+			\end{itemize}
+			
+			
+			\paragraph{Test di unità} \label{testunita} 
+			I test di unità sono l'attività di test di singole unità software.
+			Per unità si intende il minimo componente di un programma dotato di funzionamento autonomo, ma non è semplice individuare l'unità.
+			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}. 
+			
+			
+			\paragraph{Test di regressione} \label{testregressione}
+			I test di regressione sono una ripetizione selettiva dei test di unità, integrazione e sistema.
+			La utilizziamo per assicurarci che una modifica fatta su un unità per correggere un problema, non faccia danno ad altre causando regressione.
+			Ciò avviene quando il sistema è altamente accoppiato. 
+			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulamento}.
+			
+			\paragraph{Test di accettazione} \label{testaccettazione}
+			Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
+			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
+		
+		
+		\subsubsection{Anomalie riscontrate}\label{Anomalie}
+		Durante i processi di verifica è possibile riscontrare a volte alcune anomalie.
+		Tali anomalie posso essere dovute:
+		\begin{itemize}
+			\item A qualche valore preso come riferimento diverso da quello prestabilito per la metrica
+			\item Al fallimento di un test
+		\end{itemize}
+		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
+		
+		
