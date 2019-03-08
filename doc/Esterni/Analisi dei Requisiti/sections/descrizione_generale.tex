@@ -146,19 +146,25 @@
 	proprie preferenze e i dati personali tramite interfaccia web, installata in un server
 	interno all'azienda.
 
-	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, con
-	la possibilità di aggiungere e rimuovere, determinate impostazioni riguardanti le proprie
+	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, aggiungere e rimuovere, determinate impostazioni riguardanti le proprie
 	preferenze. Quest'ultime sono:
 	\begin{itemize}
 		\item Scelta dell'applicativo sul quale ricevere le notifiche (Telegram / \mail)
 		\item Iscrizione / disiscrizione a determinati Topic
-		\item Aggiunta / rimoazione di determinate keyword per i commit di GitLab
+		\item Aggiunta / rimozione di determinate keyword per i commit di GitLab
 		\item Selezione dei giorni di calendario in cui l'utente segnala la sua assenza
 		\item Aggiunta / rimozione persona di fiducia
 		\item Aggiunta / rimozione / modifica utenti
 	\end{itemize}
-	Nel caso arrivasse una notifica da inoltrare a un utente indisponibile,
-	questa verrà inoltrata alla persona più adatta e disponibile al momento.
+%	Nel caso arrivasse una notifica da inoltrare a un utente indisponibile,
+%	questa verrà inoltrata alla persona più adatta e disponibile al momento.
+
+%    \paragraph{Informazioni aggiuntive}
+%    Di seguito vengono spiegati i motivi di alcune scelte progettuali per il Gestore Personale.
+%    \begin{itemize}
+%        \item \textbf{Persona di fiducia}: per persona di fiducia s'intende un utente a cui inoltrare le notifiche nel momento in cui non si è disponibili. Nel caso in cui questa non sia disponibile \progetto\ inoltrerà di nuovo il messaggio alla persona di fiducia della persona di fiducia. Per evitare che questo processo causi un cicli infinito dopo n inoltri il messaggio viene perso.
+%        \item \textbf{Disiscrizione}: non abbiamo previsto un caso specifico per la disiscrizione, ma questo può avvenire se nella rimozione di un utente l'utilizzatore rimuove se stesso.
+%    \end{itemize}
 
 	% \subsubsection{Informazioni preconfigurate}
 	% I dati relativi ai profili esistenti degli utenti presenti nel sistema (ovvero l'identificativo) e le keyword da riconoscere all'interno dei messaggi che vengono ricevuti da GitLab / Redmine, sono considerati già esistenti e presenti nel database del Gestore Personale.
