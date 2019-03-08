@@ -60,27 +60,27 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\stepcounter{tableCounter}
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+			\rowcolor{white} \textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
 			% \stepcounter{vaF} % Per allineare i requisiti ai casi d'uso
 
 			% da casi d'uso
-			\ReqF{2}{Redmine deve poter inviare la segnalazione di apertura issue al Producer Redmine}{Interno UC1-PR}
-			\ReqF{2}{Redmine deve poter inviare la segnalazione di modifica issue al Producer Redmine}{Interno UC2-PR}
-			\ReqF{2}{GitLab deve essere in grado di segnalare l'apertura di issue al Producer GitLab}{Interno UC3-PG}
-			\ReqF{2}{GitLab deve essere in grado di segnalare la modifica issue al Producer GitLab}{Interno UC4-PG}
-			\ReqF{2}{GitLab deve poter segnalare un evento di push al Producer GitLab}{Interno UC5-PG}
-			\ReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC6-GP}
-				\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di apertura issue al Gestore Personale}{Interno UC6.1-GP}
-				\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC6.2-GP}
-			\ReqF{1}{Il Producer Redmine deve essere in grado di scartare i messaggi non validi}{Interno UC6.3-GP}
-			\ReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC7-GP}
-				\subReqF{2}{Il Producer GitLab deve essere in grado di inviare messaggi di commit al Gestore Personale}{Interno UC7.1-GP}
-				\subReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di issue al Gestore Personale}{Interno UC7.2-GP}
-					\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di nuova issue al Gestore Personale}{Interno UC7.2.1-GP}
-					\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC7.2.2-GP}
-			\ReqF{1}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC7.2.3-GP}
-			\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Telegram}{Interno UC8-CT}
+			\rowcolor{\tablegray}\ReqF{2}{Redmine deve poter inviare la segnalazione di apertura issue al Producer Redmine}{Interno UC1-PR}
+			\rowcolor{white}\ReqF{2}{Redmine deve poter inviare la segnalazione di modifica issue al Producer Redmine}{Interno UC2-PR}
+			\rowcolor{\tablegray}\ReqF{2}{GitLab deve essere in grado di segnalare l'apertura di issue al Producer GitLab}{Interno UC3-PG}
+			\rowcolor{white}\ReqF{2}{GitLab deve essere in grado di segnalare la modifica issue al Producer GitLab}{Interno UC4-PG}
+			\rowcolor{\tablegray}\ReqF{2}{GitLab deve poter segnalare un evento di push al Producer GitLab}{Interno UC5-PG}
+			\rowcolor{white}\ReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC6-GP}
+				\rowcolor{\tablegray}\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di apertura issue al Gestore Personale}{Interno UC6.1-GP}
+				\rowcolor{white}\subReqF{2}{Il Producer Redmine deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC6.2-GP}
+			\rowcolor{\tablegray}\ReqF{1}{Il Producer Redmine deve essere in grado di scartare i messaggi non validi}{Interno UC6.3-GP}
+			\rowcolor{white}\ReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio al Gestore Personale}{Interno UC7-GP}
+				\rowcolor{\tablegray}\subReqF{2}{Il Producer GitLab deve essere in grado di inviare messaggi di commit al Gestore Personale}{Interno UC7.1-GP}
+				\rowcolor{white}\subReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di issue al Gestore Personale}{Interno UC7.2-GP}
+					\rowcolor{\tablegray}\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di nuova issue al Gestore Personale}{Interno UC7.2.1-GP}
+					\rowcolor{white}\subsubReqF{2}{Il Producer GitLab deve essere in grado di inviare un messaggio di modifica issue al Gestore Personale}{Interno UC7.2.2-GP}
+			\rowcolor{\tablegray}\ReqF{1}{Il Producer GitLab deve essere in grado di scartare i messaggi di issue non validi}{Interno UC7.2.3-GP}
+			\rowcolor{white}\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Telegram}{Interno UC8-CT}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -90,28 +90,28 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\stepcounter{tableCounter}
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+			\rowcolor{white}\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-			\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Email}{Interno UC9-CE}
-			\ReqF{2}{Il Consumer Telegram deve poter inoltrare il messaggio finale al bot Telegram}{Interno UC10-BT}
-			\ReqF{2}{Il Consumer Email deve poter inoltrare il messaggio finale al server Email}{Interno UC11-SE}
+			\rowcolor{\tablegray}\ReqF{2}{Il Gestore Personale deve poter inviare il messaggio finale al Consumer Email}{Interno UC9-CE}
+			\rowcolor{white}\ReqF{2}{Il Consumer Telegram deve poter inoltrare il messaggio finale al bot Telegram}{Interno UC10-BT}
+			\rowcolor{\tablegray}\ReqF{2}{Il Consumer Email deve poter inoltrare il messaggio finale al server Email}{Interno UC11-SE}
 			% \stepcounter{vaF} e usare \subReqF per rientrare di un livello
-			\ReqF{0}{L'utente può eseguire l'accesso al Gestore Personale}{Interno UC12.1-GP}
-				\subReqF{0}{L'utente può inserire il proprio identificativo all'interno del sistema}{Interno UC12.1.1}
-			\ReqF{0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC12.1.2}
-			\ReqF{0}{L'utente acceduto deve poter uscire dal sistema}{Interno UC13-GP}
-			\ReqF{0}{L'utente acceduto deve poter aggiungere un nuovo utente}{Interno UC14-GP}
-				\subReqF{0}{L'utente acceduto deve poter inserire il nome dell'utente da aggiungere}{Interno UC14.1.1-GP}
-				\subReqF{0}{L'utente acceduto deve poter inserire il cognome dell'utente da aggiungere}{Interno UC14.1.2-GP}
-				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC14.1.3-GP}
-					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC14.2-GP}
-				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC14.1.4-GP}
-					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram non è univoco}{Interno UC14.2-GP}
-			\ReqF{0}{L'utente acceduto deve poter rimuovere un utente presente nel sistema}{Interno UC15-GP}
+			\rowcolor{white}\ReqF{0}{L'utente può eseguire l'accesso al Gestore Personale}{Interno UC12.1-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente può inserire il proprio identificativo all'interno del sistema}{Interno UC12.1.1}
+			\rowcolor{white}\ReqF{0}{\progetto\ fa apparire un messaggio di errore se il tentativo di accesso non è andato a buon fine}{Interno UC12.1.2}
+			\rowcolor{\tablegray}\ReqF{0}{L'utente acceduto deve poter uscire dal sistema}{Interno UC13-GP}
+			\rowcolor{white}\ReqF{0}{L'utente acceduto deve poter aggiungere un nuovo utente}{Interno UC14-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter inserire il nome dell'utente da aggiungere}{Interno UC14.1.1-GP}
+				\rowcolor{white}\subReqF{0}{L'utente acceduto deve poter inserire il cognome dell'utente da aggiungere}{Interno UC14.1.2-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter inserire il contatto Email dell'utente da aggiungere}{Interno UC14.1.3-GP}
+					\rowcolor{white}\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email non è univoco}{Interno UC14.2-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da aggiungere}{Interno UC14.1.4-GP}
+					\rowcolor{white}\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram non è univoco}{Interno UC14.2-GP}
+			\rowcolor{\tablegray}\ReqF{0}{L'utente acceduto deve poter rimuovere un utente presente nel sistema}{Interno UC15-GP}
 			% \stepcounter{secF}
-				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC15.1.1-GP}
-				\subReqF{0}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC15.1.2-GP}
-				\subReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è presente nel sistema}{Interno UC15.2-GP}
+				\rowcolor{white}\subReqF{0}{L'utente acceduto deve poter inserire il contatto Email dell'utente da rimuovere}{Interno UC15.1.1-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter inserire il contatto Telegram dell'utente da rimuovere}{Interno UC15.1.2-GP}
+				\rowcolor{white}\subReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è presente nel sistema}{Interno UC15.2-GP}
 
 			\bottomrule
 		\end{paddedtablex}
@@ -121,26 +121,26 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\stepcounter{tableCounter}
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}%0 opz  2 obb
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+			\rowcolor{white}\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-				\subReqF{0}{L'utente acceduto deve potersi rimuovere dal sistema}{Interno UC15.3-GP}
-			\ReqF{0}{L'utente acceduto deve poter modificare le informazioni relative a un utente}{Interno UC16-GP}
-				\subReqF{0}{L'utente acceduto deve poter selezionare l'identificativo dell'utente da modificare}{Interno UC16.1-GP}
-					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è riconosciuto dal sistema}{Interno UC16.2-GP}
-				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo nome dell'utente da modificare}{Interno UC16.1.1.1-GP}
-				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo cognome dell'utente da modificare}{Interno UC16.1.1.2-GP}
-				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo contatto Email dell'utente da modificare}{Interno UC16.1.1.3-GP}
-					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email è già presente}{Interno UC16.1.2-GP}
-				\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo contatto Telegram dell'utente da modificare}{Interno UC16.1.1.4-GP}
-					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram è già presente}{Interno UC16.1.2-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve potersi rimuovere dal sistema}{Interno UC15.3-GP}
+			\rowcolor{white}\ReqF{0}{L'utente acceduto deve poter modificare le informazioni relative a un utente}{Interno UC16-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter selezionare l'identificativo dell'utente da modificare}{Interno UC16.1-GP}
+					\rowcolor{white}\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se l'identificativo non è riconosciuto dal sistema}{Interno UC16.2-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo nome dell'utente da modificare}{Interno UC16.1.1.1-GP}
+				\rowcolor{white}\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo cognome dell'utente da modificare}{Interno UC16.1.1.2-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo contatto Email dell'utente da modificare}{Interno UC16.1.1.3-GP}
+					\rowcolor{white}\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email è già presente}{Interno UC16.1.2-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter scegliere il nuovo contatto Telegram dell'utente da modificare}{Interno UC16.1.1.4-GP}
+					\rowcolor{white}\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Telegram è già presente}{Interno UC16.1.2-GP}
 
 			%\stepcounter{vaF}
-			\ReqF{0}{L'utente acceduto deve poter aggiungere le proprie preferenze nel sistema}{Interno UC17-GP}
-				\subReqF{0}{L'utente acceduto deve poter aggiungere nuovi Topic di iscrizione}{Interno UC17.1-GP}
-				\subReqF{0}{L'utente acceduto deve poter aggungere nuovi giorni di indisponibilità nel calendario}{Interno UC17.2-GP}
-				\subReqF{0}{L'utente acceduto deve poter aggungere una nuova piattaforma di messaggistica preferita}{Interno UC17.3-GP}
-				\subReqF{0}{L'utente acceduto deve poter aggungere la propria persona di fiducia}{Interno UC17.4-GP}
-					\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC17.5-GP}
+			\rowcolor{\tablegray}\ReqF{0}{L'utente acceduto deve poter aggiungere le proprie preferenze nel sistema}{Interno UC17-GP}
+				\rowcolor{white}\subReqF{0}{L'utente acceduto deve poter aggiungere nuovi Topic di iscrizione}{Interno UC17.1-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter aggungere nuovi giorni di indisponibilità nel calendario}{Interno UC17.2-GP}
+				\rowcolor{white}\subReqF{0}{L'utente acceduto deve poter aggungere una nuova piattaforma di messaggistica preferita}{Interno UC17.3-GP}
+				\rowcolor{\tablegray}\subReqF{0}{L'utente acceduto deve poter aggungere la propria persona di fiducia}{Interno UC17.4-GP}
+					\rowcolor{white}\subsubReqF{0}{L'utente acceduto deve poter visualizzare un messaggio di errore se il contatto Email della persona di fiducia non è presente nel sistema}{Interno UC17.5-GP}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -235,21 +235,21 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
+			\rowcolor{white}\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\
 			\toprule
 			% presi dal PdQ
-			\ReqQ{1}{È stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
-			\ReqQ{1}{L'\gloss{indice di Gulpease} di ogni documento deve rientrare all'interno di un intervallo stabilito}{Interno QPD001}
+			\rowcolor{\tablegray}\ReqQ{1}{È stabilito un numero massimo di giorni di ritardo per la chiusura di una issue}{Interno QPR001}
+			\rowcolor{white}\ReqQ{1}{L'\gloss{indice di Gulpease} di ogni documento deve rientrare all'interno di un intervallo stabilito}{Interno QPD001}
 			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
-			\ReqQ{1}{Una frequenza minima di commit devono essere effettuati in una settimana}{Interno QPR004}
-			\ReqQ{1}{Un numero stabilito di requisiti desiderabili deve essere soddisfatto}{Interno QPR006}
-			\ReqQ{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
-			\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
-			\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
-			\ReqQ{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
-			\ReqQ{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
-			\ReqQ{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
-			\ReqQ{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
+			\rowcolor{\tablegray}\ReqQ{1}{Una frequenza minima di commit devono essere effettuati in una settimana}{Interno QPR004}
+			\rowcolor{white}\ReqQ{1}{Un numero stabilito di requisiti desiderabili deve essere soddisfatto}{Interno QPR006}
+			\rowcolor{\tablegray}\ReqQ{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
+			\rowcolor{white}\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
+			\rowcolor{\tablegray}\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
+			\rowcolor{white}\ReqQ{2}{Tutte le \gloss{norme} inserite nelle \NdP\ devono essere rispettate}{Interno}
+			\rowcolor{\tablegray}\ReqQ{2}{Tutti i vincoli presenti nel \PdQ\ devono essere rispettati}{Interno}
+			\rowcolor{white}\ReqQ{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
+			\rowcolor{\tablegray}\ReqQ{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
 
 			\bottomrule
 		\end{paddedtablex}
