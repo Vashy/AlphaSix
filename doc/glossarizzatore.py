@@ -6,10 +6,10 @@ Il controllo viene effettuato solo sui file necessari
 import fileinput
 from pathlib import Path
 import re
+import itertools
 
 re_label = re.compile(r'\\label{[a-zA-Z][^}]+}')
 re_glossary = re.compile(r'\\gloss{[^}]*}')
-re_word_escaper = re.compile(r'\b.*\b')
 glossarydir = Path('./Esterni/Glossario/sections')
 glossario=[]
 localdir = Path('.')
@@ -22,7 +22,19 @@ for file in glossarydir.glob('**/*.tex'):
             match = check.group(0)
             match = match.replace('\label{','')
             match = match.replace('}','')
-            glossario.append(match)
+            words = match.split()
+            possibilities = []
+            for word in words:
+                possibility = []
+                possibility.append(word)
+                possibility.append(word.lower())
+                possibility.append(word.upper())
+                possibility.append(word.capitalize())
+                possibilities.append(possibility)
+            all_possibilities = list(itertools.product(*possibilities))
+            for i,possibility in enumerate(all_possibilities):
+                all_possibilities[i] = ' '.join(possibility)           
+            glossario += all_possibilities
         
 glossario_copy = glossario[:]
 
@@ -88,18 +100,12 @@ for document in documents:
     for numfile,file in enumerate(document):
         if numfile == 0:
             glossario = glossario_copy[:]
-        for line in fileinput.input(file, inplace = True):
-            #NON SPLITTARE, COME FARE?
-            words = line.split();
-            for i,word in enumerate(words):
-                if re_word_escaper.search(word) is not None:
-                    word_escaped = re_word_escaper.search(word).group().lower()
-                    #word_escaped = word_escaped.replace(' ','')
-                    words[i] = word_escaped
+        for line in fileinput.input(file, inplace=True):
             for parola in glossario:
-                #parola_escaped = parola.replace(' ','')
-                if parola.lower() in words and line[0]!='%':
-                    line = line.replace(parola,'\gloss{'+parola+'}', 1)
-                    if parola in glossario: glossario.remove(parola)
-
+                re_word_escaper = re.compile(r'\b'+re.escape(parola)+r'\b')
+                if (re.search(re_word_escaper, line)):
+                    word = re.search(re_word_escaper, line).group()
+                    if parola == word and line[0]!='%':
+                        line = line.replace(parola,'\gloss{'+parola+'}', 1)
+                        if parola in glossario: glossario.remove(parola)
             print(line, end='')
