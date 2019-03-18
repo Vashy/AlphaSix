@@ -814,3 +814,9 @@ Creare un caso d'uso per ogni coppia Producer-Consumer
 * Capire meglio il contesto del termine **registrazione**
 
 * La registrazione deve poter essere fatta fuori dal sistema (perciò l'utente pre registrato non c'è più)
+
+* Sistemare UC17 e UC18 cambiando le estensioni in "vengono inseriti cambi errati che corrispondono ad un utente già presente nel sistema"
+
+### Da aggiungere in NdP
+
+* Aggiungere come gestiamo le appendici
