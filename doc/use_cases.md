@@ -820,3 +820,11 @@ Creare un caso d'uso per ogni coppia Producer-Consumer
 ### Da aggiungere in NdP
 
 * Aggiungere come gestiamo le appendici
+
+### Da aggiungere in PdQ
+
+* Sistemare diagrammi e descrizione di "Aderenza agli standard"
+
+* Sistemazione associazione obiettivo di qualità -> metrica da MS001 a MS004
+
+* Aggiungere MPR004
