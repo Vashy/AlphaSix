@@ -141,8 +141,8 @@ class GLProducer(Producer):
                     # Serializza l'oggetto Python
                     # in un oggetto JSON, codifica UTF-8
                     value_serializer=lambda m: json.dumps(m).encode('utf-8'),
-                    **config"""
-                )
+                    **config
+                )"""
                 break
             except kafka.errors.NoBrokersAvailable:
                 if not notify:
