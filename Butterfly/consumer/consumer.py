@@ -36,6 +36,12 @@ from abc import ABC, abstractmethod
 
 class Consumer(ABC):
     """Interfaccia Consumer"""
+    
+    def __init__(consumer: KafkaConsumer):
+        # Configs ...
+
+        self._topics = topics
+        self._consumer = consumer
 
     @abstractmethod
     def listen(self):

@@ -46,25 +46,13 @@ from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 #                     help='topic di destinazione')
 # args = parser.parse_args()
 
-class Broker(ABC):
-    connect()
-    obtainBroker
-
-class KafkaBroker(Broker):
-    def __init__(kafkaProducer: KafkaProducer)
-
-    connect():
-
-    send():
-
-
 
 class FlaskThing:
     def __init__(self, flask: Flask, config: dict):
         self.app = flask
 
     @app.route('/', methods=['GET', 'POST'])
-    def api_root():
+    def api_root(self):
 
     # Percorso fino a webhook.json
     # webhook_path = (
@@ -132,6 +120,7 @@ class FlaskThing:
 class GLProducer(Producer):
 
     def __init__(self, kafkaProducer: KafkaProducer):
+        self.creator = self.get_creator()
         notify = False
         while True:  # Attende una connessione con il Broker
             try:
@@ -161,7 +150,8 @@ class GLProducer(Producer):
         whook -- il file json
         """
 
-        webhook = GLIssueWebhook(whook)
+        # webhook = GLIssueWebhook(whook)
+        webhook = whook_creator.createWebhook(whook, topic)
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook.parse()
@@ -187,7 +177,7 @@ class GLProducer(Producer):
 def main():
     with open(Path(__file__).parents[1] / 'config.json') as f:
         config = json.load(f)
-    
+
     flask = Flask(__name__, config)
     app = FlaskThing(flask)
     app.run()

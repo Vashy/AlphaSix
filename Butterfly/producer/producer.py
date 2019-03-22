@@ -35,6 +35,6 @@ class Producer(ABC):
     """Interfaccia Producer"""
 
     @abstractmethod
-    def produce(self, topic, msg):
+    def produce(self, topic: Topic, msg: str):
         """Produce il messaggio `msg` nel Topic designato del Broker"""
         pass

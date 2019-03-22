@@ -37,14 +37,18 @@ from consumer.consumer import Consumer
 # import webhook.webhook as GLIssueWebhook
 # from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
 
+class Consumer:
+    def __init__(self, topics, configs):
+
 
 class TelegramConsumer(Consumer):
     """Implementa Consumer"""
 
-    def __init__(self, topics: list, configs: dict):
+    def __init__(self, consumer: KafkaConsumer, Telepot.bot):
+        # super.__init__(topics, configs)
 
         self._receiver = configs['telegram']['receiver']
-        self._topics = topics
+        # self._topics = topics
 
         # Converte stringa 'inf' nel relativo float
         if (configs['kafka']['consumer_timeout_ms'] is not None
@@ -57,13 +61,14 @@ class TelegramConsumer(Consumer):
                 # Il parametro value_deserializer tornerà probabilmente
                 # utile successivamente, per ora lasciamo il controllo
                 # del tipo a listen()
-                self._consumer = KafkaConsumer(
-                    *topics,
-                    # Deserializza i messaggi dal formato JSON a oggetti Python
-                    # value_deserializer=(
-                    #   lambda m: json.loads(m.decode('utf-8'))),
-                    **configs['kafka'],
-                )
+                self._consumer = consumer
+                # self._consumer = KafkaConsumer(
+                #     *topics,
+                #     # Deserializza i messaggi dal formato JSON a oggetti Python
+                #     # value_deserializer=(
+                #     #   lambda m: json.loads(m.decode('utf-8'))),
+                #     **configs['kafka'],
+                # )
                 break
             except kafka.errors.NoBrokersAvailable:
                 if not notify:
@@ -122,7 +127,7 @@ class TelegramConsumer(Consumer):
         print()
 
         # Linea da commentare in caso qualcun altro abbia attivo il bot
-        self._bot.message_loop(self._on_chat_message)
+        self._bot.message_loop(self._on_chat_message) # TODO Hook!
         for message in self._consumer:
             print(f'Tipo messaggio: {type(message.value)}')
 
