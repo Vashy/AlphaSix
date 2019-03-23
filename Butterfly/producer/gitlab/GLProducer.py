@@ -106,25 +106,27 @@ def api_root():
 
 class GLProducer(Producer):
 
-    def __init__(self, config):
-        notify = False
-        while True:  # Attende una connessione con il Broker
-            try:
-                self._producer = KafkaProducer(
-                    # Serializza l'oggetto Python
-                    # in un oggetto JSON, codifica UTF-8
-                    value_serializer=lambda m: json.dumps(m).encode('utf-8'),
-                    **config
-                )
-                break
-            except kafka.errors.NoBrokersAvailable:
-                if not notify:
-                    notify = True
-                    print('Broker offline. In attesa di una connessione ...')
-            except KeyboardInterrupt:
-                print(' Closing Producer ...')
-                exit(1)
-        print('Connessione con il Broker stabilita')
+    def __init__(self, kafkaProducer: KafkaProducer):
+        assert isinstance(kafkaProducer, KafkaProducer)
+        # notify = False
+        # while True:  # Attende una connessione con il Broker
+        #     try:
+        #         self._producer = KafkaProducer(
+        #             # Serializza l'oggetto Python
+        #             # in un oggetto JSON, codifica UTF-8
+        #             value_serializer=lambda m: json.dumps(m).encode('utf-8'),
+        #             **config
+        #         )
+        #         break
+        #     except kafka.errors.NoBrokersAvailable:
+        #         if not notify:
+        #             notify = True
+        #             print('Broker offline. In attesa di una connessione ...')
+        #     except KeyboardInterrupt:
+        #         print(' Closing Producer ...')
+        #         exit(1)
+        # print('Connessione con il Broker stabilita')
+        self._producer = kafkaProducer
 
     def produce(self, topic: str, whook: dict):
         """Produce il messaggio in Kafka.
