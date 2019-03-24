@@ -47,9 +47,13 @@ from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 # args = parser.parse_args()
 
 
-class FlaskThing:
+class FlaskThing:  # FlaskClient
     def __init__(self, flask: Flask, config: dict):
         self.app = flask
+        # Istanzia il Producer
+        # TODO: Potrebbe essere rotto, da verificare
+        kafka_producer = assembler.create("path/to/config")
+        producer = GLProducer(kafka_producer)
 
     @app.route('/', methods=['GET', 'POST'])
     def api_root(self):
@@ -76,10 +80,7 @@ class FlaskThing:
             with open(Path(__file__).parents[2] / 'topics.json') as f:
                 topics = json.load(f)
 
-            # Istanzia il Producer
-            # TODO: Potrebbe essere rotto, da verificare
-            kafka_producer = assembler.create("path/to/config")
-            producer = GLProducer(kafka_producer)
+            
 
             webhook = request.get_json()
             print(
@@ -120,27 +121,30 @@ class FlaskThing:
 class GLProducer(Producer):
 
     def __init__(self, kafkaProducer: KafkaProducer):
-        self.creator = self.get_creator()
-        notify = False
-        while True:  # Attende una connessione con il Broker
-            try:
+        # self.creator = self.get_creator()
+        # notify = False
+        # while True:  # Attende una connessione con il Broker
+        #     try:
                 self._producer = kafkaProducer
-                    """
+                """
                     KafkaProducer(
                     # Serializza l'oggetto Python
                     # in un oggetto JSON, codifica UTF-8
                     value_serializer=lambda m: json.dumps(m).encode('utf-8'),
                     **config
                 )"""
-                break
-            except kafka.errors.NoBrokersAvailable:
-                if not notify:
-                    notify = True
-                    print('Broker offline. In attesa di una connessione ...')
-            except KeyboardInterrupt:
-                print(' Closing Producer ...')
-                exit(1)
-        print('Connessione con il Broker stabilita')
+        #         break
+        #     except kafka.errors.NoBrokersAvailable:
+        #         if not notify:
+        #             notify = True
+        #             print('Broker offline. In attesa di una connessione ...')
+        #     except KeyboardInterrupt:
+        #         print(' Closing Producer ...')
+        #         exit(1)
+        # print('Connessione con il Broker stabilita')
+
+    # def creationwhook(self, whook: dict)
+    #     if whook['payload']['action'] == 'updated'
 
     def produce(self, topic: str, whook: dict):
         """Produce il messaggio in Kafka.
@@ -164,10 +168,10 @@ class GLProducer(Producer):
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-    @property
-    def producer(self):
-        """Restituisce il KafkaProducer"""
-        return self._producer
+    # @property
+    # def producer(self):
+    #     """Restituisce il KafkaProducer"""
+    #     return self._producer
 
     # def close(self):
     #    """Rilascia il Producer associato"""
