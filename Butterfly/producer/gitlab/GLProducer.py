@@ -31,6 +31,7 @@ import json
 from pathlib import Path
 import pprint
 from sys import stderr
+from abc import ABC, abstractmethod
 
 from flask import Flask
 from flask import request
@@ -38,38 +39,56 @@ from kafka import KafkaProducer
 import kafka.errors
 
 from producer.producer import Producer
-from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
-
-# Parsing dei parametri da linea di comando
-# parser = argparse.ArgumentParser(description='Crea messaggi su Kafka')
-# parser.add_argument('-t', '--topic', type=str,
-#                     help='topic di destinazione')
-# args = parser.parse_args()
+# from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 
-class FlaskThing:  # FlaskClient
-    def __init__(self, flask: Flask, config: dict):
-        self.app = flask
+class ProducerCreator(ABC):
+    @abstractmethod
+    def create(self, configs) -> Producer:
+        pass
+
+
+class GitlabProducerCreator(ProducerCreator):
+    """Assembler per GitlabProducer
+    """
+    def create(self, configs) -> Producer:
+        notify = False
+        while True:  # Attende una connessione con il Broker
+            try:
+                kafkaProducer = KafkaProducer(
+                    # Serializza l'oggetto Python in un
+                    # oggetto JSON, codifica UTF-8
+                    value_serializer=lambda m: json.dumps(m).encode('utf-8'),
+                    **configs
+                )
+                break
+            except kafka.errors.NoBrokersAvailable:
+                if not notify:
+                    notify = True
+                    print('Broker offline. In attesa di una connessione ...')
+            except KeyboardInterrupt:
+                print(' Closing Producer ...')
+                exit(1)
+        print('Connessione con il Broker stabilita')
+
         # Istanzia il Producer
-        # TODO: Potrebbe essere rotto, da verificare
-        kafka_producer = assembler.create("path/to/config")
-        producer = GLProducer(kafka_producer)
+        producer = GLProducer(kafkaProducer)
+        return producer
+
+
+class FlaskClient:  # FlaskClient
+    def __init__(self, flask: Flask, producer: Producer):
+        self._app: Flask = flask
+        self._producer: Producer = producer
+
+    @property
+    def app(self) -> Flask:
+        return self._app
 
     @app.route('/', methods=['GET', 'POST'])
     def api_root(self):
 
-    # Percorso fino a webhook.json
-    # webhook_path = (
-    #     Path(__file__).parents[2] /
-    #     'webhook' /
-    #     'webhook.json'
-    # )
-
         if request.headers['Content-Type'] == 'application/json':
-
-            # Configurazione da config.json
-            with open(Path(__file__).parents[1] / 'config.json') as f:
-                config = json.load(f)
 
             """Fetch dei topic dal file topics.json
             Campi:
@@ -77,10 +96,6 @@ class FlaskThing:  # FlaskClient
             - topics['label']
             - topics['project']
             """
-            with open(Path(__file__).parents[2] / 'topics.json') as f:
-                topics = json.load(f)
-
-            
 
             webhook = request.get_json()
             print(
@@ -89,64 +104,50 @@ class FlaskThing:  # FlaskClient
                 'Parsing del messaggio ...'
             )
 
-            # if args.topic:  # Topic passato con la flag -t
-            #     # #producer.produce(args.topic, webhook_path)
-            #     # producer.produce(args.topic, webhook)
-            # else:  # Prende come Topic di default il primo del file webhook.json
-
             try:
-                producer.produce(topics[0]['label'], webhook)
+                self._producer.produce(webhook)
                 print('Messaggio inviato.\n\n')
             except KeyError:
                 print('Warning: messaggio malformato. '
-                    'Non è stato possibile effettuare il parsing.\n'
-                    'In attesa di altri messaggi...\n\n')
+                      'Non è stato possibile effettuare il parsing.\n'
+                      'In attesa di altri messaggi...\n\n')
 
             return '', 200
 
         else:
             return '', 400
 
-
-    def run():
+    def run(self):
         self.app.run(
             host=self.config['gitlab']['ip'],
             port=self.config['gitlab']['port']
         )
 
-# app = Flask(__name__)
+    @staticmethod
+    def initialize_app():
+        configs = _open_configs(Path(__file__).parents[1] / 'config.json')
 
+        flask = Flask(__name__, configs['gitlab'])
+
+        creator = GitlabProducerCreator()
+        producer = creator.create(configs['kafka'])  # O senza il campo
+
+        app = FlaskClient(flask, producer)
+        return app
 
 
 class GLProducer(Producer):
 
-    def __init__(self, kafkaProducer: KafkaProducer):
-        # self.creator = self.get_creator()
-        # notify = False
-        # while True:  # Attende una connessione con il Broker
-        #     try:
-                self._producer = kafkaProducer
-                """
-                    KafkaProducer(
-                    # Serializza l'oggetto Python
-                    # in un oggetto JSON, codifica UTF-8
-                    value_serializer=lambda m: json.dumps(m).encode('utf-8'),
-                    **config
-                )"""
-        #         break
-        #     except kafka.errors.NoBrokersAvailable:
-        #         if not notify:
-        #             notify = True
-        #             print('Broker offline. In attesa di una connessione ...')
-        #     except KeyboardInterrupt:
-        #         print(' Closing Producer ...')
-        #         exit(1)
-        # print('Connessione con il Broker stabilita')
+    def __init__(
+                self,
+                kafkaProducer: KafkaProducer,
+                webhook_factory: WebhookFactory,
+            ):
 
-    # def creationwhook(self, whook: dict)
-    #     if whook['payload']['action'] == 'updated'
+        self._webhook_factory = webhook_factory
+        self._producer = kafkaProducer
 
-    def produce(self, topic: str, whook: dict):
+    def produce(self, whook: dict):
         """Produce il messaggio in Kafka.
 
         Arguments:
@@ -154,36 +155,29 @@ class GLProducer(Producer):
         whook -- il file json
         """
 
-        # webhook = GLIssueWebhook(whook)
-        webhook = whook_creator.createWebhook(whook, topic)
+        webhook = self._webhook_factory.createWebhook(whook['object_kind'])
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python
-        webhook.parse()
+        webhook = webhook.parse(whook)
         try:
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
-            self.producer.send(topic, webhook.webhook)
+            self.producer.send('gitlab', webhook)
             self.producer.flush(10)  # Attesa 10 secondi
         # Se non riesce a mandare il messaggio in 10 secondi
         except kafka.errors.KafkaTimeoutError:
             stderr.write('Errore di timeout\n')
             exit(-1)
 
-    # @property
-    # def producer(self):
-    #     """Restituisce il KafkaProducer"""
-    #     return self._producer
 
-    # def close(self):
-    #    """Rilascia il Producer associato"""
-    #    self._producer.close()
+def _open_configs(path: Path):
+    with open(path) as f:
+        config = json.load(f)
+    return config
 
 
 def main():
-    with open(Path(__file__).parents[1] / 'config.json') as f:
-        config = json.load(f)
 
-    flask = Flask(__name__, config)
-    app = FlaskThing(flask)
+    app = FlaskClient.initialize_app()
     app.run()
 
 
