@@ -1,0 +1,70 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_2019-03-23.pdf}
+\newcommand{\redazione}{\TG}
+\newcommand{\verifica}{\CV}
+\newcommand{\approvazione}{\SG}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{23 marzo 2019}
+\newcommand{\datamodifica}{24 marzo 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VE_2019-03-23/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+    
+    \section{Informazioni incontro}
+    	\begin{itemize}
+    		\item \textbf{Luogo}: l'incontro è stato effettuato presso il Coffee Box in Via Altinate a Padova.
+    		\item \textbf{Data}: 2019-03-23.
+    		\item \textbf{Ora inizio}: 11:00.
+    		\item \textbf{Ora fine}: 13:30.
+    		\item \textbf{Partecipanti di AlphaSix}: team al completo.
+    		\item \textbf{Partecipanti esterni}: \DZ~di \II.
+    		\item \textbf{Ordine del giorno}: presentazione del lavoro svolto, domande riguardanti i design pattern, domande riguardanti Kubernetes e Redmine.
+    		
+    	\end{itemize}
+    
+    \section{Argomenti}
+        
+        In vista della Product Baseline abbiamo ricapitolato a \DZ~il lavoro svolto finora, chiedendo informazioni su come configurare Rancher e Kubernetes per istanziare le varie componenti del sistema Butterfly.
+        In seguito abbiamo chiesto un parere riguardo a quali design pattern oltre a quelli da noi trovati potessimo adottare, in particolar modo riferendoci al gestore personale.
+        
+        
+        Nello specifico:
+        \begin{itemize}
+            \item \DZ~ci ha illustrato con un piccolo esempio guidato come configurare Rancher per l'uso di Redmine sul server di \II
+            \item Successivamente abbiamo chiesto un parere sui design pattern adottati per producer e consumer. \DZ~ha confermato che siamo sulla strada giusta
+            \item \DZ~ha segnalato che serve un sistema di priorità per le label delle issue e per le keyword dei commit di ogni progetto, al posto della persona preferita in caso di indisponibilità. Questo perché il sistema possa adattarsi automaticamente agli utenti iscritti ai progetti
+        \end{itemize}
+        
+    \section{Tracciamento delle decisioni}
+    
+        \begin{table}[H]
+		    \begin{detailtable}{\columnwidth}{m{3cm}Y}
+			    \thead{Codice} &
+			    \thead{Decisione}\\\toprule\rowcolor{\tablegray}
+			    VE\_2019-03-23-1 & Usiamo Rancher e Kubernetes al posto di Docker\\
+			    VE\_2019-03-23-2 & Implementiamo un sistema a priorità su label delle issue e keyword dei commit\\\bottomrule
+		    \end{detailtable}
+		    \caption{Consuntivo del periodo di analisi dei requisiti}
+	    \end{table}
+    	
+\end{document}
