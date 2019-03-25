@@ -31,10 +31,11 @@ Autori:
 
 from abc import ABC, abstractmethod
 
+
 class Producer(ABC):
     """Interfaccia Producer"""
 
     @abstractmethod
-    def produce(self, topic: Topic, msg: str):
+    def produce(self, msg: str):
         """Produce il messaggio `msg` nel Topic designato del Broker"""
         pass
