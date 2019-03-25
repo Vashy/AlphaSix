@@ -3,7 +3,7 @@ import json
 from kafka import KafkaProducer
 import kafka.errors
 
-from producer.gitlab.gitlab_producer import GitlabProducer
+from producer.gitlab.producer import GitlabProducer
 from producer.creator import ProducerCreator
 from producer.producer import Producer
 

@@ -1,18 +1,29 @@
 import json
 from pathlib import Path
 from pprint import pprint
+from abc import ABC, abstractmethod
 
 from flask import Flask
 from flask import request
 
 from producer.producer import Producer
-from producer.gitlab.gitlab_creator import GitlabProducerCreator
+from producer.gitlab.creator import GitlabProducerCreator
 
 
-_config_path = Path(__file__).parents[1] / 'config.json'
+
+class Server(ABC):
+    @abstractmethod
+    def app(self):
+        pass
+    
+    @abstractmethod
+    def run(self):
+        pass
 
 
-class FlaskClient:  # FlaskClient
+class FlaskServer(Server):  # FlaskClient
+    _config_path = Path(__file__).parents[1] / 'config.json'
+
     def __init__(self, flask: Flask, producer: Producer):
         self._app: Flask = flask
         self._producer: Producer = producer
@@ -60,7 +71,7 @@ class FlaskClient:  # FlaskClient
         )
 
     @staticmethod
-    def initialize_app(config_path=_config_path):
+    def initialize_app(config_path=FlaskClient._config_path):
         configs = FlaskClient._open_configs(config_path)
 
         flask = Flask(__name__, configs['gitlab'])
