@@ -21,13 +21,14 @@ class FlaskImpl (Server):
         
     class User(self._fr.Resource):
         def get(self, user):
-            #TODO
+            pass  # TODO
 
         def delete(self, user):
-            #TODO
+            pass  # TODO
 
         def put(self, user):
-            #TODO
+            pass
+            # TODO
             
     self._api.add_resource(User, '/user/<user>')
 

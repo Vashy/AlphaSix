@@ -46,7 +46,7 @@ class GLIssueWebhook(Webhook):
         """Parsing del file JSON associato al webhook."""
 
         webhook = {}
-        webhook["type"] = 'Gitlab'
+        webhook["app"] = 'gitlab'
         webhook["object_kind"] = self._json_webhook["object_kind"]
         webhook["title"] = self._json_webhook["object_attributes"]["title"]
         webhook["project"] = {}

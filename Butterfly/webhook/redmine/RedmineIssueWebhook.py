@@ -47,7 +47,7 @@ class RedmineIssueWebhook(Webhook):
 
         webhook = {}
 
-        webhook["type"] = 'Redmine'
+        webhook["app"] = 'redmine'
         webhook["title"] = self._json_webhook["payload"]["issue"]["subject"]
         webhook["description"] = (
             self._json_webhook["payload"]["issue"]["description"]

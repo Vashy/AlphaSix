@@ -125,7 +125,7 @@ class RedmineProducer(Producer):
         # Se non riesce a mandare il messaggio in 10 secondi
         except kafka.errors.KafkaTimeoutError:
             stderr.write('Errore di timeout\n')
-            exit(-1)
+            # exit(-1)
 
     @property
     def producer(self):

@@ -27,57 +27,31 @@ Autori:
     Samuele Gardin, samuelegardin@gmail.com
 """
 
-import json
-from pathlib import Path
-import pprint
-from sys import stderr
+# import json
+# from pathlib import Path
+# import pprint
+# from sys import stderr
 
-from flask import Flask
-from flask import request
-from kafka import KafkaProducer
-import kafka.errors
+# from flask import Flask
+# from flask import request
+# from kafka import KafkaProducer
+# import kafka.errors
 
 from producer.producer import Producer
+from producer.server import FlaskServerCreator, GitlabProducerCreator
 # from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 
 class GitlabProducer(Producer):
 
-    def __init__(
-                self,
-                kafkaProducer: KafkaProducer,
-                webhook_factory: WebhookFactory,
-            ):
-
-        self._webhook_factory = webhook_factory
-        self._producer = kafkaProducer
-
-    def produce(self, whook: dict):
-        """Produce il messaggio in Kafka.
-
-        Arguments:
-        topic -- il topic dove salvare il messaggio.
-        whook -- il file json
-        """
-
-        webhook = self._webhook_factory.createWebhook(whook['object_kind'])
-
-        # Parse del JSON associato al webhook ottenendo un oggetto Python
-        webhook = webhook.parse(whook)
-        
-        try:
-            # Inserisce il messaggio in Kafka, serializzato in formato JSON
-            self.producer.send(webhook['app'], webhook)
-            self.producer.flush(10)  # Attesa 10 secondi
-        # Se non riesce a mandare il messaggio in 10 secondi
-        except kafka.errors.KafkaTimeoutError:
-            stderr.write('Impossibile inviare il messaggio\n')
-            exit(-1)
+    def webhook_field(self, whook: dict):
+        return whook['object_kind']
 
 
 def main():
-
-    app = FlaskClient.initialize_app()
+    application = 'gitlab'
+    creator = FlaskServerCreator(GitlabProducerCreator)
+    app = creator.initialize_app(application)
     app.run()
 
 

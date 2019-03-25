@@ -7,11 +7,12 @@ from flask import Flask
 from flask import request
 
 from producer.producer import Producer
+from producer.creator import ServerCreator
 from producer.gitlab.creator import GitlabProducerCreator
 
 
-
 class Server(ABC):
+    @property
     @abstractmethod
     def app(self):
         pass
@@ -21,12 +22,12 @@ class Server(ABC):
         pass
 
 
-class FlaskServer(Server):  # FlaskClient
-    _config_path = Path(__file__).parents[1] / 'config.json'
+class FlaskServer(Server):  # FlaskServer
 
-    def __init__(self, flask: Flask, producer: Producer):
-        self._app: Flask = flask
-        self._producer: Producer = producer
+    def __init__(self, flask: Flask, producer: Producer, application: str):
+        self._app = flask
+        self._producer = producer
+        self._application = application
 
     @property
     def app(self) -> Flask:
@@ -66,20 +67,25 @@ class FlaskServer(Server):  # FlaskClient
 
     def run(self):
         self.app.run(
-            host=self.config['gitlab']['ip'],
-            port=self.config['gitlab']['port']
+            host=self.config[self._application]['ip'],
+            port=self.config[self._application]['port']
         )
 
-    @staticmethod
-    def initialize_app(config_path=FlaskClient._config_path):
-        configs = FlaskClient._open_configs(config_path)
 
-        flask = Flask(__name__, configs['gitlab'])
+class FlaskServerCreator(ServerCreator):
+    _config_path = Path(__file__).parents[1] / 'config.json'
 
-        creator = GitlabProducerCreator()
-        producer = creator.create(configs['kafka'])  # O senza il campo
+    def __init__(self, creator: ProducerCreator):
+        assert isinstance(creator, ProducerCreator)
+        self._creator = creator
 
-        app = FlaskClient(flask, producer)
+    def initialize_app(application: str):
+        configs = FlaskServer._open_configs(FlaskServerCreator._config_path)
+
+        flask = Flask(__name__, configs[application])
+        producer = self._creator.create(configs['kafka'])  # O senza il campo
+
+        app = FlaskServer(flask, producer)
         return app
 
     @staticmethod

@@ -35,7 +35,34 @@ from abc import ABC, abstractmethod
 class Producer(ABC):
     """Interfaccia Producer"""
 
-    @abstractmethod
+    def __init__(
+                self,
+                kafkaProducer: KafkaProducer,
+                webhook_factory: WebhookFactory,
+            ):
+
+        self._webhook_factory = webhook_factory
+        self._producer = kafkaProducer
+
     def produce(self, msg: str):
         """Produce il messaggio `msg` nel Topic designato del Broker"""
+
+        # Parse del JSON associato al webhook ottenendo un oggetto Python
+        webhook = webhook.parse(whook)
+
+        webhook = self._webhook_factory.createWebhook(
+            self.webhook_field(webhook)
+        )
+
+        try:
+            # Inserisce il messaggio in Kafka, serializzato in formato JSON
+            self._producer.send(webhook['app'], webhook)
+            self._producer.flush(10)  # Attesa 10 secondi
+        # Se non riesce a mandare il messaggio in 10 secondi
+        except kafka.errors.KafkaTimeoutError:
+            stderr.write('Impossibile inviare il messaggio\n')
+            # exit(-1)
+
+    @abstractmethod
+    def webhook_field(self, whook: dict):
         pass
