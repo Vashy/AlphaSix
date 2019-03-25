@@ -44,41 +44,39 @@ from consumer.consumer import Consumer
 class EmailConsumer(Consumer):
     """Implementa Consumer"""
 
-    def __init__(self, topics: list, configs: dict):
-        self._receiver = configs['email']['receiver']
-        self._subject = configs['email']['subject']
-        self._sender = configs['emailSettings']['sender']
-        self._topics = topics
+    def __init__(self, consumer: KafkaConsumer, server: smtplib.SMTP):
+        # self._sender = configs['emailSettings']['sender']
+        self._server = server
 
-        configs = configs['kafka']
+    #     configs = configs['kafka']
 
-        # Converte stringa 'inf' nel relativo float
-        if (configs['consumer_timeout_ms'] is not None
-                and configs['consumer_timeout_ms'] == 'inf'):
-            configs['consumer_timeout_ms'] = float('inf')
+    #     # Converte stringa 'inf' nel relativo float
+    #     if (configs['consumer_timeout_ms'] is not None
+    #             and configs['consumer_timeout_ms'] == 'inf'):
+    #         configs['consumer_timeout_ms'] = float('inf')
 
-        notify = False
-        while True:  # Attende una connessione con il Broker
-            try:
-                # Il parametro value_deserializer tornerà probabilmente
-                # utile successivamente, per ora lasciamo il controllo
-                # del tipo a listen()
-                self._consumer = KafkaConsumer(
-                    *topics,
-                    # Deserializza i messaggi dal formato JSON a oggetti Python
-                    # value_deserializer=(
-                    #   (lambda m: json.loads(m.decode('utf-8'))),
-                    **configs,
-                )
-                break
-            except kafka.errors.NoBrokersAvailable:
-                if not notify:
-                    notify = True
-                    print('Broker offline. In attesa di una connessione ...')
-            except KeyboardInterrupt:
-                print(' Closing Consumer ...')
-                exit(1)
-        print('Connessione con il Broker stabilita')
+    #     notify = False
+    #     while True:  # Attende una connessione con il Broker
+    #         try:
+    #             # Il parametro value_deserializer tornerà probabilmente
+    #             # utile successivamente, per ora lasciamo il controllo
+    #             # del tipo a listen()
+    #             self._consumer = KafkaConsumer(
+    #                 *topics,
+    #                 # Deserializza i messaggi dal formato JSON a oggetti Python
+    #                 # value_deserializer=(
+    #                 #   (lambda m: json.loads(m.decode('utf-8'))),
+    #                 **configs,
+    #             )
+    #             break
+    #         except kafka.errors.NoBrokersAvailable:
+    #             if not notify:
+    #                 notify = True
+    #                 print('Broker offline. In attesa di una connessione ...')
+    #         except KeyboardInterrupt:
+    #             print(' Closing Consumer ...')
+    #             # exit(1)
+    #     print('Connessione con il Broker stabilita')
 
     def send(self, msg: str):
         """Manda il messaggio finale, tramite il server mail,
@@ -127,78 +125,42 @@ class EmailConsumer(Consumer):
                 print('Errore, email non inviata. '
                       'In ascolto di altri messaggi ...')
 
-    def listen(self):
-        """Ascolta i messaggi provenienti dai Topic a cui il
-        consumer è abbonato.
+    # def listen(self):
+    #     """Ascolta i messaggi provenienti dai Topic a cui il
+    #     consumer è abbonato.
 
-        Precondizione: i messaggi salvati nel broker devono essere
-        in formato JSON, e devono contenere dei campi specifici
-        definiti in nel modulo webhook
-        """
-        print('Listening to messages from topics:')
-        for topic in self._topics:
-            print(f'- {topic}')
-        print()
+    #     Precondizione: i messaggi salvati nel broker devono essere
+    #     in formato JSON, e devono contenere dei campi specifici
+    #     definiti in nel modulo webhook
+    #     """
+    #     print('Listening to messages from topics:')
+    #     for topic in self._topics:
+    #         print(f'- {topic}')
+    #     print()
 
-        # Si mette in ascolto dei messsaggi dal Broker
-        for message in self._consumer:
-            print(f'Tipo messaggio: {type(message.value)}')
+    #     # Si mette in ascolto dei messsaggi dal Broker
+    #     for message in self._consumer:
+    #         print(f'Tipo messaggio: {type(message.value)}')
 
-            value = message.value.decode('utf-8')
-            try:
-                value = self.pretty(json.loads(value))
-            except json.decoder.JSONDecodeError:
-                print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
+    #         value = message.value.decode('utf-8')
+    #         try:
+    #             value = self.pretty(json.loads(value))
+    #         except json.decoder.JSONDecodeError:
+    #             print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
 
-            final_msg = '{}{}{}Key: {}\n{}{}'.format(
-                'Topic: ',
-                message.topic,
-                '\n\n',
-                message.key,
-                '\n',
-                value,
-            )
+    #         final_msg = '{}{}{}Key: {}\n{}{}'.format(
+    #             'Topic: ',
+    #             message.topic,
+    #             '\n\n',
+    #             message.key,
+    #             '\n',
+    #             value,
+    #         )
 
-            # Invia la richiesta per l'invio della mail
-            self.send(final_msg)
+    #         # Invia la richiesta per l'invio della mail
+    #         self.send(final_msg)
 
-            print()  # Per spaziare i messaggi sulla shell
-
-    @classmethod
-    def pretty(cls, obj: object):
-        """Restituisce una stringa con una formattazione migliore da un
-        oggetto JSON (Webhook).
-
-        Arguments:
-        obj -- JSON object
-        """
-
-        # Questa chiamata va bene sia per i webhook di rd che per gt
-        res = "".join(
-            [
-                f'Provenienza: {obj["type"]}'
-                '\n\nE` stata aperta una issue nel progetto: '
-                f'{obj["project_name"]} ',
-                f'({obj["project_id"]})',
-                f'\n\nAuthor: {obj["author"]}'
-                '\n\n Issue\'s information: '
-                f'\n - Title: {obj["title"]}',
-                f'\n - Description: {obj["description"]}',
-                f'\n - Action: {obj["action"]}',
-                '\n\nAssegnee\'s information:'
-            ])
-
-        # Avendo gitlab che può avere più assignees
-        # e redmine che invece può averne soltanto uno
-        # hanno due profondità diverse nel file json,
-        # quindi vanno scorse in modo diverso
-        if obj['type'] == 'Redmine':
-            res += f'\n - {obj["assignees"]["firstname"]}'
-        elif obj['type'] == 'Gitlab':
-            for value in obj["assignees"]:
-                res += f'\n - {value["name"]}'
-
-        return res
+    #         print()  # Per spaziare i messaggi sulla shell
 
     def close(self):
         """Chiude la connessione del Consumer"""

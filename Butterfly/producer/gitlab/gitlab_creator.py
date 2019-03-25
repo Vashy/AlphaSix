@@ -1,19 +1,21 @@
-from abc import ABC, abstractmethod
+import json
 
 from kafka import KafkaProducer
 import kafka.errors
 
+from producer.gitlab.gitlab_producer import GitlabProducer
+from producer.creator import ProducerCreator
 from producer.producer import Producer
-from producer.server import Server
 
 
-class ProducerCreator(ABC):
-
-    def create(self, configs: dict) -> Producer:
+class GitlabProducerCreator(ProducerCreator):
+    """Assembler per GitlabProducer
+    """
+    def create(self, configs) -> Producer:
         notify = False
         while True:  # Attende una connessione con il Broker
             try:
-                kafka_producer = KafkaProducer(
+                kafkaProducer = KafkaProducer(
                     # Serializza l'oggetto Python in un
                     # oggetto JSON, codifica UTF-8
                     value_serializer=lambda m: json.dumps(m).encode('utf-8'),
@@ -29,15 +31,6 @@ class ProducerCreator(ABC):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
-        producer = self.instantiate(kafka_producer)
+        # Istanzia il Producer
+        producer = GitlabProducer(kafkaProducer)
         return producer
-        
-    @abstractmethod
-    def instantiate(self, kafka_producer: KafkaProducer) -> Producer:
-        pass
-
-
-class ServerCreator(ABC):
-    @abstractmethod
-    def initialize_app(self, application, config_path) -> Server:
-        pass

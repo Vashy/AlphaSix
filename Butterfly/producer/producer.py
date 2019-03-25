@@ -44,8 +44,8 @@ class Producer(ABC):
         self._webhook_factory = webhook_factory
         self._producer = kafkaProducer
 
-    def produce(self, msg: str):
-        """Produce il messaggio `msg` nel Topic designato del Broker"""
+    def produce(self, whook: dict):
+        """Produce il messaggio `whook` nel Topic designato del Broker"""
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook = webhook.parse(whook)
