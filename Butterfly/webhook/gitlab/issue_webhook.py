@@ -1,5 +1,5 @@
 """
-File: GLIssueWebhook.py
+File: GitlabIssueWebhook.py
 Data creazione: 2019-02-15
 
 <descrizione>
@@ -35,7 +35,7 @@ from webhook.webhook import Webhook
 # Di conseguenza, rivedere i metodi astratti dell'interfaccia Webhook
 
 
-class GLIssueWebhook(Webhook):
+class GitlabIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
     def __init__(self, whook: object):

@@ -31,6 +31,9 @@ Autori:
 
 from abc import ABC, abstractmethod
 
+from kafka import KafkaProducer
+from webhook.factory import WebhookFactory
+
 
 class Producer(ABC):
     """Interfaccia Producer"""
@@ -48,11 +51,13 @@ class Producer(ABC):
         """Produce il messaggio `whook` nel Topic designato del Broker"""
 
         # Parse del JSON associato al webhook ottenendo un oggetto Python
-        webhook = webhook.parse(whook)
+        # webhook = self.webhook.parse(whook)
 
         webhook = self._webhook_factory.createWebhook(
             self.webhook_field(webhook)
         )
+
+        webhook = webhook.parse()
 
         try:
             # Inserisce il messaggio in Kafka, serializzato in formato JSON

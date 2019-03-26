@@ -38,7 +38,7 @@ Autori:
 # import kafka.errors
 
 from producer.producer import Producer
-from producer.server import FlaskServerCreator, GitlabProducerCreator
+# from producer.server import FlaskServerCreator, GitlabProducerCreator
 # from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 
@@ -48,12 +48,12 @@ class GitlabProducer(Producer):
         return whook['object_kind']
 
 
-def main():
-    application = 'gitlab'
-    creator = FlaskServerCreator(GitlabProducerCreator)
-    app = creator.initialize_app(application)
-    app.run()
+# def main():
+#     application = 'gitlab'
+#     creator = FlaskServerCreator(GitlabProducerCreator)
+#     app = creator.initialize_app(application)
+#     app.run()
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

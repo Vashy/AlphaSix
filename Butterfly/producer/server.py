@@ -7,16 +7,12 @@ from flask import Flask
 from flask import request
 
 from producer.producer import Producer
-from producer.creator import ServerCreator
-from producer.gitlab.creator import GitlabProducerCreator
+from producer.creator import ServerCreator, ProducerCreator
+# from producer.gitlab.creator import GitlabProducerCreator
 
 
 class Server(ABC):
-    @property
-    @abstractmethod
-    def app(self):
-        pass
-    
+
     @abstractmethod
     def run(self):
         pass
@@ -28,13 +24,18 @@ class FlaskServer(Server):  # FlaskServer
         self._app = flask
         self._producer = producer
         self._application = application
+        self._app.add_url_rule(
+            '/',
+            view_func=self._processor,
+            methods=['GET', 'POST']
+        )
 
-    @property
-    def app(self) -> Flask:
-        return self._app
+    # @property
+    # def app(self) -> Flask:
+    #     return self._app
 
-    @app.route('/', methods=['GET', 'POST'])
-    def api_root(self):
+    # @_app.route('/', methods=['GET', 'POST'])
+    def _processor(self):
 
         if request.headers['Content-Type'] == 'application/json':
 
@@ -66,26 +67,30 @@ class FlaskServer(Server):  # FlaskServer
             return '', 400
 
     def run(self):
-        self.app.run(
-            host=self.config[self._application]['ip'],
-            port=self.config[self._application]['port']
+        with open(FlaskServerCreator._config_path, 'r') as f:
+            config = json.load(f)
+
+        self._app.run(
+            host=config[self._application]['ip'],
+            port=config[self._application]['port']
         )
 
 
 class FlaskServerCreator(ServerCreator):
-    _config_path = Path(__file__).parents[1] / 'config.json'
+    _config_path = Path(__file__).parents[0] / 'config.json'
 
     def __init__(self, creator: ProducerCreator):
         assert isinstance(creator, ProducerCreator)
         self._creator = creator
 
-    def initialize_app(application: str):
-        configs = FlaskServer._open_configs(FlaskServerCreator._config_path)
+    def initialize_app(self, application: str):
+        configs = FlaskServerCreator._open_configs(
+            FlaskServerCreator._config_path)
 
-        flask = Flask(__name__, configs[application])
+        flask = Flask(__name__)
         producer = self._creator.create(configs['kafka'])  # O senza il campo
 
-        app = FlaskServer(flask, producer)
+        app = FlaskServer(flask, producer, application)
         return app
 
     @staticmethod

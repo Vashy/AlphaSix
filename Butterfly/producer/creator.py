@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
+import json
 
 from kafka import KafkaProducer
 import kafka.errors
 
 from producer.producer import Producer
-from producer.server import Server
 
 
 class ProducerCreator(ABC):
@@ -39,5 +39,5 @@ class ProducerCreator(ABC):
 
 class ServerCreator(ABC):
     @abstractmethod
-    def initialize_app(self, application, config_path) -> Server:
+    def initialize_app(self, application, config_path):
         pass

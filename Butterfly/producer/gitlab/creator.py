@@ -6,6 +6,7 @@ import kafka.errors
 from producer.gitlab.producer import GitlabProducer
 from producer.creator import ProducerCreator
 from producer.producer import Producer
+from webhook.gitlab.factory import GitlabWebhookFactory
 
 
 class GitlabProducerCreator(ProducerCreator):

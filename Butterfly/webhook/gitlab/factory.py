@@ -1,5 +1,7 @@
 from webhook.factory import WebhookFactory
 from webhook.webhook import Webhook
+from webhook.gitlab.issue_webhook import GitlabIssueWebhook
+
 
 class GitlabWebhookFactory(WebhookFactory):
 
