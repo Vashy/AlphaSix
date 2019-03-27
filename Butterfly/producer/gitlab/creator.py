@@ -1,7 +1,4 @@
-import json
-
 from kafka import KafkaProducer
-import kafka.errors
 
 from producer.gitlab.producer import GitlabProducer
 from producer.creator import ProducerCreator
@@ -10,7 +7,9 @@ from webhook.gitlab.factory import GitlabWebhookFactory
 
 
 class GitlabProducerCreator(ProducerCreator):
-    """Assembler per GitlabProducer
+    """Creator per `GitlabProducer`. Implementa `ProducerCreator`
     """
     def instantiate(self, kafka_producer: KafkaProducer) -> Producer:
+        """Restituisce un istanza concreta di `GitlabProducer`.
+        """
         return GitlabProducer(kafka_producer, GitlabWebhookFactory())

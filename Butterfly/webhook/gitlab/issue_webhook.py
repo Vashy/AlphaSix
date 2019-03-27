@@ -26,8 +26,6 @@ Autori:
     Laura Cameran, lauracameran@gmail.com
 """
 
-import json
-from pathlib import Path
 from webhook.webhook import Webhook
 
 # FIXME: Tim ~ Secondo me da rivedere, per renderlo stateless.
@@ -38,51 +36,56 @@ from webhook.webhook import Webhook
 class GitlabIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def __init__(self, whook: object):
-        self._webhook = None
-        self._json_webhook = whook
+    def __init__(self, whook: dict = None):
+        self._webhook = whook
 
-    def parse(self):
+    def parse(self, whook: dict = None):
         """Parsing del file JSON associato al webhook."""
 
-        webhook = {}
-        webhook["app"] = 'gitlab'
-        webhook["object_kind"] = self._json_webhook["object_kind"]
-        webhook["title"] = self._json_webhook["object_attributes"]["title"]
-        webhook["project"] = {}
-        webhook["project_id"] = self._json_webhook["project"]["id"]
-        webhook["project_name"] = self._json_webhook["project"]["name"]
-        webhook["author"] = self._json_webhook["user"]["name"]
+        if self._webhook is not None:
+            return self._webhook
 
-        webhook["assignees"] = []
-        for value in self._json_webhook["assignees"]:
-            webhook["assignees"].append(value)
+        assert whook is not None
 
-        webhook["action"] = self._json_webhook["object_attributes"]["action"]
-        webhook["description"] = (
-            self._json_webhook["object_attributes"]["description"]
+        self._webhook = {}
+        self._webhook["app"] = 'gitlab'
+        self._webhook["object_kind"] = whook["object_kind"]
+        self._webhook["title"] = whook["object_attributes"]["title"]
+        self._webhook["project"] = {}
+        self._webhook["project_id"] = whook["project"]["id"]
+        self._webhook["project_name"] = whook["project"]["name"]
+        self._webhook["author"] = whook["user"]["name"]
+
+        self._webhook["assignees"] = []
+        for value in whook["assignees"]:
+            self._webhook["assignees"].append(value)
+
+        self._webhook["action"] = whook["object_attributes"]["action"]
+        self._webhook["description"] = (
+            whook["object_attributes"]["description"]
         )
 
-        webhook["labels"] = []
-        for value in self._json_webhook["labels"]:
-            webhook["labels"].append(value["title"])
+        self._webhook["labels"] = []
+        for value in whook["labels"]:
+            self._webhook["labels"].append(value["title"])
 
-        webhook["changes"] = {}
-        webhook["changes"]["labels"] = {}
-        webhook["changes"]["labels"]["previous"] = (
-            self._json_webhook["changes"]["labels"]["previous"]
+        self._webhook["changes"] = {}
+        self._webhook["changes"]["labels"] = {}
+        self._webhook["changes"]["labels"]["previous"] = (
+            whook["changes"]["labels"]["previous"]
         )
-        webhook["changes"]["labels"]["current"] = (
-            self._json_webhook["changes"]["labels"]["current"]
+        self._webhook["changes"]["labels"]["current"] = (
+            whook["changes"]["labels"]["current"]
         )
-        self._webhook = webhook
+
+        return self._webhook
 
         # TODO: Da continuare, con tutti i campi di interesse
         #  definiti in webhook.json
 
-    @property
-    def webhook(self):
-        """Restituisce l'oggetto Python associato al Webhook, solo
-        con i campi di interesse.
-        """
-        return self._webhook
+    # @property
+    # def webhook(self):
+    #     """Restituisce l'oggetto Python associato al Webhook, solo
+    #     con i campi di interesse.
+    #     """
+    #     return self._webhook

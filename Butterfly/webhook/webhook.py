@@ -31,14 +31,14 @@ class Webhook(ABC):
     """Interfaccia Webhook"""
 
     @abstractmethod
-    def parse(self):
+    def parse(self, whook: dict):
         """Parsing del file JSON associato al webhook."""
-        pass
 
-    @abstractmethod
-    def webhook(self):
-        """Restituisce l'oggetto Python associato al JSON del webhook.
-        Precondizione: `parse()` è stato chiamato almeno una volta,
-            altrimenti restituirà None.
-        """
-        pass
+
+    # @abstractmethod
+    # def webhook(self):
+    #     """Restituisce l'oggetto Python associato al JSON del webhook.
+    #     Precondizione: `parse()` è stato chiamato almeno una volta,
+    #         altrimenti restituirà None.
+    #     """
+    #     pass

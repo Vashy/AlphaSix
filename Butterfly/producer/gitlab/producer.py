@@ -27,33 +27,14 @@ Autori:
     Samuele Gardin, samuelegardin@gmail.com
 """
 
-# import json
-# from pathlib import Path
-# import pprint
-# from sys import stderr
-
-# from flask import Flask
-# from flask import request
-# from kafka import KafkaProducer
-# import kafka.errors
-
 from producer.producer import Producer
-# from producer.server import FlaskServerCreator, GitlabProducerCreator
-# from webhook.gitlab.GLIssueWebhook import GLIssueWebhook
 
 
 class GitlabProducer(Producer):
+    """Classe concreta `GitlabProducer`. Implementa `Producer`.
+    """
 
-    def webhook_field(self, whook: dict):
+    def webhook_type(self, whook: dict):
+        """Restituisce il tipo di segnalazione (e.g. issue, push, etc..).
+        """
         return whook['object_kind']
-
-
-# def main():
-#     application = 'gitlab'
-#     creator = FlaskServerCreator(GitlabProducerCreator)
-#     app = creator.initialize_app(application)
-#     app.run()
-
-
-# if __name__ == '__main__':
-#     main()

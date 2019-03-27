@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from pprint import pprint
+from pprint import pformat
 from abc import ABC, abstractmethod
 
 from flask import Flask
@@ -8,48 +8,59 @@ from flask import request
 
 from producer.producer import Producer
 from producer.creator import ServerCreator, ProducerCreator
-# from producer.gitlab.creator import GitlabProducerCreator
+
+
+_CONFIG_PATH = Path(__file__).parents[0] / 'config.json'
 
 
 class Server(ABC):
-
+    """Interfaccia `Server`. Avvia il Server con il metodo `run()`,
+    un parametro opzionale
+    `config_path`, contenente il path al file con le configurazioni
+    necessarie.
+    """
     @abstractmethod
-    def run(self):
-        pass
+    def run(self, config_path):
+        """Avvia il `Server`
+
+        Parameters:
+
+        `config_path` - Path al file contenente le configurazioni per l'avvio.
+        """
 
 
-class FlaskServer(Server):  # FlaskServer
+class FlaskServer(Server):
+    """Implementa `Server`.
+    Avvia il server `Flask` che resta in ascolto degli webhook in base a
+    come è configurato.
+    """
 
-    def __init__(self, flask: Flask, producer: Producer, application: str):
+    def __init__(self, flask: Flask, producer: Producer, topic: str):
         self._app = flask
         self._producer = producer
-        self._application = application
+        self._topic = topic
         self._app.add_url_rule(
             '/',
             view_func=self._processor,
             methods=['GET', 'POST']
         )
 
-    # @property
-    # def app(self) -> Flask:
-    #     return self._app
+    def _processor(self) -> (str, int):
+        """Processa il webhook e verifica se è malformato.
 
-    # @_app.route('/', methods=['GET', 'POST'])
-    def _processor(self):
+        Returns:
 
+        `200` - Il webhook è stato inoltrato con successo.\n
+        `400` - La richiesta non è di tipo `application/json`\n
+        `401` - Il `Producer` non è stato in grado di inviare il
+            messaggio
+        """
         if request.headers['Content-Type'] == 'application/json':
-
-            """Fetch dei topic dal file topics.json
-            Campi:
-            - topics['id']
-            - topics['label']
-            - topics['project']
-            """
 
             webhook = request.get_json()
             print(
                 '\n\n\nMessaggio da GitLab:\n'
-                f'{pprint.pformat(webhook)}\n\n\n'
+                f'{pformat(webhook)}\n\n\n'
                 'Parsing del messaggio ...'
             )
 
@@ -60,41 +71,53 @@ class FlaskServer(Server):  # FlaskServer
                 print('Warning: messaggio malformato. '
                       'Non è stato possibile effettuare il parsing.\n'
                       'In attesa di altri messaggi...\n\n')
+                return '', 401  # Errore messaggio malformato
+            return '', 200  # Ok
 
-            return '', 200
+        return '', 400  # Errore, tipo di richiesta non adatta
 
-        else:
-            return '', 400
+    def run(self, config_path=_CONFIG_PATH):
+        """Avvia il `FlaskServer` con le configurazioni nel file
+        contenuto in `config_path`.
+        
+        Parameters:
 
-    def run(self):
-        with open(FlaskServerCreator._config_path, 'r') as f:
-            config = json.load(f)
+        `config_path` - path contenente le configurazioni necessarie all'avvio
+            del server."""
+        config = _open_configs(config_path)
 
         self._app.run(
-            host=config[self._application]['ip'],
-            port=config[self._application]['port']
+            host=config[self._topic]['ip'],
+            port=config[self._topic]['port']
         )
 
 
 class FlaskServerCreator(ServerCreator):
-    _config_path = Path(__file__).parents[0] / 'config.json'
+    """Creator di FlaskServer. Si occupa di
+    restituire un `FlaskServer` istanziato.
+    """
 
     def __init__(self, creator: ProducerCreator):
         assert isinstance(creator, ProducerCreator)
         self._creator = creator
 
-    def initialize_app(self, application: str):
-        configs = FlaskServerCreator._open_configs(
-            FlaskServerCreator._config_path)
+    def initialize_app(self, topic: str, config_path=_CONFIG_PATH) -> Server:
+        """Inizializza il Server di tipo `topic` e lo restituisce.
+
+        Parameters:
+
+        `topic` - stringa con il nome del topic su cui restare in ascolto"""
+        configs = _open_configs(
+            _CONFIG_PATH)
 
         flask = Flask(__name__)
         producer = self._creator.create(configs['kafka'])  # O senza il campo
 
-        app = FlaskServer(flask, producer, application)
+        app = FlaskServer(flask, producer, topic)
         return app
 
-    @staticmethod
-    def _open_configs(path: Path):
-        with open(path) as f:
-            config = json.load(f)
-        return config
+
+def _open_configs(path: Path):
+    with open(path) as file:
+        config = json.load(file)
+    return config

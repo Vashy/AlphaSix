@@ -20,54 +20,63 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.0
+Versione: 0.4.0
 Creatore: Timoty Granziero, timoty.granziero@gmail.com
-Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
 """
 
 
 from abc import ABC, abstractmethod
 
 from kafka import KafkaProducer
+from kafka.errors import KafkaTimeoutError
 from webhook.factory import WebhookFactory
 
 
 class Producer(ABC):
-    """Interfaccia Producer"""
+    """Classe astratta Producer
+
+    Attributes:
+        `kafka_producer`: istanza di `KafkaProducer`
+        `webhook_factory`: istanza di `WebhookFactory`
+    """
 
     def __init__(
-                self,
-                kafkaProducer: KafkaProducer,
-                webhook_factory: WebhookFactory,
-            ):
+            self,
+            kafka_producer: KafkaProducer,
+            webhook_factory: WebhookFactory,
+        ):
+        print(type(kafka_producer))
+        print(KafkaProducer)
+        assert isinstance(kafka_producer, KafkaProducer)
+        assert isinstance(webhook_factory, WebhookFactory)
 
         self._webhook_factory = webhook_factory
-        self._producer = kafkaProducer
+        self._producer = kafka_producer
 
     def produce(self, whook: dict):
         """Produce il messaggio `whook` nel Topic designato del Broker"""
 
-        # Parse del JSON associato al webhook ottenendo un oggetto Python
-        # webhook = self.webhook.parse(whook)
-
-        webhook = self._webhook_factory.createWebhook(
-            self.webhook_field(webhook)
+        webhook = self._webhook_factory.create_webhook(
+            self.webhook_type(whook)
         )
 
-        webhook = webhook.parse()
+        # Parse del JSON associato al webhook ottenendo un oggetto Python
+        webhook = webhook.parse(whook)
 
         try:
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self._producer.send(webhook['app'], webhook)
             self._producer.flush(10)  # Attesa 10 secondi
         # Se non riesce a mandare il messaggio in 10 secondi
-        except kafka.errors.KafkaTimeoutError:
-            stderr.write('Impossibile inviare il messaggio\n')
+        except KafkaTimeoutError:
+            print('Impossibile inviare il messaggio\n')
             # exit(-1)
 
     @abstractmethod
-    def webhook_field(self, whook: dict):
-        pass
+    def webhook_type(self, whook: dict):
+        """Dato un `dict` con chiave `object_kind`, ne restituisce il valore.
+
+        Parameters:
+
+        `whook` - Webhook contenente campi specifici per il Topic.
+        """
