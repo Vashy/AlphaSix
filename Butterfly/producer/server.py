@@ -41,11 +41,11 @@ class FlaskServer(Server):
         self._topic = topic
         self._app.add_url_rule(
             '/',
-            view_func=self._processor,
+            view_func=self._webhook_handler,
             methods=['GET', 'POST']
         )
 
-    def _processor(self) -> (str, int):
+    def _webhook_handler(self) -> (str, int):
         """Processa il webhook e verifica se è malformato.
 
         Returns:

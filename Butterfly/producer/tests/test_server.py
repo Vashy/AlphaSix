@@ -51,7 +51,7 @@ def test_server(json_mock):
 
 
 @patch('producer.server.request')
-def test_processor(request_mock):
+def test_webhook_handler(request_mock):
     request_mock.headers = {}
     request_mock.headers['Content-Type'] = 'application/json'
     request_mock.get_json.return_value = {}
@@ -60,13 +60,13 @@ def test_processor(request_mock):
     producer_mock.produce.return_value = None
 
     server = FlaskServer(MagicMock(), producer_mock, 'gitlab')
-    value = server._processor()
+    value = server._webhook_handler()
     assert value == ('', 200)
 
     producer_mock.produce.side_effect = KeyError()
-    value = server._processor()
+    value = server._webhook_handler()
     assert value == ('', 401)
 
     request_mock.headers['Content-Type'] = 'xml'
-    value = server._processor()
+    value = server._webhook_handler()
     assert value == ('', 400)
