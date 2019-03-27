@@ -28,17 +28,10 @@ from abc import ABC, abstractmethod
 
 
 class Webhook(ABC):
-    """Interfaccia Webhook"""
+    """Interfaccia `Webhook`"""
 
     @abstractmethod
     def parse(self, whook: dict):
-        """Parsing del file JSON associato al webhook."""
-
-
-    # @abstractmethod
-    # def webhook(self):
-    #     """Restituisce l'oggetto Python associato al JSON del webhook.
-    #     Precondizione: `parse()` è stato chiamato almeno una volta,
-    #         altrimenti restituirà None.
-    #     """
-    #     pass
+        """Parsing del file `JSON` associato al webhook. Restituisce un
+        `dict` contenente i campi di interesse.
+        """

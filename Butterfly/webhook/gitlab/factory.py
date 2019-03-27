@@ -4,14 +4,20 @@ from webhook.gitlab.issue_webhook import GitlabIssueWebhook
 
 
 class GitlabWebhookFactory(WebhookFactory):
-    """Crea Webhook del tipo GitlabWebhook."""
+    """Crea Webhook del tipo `GitlabWebhook`."""
 
     def create_webhook(self, event_type: str) -> Webhook:
+        """Crea un `GitlabWebhook` concreto in base al parametro.
+
+        Parameters:
+
+        `event_type` - può essere 'issue', 'push'.
+
+        Raises:
+
+        `NameError` - se il tipo di webhook non viene riconosciuto.
+        """
         if event_type == 'issue':
             return GitlabIssueWebhook()
-        # elif event_type == 'push':
-        #     return GitlabPushWebhook()
-        # elif event_type == 'comment':
-        #     return GitlabCommentWebhook()
 
-        raise NameError()
+        raise NameError()  # default
