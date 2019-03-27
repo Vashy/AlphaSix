@@ -327,3 +327,6 @@ target/
 
 #Gummi
 *.swp
+
+# Venv
+venv/

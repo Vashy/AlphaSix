@@ -42,7 +42,7 @@ class FlaskServer(Server):
         self._app.add_url_rule(
             '/',
             view_func=self._webhook_handler,
-            methods=['GET', 'POST']
+            methods=['POST']
         )
 
     def _webhook_handler(self) -> (str, int):
@@ -71,8 +71,10 @@ class FlaskServer(Server):
                 print('Warning: messaggio malformato. '
                       'Non è stato possibile effettuare il parsing.\n'
                       'In attesa di altri messaggi...\n\n')
-                return '', 401  # Errore messaggio malformato
-            return '', 200  # Ok
+                return 'Messaggio malformato', 402
+            except NameError:
+                return 'Tipo di messaggio non riconosciuto', 401  # Errore messaggio malformato
+            return 'Ok', 200  # Ok
 
         return '', 400  # Errore, tipo di richiesta non adatta
 

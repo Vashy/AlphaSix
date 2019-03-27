@@ -59,7 +59,6 @@ class Producer(ABC):
         webhook = self._webhook_factory.create_webhook(
             self.webhook_type(whook)
         )
-
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook = webhook.parse(whook)
 

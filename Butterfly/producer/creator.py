@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 import json
-import time
 
 from kafka import KafkaProducer
 import kafka.errors
@@ -38,7 +37,6 @@ class ProducerCreator(ABC):
                 if not notify:
                     notify = True
                     print('Broker offline. In attesa di una connessione ...')
-                time.sleep(1)
             except KeyboardInterrupt:
                 print(' Closing Producer ...')
                 exit(1)

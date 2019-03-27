@@ -61,11 +61,11 @@ def test_webhook_handler(request_mock):
 
     server = FlaskServer(MagicMock(), producer_mock, 'gitlab')
     value = server._webhook_handler()
-    assert value == ('', 200)
+    assert value == ('Ok', 200)
 
     producer_mock.produce.side_effect = KeyError()
     value = server._webhook_handler()
-    assert value == ('', 401)
+    assert value == ('Messaggio malformato', 402)
 
     request_mock.headers['Content-Type'] = 'xml'
     value = server._webhook_handler()

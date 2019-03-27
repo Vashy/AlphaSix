@@ -51,8 +51,11 @@ class GitlabIssueWebhook(Webhook):
         webhook['author'] = whook['user']['name']
 
         webhook['assignees'] = []
-        for value in whook['assignees']:
-            webhook['assignees'].append(value)
+        try:
+            for value in whook['assignees']:
+                webhook['assignees'].append(value)
+        except KeyError:
+            pass
 
         webhook['action'] = whook['object_attributes']['action']
         webhook['description'] = (
@@ -65,11 +68,14 @@ class GitlabIssueWebhook(Webhook):
 
         webhook['changes'] = {}
         webhook['changes']['labels'] = {}
-        webhook['changes']['labels']['previous'] = (
-            whook['changes']['labels']['previous']
-        )
-        webhook['changes']['labels']['current'] = (
-            whook['changes']['labels']['current']
-        )
+        try:
+            webhook['changes']['labels']['previous'] = (
+                whook['changes']['labels']['previous']
+            )
+            webhook['changes']['labels']['current'] = (
+                whook['changes']['labels']['current']
+            )
+        except KeyError:
+            pass
 
         return webhook
