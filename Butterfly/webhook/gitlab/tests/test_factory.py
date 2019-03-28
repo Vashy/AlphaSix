@@ -10,6 +10,7 @@ def test_create_webhook(webhook_mock):
 
     factory = GitlabWebhookFactory()
     webhook = factory.create_webhook('issue')
+    factory.create_webhook('push')
 
     webhook_mock.assert_called_once()
     assert isinstance(webhook, MagicMock)
