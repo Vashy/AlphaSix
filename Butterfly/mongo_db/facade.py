@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Observer (ABC):
+class Observer(ABC):
 
     @abstractmethod
     def update(msg: dict):
@@ -9,8 +9,6 @@ class Observer (ABC):
 
 
 class MongoFacade(Observer):
-
-    
 
     def __init__(self, mongo_users, mongo_projects):
         self._users = mongo_users

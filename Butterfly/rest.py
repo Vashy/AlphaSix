@@ -3,34 +3,29 @@
 from abc import ABC, abstractmethod
 
 from flask import Flask, request
-from flask_restful import Resource, Api
+import flask_restful
+from flask_restful import Api
+
+from mongo_db.facade import Observer
 
 users = {}
 
 
-class Observer(ABC):
-    @abstractmethod
-    def update():
-        pass
+# class Subject(ABC):
+
+#     def __init__(self):
+#         self.lst = []
+
+#     @abstractmethod
+#     def notify(self, request_type: str, msg: dict):
+#         pass
+
+#     def add_observer(self, obs: Observer):
+#         if obs not in self.lst:
+#             self.lst.append(obs)
 
 
-class Subject(ABC):
-
-    def __init__():
-        self.lst = []
-
-    @abstractmethod
-    def notify(self, msg: dict):
-        pass
-
-    def add_observer(self, obs: Observer):
-        if obs not in self.lst:
-            self.lst.append(obs)
-
-    # def remove_observer()
-
-
-class User(Resource):
+class User(flask_restful.Resource):
     
     def get(self, user_id):
         """Restituisce lo User con l'id specificato
@@ -50,7 +45,23 @@ class User(Resource):
             return users.pop(user_id)
 
 
+class Resource(flask_restful.Resource):
+    def __init__(self):
+        self.observer_list = []
+
+    @abstractmethod
+    def notify(self, type, msg):
+        pass
+
+    def add_observer(self, obs: Observer):
+        self.observer_list.append(obs)
+
+
 class Users(Resource):
+
+    def notify(self, request_type, msg):
+        for observer in self.observer_list:
+            observer.update(request_type, msg)
 
     @classmethod
     def make_api(cls, response):
@@ -63,7 +74,8 @@ class Users(Resource):
         Usage example:
             `curl http://localhost:5000/users`
         """
-        return self.response
+        response = self.notify('GET', self.response)
+        return response
 
     def post(self) -> dict:
         """Crea un User.
@@ -77,28 +89,36 @@ class Users(Resource):
         # print('AAAAAAAAAAAAAAAAAA')
         # return 200
         data = request.form['data']
+        self.notify('POST', self.response['data'])
         self.response[len(self.response)] = data
         return 'Ok', 200
 
 
-class Controller(Subject):
-    def __init__(self, api: Api, model):
+class Controller(Observer):
+    def __init__(self, api: Api, model: Observer):
         self.api = api
-        self.api.add_resource(User, '/user/<int:user_id>')
-        # self.observers = observers
-        self.add_observer(model)
+        # self.api.add_resource(User, '/user/<int:user_id>')
 
         us = Users.make_api(users)
+        # us = Users()
+        # us.add_observer(model)
+        # us.add_observer(model)
         self.api.add_resource(us, '/users')
-    
-    def notify(self, msg):
+
+        # self.api.make_response
+
+    def update():
+        pass
+
+    def notify(self, request_type, msg):
         for obs in self.observers:
-            obs.update(msg)
-
-
+            print('AAAAAAAAAAAAAAAaa')
+            obs.update(request_type, msg)
 
 
 if __name__ == "__main__":
+    # import pdb; pdb.set_trace()
     flask = Flask(__name__)
-    controller = Controller(Api(flask))
+    from unittest.mock import Mock
+    controller = Controller(Api(flask), Mock())
     flask.run(debug=True)
