@@ -37,4 +37,8 @@ class GitlabProducer(Producer):
     def webhook_type(self, whook: dict):
         """Restituisce il tipo di segnalazione (e.g. issue, push, etc..).
         """
+        if whook['object_kind'] == 'note' and 'issue' in whook:
+            return 'issue-note'
+        elif whook['object_kind'] == 'note' and 'commit' in whook:
+            return 'commit-note'
         return whook['object_kind']
