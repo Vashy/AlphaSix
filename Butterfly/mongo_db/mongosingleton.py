@@ -11,24 +11,19 @@ class MongoAdapter(ABC):
 
     @abstractmethod
     def create(
-            self,
-            document: dict,
-            collection: str,
+            self, document: dict, collection: str
     ) -> pymongo.collection.InsertOneResult:
         pass
 
     @abstractmethod
     def read(
-            self,
-            collection_name: str
+            self, collection_name: str
     ) -> pymongo.collection.Collection:
         pass
 
     @abstractmethod
     def delete(
-            self,
-            filter: dict,
-            collection: str,
+            self, filter: dict, collection: str
     ) -> pymongo.collection.DeleteResult:
         pass
 
@@ -44,9 +39,7 @@ class MongoDBImpl(MongoAdapter):
             self._db = self._client[db]
 
         def create(
-                self,
-                document: dict,
-                collection: str,
+                self, document: dict, collection: str,
         ) -> pymongo.collection.InsertOneResult:
             """Aggiunge il documento `document` alla collezione
             `collection`, se non è già presente. Restituisce un
@@ -55,17 +48,14 @@ class MongoDBImpl(MongoAdapter):
             return MongoDBImpl.instance._db[collection].insert_one(document)
 
         def read(
-                self,
-                collection_name: str
+                self, collection_name: str
         ) -> pymongo.collection.Collection:
             """Restituisce la collezione con il nome passato come
             argomento."""
             return MongoDBImpl.instance._db[collection_name]
 
         def delete(
-                self,
-                filter: dict,
-                collection: str,
+                self, filter: dict, collection: str
         ) -> pymongo.collection.DeleteResult:
             """Rimuove un documento che corrisponde al
             `filter`, se presente, e restituisce il risultato.

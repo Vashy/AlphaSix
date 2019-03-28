@@ -27,17 +27,16 @@ class MongoProjects(MongoInterface):
         if project['url'][-1:] == '/':
             project['url'] = project['url'][:-1]
         # Tenta l'aggiunta del progetto, raises DuplicateKeyError
-        result = self.dbConnection.db['projects'].insert_one(project)
+        result = self._mongo.db['projects'].insert_one(project)
         return result
 
     def delete(
-            self,
-            url: str,
+            self, url: str
     ):
         """Rimuove un documento che corrisponda a `url`,
         se presente, e restituisce il risultato.
         """
-        return self._delete_one_document({
+        return self._mongo.delete({
                 'url': url,
             },
             'projects'

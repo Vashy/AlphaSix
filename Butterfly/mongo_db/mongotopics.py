@@ -22,14 +22,15 @@ class MongoTopics (MongoInterface):
 
         try:  # Tenta l'aggiunta del topic al DB
             # Ottiene l'id massimo
+            # TODO: DESCENDING è molto dipendente da pymongo...
             max_id = (
                 self.collection('topics')
                     .find()
-                    .sort('_id', self._mongo.DESCENDING)
+                    .sort('_id', -1)
                     .limit(1)[0]['_id']
             )
 
-            result = self.dbConnection.db['topics'].insert_one({
+            result = self._mongo.db['topics'].insert_one({
                 '_id': max_id+1,
                 'label': label,
                 'project': project,
@@ -37,7 +38,7 @@ class MongoTopics (MongoInterface):
             return result
 
         except IndexError:  # Caso in cui nessun topic è presente
-            result = self.dbConnection.db['topics'].insert_one({
+            result = self._mongo.db['topics'].insert_one({
                 '_id': 0,
                 'label': label,
                 'project': project,
@@ -56,7 +57,7 @@ class MongoTopics (MongoInterface):
         """Rimuove un documento che corrisponda alla coppia `label`-`project`,
         se presente, e restituisce il risultato.
         """
-        return self._delete_one_document({
+        return self._mongo.delete({
                 'label': label,
                 'project': project,
             },

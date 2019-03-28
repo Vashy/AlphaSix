@@ -42,9 +42,7 @@ class MongoUsers(MongoInterface):
                 {'email': id},
             ]
         })
-        if count == 0:
-            return False
-        return True
+        return count != 0
 
     def create(self, **fields):
         # Collezione di interesse
@@ -83,7 +81,7 @@ class MongoUsers(MongoInterface):
             )
 
         # Se telegram è già presente
-        # assert not self.controller.user_exists(new_user['telegram']), \
+        # assert not self.controller.exists(new_user['telegram']), \
         #     f'Username {new_user["telegram"]} già presente'
         if (new_user['telegram'] is not None and
                 users.find_one({'telegram': new_user['telegram']})):
@@ -105,17 +103,17 @@ class MongoUsers(MongoInterface):
         # Via libera all'aggiunta al DB
         if new_user['_id'] is None:  # Per non mettere _id = None sul DB
             partial_result = MongoUsers._user_dict_no_id(new_user)
-            result = self._insert_document(
+            result = self._mongo.create(
                 partial_result,
-                'users',
+                'users'
             )
 
         else:
             partial_result = MongoUsers._user_dict_no_id(new_user)
             partial_result['_id'] = new_user['_id']
-            result = self._insert_document(
+            result = self._mongo.create(
                 partial_result,
-                'users',
+                'users'
             )
 
         # NOTE: Se i dati precedenti sono validi, a questo punto sono
@@ -137,8 +135,8 @@ class MongoUsers(MongoInterface):
         # Aggiunge le kw
         self.add_keywords(id, *new_user['keywords'])
 
-        # Valida e aggiunge il sostituto
-        self.update_user_sostituto(id, new_user['sostituto'])
+#        # Valida e aggiunge il sostituto
+#        self.update_user_sostituto(id, new_user['sostituto'])
 
         return result
 
@@ -149,7 +147,7 @@ class MongoUsers(MongoInterface):
         Raises:
         `AssertionError` -- se `id` non è presente nel DB.
         """
-        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.exists(id), f'User {id} inesistente'
 
         return self.users({
             '$or': [
@@ -163,7 +161,7 @@ class MongoUsers(MongoInterface):
         `user`, se presente. `user` può riferirsi sia al contatto
         Telegram che email. Restituisce il risultato dell'operazione.
         """
-        return self._delete_one_document(
+        return self._mongo.delete(
             {
                 '$or': [
                     {'telegram': user},
@@ -180,7 +178,7 @@ class MongoUsers(MongoInterface):
         Raises:
         `AssertionError` -- se `id` non è presente nel DB
         """
-        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.exists(id), f'User {id} inesistente'
 
         return self._mongo.collection('users').find_one_and_update(
             {'$or': [
@@ -201,7 +199,7 @@ class MongoUsers(MongoInterface):
         Raises:
         `AssertionError` -- se `id` non è presente nel DB
         """
-        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.exists(id), f'User {id} inesistente'
 
         return self._mongo.collection('users').find_one_and_update(
             {'$or': [
@@ -225,9 +223,9 @@ class MongoUsers(MongoInterface):
             se `id` non è presente nel DB oppure se tenta di
             settare a `None` mentre lo è anche `Email`.
         """
-        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.exists(id), f'User {id} inesistente'
 
-        assert not self.user_exists(telegram), \
+        assert not self.exists(telegram), \
             f'User {telegram} già presente nel sistema'
 
         if telegram == '':
@@ -262,9 +260,9 @@ class MongoUsers(MongoInterface):
             settare a `None` mentre lo è anche il campo
             `telegram`.
         """
-        assert self.user_exists(id), f'User {id} inesistente'
+        assert self.exists(id), f'User {id} inesistente'
 
-        assert not self.user_exists(email), \
+        assert not self.exists(email), \
             f'User {email} già presente nel sistema'
 
         if email == '':
