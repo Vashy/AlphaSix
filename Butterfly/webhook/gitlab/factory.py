@@ -3,6 +3,7 @@ from webhook.webhook import Webhook
 from webhook.gitlab.issue_webhook import GitlabIssueWebhook
 from webhook.gitlab.push_webhook import GitlabPushWebhook
 
+
 class GitlabWebhookFactory(WebhookFactory):
     """Crea Webhook del tipo `GitlabWebhook`."""
 
