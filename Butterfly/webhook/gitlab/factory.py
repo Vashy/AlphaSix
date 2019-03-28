@@ -23,4 +23,10 @@ class GitlabWebhookFactory(WebhookFactory):
         if event_type == 'push':
             return GitlabPushWebhook()
 
+        if event_type == 'commit-note':
+            return GitlabPushWebhook()
+
+        if event_type == 'issue-note':
+            return GitlabPushWebhook()
+
         raise NameError()  # default
