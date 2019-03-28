@@ -45,8 +45,6 @@ class Producer(ABC):
             kafka_producer: KafkaProducer,
             webhook_factory: WebhookFactory,
         ):
-        print(type(kafka_producer))
-        print(KafkaProducer)
         assert isinstance(kafka_producer, KafkaProducer)
         assert isinstance(webhook_factory, WebhookFactory)
 
