@@ -1,13 +1,15 @@
 from abc import ABC, abstractmethod
 
 
-class Processor(ABC):
+class Processor(Subject):
 
-    def __init__(self, message: dict):
+    def __init__(self, message: dict): # aggiungere riferimento DB
         self._message = message
 
     def template_method(self):
-        progetto = check_project()
+        progetto = self.check_project()        
 
+    def check_project(self) -> str:
+        urlProgetto = self._message['url']
 
-    def check_project(self)
+        return urlProgetto
