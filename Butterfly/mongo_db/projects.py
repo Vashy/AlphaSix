@@ -2,7 +2,7 @@ from mongo_db.mongointerface import MongoInterface
 from mongo_db.mongosingleton import MongoAdapter
 
 
-class MongoProjects(MongoInterface):
+class MongoProjects:
 
     def __init__(self):
         self._mongo = MongoAdapter()

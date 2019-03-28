@@ -5,8 +5,9 @@ import pymongo
 
 class MongoAdapter(ABC):
 
+    @property
     @abstractmethod
-    def getInstance(self):
+    def instance(self):
         pass
 
     @abstractmethod
@@ -32,9 +33,11 @@ class MongoDBImpl(MongoAdapter):
 
     class MongoSingleton:
 
-        def __init__(self, db: str, server='localhost', port=27017):
-            print('Apertura connessione ...')
-            self._client = pymongo.MongoClient(server, port)
+        def __init__(
+                self,
+                db: str,
+                mongo_client=pymongo.MongoClient('localhost', 27017)
+        ):
             print('Connessione stabilita.')
             self._db = self._client[db]
 
@@ -63,11 +66,12 @@ class MongoDBImpl(MongoAdapter):
             """
             return MongoDBImpl.instance._db[collection].delete_one(filter)
 
-    instance = None
+    _INSTANCE = MongoDBImpl.MongoSingleton('butterfly')
 
-    def __init__(self, arg):
-        if not MongoDBImpl.instance:
-            MongoDBImpl.instance = MongoDBImpl.MongoSingleton('butterfly')
+    # def __init__(self):
+    #     if not MongoDBImpl.instance:
+    #         MongoDBImpl.instance = MongoDBImpl.MongoSingleton('butterfly')
 
-    def getInstance(self):
-        return MongoDBImpl.instance
+    @property
+    def instance(self):
+        return MongoDBImpl._INSTANCE

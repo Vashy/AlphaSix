@@ -1,8 +1,8 @@
-class MongoFacade (DBUser, DBProject):
+class MongoFacade:
 
-    def __init__(self):
-        self._mongo_users = MongoUsers()
-        self._mongo_projects = MongoProjects()
+    def __init__(self, mongo_users, mongo_projects):
+        self._mongo_users = mongo_users
+        self._mongo_projects = mongo_projects
 
     def insert_user(self, **fields):
         pass
