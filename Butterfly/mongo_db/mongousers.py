@@ -23,33 +23,47 @@ class MongoUsers(MongoInterface):
             'sostituto': None,
         }
 
-    def users(self, filter={}):
+    def users(self, mongofilter={}):
         """Restituisce un `Cursor` che corrisponde al `filter` passato
         alla collezione `users`.
         Per accedere agli elementi del cursore, è possibile iterare con
         un `for .. in ..`, oppure usare il subscripting `[i]`.
         """
-        return self._mongo.collection('users').find(filter)
+        return self._mongo.collection('users').find(mongofilter)
 
-    def exists(self, id: str) -> bool:
+    def exists(self, mongoid: str) -> bool:
         """Restituisce `True` se l'`id` di un utente
         (che può essere Telegram o Email) è salvato nel DB.
         """
         count = self._mongo.collection('users').count_documents({
             '$or': [
-                # {'_id': id},
-                {'telegram': id},
-                {'email': id},
+                # {'_id': mongoid},
+                {'telegram': mongoid},
+                {'email': mongoid},
             ]
         })
         return count != 0
+
+    def user_has_telegram(self, telegram: str) -> bool:
+        """Restituisce `True` se lo user corrispondente a `id`
+        ha il campo `telegram` impostato.
+        """
+        assert self.exists(telegram), f'User {telegram} inesistente'
+        return self.exists(telegram)
+
+    def user_has_email(self, email: str) -> bool:
+        """Restituisce `True` se lo user corrispondente a `id`
+        ha il campo `email` impostato.
+        """
+        assert self._mongo.user_exists(email), f'User {email} inesistente'
+        return self.exists(email)
 
     def create(self, **fields):
         # Collezione di interesse
         users = self._mongo.collection('users')
 
         # Valori di default dei campi
-        FIELDS = {
+        deaultfields = {
             '_id': None,
             'name': None,
             'surname': None,
@@ -62,7 +76,7 @@ class MongoUsers(MongoInterface):
             'topics': [],
         }
 
-        new_user = copy.copy(FIELDS)  # Copia profonda del dict FIELDS
+        new_user = copy.copy(deaultfields)  # Copia profonda del dict default
 
         # Aggiorna i valori di default con quelli passati al costruttore
         for key in new_user:
@@ -178,7 +192,7 @@ class MongoUsers(MongoInterface):
         Raises:
         `AssertionError` -- se `id` non è presente nel DB
         """
-        assert self.exists(id), f'User {id} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         return self._mongo.collection('users').find_one_and_update(
             {'$or': [
@@ -199,7 +213,7 @@ class MongoUsers(MongoInterface):
         Raises:
         `AssertionError` -- se `id` non è presente nel DB
         """
-        assert self.exists(id), f'User {id} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         return self._mongo.collection('users').find_one_and_update(
             {'$or': [
@@ -223,10 +237,12 @@ class MongoUsers(MongoInterface):
             se `id` non è presente nel DB oppure se tenta di
             settare a `None` mentre lo è anche `Email`.
         """
-        assert self.exists(id), f'User {id} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         assert not self.exists(telegram), \
             f'User {telegram} già presente nel sistema'
+
+        new_telegram = 'new telegram'
 
         if telegram == '':
             new_telegram = None
@@ -260,10 +276,12 @@ class MongoUsers(MongoInterface):
             settare a `None` mentre lo è anche il campo
             `telegram`.
         """
-        assert self.exists(id), f'User {id} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         assert not self.exists(email), \
             f'User {email} già presente nel sistema'
+
+        new_email = 'new_email'
 
         if email == '':
             new_email = None

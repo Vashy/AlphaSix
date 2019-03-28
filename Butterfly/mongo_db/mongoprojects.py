@@ -13,7 +13,7 @@ class MongoProjects(MongoInterface):
         Per accedere agli elementi del cursore, è possibile iterare con
         un `for .. in ..`, oppure usare il subscripting `[i]`.
         """
-        return self.collection('projects').find(filter)
+        return self._mongo.collection('projects').find(filter)
 
     def create(self, project: dict):
         """Aggiunge il documento `project` alla collezione `projects`,
@@ -31,7 +31,7 @@ class MongoProjects(MongoInterface):
         return result
 
     def delete(
-            self, url: str
+        self, url: str
     ):
         """Rimuove un documento che corrisponda a `url`,
         se presente, e restituisce il risultato.

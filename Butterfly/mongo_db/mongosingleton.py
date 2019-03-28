@@ -67,7 +67,7 @@ class MongoDBImpl(MongoAdapter):
 
     def __init__(self, arg):
         if not MongoDBImpl.instance:
-            MongoDBImpl.instance = MongoDBImpl.MongoSingleton()
+            MongoDBImpl.instance = MongoDBImpl.MongoSingleton('butterfly')
 
     def getInstance(self):
         return MongoDBImpl.instance
