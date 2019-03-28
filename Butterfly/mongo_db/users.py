@@ -154,7 +154,7 @@ class MongoUsers(MongoInterface):
 
         return result
 
-    def read(self, id):
+    def read(self, user: str):
         """Restituisce un oggetto Python corrispondente all'`id`
         passato come argomento.
 
@@ -165,8 +165,8 @@ class MongoUsers(MongoInterface):
 
         return self.users({
             '$or': [
-                {'telegram': id},
-                {'email': id},
+                {'telegram': user},
+                {'email': user},
             ]
         })[0]
 
