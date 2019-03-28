@@ -66,7 +66,7 @@ class MongoDBImpl(MongoAdapter):
             """
             return MongoDBImpl.instance._db[collection].delete_one(filter)
 
-    _INSTANCE = MongoDBImpl.MongoSingleton('butterfly')
+    _INSTANCE = MongoSingleton('butterfly')
 
     # def __init__(self):
     #     if not MongoDBImpl.instance:
