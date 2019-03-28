@@ -26,15 +26,15 @@ users = {}
 
 
 class User(flask_restful.Resource):
-    
+
     def get(self, user_id):
         """Restituisce lo User con l'id specificato
 
         Usage example:
             `curl http://localhost:5000/user/<user_id>`
         """
-        return {user_id: users[user_id]} 
-    
+        return {user_id: users[user_id]}
+
     def delete(self, user_id):
         """Rimuove un User
 
@@ -50,7 +50,7 @@ class Resource(flask_restful.Resource):
         self.observer_list = []
 
     @abstractmethod
-    def notify(self, type, msg):
+    def notify(self, msg):
         pass
 
     def add_observer(self, obs: Observer):
@@ -107,7 +107,7 @@ class Controller(Observer):
 
         # self.api.make_response
 
-    def update():
+    def update(self, msg, a):
         pass
 
     def notify(self, request_type, msg):
@@ -115,10 +115,12 @@ class Controller(Observer):
             print('AAAAAAAAAAAAAAAaa')
             obs.update(request_type, msg)
 
-
-if __name__ == "__main__":
+def main():
     # import pdb; pdb.set_trace()
     flask = Flask(__name__)
     from unittest.mock import Mock
     controller = Controller(Api(flask), Mock())
     flask.run(debug=True)
+
+if __name__ == "__main__":
+    main()

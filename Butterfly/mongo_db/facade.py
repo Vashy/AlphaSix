@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class Observer(ABC):
 
     @abstractmethod
-    def update(msg: dict):
+    def update(self, msg: dict):
         pass
 
 
