@@ -10,7 +10,7 @@ from gestore_personale.Processor import Processor
 from mongo_db.mongo_facade_creator import MongoFacadeCreator
 
 
-class ClientGP(ABC):
+class ClientGP():
     def __init__(
             self,
             consumer: KafkaConsumer,
