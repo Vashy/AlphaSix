@@ -7,13 +7,15 @@ from kafka.errors import KafkaTimeoutError
 from gestore_personale.KafkaCreator.KafkaConsumerCreator import KafkaConsumerCreator
 from gestore_personale.KafkaCreator.KafkaProducerCreator import KafkaProducerCreator
 from gestore_personale.Processor import Processor
+from mongo_db.mongo_facade_creator import MongoFacadeCreator
 
 
 class ClientGP(ABC):
     def __init__(
             self,
             consumer: KafkaConsumer,
-            producer: KafkaProducer
+            producer: KafkaProducer,
+            mongo: MongoFacadeCreator
     ):
         # print(type(kafka_producer))
         # print(KafkaProducer)
@@ -21,6 +23,7 @@ class ClientGP(ABC):
         assert isinstance(consumer, KafkaConsumer)
         self._consumer = consumer
         self._producer = producer
+        self._mongo = mongo
 
     def read_messages(self):
         # Per ogni messaggio ricevuta da Kafka, processiamolo
@@ -32,7 +35,7 @@ class ClientGP(ABC):
 
     def process(self, message: dict):
         # provenienza = message['app']
-        processore_messaggio = Processor(message)
+        processore_messaggio = Processor(message, self._mongo.instantiate())
         mappa_contatto_messaggio = processore_messaggio.template_method()
         self.sendAll(mappa_contatto_messaggio)
 
@@ -55,6 +58,7 @@ if __name__ == "__main__":
     # producer = self._creator.create(configs['kafka'])  # O senza il campo
     kafka_consumer = KafkaConsumerCreator.create()
     kafka_producer = KafkaProducerCreator.create()
-    client = ClientGP(kafka_consumer, kafka_producer)
+    mongo = MongoFacadeCreator()
+    client = ClientGP(kafka_consumer, kafka_producer, mongo)
     client.read_messages()
     # client.process()

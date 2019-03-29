@@ -6,7 +6,7 @@ from kafka import KafkaConsumer
 import kafka.errors
 
 
-class KafkaConsumerCreator(ABC):
+class KafkaConsumerCreator():
 
     _config_path = Path(__file__).parents[1] / 'config_consumer.json'
 
