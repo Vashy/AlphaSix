@@ -38,9 +38,9 @@ class ClientGP(ABC):
         self.send_all(mappa_contatto_messaggio)
 
     def send_all(self, map_message_contact: dict):
-        # app_ricevente sarà telegram o email
-        for app_ricevente in map_message_contact['app_receiver']:
-            for messaggio in app_ricevente['message']:
+        # app_ricevente sarà telegram o email (chiave,valore)
+        for app_ricevente, message_list in map_message_contact.items():
+            for messaggio in message_list:
                 try:
                     # Inserisce il messaggio in Kafka, serializzato in formato JSON
                     self._producer.send(

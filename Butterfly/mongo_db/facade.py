@@ -10,7 +10,7 @@ class Subject(ABC):
         for obs in self.lst:
             obs.update()
     
-    def add_observer(obs: Observer):
+    def add_observer(self, obs: Observer):
         self.lst.append(obs)
 
 
@@ -22,10 +22,10 @@ class MongoFacade(Observer):
 
     def insert_user(self, **fields):
         self._users.create(fields)
-        
+
     def read_user(self, user: str):
         return self._users.read(user)
-        
+
     def users(self, mongofilter={}):
         return self._proj_users.users(mongofilter)
 
