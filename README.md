@@ -1,23 +1,11 @@
 
-Producer GitLab:
-[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)
-[![Build status](https://img.shields.io/docker/cloud/build/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)
-[![Pulls](https://img.shields.io/docker/pulls/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)
+Producer GitLab:	[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)	[![Build status](https://img.shields.io/docker/cloud/build/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)	[![Pulls](https://img.shields.io/docker/pulls/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)
 
-Producer Redmine:
-[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/producer-redmine.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-redmine)
-[![Build status](https://img.shields.io/docker/cloud/build/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)
-[![Pulls](https://img.shields.io/docker/pulls/alphasix/producer-redmine.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/procuder-redmine)
+Producer Redmine:	[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/producer-redmine.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-redmine)	[![Build status](https://img.shields.io/docker/cloud/build/alphasix/producer-gitlab.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/producer-gitlab)	[![Pulls](https://img.shields.io/docker/pulls/alphasix/producer-redmine.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/procuder-redmine)
 
-Consumer telegram:
-[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/consumer-telegram.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-telegram)
-[![Build status](https://img.shields.io/docker/cloud/build/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)
-[![Pulls](https://img.shields.io/docker/pulls/alphasix/consumer-telegram.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-telegram)
+Consumer telegram:	[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/consumer-telegram.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-telegram)	[![Build status](https://img.shields.io/docker/cloud/build/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)	[![Pulls](https://img.shields.io/docker/pulls/alphasix/consumer-telegram.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-telegram)
 
-Consumer mail:
-[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)
-[![Build status](https://img.shields.io/docker/cloud/build/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)
-[![Pulls](https://img.shields.io/docker/pulls/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)
+Consumer mail:	[![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)	[![Build status](https://img.shields.io/docker/cloud/build/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)	[![Pulls](https://img.shields.io/docker/pulls/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email)
 
 ---------------------------------------
 
