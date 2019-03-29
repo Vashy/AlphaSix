@@ -16,7 +16,7 @@ class Subject(ABC):
     def notify(self):
         for obs in self.lst:
             obs.update()
-
+            
     def add_observer(self, obs: Observer):
         self.lst.append(obs)
 

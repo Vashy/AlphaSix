@@ -10,6 +10,7 @@ class Processor():
         self.__mongofacade = mongofacade
 
     # Metodo che chiama a ruota tutti quelli dopo per processare il messaggio
+    # ex template_method
     def prepare_message(self) -> dict:
         progetto = self.check_project()  # URL progetto
         obj = self.__message['object_kind']  # Issue o push ecc
@@ -28,9 +29,9 @@ class Processor():
         self.__list_telegram = self.get_telegram_contacts(utenti_interessati)
         self.__list_email = self.get_email_contacts(utenti_interessati)
         final_map = {}
-        final_map['app_receiver'] = {}
-        final_map['app_receiver']['telegram'] = self.__list_telegram
-        final_map['app_receiver']['email'] = self.__list_email
+        final_map['telegram'] = self.__list_telegram
+        final_map['email'] = self.__list_email
+        return final_map
 
     # Controlla se c'è il progetto nel DB, se non c'è lo aggiunge
     def _check_project(self) -> str:
@@ -46,6 +47,8 @@ class Processor():
     def _get_involved_users(self, project: str) -> list:
         return self.__mogofacade.get_users_available(project)
 
+    # Metodo astratto che delega alle sottoclassi concrete
+    # il filtraggio degli utenti in base a quelli iscritti ai topic
     @abstractmethod
     def _filter_users_by_topic(self, users: list, obj: str) -> list:
         pass
@@ -71,11 +74,3 @@ class Processor():
             if emailID is not None:
                 contacts.append(emailID)
         return contacts
-
-    # Metodo pubblico per prendere la lista di contatti mail
-    # def get_email_list(self) -> list:
-    #     return self.__list_email
-
-    # # Metodo pubblico per prendere la lista di contatti telegram
-    # def get_telegram_list(self) -> list:
-    #     return self.__list_telegram
