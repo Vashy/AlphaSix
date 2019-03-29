@@ -40,7 +40,7 @@ class ConsumerCreator(ABC):
     _config_path = Path(__file__).parents[0] / 'config.json'
 
     def create(self, configs=_config_path) -> Consumer:
-         # Converte stringa 'inf' nel relativo float
+        # Converte stringa 'inf' nel relativo float
 
         with open(ConsumerCreator._config_path, 'r') as f:
             configs = json.load(f)

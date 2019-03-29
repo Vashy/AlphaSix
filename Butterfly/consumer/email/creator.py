@@ -28,7 +28,7 @@ Autori:
 from kafka import KafkaConsumer
 
 from consumer.creator import ConsumerCreator
-from consumer.email.EmailConsumer import EmailConsumer
+from consumer.email.consumer import EmailConsumer
 
 
 class EmailConsumerCreator(ConsumerCreator):
