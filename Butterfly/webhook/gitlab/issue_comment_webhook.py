@@ -41,16 +41,9 @@ class GitlabIssueCommentWebhook(Webhook):
 
         webhook = {}
         webhook['app'] = 'gitlab'
-<<<<<<< HEAD
-        webhook['object_kind'] = whook['object_kind']
-        webhook['title'] = whook['object_attributes']['note']
-        webhook['project'] = {}
-        webhook['project_id'] = whook['project']['git_http_url']
-=======
         webhook['object_kind'] = whook['object_kind'] + '_issue'
         webhook['title'] = whook['issue']['title']
         webhook['project_url'] = whook['project']['git_http_url']
->>>>>>> 8ac5c931fb269505a8a2a40d8db8753348c28a51
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
         webhook['comment'] = whook['object_attributes']['note']
