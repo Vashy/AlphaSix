@@ -15,7 +15,7 @@ class Processor():
         progetto = self._check_project()  # URL progetto
         obj = self._message['object_kind']  # Issue o push ecc
         # Dict di tutti gli utenti disponibili oggi nel progetto
-        utenti_disponibili = self.get_involved_users()
+        utenti_disponibili = self.get_involved_users(progetto)
         # Lista di tutti gli utenti interessati e disponibili
         utenti_interessati = self._filter_users_by_topic(
             utenti_disponibili, obj
@@ -56,11 +56,11 @@ class Processor():
         pass
 
     # Lista di tutti gli utenti disponibili e più interessati
-    def _select_users_more_interested(self, project: str) -> list:
+    def select_users_more_interested(self, project: str) -> list:
         return self.__mongofacade.get_users_max_priority(project)
 
     # Crea la lista di contatti telegram a cui inviare il messaggio
-    def _get_telegram_contacts(self, users: list) -> list:
+    def get_telegram_contacts(self, users: list) -> list:
         contacts = []
         for user in users:
             telegramID = self.__mongofacade.get_user_telegram(user)
@@ -69,7 +69,7 @@ class Processor():
         return contacts
 
     # Crea la lista di contatti mail a cui inviare il messaggio
-    def _get_email_contacts(self, users: list) -> list:
+    def get_email_contacts(self, users: list) -> list:
         contacts = []
         for user in users:
             emailID = self.__mongofacade.get_user_email(user)
