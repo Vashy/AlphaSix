@@ -72,21 +72,11 @@ class MongoFacade(Observer):
     def get_users_available(self, url: str) -> list:
         return self._users.get_users_available(url)
 
-    # TODO
     def get_users_max_priority(self, url: str) -> list:
-        # Dato un progetto, ritorno la lista di
-        # utenti disponibili oggi di priorità maggiore
-        # (la lista di ritorno contiene gli ID del DB)
-        pass
+        return self._users.get_users_max_priority(url)
 
-    # TODO
     def get_user_telegram(self, userID: str) -> str:
-        # Ritorno il telegram dell'utente (se presente)
-        # altrimenti 0/None/NULL
-        pass
+        return self._users.telegram(userID)
 
-    # TODO
     def get_user_email(self, userID: str) -> str:
-        # Ritorno la mail dell'utente (se presente)
-        # altrimenti 0/None/NULL
-        pass
+        return self._users.email(userID)
