@@ -41,11 +41,11 @@ class GitlabCommitCommentWebhook(Webhook):
 
         webhook = {}
         webhook['app'] = 'gitlab'
-        webhook['object_kind'] = whook['object_kind']
-        webhook['title'] = whook['object_attributes']['note']
-        webhook['project'] = {}
+        webhook['object_kind'] = whook['object_kind'] + '_commit'
+        webhook['title'] = whook['commit']['message']
         webhook['project_url'] = whook['project']['git_http_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
+        webhook['comment'] = whook['object_attributes']['note']
 
         return webhook
