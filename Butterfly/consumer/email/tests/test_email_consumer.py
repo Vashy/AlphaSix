@@ -13,7 +13,9 @@ def test_send(
 
     consumer.send('a@gmail.com', 'msg')
     smtp.assert_called_once_with('smtp.gmail.com', 587)
+
     assert consumer.bold == ''
+
 
 
 @patch('consumer.consumer.json')
@@ -33,11 +35,22 @@ def test_listen(_, json):
         'description': 'Description',
         'action': 'open',
     }
-
     kafka_mock.__iter__.return_value = [
-        msg
+        msg,
     ]
 
-    consumer.listen()
+    # Mock degli altri metodi della classe
+    with    patch.object(EmailConsumer, 'format') as fmt, \
+            patch.object(EmailConsumer, 'send') as send, \
+            patch.object(EmailConsumer, 'prelisten_hook') as hook:
+        hook.return_value = None
+        fmt.return_value = ('123', 'A juicy message')
+        send.return_value = None
+
+        consumer.listen()
+
+        fmt.assert_called_once()
+        hook.assert_called_once()
+        send.assert_called_once_with('123', 'A juicy message')
 
     json.loads.assert_called_once()
