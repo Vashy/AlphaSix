@@ -27,12 +27,17 @@ class Subject(ABC):
 
 class User(flask_restful.Resource):
 
+    def notify(self, request_type, msg):
+        for observer in self.lst:
+            observer.update(request_type, msg)
+
     def get(self, user_id):
         """Restituisce lo User con l'id specificato
 
         Usage example:
             `curl http://localhost:5000/user/<user_id>`
         """
+        notify()
         return {user_id: users[user_id]}
 
     def delete(self, user_id):
@@ -45,14 +50,21 @@ class User(flask_restful.Resource):
             return users.pop(user_id)
 
 
-class Resource(flask_restful.Resource, Subject):
+class Resource(flask_restful.Resource):
+    
+    def __init__(self, controller):
+        self.controller = controller
+
+    @abstractmethod
+    def notify(self, request_type: str, msg: dict):
+        pass
+
+
+class Users(Resource):
 
     def notify(self, request_type, msg):
         for observer in self.lst:
             observer.update(request_type, msg)
-
-
-class Users(Resource):
 
     @classmethod
     def make_api(cls, response):
@@ -95,7 +107,7 @@ class Controller(Observer):
         # us = Users()
         # us.add_observer(model)
         # us.add_observer(model)
-        self.api.add_resource(us, '/users')
+        self.api.add_resource(Users, '/users', resource_class_kwargs={'controller': self})
 
         # self.api.make_response
 
