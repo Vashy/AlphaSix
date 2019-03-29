@@ -1,5 +1,5 @@
 """
-File: creator.py
+File: run.py
 Data creazione: 2019-03-29
 
 <descrizione>
@@ -20,30 +20,38 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.0
+Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
-
+    Matteo Marchiori, matteo.marchiori@gmail.com
+    Nicola Carlesso
 """
-from kafka import KafkaConsumer
-import json
-import telepot
-from pathlib import Path
-from consumer.creator import ConsumerCreator
-from consumer.telegram.TelegramConsumer import TelegramConsumer, Consumer
+
+import kafka.errors
+
+from consumer.email.creator import EmailConsumerCreator
 
 
-class TelegramConsumerCreator(ConsumerCreator):
-    """Assembler per TelegramConsumer
+def main():
+    """Fetch dei topic dal file topics.json
+    Campi:
+    - topics['id']
+    - topics['label']
+    - topics['project']
     """
 
-    def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
-        with open(Path(__file__).parents[0] / 'config.json') as f:
-            obj = json.load(f)
+    # Inizializza WebhookConsumer
+    try:
+        consumer = EmailConsumerCreator().create()
+    except kafka.errors.KafkaConfigurationError as e:
+        print(e.with_traceback())
 
-        _bot = telepot.Bot(obj['telegram']['token_bot'])
-        return TelegramConsumer(kafka_consumer, self.topic, _bot)
+    try:
+        consumer.listen()  # Resta in ascolto del Broker
+    except KeyboardInterrupt:
+        consumer.close()
+        print(' Closing Consumer ...')
 
-    @property
-    def topic(self):
-        return 'telegram'
+
+if __name__ == '__main__':
+    main()
