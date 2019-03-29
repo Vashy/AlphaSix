@@ -55,9 +55,6 @@ class TelegramConsumer(Consumer):
 
         self._bot = bot
 
-        # Da modificare nel file config.json
-        # 38883960 Timoty
-        # 265266555 Laura
 
     def send(self, msg: dict):
         """Manda il messaggio finale, tramite il bot,
@@ -76,22 +73,28 @@ class TelegramConsumer(Consumer):
         # Warna se l'ID del destinatario non esiste,
         # e non invia nessun messaggio
         try:
+            # Da modificare nel file config.json
+            # 38883960 Timoty
+            # 265266555 Laura
             log = self._bot.sendMessage(
-                self._receiver,
+                388,
                 msg,
                 parse_mode='markdown',
             )
             if log:
                 print(f'Inviato il messaggio:\n{pprint.pformat(log)}')
+                return log
             else:
                 print('Errore: il messaggio non è stato inviato')
+                return None
         except telepot.exception.TelegramError as e:
             print(f'Nessun messaggio inviato: "{e.description}"')
+            return None
 
+    @property
     def bold(self):
         return '*'
 
     def close(self):
         """Chiude la connessione del Consumer"""
         self._consumer.close()
-

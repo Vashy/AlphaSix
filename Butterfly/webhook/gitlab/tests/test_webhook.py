@@ -28,7 +28,7 @@ def test_gitlab_issue_webhook():
     assert webhook['app'] == 'gitlab'
     assert webhook['object_kind'] == 'issue'
     assert webhook['title'] == 'New Issue'
-    assert webhook['project_url'] == 'https://gitlab.com/AlphaSix/webhooktest.git'
+    assert webhook['project_id'] == 'https://gitlab.com/AlphaSix/webhooktest.git'
     assert webhook['author'] == 'AlphaSix'
     assert webhook['action'] == 'open'
 
@@ -64,7 +64,7 @@ def test_gitlab_push_webhook():
         assert value['app'] == 'gitlab'
         assert value['object_kind'] == 'push'
         assert value['title'] == 'New commit fix #5 close #10 resolves #12'
-        assert value['project_url'] == 'https://gitlab.com/AlphaSix/webhooktest.git'
+        assert value['project_id'] == 'https://gitlab.com/AlphaSix/webhooktest.git'
         assert value['author'] == 'AlphaSix'
 
 
@@ -86,7 +86,7 @@ def test_gitlab_commit_comment_webhook():
     assert webhook['app'] == 'gitlab'
     assert webhook['object_kind'] == 'note'
     assert webhook['title'] == 'Just commenting a commit, don\'t bother with me'
-    assert webhook['project_url'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1.git'
+    assert webhook['project_id'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1.git'
     assert webhook['author'] == 'Administrator'
 
 
@@ -108,5 +108,5 @@ def test_gitlab_issue_comment_webhook():
     assert webhook['app'] == 'gitlab'
     assert webhook['object_kind'] == 'note'
     assert webhook['title'] == 'This issue has been successfully commented'
-    assert webhook['project_url'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1.git'
+    assert webhook['project_id'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1.git'
     assert webhook['author'] == 'Administrator'

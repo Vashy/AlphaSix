@@ -30,7 +30,7 @@ import json
 import telepot
 from pathlib import Path
 from consumer.creator import ConsumerCreator
-from consumer.telegram.TelegramConsumer import TelegramConsumer, Consumer
+from consumer.telegram.consumer import TelegramConsumer, Consumer
 
 
 class TelegramConsumerCreator(ConsumerCreator):

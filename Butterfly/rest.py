@@ -51,9 +51,6 @@ class User(flask_restful.Resource):
 
 
 class Resource(flask_restful.Resource):
-    
-    def __init__(self, controller):
-        self.controller = controller
 
     @abstractmethod
     def notify(self, request_type: str, msg: dict):
@@ -97,19 +94,25 @@ class Users(Resource):
         return 'Ok', 200
 
 
-class Controller(Observer):
-
-    def __init__(self, api: Api):
-        self.api = api
-        # self.api.add_resource(User, '/user/<int:user_id>')
+class Adapter(object):
+    def __init__(self, ):
+        self.flask = Flask(__name__)
+        self.api = Api()
 
         us = Users.make_api(users)
-        # us = Users()
-        # us.add_observer(model)
-        # us.add_observer(model)
-        self.api.add_resource(Users, '/users', resource_class_kwargs={'controller': self})
+        self.api.add_resource(Users, '/users')
 
-        # self.api.make_response
+    def notify(self, msg):
+        for obs in self.observer_list:
+            obs.update(msg)
+
+class Controller(Observer):
+
+    def __init__(self, adapter: Adapter):
+        # self.api = api
+        # us = Users.make_api(users)
+        # self.api.add_resource(Users, '/users', resource_class_kwargs={'controller': self})
+        self.adapt = adapter
 
     def update(self, msg, a):
         pass

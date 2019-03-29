@@ -25,7 +25,7 @@ def test_redmine_issue_webhook():
     assert webhook['object_kind'] == 'issue'
     assert webhook['title'] == 'Issue #1'
     assert webhook['description'] == 'This is a new issue'
-    assert webhook['project_url'] == 'http://172.23.0.3:3000/issues/1'
+    assert webhook['project_id'] == 1
     assert webhook['project_name'] == 'Test Project #1'
     assert webhook['action'] == 'opened'
     assert webhook['author'] == 'AlphaSix'

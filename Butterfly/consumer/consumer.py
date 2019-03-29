@@ -34,9 +34,8 @@ import json
 
 class Consumer(ABC):
     """Interfaccia Consumer"""
-    
+
     def __init__(self, consumer: KafkaConsumer, topic):
-        # Configs ...
 
         self._consumer = consumer
         self._topic = topic
@@ -68,7 +67,7 @@ class Consumer(ABC):
 
             value = message.value.decode('utf-8')
             try:
-                value = self.prettyprint(json.loads(value))
+                value = self.format(json.loads(value))
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
 
@@ -91,26 +90,27 @@ class Consumer(ABC):
         """Invia il messaggio all'utente finale."""
         pass
 
-    def prettyprint(self, obj: dict):
+    def format(self, msg: dict):
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
 
         Arguments:
-        obj -- JSON object
+        msg -- JSON object
         """
 
         # Questa chiamata va bene sia per i webhook di rd che per gt
         res = "".join(
             [
-                f'{self.bold}Provenienza{self.bold}: {obj["type"]}'
+                f'{self.bold}Provenienza{self.bold}: {msg["app"]}'
                 f'\n\n{self.bold}È stata aperta una issue nel progetto{self.bold}: '
-                f'{obj["project_name"]} ',
-                f'({obj["project_id"]})',
-                f'\n\n{self.bold}Author{self.bold}: {obj["author"]}'
+                f'{msg["project_name"]} ',
+                f'({msg["project_id"]})',
+                f'\n\n{self.bold}Author{self.bold}: {msg["author"]}'
                 f'\n\n {self.bold}Issue\'s information: {self.bold}'
-                f'\n - {self.bold}Title{self.bold}: \t\t{obj["title"]}',
-                f'\n - {self.bold}Description{self.bold}: \t\t{obj["description"]}',
-                f'\n - {self.bold}Action{self.bold}: \t{obj["action"]}',
+                f'\n - {self.bold}Title{self.bold}: \t\t{msg["title"]}',
+                f'\n - {self.bold}Description{self.bold}: \
+                    \t\t{msg["description"]}',
+                f'\n - {self.bold}Action{self.bold}: \t{msg["action"]}',
                 f'\n\n{self.bold}Assegnee\'s information:{self.bold}'
             ]
         )
@@ -119,11 +119,11 @@ class Consumer(ABC):
         # che invece può averne soltanto uno
         # hanno due profondità diverse nel file json,
         # quindi vanno scorse in modo diverso
-        if obj["type"] == 'redmine':
-            res += f'\n - {obj["assignees"]["firstname"]}'
-        elif obj["type"] == 'gitlab':
-            for value in obj["assignees"]:
-                res += f'\n - {value["name"]}'
+        # if msg["app"] == 'redmine':
+        #     res += f'\n - {msg["assignees"]["firstname"]}'
+        # elif msg["app"] == 'gitlab':
+        #     for value in msg["assignees"]:
+        #         res += f'\n - {value["name"]}'
 
         return res
 
