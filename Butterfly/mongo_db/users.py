@@ -301,3 +301,76 @@ class MongoUsers(MongoInterface):
                 }
             }
         )
+
+    def update_user_preference(self, user: str, preference: str):
+        """Aggiorna la preferenza (tra Telegram e Email) dell'utente
+        corrispondente all'`id` (Telegram o Email).
+
+        Raises:
+        `AssertionError` -- se preference non è `telegram` o `email`
+            oppure se `id` non è presente nel DB.
+        """
+
+        # Controllo validità campo preference
+        assert preference.lower() in ('telegram', 'email'), \
+            f'Selezione {preference} non valida: scegli tra Telegram o Email'
+
+        # Controllo esistenza id user
+        assert self.user_exists(user), f'User {id} inesistente'
+
+        count = self._mongo.collection('users').count_documents({
+            '$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ],
+            preference: None,
+        })
+
+        # Controllo su preferenza non su un campo null
+        assert count == 0, f'Il campo "{preference}" non è impostato'
+
+        return self._mongo.collection('users').find_one_and_update(
+            {'$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$set': {
+                    'preferenza': preference
+                }
+            }
+        )
+
+    def add_keywords(self, user: str, *new_keywords):
+        """Aggiunge le keywords passate come argomento all'user
+        corrispondente a `id`.
+
+        Raises:
+        `AssertionError` -- se `id` non è presente nel DB.
+        """
+        assert self.user_exists(user), f'User {id} inesistente'
+        return self._mongo.collection('users').find_one_and_update(
+            {'$or': [  # Confronta id sia con telegram che con email
+                {'telegram': id},
+                {'email': id},
+            ]},
+            {
+                '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
+                    'keywords': {
+                        '$each': [*new_keywords]  # Per ogni elemento
+                    }
+                }
+            }
+        )
+
+    def user_keywords(self, id: str) -> list:
+        """Restituisce una lista contenente le parole chiave corrispondenti
+        all'`id`: esso può essere sia il contatto Telegram che Email.
+        """
+        cursor = self.users({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })
+        return cursor[0]['keywords']

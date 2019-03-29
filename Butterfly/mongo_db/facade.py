@@ -16,6 +16,9 @@ class MongoFacade(Observer):
 
     def insert_user(self, **fields):
         self._users.create(fields)
+        
+    def read(self, user: str):
+        self._users.read(user)
 
     def delete_user(self, user: str):
         self._users.delete(user)

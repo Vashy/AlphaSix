@@ -11,18 +11,18 @@ from mongo_db.facade import Observer
 users = {}
 
 
-# class Subject(ABC):
+class Subject(ABC):
 
-#     def __init__(self):
-#         self.lst = []
+     def __init__(self):
+         self.lst = []
 
-#     @abstractmethod
-#     def notify(self, request_type: str, msg: dict):
-#         pass
+     @abstractmethod
+     def notify(self, request_type: str, msg: dict):
+         pass
 
-#     def add_observer(self, obs: Observer):
-#         if obs not in self.lst:
-#             self.lst.append(obs)
+     def add_observer(self, obs: Observer):
+         if obs not in self.lst:
+             self.lst.append(obs)
 
 
 class User(flask_restful.Resource):
@@ -45,16 +45,12 @@ class User(flask_restful.Resource):
             return users.pop(user_id)
 
 
-class Resource(flask_restful.Resource):
-    def __init__(self):
-        self.observer_list = []
+class Resource(flask_restful.Resource, Subject):
 
     @abstractmethod
     def notify(self, msg):
-        pass
-
-    def add_observer(self, obs: Observer):
-        self.observer_list.append(obs)
+        for obs in lst:
+            obs.update()
 
 
 class Users(Resource):
@@ -94,8 +90,8 @@ class Users(Resource):
         return 'Ok', 200
 
 
-class Controller(Observer):
-    def __init__(self, api: Api, model: Observer):
+class Controller(Subject, Observer):
+    def __init__(self, api: Api):
         self.api = api
         # self.api.add_resource(User, '/user/<int:user_id>')
 
@@ -119,7 +115,8 @@ def main():
     # import pdb; pdb.set_trace()
     flask = Flask(__name__)
     from unittest.mock import Mock
-    controller = Controller(Api(flask), Mock())
+    controller = Controller(Api(flask))
+    controller.add_observer(Mock())
     flask.run(debug=True)
 
 if __name__ == "__main__":
