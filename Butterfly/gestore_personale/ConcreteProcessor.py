@@ -43,6 +43,6 @@ class RedmineProcessor(Processor):
                 raise NameError('Type not exists')
 
         return return self._mongofacade.get_match_labels(users,
-            self._message['labels']
+            [self._message['labels']]
         )
 

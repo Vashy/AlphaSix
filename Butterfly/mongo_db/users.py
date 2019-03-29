@@ -375,6 +375,43 @@ class MongoUsers():
         })
         return cursor[0]['keywords']
 
+    # TODO
+    def match_keyword_commit(self, keyword: list, commit: str) -> bool:
+        """Cerca se all'interno del messaggio è presente almeno
+        una keyword riportata
+        """
+        pass
+
+    # TODO
+    def add_labels(self, user: str, *new_labels):
+        """Aggiunge le labels passate come argomento all'user
+        corrispondente a `id`.
+
+        Raises:
+        `AssertionError` -- se `id` non è presente nel DB.
+        """
+        pass
+
+    # TODO controllare se è corretta
+    def user_labels(self, id: str) -> list:
+        """Restituisce una lista contenente le label corrispondenti
+        all'`id`: esso può essere sia il contatto Telegram che Email.
+        """
+        cursor = self.users({
+            '$or': [
+                {'telegram': id},
+                {'email': id},
+            ]
+        })
+        return cursor[0]['labels']
+
+    # TODO
+    def match_labels_issue(self, labels_user: list, labels_issue: list) -> bool:
+        """Cerca se almeno una label dell'utente corrisponde ad una
+        label della issue
+        """
+        pass
+
     def _get_users_by_priority(self, url: str, priority: int):
         return self.users({
             'projects': {
