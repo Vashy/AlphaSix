@@ -1,10 +1,10 @@
 import copy
 
-from mongo_db.mongointerface import MongoInterface
-from mongo_db.mongosingleton import MongoAdapter
+# from mongo_db.mongointerface import MongoInterface
+from mongo_db.singleton import MongoAdapter
 
 
-class MongoUsers(MongoInterface):
+class MongoUsers():
 
     def __init__(self):
         self._mongo = MongoAdapter().getInstance()
