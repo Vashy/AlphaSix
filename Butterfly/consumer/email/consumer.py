@@ -62,7 +62,7 @@ class EmailConsumer(Consumer):
                     #     f'di {self._sender}: '
                     # )
 
-                    mailserver.login(self._sender, 'alfa6swe')  # Login al server SMTP
+                    mailserver.login(self._sender, 'VOLEVI')  # Login al server SMTP
                     break  # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova
