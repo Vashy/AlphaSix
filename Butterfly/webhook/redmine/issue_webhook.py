@@ -41,7 +41,7 @@ class RedmineIssueWebhook(Webhook):
 
         webhook['app'] = 'redmine'
         webhook['object_kind'] = 'issue'
-        webhook["title"] = whook['payload']['issue']['subject']
+        webhook['title'] = whook['payload']['issue']['subject']
         webhook['description'] = whook['payload']['issue']['description']
         webhook['project_url'] = whook['payload']['url']
         webhook['project_name'] = whook['payload']['issue']['project']['name']

@@ -23,29 +23,28 @@ limitations under the License.
 Versione: 0.1.0
 Creatore: Timoty Granziero, timoty.granziero@gmail.com
 Autori:
-    <nome cognome, email>
-    <nome cognome: email>
-    ....
+    Samuele Gardin, samuelegardin1997@gmail.com
 """
 
 from abc import ABC, abstractmethod
 
 from kafka import KafkaConsumer
-# import kafka.errors
 import json
-# from pathlib import Path
 
 
 class Consumer(ABC):
     """Interfaccia Consumer"""
     
-    def __init__(self, consumer: KafkaConsumer):
+    def __init__(self, consumer: KafkaConsumer, topic):
         # Configs ...
 
         self._consumer = consumer
+        self._topic = topic
 
     def prelisten_hook(self):
-        pass
+        """Metodo ridefinibile dalle sotto classi per effettuare
+        operazioni prima dell'avvio dell'ascolto dei messaggi.
+        """
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
@@ -55,9 +54,10 @@ class Consumer(ABC):
         in formato JSON, e devono contenere dei campi specifici
         definiti in nel modulo webhook
         """
+
         print('Listening to messages from topics:')
-        for topic in self._topics:
-            print(f'- {topic}')
+
+        print(f'- {self._topic}')
         print()
 
         self.prelisten_hook()  # Hook!
@@ -68,7 +68,7 @@ class Consumer(ABC):
 
             value = message.value.decode('utf-8')
             try:
-                value = self.pretty(json.loads(value))
+                value = self.prettyprint(json.loads(value))
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
 
@@ -81,7 +81,7 @@ class Consumer(ABC):
                 value,
             )
 
-            # Invia la richiesta per l'invio della mail
+            # Invia il messaggio al destinatario finale
             self.send(final_msg)
 
             print()  # Per spaziare i messaggi sulla shell
@@ -91,8 +91,7 @@ class Consumer(ABC):
         """Invia il messaggio all'utente finale."""
         pass
 
-    @staticmethod
-    def prettyprint(obj: dict):
+    def prettyprint(self, obj: dict):
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
 
@@ -103,16 +102,16 @@ class Consumer(ABC):
         # Questa chiamata va bene sia per i webhook di rd che per gt
         res = "".join(
             [
-                f'*Provenienza*: {obj["type"]}'
-                '\n\n*È stata aperta una issue nel progetto*: '
+                f'{self.bold}Provenienza{self.bold}: {obj["type"]}'
+                f'\n\n{self.bold}È stata aperta una issue nel progetto{self.bold}: '
                 f'{obj["project_name"]} ',
                 f'({obj["project_id"]})',
-                f'\n\n*Author*: {obj["author"]}'
-                '\n\n *Issue\'s information: *'
-                f'\n - *Title*: \t\t{obj["title"]}',
-                f'\n - *Description*: \t\t{obj["description"]}',
-                f'\n - *Action*: \t{obj["action"]}',
-                '\n\n*Assegnee\'s information:*'
+                f'\n\n{self.bold}Author{self.bold}: {obj["author"]}'
+                f'\n\n {self.bold}Issue\'s information: {self.bold}'
+                f'\n - {self.bold}Title{self.bold}: \t\t{obj["title"]}',
+                f'\n - {self.bold}Description{self.bold}: \t\t{obj["description"]}',
+                f'\n - {self.bold}Action{self.bold}: \t{obj["action"]}',
+                f'\n\n{self.bold}Assegnee\'s information:{self.bold}'
             ]
         )
 
@@ -127,3 +126,8 @@ class Consumer(ABC):
                 res += f'\n - {value["name"]}'
 
         return res
+
+    @property
+    @abstractmethod
+    def bold(self):
+        pass
