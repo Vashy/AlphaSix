@@ -1,16 +1,23 @@
 from abc import ABC, abstractmethod
 
 
+class Observer(ABC):
+
+    @abstractmethod
+    def update(self, msg: dict):
+        pass
+
+
 class Subject(ABC):
 
     def __init__(self):
         self.lst = []
 
-    def notify():
+    def notify(self):
         for obs in self.lst:
             obs.update()
-    
-    def add_observer(obs: Observer):
+
+    def add_observer(self, obs: Observer):
         self.lst.append(obs)
 
 
@@ -22,10 +29,10 @@ class MongoFacade(Observer):
 
     def insert_user(self, **fields):
         self._users.create(fields)
-        
+
     def read_user(self, user: str):
         return self._users.read(user)
-        
+
     def users(self, mongofilter={}):
         return self._proj_users.users(mongofilter)
 
@@ -59,18 +66,11 @@ class MongoFacade(Observer):
     def projects(self, filter={}):
         return self._projects.projects(filter)
 
-    # TODO
-    def get_project_by_url(self, url: str) -> bool:
-        # Faccio una search del progetto
-        # Se c'è torno true
-        pass
+    def project_exists(self, url: str) -> bool:
+        return self._projects.exists(url)
 
-    # TODO
     def get_users_available(self, url: str) -> list:
-        # Dato un progetto, cerco tutti
-        # Gli utenti disponibili oggi
-        # (la lista di ritorno contiene gli ID del DB)
-        pass
+        return self._users.get_users_available(url)
 
     # TODO
     def get_users_max_priority(self, url: str) -> list:
