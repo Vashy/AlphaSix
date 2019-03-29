@@ -39,7 +39,7 @@ class TelegramConsumerCreator(ConsumerCreator):
 
     def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
         with open(Path(__file__).parents[0] / 'config.json') as f:
-                obj = json.load(f)
+            obj = json.load(f)
 
         _bot = telepot.Bot(obj['telegram']['token_bot'])
         return TelegramConsumer(kafka_consumer, self.topic, _bot)

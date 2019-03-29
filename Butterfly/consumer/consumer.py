@@ -40,8 +40,11 @@ class Consumer(ABC):
 
         self._consumer = consumer
         self._topic = topic
+
     def prelisten_hook(self):
-        pass
+        """Metodo ridefinibile dalle sotto classi per effettuare
+        operazioni prima dell'avvio dell'ascolto dei messaggi.
+        """
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
@@ -51,7 +54,7 @@ class Consumer(ABC):
         in formato JSON, e devono contenere dei campi specifici
         definiti in nel modulo webhook
         """
-        
+
         print('Listening to messages from topics:')
 
         print(f'- {self._topic}')
@@ -78,7 +81,7 @@ class Consumer(ABC):
                 value,
             )
 
-            # Invia la richiesta per l'invio della mail
+            # Invia il messaggio al destinatario finale
             self.send(final_msg)
 
             print()  # Per spaziare i messaggi sulla shell
