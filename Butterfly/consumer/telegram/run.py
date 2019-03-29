@@ -25,25 +25,17 @@ Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
 
 """
-from kafka import KafkaConsumer
-import json
-import telepot
-from pathlib import Path
-from consumer.creator import ConsumerCreator
-from consumer.telegram.TelegramConsumer import TelegramConsumer, Consumer
+from consumer.telegram.creator import TelegramConsumerCreator
 
 
-class TelegramConsumerCreator(ConsumerCreator):
-    """Assembler per TelegramConsumer
-    """
+def main():
+    consumer = TelegramConsumerCreator().create()
+    try:
+        consumer.listen()
+    except KeyboardInterrupt:
+        consumer.close()
+        print(' Closing Consumer ...')
 
-    def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
-        with open(Path(__file__).parents[0] / 'config.json') as f:
-                obj = json.load(f)
 
-        _bot = telepot.Bot(obj['telegram']['token_bot'])
-        return TelegramConsumer(kafka_consumer, self.topic, _bot)
-
-    @property
-    def topic(self):
-        return 'telegram'
+if __name__ == '__main__':
+    main()

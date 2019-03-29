@@ -23,7 +23,7 @@ limitations under the License.
 Versione: 0.1.0
 Creatore: Timoty Granziero, timoty.granziero@gmail.com 
 Autori:
-    Samuele Gardin, samuelegardin@gmail.com
+    Samuele Gardin, samuelegardin1997@gmail.com
 """
 
 from kafka import KafkaConsumer
@@ -34,7 +34,7 @@ import json
 import pprint  # Pretty format per oggetti Python
 
 from consumer.consumer import Consumer
-from consumer.telegram.creator import TelegramConsumerCreator
+
 
 # import webhook.webhook as GLIssueWebhook
 # from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
@@ -43,14 +43,16 @@ from consumer.telegram.creator import TelegramConsumerCreator
 class TelegramConsumer(Consumer):
     """Implementa Consumer"""
 
-    def __init__(self, consumer: KafkaConsumer, bot: telepot.Bot):
+    def __init__(self, consumer: KafkaConsumer, topic: str, bot: telepot.Bot):
         # super.__init__(topics, configs)
 
         # self._receiver = configs['telegram']['receiver']
 
-        # self._bot = telepot.Bot(configs['telegram']['token_bot'])
+        #
+        # self._topic = consumer
 
-        self._consumer = consumer
+        super(TelegramConsumer, self).__init__(consumer, topic)
+
         self._bot = bot
 
         # Da modificare nel file config.json
@@ -86,108 +88,10 @@ class TelegramConsumer(Consumer):
         except telepot.exception.TelegramError as e:
             print(f'Nessun messaggio inviato: "{e.description}"')
 
-    # def listen(self):
-    #     """Ascolta i messaggi provenienti dai Topic a cui il
-    #     consumer è abbonato.
+    def bold(self):
+        return '*'
 
-    #     Precondizione: i messaggi salvati nel broker devono essere
-    #     in formato JSON, e devono contenere dei campi specifici
-    #     definiti in nel modulo webhook
-    #     """
-    #     print('Listening to messages from topics:')
-    #     for topic in self._topics:
-    #         print(f'- {topic}')
-    #     print()
+    def close(self):
+        """Chiude la connessione del Consumer"""
+        self._consumer.close()
 
-        # Linea da commentare in caso qualcun altro abbia attivo il bot
-        # self._bot.message_loop(self._on_chat_message) # TODO Hook!
-        # for message in self._consumer:
-        #     print(f'Tipo messaggio: {type(message.value)}')
-
-        #     value = message.value.decode('utf-8')
-        #     try:
-        #         value = self.pretty(json.loads(value))
-        #     except json.decoder.JSONDecodeError:
-        #         print(f'\n-----\nWarning: "{value}"'
-        #               'non è in formato JSON\n-----\n')
-
-        #     final_msg = '{}{}{}*Key*: {}\n{}{}'.format(
-        #             '*Topic*: ',
-        #             message.topic,
-        #             # message.partition,
-        #             # message.offset,
-        #             '\n\n',
-        #             message.key,
-        #             '\n',
-        #             value,
-        #     )
-
-        #     # Invia il messaggio finale
-        #     self.send(final_msg)
-
-        #     print()  # Per spaziare i messaggi sulla shell
-
-    # def _on_chat_message(self, msg):
-    #     # Raccoglie il messaggio
-    #     content_type, _, chat_id = telepot.glance(msg)
-
-    #     if content_type == 'text':
-
-    #         # Debug info
-    #         print('ID utente: ', chat_id)
-
-    #         name = msg['from']['first_name']
-    #         print('Nome utente: ', name)
-
-    #         text = msg['text']
-    #         print('Testo messaggio: ', text)
-    #         print('-----------')
-
-    #         final_msg = ''
-    #         if text == '/start':
-    #             final_msg = (
-    #                 f'Ciao {name}, '
-    #                 'questo è il bot che ti invierà '
-    #                 'le segnalazioni dei topic ai quali ti sei iscritto.'
-    #             )
-
-    #         elif text == '/subscribe':  # TODO Comando /subscribe
-    #             final_msg = (
-    #                 f'{name}, sei stato aggiunto correttamente '
-    #                 'al sistema *Butterfly*!'
-    #             )
-
-    #         elif text == '/unsubscribe':  # TODO Comando /unsubscribe
-    #             final_msg = (
-    #                 'Sei stato rimosso '
-    #                 'dal sistema *Butterfly*! Se cambiassi idea, '
-    #                 'fammelo sapere!'
-    #             )
-    #         else:
-    #             final_msg = (
-    #                 'Comando non riconosciuto.\n\nUso:\n'
-    #                 '/subscribe\n/unsubscribe'
-    #             )
-
-    #         self._bot.sendMessage(
-    #                 chat_id,
-    #                 final_msg,
-    #                 parse_mode='markdown',
-    #         )
-
-    # def close(self):
-    #     """Chiude la connessione del Consumer"""
-    #     self._consumer.close()
-
-
-def main():
-    consumer = TelegramConsumerCreator().create()
-    try:
-        consumer.listen()
-    except KeyboardInterrupt:
-        consumer.close()
-        print(' Closing Consumer ...')
-
-
-if __name__ == '__main__':    
-    main()
