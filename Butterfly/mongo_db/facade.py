@@ -1,11 +1,17 @@
 from abc import ABC, abstractmethod
 
 
-class Observer(ABC):
+class Subject(ABC):
 
-    @abstractmethod
-    def update(self, msg: dict):
-        pass
+    def __init__(self):
+        self.lst = []
+
+    def notify():
+        for obs in self.lst:
+            obs.update()
+    
+    def add_observer(obs: Observer):
+        self.lst.append(obs)
 
 
 class MongoFacade(Observer):
