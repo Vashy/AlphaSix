@@ -63,11 +63,11 @@ class Consumer(ABC):
 
         # Si mette in ascolto dei messsaggi dal Broker
         for message in self._consumer:
-            print(f'Tipo messaggio: {type(message.value)}')
+            # print(f'Tipo messaggio: {type(message.value)}')
 
             value = message.value.decode('utf-8')
             try:
-                value = self.format(json.loads(value))
+                receiver, value = self.format(json.loads(value))
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
 
@@ -81,14 +81,13 @@ class Consumer(ABC):
             )
 
             # Invia il messaggio al destinatario finale
-            self.send(final_msg)
-
+            self.send(receiver, final_msg)
             print()  # Per spaziare i messaggi sulla shell
 
     @abstractmethod
-    def send(self, msg: dict):
+    def send(self, receiver: str, msg: dict):
         """Invia il messaggio all'utente finale."""
-        pass
+
 
     def format(self, msg: dict):
         """Restituisce una stringa con una formattazione migliore da un
@@ -99,19 +98,20 @@ class Consumer(ABC):
         """
 
         # Questa chiamata va bene sia per i webhook di rd che per gt
+        bold = self.bold
         res = "".join(
             [
-                f'{self.bold}Provenienza{self.bold}: {msg["app"]}'
-                f'\n\n{self.bold}È stata aperta una issue nel progetto{self.bold}: '
+                f'{bold}Provenienza{bold}: {msg["app"]}'
+                f'\n\n{bold}È stata aperta una issue nel progetto{bold}: '
                 f'{msg["project_name"]} ',
                 f'({msg["project_id"]})',
-                f'\n\n{self.bold}Author{self.bold}: {msg["author"]}'
-                f'\n\n {self.bold}Issue\'s information: {self.bold}'
-                f'\n - {self.bold}Title{self.bold}: \t\t{msg["title"]}',
-                f'\n - {self.bold}Description{self.bold}: \
+                f'\n\n{bold}Author{bold}: {msg["author"]}'
+                f'\n\n {bold}Issue\'s information: {bold}'
+                f'\n - {bold}Title{bold}: \t\t{msg["title"]}',
+                f'\n - {bold}Description{bold}: \
                     \t\t{msg["description"]}',
-                f'\n - {self.bold}Action{self.bold}: \t{msg["action"]}',
-                f'\n\n{self.bold}Assegnee\'s information:{self.bold}'
+                f'\n - {bold}Action{bold}: \t{msg["action"]}',
+                f'\n\n{bold}Assegnee\'s information:{bold}',
             ]
         )
 
@@ -125,7 +125,7 @@ class Consumer(ABC):
         #     for value in msg["assignees"]:
         #         res += f'\n - {value["name"]}'
 
-        return res
+        return msg['receiver'], res
 
     @property
     @abstractmethod

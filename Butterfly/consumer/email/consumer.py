@@ -43,12 +43,13 @@ class EmailConsumer(Consumer):
     def __init__(self, consumer: KafkaConsumer, topic: str):
         # self._sender = configs['emailSettings']['sender']
         super(EmailConsumer, self).__init__(consumer, topic)
+        self._sender = 'alpha.six.unipd@gmail.com'
 
-    def send(self, msg: str):
+
+    def send(self, receiver: str, msg: str):
         """Manda il messaggio finale, tramite il server mail,
         all'utente finale.
         """
-
         with smtplib.SMTP('smtp.gmail.com', 587) as mailserver:
             mailserver.ehlo()
             mailserver.starttls()
@@ -63,6 +64,7 @@ class EmailConsumer(Consumer):
                     # )
 
                     mailserver.login(self._sender, 'VOLEVI')  # Login al server SMTP
+
                     break  # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova
@@ -77,20 +79,21 @@ class EmailConsumer(Consumer):
 
             text = '\n'.join([
                 'From: ' + self._sender,
-                'To: ' + self._receiver,
-                'Subject: ' + self._subject,
+                'To: ' + receiver,
+                'Subject: ' + 'lul',
                 '',
                 ' ',
                 msg,
             ])
 
             try:  # Tenta di inviare l'Email
-                mailserver.sendmail(self._sender, self._receiver, text)
+                mailserver.sendmail(self._sender, receiver, text)
                 print('\nEmail inviata. In ascolto di altri messaggi ...')
             except smtplib.SMTPException:
                 print('Errore, email non inviata. '
                       'In ascolto di altri messaggi ...')
 
+    @property
     def bold(self):
         return ''
 

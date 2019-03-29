@@ -1,6 +1,9 @@
 from unittest.mock import MagicMock, patch
 
+import pytest
+
 from consumer.telegram.consumer import TelegramConsumer
+
 
 def test_send():
     kafka_mock = MagicMock()
@@ -41,6 +44,7 @@ def test_print():
 
     diz = {
         'app': 'telegram',
+        'receiver': '142',
         'project_name': 'Project',
         'project_id': 'http://...',
         'author': 'author',
@@ -49,7 +53,7 @@ def test_print():
         'action': 'open',
     }
 
-    res = consumer.format(diz)
+    dest, res = consumer.format(diz)
 
     assert 'telegram' in res
     assert 'Project' in res
@@ -58,3 +62,4 @@ def test_print():
     assert 'Description' in res
     assert '*Description*:' in res
     assert 'Orca marina' not in res
+    assert dest == '142'
