@@ -13,16 +13,16 @@ users = {}
 
 class Subject(ABC):
 
-     def __init__(self):
-         self.lst = []
+    def __init__(self):
+        self.lst = []
 
-     @abstractmethod
-     def notify(self, request_type: str, msg: dict):
-         pass
+    @abstractmethod
+    def notify(self, request_type: str, msg: dict):
+        pass
 
-     def add_observer(self, obs: Observer):
-         if obs not in self.lst:
-             self.lst.append(obs)
+    def add_observer(self, obs: Observer):
+        if obs not in self.lst:
+            self.lst.append(obs)
 
 
 class User(flask_restful.Resource):
@@ -47,17 +47,12 @@ class User(flask_restful.Resource):
 
 class Resource(flask_restful.Resource, Subject):
 
-    @abstractmethod
-    def notify(self, msg):
-        for obs in lst:
-            obs.update()
+    def notify(self, request_type, msg):
+        for observer in self.lst:
+            observer.update(request_type, msg)
 
 
 class Users(Resource):
-
-    def notify(self, request_type, msg):
-        for observer in self.observer_list:
-            observer.update(request_type, msg)
 
     @classmethod
     def make_api(cls, response):
@@ -90,7 +85,8 @@ class Users(Resource):
         return 'Ok', 200
 
 
-class Controller(Subject, Observer):
+class Controller(Observer):
+
     def __init__(self, api: Api):
         self.api = api
         # self.api.add_resource(User, '/user/<int:user_id>')
@@ -106,18 +102,19 @@ class Controller(Subject, Observer):
     def update(self, msg, a):
         pass
 
-    def notify(self, request_type, msg):
-        for obs in self.observers:
-            print('AAAAAAAAAAAAAAAaa')
-            obs.update(request_type, msg)
+#    def notify(self, request_type, msg):
+#        for obs in self.observers:
+#            print('AAAAAAAAAAAAAAAaa')
+#            obs.update(request_type, msg)
+
 
 def main():
     # import pdb; pdb.set_trace()
     flask = Flask(__name__)
     from unittest.mock import Mock
     controller = Controller(Api(flask))
-    controller.add_observer(Mock())
     flask.run(debug=True)
+
 
 if __name__ == "__main__":
     main()
