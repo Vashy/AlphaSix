@@ -1,5 +1,4 @@
-from mongo_db.mongointerface import MongoInterface
-from mongo_db.mongosingleton import MongoAdapter
+from mongo_db.singleton import MongoAdapter
 
 
 class MongoProjects:

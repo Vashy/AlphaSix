@@ -16,7 +16,7 @@ class Subject(ABC):
     def notify(self):
         for obs in self.lst:
             obs.update()
-            
+
     def add_observer(self, obs: Observer):
         self.lst.append(obs)
 
@@ -66,38 +66,26 @@ class MongoFacade(Observer):
     def projects(self, filter={}):
         return self._projects.projects(filter)
 
-    #CRUD keyword
     def project_exists(self, url: str) -> bool:
         return self._projects.exists(url)
 
     def get_users_available(self, url: str) -> list:
         return self._users.get_users_available(url)
 
-    # TODO
     def get_users_max_priority(self, url: str) -> list:
-        # Dato un progetto, ritorno la lista di
-        # utenti disponibili oggi di priorità maggiore
-        # (la lista di ritorno contiene gli ID del DB)
-    #CRUD label
-    # TODO
+        return self._users.get_users_max_priority(url)
 
-    # TODO
     def get_project_by_url(self, url: str) -> bool:
         # Faccio una search del progetto
         # Se c'è torno true
         pass
 
-    # TODO
     def get_user_telegram(self, userID: str) -> str:
-        # Ritorno il telegram dell'utente (se presente)
-        # altrimenti 0/None/NULL
-        pass
+        return self._users.telegram(userID)
 
-    # TODO
     def get_user_email(self, userID: str) -> str:
-        # Ritorno la mail dell'utente (se presente)
-        # altrimenti 0/None/NULL
-        pass
+        return self._users.email(userID)
+
     # TODO
     def get_user_keywords(self, user: str) -> list:
         # Ritorna la lista di keyword a cui è iscritto l'utente
@@ -105,20 +93,24 @@ class MongoFacade(Observer):
 
     # TODO
     def get_match_keywords(self, users: list, commit: str) -> bool:
-        # Guarda se le keywords di un user (chiamando get_user_keyboard) sono presenti nel commit message
+        # Guarda se le keywords di un user (chiamando get_user_keyboard) sono
+        # presenti nel commit message
         # Ritorna true se è presente almeno una keyword nel commit message
         pass
 
     # TODO
     def get_user_labels(self, user: str) -> (list, str):
-        # Ritorna la lista di label a cui è iscritto un utente, sia per gitlab che redmine (il campo è lo stesso)
+        # Ritorna la lista di label a cui è iscritto un utente, sia per gitlab
+        # che redmine (il campo è lo stesso)
         # Ritorna una lista di label per gitlab
         # Ritorna una sola label per redmine
         pass
 
     # TODO
     def get_match_labels(self, users: list, labels: (str, list)) -> bool:
-        # Guarda se almeno una label di un user (chiamando get_user_labels) è presente nelle label della issue
+        # Guarda se almeno una label di un user (chiamando get_user_labels) è
+        # presente nelle label della issue
         # Per redmine c'è una sola label, per gitlab una lista
-        # Ritorna true se è presente almeno una label dell'utente nelle label della issue
+        # Ritorna true se è presente almeno una label dell'utente nelle label
+        # della issue
         pass
