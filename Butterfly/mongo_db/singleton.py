@@ -38,6 +38,7 @@ class MongoDBImpl(MongoAdapter):
                 db: str,
                 mongo_client=pymongo.MongoClient('localhost', 27017)
         ):
+            self._client = mongo_client
             print('Connessione stabilita.')
             self._db = self._client[db]
 
