@@ -50,9 +50,9 @@ class User(flask_restful.Resource):
             return users.pop(user_id)
 
 
-class Resource(flask_restful.Resource):
+class Resource(flask_restful.Resource, Subject):
     
-    def __init__(self, controller):
+    def __init__(self, obs):
         self.controller = controller
 
     @abstractmethod
@@ -63,8 +63,8 @@ class Resource(flask_restful.Resource):
 class Users(Resource):
 
     def notify(self, request_type, msg):
-        for observer in self.lst:
-            observer.update(request_type, msg)
+        self.controller.update(request_type, msg)
+        return 'notify'
 
     @classmethod
     def make_api(cls, response):
@@ -94,7 +94,7 @@ class Users(Resource):
         data = request.form['data']
         self.notify('POST', self.response['data'])
         self.response[len(self.response)] = data
-        return 'Ok', 200
+        return 'notify'
 
 
 class Controller(Observer):
@@ -107,12 +107,13 @@ class Controller(Observer):
         # us = Users()
         # us.add_observer(model)
         # us.add_observer(model)
-        self.api.add_resource(Users, '/users', resource_class_kwargs={'controller': self})
+        self.api.add_resource(Users, '/users',
+            resource_class_kwargs={'controller': self})
 
         # self.api.make_response
 
     def update(self, msg, a):
-        pass
+        print('update')
 
 #    def notify(self, request_type, msg):
 #        for obs in self.observers:
