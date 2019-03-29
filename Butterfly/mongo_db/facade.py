@@ -17,8 +17,11 @@ class MongoFacade(Observer):
     def insert_user(self, **fields):
         self._users.create(fields)
         
-    def read(self, user: str):
-        self._users.read(user)
+    def read_user(self, user: str):
+        return self._users.read(user)
+        
+    def users(self, mongofilter={}):
+        return self._projects.projects(mongofilter)
 
     def delete_user(self, user: str):
         self._users.delete(user)
@@ -46,3 +49,6 @@ class MongoFacade(Observer):
 
     def delete_project(self, project: str):
         self._projects.delete(project)
+        
+    def projects(self, filter={}):
+        return self._projects.projects(filter)
