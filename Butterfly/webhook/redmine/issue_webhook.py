@@ -43,7 +43,7 @@ class RedmineIssueWebhook(Webhook):
         webhook['object_kind'] = 'issue'
         webhook["title"] = whook['payload']['issue']['subject']
         webhook['description'] = whook['payload']['issue']['description']
-        webhook['project_id'] = whook['payload']['issue']['project']['id']
+        webhook['project_url'] = whook['payload']['url']
         webhook['project_name'] = whook['payload']['issue']['project']['name']
         webhook['action'] = whook["payload"]["action"]
         webhook['author'] = whook['payload']['issue']['author']['firstname']
