@@ -65,3 +65,8 @@ class MongoFacade(Observer):
         # Gli utenti disponibili oggi
         pass
 
+    # TODO
+    def get_users_max_priority(self, url: str) -> list:
+        # Dato un progetto, ritorno la lista di
+        # utenti disponibili oggi di priorità maggiore
+        pass
