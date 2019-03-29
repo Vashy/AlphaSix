@@ -31,18 +31,16 @@ class ClientGP(ABC):
         for message in self._consumer:
             self.process(message)
 
-    # def get_type_app(self):
-
     def process(self, message: dict):
-        # provenienza = message['app']
         processore_messaggio = Processor(message, self._mongo.instantiate())
-        mappa_contatto_messaggio = processore_messaggio.template_method()
-        self.sendAll(mappa_contatto_messaggio)
+        mappa_contatto_messaggio = processore_messaggio.prepare_message()
+        # processore_messaggio.template_method()
+        self.send_all(mappa_contatto_messaggio)
 
-    def sendAll(self, mapMessageContact: dict):
-        # app_ricevente sarà telegram o email
-        for app_ricevente in mapMessageContact['app_receiver']:
-            for messaggio in mapMessageContact['app_receiver']['message']:
+    def send_all(self, map_message_contact: dict):
+        # app_ricevente sarà telegram o email (chiave,valore)
+        for app_ricevente, message_list in map_message_contact.items():
+            for messaggio in message_list:
                 try:
                     # Inserisce il messaggio in Kafka, serializzato in formato JSON
                     self._producer.send(
@@ -61,4 +59,3 @@ if __name__ == "__main__":
     mongo = MongoFacadeCreator()
     client = ClientGP(kafka_consumer, kafka_producer, mongo)
     client.read_messages()
-    # client.process()

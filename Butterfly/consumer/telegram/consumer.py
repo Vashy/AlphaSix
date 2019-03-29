@@ -27,11 +27,8 @@ Autori:
 """
 
 from kafka import KafkaConsumer
-import kafka.errors
 import telepot
-from pathlib import Path
-import json
-import pprint  # Pretty format per oggetti Python
+import pprint
 
 from consumer.consumer import Consumer
 

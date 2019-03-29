@@ -50,7 +50,7 @@ class RedmineIssueWebhook(Webhook):
         webhook['assignees'] = (
             whook['payload']['issue']['assignee']['firstname']
         )
-        webhook['label'] = whook['payload']['issue']['tracker']['name']
+        webhook['labels'] = whook['payload']['issue']['tracker']['name']
 
         webhook['update'] = {}
 

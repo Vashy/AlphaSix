@@ -155,11 +155,11 @@ class MongoUsers():
         return result
 
     def read(self, user: str):
-        """Restituisce un oggetto Python corrispondente all'`id`
+        """Restituisce un oggetto Python corrispondente all'`user`
         passato come argomento.
 
         Raises:
-        `AssertionError` -- se `id` non è presente nel DB.
+        `AssertionError` -- se `user` non è presente nel DB.
         """
         assert self.exists(id), f'User {id} inesistente'
 
@@ -374,3 +374,67 @@ class MongoUsers():
             ]
         })
         return cursor[0]['keywords']
+
+    def get_users_available(self, url: str) -> list:
+        """Dato un progetto, cerco tutti
+        Gli utenti disponibili oggi
+        (la lista di ritorno contiene gli ID del DB)
+        """
+        emails = self.users({
+            'projects': {
+                '$elemMatch': {'url': url}
+            },
+            '$currentDate': {
+                '$nin': 'irreperibilità'
+            },
+            'email': {'$exists': 'true', '$ne': ""}
+        }, {
+            'email': 1
+        })
+        telegrams = self.users({
+            'projects': {
+                '$elemMatch': {'url': url}
+            },
+            '$currentDate': {
+                '$nin': 'irreperibilità'
+            },
+            'telegram': {'$exists': 'true', '$ne': ""}
+        }, {
+            'telegram': 1
+        })
+        return emails + telegrams
+        
+    def _get_users_by_priority(self, url: str, priority: int):
+        emails = self.users({
+            'projects': {
+                '$elemMatch': {'url': url},
+                '$elemMatch': {'': url}
+            },
+            '$currentDate': {
+                '$nin': 'irreperibilità'
+            },
+            'email': {'$exists': 'true', '$ne': ""}
+        }, {
+            'email': 1
+        })
+        telegrams = self.users({
+            'projects': {
+                '$elemMatch': {'url': url}
+            },
+            '$currentDate': {
+                '$nin': 'irreperibilità'
+            },
+            'telegram': {'$exists': 'true', '$ne': ""}
+        }, {
+            'telegram': 1
+        })
+        return emails + telegrams
+        
+    def get_users_max_priority(self, url: str) -> list:
+        """Dato un progetto, ritorno la lista di
+        utenti disponibili oggi di priorità maggiore
+        (la lista di ritorno contiene gli ID del DB)
+        """
+        
+        
+        

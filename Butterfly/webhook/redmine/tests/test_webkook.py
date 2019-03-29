@@ -25,12 +25,12 @@ def test_redmine_issue_webhook():
     assert webhook['object_kind'] == 'issue'
     assert webhook['title'] == 'Issue #1'
     assert webhook['description'] == 'This is a new issue'
-    assert webhook['project_id'] == 1
+    assert webhook['project_url'] == 1
     assert webhook['project_name'] == 'Test Project #1'
     assert webhook['action'] == 'opened'
     assert webhook['author'] == 'AlphaSix'
     assert webhook['assignees'] == 'AlphaSix'
-    assert webhook['label'] == 'Bug'
+    assert webhook['labels'] == 'Bug'
 
     assert webhook['update'] == {}
 

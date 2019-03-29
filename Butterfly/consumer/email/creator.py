@@ -26,24 +26,21 @@ Autori:
 
 """
 from kafka import KafkaConsumer
-import json
-import telepot
-from pathlib import Path
+
 from consumer.creator import ConsumerCreator
-from consumer.telegram.consumer import TelegramConsumer, Consumer
+from consumer.email.EmailConsumer import EmailConsumer
 
 
-class TelegramConsumerCreator(ConsumerCreator):
-    """Assembler per TelegramConsumer
-    """
+class EmailConsumerCreator(ConsumerCreator):
 
-    def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
-        with open(Path(__file__).parents[0] / 'config.json') as f:
-            obj = json.load(f)
+    def instantiate(self, kafka_consumer: KafkaConsumer):
 
-        _bot = telepot.Bot(obj['telegram']['token_bot'])
-        return TelegramConsumer(kafka_consumer, self.topic, _bot)
+        # Fetch delle configurazioni dal file config.json
+        # with open(Path(__file__).parents[1] / 'config.json') as f:
+        # config = json.load(f)
+
+        return EmailConsumer(kafka_consumer, self.topic)
 
     @property
     def topic(self):
-        return 'telegram'
+        return 'email'

@@ -14,6 +14,15 @@ class MongoProjects:
         un `for .. in ..`, oppure usare il subscripting `[i]`.
         """
         return self._mongo.collection('projects').find(filter)
+        
+    def exists(self, project: str) -> bool:
+        """Restituisce `True` se l'`id` di un utente
+        (che può essere Telegram o Email) è salvato nel DB.
+        """
+        count = self._mongo.collection('projects').count_documents({
+            {'url': project}
+        })
+        return count != 0
 
     def create(self, project: dict):
         """Aggiunge il documento `project` alla collezione `projects`,
@@ -41,3 +50,19 @@ class MongoProjects:
             },
             'projects'
         )
+        
+    def read(
+        self, url: str
+    ) -> bool:
+        """Restituisce il progetto corrispondente a `url`.
+        
+        Raises:
+        `AssertionError` -- se `url` non è presente nel DB.
+        """
+        assert self.exists(url), f'User {id} inesistente'
+
+        return self.projects({
+            {'url': url},
+        })[0]
+        
+        

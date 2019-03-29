@@ -21,7 +21,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Versione: 0.2.0
-Creatore: Samuele Gardin, samuelegardin@gmail.com
+Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
     Matteo Marchiori, matteo.marchiori@gmail.com
     Nicola Carlesso
@@ -31,12 +31,8 @@ Autori:
 # Uso: python3 -m path.to.WebhookConsumer
 
 from kafka import KafkaConsumer
-import kafka.errors
-import json
-from pathlib import Path
 
 import smtplib
-import getpass
 
 from consumer.consumer import Consumer
 
@@ -44,39 +40,9 @@ from consumer.consumer import Consumer
 class EmailConsumer(Consumer):
     """Implementa Consumer"""
 
-    def __init__(self, consumer: KafkaConsumer, server: smtplib.SMTP):
+    def __init__(self, consumer: KafkaConsumer, topic: str):
         # self._sender = configs['emailSettings']['sender']
-        self._server = server
-
-    #     configs = configs['kafka']
-
-    #     # Converte stringa 'inf' nel relativo float
-    #     if (configs['consumer_timeout_ms'] is not None
-    #             and configs['consumer_timeout_ms'] == 'inf'):
-    #         configs['consumer_timeout_ms'] = float('inf')
-
-    #     notify = False
-    #     while True:  # Attende una connessione con il Broker
-    #         try:
-    #             # Il parametro value_deserializer tornerà probabilmente
-    #             # utile successivamente, per ora lasciamo il controllo
-    #             # del tipo a listen()
-    #             self._consumer = KafkaConsumer(
-    #                 *topics,
-    #                 # Deserializza i messaggi dal formato JSON a oggetti Python
-    #                 # value_deserializer=(
-    #                 #   (lambda m: json.loads(m.decode('utf-8'))),
-    #                 **configs,
-    #             )
-    #             break
-    #         except kafka.errors.NoBrokersAvailable:
-    #             if not notify:
-    #                 notify = True
-    #                 print('Broker offline. In attesa di una connessione ...')
-    #         except KeyboardInterrupt:
-    #             print(' Closing Consumer ...')
-    #             # exit(1)
-    #     print('Connessione con il Broker stabilita')
+        super(EmailConsumer, self).__init__(consumer, topic)
 
     def send(self, msg: str):
         """Manda il messaggio finale, tramite il server mail,
@@ -118,88 +84,16 @@ class EmailConsumer(Consumer):
                 msg,
             ])
 
-            try:  # Tenta di inviare la mail
+            try:  # Tenta di inviare l'Email
                 mailserver.sendmail(self._sender, self._receiver, text)
                 print('\nEmail inviata. In ascolto di altri messaggi ...')
             except smtplib.SMTPException:
                 print('Errore, email non inviata. '
                       'In ascolto di altri messaggi ...')
 
-    # def listen(self):
-    #     """Ascolta i messaggi provenienti dai Topic a cui il
-    #     consumer è abbonato.
-
-    #     Precondizione: i messaggi salvati nel broker devono essere
-    #     in formato JSON, e devono contenere dei campi specifici
-    #     definiti in nel modulo webhook
-    #     """
-    #     print('Listening to messages from topics:')
-    #     for topic in self._topics:
-    #         print(f'- {topic}')
-    #     print()
-
-    #     # Si mette in ascolto dei messsaggi dal Broker
-    #     for message in self._consumer:
-    #         print(f'Tipo messaggio: {type(message.value)}')
-
-    #         value = message.value.decode('utf-8')
-    #         try:
-    #             value = self.pretty(json.loads(value))
-    #         except json.decoder.JSONDecodeError:
-    #             print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
-
-    #         final_msg = '{}{}{}Key: {}\n{}{}'.format(
-    #             'Topic: ',
-    #             message.topic,
-    #             '\n\n',
-    #             message.key,
-    #             '\n',
-    #             value,
-    #         )
-
-    #         # Invia la richiesta per l'invio della mail
-    #         self.send(final_msg)
-
-    #         print()  # Per spaziare i messaggi sulla shell
+    def bold(self):
+        return ''
 
     def close(self):
         """Chiude la connessione del Consumer"""
         self._consumer.close()
-
-
-if __name__ == '__main__':
-
-    """Fetch dei topic dal file topics.json
-    Campi:
-    - topics['id']
-    - topics['label']
-    - topics['project']
-    """
-    with open(Path(__file__).parents[2] / 'topics.json') as f:
-        topics = json.load(f)
-
-    # Fetch delle configurazioni dal file config.json
-    with open(Path(__file__).parents[1] / 'config.json') as f:
-        config = json.load(f)
-
-    # Per ora, sono solo di interesse i nomi (label) dei Topic
-    topiclst = []
-    for topic in topics:
-        # Per ogni topic, aggiunge a topiclst solo se non è già presente
-        if topic['label'] not in topiclst:
-            topiclst.append(topic['label'])
-
-    # Inizializza WebhookConsumer
-    try:
-        consumer = EmailConsumer(
-            topiclst,
-            config
-        )
-    except kafka.errors.KafkaConfigurationError as e:
-        print(e.with_traceback())
-
-    try:
-        consumer.listen()  # Resta in ascolto del Broker
-    except KeyboardInterrupt:
-        consumer.close()
-        print(' Closing Consumer ...')
