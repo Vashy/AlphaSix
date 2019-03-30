@@ -21,7 +21,7 @@ mongofacade.get_project_by_url.return_value = True
 mongofacade.get_users_available.return_value = ['1', '2']
 p = Processor(message, mongofacade)
 p.get_telegram_contacts.return_value = ['12314', '435435', '2']
-p.get_email_contacts.return_value = ['mona@a.it', 'cazzi@gmail.com']
+p.get_email_contacts.return_value = ['matteo@gmail.it', 'pino@gmail.com']
 
 
 def test_prepare_message():

@@ -9,7 +9,7 @@ class GitlabProcessor(Processor):
 
     def filter_users_by_topic(self, users: list, obj: str) -> list:
         try:
-            if obj == 'push' || obj == 'note_commit':
+            if obj == 'push' or obj == 'note_commit':
                 return get_user_keyword(users)
             elif obj == 'issue':
                 return get_user_issue_labels(users)
@@ -42,7 +42,7 @@ class RedmineProcessor(Processor):
             if obj == 'issue':
                 raise NameError('Type not exists')
 
-        return return self._mongofacade.get_match_labels(users,
+        return self._mongofacade.get_match_labels(users,
             [self._message['labels']]
         )
 
