@@ -50,8 +50,9 @@ def test_prepare_message():
     }
 
     # PROBLEMA: questo non dovrebbe andare bene
-    for k, vi in msg.items():
-        assert k == '8' or 'x'
+    # for k, vi in msg.items():
+    #     for x in k:
+    #         assert k == '2' or k == '8' or k =='1'
 
 
 def test_check_project():

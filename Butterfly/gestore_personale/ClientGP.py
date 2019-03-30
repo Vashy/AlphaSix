@@ -37,7 +37,7 @@ class ClientGP():
         # processore_messaggio.template_method()
         self.send_all(mappa_contatto_messaggio)
 
-    def send_all(self, map_message_contact: dict):
+    def send_all(self, map_message_contact: dict, message: dict):
         # app_ricevente sarà telegram o email (chiave,valore)
         for app_ricevente, message_list in map_message_contact.items():
             for messaggio in message_list:

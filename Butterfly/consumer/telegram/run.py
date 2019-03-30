@@ -51,7 +51,6 @@ def _open_kafka_configs(path: Path = _config_path):
 def main():
     configs = _open_kafka_configs()
 
-
     consumer = TelegramConsumerCreator().create(configs)
     try:
         consumer.listen()
