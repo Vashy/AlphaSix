@@ -31,4 +31,4 @@ def test_create(
     }
     creator = EmailConsumerCreator()
 
-    creator.create()
+    creator.create({})

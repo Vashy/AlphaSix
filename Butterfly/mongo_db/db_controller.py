@@ -276,9 +276,9 @@ class DBController(object):
         se presente, e restituisce il risultato.
         """
         return self._delete_one_document({
-                'label': label,
-                'project': project,
-            },
+            'label': label,
+            'project': project,
+        },
             'topics',
         )
 
@@ -309,8 +309,8 @@ class DBController(object):
         se presente, e restituisce il risultato.
         """
         return self._delete_one_document({
-                'url': url,
-            },
+            'url': url,
+        },
             'projects'
         )
 

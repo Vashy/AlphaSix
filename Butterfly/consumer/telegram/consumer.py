@@ -21,7 +21,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Versione: 0.1.0
-Creatore: Timoty Granziero, timoty.granziero@gmail.com 
+Creatore: Timoty Granziero, timoty.granziero@gmail.com
 Autori:
     Samuele Gardin, samuelegardin1997@gmail.com
 """
@@ -52,8 +52,7 @@ class TelegramConsumer(Consumer):
 
         self._bot = bot
 
-
-    def send(self, msg: dict):
+    def send(self, receiver: str, msg: dict):
         """Manda il messaggio finale, tramite il bot,
         all'utente finale.
 
@@ -74,18 +73,17 @@ class TelegramConsumer(Consumer):
             # 38883960 Timoty
             # 265266555 Laura
             log = self._bot.sendMessage(
-                388,
+                receiver,
                 msg,
                 parse_mode='markdown',
             )
             if log:
                 print(f'Inviato il messaggio:\n{pprint.pformat(log)}')
                 return log
-            else:
-                print('Errore: il messaggio non è stato inviato')
-                return None
-        except telepot.exception.TelegramError as e:
-            print(f'Nessun messaggio inviato: "{e.description}"')
+            print('Errore: il messaggio non è stato inviato')
+            return None
+        except telepot.exception.TelegramError as exc:
+            print(f'Nessun messaggio inviato: "{exc.description}"')
             return None
 
     @property

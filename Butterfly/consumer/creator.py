@@ -37,19 +37,9 @@ from consumer.consumer import Consumer
 
 class ConsumerCreator(ABC):
 
-    _config_path = Path(__file__).parents[0] / 'config.json'
 
-    def create(self, configs=_config_path) -> Consumer:
+    def create(self, configs: dict) -> Consumer:
         # Converte stringa 'inf' nel relativo float
-
-        with open(ConsumerCreator._config_path, 'r') as f:
-            configs = json.load(f)
-        configs = configs['kafka']
-        timeout = 'consumer_timeout_ms'
-        if (timeout in configs
-                and configs[timeout] is not None
-                and configs[timeout] == 'inf'):
-            configs[timeout] = float('inf')
 
         notify = False
         while True:  # Attende una connessione con il Broker

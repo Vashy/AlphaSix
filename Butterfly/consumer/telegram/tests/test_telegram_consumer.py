@@ -11,14 +11,14 @@ def test_send():
     bot_mock.sendMessage.return_value = {'prova': 'prova', 'a': 5}
     consumer = TelegramConsumer(kafka_mock, 'telegram', bot_mock)
 
-    log = consumer.send({'msg': 'messaggio'})
+    log = consumer.send('123123', {'msg': 'messaggio'})
     assert log == {'prova': 'prova', 'a': 5}
 
     bot_mock.sendMessage.assert_called_once()
 
     bot_mock.sendMessage.return_value = None
 
-    log = consumer.send({'msg': 'messaggio'})
+    log = consumer.send('123123', {'msg': 'messaggio'})
     assert log is None
 
 
@@ -44,7 +44,8 @@ def test_print():
 
     diz = {
         'app': 'telegram',
-        'receiver': '142',
+        'object_kind': 'issue',
+        'receiver': '42',
         'project_name': 'Project',
         'project_id': 'http://...',
         'author': 'author',
@@ -62,4 +63,4 @@ def test_print():
     assert 'Description' in res
     assert '*Description*:' in res
     assert 'Orca marina' not in res
-    assert dest == '142'
+    assert dest == '42'

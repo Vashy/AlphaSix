@@ -25,11 +25,34 @@ Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
 
 """
+
+from pathlib import Path
+import json
+
 from consumer.telegram.creator import TelegramConsumerCreator
 
 
+_config_path = Path(__file__).parents[0] / 'config.json'
+
+
+def _open_kafka_configs(path: Path = _config_path):
+    with open(path) as file:
+        configs = json.load(file)
+
+    configs = configs['kafka']
+    timeout = 'consumer_timeout_ms'
+    if (timeout in configs
+            and configs[timeout] is not None
+            and configs[timeout] == 'inf'):
+        configs[timeout] = float('inf')
+    return configs
+
+
 def main():
-    consumer = TelegramConsumerCreator().create()
+    configs = _open_kafka_configs()
+
+
+    consumer = TelegramConsumerCreator().create(configs)
     try:
         consumer.listen()
     except KeyboardInterrupt:

@@ -68,8 +68,13 @@ class Consumer(ABC):
             value = message.value.decode('utf-8')
             try:
                 receiver, value = self.format(json.loads(value))
+                # Invia il messaggio al destinatario finale
+                self.send(receiver, value)
+                print()  # Per spaziare i messaggi sulla shell
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
+            except KeyError:
+                print('Errore nella formattazione del messaggio finale')
 
             # final_msg = '{}{}{}Key: {}\n{}{}'.format(
             #     'Topic: ',
@@ -80,9 +85,6 @@ class Consumer(ABC):
             #     value,
             # )
 
-            # Invia il messaggio al destinatario finale
-            self.send(receiver, value)
-            print()  # Per spaziare i messaggi sulla shell
 
     @abstractmethod
     def send(self, receiver: str, msg: dict):

@@ -38,8 +38,17 @@ def test_create(
         consumer,
         kafka,
 ):
+    json.load.return_value = {
+        'kafka': {
+            'consumer_timeout_ms': 1,
+        },
+        'telegram': {
+            'token_bot': '123123',
+        },
+        'another': 'value',
+    }
     creator = TelegramConsumerCreator()
-    creator.create('path')
+    creator.create({})
 
     json.load.assert_called_once()
     kafka.assert_called_once()
