@@ -10,24 +10,6 @@ class MongoAdapter(ABC):
     def instance(self):
         pass
 
-    @abstractmethod
-    def create(
-            self, document: dict, collection: str
-    ) -> pymongo.collection.InsertOneResult:
-        pass
-
-    @abstractmethod
-    def read(
-            self, collection_name: str
-    ) -> pymongo.collection.Collection:
-        pass
-
-    @abstractmethod
-    def delete(
-            self, filter: dict, collection: str
-    ) -> pymongo.collection.DeleteResult:
-        pass
-
 
 class MongoDBImpl(MongoAdapter):
 

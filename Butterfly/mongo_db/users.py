@@ -1,13 +1,12 @@
 import copy
 
-# from mongo_db.mongointerface import MongoInterface
 from mongo_db.singleton import MongoAdapter
 
 
 class MongoUsers():
 
-    def __init__(self):
-        self._mongo = MongoAdapter().getInstance()
+    def __init__(self, mongo: MongoAdapter):
+        self._mongo = mongo
 
     @classmethod
     def _user_dict_no_id(cls, obj: dict):

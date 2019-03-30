@@ -3,8 +3,8 @@ from mongo_db.singleton import MongoAdapter
 
 class MongoProjects:
 
-    def __init__(self):
-        self._mongo = MongoAdapter()
+    def __init__(self, mongo: MongoAdapter):
+        self._mongo = mongo
 
     def projects(self, filter={}):
         """Restituisce un `Cursor` che corrisponde al `filter` passato
@@ -13,7 +13,7 @@ class MongoProjects:
         un `for .. in ..`, oppure usare il subscripting `[i]`.
         """
         return self._mongo.collection('projects').find(filter)
-        
+
     def exists(self, project: str) -> bool:
         """Restituisce `True` se l'`id` di un utente
         (che può essere Telegram o Email) è salvato nel DB.
@@ -49,12 +49,12 @@ class MongoProjects:
             },
             'projects'
         )
-        
+
     def read(
         self, url: str
     ) -> bool:
         """Restituisce il progetto corrispondente a `url`.
-        
+
         Raises:
         `AssertionError` -- se `url` non è presente nel DB.
         """
@@ -63,5 +63,3 @@ class MongoProjects:
         return self.projects({
             {'url': url},
         })[0]
-        
-        

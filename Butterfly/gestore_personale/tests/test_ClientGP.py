@@ -4,7 +4,7 @@ import pytest
 
 from kafka import KafkaProducer, KafkaConsumer
 from kafka.errors import KafkaTimeoutError
-from mongo_db.mongo_facade_creator import MongoFacadeCreator
+from mongo_db.creator import MongoFacadeCreator
 from mongo_db.facade import MongoFacade
 from gestore_personale.ClientGP import ClientGP
 from gestore_personale.Processor import Processor
@@ -27,7 +27,7 @@ PROCESSOR.__class__ = Processor
 
 client = ClientGP(KAFKA_CONSUMER, KAFKA_PRODUCER, MONGO)
 
-message_items = { 
+message_items = {
     'message' : 'user',
     'message' : 'user',
     'message' : 'user',
@@ -49,5 +49,3 @@ def test_process():
 
 def test_send_all():
     client.send_all(message_items)
-
-

@@ -7,7 +7,7 @@ from kafka.errors import KafkaTimeoutError
 from gestore_personale.KafkaCreator.KafkaConsumerCreator import KafkaConsumerCreator
 from gestore_personale.KafkaCreator.KafkaProducerCreator import KafkaProducerCreator
 from gestore_personale.Processor import Processor
-from mongo_db.mongo_facade_creator import MongoFacadeCreator
+from mongo_db.creator import MongoFacadeCreator
 
 
 class ClientGP():

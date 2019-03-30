@@ -11,19 +11,20 @@ class Observer(ABC):
 class Subject(ABC):
 
     def __init__(self):
-        self.lst = []
+        self._lst = []
 
     def notify(self):
-        for obs in self.lst:
+        for obs in self._lst:
             obs.update()
 
     def add_observer(self, obs: Observer):
-        self.lst.append(obs)
+        self._lst.append(obs)
 
 
-class MongoFacade(Observer):
+class MongoFacade(Subject):
 
     def __init__(self, mongo_users, mongo_projects):
+        super().__init__()
         self._users = mongo_users
         self._projects = mongo_projects
 
