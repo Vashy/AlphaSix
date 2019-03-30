@@ -23,27 +23,19 @@ limitations under the License.
 Versione: 0.1.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
-
 """
+
 from kafka import KafkaConsumer
-import json
-import telepot
-from pathlib import Path
 from consumer.creator import ConsumerCreator
 from consumer.telegram.consumer import TelegramConsumer, Consumer
 
 
 class TelegramConsumerCreator(ConsumerCreator):
-    """Assembler per TelegramConsumer
+    """Creator per TelegramConsumer
     """
 
     def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
-
-        with open(Path(__file__).parents[0] / 'config.json') as f:
-            obj = json.load(f)
-
-        _bot = telepot.Bot(obj['telegram']['token_bot'])
-        return TelegramConsumer(kafka_consumer, self.topic, _bot)
+        return TelegramConsumer(kafka_consumer, self.topic)
 
     @property
     def topic(self):

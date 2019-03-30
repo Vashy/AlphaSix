@@ -50,7 +50,7 @@ class ConsumerCreator(ABC):
                     self.topic,
                     # Deserializza i messaggi dal formato JSON a oggetti Python
                     value_deserializer=(
-                      (lambda m: json.loads(m.decode('utf-8')))
+                        (lambda m: json.loads(m.decode('utf-8')))
                     ),
                     **configs,
                 )

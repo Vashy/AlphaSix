@@ -97,6 +97,10 @@ class EmailConsumer(Consumer):
     def bold(self):
         return ''
 
+    @property
+    def emph(self):
+        return ''
+
     def close(self):
         """Chiude la connessione del Consumer"""
         self._consumer.close()

@@ -26,31 +26,26 @@ Autori:
     Samuele Gardin, samuelegardin1997@gmail.com
 """
 
+import json
+from pathlib import Path
+
 from kafka import KafkaConsumer
-import telepot
-import pprint
+import requests
 
 from consumer.consumer import Consumer
 
 
-# import webhook.webhook as GLIssueWebhook
-# from webhook.redmine.RedmineIssueWebhook import RedmineIssueWebhook
-
-
 class TelegramConsumer(Consumer):
     """Implementa Consumer"""
+    _CONFIG_PATH = Path(__file__).parent / 'config.json'
 
-    def __init__(self, consumer: KafkaConsumer, topic: str, bot: telepot.Bot):
-        # super.__init__(topics, configs)
-
-        # self._receiver = configs['telegram']['receiver']
-
-        #
-        # self._topic = consumer
-
+    def __init__(self, consumer: KafkaConsumer, topic: str):
         super(TelegramConsumer, self).__init__(consumer, topic)
 
-        self._bot = bot
+        with open(self._CONFIG_PATH) as file:
+            configs = json.load(file)
+
+        self._token = configs['telegram']['token_bot']
 
     def send(self, receiver: str, msg: dict):
         """Manda il messaggio finale, tramite il bot,
@@ -66,29 +61,37 @@ class TelegramConsumer(Consumer):
         pre-formatted fixed-width code block
         ```
         """
-        # Warna se l'ID del destinatario non esiste,
-        # e non invia nessun messaggio
-        try:
-            # Da modificare nel file config.json
-            # 38883960 Timoty
-            # 265266555 Laura
-            log = self._bot.sendMessage(
-                receiver,
-                msg,
-                parse_mode='markdown',
-            )
-            if log:
-                print(f'Inviato il messaggio:\n{pprint.pformat(log)}')
-                return log
-            print('Errore: il messaggio non è stato inviato')
-            return None
-        except telepot.exception.TelegramError as exc:
-            print(f'Nessun messaggio inviato: "{exc.description}"')
-            return None
+
+        # Da modificare nel file config.json
+        # 38883960 Timoty
+        # 265266555 Laura
+        log = requests.post(
+            'https://api.telegram.org/'
+            f'bot{self._token}'
+            '/sendMessage',
+            data={
+                'chat_id': receiver,
+                'text': msg,
+                'parse_mode': 'markdown',
+            })
+        if log.ok:
+            chat = log.json()["result"]["chat"]
+            print(f'({log.status_code}) Inviato un messaggio a '
+                  f'{chat["username"]} ({chat["id"]})')  # ["result"]["text"]
+
+            return True
+
+        print(f'({log.status_code}) '
+              'Errore: il messaggio non è stato inviato')
+        return False
 
     @property
     def bold(self):
         return '*'
+
+    @property
+    def emph(self):
+        return '`'
 
     def close(self):
         """Chiude la connessione del Consumer"""
