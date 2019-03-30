@@ -88,7 +88,6 @@ class Consumer(ABC):
     def send(self, receiver: str, msg: dict):
         """Invia il messaggio all'utente finale."""
 
-
     def format(self, msg: dict):
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
@@ -96,22 +95,33 @@ class Consumer(ABC):
         Arguments:
         msg -- JSON object
         """
+        # Queste chiamate vanno bene sia per i webhook di rd che per gt
 
-        # Questa chiamata va bene sia per i webhook di rd che per gt
         bold = self.bold
-        res = "".join(
+        res = f'{bold}Provenienza{bold}: {msg["app"]}'
+
+        if msg['object_kind'] == 'issue':
+            res += f'\n\n{bold}È stata aperta una issue nel progetto{bold}: '
+
+        elif msg['object_kind'] == 'push':
+            res += f'\n\n{bold}È stata fatto un push nel progetto{bold}: '
+
+        elif msg['object_kind'] == 'issue-note':
+            res += f'\n\n{bold}È stata commentata una issue nel progetto{bold}: '
+
+        elif msg['object_kind'] == 'commit-note':
+            res += f'\n\n{bold}È stato commentato un commit nel progetto{bold}: '
+
+        res += "".join(
             [
-                f'{bold}Provenienza{bold}: {msg["app"]}'
-                f'\n\n{bold}È stata aperta una issue nel progetto{bold}: '
                 f'{msg["project_name"]} ',
                 f'({msg["project_id"]})',
                 f'\n\n{bold}Author{bold}: {msg["author"]}'
-                f'\n\n {bold}Issue\'s information: {bold}'
+                f'\n\n {bold}Information: {bold}'
                 f'\n - {bold}Title{bold}: \t\t{msg["title"]}',
                 f'\n - {bold}Description{bold}: \
                     \t\t{msg["description"]}',
-                f'\n - {bold}Action{bold}: \t{msg["action"]}',
-                f'\n\n{bold}Assegnee\'s information:{bold}',
+                f'\n - {bold}Action{bold}: \t{msg["action"]}'
             ]
         )
 
