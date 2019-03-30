@@ -74,9 +74,6 @@ class MongoFacade(Observer):
 
 # Metodi per la ricerca dei dati
 
-    def project_exists(self, url: str) -> bool:
-        return self._projects.exists(url)
-
     def get_users_available(self, url: str) -> list:
         return self._users.get_users_available(url)
 
@@ -84,9 +81,7 @@ class MongoFacade(Observer):
         return self._users.get_users_max_priority(url)
 
     def get_project_by_url(self, url: str) -> bool:
-        # Faccio una search del progetto
-        # Se c'è torno true
-        pass
+        return self._projects.exists(url)
 
     def get_user_telegram(self, userID: str) -> str:
         return self._users.telegram(userID)
@@ -95,23 +90,7 @@ class MongoFacade(Observer):
         return self._users.email(userID)
 
     def get_match_keywords(self, users: list, commit: str) -> list:
-        keyword_user = []
-        for user in users:
-            if(self._users.match_keyword_commit(self._users.user_keywords(user),
-                commit)
-            ):
-                keyword_user.append(user)
-        
-        return keyword_user
+        return self._users.get_match_keywords(users, commit)
 
     def get_match_labels(self, users: list, labels: list) -> list:
-        # Guarda se almeno una label di un user (chiamando get_user_labels) è presente nelle label della issue
-        # Per redmine c'è una sola label, per gitlab una lista
-        # Ritorna true se è presente almeno una label dell'utente nelle label della issue
-        label_user = []
-        for user in users:
-            if(self._users.match_labels_issue(self._users.user_labels(user),
-            labels_issue)
-        ):
-            label_user.append(user)
-
+        self._users.get_match_labels(users, labels)

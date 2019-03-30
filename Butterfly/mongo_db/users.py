@@ -363,15 +363,12 @@ class MongoUsers():
             }
         )
 
-    def user_keywords(self, id: str) -> list:
+    def user_keywords(self, user: str) -> list:
         """Restituisce una lista contenente le parole chiave corrispondenti
         all'`id`: esso può essere sia il contatto Telegram che Email.
         """
         cursor = self.users({
-            '$or': [
-                {'telegram': id},
-                {'email': id},
-            ]
+            {'_id': user}
         })
         return cursor[0]['keywords']
 
@@ -406,7 +403,11 @@ class MongoUsers():
         return cursor[0]['labels']
 
     # TODO
-    def match_labels_issue(self, labels_user: list, labels_issue: list) -> bool:
+    def match_labels_issue(
+        self,
+        labels_user: list,
+        labels_issue: list
+    ) -> bool:
         """Cerca se almeno una label dell'utente corrisponde ad una
         label della issue
         """
@@ -463,3 +464,33 @@ class MongoUsers():
         }, {
             'email': 1
         })[0]
+
+    def get_match_keywords(self, users: list, commit: str) -> list:
+        keyword_user = []
+        for user in users:
+            if(
+                self.match_keyword_commit(
+                    self.user_keywords(user),
+                    commit
+                )
+            ):
+                keyword_user.append(user)
+
+        return keyword_user
+
+    def get_match_labels(self, users: list, labels: list) -> list:
+        """Guarda se almeno una label di un user (chiamando get_user_labels) è
+        presente nelle label della issue
+        Per redmine c'è una sola label, per gitlab una lista
+        Ritorna true se è presente almeno una label dell'utente nelle label
+        della issue
+        """
+        label_user = []
+        for user in users:
+            if(
+                self.match_labels_issue(
+                    self.user_labels(user),
+                    labels
+                )
+            ):
+                label_user.append(user)
