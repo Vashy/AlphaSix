@@ -93,4 +93,4 @@ class MongoFacade(Observer):
         return self._users.get_match_keywords(users, commit)
 
     def get_match_labels(self, users: list, labels: list) -> list:
-        self._users.get_match_labels(users, labels)
+        return self._users.get_match_labels(users, labels)

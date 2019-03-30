@@ -476,3 +476,4 @@ class MongoUsers():
                 )
             ):
                 label_user.append(user)
+        return label_user
