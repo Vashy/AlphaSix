@@ -4,29 +4,45 @@ import pytest
 
 from consumer.telegram.consumer import TelegramConsumer
 
-
-def test_send():
+@patch('consumer.telegram.consumer.requests', autospec=True)
+def test_send(requests):
     kafka_mock = MagicMock()
-    bot_mock = MagicMock()
-    bot_mock.sendMessage.return_value = {'prova': 'prova', 'a': 5}
-    consumer = TelegramConsumer(kafka_mock, 'telegram', bot_mock)
+    consumer = TelegramConsumer(kafka_mock, 'telegram')
 
+    # requests.post.return_value = {
+    #     'result': {
+    #         'chat': {
+    #             'username': 'aaa',
+    #             'id': '123',
+    #         }
+    #     }
+    # }
+    mock = MagicMock()
+    requests.post.return_value = mock
+    mock.ok = True
+    mock.json.return_value = {
+        'result': {
+            'chat': {
+                'username': 'aaa',
+                'id': '123',
+            }
+        }
+    }
     log = consumer.send('123123', {'msg': 'messaggio'})
-    assert log == {'prova': 'prova', 'a': 5}
+    assert log is True
 
-    bot_mock.sendMessage.assert_called_once()
+    mock.json.assert_called_once()
 
-    bot_mock.sendMessage.return_value = None
-
-    log = consumer.send('123123', {'msg': 'messaggio'})
-    assert log is None
+    mock.ok = False
+    log = consumer.send('123', {})
+    assert log is False
 
 
 def test_listen():
     kafka_mock = MagicMock()
     bot_mock = MagicMock()
     bot_mock.sendMessage.return_value = {'prova': 'prova', 'a': 5}
-    consumer = TelegramConsumer(kafka_mock, 'telegram', bot_mock)
+    consumer = TelegramConsumer(kafka_mock, 'telegram')
 
     kafka_mock.__iter__.return_value = [
         {b'value': b'lul'},
@@ -40,7 +56,7 @@ def test_print():
     kafka_mock = MagicMock()
     bot_mock = MagicMock()
     bot_mock.sendMessage.return_value = {'prova': 'prova', 'a': 5}
-    consumer = TelegramConsumer(kafka_mock, 'telegram', bot_mock)
+    consumer = TelegramConsumer(kafka_mock, 'telegram')
 
     diz = {
         'app': 'telegram',
@@ -61,6 +77,6 @@ def test_print():
     assert 'http://...' in res
     assert 'author' in res
     assert 'Description' in res
-    assert '*Description*:' in res
+    assert '*Description:*' in res
     assert 'Orca marina' not in res
     assert dest == '42'

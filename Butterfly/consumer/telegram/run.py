@@ -36,7 +36,8 @@ _config_path = Path(__file__).parents[1] / 'config.json'
 
 
 def _open_kafka_configs(path: Path = _config_path):
-    print(path)
+    """Apre il file di configurazione per Kafka.
+    """
 
     with open(path) as file:
         configs = json.load(file)
@@ -50,8 +51,10 @@ def _open_kafka_configs(path: Path = _config_path):
 
 
 def main():
+    # Ottiene le configurazioni da Kafka
     configs = _open_kafka_configs()
 
+    # Istanzia il TelegramConsumer
     consumer = TelegramConsumerCreator().create(configs)
     try:
         consumer.listen()

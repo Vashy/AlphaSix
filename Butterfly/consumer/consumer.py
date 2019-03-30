@@ -56,8 +56,7 @@ class Consumer(ABC):
         definiti in nel modulo webhook
         """
 
-        print('Listening to messages from topics:')
-
+        print('Listening to messages from topic:')
         print(f'- {self._topic}')
         print()
 
@@ -65,30 +64,19 @@ class Consumer(ABC):
 
         # Si mette in ascolto dei messsaggi dal Broker
         for message in self._consumer:
-            # print(f'Tipo messaggio: {type(message.value)}')
 
             value = message.value
             try:
-                pprint(value)
                 receiver, value = self.format(value)
 
                 # Invia il messaggio al destinatario finale
                 self.send(receiver, value)
-                print()  # Per spaziare i messaggi sulla shell
 
             except json.decoder.JSONDecodeError:
-                print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
-            except KeyError:
+                print(f'\n-----\nLa stringa "{value}" non è in formato JSON\n-----\n')
+            except Exception:
                 print('Errore nella formattazione del messaggio finale')
 
-            # final_msg = '{}{}{}Key: {}\n{}{}'.format(
-            #     'Topic: ',
-            #     message.topic,
-            #     '\n\n',
-            #     message.key,
-            #     '\n',
-            #     value,
-            # )
 
     @abstractmethod
     def send(self, receiver: str, msg: dict):
@@ -102,32 +90,38 @@ class Consumer(ABC):
         msg -- JSON object
         """
         # Queste chiamate vanno bene sia per i webhook di rd che per gt
+
+        emph = self.emph
         bold = self.bold
-        res = f'{bold}Provenienza{bold}: {msg["app"]}'
+
+        res = ''
+
         if msg['object_kind'] == 'issue':
-            res += f'\n\n{bold}È stata aperta una issue nel progetto{bold}: '
+            res += f'È stata aperta una issue '
 
         elif msg['object_kind'] == 'push':
-            res += f'\n\n{bold}È stata fatto un push nel progetto{bold}: '
+            res += f'È stata fatto un push '
 
         elif msg['object_kind'] == 'issue-note':
-            res += f'\n\n{bold}È stata commentata una issue nel progetto{bold}: '
+            res += f'È stata commentata una issue '
 
         elif msg['object_kind'] == 'commit-note':
-            res += f'\n\n{bold}È stato commentato un commit nel progetto{bold}: '
+            res += f'È stato commentato un commit '
 
-        res += "".join(
-            [
-                f'{msg["project_name"]} ',
-                f'({msg["project_id"]})',
-                f'\n\n{bold}Author{bold}: {msg["author"]}'
-                f'\n\n {bold}Information: {bold}'
-                f'\n - {bold}Title{bold}: \t\t{msg["title"]}',
-                f'\n - {bold}Description{bold}: \
-                    \t\t{msg["description"]}',
-                f'\n - {bold}Action{bold}: \t{msg["action"]}'
-            ]
-        )
+        else:
+            raise KeyError
+
+        res += ''.join([
+            f'{bold}{msg["project_name"]}{bold} ',
+            f'({emph}{msg["project_id"]}{emph})',
+            f'\n\n{bold}Sorgente:{bold} {msg["app"]}',
+            f'\n{bold}Autore:{bold} {msg["author"]}'
+            f'\n\n {bold}Information:{bold} '
+            f'\n - {bold}Title:{bold} \t\t{msg["title"]}',
+            f'\n - {bold}Description:{bold} \n'
+            f'  {msg["description"]}',
+            f'\n - {bold}Action:{bold} \t{msg["action"]}'
+        ])
 
         # Avendo gitlab che può avere più assignees e redmine
         # che invece può averne soltanto uno
@@ -144,4 +138,10 @@ class Consumer(ABC):
     @property
     @abstractmethod
     def bold(self):
+        pass
+
+
+    @property
+    @abstractmethod
+    def emph(self):
         pass
