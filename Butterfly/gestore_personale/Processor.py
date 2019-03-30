@@ -57,13 +57,13 @@ class Processor():
 
     # Lista di tutti gli utenti disponibili e più interessati
     def select_users_more_interested(self, project: str) -> list:
-        return self.__mongofacade.get_users_max_priority(project)
+        return self._mongofacade.get_users_max_priority(project)
 
     # Crea la lista di contatti telegram a cui inviare il messaggio
     def get_telegram_contacts(self, users: list) -> list:
         contacts = []
         for user in users:
-            telegramID = self.__mongofacade.get_user_telegram(user)
+            telegramID = self._mongofacade.get_user_telegram(user)
             if telegramID is not None:
                 contacts.append(telegramID)
         return contacts
@@ -72,7 +72,7 @@ class Processor():
     def get_email_contacts(self, users: list) -> list:
         contacts = []
         for user in users:
-            emailID = self.__mongofacade.get_user_email(user)
+            emailID = self._mongofacade.get_user_email(user)
             if emailID is not None:
                 contacts.append(emailID)
         return contacts
