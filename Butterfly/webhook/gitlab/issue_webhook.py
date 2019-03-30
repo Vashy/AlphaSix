@@ -45,14 +45,14 @@ class GitlabIssueWebhook(Webhook):
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
         webhook['title'] = whook['object_attributes']['title']
-        webhook['project_id'] = whook['project']['git_http_url']
+        webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
 
         webhook['assignees'] = []
         try:
             for value in whook['assignees']:
-                webhook['assignees'].append(value)
+                webhook['assignees'].append(value['name'])
         except KeyError:
             pass
 

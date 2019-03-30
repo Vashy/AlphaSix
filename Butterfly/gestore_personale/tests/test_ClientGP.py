@@ -37,12 +37,15 @@ message_items = {
     'message' : 'user',
 }
 
+
 def test_read_message():
     print('test')
+
 
 @patch('gestore_personale.ClientGP.process')
 def test_process():
     print('test')
+
 
 def test_send_all():
     client.send_all(message_items)

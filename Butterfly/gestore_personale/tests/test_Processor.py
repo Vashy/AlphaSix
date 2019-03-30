@@ -14,7 +14,7 @@ message = {
     'object_kind': 'issue',
     'title': 'Issue numero quindici',
     'description': 'Questa è una stupida descrizione',
-    'project_url': 'http/sdfbwjfenw',
+    'project_url': 'http/sdfbwjfenw', # diventa 'project_id'
     'action': 'updated',
     'label': 'bug'
 }
