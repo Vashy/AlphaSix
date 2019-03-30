@@ -29,8 +29,11 @@ class Processor():
         self.__list_telegram = self.get_telegram_contacts(utenti_interessati)
         self.__list_email = self.get_email_contacts(utenti_interessati)
         final_map = {}
+        # for contact in self.__list_telegram:
+        #     self._message['receiver'] = contact
         final_map['telegram'] = self.__list_telegram
         final_map['email'] = self.__list_email
+
         return final_map
 
     # Controlla se c'è il progetto nel DB, se non c'è lo aggiunge

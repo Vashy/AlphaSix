@@ -40,7 +40,7 @@ class GitlabPushWebhook(Webhook):
         assert whook is not None
 
         commits = []
-
+        # TODO: manca description, rivedere campi
         for value in whook['commits']:
 
             webhook = {}
