@@ -37,7 +37,6 @@ from consumer.consumer import Consumer
 
 class ConsumerCreator(ABC):
 
-
     def create(self, configs: dict) -> Consumer:
         # Converte stringa 'inf' nel relativo float
 
@@ -50,8 +49,9 @@ class ConsumerCreator(ABC):
                 kafka_consumer = KafkaConsumer(
                     self.topic,
                     # Deserializza i messaggi dal formato JSON a oggetti Python
-                    # value_deserializer=(
-                    #   (lambda m: json.loads(m.decode('utf-8'))),
+                    value_deserializer=(
+                      (lambda m: json.loads(m.decode('utf-8')))
+                    ),
                     **configs,
                 )
                 break

@@ -32,17 +32,18 @@ import json
 from consumer.telegram.creator import TelegramConsumerCreator
 
 
-_config_path = Path(__file__).parents[0] / 'config.json'
+_config_path = Path(__file__).parents[1] / 'config.json'
 
 
 def _open_kafka_configs(path: Path = _config_path):
+    print(path)
+
     with open(path) as file:
         configs = json.load(file)
 
     configs = configs['kafka']
     timeout = 'consumer_timeout_ms'
     if (timeout in configs
-            and configs[timeout] is not None
             and configs[timeout] == 'inf'):
         configs[timeout] = float('inf')
     return configs

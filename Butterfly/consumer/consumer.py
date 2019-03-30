@@ -26,16 +26,18 @@ Autori:
     Samuele Gardin, samuelegardin1997@gmail.com
 """
 
+
 from abc import ABC, abstractmethod
+import json
+from pprint import pprint
 
 from kafka import KafkaConsumer
-import json
 
 
 class Consumer(ABC):
     """Interfaccia Consumer"""
 
-    def __init__(self, consumer: KafkaConsumer, topic):
+    def __init__(self, consumer: KafkaConsumer, topic: str):
 
         self._consumer = consumer
         self._topic = topic
@@ -65,12 +67,15 @@ class Consumer(ABC):
         for message in self._consumer:
             # print(f'Tipo messaggio: {type(message.value)}')
 
-            value = message.value.decode('utf-8')
+            value = message.value
             try:
-                receiver, value = self.format(json.loads(value))
+                pprint(value)
+                receiver, value = self.format(value)
+
                 # Invia il messaggio al destinatario finale
                 self.send(receiver, value)
                 print()  # Per spaziare i messaggi sulla shell
+
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\nLa stringa "{value}" non è un JSON\n-----\n')
             except KeyError:
@@ -85,7 +90,6 @@ class Consumer(ABC):
             #     value,
             # )
 
-
     @abstractmethod
     def send(self, receiver: str, msg: dict):
         """Invia il messaggio all'utente finale."""
@@ -98,10 +102,8 @@ class Consumer(ABC):
         msg -- JSON object
         """
         # Queste chiamate vanno bene sia per i webhook di rd che per gt
-
         bold = self.bold
         res = f'{bold}Provenienza{bold}: {msg["app"]}'
-
         if msg['object_kind'] == 'issue':
             res += f'\n\n{bold}È stata aperta una issue nel progetto{bold}: '
 
