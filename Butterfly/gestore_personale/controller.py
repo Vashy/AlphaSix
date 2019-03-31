@@ -1,13 +1,18 @@
 # Usage: python3 __file__.py
 
+from os import urandom
 from abc import ABC, abstractmethod
+import pathlib
 import json
 
-from flask import Flask, request
+from flask import Flask, request, session, make_response
 import flask_restful
 
 from mongo_db.facade import MongoFacade
 from mongo_db.creator import MongoFacadeCreator
+
+root = pathlib.Path(__file__).parent / 'public_html'
+root = root.resolve()
 
 
 class Observer(ABC):
@@ -27,41 +32,24 @@ class Resource(flask_restful.Resource):
         return self._controller.update(request_type, resource, msg)
 
 
-class Access(Resource):
-
-    def get(self):
-        """Restitu==ce l'access page
-
-        Usage example:
-            `curl http://localhost:5000/access`
-        """
-        return self.notify('access', 'GET', self._response)
-
-    def post(self) -> dict:
-        """Fa accedere con lo user specificato nella richiesta post
-
-        Usage example:
-            `curl http://localhost:5000/access -X POST -d "data=some data"`
-        """
-        data = request.get_json(force=True)
-        return self.notify('access', 'POST', data)
-
-
 class Panel(Resource):
 
     def get(self):
-        """Restitu==ce il pannello di controllo
+        """Restituisce il pannello di controllo
 
         Usage example:
             `curl http://localhost:5000/panel`
         """
-        return self.notify('panel', 'GET', self._response)
+        return make_response(
+            self.notify('panel', 'GET', self._response),
+            200
+        )
 
 
 class User(Resource):
 
     def get(self):
-        """Restitu==ce lo user con l'id specificato
+        """Restituisce lo user con l'id specificato
 
         Usage example:
             `curl http://localhost:5000/user/1`
@@ -81,7 +69,7 @@ class User(Resource):
 class Preference(Resource):
 
     def get(self):
-        """Restitu==ce le preferenze dello user con l'id specificato
+        """Restituisce le preferenze dello user con l'id specificato
 
         Usage example:
             `curl http://localhost:5000/preference/1`
@@ -105,12 +93,7 @@ class Controller(Observer):
         self.api = api
 
         self.api.add_resource(
-            Access, '/access',
-            resource_class_kwargs={'obs': self}
-        )
-
-        self.api.add_resource(
-            Panel, '/panel',
+            Panel, '/',
             resource_class_kwargs={'obs': self}
         )
 
@@ -124,11 +107,16 @@ class Controller(Observer):
             resource_class_kwargs={'obs': self}
         )
 
-    def access(self, request_type: str, msg: str):
-        if request_type == 'GET':
-            pass
-        elif request_type == 'POST':
-            pass
+    def checkSession(self):
+        return 'userid' in session
+
+    def access(self):
+        file = root / 'access.html'
+        page = file.read_text()
+        page = page.replace('*access*', '')
+        page = page.replace('*userid*', '')
+        return page
+
 
     def panel(self, request_type: str, msg: str):
         if request_type == 'GET':
@@ -149,18 +137,19 @@ class Controller(Observer):
             pass
 
     def update(self, resource: str, request_type: str, msg: str):
-        if resource == 'access':
-            return self.access(request_type, msg)
-        elif resource == 'panel':
-            return self.panel(request_type, msg)
-        elif resource == 'user':
-            return self.user(request_type, msg)
-        elif resource == 'preference':
-            return self.preference(request_type, msg)
+        if self.checkSession():
+            if resource == 'panel':
+                return self.panel(request_type, msg)
+            elif resource == 'user':
+                return self.user(request_type, msg)
+            elif resource == 'preference':
+                return self.preference(request_type, msg)
+        return self.access()
 
 
 def main():
     flask = Flask(__name__)
+    flask.secret_key = urandom(16)
     Controller(
         flask_restful.Api(flask),
         MongoFacadeCreator().instantiate()
