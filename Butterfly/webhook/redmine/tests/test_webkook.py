@@ -59,7 +59,7 @@ def test_redmine_update_issue_webhook():
     assert webhook['action'] == 'updated'
     assert webhook['author'] == 'AlphaSix'
     assert webhook['assignees'] == 'AlphaSix'
-    assert webhook['label'] == 'Bug'
+    assert webhook['labels'] == 'Bug'
 
     assert webhook['update']['comment'] == 'Editing Issue #1'
     assert webhook['update']['author'] == 'Redmine'
