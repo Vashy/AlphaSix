@@ -11,8 +11,7 @@ import flask_restful
 from mongo_db.facade import MongoFacade
 from mongo_db.creator import MongoFacadeCreator
 
-root = pathlib.Path(__file__).parent / 'public_html'
-root = root.resolve()
+root = (pathlib.Path(__file__).parent / 'public_html').resolve()
 
 
 class Observer(ABC):
@@ -107,7 +106,7 @@ class Controller(Observer):
             resource_class_kwargs={'obs': self}
         )
 
-    def checkSession(self):
+    def _checkSession(self):
         return 'userid' in session
 
     def access(self):
@@ -116,7 +115,6 @@ class Controller(Observer):
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
         return page
-
 
     def panel(self, request_type: str, msg: str):
         if request_type == 'GET':
@@ -137,7 +135,7 @@ class Controller(Observer):
             pass
 
     def update(self, resource: str, request_type: str, msg: str):
-        if self.checkSession():
+        if self._checkSession():
             if resource == 'panel':
                 return self.panel(request_type, msg)
             elif resource == 'user':

@@ -1,29 +1,10 @@
-from abc import ABC, abstractmethod
+from mongo_db.users import MongoUsers
+from mongo_db.projects import MongoProjects
 
 
-class Observer(ABC):
+class MongoFacade():
 
-    @abstractmethod
-    def update(self, msg: dict):
-        pass
-
-
-class Subject(ABC):
-
-    def __init__(self):
-        self._lst = []
-
-    def notify(self):
-        for obs in self._lst:
-            obs.update()
-
-    def add_observer(self, obs: Observer):
-        self._lst.append(obs)
-
-
-class MongoFacade(Subject):
-
-    def __init__(self, mongo_users, mongo_projects):
+    def __init__(self, mongo_users: MongoUsers, mongo_projects: MongoProjects):
         super().__init__()
         self._users = mongo_users
         self._projects = mongo_projects
