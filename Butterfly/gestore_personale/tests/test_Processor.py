@@ -13,8 +13,8 @@ message = {
     'app': 'redmine',
     'object_kind': 'issue',
     'title': 'Issue numero quindici',
-    'description': 'Questa è una stupida descrizione',
-    'project_url': 'http/sdfbwjfenw', # diventa 'project_id'
+    'description': 'Questa è una vbj descrizione',
+    'project_url': 'http/sdfbwjfenw',  # diventa 'project_id'
     'action': 'updated',
     'label': 'bug'
 }
@@ -49,7 +49,6 @@ def test_prepare_message():
         'telegram': ['2', '8', '3']
     }
 
-    # PROBLEMA: questo non dovrebbe andare bene
     # for k, vi in msg.items():
     #     for x in k:
     #         assert k == '2' or k == '8' or k =='1'

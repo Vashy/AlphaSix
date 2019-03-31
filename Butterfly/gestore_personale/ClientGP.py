@@ -1,5 +1,3 @@
-from abc import ABC, abstractmethod
-
 from kafka import KafkaProducer, KafkaConsumer
 # from kafka import KafkaConsumer
 from kafka.errors import KafkaTimeoutError
@@ -34,7 +32,6 @@ class ClientGP():
     def process(self, message: dict):
         processore_messaggio = Processor(message, self._mongo.instantiate())
         mappa_contatto_messaggio = processore_messaggio.prepare_message()
-        # processore_messaggio.template_method()
         self.send_all(mappa_contatto_messaggio, message)
 
     def send_all(self, map_message_contact: dict, message: dict):
