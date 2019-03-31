@@ -22,12 +22,12 @@ FACTORY.__class__ = WebhookFactory
 FACTORY.create_webhook.return_value = WEBHOOK_MOCK
 
 
-def test_webhook_type():
+def test_webhook_kind():
     producer = GitlabProducer(
         KAFKA_PRODUCER,
         FACTORY,
     )
-    value = producer.webhook_type({'object_kind': 'issue'})
+    value = producer.webhook_kind({'object_kind': 'issue'})
     assert value == 'issue'
 
 

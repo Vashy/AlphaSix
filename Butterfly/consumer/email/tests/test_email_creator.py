@@ -13,7 +13,6 @@ def test_instantiate():
 
     assert isinstance(consumer, EmailConsumer)
 
-@patch('consumer.creator.Path')
 @patch('consumer.creator.KafkaConsumer', autospec=True)
 @patch('consumer.creator.json')
 @patch('consumer.email.creator.EmailConsumer', autospec=True)
@@ -21,7 +20,6 @@ def test_create(
         email_consumer,
         json,
         kafka,
-        path,
 ):
     json.load.return_value = {
         'kafka': {

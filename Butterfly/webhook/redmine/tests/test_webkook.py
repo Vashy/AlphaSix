@@ -45,7 +45,7 @@ def test_redmine_update_issue_webhook():
             Path(__file__).parents[3] /
             'webhook/redmine/tests' /
             'update_1_issue_redmine_webhook.json'
-        ) as file:
+    ) as file:
         whook = json.load(file)
 
     webhook = webhook.parse(whook)

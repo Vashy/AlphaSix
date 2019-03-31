@@ -8,7 +8,7 @@ class WebhookFactory(ABC):
     """
 
     @abstractmethod
-    def create_webhook(self, event_type: str) -> Webhook:
+    def create_webhook(self, kind: str) -> Webhook:
         """Crea il `Webhook` concreto in base a `event_type`.
 
         Parameters:

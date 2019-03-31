@@ -26,7 +26,6 @@ Autori:
 
 """
 from abc import ABC, abstractmethod
-from pathlib import Path
 import json
 
 from kafka import KafkaConsumer

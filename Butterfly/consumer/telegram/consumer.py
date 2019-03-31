@@ -47,7 +47,7 @@ class TelegramConsumer(Consumer):
 
         self._token = configs['telegram']['token_bot']
 
-    def send(self, receiver: str, msg: dict):
+    def send(self, receiver: str, msg: dict) -> bool:
         """Manda il messaggio finale, tramite il bot,
         all'utente finale.
 

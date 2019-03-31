@@ -44,7 +44,7 @@ class Producer(ABC):
             self,
             kafka_producer: KafkaProducer,
             webhook_factory: WebhookFactory,
-        ):
+    ):
         assert isinstance(kafka_producer, KafkaProducer)
         assert isinstance(webhook_factory, WebhookFactory)
 
@@ -55,7 +55,7 @@ class Producer(ABC):
         """Produce il messaggio `whook` nel Topic designato del Broker"""
 
         webhook = self._webhook_factory.create_webhook(
-            self.webhook_type(whook)
+            self.webhook_kind(whook)
         )
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook = webhook.parse(whook)
@@ -70,7 +70,7 @@ class Producer(ABC):
             # exit(-1)
 
     @abstractmethod
-    def webhook_type(self, whook: dict):
+    def webhook_kind(self, whook: dict):
         """Dato un `dict` con chiave `object_kind`, ne restituisce il valore.
 
         Parameters:

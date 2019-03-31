@@ -79,7 +79,7 @@ class Consumer(ABC):
 
 
     @abstractmethod
-    def send(self, receiver: str, msg: dict):
+    def send(self, receiver: str, msg: dict) -> bool:
         """Invia il messaggio all'utente finale."""
 
     def format(self, msg: dict):
