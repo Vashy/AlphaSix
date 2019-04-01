@@ -3,7 +3,6 @@
 from os import urandom
 from abc import ABC, abstractmethod
 import pathlib
-import json
 
 from flask import Flask, request, session, make_response
 import flask_restful
@@ -23,11 +22,11 @@ class Observer(ABC):
 
 class Subject(ABC):
 
-    def __init__(self):
-        self._lst = []
-
     def addObserver(self, obs: Observer):
-        self._lst.append(obs)
+        if not hasattr(self, '_lst'):
+            self._lst = []
+        if obs not in self._lst:
+            self._lst.append(obs)
 
     @abstractmethod
     def notify(self, request_type: str, resource: str, msg: str):
@@ -41,8 +40,7 @@ class FinalMeta(type(Subject), type(flask_restful.Resource)):
 class Resource(Subject, flask_restful.Resource, metaclass=FinalMeta):
 
     def __init__(self):
-        super(Subject, self).__init__(self)
-        super(flask_restful.Resource, self).__init__(self)
+        super(Resource, self).__init__()
         self._response = None
 
     def notify(self, request_type: str, resource: str, msg: str):
@@ -65,9 +63,6 @@ class Panel(Resource):
 
 
 class User(Resource):
-
-    def __init__(self):
-        super(Resource, self).__init__(self)
 
     def get(self):
         """Restituisce lo user con l'id specificato
@@ -114,11 +109,11 @@ class Controller(Observer):
         self.api = api
 
         self.user = User
-        self.user.addObserver(self.user, obs=self)
+        self.panel = Panel
+        self.preference = Preference
 
         self.api.add_resource(
-            Panel, '/',
-            resource_class_kwargs={'obs': self}
+            self.panel, '/'
         )
 
         self.api.add_resource(
@@ -126,9 +121,12 @@ class Controller(Observer):
         )
 
         self.api.add_resource(
-            Preference, '/preference',
-            resource_class_kwargs={'obs': self}
+            self.preference, '/preference'
         )
+
+        self.user.addObserver(self.user, obs=self)
+        self.panel.addObserver(self.panel, obs=self)
+        self.preference.addObserver(self.preference, obs=self)
 
     def _checkSession(self):
         return 'userid' in session
