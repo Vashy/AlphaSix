@@ -16,7 +16,7 @@ root = (pathlib.Path(__file__).parent / 'public_html').resolve()
 class Observer(ABC):
 
     @abstractmethod
-    def update(self, msg: dict):
+    def update(self, resource: str, request_type: str, msg: str):
         pass
 
 
