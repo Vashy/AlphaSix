@@ -28,14 +28,14 @@ def test_send(requests):
             }
         }
     }
-    log = consumer.send('123123', {'msg': 'messaggio'})
-    assert log is True
+    response = consumer.send('123123', {'msg': 'messaggio'})
+    assert response is True
 
     mock.json.assert_called_once()
 
     mock.ok = False
-    log = consumer.send('123', {})
-    assert log is False
+    response = consumer.send('123', {})
+    assert response is False
 
 
 def test_listen():

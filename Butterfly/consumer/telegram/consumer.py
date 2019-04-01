@@ -65,7 +65,7 @@ class TelegramConsumer(Consumer):
         # Da modificare nel file config.json
         # 38883960 Timoty
         # 265266555 Laura
-        log = requests.post(
+        response = requests.post(
             'https://api.telegram.org/'
             f'bot{self._token}'
             '/sendMessage',
@@ -74,14 +74,15 @@ class TelegramConsumer(Consumer):
                 'text': msg,
                 'parse_mode': 'markdown',
             })
-        if log.ok:
-            chat = log.json()["result"]["chat"]
-            print(f'({log.status_code}) Inviato un messaggio a '
-                  f'{chat["username"]} ({chat["id"]})')  # ["result"]["text"]
+
+        if response.ok:
+            chat = response.json()["result"]["chat"]
+            print(f'({response.status_code}) Inviato un messaggio a '
+                  f'{chat["username"]} ({chat["id"]})')
 
             return True
 
-        print(f'({log.status_code}) '
+        print(f'({response.status_code}) '
               'Errore: il messaggio non è stato inviato')
         return False
 

@@ -46,7 +46,7 @@ class ConsumerCreator(ABC):
                 # utile successivamente, per ora lasciamo il controllo
                 # del tipo a listen()
                 kafka_consumer = KafkaConsumer(
-                    self.topic,
+                    self.topic,  # Chiamata polimorfa
                     # Deserializza i messaggi dal formato JSON a oggetti Python
                     value_deserializer=(
                         (lambda m: json.loads(m.decode('utf-8')))
@@ -63,7 +63,9 @@ class ConsumerCreator(ABC):
                 # exit(1)
         print('Connessione con il Broker stabilita')
 
+        # Chiamata polimorfa
         consumer = self.instantiate(kafka_consumer)
+
         return consumer
 
     @abstractmethod
