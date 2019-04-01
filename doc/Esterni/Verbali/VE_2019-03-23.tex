@@ -3,7 +3,7 @@
 \newcommand{\nomedocumentofisico}{VE\_2019-03-23.pdf}
 \newcommand{\redazione}{\TG}
 \newcommand{\verifica}{\CV}
-\newcommand{\approvazione}{\SG}
+\newcommand{\approvazione}{\NC}
 \newcommand{\versione}{1.0.0}
 \newcommand{\uso}{Esterno}
 \newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
@@ -52,19 +52,28 @@
         \begin{itemize}
             \item \DZ~ci ha illustrato con un piccolo esempio guidato come configurare Rancher per l'uso di Redmine sul server di \II
             \item Successivamente abbiamo chiesto un parere sui design pattern adottati per producer e consumer. \DZ~ha confermato che siamo sulla strada giusta
-            \item \DZ~ha segnalato che serve un sistema di priorità per le label delle issue e per le keyword dei commit di ogni progetto, al posto della persona preferita in caso di indisponibilità. Questo perché il sistema possa adattarsi automaticamente agli utenti iscritti ai progetti
+            \item \DZ~ha segnalato che serve un sistema di priorità per ogni progetto al quale un utente si iscrive, al posto della persona preferita in caso di indisponibilità. Questo perché il sistema possa adattarsi automaticamente agli utenti iscritti ai progetti
         \end{itemize}
         
     \section{Tracciamento delle decisioni}
     
+        \newcounter{tracc}
         \begin{table}[H]
-		    \begin{detailtable}{\columnwidth}{m{3cm}Y}
-			    \thead{Codice} &
-			    \thead{Decisione}\\\toprule\rowcolor{\tablegray}
-			    2019-03-23-1 & Usiamo Rancher e Kubernetes al posto di Docker\\
-			    2019-03-23-2 & Implementiamo un sistema a priorità su label delle issue e keyword dei commit\\\bottomrule
-		    \end{detailtable}
-		    \caption{Consuntivo del periodo di analisi dei requisiti}
-	    \end{table}
-    	
+            \centering
+            \rowcolors{2}{white}{\tablegray}
+            {\def\arraystretch{1.5}
+                \begin{tabularx}{\textwidth}{YY}
+                    \rowcolor{gray!30}
+                    \textbf{Codice} & \textbf{Descrizione}\\
+                    \toprule
+                    \stepcounter{tracc}
+                    VE\_2019-03-23.\thetracc & Usiamo Rancher e Kubernetes al posto di Docker \\
+                    \stepcounter{tracc}
+                    VE\_2019-03-23.\thetracc & Implementiamo un sistema a priorità sui progetti \\
+                    \bottomrule
+            \end{tabularx}}
+            \caption{Tracciamento decisioni}
+        \end{table}
+        
+        
 \end{document}
