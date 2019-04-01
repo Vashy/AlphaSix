@@ -21,14 +21,33 @@ class Observer(ABC):
         pass
 
 
-class Resource(flask_restful.Resource):
+class Subject(ABC):
 
-    def __init__(self, obs: Observer):
-        self._controller = obs
+    def __init__(self):
+        self._lst = []
+
+    def addObserver(self, obs: Observer):
+        self._lst.append(obs)
+
+    @abstractmethod
+    def notify(self, request_type: str, resource: str, msg: str):
+        pass
+
+
+class FinalMeta(type(Subject), type(flask_restful.Resource)):
+    pass
+
+
+class Resource(Subject, flask_restful.Resource, metaclass=FinalMeta):
+
+    def __init__(self):
+        super(Subject, self).__init__(self)
+        super(flask_restful.Resource, self).__init__(self)
         self._response = None
 
     def notify(self, request_type: str, resource: str, msg: str):
-        return self._controller.update(request_type, resource, msg)
+        for obs in self._lst:
+            return obs.update(request_type, resource, msg)
 
 
 class Panel(Resource):
@@ -46,6 +65,9 @@ class Panel(Resource):
 
 
 class User(Resource):
+
+    def __init__(self):
+        super(Resource, self).__init__(self)
 
     def get(self):
         """Restituisce lo user con l'id specificato
@@ -91,14 +113,16 @@ class Controller(Observer):
         self.model = model
         self.api = api
 
+        self.user = User
+        self.user.addObserver(self.user, obs=self)
+
         self.api.add_resource(
             Panel, '/',
             resource_class_kwargs={'obs': self}
         )
 
         self.api.add_resource(
-            User, '/user',
-            resource_class_kwargs={'obs': self}
+            self.user, '/user'
         )
 
         self.api.add_resource(
