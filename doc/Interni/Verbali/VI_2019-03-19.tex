@@ -1,0 +1,72 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VI}
+\newcommand{\nomedocumentofisico}{VI\_2019-03-19.pdf}
+\newcommand{\redazione}{\SG}
+\newcommand{\verifica}{\CV}
+\newcommand{\approvazione}{\NC}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Interno}
+\newcommand{\destinateTo}{\gruppo}
+\newcommand{\datacreazione}{19 marzo 2019}
+\newcommand{\datamodifica}{21 marzo 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VI_2019-03-19/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}	
+    
+    \section{Informazioni generali}
+		\subsection{Informazioni incontro}
+			% - INSERT INFORMAZIONI INCONTRO
+			\begin{itemize}
+				\item \textbf{Luogo}: Paolotti, labP036.
+				\item \textbf{Data}: 2019-03-19.
+				\item \textbf{Ora inizio}: 13:30.
+				\item \textbf{Ora fine}: 18:00.
+				\item \textbf{Partecipanti di AlphaSix}: team al completo.
+				\item \textbf{Ordine del giorno}: Considerazioni sulla correzione della revisione di progettazione.
+			\end{itemize}
+
+        \subsection{Argomenti}
+            % - INSERT ARGOMENTI
+            Questo incontro è stato organizzato per discutere sulla correzione della revisione di progettazione. È stato trattato di:
+            \begin{enumerate}
+                \item Discussione correzioni fatteci da parte dei Professori Riccardo Cardin e Tullio Vardanega relative alla revisione di progettazione.
+                \item Stesura domande da porre a Imola Informatica nell'incontro previsto per 2019-03-23.
+            \end{enumerate}
+            
+        \section{Tracciamento delle decisioni}
+        
+        \newcounter{tracc}
+        \begin{table}[H]
+            \centering
+            \rowcolors{2}{white}{\tablegray}
+            {\def\arraystretch{1.5}
+                \begin{tabularx}{\textwidth}{YY}
+                    \rowcolor{gray!30}
+                    \textbf{Codice} & \textbf{Descrizione}\\
+                    \toprule
+                    \stepcounter{tracc}
+                    VE\_2019-03-19.\thetracc & Assegnate issue per correggere i documenti\\
+                    \stepcounter{tracc}
+                    VE\_2019-03-19.\thetracc & Richiesto incontro con professore Riccardo Cardin e Tullio Vardanega\\
+                    \bottomrule
+            \end{tabularx}}
+            \caption{Tracciamento decisioni}
+        \end{table}
+\end{document}
