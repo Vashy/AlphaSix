@@ -105,6 +105,64 @@
             \caption[Metrica Indice di Gulpease]{Metrica dell'Indice di Gulpease}%, usata per il calcolo della qualità della leggibilità del testo}
         \end{table}
     
+        \paragraph{Classificazione dei test}\label{ClassificazioneTest}
+        Ogni test viene classificato identificato univocamente da tale codice:
+        
+        \begin{center}
+            \texttt{T[Tipo][ID]}
+        \end{center}
+        
+        \begin{itemize}
+            \item \textbf{T}: si riferisce a ``Test''.
+            \item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}, può essere:
+            \begin{itemize}
+                \item \textbf{V}: validazione.
+                \item \textbf{S}: sistema
+                \item \textbf{I}: integrazione.
+                \item \textbf{U}: unità.
+            \end{itemize}
+            %per la corrispondenza con i requisiti, non vanno bene le "tre cifre"
+            \item \textbf{ID}: numero incrementale che rispetta una struttura gerarchica.
+        \end{itemize}
+        
+        % COLORI
+        \newcommand{\TNI}{{\color{gray}\textbf{NI}}}
+        \newcommand{\TI}{{\color{blue}\textbf{I}}}
+        \newcommand{\TNS}{{\color{red}\textbf{NS}}}
+        \newcommand{\TS}{{\color{green}\textbf{S}}}
+        
+        Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
+        \begin{itemize}
+            \item \textbf{Codice}: comprendente il codice identificativo del test.
+            \item \textbf{Test}: descrive cosa il test deve verificare.
+            \item \textbf{Stato}: indica lo stato del test e può essere:
+            \begin{itemize}
+                \item \TNI: non implementato.
+                \item \TI: implementato ma non ancora avviato.
+                \item \TNS: avviato e fallito.
+                \item \TS: avviato e superato.
+            \end{itemize}
+        \end{itemize}
+    
+    Ad esempio:
+    
+    \newenvironment{VTtable}[1][1]{%
+        \renewcommand*{\arraystretch}{#1}%
+        \renewcommand\theadfont{\bfseries}%
+        \oldtabularx%
+    }{\endoldtabularx}
+    \newcounter{tv}
+    \newcommand{\addtotv}{\stepcounter{tv}TV\thetv}
+    \begin{table}[H]
+        \begin{VTtable}[1.7]{\textwidth}{cXc}
+            \rowcolor{\tablegray}
+            \textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+            \addtotv & Verifica la segnalazione dell'apertura di una issue in Redmine \dots
+            & \TNI \\
+            \bottomrule
+        \end{VTtable}
+    \end{table}
+    
 
 		\subsubsection{Pianificazione di attività}
 
