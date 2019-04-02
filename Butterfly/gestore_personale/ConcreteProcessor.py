@@ -15,12 +15,14 @@ class GitlabProcessor(Processor):
         # Se la segnalazione consiste in un push o nel commento di un commit.
         # Le due segnazioni vengono considerate allo stesso modo
         if obj == 'push' or obj == 'note_commit':
-            return self._mongofacade.get_match_keywords(users,
+            return self._mongofacade.get_match_keywords(
+                users,
                 self._message['title']
             )
         # Se la segnalazione consiste in una issue
         elif obj == 'issue':
-            return self._mongofacade.get_match_labels(users,
+            return self._mongofacade.get_match_labels(
+                users,
                 self._message['labels']
             )
         # Se la segnalazione consiste nel commento di una issue
@@ -28,7 +30,8 @@ class GitlabProcessor(Processor):
             labels = []
             # codice con richiesta http per recuperare le label della issue commentata
 
-            return self._mongofacade.get_match_labels(users,
+            return self._mongofacade.get_match_labels(
+                users,
                 labels
             )
         else:
@@ -50,6 +53,7 @@ class RedmineProcessor(Processor):
         if obj != 'issue':
             raise NameError('Type not exists')
 
-        return self._mongofacade.get_match_labels(users,
+        return self._mongofacade.get_match_labels(
+            users,
             [self._message['labels']]
         )
