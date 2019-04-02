@@ -1,6 +1,6 @@
 """
-File: webhook.py
-Data creazione: 2019-02-15
+File: creator.py
+Data creazione: 2019-03-29
 
 <descrizione>
 
@@ -20,18 +20,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.1
-Creatore: Timoty Granziero, timoty.granziero@gmail.com
+Versione: 0.1.0
+Creatore: Samuele Gardin, samuelegardin1997@gmail.com
+Autori:
 """
 
-from abc import ABC, abstractmethod
+from kafka import KafkaConsumer
+from consumer.creator import ConsumerCreator
+from consumer.telegram.consumer import TelegramConsumer, Consumer
 
 
-class Webhook(ABC):
-    """Interfaccia `Webhook`"""
+class TelegramConsumerCreator(ConsumerCreator):
+    """Creator per TelegramConsumer
+    """
 
-    @abstractmethod
-    def parse(self, whook: dict):
-        """Parsing del file `JSON` associato al webhook. Restituisce un
-        `dict` contenente i campi di interesse.
-        """
+    def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
+        return TelegramConsumer(kafka_consumer, self.topic)
+
+    @property
+    def topic(self):
+        return 'telegram'

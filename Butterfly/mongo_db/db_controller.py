@@ -276,9 +276,9 @@ class DBController(object):
         se presente, e restituisce il risultato.
         """
         return self._delete_one_document({
-                'label': label,
-                'project': project,
-            },
+            'label': label,
+            'project': project,
+        },
             'topics',
         )
 
@@ -309,8 +309,8 @@ class DBController(object):
         se presente, e restituisce il risultato.
         """
         return self._delete_one_document({
-                'url': url,
-            },
+            'url': url,
+        },
             'projects'
         )
 
@@ -551,32 +551,32 @@ class DBController(object):
             }
         )
 
-    def update_user_sostituto(self, id: str, new_sostituto):
-        """Aggiorna il `sostituto` dell'utente corrispondente a
-        `id` (`email` o `telegram`).
+#    def update_user_sostituto(self, id: str, new_sostituto):
+#        """Aggiorna il `sostituto` dell'utente corrispondente a
+#        `id` (`email` o `telegram`).
 
-        Raises:
-        `AssertionError` -- se `id` o `new_sostituto` non sono
-            presenti nel DB.
-        """
-        assert self.user_exists(id), f'User {id} inesistente'
+#        Raises:
+#        `AssertionError` -- se `id` o `new_sostituto` non sono
+#            presenti nel DB.
+#        """
+#        assert self.user_exists(id), f'User {id} inesistente'
 
-        assert self.user_exists(new_sostituto), \
-            f'User {new_sostituto} inesistente'
+#        assert self.user_exists(new_sostituto), \
+#            f'User {new_sostituto} inesistente'
 
-        new_sostituto_id = self.user(new_sostituto)['_id']
+#        new_sostituto_id = self.user(new_sostituto)['_id']
 
-        return self.collection('users').find_one_and_update(
-            {'$or': [
-                {'telegram': id},
-                {'email': id},
-            ]},
-            {
-                '$set': {
-                    'sostituto': new_sostituto_id
-                }
-            }
-        )
+#        return self.collection('users').find_one_and_update(
+#            {'$or': [
+#                {'telegram': id},
+#                {'email': id},
+#            ]},
+#            {
+#                '$set': {
+#                    'sostituto': new_sostituto_id
+#                }
+#            }
+#        )
 
     def add_user_topic(self, id: str, label: str, project: str):
         """Aggiunge il `topic` corrispondente a `label`-`project`

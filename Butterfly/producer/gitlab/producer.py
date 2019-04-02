@@ -1,6 +1,6 @@
 """
-File: webhook.py
-Data creazione: 2019-02-15
+File: gitlab_producer.py
+Data creazione: 2019-02-18
 
 <descrizione>
 
@@ -20,18 +20,26 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.1.1
+Versione: 0.3.1
 Creatore: Timoty Granziero, timoty.granziero@gmail.com
+Autori:
+    Laura Cameran, lauracameran@gmail.com
+    Samuele Gardin, samuelegardin@gmail.com
 """
 
-from abc import ABC, abstractmethod
+from producer.producer import Producer
 
 
-class Webhook(ABC):
-    """Interfaccia `Webhook`"""
+class GitlabProducer(Producer):
+    """Classe concreta `GitlabProducer`. Implementa `Producer`.
+    """
 
-    @abstractmethod
-    def parse(self, whook: dict):
-        """Parsing del file `JSON` associato al webhook. Restituisce un
-        `dict` contenente i campi di interesse.
+    def webhook_kind(self, whook: dict):
+        """Restituisce il tipo di segnalazione (e.g. issue, push, etc..).
         """
+
+        if whook['object_kind'] == 'note' and 'issue' in whook:
+            return 'issue-note'
+        elif whook['object_kind'] == 'note' and 'commit' in whook:
+            return 'commit-note'
+        return whook['object_kind']
