@@ -1,4 +1,4 @@
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock
 from gestore_personale.ConcreteProcessor import GitlabProcessor, RedmineProcessor
 
 
