@@ -81,7 +81,7 @@ class FlaskServer(Server):
     def run(self, config_path=_CONFIG_PATH):
         """Avvia il `FlaskServer` con le configurazioni nel file
         contenuto in `config_path`.
-        
+
         Parameters:
 
         `config_path` - path contenente le configurazioni necessarie all'avvio
