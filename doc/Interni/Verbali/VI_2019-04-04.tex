@@ -1,0 +1,74 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VI}
+\newcommand{\nomedocumentofisico}{VI\_2019-04-04.pdf}
+\newcommand{\redazione}{\TG}
+\newcommand{\verifica}{\SG}
+\newcommand{\approvazione}{\NC}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Interno}
+\newcommand{\destinateTo}{\gruppo}
+\newcommand{\datacreazione}{05 aprile 2019}
+\newcommand{\datamodifica}{07 aprile 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VI_2019-04-04/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}	
+    
+    \section{Informazioni generali}
+		\subsection{Informazioni incontro}
+			% - INSERT INFORMAZIONI INCONTRO
+			\begin{itemize}
+				\item \textbf{Luogo}: Torre Archimede, 1BC45.
+				\item \textbf{Data}: 2019-04-04.
+				\item \textbf{Ora inizio}: 14:00.
+				\item \textbf{Ora fine}: 17:30.
+				\item \textbf{Partecipanti di AlphaSix}: team al completo.
+				\item \textbf{Ordine del giorno}: Discussione post colloquio Product Baseline.
+			\end{itemize}
+
+        \subsection{Argomenti}
+            % - INSERT ARGOMENTI
+            Questo incontro è stato organizzato per discutere delle correzioni fatteci da parte del professor Riccardo Cardin durante la presentazione della Product Baseline. È stato discusso di: 
+            \begin{enumerate}
+                \item Design pattern che il professore non ritiene utili.
+                \item Soluzioni da implementare in base ai consigli ricevuti dal professore.
+                \item Punti deboli di \progetto.
+                \item Quali parti di \progetto\ devono essere modificate e migliorate.
+            \end{enumerate}
+            
+        \section{Tracciamento delle decisioni}
+        
+        \newcounter{tracc}
+        \begin{table}[H]
+            \centering
+            \rowcolors{2}{white}{\tablegray}
+            {\def\arraystretch{1.5}
+                \begin{tabularx}{\textwidth}{YY}
+                    \rowcolor{gray!30}
+                    \textbf{Codice} & \textbf{Descrizione}\\
+                    \toprule
+                    \stepcounter{tracc}
+                    VE\_2019-04-04.\thetracc & Rimozione di alcuni design pattern non necessari\\
+                    \stepcounter{tracc}
+                    VE\_2019-04-04.\thetracc & Assegnazione issue per correzioni implementative\\
+                    \bottomrule
+            \end{tabularx}}
+            \caption{Tracciamento decisioni}
+        \end{table}
+\end{document}
