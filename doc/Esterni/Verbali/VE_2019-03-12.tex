@@ -30,7 +30,7 @@
     \pagenumbering{Roman}
     \input{template/diario}
     \pagenumbering{arabic}
-    
+
     \section{Informazioni incontro}
     	\begin{itemize}
     		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite una chiamata \gloss{Hangouts} e un successivo scambio di email.
@@ -39,31 +39,31 @@
     		\item \textbf{Ora fine}: 20:00.
     		\item \textbf{Partecipanti di AlphaSix}: team al completo.
     		\item \textbf{Partecipanti esterni}: \DZ~di \II.
-    		\item \textbf{Ordine del giorno}: valutazione del \gloss{Proof of Concept} effettuato il 2019-02-26 con \RC\ e revisione di alcuni requisiti.
-    		
+    		\item \textbf{Ordine del giorno}: valutazione del \gloss{Proof of Concept} effettuato il 2019-02-26 con il \RC\ e revisione di alcuni requisiti.
+
     	\end{itemize}
-    
+
     \section{Argomenti}
-    
+
     In seguito alle valutazioni della Technology Baseline abbiamo contattato \DZ\ per avere qualche consiglio su come procedere col progetto ed avere delucidazioni su alcuni requisiti.
-    
+
     Nello specifico le decisioni implementative prese sono state:
     \begin{enumerate}
-        \item Salvare i dati delle varie tecnologie all'interno dei \gloss{Dockerfile} in volumi, in moto da poterli conservare in modo persistente
-        \item Proveremo a sfruttare Rancher\footnote{\url{https://rancher.com/}}, il quale lavora con oggetti di Kubernates\footnote{\url{https://kubernetes.io/it/}}, in modo tale da poter conoscere ulteriori tecnologie utili al progetto
+        \item Salvare i dati delle varie tecnologie all'interno dei \gloss{Dockerfile} in volumi, in modo da poterli conservare in modo persistente
+        \item Provare a sfruttare Rancher\footnote{\url{https://rancher.com/}}, il quale lavora con oggetti di Kubernetes\footnote{\url{https://kubernetes.io/it/}}, in modo tale da poter conoscere ulteriori tecnologie utili al progetto
         \item I vari Dokerfile non non devono essere montati insieme attraverso un \gloss{Docker compose}, ma con uno \gloss{script}
         \item Ai fini delle funzionalità di \progetto, il campo "destinatario" di una \gloss{issue} può essere ignorato
     \end{enumerate}
 
-    Le decisioni relative ai requisito sono:
+    Le decisioni relative ai requisiti sono:
     \begin{enumerate}
         \item Gli utenti, dato che sono considerati \gloss{utenza tecnica}, non devono autenticarsi con tutte le tecnologie da cui si ricevono le notifiche (\gloss{Redmine} e \gloss{GitLab}), perché questi vedranno tutti i progetti presenti nei Dockerfile montati
         \item Precedentemente era stato deciso di inviare la modifica di una issue solo nel caso in cui fossero stati modificati particolari campi indicati negli UC2-PR e UC4-PG in\\ \textit{AnalisiDeiRequisitiv2.0.0\ped{D}}. Ora invece le notifiche di modifica issue avverranno con la modifica di qualsiasi campo, ma solo se tali issue possiederanno una priorità urgente
         \item La presenza della figura della "persona di fiducia" indicata in \textit{AnalisiDeiRequisitiv2.0.0\ped{D}} in §3 per inoltrare i messaggi non è corretta, perché nel momento in cui un utente si rimuove da \progetto\ il messaggio verrebbe perso, oppure si rischierebbe di cadere nel problema dell'inoltro circolare. Perciò gli utenti ora dovranno inserire una priorità ai progetti a cui sono interessati, in modo tale che \progetto\ possa gestire gli inoltri in automatico
     \end{enumerate}
 
-    \section{Tracciamento}
-    
+    \section{Tracciamento delle decisioni}
+
     \newcounter{tracc}
     \begin{table}[H]
         \centering
@@ -87,7 +87,7 @@
         \end{tabularx}}
         \caption{Tracciamento decisioni}
     \end{table}
-    
-    
-    
+
+
+
 \end{document}
