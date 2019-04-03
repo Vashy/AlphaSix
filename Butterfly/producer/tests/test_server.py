@@ -6,17 +6,6 @@ import producer
 from producer.server import FlaskServer
 
 
-# @patch('producer.server.Path')
-# @patch('producer.server.json')
-# def test_open_configs(json_mock, path_mock):
-#     path_mock.return_value = producer.server.Path()
-#     json_mock.load.return_value = {'gitlab': '5003'}
-#     val = producer.server._open_configs(path_mock())
-
-#     assert 'gitlab' in val
-#     assert path_mock.called_once
-
-
 def test_server():
     flask_mock = MagicMock()
     producer_mock = MagicMock()
