@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from pathlib import Path
 import json
 
 from kafka import KafkaProducer
@@ -10,12 +9,24 @@ from producer.producer import Producer
 
 class ProducerCreator(ABC):
     """Interfaccia `ProducerCreator`. Un `ProducerCreator` ha il
-    compito di inizializzare un `Producer` concreto.
+    compito di inizializzare un `KafkaProducer` concreto.
     """
 
+    @abstractmethod
+    def create(self, configs: dict) -> KafkaProducer:
+        """Restituisce un'istanza concreta di `KafkaProducer`, inizializzando un
+
+        Parameters:
+
+        `configs`: dizionario contenente le configurazioni per il
+        `KafkaProducer`.
+        """
+
+
+class KafkaProducerCreator(ABC):
+
     def create(self, configs: dict) -> Producer:
-        """Restituisce un'istanza concreta di `Producer`, inizializzando un
-        `KafkaProducer` e passandolo come parametro al `Producer`
+        """Restituisce un'istanza concreta di `KafkaProducer`, inizializzando un
 
         Parameters:
 
@@ -42,17 +53,4 @@ class ProducerCreator(ABC):
                 exit(1)
         print('Connessione con il Broker stabilita')
 
-        producer = self.instantiate(kafka_producer)
-        return producer
-
-    @abstractmethod
-    def instantiate(self, kafka_producer: KafkaProducer) -> Producer:
-        """Istanzia il `Producer` concreto, che adatta `KafkaProducer`
-        all'interfaccia `Producer`, e lo restituisce"""
-
-
-class ServerCreator(ABC):
-    """Interfaccia `ServerCreator`. Inizializza il server."""
-    @abstractmethod
-    def initialize_app(self, topic: str, config_path: Path):
-        """Restituisce il `Server` inizializzato"""
+        return kafka_producer
