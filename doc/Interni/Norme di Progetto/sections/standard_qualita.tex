@@ -8,16 +8,15 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 
 	\subsection{ISO/IEC 15504 (SPICE)}\label{iso15504}
 	Lo standard ISO/IEC 15504 è stato creato per unire in un unico standard le caratteristiche principali di \gloss{CMMI} e \gloss{SPY}; entrambi standard riguardanti la qualità di processi software.
-	ISO/IEC 15504 è chiamato anche SPICE come acronimo di \textit{Software Process Improvement and Capability Determination}, dando importanza al termine ``Capability'' inteso come la capacità di un processo di essere cognitivamente capace di raggiungere il suo scopo. 
-	
-	Un processo con un'alta Capability è osservato da tutti in modo disciplinato e sistematico.
-	In caso di bassa Capability il processo viene effettuato in modo opportunistico e disorganizzato.\\
-	
-	SPICE mette a disposizione una metrica per valutare diversi attributi per ogni processo ed assegna un valore quantificabile ad ognuno di questi in modo tale da esplicitare come poter migliorare tale processo. Ogni valutazione in questo modo può essere oggettiva, ripetibile e comparabile.\\
-	
-	I processi vengono classificati in:
+	ISO/IEC 15504 è chiamato anche SPICE come acronimo di \textit{Software Process Improvement and Capability Determination}, dando importanza al termine ``Capability'' inteso come la capacità di un processo di essere cognitivamente capace di raggiungere il suo scopo.
 
-	
+	Un processo con un'alta Capability è osservato da tutti in modo disciplinato e sistematico.
+	In caso di bassa Capability il processo viene effettuato in modo opportunistico e disorganizzato.
+
+	SPICE mette a disposizione una metrica per valutare diversi attributi per ogni processo ed assegna un valore quantificabile
+	ad ognuno di questi in modo tale da esplicitare come poter migliorare tale processo. Ogni valutazione in questo modo può essere oggettiva, ripetibile e comparabile.
+
+	I processi vengono classificati in:
 
 	\begin{itemize}
 		\item Cliente/Fornitore
@@ -26,66 +25,66 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 		\item Gestione
 		\item Organizzazione
 	\end{itemize}
-	
+
 	I livelli sono:
-	
+
 	\begin{itemize}
 		\item \textbf{0 Incompleto}: il processo è caotico perché con risultati e performance incomplete.
-	
+
 		\item \textbf{1 Performato}: il processo inizia ad essere eseguito mettendo a disposizione degli input ed output.
-		
+
 		Attributi:
-		
+
 		\begin{itemize}
 			\item \textbf{Esecuzione dei processi}: indica il numero di obiettivi raggiunti.
 		\end{itemize}
-	
+
 		\item \textbf{2 Gestito}: le responsabilità e la gestione del processo sono definite.
-		
+
 		Attributi:
-		
+
 		\begin{itemize}
 			\item \textbf{Gestione del processo}: indica quanto sono organizzati gli obiettivi fissati.
 			\item \textbf{Gestione del prodotto}: indica quanto sono organizzati o gestiti i prodotti rilasciati.
 		\end{itemize}
-	
+
 		\item \textbf{3 Stabilito}: il processo è pronto per diventare un processo standard ed essere rilasciato.
-		
+
 		Attributi:
-		
+
 		\begin{itemize}
 			\item \textbf{Definizione del processo}: indica quanto il processo aderisce agli standard.
 			\item \textbf{Distribuzione del processo}: indica in che misura il processo possa essere rilasciato potendo restituire sempre lo stesso risultato.
 		\end{itemize}
-	
+
 		\item \textbf{4 Prevedibile}: il processo è in grado di essere sottoposto a metriche e valutazioni quantitative. Spesso i risultati sono predicibili.
-		
+
 		Attributi:
-		
+
 		\begin{itemize}
 			\item \textbf{Misurazioni del processo}: indica quanto le metriche possono essere applicate al processo.
 			\item \textbf{Controllo del processo}: indica quanto i risultati delle valutazioni siano predicibili.
 		\end{itemize}
-	
+
 		\item \textbf{5 Ottimizzante}: il processo attua miglioramenti qualitativi e quantitativi.
-		
+
 		Attributi:
-		
+
 		\begin{itemize}
 			\item \textbf{Innovazione del processo}: indica quanto i cambiamenti attuati nel processo risultino innovativi e positivi grazie ad una fase di analisi.
 			\item \textbf{Ottimizzazione del processo}: indica quanto la curva di miglioramento del processo sia lineare.
 		\end{itemize}
 	\end{itemize}
-	
+
 	Ad ogni attributo viene data una valutazione assegnata in base alla percentuale di soddisfacimento dell'attributo:
-	
+
 	\begin{itemize}
 		\item \textbf{N}: il processo non è implementato e non svolge niente di significativo (0\% - 15\%).
 		\item \textbf{P}: il processo è parzialmente implementato (15\% - 50\%).
 		\item \textbf{L}: il processo è largamente implementato (50\% - 85\%).
 		\item \textbf{F}: il processo è completamente implementato (85\% - 100\%).
 	\end{itemize}
-	
+
 \begin{table}[H]
 	\centering
 	\begin{oldtabular}{ccccc}
@@ -111,34 +110,34 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 %FIXME: dire a che minghie serve sta roba e quali punti in particolare
 	\subsection{ISO/IEC 9126:2001}
 	ISO/IEC 9126 è uno standard inerente alla qualità del software. Esso è strutturato in modo tale che si possa migliorare l'insieme dei processi.
-	
+
 	La sua struttura prevede tre tipi di qualità, ognuna delle quali possiede determinate caratteristiche:
-	
+
 	\begin{itemize}
 		\item \textbf{Qualità interna}: misura la qualità del prodotto non in esecuzione, in questo caso parliamo del codice sorgente a cui si possono aggiungere diverse metriche attraverso l'analisi statica. Queste poi possono stabilire la manutenibilità e portabilità del prodotto.
-		
+
 		Gli attributi ad essa assegnati sono:
-		
+
 		\begin{itemize}
 			\item Manutenibilità
 			\item Portabilità
 		\end{itemize}
-	
+
 		\item \textbf{Qualità esterna}: misura attraverso l'analisi dinamica quanto l'esecuzione del prodotto rispetti gli obiettivi prefissati.
-		
+
 		Gli attributi ad essa assegnati sono:
-		
+
 			\begin{itemize}
 			\item Funzionalità
 			\item Efficienza
 			\item Affidabilità
 			\item Usabilità
 		\end{itemize}
-	
+
 		\item \textbf{Qualità in uso}: definisce le metriche del prodotto rilasciato ed usato dal cliente che ne misurerà la qualità.
-		
+
 		Gli attributi ad essa assegnati sono:
-		
+
 		\begin{itemize}
 			\item Efficacia
 			\item Produttività
@@ -150,20 +149,20 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 		\subsubsection{Descrizione degli attributi della qualità interna e della qualità esterna}
 		\begin{itemize}
 			\item \textbf{Manutenibilità}: il software nel corso delle sue revisioni deve essere facilmente modificabile.
-			
+
 			Nello specifico si prevede:
-			
+
 			\begin{itemize}
 				\item \textbf{Analizzabilità}: prevedere una lettura del codice fruibile.
 				\item \textbf{Modificabilità}: poter capire subito dove applicare la modifica.
 				\item \textbf{Stabilità}: evitare effetti indesiderati dopo le modifiche.
 				\item \textbf{Testabilità}: poter creare facilmente dei test su tutto il codice.
 			\end{itemize}
-		
+
 			\item \textbf{Portabilità}: il software dovrebbe poter essere eseguito in più ambienti.
-			
+
 			Nello specifico si prevede:
-			
+
 			\begin{itemize}
 				\item \textbf{Adattabilità}: potersi adattare automaticamente ai vari ambienti.
 				\item \textbf{Installabilità}: la sua fase d'installazione dovrebbe essere semplice.
@@ -172,37 +171,37 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 			\end{itemize}
 			\newpage
 			\item \textbf{Funzionalità}: il software deve mettere a disposizione le funzionalità richieste in rapporto all'ambiente d'esecuzione.
-			
+
 			Nello specifico si prevede:
-			
+
 			\begin{itemize}
 				\item \textbf{Appropriatezza}: le funzionalità del software sono appropriate ai requisiti richiesti.
 				\item \textbf{Accuratezza}: in che misura le funzionalità aderiscono ai requisiti richiesti.
 				\item \textbf{Interoperabilità}: la capacità di interagire coi sistemi specificati.
 				\item \textbf{Security}: proteggere le informazioni da agenti esterni.
 			\end{itemize}
-		
+
 			\item \textbf{Efficienza}: misura della capacità di raggiungere gli obiettivi stabiliti cercando di usare meno risorse possibili, in particolare:
-			
+
 			\begin{itemize}
 				\item \textbf{Nel tempo}: poter dare risposte in un tempo di scadenza appropriato.
 				\item \textbf{Nello spazio}: utilizzo del minor numero di risorse.
 			\end{itemize}
-		
+
 			\item \textbf{Affidabilità}: il software deve mantenere le specifiche richieste senza inconvenienti.
-			
+
 			Nello specifico si prevede:
-			
+
 			\begin{itemize}
 				\item \textbf{Maturità}: indica il livello minimo della qualità delle parti che determina poi il livello di qualità dell'intero prodotto.
 				\item \textbf{Robustezza}: la capacità di saper reagire agli errori.
 				\item \textbf{Recuperabilità}: per poter tornare alla versione precedente del software in modo semplice.
 			\end{itemize}
-		
+
 			\item \textbf{Usabilità}: il software deve poter essere compreso fin da subito, dunque semplice ed immediato nell'utilizzo e nella comprensione.
-			
+
 			Nello specifico si prevede:
-			
+
 			\begin{itemize}
 				\item \textbf{Comprensibilità}: il significato delle funzionalità deve essere compreso il prima possibile dall'utente.
 				\item \textbf{Apprendibilità}: capacità dell'utente di imparare ad utilizzare le funzionalità disponibili.
@@ -210,7 +209,7 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 				\item \textbf{Attrattiva}: il risultato deve risultare attraente all'utente.
 			\end{itemize}
 		\end{itemize}
-	
+
 		\subsubsection{Descrizione degli attributi della qualità in uso}
 		\begin{itemize}
 			\item \textbf{Efficacia}: misura della capacità di riuscire a raggiungere i compiti fissati. Essa si calcola in base al grado di raggiungimento degli obiettivi.
@@ -218,20 +217,22 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 			\item \textbf{Soddisfazione}: il software deve soddisfare l'utente.
 			\item \textbf{Safety}: il software deve possedere adeguati livelli di sicurezza per il tipo di utente che ne usufruisce.
 		\end{itemize}
-	
+
 	\begin{figure}[H]
 		\includegraphics[width=\textwidth]{img/ISO9126_full.png}
 		\label{fig:iso9126}
 		\caption[Schema ISO 9126 con il suo ciclo di vita]{Schema ISO 9126 con il suo ciclo di vita\protect\footnotemark}
 	\end{figure}
 
-	\footnotetext{Vedere in \S\ref{riferimenti informativi}}
-	
-	\subsection{Ciclo di Deming}	\label{cicloDeming}
-	Il Ciclo di Deming è un metodo iterativo creato per migliorare la qualità dei processi e dei prodotti software. Questo opera nell'ottica di un miglioramento continuo in termini di risultati e risorse utilizzate e al termine di ogni ciclo, l'eventuale miglioramento effettuato diventa la nuova base da cui inizia l'iterazione successiva.
-	
+	\footnotetext{Fonte figura in \S\ref{rifinfo}}
+
+	\subsection{Ciclo di Deming}\label{cicloDeming}
+	Il Ciclo di Deming è un metodo iterativo creato per migliorare la qualità dei processi e dei prodotti software.
+	Questo opera nell'ottica di un miglioramento continuo in termini di risultati e risorse utilizzate e al termine di ogni ciclo,
+	l'eventuale miglioramento effettuato diventa la nuova base da cui inizia l'iterazione successiva.
+
 	Si distingue in quattro fasi, chiamate anche PDCA, che sono:
-	
+
 	\begin{itemize}
 		\item \textbf{Plan}: pianificare i processi per ottenere i risultati attesi ed osservare dove questi possono essere migliorati.
 		\item \textbf{Do}: eseguire il programma e i miglioramenti inseriti nella fase precedente.
@@ -246,13 +247,13 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 		\caption[Ciclo di Deming]{Ciclo di Deming\protect\footnotemark}
 	\end{figure}
 
-	\footnotetext{Vedere Riferimenti Informativi in \S\ref{riferimenti informativi}}
+	\footnotetext{Fonte figura in \S\ref{rifinfo}}
 
 	\subsection{ISO/IEC 90003:2004}
 	Lo standard ISO/IEC 90003 consiste nello standard ISO 9001:2008 applicato al software. Quest'ultimo tratta di uno standard sulla qualità dei sistemi aziendali che segue il sistema il Ciclo di Deming descritto in \S\ref{cicloDeming}.
-	
+
 	L'ISO/IEC 90003:2004 si suddivide in otto capitoli che sono:
-	
+
 	\begin{enumerate}
 		\item Scopo
 		\item Riferimenti normativi
@@ -265,9 +266,9 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 	\end{enumerate}
 
 	Date le nostre capacità e la nostra esperienza, prendiamo in considerazione solo alcuni punti del quarto capitolo. In particolar modo quelli riguardanti la documentazione, non potendo ancora stabilire metriche sul software.
-	
+
 	\subsubsection{Capitolo 4. dell'ISO 90003:2004 requisiti di sistema e linee guida}
-	
+
 	\begin{enumerate}
 		\item \textbf{Requisiti e linee guida sull'organizzazione}:
 		\begin{enumerate}
@@ -279,7 +280,7 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 			\item \textbf{Documentare il proprio QMS}: riportare le relazioni tra i vari processi e come questi vengono gestiti e verificati.
 			\item \textbf{Cercare di migliorare il proprio QMS}: applicando il Ciclo di Deming.
 			\item Mantenere la qualità del QMS
-		\end{enumerate} 
+		\end{enumerate}
 		\newpage
 		\item \textbf{Requisiti e linee guida sulla documentazione}:
 		\begin{enumerate}
@@ -289,7 +290,7 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 				\item \textbf{Stabilire la documentazione del QMS}: stabilendo la qualità delle diverse parti del QMS.
 				\item Mantenere la documentazione nel tempo
 			\end{itemize}
-			
+
 			\item \textbf{Controllare la qualità dei documenti}:
 			\begin{itemize}
 				\item \textbf{Stabilire una procedura per controllare i documenti}: documentare la stessa procedura di controllo che dovrebbe contenere la fase di approvazione del documento, un suo versionamento e continuo aggiornamento.
@@ -299,7 +300,7 @@ In questa appendice descriviamo gli standard adottati nelle loro parti più rile
 	\end{enumerate}
 
     \subsubsection{Capitolo 7. dell'ISO 9003:2004 realizzazione del prodotto}
-    
+
     \begin{enumerate}
         \item \textbf{Pianificazione del prodotto}:
             \begin{enumerate}
