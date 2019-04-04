@@ -182,24 +182,19 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			% \req{R\thevaF.2.3F0}{L'utente può togliere le proprie preferenze sulle piattaforme di messaggistica da cui ricevere notifiche inviate attraverso \progetto}{Interno UC6.2.3}
 
 
-	\stepcounter{tableCounter}
-	\begin{table}[H]
-		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+	% \stepcounter{tableCounter}
+	% \begin{table}[H]
+	% 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+	% 		\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-			% da capitolato
-			% stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
-			\ReqF{2}{Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario}{Capitolato}
-			\ReqF{2}{Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti}{Capitolato}
-			\ReqF{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
-			\ReqF{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
-			\ReqF{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
-			\ReqF{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
+	% 		% da capitolato
+	% 		% stesso di "L'applicativo Producer/Consumer deve essere in grado di reindirizzare i messaggi verso la persona più appropriata"
+	% 		%\ReqF{2}{Le componenti devono esporre delle \gloss{API Rest} per le interazioni con le altre componenti}{Capitolato}
 
-			\bottomrule
-		\end{paddedtablex}
-		\caption{Elenco dei requisiti di funzionalità (\thetableCounter)}
-	\end{table}
+	% 		\bottomrule
+	% 	\end{paddedtablex}
+	% 	\caption{Elenco dei requisiti di funzionalità (\thetableCounter)}
+	% \end{table}
 
 	%COMANDI PER REQUISITI DI Qualità
 	% Generazione automatica dei numeri
@@ -334,6 +329,12 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqV{0}{Il server web viene sviluppato utilizzando \python\ con la libreria \gloss{CherryPy}}{Interno}
 			\ReqV{0}{Gli URL dell'interfaccia web devono rispettare lo standard REST}{Interno}
 			\ReqV{0}{Ciascun componente Docker viene istanziato tramite un file \dockercompose}{Interno}
+			% I prossimi erano di funzionalità. Da ricontrollare
+			\ReqV{2}{Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario}{Capitolato}
+			\ReqV{2}{Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti}{Capitolato}
+			\ReqV{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
+			\ReqV{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
+			\ReqV{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
 
 			\bottomrule\\
 		\end{paddedtablex}
@@ -399,7 +400,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				& R15.1Q2 \\
 				& \cellcolor{\tablegray} R15.2Q2 \\
 				& R15.3Q2 \\
-				& \cellcolor{\tablegray} R15.3.1Q2 \\ 
+				& \cellcolor{\tablegray} R15.3.1Q2 \\
 				\multirow{-22}{*}{Capitolato} & R15.3.2Q2 \\
 
 				\bottomrule
@@ -414,7 +415,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
-				
+
 				& \cellcolor{\tablegray} R1V2 \\
 				& R1.1V0 \\
 				& \cellcolor{\tablegray} R2V2 \\
@@ -605,7 +606,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{oldtabularx}{0.7\textwidth}{YY}
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
-			
+
 			& \cellcolor{\tablegray} R1F2 \\
 			& R2F2 \\
 			& \cellcolor{\tablegray} R3F2 \\
@@ -849,7 +850,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
 		\end{table}
 
-		
+
 		\stepcounter{tableCounter}
 		\begin{table}[H]
 			\centering
@@ -1372,4 +1373,3 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\end{oldtabularx}}
 		\caption{Riepilogo dei requisiti}
 		\end{table}
-
