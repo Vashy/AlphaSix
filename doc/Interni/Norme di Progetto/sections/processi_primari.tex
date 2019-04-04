@@ -3,13 +3,10 @@
     \subsection{Processo di fornitura}\label{PP:Fornitura}	%istanziare Management Process, Infrastructure Process e Improvement Process
 
         \subsubsection{Scopo}\label{PP:Fornitura:Scopo}
-		La sezione corrente ha lo scopo di riportare le attività principali che impegneremo ad attuare al fine di
-		diventare \gloss{fornitori} per la proponente \II.
+		La sezione corrente ha lo scopo di riportare le attività principali che ci impegniamo ad attuare come \gloss{fornitori} per la proponente \II.
 
 		\subsubsection{Ricerca delle tecnologie}
-		Ognuno di noi approfondirà la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono
-		quelle di interesse comune e di utilità per il progetto. Questo prevede poi l'auto-formazione di quelle scelte in comune accordo
-		per acquisirne una buona padronanza.
+		Ognuno di noi deve approfondire la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono quelli di interesse comune e di utilità per il progetto. Questo prevede in seguito l'auto-formazione di quelle scelte in comune accordo per acquisirne una buona padronanza.
 
 		\subsubsection{Normazione}\label{Normazione}
 		L'attività di normazione prevede l'incremento del documento corrente ogni qual volta lo si ritiene necessario.
@@ -34,14 +31,27 @@
 			\item I diagrammi dei package e il codice necessario per la realizzazione del \gloss{Proof of Concept}
 			\item Le diapositive per l'esposizione
 		\end{itemize}
-    
+
         \subsubsection{Verifica post revisione}
         In seguito alla valutazione di ogni revisione riteniamo necessario conoscere i motivi negativi, ma anche positivi, di tale giudizio. In tal modo possiamo correggere meglio i difetti dei nostri prodotti e migliorarne i punti di forza. \par
         Se sono presenti molteplici dubbi in rapporto alle correzioni riportate o ci sembra utile un confronto, entro la settimana successiva alla pubblicazione del giudizio della revisione, cerchiamo di fissare, se possibile, un colloquio con:
         \begin{itemize}
             \item \textbf{Proponente}: \DZ\ di \II.
             \item \textbf{Committente}: \TV\ e \RC.
-        \end{itemize}
+		\end{itemize}
+
+		% 5.2.3
+		% Contract. This activity consists of the foll owing tasks:
+		% 5.2.3.1 The supplier shall negotiate and enter into a contract with the acquirer organ ization to provide
+		% the software product or service.
+		% 5.2.3.2 The supplier may request modification to the contract as part of the chang e control
+		% mechanism.
+		\subsubsection{Negozazione}
+		Talvolta in corso d'opera è necessario negoziare il contratto precedentemente preso con il cliente.
+		Questo può accadere per più motivi, principalmente in momenti in cui noi fornitori realizziamo di non poter soddisfare qualche requisito nel modo in cui lo vorrebbe il nostro cliente.
+		In seguito ad un inconveniente come questo, riteniamo necessario richiedere un colloquio con il cliente per poter esporre la nostra proposta e definire dei cambiamenti che possano assecondare i bisogno di entrambi.
+
+
 
     \subsection{Processo di sviluppo}\label{PP:Sviluppo}
 
@@ -399,7 +409,7 @@
 				....
 			"""
 		\end{verbatim}
-        
+
 		\paragraph{Formattazione}\label{PP:Sviluppo:Codifica:Formattazione}
 		Viene utilizzato uno spazio per separare simboli e identificatori.
 		\lstinputlisting{py/format.py}
@@ -488,7 +498,7 @@ def cheeseshop(kind, *arguments, **keywords):
 		Evitare l'ereditarietà tra classi che hanno stato. È invece possibile che una classe derivi da un'altra se quest'ultima è a tutti gli
 		effetti un'\gloss{interfaccia}, ossia definisce solo comportamenti astratti (i.e. è composta solo da metodi astratti).\par
 		Viene adottato, per ovviare alla assente ereditarietà, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce %
-		``Composition over inheritance'' in \S\ref{rifnorma}.}. 
+		``Composition over inheritance'' in \S\ref{rifnorma}.}.
 
 
         \paragraph{Commenti}\label{PP:Sviluppo:Codifica:Commenti}
@@ -497,20 +507,20 @@ def cheeseshop(kind, *arguments, **keywords):
 		Per inserire un commento, far seguire al simbolo di commento (\texttt{\#}) uno spazio, e iniziare con una lettera maiuscola (e.g.
 		\texttt{\#\ Cerca il match del parametro x nella lista}). In caso di commento su più righe, solo la prima riga va iniziata con carattere
 		maiuscolo.
-        
+
         \paragraph{Documentazione dei metodi}\label{PP:Sviluppo:Codifica:DocumentazioneDeiMetodi}
         Ogni metodo è necessario che sia il più chiaro possibile. Oltre che a non dover avere una lunghezza non troppo elevata (visibile in \S\ref{PP:Sviluppo:Codifica:LunghezzaMassimaDeiMetodi}), un metodo deve essere anche ben documentato, indicando il tipo dei parametri e quelli delle variabili ritornate.
-        
+
         La documentazione di un metodo deve avere la seguente forma:
 \begin{verbatim}
 def complex(real=0.0, imag=0.0):
     """
     Form a complex number.
-    
+
     Keyword arguments:
     real -- the real part (default 0.0)
     imag -- the imaginary part (default 0.0)
-    
+
     Return arguments:
     complex_zero -- the merge of real and imag
     """
@@ -526,16 +536,16 @@ def complex(real=0.0, imag=0.0):
 
         \subsubsection{Metriche per la codifica}\label{PP:Sviluppo:MetricheCodifica}
         Tutti i paragrafi sulle norme di codifica precedentemente descritte devono corrispondere ad una metrica in modo tale da tenere traccia dei cambiamenti nella qualità dei prodotti contenenti codice in Python.
-        
+
         La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
-        
+
         Le seguenti metriche possiedono le seguenti regole:
         \begin{itemize}
             \item Il titolo del metodo sottintende prima del loro inizio ``numero di/dei'' (e.g. ``File senza intestazione'' è inteso come ``numero di file senza intestazione'')
             \item Il termine ``righe'' intente ``righe di codice''
             \item I termini ``metodi'', ``classi'', ``righe'' o ``variabili'' appartengono tutti al campo semantico dei linguaggi di programmazione
         \end{itemize}
-    
+
         Le metriche inerenti alla codifica sono riferite ad una specifica regola di codifica:
         \begin{itemize}
             \item \textbf{MPS005 File senza intestazione}: \S\ref{PP:Sviluppo:Codifica:Intestazione}.
@@ -551,68 +561,68 @@ def complex(real=0.0, imag=0.0):
             \item \textbf{MPS015 Commenti non normati}: \S\ref{PP:Sviluppo:Codifica:Commenti}.
             \item \textbf{MPS016 Metodi non documentati}: \S\ref{PP:Sviluppo:Codifica:DocumentazioneDeiMetodi}.
         \end{itemize}
-    
+
         \paragraph{MPS005 File senza intestazione}
         Ogni file deve possedere l'intestazione definita per avere subito l'idea di cosa questo contiene.
-        
+
         \textbf{Metrica:} il numero di file che non possiedono l'intestazione definita.
-        
+
         \paragraph{MPS006 Righe non formattate}
         Il codice, per essere più leggibile deve contenere delle adeguate spaziature.
-        
+
         \textbf{Metrica:} numero adeguato di spaziature non eseguite.
-        
+
         \paragraph{MPS007 Nomi di variabili, metodi e classi non normati}
         I nomi delle variabili o i titoli delle classi o dei metodi devono seguire delle specifiche regole per essere il più possibile parlanti.
-        
+
         \textbf{Metrica:} numero di nomi di variabili o di titoli di metodi o classi che non rispettano le norme stabilite.
-        
+
         \paragraph{MPS008 Righe non indentate}
         Per rendere più chiaro l'inizio e la fine di un ciclo, metodo, classe
         o di una condizione è obbligatorio eseguire le dovute tabulazioni.
-        
+
         \textbf{Metrica:} numero di tabulazioni non eseguite.
-        
+
         \paragraph{MPS009 Stringhe non normate}
         In Python le stringhe possono essere create in vari modi, secondo le norme noi ne scegliamo una in particolare.
-        
+
         \textbf{Metrica:} numero di volte in cui le stringhe non vengono create nel modo stabilito.
-        
+
         \paragraph{MPS010 Righe troppo lunghe}
         Perché del codice sia leggibile, le sue istruzioni non possono essere troppo lunghe. Per questo è stata stabilita una soglia massima di caratteri per istruzione.
-        
+
         \textbf{Metrica:} numero di righe di codice che superano i 79 caratteri.
-        
+
         \paragraph{MPS011 Metodi troppo lunghi}
         Un metodo trasversale per impedire che un metodo compia troppe azioni è quello di limitarne la lunghezza.
-        
+
         \textbf{Metrica:} il numero di metodi o funzioni che sono più lunghi di 50 righe di codice.
-        
+
         \paragraph{MPS012 Metodi con troppi parametri}
         Limitare il numero di parametri in un metodo è un altro modo per evitare di caricarlo di troppe mansioni.
-        
+
         \textbf{Metrica:} il numero di metodi con più di 6 parametri.
-        
+
         \paragraph{MPS013 Metodi con troppa complessità ciclomatica}
         Un metodo che possiede molte istruzioni condizionali o cicli è difficile da testare e nel peggiore dei casi lento da eseguire. Perciò è buona norma limitare l'uso di queste istruzioni.
-        
+
         \textbf{Metrica:} numero di metodi che possiedono più di 3 cicli annidati.
-        
+
         \paragraph{MPS014 Classi che implementano classi concrete}
         L'ereditarietà tra classi deve essere evitata perché la presenza di dipendenze tra più componenti ne ostacola la modifica e la verifica.
-        
+
         \textbf{Metrica:} numero di classi che ereditano un'altra classe concreta.
-        
+
         \paragraph{MPS015 Commenti non normati}
         I commenti, per essere significativi devono essere scritti seguendo le norme indicate.
-        
+
         \textbf{Metrica:} numero di commenti che seguono le norme indicate.
-        
+
         \paragraph{MPS016 Metodi non documentati}
         La documentazione dei metodi, come per i file, serve per far saltare subito all'occhio il loro compito. La loro documentazione deve seguire le norme precedentemente indicate.
-        
+
         \textbf{Metrica:} numero di metodi che non possiede una documentazione a norma.
-        
+
         \subsubsection{Strumenti di base}\label{PP:Sviluppo:Strumenti}
 
 	    \paragraph{Ambiente di sviluppo}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo}

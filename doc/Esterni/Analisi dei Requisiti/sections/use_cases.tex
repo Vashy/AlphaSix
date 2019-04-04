@@ -4,9 +4,10 @@ Questa sezione elenca le funzionalità offerte da \progetto\ descritte attravers
 \progetto\ può essere visto come l'insieme di più sottosistemi che verranno in seguito elencati e che sono stati descritti in modo molto generale anche attraverso la Figura \ref{fig:butterfly}.\par
 Questa mostra in maniera un po' più chiarificante la suddivisione e ne facilita l'analisi per la stesura dei casi d'uso.
 Abbiamo quindi come attori non soltanto le applicazioni che mandano messaggi al sistema, ma anche componenti quali i vari Producer e Consumer che interagiscono col Gestore Personale. \par
-All'interno dei casi d'uso il termine ``sistema'' è inteso come l'intera applicazione \progetto, mentre ``piattaforma di messaggistica'' fa sempre riferimento a Telegram o Email, il termine ``persona di fiducia'' indica la persona a cui inoltrare le proprie notifiche nei giorni in cui non si è disponibili e con ``indisponibilità'' e ``irreperibilità'' di una persona si intendono proprio quei giorni in cui una persona non è raggiungibile nè disponibile per proseguire con le proprie mansioni e quindi non vuole ricevere notifiche. \par
-Il termine ``identificativo'' fa riferimento indifferentemente al contatto Email o all'ID Telegram.
-	
+All'interno dei casi d'uso il termine ``sistema'' è inteso come l'intera applicazione \progetto, mentre ``piattaforma di messaggistica'' fa sempre riferimento a Telegram o Email e con ``indisponibilità'' e ``irreperibilità'' di una persona si intendono quei giorni in cui una persona non è raggiungibile nè disponibile per proseguire con le proprie mansioni e quindi non vuole ricevere notifiche. \par
+Il termine ``identificativo'' fa riferimento indifferentemente al contatto Email o all'ID Telegram. In ogni momento ogni utente deve garantire che almeno uno degli identificativo (Email o Telegram) sia configurato. \par
+Inizialmente è già inserito manualmente al database un utente predefinito per poter inserire successivamente gli altri utenti.
+
 	\subsection{Attori}
 	\begin{itemize}
 		\item Redmine
