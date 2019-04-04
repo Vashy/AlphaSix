@@ -170,7 +170,51 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci
 			\item \textbf{QPR009 Effettuare una verifica costante}: la fase di verifica è sempre attiva perché ogni singolo prodotto deve essere testato e controllato ogni volta che viene modificato o prima dell'arrivo di una \gloss{milestone}.
 			\item \textbf{QPR010 Rispetto delle fasi di verifica}: la fase di verifica deve essere eseguita in iterativamente senza cambiare in modo sostanziale nel corso del progetto. Un mutamento della fase di verifica renderebbe incoerenti i risultati delle precedenti iterazioni, impedendo di vedere se è presente un miglioramento della qualità o meno.
 		\end{itemize}
-
+    
+    \subsubsection{PROC005 Progettazione}\label{proc005}
+    Tale processo si attiva successivamente al processo di analisi e si occupa di restituire la progettazione completa dei prodotti che verranno infine eseguiti. \par
+    La progettazione è fondamentale per tracciare il percorso di esecuzione del processo di codifica, onde per cui deve essere eseguito con criterio e cautela.
+    
+        \paragraph*{Funzioni}
+        \begin{itemize}
+            \item \textbf{Progettare i moduli prima di codificarli}: specialmente alle prime esperienze di progetti come quelli che stiamo svolgendo ora, è facile cadere nella tentazione di codificare un \gloss{modulo} prima di averlo progettato. In questo modo però, spesso non si realizza un modulo nell'ottica di renderlo estendibile, mantenibile e disaccoppiato dagli altri moduli. La progettazione serve invece ad evitare questi difetti in un prodotto, per questo è meglio svolgerla prima della codifica.
+            \item \textbf{Applicazione ponderata dei design pattern}: i \gloss{design patter} sono molto utili ai fini della progettazione per ottenere più facilmente le caratteristiche descritte al punto precedente. La loro applicazione però rischia di aggiungere eccessiva complessità al prodotto, per questo un design patter deve essere applicato solo se aiuta nella realizzazione del progetto, non perché un alto numero di design pattern equivale ad una buona progettazione. Dunque il loro utilizzo deve essere ragionato e non eccessivo.
+            \item \textbf{Documentazione e tracciamento della progettazione}: un prodotto, per essere mantenibile, deve essere documentato anche nella sua struttura. Dunque anche la progettazione deve essere documentata e tracciata attraverso i \MUd\ e \MSd.
+        \end{itemize}
+    
+        \paragraph*{Metriche}
+        \begin{itemize}
+            \item MPR010 Moduli codificati prima della progettazione
+            \item MPR011 Numero di design pattern applicati
+        \end{itemize}
+    
+        \paragraph*{Obiettivi}
+        \begin{itemize}
+            \item \textbf{QPR011 Progettare prima di codificare}: ogni modulo dovrebbe essere progettato in relazione agli altri del progetto prima di essere codificato.
+            \item \textbf{QPR012 Usare un numero limitato di design pattern}: usare design pattern solo nel caso in cui questi semplifichino la struttura del progetto.
+        \end{itemize}
+         
+    \subsubsection{PROC006 Codifica}\label{proc006}
+    Successivamente alla progettazione avviene la realizzazione del prodotto finale che verrà rilasciato. Il processo di codifica, insieme a quello di verifica restituisce il prodotto che verrà usato e mantenuto. La codifica di ogni modulo deve trattarsi della "traduzione" in codice della progettazione.
+        
+        \paragraph*{Funzioni}
+        \begin{itemize}
+            \item \textbf{Produrre codice comprensibile}: il prodotto rilasciato in futuro potrà essere usato da altre persone, per questo il codice deve poter essere facilmente comprensibile.
+            \item \textbf{Produrre codice mantenibile}: le componenti del prodotto nel tempo potranno risultare superate, per questo le nuove tecnologie devono poter essere applicate all'interno del prodotto.
+            \item \textbf{Produrre codice estensibile}: il prodotto deve poter concedere la possibilità di ricevere nuove funzionalità in modo semplice e veloce.
+            \item \textbf{Produrre codice corretto}: il prodotto, al momento del rilascio, non deve riscontrare errori anomali e essere eseguito correttamente.
+        \end{itemize}
+        
+        \paragraph*{Metriche}
+        \begin{itemize}
+            \item MPR012 Moduli non testati
+        \end{itemize}
+    
+        \paragraph*{Obiettivi}
+        \begin{itemize}
+            \item \textbf{QPR013 I moduli possiedono suite di test}: i moduli codificati devono possedere una suite di test per essere verificati nelle loro parti e in relazione tra di loro.
+            \item \textbf{QPR014 Rispetto delle norme di codifica}: il codice, per essere meglio comprensibile e corretto deve essere prodotto seguendo delle norme. Il rispetto di tali norme viene verificato in \S\ref{prodottosw}.
+        \end{itemize}
 
 \subsection{Tabella qualità di processo}
 Le tabelle indicano gli obiettivi di qualità discussi nelle precedenti sezioni che ogni processo deve possedere.
@@ -282,4 +326,48 @@ Ogni obiettivo di qualità è indicato con:
 	\caption{Obiettivi di qualità per il PROC004}
 \end{table}
 
+\mydoublerule{\linewidth}{0pt}{2pt}
+
+\begin{table}[H]
+    {\def\arraystretch{1.4}
+        \begin{tabularx}{\textwidth}{YYY}
+            \rowcolor{white}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{PROC005 Progettazione}} \\
+            \rowcolor{gray!30}
+            \textbf{Obiettivo} &
+            \textbf{Metrica} &
+            \textbf{Valore desiderato}\\\toprule
+            
+            \rowcolor{white}
+            QPR011 Progettare prima di codificare & MPR010 Moduli codificati prima della progettazione & 25\%\\
+            \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i moduli devono essere progettati prima della loro codifica. Purtroppo questo è difficilmente possibile nel periodo che antecede la fase di progettazione e che richiede il rilascio  di un \gloss{PoC}, per questo la soglia di tolleranza per moduli codificati prima di essere progettati è al 25\%.} \\
+            
+            \hline \rowcolor{white}
+            QPR012 Usare un numero limitato di design pattern & MPR011 Numero di design pattern applicati & 5-6\\
+            \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: data la dimensione del progetto, 5 o 6 design pattern applicati ci sembrano un numero sufficiente per ottenere un codice di qualità non troppo complesso.}\\
+        \end{tabularx}}
+    \caption{Obiettivi di qualità per il PROC005}
+\end{table}
+
 %\mydoublerule{\linewidth}{0pt}{2pt}
+
+\begin{table}[H]
+    {\def\arraystretch{1.4}
+        \begin{tabularx}{\textwidth}{YYY}
+            \rowcolor{white}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{PROC006 Codifica}} \\
+            \rowcolor{gray!30}
+            \textbf{Obiettivo} &
+            \textbf{Metrica} &
+            \textbf{Valore desiderato}\\\toprule
+            
+            \rowcolor{white}
+            QPR013 I moduli possiedono suite di test & MPR012 Moduli non testati & 0\\
+            \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze orarie per ogni ruolo riportate nel \PdP\ considerano anche un tempo di \gloss{slack} per eventuali ritardi. Queste sono state stabilite all'inizio del progetto, perciò molto probabilmente possono subire variazioni in corso d'opera, l'importante è che queste variazioni non siano eccessive. Considerando che ogni membro del gruppo deve svolgere un numero fisso di ore, è naturale che togliendo ore au un ruolo se ne aggiungano ad un altro o viceversa, per questo una variazione totale di 96 ore (4 giorni), non ci nè sembra eccessiva nè restringente.} \\
+            
+            \hline \rowcolor{white}
+            QPR014 Rispetto delle norme di codifica & - & -\\
+            \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: è compito del \Ver~assicurarsi che la fase di verifica venga eseguita nel modo corretto per disporre sempre di risultati di verifica attendibili ed analizzabili.}\\
+    \end{tabularx}}
+    \caption{Obiettivi di qualità per il PROC006}
+\end{table}

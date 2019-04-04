@@ -92,6 +92,10 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
             \item MPS014 Classi che implementano classi concrete
             \item MPS015 Commenti non normati
             \item MPS016 Metodi non documentati
+            \item MPS017 Code coverage
+            \item MPS018 Test di sistema
+            \item MPS019 Test di integrazione
+            \item MPS020 Test di unità
 		\end{itemize} 
 
 		\paragraph*{Obiettivi} 	
@@ -101,7 +105,12 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 			\item \textbf{QPS002 Assenza di vulnerabilità}: miriamo a rimuovere qualunque tipo di vulnerabilità che possa compromettere la sicurezza del nostro prodotto.
 			\item \textbf{QPS003 Assenza di code smell}: vogliamo che il nostro codice non abbia code smell, al fine di migliorarne la struttura e abbassarne la complessità, in modo da risultare facilmente leggibile.
 			\item \textbf{QPS004 Minima duplicazione del codice}: tendiamo a raggiungere la minor quantità di codice duplicato possibile, poiché grande quantità di codice ripetuto è segno di inefficienza, ma non sempre si riesce ad ottenere del codice completamente non ridondante.
-            \item \textbf{QPS005 Rispetto delle norme di PEP 8}: per produrre codice di qualità è necessario seguire delle norme per uniformare tutti i file e per renderli comprensibili ed efficienti. Tali norme è meglio che provengano da uno standard creato da persone con molta più esperienza di noi, per questo abbiamo scelto di seguire lo standard PEP 8. 
+            \item \textbf{QPS005 Rispetto delle norme di PEP 8}: per produrre codice di qualità è necessario seguire delle norme per uniformare tutti i file e per renderli comprensibili ed efficienti. Tali norme è meglio che provengano da uno standard creato da persone con molta più esperienza di noi, per questo abbiamo scelto di seguire lo standard PEP 8.
+            \item \textbf{QPS005 Rispetto delle norme di PEP 8}: per produrre codice di qualità è necessario seguire delle norme per uniformare tutti i file e per renderli comprensibili ed efficienti. Tali norme è meglio che provengano da uno standard creato da persone con molta più esperienza di noi, per questo abbiamo scelto di seguire lo standard PEP 8.
+            \item \textbf{QPS006 Massima code coverage}: un ulteriore indice per sapere se un modulo è stato testato correttamente, è vedere quanto codice viene effettivamente eseguito durante la durata dei test.
+            \item \textbf{QPS007 Superamento test di sistema}: la qualità di un prodotto di verifica anche in base alla quantità di test di sistema superati.
+            \item \textbf{QPS008 Superamento test di integrazione}: la qualità di un prodotto di verifica anche in base alla quantità di test di integrazione superati.
+            \item \textbf{QPS009 superamento test di unità}: la qualità di un prodotto di verifica anche in base alla quantità di test di unità superati.
 		\end{itemize}
 
 
@@ -185,12 +194,12 @@ Ogni obiettivo di qualità è indicato con:
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: una percentuale tollerabile di linee di codice duplicato non deve eccedere del 20\% rispetto al numero totale.} \\
 
 		\hline \rowcolor{white}
-		QPS005 Assenza di file senza intestazione & MPS005 File senza intestazione & 0 \\
+		QPS005 Rispetto delle norme di PEP 8 & MPS005 File senza intestazione & 0 \\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: per comprendere ad una prima occhiata i compiti di un file, questo deve possedere un'intestazione scritta in una certa forma prestabilita da noi membri di \gruppo. Dunque il numero di file senza la corretta intestazione deve essere nullo al termine del progetto.} \\
 
 		\hline \rowcolor{white}
-		QPS006 Assenza di righe non formattate & MPS006 Righe non formattate & 0 \\
+		QPS005 Rispetto delle norme di PEP 8 & MPS006 Righe non formattate & 0 \\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: nel momento in cui le righe di codice sono formattate secondo le \NdP, questo risulta essere più leggibile, perciò  il numero di righe non formattate deve essere nullo al termine del progetto.} \\
 
@@ -258,7 +267,7 @@ Ogni obiettivo di qualità è indicato con:
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'ereditarietà è da evitare, per impedire dipendenza tra le classi, per questo il numero di classi che implementano una o più classi concrete deve essere nullo al termine del progetto.}\\
-            
+                        
             \hline
         \end{tabularx}}
     \caption{Obiettivi di qualità per il software (2)}
@@ -287,6 +296,30 @@ Ogni obiettivo di qualità è indicato con:
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: come per i file, anche per i metodi è necessaria una documentazione per capire subito il compito di tale metodo, per questo il numero di metodi non documentati deve essere nullo al termine del progetto.}\\
+            
+            \hline\rowcolor{white}
+            QPS006 Massima code coverage & MPS017 Code coverage & 90\% - 100\%
+            \\
+            \rowcolor{gray!15}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'esecuzione dei test deve eseguire tutto il codice testato per fare in modo che questo si analizzato in tutti i suoi cammini di esecuzione.}\\
+            
+            \hline\rowcolor{white}
+            QPS007 Superamento test di sistema & MPS018 Test di sistema & 100\%
+            \\
+            \rowcolor{gray!15}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i test di sistema eseguiti ad ogni fase di verifica devono essere tutti superati.}\\
+            
+            \hline\rowcolor{white}
+            QPS008 Superamento test di integrazione & MPS019 Test di integrazione & 100\%
+            \\
+            \rowcolor{gray!15}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i test di integrazione eseguiti ad ogni fase di verifica devono essere tutti superati.}\\
+            
+            \hline\rowcolor{white}
+            QPS009 superamento test di unità & MPS020 Test di unità & 100\%
+            \\
+            \rowcolor{gray!15}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i test di unità5 eseguiti ad ogni fase di verifica devono essere tutti superati.}\\
             
             \hline
         \end{tabularx}}
