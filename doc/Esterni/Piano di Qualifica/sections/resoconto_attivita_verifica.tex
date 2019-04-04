@@ -376,3 +376,88 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
         \item \textbf{Valutazione}: soddisfacente.
         \item \textbf{Considerazioni}: La quantità di codice duplicato, dopo la prima verifica, è rimasto molto basso. Miriamo ad abbassarlo ulteriormente nel prossimo periodo, ma di non raggiungere ad un totale 0\%.
     \end{itemize}
+
+	\subsection{Secondo periodo (RQ)}
+	Periodo individuato come Revisione di qualifica, la quale dura all'incirca un mese dell'intera durata
+	del progetto. L'obiettivo di questo periodo è quello di misurare il conseguimento di una solida base
+	architetturale.
+	
+	\subsubsection{Riassunto delle attività di verifica}
+	In questo periodo di tempo abbiamo per lo più attuato verifiche sul codice, a differenza del precedente
+	periodo di \RP, dove era stata investita nei documenti. Le attività riguardanti i documenti sono state posticipate nei giorni successivi al colloquio con il \RC\ riguardante la \gloss{Product Baseline}.
+	
+	\subsubsection{Risultati delle verifiche tramite analisi}
+	In questa sezione riportiamo i diagrammi contenenti tutti i valori di nostro interesse per dare un giudizio sul lavoro svolto fino alla fine di questo periodo.
+	Essi contengono i valori ottenuti nel tempo partendo dall'ultima consegna dei documenti (il 2019-03-08) e mostrano con chiarezza l'andamento delle misurazioni che abbiamo effettuato.
+	Per questo motivo, ogni diagramma è intitolato con la metrica utilizzata ed è accompagnato da:
+	\begin{itemize}
+		\item \textbf{Obiettivo}: codice dell'obiettivo di qualità.
+		\item \textbf{Valore desiderato}: il valore desiderato ottenibile da una determinata metrica.
+		\item \textbf{Descrizione}: breve descrizione del diagramma.
+		\item \textbf{Valutazione}: la nostra valutazione classificata secondo \S\ref{classificazionerisultati}.
+		\item \textbf{Considerazioni}: nostro commento in relazione ai risultati ottenuti dalla misurazione.
+	\end{itemize}
+
+	\paragraph{Documenti}
+
+		\subparagraph{MPD001 Indice di Gulpease}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{img/cruscotti/MPD001_V2.png}
+			\label{immaginegulpease}
+			\caption{Diagramma con valori misurati tramite MPD001 Indice di Gulpease}
+		\end{figure}
+		
+		\begin{itemize}
+			\item \textbf{Obiettivo}: QPD001 Leggibilità del testo.
+			\item \textbf{Valore desiderato}: 50 - 60.
+			\item \textbf{Descrizione}: vengono mostrati i cambiamenti dei valori dell'Indice di Gulpease nei documenti e la soglia minima e massima (in grigio e nero) in cui devono rientrare i valori dei documenti. 
+			\item \textbf{Valutazione}: soddisfacente.
+			\item \textbf{Considerazioni}: ogni documento ha degli alti e bassi nel corso della stesura, ma infine tutti rispettano i valori desiderati. Studiando il diagramma si nota che, a differenza del
+			precedente periodo di \RP, i valori ottenuti dalle verifiche non variano di molto durante la
+			stesura, ciò è una conseguenza del fatto che i documenti non hanno subito radicali modifiche
+			
+		\end{itemize}
+		
+		\subparagraph{MPD002 Correttezza ortografica}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\textwidth]{img/cruscotti/MPD002_V2.png}
+			\label{immagineCorrettezzaOrtografica}
+			\caption{Diagramma con valori misurati tramite MPD002 Correttezza ortografica}
+		\end{figure}
+		
+		\begin{itemize}
+			\item \textbf{Obiettivo}: QPD002 Correttezza ortografica.
+			\item \textbf{Valore desiderato}: 0.
+			\item \textbf{Descrizione}: per ogni documento è mostrato l'andamento del numero di errori ortografici e la soglia (in nero) messa a zero.
+			\item \textbf{Valutazione}: soddisfacente.
+			\item \textbf{Considerazioni}: proseguendo con le varie verifiche notiamo un generale
+			miglioramento con una costante diminuzione degli errori grammaticali.
+		\end{itemize}
+	
+	\paragraph{Processi}
+	
+	\subparagraph{MPR001 Frequenza di commit nella repository}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/MPR004_V2.png}
+		\label{immagineFrequenzaCommit}
+		\caption{Diagramma con valori misurati tramite MPR004 Frequenza di commit nella repository}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPR004 Rispetto del numero minimo di commit nella repository.
+		\item \textbf{Valore desiderato}: 25.
+		\item \textbf{Descrizione}: è mostrato il numero di commit effettuati durante una settimana
+		produttiva.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: studiando il diagramma e confrontandolo con quello del periodo
+		precedente in \RP\ notiamo che il numero di commit è stato più lineare e con meno discostamenti,
+		sintomo di un lavoro costante e di un maggior impegno.
+	\end{itemize}
+
+
