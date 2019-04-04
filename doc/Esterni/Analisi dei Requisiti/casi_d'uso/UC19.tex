@@ -8,7 +8,7 @@
 		\item \textbf{Codice}: UC\theuccount-GP.
 		\item \textbf{Titolo}: rimozione preferenze.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l’utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o più. Le preferenze consistono in Topic, date di calendario, piattaforma di messaggistica (Telegram e email) e persona di fiducia che lo può sostituire.
+		\item \textbf{Descrizione}: l’utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o più. Le preferenze consistono in Topic, date di calendario e la piattaforma di messaggistica (Telegram e email).
 		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno	una preferenza selezionata tra quelle proposte da Butterfly.
 		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in meno rispetto	a quella precedente.
 		\item \textbf{Scenario principale}:
@@ -19,7 +19,7 @@
 
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Disiscrizione Topic}
-		
+
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: disiscrizione Topic.
@@ -32,10 +32,10 @@
 				\item L'utente procede alla disiscrizione di uno o più Topic
 			\end{enumerate}
 		\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione di uno o più giorni di irreperibilità nel calendario}
-	
+
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: rimozione di uno o più giorni di irreperibilità nel calendario.
@@ -48,10 +48,10 @@
 			\item L'utente procede alla rimozione di uno o più giorni di irreperibilità
 		\end{enumerate}
 	\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione preferenza piattaforma di messaggistica}
-	
+
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: rimozione preferenza piattaforma di messaggistica.
@@ -64,44 +64,44 @@
 			\item L'utente procede alla rimozione di una o più piattaforme di messaggistica
 		\end{enumerate}
 	\end{itemize}
-	
-	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione persona di fiducia}
-	
-	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-		\item \textbf{Titolo}: aggiunta persona di fiducia.
-		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}:  l’utente rimuove l'utente legato a un identificativo di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
-		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema e vuole rimuovere la sua persona di fiducia.
-		\item \textbf{Postcondizione}: la preferenza viene rimossa correttamente.
-		\item \textbf{Scenario principale}:
-		\begin{enumerate}
-			\item L’utente procede alla rimozione della sua persona di fiducia
-		\end{enumerate}
-		\item \textbf{Estensioni}:
-		\begin{enumerate}
-			\item Errore identificativo persona di fiducia inesistente [UC\theuccount.5-GP].
-		\end{enumerate}
-	\end{itemize}
-	
-	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo persona di fiducia inesistente}
-	
-	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-		\item \textbf{Titolo}: errore identificativo persona di fiducia inesistente.
-		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l’utente viene avvisato che ha inserito un identificativo errato.
-		\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e vuole rimuovere la sua persona di fiducia.
-		\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore.
-		\item \textbf{Scenario principale}:
-		\begin{enumerate}
-			\item L'utente inserisce l'identificativo della sua persona di fiducia
-			\item Il sistema rileva che questo identificativo non esiste
-			\item L'utente visualizza il messaggio di errore
-		\end{enumerate}
-	\end{itemize}
+
+	% \stepcounter{subuccount}
+	% \subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione persona di fiducia}
+
+	% \begin{itemize}
+	% 	\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+	% 	\item \textbf{Titolo}: aggiunta persona di fiducia.
+	% 	\item \textbf{Attori primari}: utente.
+	% 	\item \textbf{Descrizione}:  l’utente rimuove l'utente legato a un identificativo di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
+	% 	\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema e vuole rimuovere la sua persona di fiducia.
+	% 	\item \textbf{Postcondizione}: la preferenza viene rimossa correttamente.
+	% 	\item \textbf{Scenario principale}:
+	% 	\begin{enumerate}
+	% 		\item L’utente procede alla rimozione della sua persona di fiducia
+	% 	\end{enumerate}
+	% 	\item \textbf{Estensioni}:
+	% 	\begin{enumerate}
+	% 		\item Errore identificativo persona di fiducia inesistente [UC\theuccount.5-GP].
+	% 	\end{enumerate}
+	% \end{itemize}
+
+	% \stepcounter{subuccount}
+	% \subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo persona di fiducia inesistente}
+
+	% \begin{itemize}
+	% 	\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+	% 	\item \textbf{Titolo}: errore identificativo persona di fiducia inesistente.
+	% 	\item \textbf{Attori primari}: utente.
+	% 	\item \textbf{Descrizione}: l’utente viene avvisato che ha inserito un identificativo errato.
+	% 	\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e vuole rimuovere la sua persona di fiducia.
+	% 	\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore.
+	% 	\item \textbf{Scenario principale}:
+	% 	\begin{enumerate}
+	% 		\item L'utente inserisce l'identificativo della sua persona di fiducia
+	% 		\item Il sistema rileva che questo identificativo non esiste
+	% 		\item L'utente visualizza il messaggio di errore
+	% 	\end{enumerate}
+	% \end{itemize}
 
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione di keyword per i push di GitLab}
@@ -123,10 +123,10 @@
 			\item Errore keyword da rimuovere non presente [UC\theuccount.7-GP]
 		\end{enumerate}
 	\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore keyword da rimuovere non presente}
-	
+
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: errore keyword da rimuovere non presente.
@@ -137,8 +137,7 @@
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item L'utente inserisce la keyword che vuole rimuovere
-			\item Il sistema rileva che non è presente 
+			\item Il sistema rileva che non è presente
 			\item L'utente visualizza il messaggio di errore
 		\end{enumerate}
 	\end{itemize}
-	

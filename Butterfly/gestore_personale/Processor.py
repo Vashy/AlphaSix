@@ -22,6 +22,7 @@ class Processor():
         )
         # Se non c'è nessuno, vedo la persona di priorità
         # più alta disponibile oggi per quel progetto
+        #TODO
         if utenti_interessati == []:
             utenti_interessati = self.select_users_more_interested(
                 progetto

@@ -9,7 +9,7 @@
 		\item \textbf{Titolo}: aggiunta preferenze.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l’utente, date le varie opzioni per configurare Butterfly, aggiunge una
-		preferenza tra Topic, giorni di calendario, piattaforma di messaggistica (Telegram o Email)	preferita e la persona di fiducia che lo può sostituire.
+		preferenza tra Topic, giorni di calendario e la piattaforma di messaggistica (Telegram o Email) preferita
 		\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in aggiunta rispetto a quella precedente.
 		\item \textbf{Scenario principale}:
@@ -33,10 +33,10 @@
 				\item L'utente procede all'iscrizione di uno o più Topic
 			\end{enumerate}
 		\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Aggiunta dei giorni di indisponibilità nel calendario}
-		
+
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: aggiunta dei giorni di indisponibilità nel calendario.
@@ -49,10 +49,10 @@
 				\item L'utente procede all'inserimento di uno o più giorni di indisponibilità
 			\end{enumerate}
 		\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Aggiunta della piattaforma di messaggistica preferita}
-		
+
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: aggiunta della piattaforma di messaggistica preferita.
@@ -65,48 +65,48 @@
 				\item L'utente procede all'aggiunta di una o più piattaforme di messaggistica
 			\end{enumerate}
 		\end{itemize}
-	
-	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Aggiunta persona di fiducia}
-		
-		\begin{itemize}
-			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-			\item \textbf{Titolo}: aggiunta persona di fiducia.
-			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: l’utente aggiunge l'utente legato a un identificativo di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
-			\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
-			\item \textbf{Postcondizione}: la preferenza viene aggiunta correttamente.
-			\item \textbf{Scenario principale}:
-			\begin{enumerate}
-				\item L'utente procede all'aggiunta della sua persona di fiducia
-			\end{enumerate}
-			\item \textbf{Estensioni}:
-			\begin{enumerate}
-				\item Errore identificativo persona di fiducia inesistente [UC\theuccount.5-GP]
-			\end{enumerate}
-		\end{itemize}
-	
-	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo persona di fiducia inesistente}
-		
-		\begin{itemize}
-			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-			\item \textbf{Titolo}: errore identificativo persona di fiducia inesistente.
-			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: l’utente cerca di aggiungere una persona di fiducia ma viene avvisato che ha inserito un identificativo errato.
-			\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
-			\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore di preferenza.
-			\item \textbf{Scenario principale}:
-			\begin{enumerate}
-				\item L'utente procede all'aggiunta della sua persona di fiducia
-				\item Il sistema rileva che la persona di fiducia non esiste
-				\item L'utente visualizza l'errore
-			\end{enumerate}
-		\end{itemize}
-	
+
+	% \stepcounter{subuccount}
+	% \subsubsection{UC\theuccount.\thesubuccount-GP - Aggiunta persona di fiducia}
+
+	% 	\begin{itemize}
+	% 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+	% 		\item \textbf{Titolo}: aggiunta persona di fiducia.
+	% 		\item \textbf{Attori primari}: utente.
+	% 		\item \textbf{Descrizione}: l’utente aggiunge l'utente legato a un identificativo di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
+	% 		\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
+	% 		\item \textbf{Postcondizione}: la preferenza viene aggiunta correttamente.
+	% 		\item \textbf{Scenario principale}:
+	% 		\begin{enumerate}
+	% 			\item L'utente procede all'aggiunta della sua persona di fiducia
+	% 		\end{enumerate}
+	% 		\item \textbf{Estensioni}:
+	% 		\begin{enumerate}
+	% 			\item Errore identificativo persona di fiducia inesistente [UC\theuccount.5-GP]
+	% 		\end{enumerate}
+	% 	\end{itemize}
+
+	% \stepcounter{subuccount}
+	% \subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo persona di fiducia inesistente}
+
+	% 	\begin{itemize}
+	% 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+	% 		\item \textbf{Titolo}: errore identificativo persona di fiducia inesistente.
+	% 		\item \textbf{Attori primari}: utente.
+	% 		\item \textbf{Descrizione}: l’utente cerca di aggiungere una persona di fiducia ma viene avvisato che ha inserito un identificativo errato.
+	% 		\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
+	% 		\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore di preferenza.
+	% 		\item \textbf{Scenario principale}:
+	% 		\begin{enumerate}
+	% 			\item L'utente procede all'aggiunta della sua persona di fiducia
+	% 			\item Il sistema rileva che la persona di fiducia non esiste
+	% 			\item L'utente visualizza l'errore
+	% 		\end{enumerate}
+	% 	\end{itemize}
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Aggiunta keyword per i push di GitLab}
-		
+
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: aggiunta keyword per i push di GitLab.
@@ -123,10 +123,10 @@
 				\item Errore keyword già esistente [UC\theuccount.7-GP]
 			\end{enumerate}
 		\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore keyword già esistente}
-	
+
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: errore keyword già esistente.

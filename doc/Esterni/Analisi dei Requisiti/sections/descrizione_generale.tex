@@ -1,10 +1,10 @@
 \newpage
 \section{Descrizione del prodotto}\label{DescrizioneGenerale}
 
-%	\subsection{Intento del prodotto}    
+%	\subsection{Intento del prodotto}
 %    L'obiettivo del prodotto è di fornire uno strumento standard per la gestione delle notifiche generate da software utilizzati nella \gloss{CI/CD}.
 %    Per ottenere questo verrà usato un \gloss{pattern Publisher / Subscriber}, di modo da contribuire alla scalabilità del \gloss{sistema} e ottenere una miglior suddivisione logica dei \gloss{componenti}.
-	
+
 	\subsection{Funzionalità}
 
     Le funzionalità offerte dal prodotto sono:
@@ -16,13 +16,13 @@
 	\end{itemize}
 
 	\subsection{Caratteristiche degli utenti}
-    
+
     Gli utenti che useranno il prodotto saranno team di sviluppatori software che lavorano abitualmente usando gli strumenti per realizzare \gloss{CI/CD}.
     Tramite Butterfly, essi potranno configurare la \gloss{pipeline} per lo sviluppo del proprio progetto, in modo da ottenere le notifiche in tempo reale direttamente sulle piattaforme di messaggistica selezionate.
     Nel caso in cui la persona non sia reperibile, verrà effettuata una segnalazione in un apposito calendario sul quale il sistema farà riferimento per l'inoltro alla seconda persona più appropriata a riceverla all'interno del contesto lavorativo.
 
 %	\subsection{Vincoli del progetto}
-%	
+%
 %		\subsubsection{Requisiti minimi}
 %            \begin{itemize}
 %                \item Ogni componente del software rispetterà, per quanto applicabile, i fattori esposti nel documento \gloss{The Twelve-Factor App}.
@@ -30,7 +30,7 @@
 %                \item Vengono esposti \gloss{API Rest} ed eventuali altri protocolli dei componenti per l'uso dell'applicativo.
 %                \item vengono rilasciati tutti i test necessari a garantire la qualità del software sviluppato.
 %            \end{itemize}
-%	
+%
 %		\subsubsection{Requisiti opzionali}
 %		    \begin{itemize}
 %                \item Viene usato il linguaggio Java, Python oppure Node.js per lo sviluppo dei componenti applicativi.
@@ -61,7 +61,7 @@
 	Questa scomposizione ci ha permesso di analizzare più approfonditamente i vari sottosistemi del prodotto in rapporto alle tecnologie esterne a Butterfly (GitLab, Redmine, Telegram ed \mail), ai microservizi interni come i Producer / Consumer associati e il Broker.
 
 	\subsubsection{Producer}\label{TecnologieProducer}
-	
+
 		Per ciascuno degli strumenti che invia messaggi verso il sistema è necessario creare una componente applicativa di tipo Producer che li riceva e li elabori inoltrandoli successivamente verso il Broker.
 		Le tecnologie dalle quali vengono ricevuti i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dalla \gloss{proponente}.
 		\begin{enumerate}
@@ -98,7 +98,7 @@
 
 %		\subsubsection{SonarQube}
 %		Come GitLab, anche SonarQube prevede l'utilizzo di Webhooks\footnote{\url{https://docs.sonarqube.org/latest/project-administration/Webhooks/}} che dopo ciascuna build comunica il risultato e le informazioni relative ad essa ad un microservizio capace di aggiornare i dati presenti nel gestore personale e, anche in questo caso, inoltrare le notifiche ai customer interessati.
-		
+
 	\subsubsection{Apache Kafka}\label{TecnologieBroker}
 	Il ruolo di Apache Kafka è quello di restare in ascolto dei messaggi provenienti dai
 	Producer, e smistarli in determinati Topic, in base al contenuto degli stessi.
@@ -136,11 +136,11 @@
 		% Le tecnologie alle quali vengono inoltrati i messaggi sono elencate di seguito in ordine di priorità in base a quanto richiesto dal committente.
 
 		%https://realpython.com/python-send-email/
-		
+
 %		\subsubsection{Slack}
 %		È possibile utilizzare le API di Slack per poter mandare push notifications ai canali o alle persone interessate specificando il nome del canale (o lo username della persona), testo del messaggio, e lo username che verrà mostrato per il mittente.
 %		%https://www.confluent.io/blog/real-time-syslog-processing-with-apache-kafka-and-ksql-part-2-event-driven-alerting-with-slack/
-	
+
 	\subsubsection{Gestore Personale}\label{TecnologieGestorePersonale}
 	Il Gestore Personale è quel \gloss{componente} che permette agli utenti di impostare le
 	proprie preferenze e i dati personali tramite interfaccia web, installata in un server
@@ -153,7 +153,6 @@
 		\item Iscrizione / disiscrizione a determinati Topic
 		\item Aggiunta / rimozione di determinate keyword per i commit di GitLab
 		\item Selezione dei giorni di calendario in cui l'utente segnala la sua assenza
-		\item Aggiunta / rimozione persona di fiducia
 		\item Aggiunta / rimozione / modifica utenti
 	\end{itemize}
 %	Nel caso arrivasse una notifica da inoltrare a un utente indisponibile,
