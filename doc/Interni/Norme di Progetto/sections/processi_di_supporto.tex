@@ -90,7 +90,7 @@
 			\paragraph{Norme tipografiche}\label{PS:Documentazione:Design:NormeT}
 			Le norme tipografiche qui di seguito elencate sono state decise in modo che ognuno di noi concorra a mantenere una forma coerente e univoca
 			per tutti i documenti redatti.
-			
+
 			\subparagraph{Stile redazionale}
 			Lo stile redazionale dei vari documenti sarà prevalentemente personale, in prima persona, per rendere chiaro il soggetto delle frasi.
 
@@ -160,7 +160,7 @@
 			Le \NdP\ e lo \SdF\ sono documenti interni, consultabili solo dal team e dal committente, per motivi didattici.
 
 			\subparagraph{Documenti esterni}
-			Sono considerati esterni, invece, il \PdP, il \PdQ, il \Gl\ e l'\AdR\ che, al contrario dei precedenti, vengono consegnati al proponente.
+			Sono considerati esterni, invece, il \PdPd, il \PdQd, il \Gld\ e l'\AdRd\ che, al contrario dei precedenti, vengono consegnati al proponente.
 
 			% Questi documenti sono ufficiali e approvati direttamente dal \Res\ e comprendono, per esempio: \PdP, \PdQ\ e \AdR. Si chiamano esterni perché accessibili al committente.
 
@@ -171,7 +171,7 @@
 				\item \textbf{Informazioni incontro}: lista delle informazioni principali riguardanti la riunione quali luogo, data, orario, ordine del giorno, ecc\dots
 				\item \textbf{Argomenti}: lista dei principali argomenti trattati, con breve descrizione.
 				\item \textbf{Tracciamento delle decisioni}: contiene il resoconto delle decisioni prese nella riunione, tracciate con un codice nel formato yyyy-mm-dd-n, dove yyyy-mm-dd è la data in cui si è tenuta la riunione e n è il numero della decisione presa.
-				
+
 			\end{itemize}
 
 
@@ -223,7 +223,7 @@
 				\item In fase di verifica, lo strumento GNU Aspell, uno strumento open source per il controllo ortografico che permette tramite interfaccia interattiva di cambiare parole non riconosciute dal dizionario e scegliere tra più suggerimenti. Maggiori informazioni alla fonte ufficiale, reperibile in \S\ref{rifinfo}.
 				La correttezza ortografica possiede una metrica presente in \S\ref{AnalisiStatica:CorrettezzaOrtografica}.
 			\end{itemize}
-        
+
             \subparagraph{Glossarizzazione dei ternimi}
             Come spiegato in \S\ref{GlossarioDocumentiEsterni}, i termini con un particolare significato vengono riportati e definiti all'interno di \Gld. Per automatizzare questo processo è stato creato uno script che valuta le voci all'interno di \Gld\ e ed inserisce i riferimenti a queste voci alla prima occorrenza di ogni parola in tutti i documenti prodotti.
 
@@ -250,10 +250,10 @@
 
 			% \paragraph{Continuous Integration}\label{ContinuousIntegration} %TODO: rivedere
 			% Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
-			% Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota. 
+			% Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota.
 			% %(non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
 			% Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
-			
+
 			% \subparagraph{Jenkins}\label{Jenkins}
 			% Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
 			% Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
@@ -264,7 +264,7 @@
 			% 	\item \textbf{Integration Test}: test di integrazione tramite PyUnit.
 			% 	\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
 			% \end{itemize}
-			
+
 			% Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
 
 			\paragraph{Continuous Integration}\label{ContinuousIntegration}
@@ -298,12 +298,12 @@
 				con la convenzione \mbox{\texttt{CamelCase vX.Y.Z.pdf}}, dove CamelCase sarà il nome del documento generico mentre \texttt{vX.Y.Z}
 				sarà la versione che identifica univocamente il documento come descritto in \S\ref{Versionamento}
 			\end{itemize}
-		
+
 
 	\subsection{Codice sorgente}\label{PS:Codice}
-	
+
 	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
-	    
+
 		\paragraph{Continuous Integration}\label{CI}
 		Anche per quanto riguarda il processo di codifica verrà adottato il principio di Continuous Integration.
 
@@ -333,8 +333,23 @@
 		\end{itemize}
 		Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
 
-		% \paragraph{Continous Delivery}\label{CD} 
-		%TODO: Magari più avanti?
+		\subparagraph{DockerHub}\label{DockerHub}
+		Per evitare di effettuare una build manuale dell'immagine di Docker contenente la specifica componente del software, abbiamo deciso di utilizzare DockerHub collegato alla nostra repository in GitHub in modo tale che ad ogni modifica effettuata e di conseguenza ad ogni push sui branch master e develop scatta una build automatica. Questa prevede quindi la creazione di dieci immagini salvate su cinque repository su DockerHub dell'account di tipo organizzazione denominato `alphasix' come nome\_account/nome\_repository:tag.
+		Le immagini sono quindi:
+		\begin{itemize}
+			\item alphasix/producer-gitlab:master
+			\item alphasix/producer-gitlab:develop
+			\item alphasix/producer-redmine:master
+			\item alphasix/producer-redmine:develop
+			\item alphasix/gestore-personale:master
+			\item alphasix/gestore-personale:develop
+			\item alphasix/consumer-telegram:master
+			\item alphasix/consumer-telegram:develop
+			\item alphasix/consumer-email:master
+			\item alphasix/consumer-email:develop
+		\end{itemize}
+		Abbiamo deciso che il tag rappresenta il branch dal quale è stato effettuata la build.
+		Le immagini con tag `master' saranno più stabili rispetto a quelle col tag `develop' in quanto ancora in fase di sviluppo, possibilmente con funzionalità ancora incomplete.
 
 	\subsection{Configurazione}\label{Configurazione}
 
@@ -364,7 +379,7 @@
 	Abbiamo creato due repository principali fino a questo momento:
 	\begin{itemize}
 		\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
-		\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi. 
+		\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi.
 	\end{itemize}
 
 	\subsubsection{Norme di branching}
@@ -410,11 +425,11 @@
 				\begin{quote}
 					\texttt{\$\ git stash}\par
 					\texttt{\$\ git pull}\par
-					\texttt{\$\ git stash pop}\par				
+					\texttt{\$\ git stash pop}\par
 				\end{quote}
 				A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
 				con le proprie modifiche applicate.
-		\end{itemize} 
+		\end{itemize}
 		\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
 			per aggiungere più file contemporaneamente):
 			\begin{quote}
@@ -444,11 +459,11 @@
 		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole
 		raggiungere.
 
-		Come indicato dal \gloss{Ciclo di Deming} nel \Doc{\PdQv}, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
+		Come indicato dal \gloss{Ciclo di Deming} nel \PdQd, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
 		servirà come ``base'' per alzare il livello di qualità di quel processo o prodotto.
 
-		I risultati ottenuti nella fase di verifica sono riportati nel \PdQ: in questo modo, confrontandoli con gli esiti attesi,
-		è possibile valutare un miglioramento per i vari processi e prodotti sempre nel \PdQ.
+		I risultati ottenuti nella fase di verifica sono riportati nel \PdQd: in questo modo, confrontandoli con gli esiti attesi,
+		è possibile valutare un miglioramento per i vari processi e prodotti.
 
 		\subsubsection{Walkthrough e Inspection}
 		Due modi di effettuare la verifica sono attraverso \gloss{Walkthrough} e Inspection.
@@ -471,27 +486,27 @@
 			\paragraph{Inspection}
 			Metodo di verifica dove si esegue una lettura mirata dei prodotti, frutto di un'analisi dei risultati dei precedenti test.
 			Questo metodo dunque, a differenza di Walkthrough, prevede l'esecuzione con dei presupposti.
-	
+
 			Le fasi di Inspection sono:
-	
+
 			\begin{enumerate}
 				\item \textbf{Pianificazione}: viene sempre deciso in gruppo come effettuare la pianificazione.
 				\item \textbf{Definizione di una lista di controllo}: dato che le parti da verificare sono specificate, queste possono essere
 				riportate in una lista in modo da velocizzare il processo di verifica.
 				\item \textbf{Correzione dei difetti}: attuazione dei punti della lista di controllo.
 			\end{enumerate}
-	
+
 			Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di
 			prodotti e processi da verificare viene effettuato Walkthrough; nel momento in cui il metodo di verifica è ben consolidato da tutti noi,
-			si passa ad effettuare verifica secondo Inspection.	
+			si passa ad effettuare verifica secondo Inspection.
 
 		\subsubsection{Metodologie di sviluppo del software}
 
 		\paragraph{The Twelve-Factor App}
 		\gloss{The Twelve-Factor App} è una serie di dodici regole destinate a chi vuole sviluppare \gloss{software-as-a-service} (SaaS). Sono utili per verificare in corso d'opera la qualità del progetto, valutando quali punti riesce a rispettare l'applicazione.
-		
+
 		I suoi principi sono:
-		
+
 		\begin{enumerate}
 			\item \textbf{\gloss{Codebase}}: deve essere presente una sola codebase versionata da un \gloss{Version Control System} (VCS) come \gloss{GitLAb} da cui
 			possono derivare diversi \gloss{deploy}.
@@ -507,7 +522,7 @@
 			\item \textbf{Log}: l'applicazione dovrebbe poter offrire un sistema di login.
 			\item \textbf{Processi di Amministrazione}: porre attenzione a quei processi che devono essere eseguiti una tantum dagli sviluppatori ad esempio. Questi processi devono poter essere accessibili solo ad alcuni e indicati in una specifica release.
 		\end{enumerate}
-		
+
 		In accordo col cliente \II, non tutti i punti di Twelve-Factor App possono essere rispettati. In particolare non è richiesto il soddisfacimento del punto 12, mentre il punto 11 è lasciato al fornitore come opzionale.
 
 		\paragraph{Test Driven Development}\label{tdd}
@@ -518,7 +533,7 @@
 				il nome del metodo o la sua implementazione. Questo porterà ad un fallimento assicurato poiché il metodo non esiste o non fa nulla.
 			\item \textbf{Fase verde}: il \Progr\ scrive il codice della funzionalità minimo indispensabile a far superare il test.
 			\item \textbf{Fase grigia (Refactoring)}: il \Progr\ riscrive il codice per far sì che il codice rispetti
-				gli obiettivi di qualità definiti nel \PdQd\ e al contempo superi il test. 
+				gli obiettivi di qualità definiti nel \PdQd\ e al contempo superi il test.
 		\end{itemize}
 
 		\begin{figure}[H]
@@ -526,12 +541,12 @@
 			\includegraphics[width=\textwidth]{img/tdd.png}\\
 			\caption[Test Driven Development]{Test Driven Development\protect\footnotemark}
 		\end{figure}
-	
+
 		\footnotetext{Riferirsi alla voce ``Fonte Figura 3'' in \S\ref{rifinfo}}
 
 		\subsubsection{Analisi statica}\label{AnalisiStatica}
 		L'analisi statica attua una verifica non dinamica, ovvero senza eseguire codice.
-		Può essere effettuata sui documenti o sul codice in maniera statica. 
+		Può essere effettuata sui documenti o sul codice in maniera statica.
 
 
 			\paragraph{Analisi dei documenti}\label{ProcessiSupportoMetriche}
@@ -542,7 +557,7 @@
 				\item MPD001
 				\item MPD002
 			\end{itemize}
-			
+
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 
 			\subparagraph{MPD001 Indice di Gulpease}\label{AnalisiStatica:Gulpease}
@@ -550,7 +565,7 @@
 			L'indice si calcola:
 
 			\[89+\dfrac{300\times n_{\text{frasi}}-10\times n_{\text{lettere}}}{n_{\text{parole}}}\]
-			
+
 			\textbf{Metrica}: il risultato della formula è interpretato nel seguente modo
 
 			\begin{itemize}
@@ -568,7 +583,7 @@
 			\textbf{Metrica}: il numero di errori ortografici presenti nel documento.
 
 
-			\paragraph{Analisi dei processi}
+			\paragraph{Analisi dei processi}\label{analisipr}
 			Per analizzare i processi usiamo gli standard sopra elencati. Ad ogni fase del processo, verranno valutati gli attributi richiesti secondo
 			l'ISO 15504, in che misura questi sono stati rispettati e in che fase del Ciclo di Deming il processo si trova.
 			Per l'analisi dei processi vengono utilizzate:
@@ -577,22 +592,24 @@
                 \item MPR003 Aderenza agli standard
 				\item MPR004 Frequenza commit nella repository
 				\item MPR009 Frequenza controllo prodotti
-				% \item \textbf{MPR010 Norme di progetto non seguite}
+				\item MPR010 Moduli codificati prima della progettazione
+                \item MPR011 Numero di design pattern applicati
+                \item MPR012 Moduli non testati
 			\end{itemize}
 
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
-            
-            \paragraph{MPR003 Aderenza agli standard}
-            Per misurare e verificare i processi sono stati scelti alcuni specifici standard di qualità descritti nel \PdQ\ che possono offrire una valutazione quantitativa.
+
+            \subparagraph{MPR003 Aderenza agli standard}
+            Per misurare e verificare i processi sono stati scelti alcuni specifici standard di qualità descritti nel \PdQd\ che possono offrire una valutazione quantitativa.
             Gli standard scelti sono:
-            
+
             \begin{itemize}
                 \item \textbf{ISO/IEC 15504}: ogni processo attivato verrà classificato e valutato secondo gli attributi assegnati ai vari livelli di qualità. Per ogni attributo verrà infine indicata una percentuale di quanto il processo rispetti l'attributo, potendo infine capire nel complesso quanto quel processo riesca a superare un dato livello di maturità.
                 \item \textbf{Ciclo di Deming}: nella fase migliorativa del processo sarà data particolare attenzione nel non iniziare una fase del Ciclo di Deming senza aver finito completamente le fasi precedenti.
             \end{itemize}
-            
+
 	        \textbf{Metrica}: il livello di maturità è descritto in appendice A.1 del Piano di Qualifica.
-		
+
 			\subparagraph{MPR004 Frequenza commit nella repository}
 			Per mantenere aggiornate le versioni dei prodotti è necessario che ognuno di noi effettui un commit ad ogni sua modifica significativa.
 			Così facendo, in caso di errori, è possibile tornare ad una versione stabile del progetto.
@@ -603,13 +620,34 @@
 
 			\subparagraph{MPR009 Frequenza controllo prodotti}
 			I documenti e i prodotti software hanno bisogno di una verifica frequente, commisurata in base al numero di modifiche che vengono apportate.
-		
+
 			Chi esegue la modifica deve controllare ciò che ha fatto prima di poterla ufficializzare, mentre la verifica fatta dal \Ver\ deve essere
 			fatta solo nel momento in cui è stato raggiunto un numero significativo di modifiche, per evitare di spendere troppe risorse in questa fase.
-		
+
 			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
-		
+
 			\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
+            
+            \subparagraph{MPR010 Moduli codificati prima della progettazione}
+            La progettazione di un \gloss{modulo} è fondamentale per rendere il prodotto estensibile, mantenibile e comprensibile. Per questo è buona prassi avviare il processo di progettazione prima di quello di codifica.
+            
+            La progettazione di ogni modulo all'interno dell'intero prodotto software deve essere fatta prima della sua codifica, la quale deve rispecchiare la progettazione.
+            
+            \textbf{Metrica}: percentuale di moduli non progettati prima della loro codifica. Per fare ciò, nelle varie fasi di verifica, si contano i moduli codificati prima di essere progettati. Verso il termine del periodo di revisione si calcola la loro percentuale in base al numero totale di moduli prodotti. 
+            
+            \subparagraph{MPR011 Numero di design pattern applicati}
+            Dato che i design patter possono essere considerati una "buona pratica" per produrre del codice in determinati contesti, la loro presenza può aiutare ad innalzare la qualità del prodotto. Il loro uno massiccio però può portare ad un'eccessiva complessità e talvolta anche ad un mal funzionamento del prodotto se applicati erroneamente.
+            
+            per questo i design pattern devono essere applicati in maniera ponderata.
+            
+            \textbf{Metrica}: numero di volte che si applica uno o più tipi di design pattern. 
+            
+            \subparagraph{MPR012 Moduli non testati}
+            I \gloss{moduli} devo essere sempre testati per assicurasi la loro correttezza, per fare ciò devono essere testa le \gloss{unità} che li compongono attraverso i test di unità in \S\ref{testunita}.
+            
+            Ogni modulo deve dunque essere testato.
+            
+            \textbf{Metrica}: moduli codificati e privi di test di unità.
 
 
 			\paragraph{Analisi del software} \label{analisisw}
@@ -623,7 +661,7 @@
 				\item MPS003 Presenza di code smell
 				\item MPS004 Duplicazione del codice
 			\end{itemize}
-		
+
 			La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
 
 			\subparagraph{Controllo del Python coding style}\label{pycodestyle}
@@ -639,7 +677,7 @@
 			È una piattaforma open-source per realizzare controlli sulla qualità del codice tramite analisi statica.
 			Lo utiliazziamo perché è possibile creare dei progetti che scansionano il nostro progetto locale e ci mostrano in una dashboard le attività più significative che lo strumento rileva.
 			Si possono rilevare bug, \gloss{code smell}, duplicazione e vulnerabilità del codice.
-			Viene inoltre assegnato una valore ``passato'' o ``non passato'' denominato Quality gate, che ci consente di valutare immediatamente la qualità generale del nostro codice. 
+			Viene inoltre assegnato una valore ``passato'' o ``non passato'' denominato Quality gate, che ci consente di valutare immediatamente la qualità generale del nostro codice.
 			In particolare, SonarQube rispetto ad altri strumenti simili, ci è molto utile perchè supporta parecchi linguaggi di programmazione, tra cui quello che noi più utilizziamo: Python.
 
 			\begin{figure}[H]
@@ -670,19 +708,23 @@
 			Se lo è, vuol dire che può essere migliorato organizzandolo in modo differente.
 			Per questo SonarQube ci dà la possibilità di visualizzare esattamente il numero percentuale di codice duplicato all'interno di un file, sul suo totale di righe. \\
 			\textbf{Metrica}: percentuale di linee di codice duplicate presenti nel codice al momento della scansione.
-		
-		
+            
+            \subparagraph{MPS017 Code coverage} \label{codecoverage}
+            Per sapere se un modulo è stato correttamente testato, si verifica in percentuale quante righe di codice vengono eseguite per superare una suite di test. Più è alta questa percentuale, meglio il modulo è stato testato.
+            
+            \textbf{Metrica}: percentuale di code coverage.
+            		
 		\subsubsection{Analisi dinamica}\label{AnalisiDinamica}
 		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
 		Vengono presi in esame i prodotti software e i processi.
-		
+
 		È oppurtono ricordare che i test devono essere:
 		\begin{itemize}
 			\item Ripetibili
-			\item Automatizzati tramite strumenti 
+			\item Automatizzati tramite strumenti
 			\item Oggettivi e non personalizzati
 		\end{itemize}
-		
+
 		Quindi, perché l'analisi dinamica avvenga in modo corretto, è necessario tenere conto di alcuni importanti elementi quali:
 		\begin{itemize}
 			\item \textbf{Ambiente di sviluppo}: il sistema hardware e software adottato durante il test.
@@ -691,19 +733,26 @@
 			\item \textbf{Output}: dati attesi.
 			\item \textbf{Notifica risultato}: notifiche riguardanti il risultato ottenuto dal test (opzionale).
 		\end{itemize}
-		
-			
+
+        Per effettuare analisi dinamica è necessario sviluppare dei dei test che verifichino l'integrità dei prodotti. Questi sono classificati attraverso un identificativo univoco descritto in \S\ref{ClassificazioneTest} e suddivisi per tipo in base alla tipologia dell'oggetto di test.
+
+
 			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST:
 			%fino ad RP si fanno test d'integrazione, non unità
-			
-			\paragraph{Test di sistema} \label{testsistema} 
+
+			\paragraph{Test di sistema} \label{testsistema}
 			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
 			Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
-			
+            
+            \subparagraph{MPS018 Test di sistema}\label{testsistema:met}
+            La qualità di un prodotto si verifica attraverso la percentuale di test di sistema superati.
+            
+            \textbf{Metrica}: percentuale di test di sistema superati.
+
 			\paragraph{Test d'integrazione} \label{testintegrazione}
 			I test d'integrazione verificano il residuo mettendo insieme due unità. Queste unità in particolare sono considerati indipendenti, ma realizzate al fine di essere composte per collaborare.
 			Il test di integrazione ha tanti test quanti ne servono per accertarsi che tutti i dati scambiati attraverso ciascuna interfaccia siano conformi alla loro specifica e accertarsi che tutti i flussi di controllo previsti siano stati effettivamente provati.
-			La strategia che i test d'integrazione adottano è una strategia di tipo incrementale: si basa nella prosecuzione per passi, aggiungendo parti fino al completamento. 
+			La strategia che i test d'integrazione adottano è una strategia di tipo incrementale: si basa nella prosecuzione per passi, aggiungendo parti fino al completamento.
 			Più test eseguiamo, più è piccola la parte che stiamo testando. \\
 			In una buona architettura, l'integrazione può anche essere parallelizzata.
 			In particolare, la logica dell'integrazione funzionale segue i passi:
@@ -720,25 +769,33 @@
 				\item Riuso di componenti dal comportamento oscuro o inadatto
 				\item Integrazione con altre applicazioni non ben conosciute
 			\end{itemize}
-			
-			
-			\paragraph{Test di unità} \label{testunita} 
+        
+            \subparagraph{MPS019 Test di integrazione}\label{testintegrazione:met}
+            La qualità di un prodotto si verifica attraverso la percentuale di test di integrazione superati.
+            
+            \textbf{Metrica}: percentuale di test di integrazione superati.
+
+			\paragraph{Test di unità} \label{testunita}
 			I test di unità sono l'attività di test di singole unità software.
 			Per unità si intende il minimo componente di un programma dotato di funzionamento autonomo, ma non è semplice individuare l'unità.
-			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}. 
-			
-			
+			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}.
+            
+            \subparagraph{MPS020 Test di unità}\label{testunita:met}
+            La qualità di un prodotto si verifica attraverso la percentuale di test di unità superati.
+            
+            \textbf{Metrica}: percentuale di test di unità superati.
+
 			\paragraph{Test di regressione} \label{testregressione}
 			I test di regressione sono una ripetizione selettiva dei test di unità, integrazione e sistema.
 			La utilizziamo per assicurarci che una modifica fatta su un unità per correggere un problema, non faccia danno ad altre causando regressione.
-			Ciò avviene quando il sistema è altamente accoppiato. 
+			Ciò avviene quando il sistema è altamente accoppiato.
 			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulamento}.
-			
+
 			\paragraph{Test di accettazione} \label{testaccettazione}
 			Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
 			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
-		
-		
+
+
 		\subsubsection{Anomalie riscontrate}\label{Anomalie}
 		Durante i processi di verifica è possibile riscontrare a volte alcune anomalie.
 		Tali anomalie posso essere dovute:
@@ -747,5 +804,3 @@
 			\item Al fallimento di un test
 		\end{itemize}
 		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
-		
-		

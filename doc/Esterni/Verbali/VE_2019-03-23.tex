@@ -29,7 +29,7 @@
     % si usa la numerazione romana per gli indici e la tabella delle modifiche
     \pagenumbering{Roman}
     \input{template/diario}
-    
+
     \section{Informazioni incontro}
     	\begin{itemize}
     		\item \textbf{Luogo}: l'incontro è stato effettuato presso il Coffee Box in Via Altinate a Padova.
@@ -39,24 +39,23 @@
     		\item \textbf{Partecipanti di AlphaSix}: team al completo.
     		\item \textbf{Partecipanti esterni}: \DZ~di \II.
     		\item \textbf{Ordine del giorno}: presentazione del lavoro svolto, domande riguardanti i design pattern, domande riguardanti Kubernetes e Redmine.
-    		
+
     	\end{itemize}
-    
+
     \section{Argomenti}
-        
+
         In vista della Product Baseline abbiamo ricapitolato a \DZ~il lavoro svolto finora, chiedendo informazioni su come configurare Rancher e Kubernetes per istanziare le varie componenti del sistema Butterfly.
         In seguito abbiamo chiesto un parere riguardo a quali design pattern oltre a quelli da noi trovati potessimo adottare, in particolar modo riferendoci al gestore personale.
-        
-        
+
+
         Nello specifico:
         \begin{itemize}
-            \item \DZ~ci ha illustrato con un piccolo esempio guidato come configurare Rancher per l'uso di Redmine sul server di \II
-            \item Successivamente abbiamo chiesto un parere sui design pattern adottati per producer e consumer. \DZ~ha confermato che siamo sulla strada giusta
-            \item \DZ~ha segnalato che serve un sistema di priorità per ogni progetto al quale un utente si iscrive, al posto della persona preferita in caso di indisponibilità. Questo perché il sistema possa adattarsi automaticamente agli utenti iscritti ai progetti
+            \item \DZ~ci ha illustrato con un piccolo esempio guidato su come configurare Rancher per l'uso di Redmine sul server di \II
+            \item Successivamente abbiamo chiesto un parere sui design pattern adottati per producer, consumer e gestore personale. \DZ~ha confermato che siamo sulla strada giusta
         \end{itemize}
-        
+
     \section{Tracciamento delle decisioni}
-    
+
         \newcounter{tracc}
         \begin{table}[H]
             \centering
@@ -69,11 +68,11 @@
                     \stepcounter{tracc}
                     VE\_2019-03-23.\thetracc & Usiamo Rancher e Kubernetes al posto di Docker \\
                     \stepcounter{tracc}
-                    VE\_2019-03-23.\thetracc & Implementiamo un sistema a priorità sui progetti \\
+                    VE\_2019-03-23.\thetracc & Usiamo il pattern MVC pull model per il gestore personale \\
                     \bottomrule
             \end{tabularx}}
             \caption{Tracciamento decisioni}
         \end{table}
-        
-        
+
+
 \end{document}
