@@ -304,9 +304,6 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 		\item \textbf{Considerazioni}: il miglioramento per quanto riguarda l'aderenza agli standard è presente, ma non ancora sufficiente per gli obiettivi prefissati.
 	\end{itemize}
 
-
-
-
 	\paragraph{Software}
 
 	\subparagraph{MPS001 Presenza di bug}
@@ -437,10 +434,79 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 			\item \textbf{Considerazioni}: proseguendo con le varie verifiche notiamo un generale
 			miglioramento con una costante diminuzione degli errori grammaticali.
 		\end{itemize}
-
+	
 	\paragraph{Processi}
+	
+	\subparagraph{MPR001 Varianza della pianificazione}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR001.png}
+		\label{immagineVarianzaPianificazioneRP}
+		\caption{Diagramma con valori misurati tramite MPR001 Varianza della pianificazione}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPR001 Rispetto dei periodi della pianificazione.
+		\item \textbf{Valore desiderato}: 96 ore.
+		\item \textbf{Descrizione}: oltre a mostrare le ore di varianza di ogni ruolo, viene mostrato anche il totale delle ore di variazione (in viola) coi relativi valori.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: in questo periodo abbiamo dovuto ridurre le ore al
+		\Progr\ e al \Ver\ per darne al \Ana\ avendo bisogno di alcune ore per fare delle piccole correzioni
+		ad \AdRv.
+	\end{itemize}
 
-	\subparagraph{MPR001 Frequenza di commit nella repository}
+		\subparagraph{MPR002 Varianza dei costi}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR002.png}
+		\label{immagineVarianzaCostiRP}
+		\caption{Diagramma con valori misurati tramite MPR002 Varianza dei costi}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPR002 Varianza del budget.
+		\item \textbf{Valore desiderato}: \EUR{0 - 200}.
+		\item \textbf{Descrizione}: vengono mostrate le variazioni della spesa attribuita ad ogni ruolo, inoltre ne viene mostrato il totale attraverso delle colonne (in viola) coi relativi valori.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: la diminuzione delle ore assegnate al \Progr\ e al \Ver\ a favore di quelle per l'\Ana\, non ha portato nessun cambiamento del preventivo, ovviamente, un dato che
+		risulta essere soddisfacente.
+	\end{itemize}
+
+	\subparagraph{MPR003 Aderenza agli standard}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR003(1).png}
+		\label{immagineAderenzaStandard1RP}
+		\caption{Diagramma con valori misurati tramite MPR003 Aderenza agli standard (1)}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR003(2).png}
+		\label{immagineAderenzaStandard2RP}
+		\caption{Diagramma con valori misurati tramite MPR003 Aderenza agli standard (2)}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR003(3).png}
+		\label{immagineAderenzaStandard3RP}
+		\caption{Diagramma con valori misurati tramite MPR003 Aderenza agli standard (3)}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPR003 Rispetto delle fasi del ciclo di vita.
+		\item \textbf{Valore desiderato}: Livello di maturità: 3, Valutazione attributi: L.
+		\item \textbf{Descrizione}: per ogni attributo dei processi viene mostrato in che percentuale sono soddisfatti attraverso le colonne (in blu), mostrando anche la soglia minima e massima (in grigio e nero) che questi valori dovrebbero avere.
+		\item \textbf{Valutazione}: poco soddisfacente.
+		\item \textbf{Considerazioni}: il miglioramento per quanto riguarda l'aderenza agli standard è presente, ma non ancora sufficiente per gli obiettivi prefissati. Rispetto alla revisione precedente
+		si possono notare dei notevoli miglioramenti.
+	\end{itemize}
+
+	\subparagraph{MPR004 Frequenza di commit nella repository}
 
 	\begin{figure}[H]
 		\centering
@@ -452,9 +518,119 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	\begin{itemize}
 		\item \textbf{Obiettivo}: QPR004 Rispetto del numero minimo di commit nella repository.
 		\item \textbf{Valore desiderato}: 25.
-		\item \textbf{Descrizione}: è mostrato il numero di commit effettuati durante una settimana
-		produttiva.
+		\item \textbf{Descrizione}: è mostrato il numero di commit effettuati tra una verifica e la successiva.
 		\item \textbf{Valutazione}: soddisfacente.
 		\item \textbf{Considerazioni}: studiando il diagramma notiamo che il numero di commit è stato
 		abbastanza lineare per tutto il periodo, sintomo di un lavoro costante e di un grande impegno.
+	\end{itemize}
+
+	\subparagraph{MPR011 Numero di design pattern applicati}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR011.png}
+		\label{immagineNumDesignPatternRQ}
+		\caption{Diagramma con valori misurati tramite MPR011 Numero di design pattern applicati}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPR012 Usare un numero limitato di design pattern.
+		\item \textbf{Valore desiderato}: 5-6.
+		\item \textbf{Descrizione}: è mostrato il numero di design pattern applicati tra una verifica e la successiva.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: studiando il diagramma notiamo che nella verifica intermedia il numero di design
+		pattern adottati supera il valore di soglia massimo. Il valore nella verifica successiva diminuisce e ritorna
+		all'interno della soglia accettata, questo perché nel colloquio con \RC ci è stato fatto notare che avendo
+		esagerato con i design pattern aumentava la complessità computazionale.
+	\end{itemize}
+
+	\paragraph{Software}
+	
+	\subparagraph{MPS001 Presenza di bug}
+	
+	\begin{figure}[H]
+		\centering
+		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS001.png} TODO
+		\label{immaginePresenzaBugRP}
+		\caption{Diagramma con valori misurati tramite MPS001 Presenza di bug}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPS001 Assenza di bug.
+		\item \textbf{Valore desiderato}: 0.
+		\item \textbf{Descrizione}: viene mostrato il numero totale di bug rilevati da SonarQube.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: ci siamo impegnati a raggiungere il valore desiderato prima della \RQ.
+	\end{itemize}
+	
+	\subparagraph{MPS002 Presenza di vulnerabilità}
+	
+	\begin{figure}[H]
+		\centering
+		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS002.png} TODO
+		\label{immaginePresenzaVulnerabilitàRP}
+		\caption{Diagramma con valori misurati tramite MPS002 Presenza di vulnerabilità}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPS002 Assenza di vulnerabilità.
+		\item \textbf{Valore desiderato}: 0.
+		\item \textbf{Descrizione}: viene mostrato il numero totale di vulnerabilità rilevate da SonarQube.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: ci siamo impegnati a raggiungere il valore desiderato prima della \RQ.
+	\end{itemize}
+	
+	\subparagraph{MPS003 Presenza di code smell}
+	
+	\begin{figure}[H]
+		\centering
+		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS003.png} TODO
+		\label{immaginePresenzaCodeSmellRP}
+		\caption{Diagramma con valori misurati tramite MPS003 Presenza di code smell}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPS003 Assenza di code smell.
+		\item \textbf{Valore desiderato}: 0.
+		\item \textbf{Descrizione}: viene mostrato il numero totale di code smell rilevati da SonarQube.
+		\item \textbf{Valutazione}: poco soddisfacente.
+		\item \textbf{Considerazioni}: dato che non risultano essere errori particolarmente gravi all'interno del codice si ha dato priorità a correggere altri tipi di errori prima della \RQ. Prevediamo di raggiungere il valore
+		desiderato.
+	\end{itemize}
+	
+	
+	
+	\subparagraph{MPS017 Code coverage}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS017.png}
+		\label{immaginePresenzaCodeSmellRP}
+		\caption{Diagramma con valori misurati tramite MPS017 Code coverage}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPS006 Massima code coverage.
+		\item \textbf{Valore desiderato}: 80\%-100\%.
+		\item \textbf{Descrizione}: viene mostrata la percentuale di codice testato rilevato da SonarQube.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: dato che non risultano essere errori particolarmente gravi all'interno del codice si ha dato priorità a correggere altri tipi di errori prima della \RQ, raggingendo appena la soglia minima.
+		Prevediamo di raggiungere un valore intorno al 90\%.
+	\end{itemize}
+	
+	\subparagraph{MPS004 Duplicazione del codice}
+	
+	\begin{figure}[H]
+		\centering
+		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS004.png} TODO
+		\label{immaginePresenzaDupplicazioneCodiceRP}
+		\caption{Diagramma con valori misurati tramite MPS004 Duplicazione del codice}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPS004 Minima duplicazione del codice.
+		\item \textbf{Valore desiderato}: 0 - 20\%.
+		\item \textbf{Descrizione}: viene mostrata la percentuale di codice duplicato rilevato da SonarQube.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: La quantità di codice duplicato, dopo la prima verifica, è rimasto molto basso. Miriamo ad abbassarlo ulteriormente nel prossimo periodo, ma di non raggiungere ad un totale 0\%.
 	\end{itemize}
