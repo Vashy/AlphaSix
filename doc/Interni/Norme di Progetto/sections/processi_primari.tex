@@ -46,7 +46,7 @@
 		% the software product or service.
 		% 5.2.3.2 The supplier may request modification to the contract as part of the chang e control
 		% mechanism.
-		\subsubsection{Negozazione}
+		\subsubsection{Negoziazione}
 		Talvolta in corso d'opera è necessario negoziare il contratto precedentemente preso con il cliente.
 		Questo può accadere per più motivi, principalmente in momenti in cui noi fornitori realizziamo di non poter soddisfare qualche requisito nel modo in cui lo vorrebbe il nostro cliente.
 		In seguito ad un inconveniente come questo, riteniamo necessario richiedere un colloquio con il cliente per poter esporre la nostra proposta e definire dei cambiamenti che possano assecondare i bisogno di entrambi.
@@ -177,6 +177,24 @@
 		\end{itemize}
 		Per ogni livello i numeri partono da 1.
 
+		\subparagraph{Diagrammi dei casi d'uso}\label{PP:Sviluppo:DiagrammiCasiUso}
+		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
+		Essi descrivono la visione di un utente
+		esterno al sistema e non danno nessun dettaglio implementativo. I \gloss{componenti} contenuti in questo tipo di diagrammi sono:
+		\begin{itemize}
+			\item \gloss{Attore}
+			\item Casi d'uso
+			\item Relazioni, che possono essere di:
+			\begin{itemize}
+				\item \textbf{Associazione}: è sempre presente e rappresenta una comunicazione diretta dell'attore con il caso d'uso.
+				\item \textbf{Inclusione}: è una funzionalità comune che coinvolge più casi d'uso, in cui ogni istanza del primo esegue
+					necessariamente il secondo. Tutte le inclusioni vengono sempre eseguite dall'utente.
+				\item \textbf{Estensione}: aumenta le funzionalità di un caso d'uso coinvolgendone un altro. L'esecuzione di quest'ultimo interrompe il precedente, ma non è necessariamente detto che tutte le estensioni vengano eseguite.
+				\item \textbf{Generalizzazione}: avviene tra casi d'uso o tra attori e rappresenta delle modifiche alle caratteristiche di base.
+			\end{itemize}
+		\end{itemize}
+		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
+
         \subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}
         La progettazione è l'attività svolta dai progettisti con il fine di dare una soluzione soddisfacente per tutti gli stakeholder coinvolti nel rispetto delle best practice e dei design pattern scelti, attraverso la descrizione dell'architettura del software.
 
@@ -188,8 +206,20 @@
 			\item Garantire la qualità del prodotto finale.
 		\end{itemize}
 
-
-		\subsubsection{Diagrammi UML}\label{PP:Sviluppo:UML}
+		\paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
+        Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
+        Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
+        Rappresentiamo i package con un rettangolo che contiene altri package o classi, e un'etichetta con il nome del package.
+        Ogni package identifica uno spazio dei nomi, che serve per dare un nome qualificato alle classi.
+        Gli elementi di un package possono avere visibilità pubblica (+) o privata (-) verso l'esterno.
+		Nella progettazione adottiamo il principio del common closure principle, secondo il quale elementi dello stesso
+		package condividono la stessa causa di cambiamento.
+        Indichiamo le dipendenze tra package con frecce tratteggiate.
+        Rappresentiamo le dipendenze perché:
+        \begin{itemize}
+            \item Individuiamo subito le dipendenze circolari, evitandole
+            \item Vediamo quali elementi dovrebbero essere più stabili (avendo più dipendenze entranti)
+        \end{itemize}
 
 		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
 		Per i diagrammi delle classi utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
@@ -241,55 +271,40 @@
 		%Dipendenza generica, Associazione, Aggregazione..
         %Meglio qui o lasciamo sopra?
 
-        \paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
-        Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
-        Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
-        Rappresentiamo i package con un rettangolo che contiene altri package o classi, e un'etichetta con il nome del package.
-        Ogni package identifica uno spazio dei nomi, che serve per dare un nome qualificato alle classi.
-        Gli elementi di un package possono avere visibilità pubblica (+) o privata (-) verso l'esterno.
-		Nella progettazione adottiamo il principio del common closure principle, secondo il quale elementi dello stesso
-		package condividono la stessa causa di cambiamento.
-        Indichiamo le dipendenze tra package con frecce tratteggiate.
-        Rappresentiamo le dipendenze perché:
-        \begin{itemize}
-            \item Individuiamo subito le dipendenze circolari, evitandole
-            \item Vediamo quali elementi dovrebbero essere più stabili (avendo più dipendenze entranti)
-        \end{itemize}
 
-
-		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività}
-        Per i diagrammi di attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
-		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.\par
-        Le attività sono insiemi di azioni ordinate dei tipi:
-        \begin{itemize}
-            \item \textbf{Nodo iniziale}: rappresentato da un pallino pieno, è l'inizio dell'attività.
-            \item \textbf{Fork}: rappresentato da un tratto marcato, indica l'inizio di elaborazioni parallele.
-            \item \textbf{Join}: rappresentato da un tratto marcato, indica un punto di sincronizzazione tra elaborazioni parallele.\par
-                Vengono indicate specifiche di join tra parentesi quadre (espressioni booleane).
-            \item \textbf{Branch}: rappresentato da un rombo vuoto, indica che si può intraprendere solo uno dei possibili percorsi.
-            \item \textbf{Merge}: rappresentato da un rombo vuoto, è simile alla join. Differisce per il fatto che unisce più possibili elaborazioni non parallele ma in alternativa tra esse, porvenienti da uno o più branch.
-            \item \textbf{Pin parametro}: rappresentati da box, sono parametri che rappresentano risorse prodotte da azioni e consumate da altre azioni.
-            \item \textbf{Nodo finale}: rappresentato da un pallino pieno circondato da un cerchio, indica il termine dell'attività con successo.
-            \item \textbf{Nodo di fine flusso}: rappresentato da un cerchio con una croce, non termina l'attività.\par
-                Viene usata per casi speciali (eccezione, ramo del branch\dots).
-        \end{itemize}
-        Ogni attività può comporre un'azione. In tal caso si tratta di una sotto attività, e viene indicata con un simbolo a forca e da un rettangolo esterno con il nome dell'attività che ne rappresenta le azioni dall'input fino all'output.\par
-        Usiamo inoltre i seguenti costrutti:
-        \begin{itemize}
-            \item \textbf{Swimlanes}: sono rappresentate da riquadri che suddividono la responsabilità delle azioni presenti nelle attività.\par
-                Le azioni possono far capo a più swimlanes, per esempio l'azione di merge.
-            \item \textbf{Segnali}: indicano eventi provenienti da processi esterni.\par
-            Sono indicati in modo diverso a seconda dell'evento scatenante, che può essere dei seguenti tipi:
-            \begin{itemize}
-                \item \textbf{Eventi esterni}: l'evento generato viene rappresentato da un rettangolo con un lato a punta uscente, mentre l'azione che attende l'evento viene rappresentata con un rettangolo con un lato a punta entrante.
-                \item \textbf{Eventi temporali}: viene rappresentato con una clessidra e ne viene indicato il tempo di ripetizione.\par
-                    Può trovarsi all'inizio del flusso, sostituendo il nodo iniziale, per indicare che un'attività verrà eseguita ogni volta che l'evento temporale consuma il tempo indicato.
-            \end{itemize}
-        \end{itemize}
-        %TODO verificare se parlare di flussi e archi
-        Per indicare azioni che si ripetono su più elementi, ad esempio su una lista di elementi, usiamo le regioni di espansione.
-        Le indichiamo con un rettangolo tratteggiato ad angoli arrotondati, e rettangoli piccoli presenti sui lati di inizio e fine regione, che rappresentano le liste di elementi processati.\par
-        Le frecce di entrata e uscita indicano in quale verso viene svolta l'attività che include la regione di espansione.
+%		\paragraph{Diagrammi di attività}\label{PP:Sviluppo:DiagrammiAttività}
+%        Per i diagrammi di attività utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
+%		Li usiamo per descrivere la logica dell'applicazione, ovvero quali attività si possono presentare e in quali sequenze vengono svolte. Rappresentano quindi la parte dinamica dei casi d'uso.\par
+%        Le attività sono insiemi di azioni ordinate dei tipi:
+%        \begin{itemize}
+%            \item \textbf{Nodo iniziale}: rappresentato da un pallino pieno, è l'inizio dell'attività.
+%            \item \textbf{Fork}: rappresentato da un tratto marcato, indica l'inizio di elaborazioni parallele.
+%            \item \textbf{Join}: rappresentato da un tratto marcato, indica un punto di sincronizzazione tra elaborazioni parallele.\par
+%                Vengono indicate specifiche di join tra parentesi quadre (espressioni booleane).
+%            \item \textbf{Branch}: rappresentato da un rombo vuoto, indica che si può intraprendere solo uno dei possibili percorsi.
+%            \item \textbf{Merge}: rappresentato da un rombo vuoto, è simile alla join. Differisce per il fatto che unisce più possibili elaborazioni non parallele ma in alternativa tra esse, porvenienti da uno o più branch.
+%            \item \textbf{Pin parametro}: rappresentati da box, sono parametri che rappresentano risorse prodotte da azioni e consumate da altre azioni.
+%            \item \textbf{Nodo finale}: rappresentato da un pallino pieno circondato da un cerchio, indica il termine dell'attività con successo.
+%            \item \textbf{Nodo di fine flusso}: rappresentato da un cerchio con una croce, non termina l'attività.\par
+%                Viene usata per casi speciali (eccezione, ramo del branch\dots).
+%        \end{itemize}
+%        Ogni attività può comporre un'azione. In tal caso si tratta di una sotto attività, e viene indicata con un simbolo a forca e da un rettangolo esterno con il nome dell'attività che ne rappresenta le azioni dall'input fino all'output.\par
+%        Usiamo inoltre i seguenti costrutti:
+%        \begin{itemize}
+%            \item \textbf{Swimlanes}: sono rappresentate da riquadri che suddividono la responsabilità delle azioni presenti nelle attività.\par
+%                Le azioni possono far capo a più swimlanes, per esempio l'azione di merge.
+%            \item \textbf{Segnali}: indicano eventi provenienti da processi esterni.\par
+%            Sono indicati in modo diverso a seconda dell'evento scatenante, che può essere dei seguenti tipi:
+%            \begin{itemize}
+%                \item \textbf{Eventi esterni}: l'evento generato viene rappresentato da un rettangolo con un lato a punta uscente, mentre l'azione che attende l'evento viene rappresentata con un rettangolo con un lato a punta entrante.
+%                \item \textbf{Eventi temporali}: viene rappresentato con una clessidra e ne viene indicato il tempo di ripetizione.\par
+%                    Può trovarsi all'inizio del flusso, sostituendo il nodo iniziale, per indicare che un'attività verrà eseguita ogni volta che l'evento temporale consuma il tempo indicato.
+%            \end{itemize}
+%        \end{itemize}
+%        %TODO verificare se parlare di flussi e archi
+%        Per indicare azioni che si ripetono su più elementi, ad esempio su una lista di elementi, usiamo le regioni di espansione.
+%        Le indichiamo con un rettangolo tratteggiato ad angoli arrotondati, e rettangoli piccoli presenti sui lati di inizio e fine regione, che rappresentano le liste di elementi processati.\par
+%        Le frecce di entrata e uscita indicano in quale verso viene svolta l'attività che include la regione di espansione.
 
 		%\subparagraph{Semantica} %TODO
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
@@ -331,29 +346,13 @@
 		%\subparagraph{Semantica} %TODO
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
 
-
-		\paragraph{Diagrammi dei casi d'uso}\label{PP:Sviluppo:DiagrammiCasiUso}
-		Per i diagrammi dei casi d'uso utilizziamo lo strumento \gloss{Draw.io} e il linguaggio \gloss{UML} 2.0.\par
-		Essi descrivono la visione di un utente
-		esterno al sistema e non danno nessun dettaglio implementativo. I \gloss{componenti} contenuti in questo tipo di diagrammi sono:
-		\begin{itemize}
-			\item \gloss{Attore}
-			\item Casi d'uso
-			\item Relazioni, che possono essere di:
-			\begin{itemize}
-				\item \textbf{Associazione}: è sempre presente e rappresenta una comunicazione diretta dell'attore con il caso d'uso.
-				\item \textbf{Inclusione}: è una funzionalità comune che coinvolge più casi d'uso, in cui ogni istanza del primo esegue
-					necessariamente il secondo. Tutte le inclusioni vengono sempre eseguite dall'utente.
-				\item \textbf{Estensione}: aumenta le funzionalità di un caso d'uso coinvolgendone un altro. L'esecuzione di quest'ultimo interrompe il precedente, ma non è necessariamente detto che tutte le estensioni vengano eseguite.
-				\item \textbf{Generalizzazione}: avviene tra casi d'uso o tra attori e rappresenta delle modifiche alle caratteristiche di base.
-			\end{itemize}
-		\end{itemize}
-		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
-
-        \newpage
+		\newpage
 
 		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione}
 		Per garantire una progettazione che rispetti gli standard di qualità posti nel {\PdQd}, seguiamo le linee guida date dalle best practice.
+
+        \paragraph{Qualità dei diagrammi dei package}
+        Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.
 
 		\paragraph{Qualità dei diagrammi delle classi}
 		Teniamo gli attributi delle classi privati per quanto possibile.
@@ -361,12 +360,9 @@
         Evitiamo le relazioni bidirezionali perché si crea confusione su quale classe ha la responsabilità sulla relazione.\par
         Minimizziamo le dipendenze tra le classi in modo da rendere il diagramma più comprensibile e cerchiamo di usare le relazioni di dipendenza debole rispetto alle dipendenze forti, per favorire il riuso del codice ed evitare modifiche inutili e a cascata.
 
-        \paragraph{Qualità dei diagrammi dei package}
-        Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.
-
-		\paragraph{Qualità dei diagrammi di attività}
-		Poiché descrivono gli aspetti dinamici dei casi d'uso, non devono risultare eccesivamente complessi, ma descrivere quanto riportato da casi d'uso e requisiti.\par
-        Li usiamo in modo da aggiungere comprensibilità, non per toglierne.
+%		\paragraph{Qualità dei diagrammi di attività}
+%		Poiché descrivono gli aspetti dinamici dei casi d'uso, non devono risultare eccesivamente complessi, ma descrivere quanto riportato da casi d'uso e requisiti.\par
+%        Li usiamo in modo da aggiungere comprensibilità, non per toglierne.
 
 		\paragraph{Qualità dei diagrammi di sequenza}
 		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\par
