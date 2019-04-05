@@ -1,22 +1,110 @@
-\subsubsection{UC\theuccount-B - Redmine o GitLab inviano una segnalazione a Butterfly che la inoltra ad un utente Telegram o ad un indirizzo Email}
-    \begin{figure}[H]
-		\centering
-		\includegraphics[width=0.7\textwidth]{img/casi_d'uso/UC1.png}\\
-		\caption{UC\theuccount-B - Redmine o GitLab inviano una segnalazione a Butterfly che la inoltra ad un utente Telegram o a un indirizzo Email}
-	\end{figure}
+\subsubsection{UC\theuccount-PR - Redmine invia segnalazione al Producer Redmine}
+%    \begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC2.png}\\
+%		\caption{UC\theuccount-PR - Redmine segnala apertura issue al Producer Redmine}
+%	\end{figure}
+\begin{itemize}
+	\item \textbf{Codice}: UC\theuccount-PR.
+	\item \textbf{Titolo}: Redmine invia segnalazione al Producer Redmine.
+	\item \textbf{Attori primari}: Redmine.
+	\item \textbf{Descrizione}: Redmine invia a \progetto\ una segnalazione.
+	\item \textbf{Precondizione}: su Redmine viene eseguita una operazione che scaturisce una
+	segnalazione da inviare a \progetto.
+	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+	\item \textbf{Scenario principale}: 
+	\begin{enumerate}
+		\item Viene eseguita un'operazione
+		\item Redmine procede all'invio della segnalazione al Producer Redmine
+	\end{enumerate}
+	
+\end{itemize}
+
+\stepcounter{subuccount}
+
+\subsubsection{UC\theuccount.\thesubuccount-PR - Redmine segnala apertura issue al Producer Redmine}
+%    \begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC2.png}\\
+%		\caption{UC\theuccount-PR - Redmine segnala apertura issue al Producer Redmine}
+%	\end{figure}
+\begin{itemize}
+	\item \textbf{Codice}: UC\theuccount-PR.
+	\item \textbf{Titolo}: Redmine segnala apertura issue al Producer Redmine.
+	\item \textbf{Attori primari}: Redmine.
+	\item \textbf{Descrizione}: Redmine segnala a \progetto\ l'apertura di una nuova issue tramite webhook.
+	
+	L'apertura di una issue in un particolare progetto su Redmine contiene i seguenti campi di interesse:
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount-B.
-		\item \textbf{Titolo}: Redmine o GitLab inviano una segnalazione a Butterfly che la inoltra ad un utente Telegram o ad un indirizzo Email.
-		\item \textbf{Attori primari}: Redmine, GitLab.
-		\item \textbf{Attori secondari}: Telegram, Email.
-		\item \textbf{Descrizione}:  Redmine segnala a Butterfly l'apertura o la modifica di una issue di un particolare progetto. Lo stesso lo può fare GitLab segnalando l'apertura o modifica di una issue, con in più la segnalazione di un evento di push. In base alle impostazioni del Gestore Personale, tale segnalazione sarà inoltrata ad uno o più utenti Telegram o ad uno o più indirizzi Email.
-		\item \textbf{Precondizione}: viene aperta o modificata una issue su Redmine, aperta o modificata una issue su GitLab, oppure viene effettuata un
-		azione di push su GitLab.
-		\item \textbf{Postcondizione}: l'utente Telegram o l'indirizzo Email selezionati ricevono la notifica delle segnalazione inviata da Redmine o GitLab.
-		\item \textbf{Scenario principale}: 
-		\begin{enumerate}
-			\item Redmine o GitLab inviano una segnalazione al \progetto
-			\item La segnalazione viene notificata attraverso Telegram o Email
-		\end{enumerate}
-		
+		\item Status
+		\item Tracker
+		\item Subject
+		\item Priority e opzionalmente:
+		\begin{itemize}
+			\item Description
+			\item Assignee
+		\end{itemize}
 	\end{itemize}
+	Il campo status conterrà sempre al suo interno ``opened''.
+	\item \textbf{Precondizione}: Viene aperta una issue su Redmine da
+	segnalare a \progetto.
+	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+	\item \textbf{Scenario principale}: 
+	\begin{enumerate}
+		\item Viene aperta una nuova issue su Redmine
+		\item Redmine procede all'invio della segnalazione di issue al Producer Redmine
+	\end{enumerate}
+	
+\end{itemize}
+
+\stepcounter{subuccount}
+
+\subsubsection{UC\theuccount.\thesubuccount-PR - Redmine segnala la modifica di una issue al Producer Redmine}
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC3.png}\\
+%		\caption{UC\theuccount-PR - Redmine segnala la modifica di una issue al Producer Redmine}
+%	\end{figure}
+\begin{itemize}
+	\item \textbf{Codice}: UC\theuccount-PR.
+	\item \textbf{Titolo}: Redmine segnala la modifica di una issue al Producer Redmine.
+	\item \textbf{Attori primari}: Redmine.
+	\item \textbf{Descrizione}: quando una issue viene modificata, l'invio di tale segnalazione
+	avviene da parte di Redmine tramite webhook.
+	I campi di interesse sono gli stessi dell'apertura di una issue, con la differenza che necessariamente il campo status contiene ora ``updated''.
+	\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
+	progetto di Redmine da segnalare a \progetto.
+	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+	\item \textbf{Scenario principale}: 
+	\begin{enumerate}
+		\item Viene modificata una issue già esistente su Redmine
+		\item Redmine procede all'invio della segnalazione di modifica issue al Producer Redmine
+	\end{enumerate}
+	
+\end{itemize}
+
+\stepcounter{subuccount}
+
+\subsubsection{UC\theuccount.\thesubuccount-PR - Redmine segnala il commento di una issue al Producer Redmine}
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC3.png}\\
+%		\caption{UC\theuccount-PR - Redmine segnala la modifica di una issue al Producer Redmine}
+%	\end{figure}
+\begin{itemize}
+	\item \textbf{Codice}: UC\theuccount.\thesubuccount-PR.
+	\item \textbf{Titolo}: Redmine segnala il commento di una issue al Producer Redmine.
+	\item \textbf{Attori primari}: Redmine.
+	\item \textbf{Descrizione}: quando una issue viene commentata, l'invio di tale segnalazione
+	avviene da parte di Redmine tramite webhook.
+	I campi di interesse sono gli stessi della modifica di una issue, con la differenza che necessariamente il campo status contiene ora ``updated''.
+	\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
+	progetto di Redmine da segnalare a \progetto.
+	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+	\item \textbf{Scenario principale}: 
+	\begin{enumerate}
+		\item Viene modificata una issue già esistente su Redmine
+		\item Redmine procede all'invio della segnalazione di modifica issue al Producer Redmine
+	\end{enumerate}
+	
+\end{itemize}

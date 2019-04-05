@@ -1,4 +1,4 @@
-\subsubsection{UC\theuccount-PR - Redmine segnala apertura issue al Producer Redmine}
+\subsubsection{UC\theuccount-PR - Redmine invia segnalazione al Producer Redmine}
 %    \begin{figure}[H]
 %		\centering
 %		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC2.png}\\
@@ -6,21 +6,45 @@
 %	\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount-PR.
+		\item \textbf{Titolo}: Redmine invia segnalazione al Producer Redmine.
+		\item \textbf{Attori primari}: Redmine.
+		\item \textbf{Descrizione}: Redmine invia a \progetto\ una segnalazione.
+		\item \textbf{Precondizione}: su Redmine viene eseguita una operazione che scaturisce una
+		segnalazione da inviare a \progetto.
+		\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+		\item \textbf{Scenario principale}: 
+		\begin{enumerate}
+			\item Viene eseguita un'operazione
+			\item Redmine procede all'invio della segnalazione al Producer Redmine
+		\end{enumerate}
+		
+	\end{itemize}
+
+	\stepcounter{subuccount}
+	
+	\subsubsection{UC\theuccount.\thesubuccount-PR - Redmine segnala apertura issue al Producer Redmine}
+	%    \begin{figure}[H]
+	%		\centering
+	%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC2.png}\\
+	%		\caption{UC\theuccount-PR - Redmine segnala apertura issue al Producer Redmine}
+	%	\end{figure}
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount-PR.
 		\item \textbf{Titolo}: Redmine segnala apertura issue al Producer Redmine.
 		\item \textbf{Attori primari}: Redmine.
 		\item \textbf{Descrizione}: Redmine segnala a \progetto\ l'apertura di una nuova issue tramite webhook.
 		
 		L'apertura di una issue in un particolare progetto su Redmine contiene i seguenti campi di interesse:
-		 \begin{itemize}
+		\begin{itemize}
 			\item Status
-		 	\item Tracker
-		 	\item Subject
-		 	\item Priority e opzionalmente:
-		 	\begin{itemize}
-		 		\item Description
-		 		\item Assignee
-		 	\end{itemize}
-		 \end{itemize}
+			\item Tracker
+			\item Subject
+			\item Priority e opzionalmente:
+			\begin{itemize}
+				\item Description
+				\item Assignee
+			\end{itemize}
+		\end{itemize}
 		Il campo status conterrà sempre al suo interno ``opened''.
 		\item \textbf{Precondizione}: Viene aperta una issue su Redmine da
 		segnalare a \progetto.
