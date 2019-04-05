@@ -11,7 +11,7 @@
 	    	\item I \gloss{task} di risorsa umana
 	    	\item La verifica delle attività di processo
 	    \end{itemize}
-    
+
         \subsubsection{Pianificazione della qualità}\label{PianificazioneQualità}
         %Per cercare la qualità nei prodotti è necessario che vengano misurate diverse caratteristiche di questi ultimi.
         Per la ricerca della qualità nei prodotti è necessario che ne vengano misurate diverse caratteristiche associate.
@@ -19,26 +19,26 @@
         In tale sezione, viene descritto il modo di utilizzo sia delle metriche che degli strumenti utili ad ottenere qualità nei processi, nei documenti e nei prodotti.
         Gli strumenti utilizzati possono essere software, descritti nelle \Doc{\NdPv}, o standard di qualità, descritti nel \Doc{\PdQv}.\\
         Gli obiettivi che ci si pone di raggiungere sono descritti nel \Doc{\PdQv}.
-        
+
         \paragraph{Classificazione dei processi}
         I processi analizzati nel \Doc{\PdQv} sono classificati nel seguente modo:
-        
+
         \begin{center}
             \texttt{PROC[ID] [Nome]}
         \end{center}
-        
+
         \begin{itemize}
             \item \textbf{ID}: un numero incrementale per indicare in modo univoco il processo.
             \item \textbf{Nome}: una breve frase per indicare la funzione del processo.
         \end{itemize}
-        
+
         \paragraph{Classificazione degli obiettivi}
         Gli obiettivi per la qualità (Q) concordati dall'\Amm\ e dal \Ver, descritti nel \PdQ, avranno il seguente codice identificativo:
-        
+
         \begin{center}
             \texttt{Q[Tipo][ID] [Nome]}
         \end{center}
-        
+
         \begin{itemize}
             \item \textbf{Tipo}: indica il la tipologia dell'oggetto di cui viene valutata la qualità, e questa può essere:
             \begin{itemize}
@@ -46,28 +46,28 @@
                 \item \texttt{PD}: prodotti di documentazione.
                 \item \texttt{PS}: prodotti software.
             \end{itemize}
-            
+
             \item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre.
             \item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase.
         \end{itemize}
-        
+
         Ad esempio:
-        
+
         \begin{itemize}
             \item QPD001 Leggibilità del testo
         \end{itemize}
-        
-        
+
+
         \paragraph{Classificazione delle metriche}\label{Classificazione metriche}
         Ogni obiettivo della qualità deve, per quanto possibile, essere collegato ad una metrica, anch'essa scelta dall'\Amm\ e dal \Ver. Questo per valutare
         quantitativamente il raggiungimento o meno degli obiettivi stabiliti.
-        
+
         Le metriche (M) verranno classificate nel seguente modo:
-        
+
         \begin{center}
             \texttt{M[Tipo][ID] [Nome]}
         \end{center}
-        
+
         \begin{itemize}
             \item \textbf{Tipo}: indica la tipologia di quello su cui viene applicata la metrica, può essere:
             \begin{itemize}
@@ -75,21 +75,21 @@
                 \item \texttt{PD}: prodotti di documentazione.
                 \item \texttt{PS}: prodotti software.
             \end{itemize}
-            
+
             \item \textbf{ID}: ogni tipo di obiettivo possiede una lista ordinata attraverso un numero incrementale di tre cifre.
             \item \textbf{Nome}: offre un'informazione più chiara dell'obiettivo attraverso una breve frase.
         \end{itemize}
-        
+
         Ad esempio:
-        
+
         \begin{itemize}
             \item MPD001 Indice Gulpease
         \end{itemize}
-        
+
         Quando sarà possibile, la metrica e l'obiettivo di qualità collegati fra loro avranno lo stesso Tipo e ID.
-        
+
         Ad esempio:
-        
+
         \begin{table}[H]
             \begin{detailtable}{\textwidth}{YYY}
                 \rowcolor{gray!30}
@@ -104,14 +104,14 @@
             \end{detailtable}
             \caption[Metrica Indice di Gulpease]{Metrica dell'Indice di Gulpease}%, usata per il calcolo della qualità della leggibilità del testo}
         \end{table}
-    
+
         \paragraph{Classificazione dei test}\label{ClassificazioneTest}
         Ogni test viene classificato identificato univocamente da tale codice:
-        
+
         \begin{center}
             \texttt{T[Tipo][ID]}
         \end{center}
-        
+
         \begin{itemize}
             \item \textbf{T}: si riferisce a ``Test''.
             \item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}, può essere:
@@ -124,13 +124,13 @@
             %per la corrispondenza con i requisiti, non vanno bene le "tre cifre"
             \item \textbf{ID}: numero incrementale che rispetta una struttura gerarchica.
         \end{itemize}
-        
+
         % COLORI
         \newcommand{\TNI}{{\color{gray}\textbf{NI}}}
         \newcommand{\TI}{{\color{blue}\textbf{I}}}
         \newcommand{\TNS}{{\color{red}\textbf{NS}}}
         \newcommand{\TS}{{\color{green}\textbf{S}}}
-        
+
         Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
         \begin{itemize}
             \item \textbf{Codice}: comprendente il codice identificativo del test.
@@ -143,9 +143,9 @@
                 \item \TS: avviato e superato.
             \end{itemize}
         \end{itemize}
-    
+
     Ad esempio:
-    
+
     \newenvironment{VTtable}[1][1]{%
         \renewcommand*{\arraystretch}{#1}%
         \renewcommand\theadfont{\bfseries}%
@@ -162,7 +162,7 @@
             \bottomrule
         \end{VTtable}
     \end{table}
-    
+
 
 		\subsubsection{Pianificazione di attività}
 
@@ -331,14 +331,14 @@
 			Ad esempio con P001-021 si può intuitivamente capire che si tratta del primo rischio relativo al personale, di gravità accettabile,
 			probabilità alta e un valore di classe medio.\\
 			Invece P002-122:2019-01-13 è il secondo rischio attualizzato relativo al personale, di gravità tollerabile, probabilità alta, valore di classe alto e si è verificato in data 2019-01-13.
-            
+
             \subparagraph{MPR008 Rischi non previsti avvenuti}
             La denominazione delle metriche è descritta a \S\ref{Classificazione metriche}.
-            
-            
+
+
             Nell'Analisi dei rischi presente nel \Doc{\PdPv}, sono presenti i rischi ritenuti possibili per i quali è proposta una soluzione.
             Possono presentarsi anche rischi non previsti in tale analisi. Questi devono essere il meno possibili (nulli) perché la loro soluzione sarà decisa al momento causando ritardi all'interno del progetto.
-            
+
             \textbf{Metrica}: numero di rischi non previsti avvenuti nel corso dell'intero progetto.
 
 			\paragraph{Ruoli di progetto}
@@ -381,8 +381,7 @@
 						\item Un ordine del giorno da discutere
 						\item La persona incaricata ad appuntare il contenuto della riunione per poter poi redigere formalmente il verbale dell'incontro
 					\end{itemize}
-				\item Per le comunicazioni esterne verrà utilizzata prevalentemente la comunicazione via email e in caso di necessità si concorderà con
-				l'azienda per riunioni via Hangouts o in un luogo prestabilito. % HELP WANTED fissare riunioni con l'azienda?
+				\item Per le comunicazioni esterne verrà utilizzata prevalentemente la comunicazione via email e in caso di necessità si concorderà con l'azienda per riunioni via Hangouts o in un luogo prestabilito come quanto segnalato in \S\ref{ConivolgimentoAcquirente}.
 			\end{itemize}
 
 
@@ -403,7 +402,7 @@
 				\item \textbf{FIXME}: per segnalare la presenza di una correzione da effettuare su del lavoro già svolto.
 				\item \textbf{NOTE}: per aggiugere una nota su cui porre particolare attenzione.
 			\end{itemize}
-		
+
 		\paragraph{Monitoraggio delle ore di orologio}
 		È necessario distinguere le ore di orologio dalle ore di calendario. Le ore di orologio sono ore effettive di lavoro, in
 		cui non c'è alcuna perdita di tempo. Le ore di calendario sono ore in cui non si conta solamente il lavoro effettivo
@@ -473,7 +472,7 @@
 			% Per ora GitHub per issue-task tracker ~Tim
 
 
-	
+
 
 	\subsection{Formazione}\label{Formazione}
 
