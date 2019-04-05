@@ -1,23 +1,40 @@
-	\subsubsection{UC\theuccount-PG - Gitlab segnala la modifica di una issue al Producer Gitlab}
+\subsubsection{UC\theuccount-CT - Gestore Personale invia il messaggio finale al Consumer Telegram}
 %	\begin{figure}[H]
 %		\centering
-%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC5.png}\\
-%		\caption{UC\theuccount-PG - Gitlab segnala la modifica di una issue al Producer Gitlab}
+%		\includegraphics[width=0.6\textwidth]{img/casi_d'uso/UC9.png}\\
+%		\caption{UC\theuccount-CT - Gestore Personale invia il messaggio finale al Consumer Telegram}
 %	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount-PG.
-		\item \textbf{Titolo}: Gitlab segnala la modifica di una issue al Producer Gitlab.
-		\item \textbf{Attori primari}: GitLab.
-		\item \textbf{Descrizione}: GitLab segnala la modifica di una issue esistente tramite webhook a
-		\newline \progetto.
-		I campi di interesse sono gli stessi dell'apertura issue, con la differenza che il campo action contiene ``udpate''.
-		\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
-		progetto di GitLab da segnalare a \progetto.
-		\item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
+		\item \textbf{Codice}: UC\theuccount-CT.
+		\item \textbf{Titolo}: Gestore Personale invia il messaggio finale al Consumer Telegram.
+		\item \textbf{Attori primari}: Gestore Personale.
+		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato
+		dal Producer Redmine o GitLab, controlla i Topic del messaggio, gli utenti iscritti, la loro disponibilità e se la loro preferenza è Telegram.
+		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare successivamente viene inviato al Consumer Telegram. 
+		Se il destinatario è iscritto a quel Topic ma non è disponibile, il destinatario viene cambiato con la persona di fiducia. \par
+		Il messaggio finale, una volta elaborato, conterrà i campi:
+		\begin{itemize}
+			\item Id della chat del destinatario
+			\item Applicazione di provenienza
+			\item Ora di invio
+			\item Tipo di segnalazione(commit o issue)
+			\item Project
+			\item Topic
+			\item Subject e opzionalmente
+		 	\begin{itemize}
+				\item Description
+				\item Due date
+				\item Milestone
+				\item Assignee
+			\end{itemize}
+		\end{itemize}
+		\item \textbf{Precondizione}: il Gestore Personale ha ricevuto il messaggio elaborato dal Producer Redmine o GitLab.
+		\item \textbf{Postcondizione}: Il Gestore Personale ha inviato il messaggio finale al Consumer Telegram.
 		\item \textbf{Scenario principale}: 
 		\begin{enumerate}
-			\item Viene modificata una issue già esistente su GitLab
-			\item GitLab procede all'invio della segnalazione di modifica issue al Producer GitLab
+			\item ll Gestore Personale riceve un messaggio dal Producer Redmine o dal Producer GitLab
+			\item Il Gestore Personale valuta quali utenti sono iscritti al Topic del messaggio ricevuto e se vogliono ricevere il messaggio tramite Telegram
+			\item Il Gestore Personale procede all'invio del messaggio finale al Consumer Telegram
 		\end{enumerate}
 		
 	\end{itemize}

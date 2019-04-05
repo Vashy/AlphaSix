@@ -1,40 +1,77 @@
-\subsubsection{UC\theuccount-CT - Gestore Personale invia il messaggio finale al Consumer Telegram}
-%	\begin{figure}[H]
-%		\centering
-%		\includegraphics[width=0.6\textwidth]{img/casi_d'uso/UC9.png}\\
-%		\caption{UC\theuccount-CT - Gestore Personale invia il messaggio finale al Consumer Telegram}
-%	\end{figure}
+\subsubsection{UC\theuccount-GP - Accesso}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=0.8\textwidth]{img/casi_d'uso/UC12.png}\\
+			\caption{UC\theuccount-GP - Accesso}
+		\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount-CT.
-		\item \textbf{Titolo}: Gestore Personale invia il messaggio finale al Consumer Telegram.
-		\item \textbf{Attori primari}: Gestore Personale.
-		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato
-		dal Producer Redmine o GitLab, controlla i Topic del messaggio, gli utenti iscritti, la loro disponibilità e se la loro preferenza è Telegram.
-		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare successivamente viene inviato al Consumer Telegram. 
-		Se il destinatario è iscritto a quel Topic ma non è disponibile, il destinatario viene cambiato con la persona di fiducia. \par
-		Il messaggio finale, una volta elaborato, conterrà i campi:
-		\begin{itemize}
-			\item Id della chat del destinatario
-			\item Applicazione di provenienza
-			\item Ora di invio
-			\item Tipo di segnalazione(commit o issue)
-			\item Project
-			\item Topic
-			\item Subject e opzionalmente
-		 	\begin{itemize}
-				\item Description
-				\item Due date
-				\item Milestone
-				\item Assignee
-			\end{itemize}
-		\end{itemize}
-		\item \textbf{Precondizione}: il Gestore Personale ha ricevuto il messaggio elaborato dal Producer Redmine o GitLab.
-		\item \textbf{Postcondizione}: Il Gestore Personale ha inviato il messaggio finale al Consumer Telegram.
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Codice}: UC\theuccount-GP.
+		\item \textbf{Titolo}: accesso.
+		\item \textbf{Attori primari}: utente non acceduto.
+		\item \textbf{Descrizione}: l'utente non acceduto richiede di accedere al sistema attraverso l'inserimento del proprio identificativo.
+		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto.
+		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore di esso come utente acceduto.
+		\item \textbf{Scenario principale}:
 		\begin{enumerate}
-			\item ll Gestore Personale riceve un messaggio dal Producer Redmine o dal Producer GitLab
-			\item Il Gestore Personale valuta quali utenti sono iscritti al Topic del messaggio ricevuto e se vogliono ricevere il messaggio tramite Telegram
-			\item Il Gestore Personale procede all'invio del messaggio finale al Consumer Telegram
+			\item L'utente non ancora riconosciuto dal sistema procede all'accesso inserendo il proprio identificativo
 		\end{enumerate}
-		
 	\end{itemize}
+	
+	\stepcounter{subuccount}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[width=0.6\textwidth]{img/casi_d'uso/UC12_1.png}\\
+			\caption{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
+		\end{figure}
+		\begin{itemize}
+			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+			\item \textbf{Titolo}: accesso dell'utente nel sistema.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente non acceduto accede al sistema inserendo il proprio identificativo e inviandone la conferma.
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto.
+			\item \textbf{Postcondizione}: il sistema riconosce l'utente.
+			\item \textbf{Scenario principale}:
+			\begin{enumerate}
+				\item L’utente non ancora riconosciuto dal sistema richiede l'accesso inserendo il proprio identificativo.
+				\item L'utente conferma l'invio dei dati
+			\end{enumerate}
+			\item \textbf{Estensioni}:
+			\begin{enumerate}
+				\item L'accesso non va a buon fine e viene visualizzato un errore avvisando l'utente [UC\theuccount.2-GP]
+			\end{enumerate}
+		\end{itemize}
+		
+		\newpage
+		
+		\stepcounter{subsubuccount}
+		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento identificativo}
+			\begin{itemize}
+				\item \textbf{Codice}: UC\theuccount.1.1-GP.
+				\item \textbf{Titolo}: inserimento identificativo.
+				\item \textbf{Attori primari}: utente non acceduto.
+				\item \textbf{Descrizione}: l'utente inserisce l'identificativo.
+				\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e permette all'utente l'inserimento dell'identificativo.
+				\item \textbf{Postcondizione}: l'utente ha inserito l'identificativo desiderato dal sistema.
+				\item \textbf{Scenario principale}:
+				\begin{enumerate}
+					\item L'utente inserisce l'identificativo per autenticarsi
+				\end{enumerate}
+			\end{itemize}
+	
+	\stepcounter{subuccount}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo inesistente}
+		\begin{itemize}
+			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+			\item \textbf{Titolo}: errore identificativo inesistente.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito un identificativo non riconosciuto.
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e riceve una richiesta di accesso. 
+			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore.
+			\item \textbf{Scenario principale}:
+			\begin{enumerate}
+				\item L'utente inserisce un identificativo non esistente
+				\item L'utente conferma l'invio dei dati
+				\item L'utente visualizza il messaggio d'errore
+			\end{enumerate}
+		\end{itemize}
