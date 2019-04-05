@@ -10,19 +10,22 @@
 		\item \textbf{Attori primari}: Gestore Personale.
 		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato
 		dal Producer Redmine o GitLab, controlla i Topic del messaggio, gli utenti iscritti, la loro disponibilità e se la loro preferenza è Telegram.
-		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare successivamente viene inviato al Consumer Telegram. 
-		Se il destinatario è iscritto a quel Topic ma non è disponibile, il destinatario viene cambiato con la persona di fiducia. \par
+		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare successivamente al Consumer Telegram. 
+		Se il destinatario è iscritto a quel Topic ma non è disponibile, il destinatario viene cambiato con la persona 
+		iscritta a quello stesso Topic e avente il livello di priorità più alto in quel progetto. Se non dovesse
+		esserci nessun candidato, esso viene inviato alle persone non iscritte a quel Topic ma aventi priorità più
+		alta in quel progetto.\par
 		Il messaggio finale, una volta elaborato, conterrà i campi:
 		\begin{itemize}
 			\item Id della chat del destinatario
 			\item Applicazione di provenienza
 			\item Ora di invio
-			\item Tipo di segnalazione(commit o issue)
+			\item Tipo di segnalazione(commit, issue o commento)
 			\item Project
 			\item Topic
+			\item Description
 			\item Subject e opzionalmente
 		 	\begin{itemize}
-				\item Description
 				\item Due date
 				\item Milestone
 				\item Assignee

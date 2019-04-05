@@ -9,17 +9,21 @@
 		\item \textbf{Titolo}: Producer Redmine invia messaggio al Gestore Personale.
 		\item \textbf{Attori Pimari}: Producer Redmine.
 		\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto una
-		 segnalazione da Redmine, elabora il messaggio e lo invia al Gestore Personale.
-		 Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
+		 segnalazione da Redmine, elabora il messaggio e lo invia al Gestore Personale.\\
+		 Il messaggio elaborato conterrà i campi:
 		 \begin{itemize}
-		 	\item Project
-		 	\item Topic
-		 	\item Subject e opzionalmente:
-		 	\begin{itemize}
-		 		\item Description
-		 	\end{itemize}
+		 	\item App
+		 	\item Object\_kind
+		 	\item Title
+		 	\item Project\_id
+		 	\item Project\_name
+		 	\item Author
+		 	\item Assignees
+		 	\item Action
+		 	\item Description
+		 	\item Labels
+		 	\item Update
 		 \end{itemize}
-	 	Il messaggio non può contenere campi errati o mancanti per il corretto funzionamenti di \progetto, perché i campi selezionati sono obbligatori per l'apertura di una issue su Redmine.
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio.
 		\item \textbf{Scenario principale}: 
@@ -40,18 +44,8 @@
 		\item \textbf{Attori Pimari}: Producer Redmine.
 		\item \textbf{Descrizione}: il Producer Redmine, dopo aver
 		ricevuto una segnalazione di apertura issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
-		% Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
-		% \begin{itemize}
-		% 	\item Project
-		% 	\item Topic
-		% 	\item Subject e opzionalmente:
-		% 	\begin{itemize}
-		% 		\item Description
-		% 	\end{itemize}
-		% \end{itemize}
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di apertura issue.
-
 		\item \textbf{Scenario Pincipale}: 
 		\begin{enumerate}
 			\item Il Producer Redmine riceve la segnalazione di apertura issue da Redmine
@@ -59,7 +53,10 @@
 			\item Il Producer Redmine invia il messaggio di
 			apertura issue al Gestore Personale
 		\end{enumerate}
-		
+		\item \textbf{Estensioni}: 
+		\begin{enumerate}
+			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
+		\end{enumerate}
 	\end{itemize}
 	
 	\stepcounter{subuccount}
@@ -70,29 +67,40 @@
 			\item \textbf{Titolo}: Producer Redmine invia messaggio di modifica issue al Gestore Personale
 			\item \textbf{Attori Pimari}: Producer Redmine.
 			\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto una segnalazione di modifica issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
-			% Il messaggio finale, una volta terminata l'elaborazione, conterrà i campi:
-			% \begin{itemize}
-			% 	\item Project
-			% 	\item Topic
-			% 	\item Subject e opzionalmente:
-			% 	\begin{itemize}
-			% 		\item Description
-			% 	\end{itemize}
-			% \end{itemize}
 			\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 			\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di modifica issue.
 			\item \textbf{Scenario Pincipale}: 
 			\begin{enumerate}
 				\item Il Producer Redmine riceve la segnalazione di modifica issue da Redmine
 				\item Il Producer Redmine prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
-				\item Il Producer Redmine invia il messaggio di
-				modifica issue al Gestore Personale
+				\item Il Producer Redmine invia il messaggio di	modifica issue al Gestore Personale
 			\end{enumerate}
 			\item \textbf{Estensioni}: 
 			\begin{enumerate}
-				\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.3-GP].
+				\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
 			\end{enumerate}
 		\end{itemize}
+	
+	\stepcounter{subuccount}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer Redmine invia messaggio di commento issue al Gestore Personale}
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+		\item \textbf{Titolo}: Producer Redmine invia messaggio di commento issue al Gestore Personale
+		\item \textbf{Attori Pimari}: Producer Redmine.
+		\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto una segnalazione di commento issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
+		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
+		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di commento issue.
+		\item \textbf{Scenario Pincipale}: 
+		\begin{enumerate}
+			\item Il Producer Redmine riceve la segnalazione di commento issue da Redmine
+			\item Il Producer Redmine prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
+			\item Il Producer Redmine invia il messaggio di	commento issue al Gestore Personale
+		\end{enumerate}
+		\item \textbf{Estensioni}: 
+		\begin{enumerate}
+			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
+		\end{enumerate}
+	\end{itemize}
 	
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer Redmine scarta i messaggi non validi}
@@ -102,7 +110,7 @@
 		\item \textbf{Titolo}: Producer Redmine scarta i messaggi non validi.
 		\item \textbf{Attori primari}: Producer Redmine.
 		\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto un messaggio da Redmine, controlla
-		se il messaggio contiene una segnalazione che \progetto\ sa analizzare. In caso negativo, il messaggio viene scartato.
+		che il messaggio contenga una segnalazione che \progetto\ sappia analizzare. In caso negativo, il messaggio viene scartato.
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto un messaggio da GitLab.
 		\item \textbf{Postcondizione}: il Producer Redmine ha scartato il messaggio.
 		\item \textbf{Scenario principale}: 

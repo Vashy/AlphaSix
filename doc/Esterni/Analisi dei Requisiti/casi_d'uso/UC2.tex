@@ -97,8 +97,8 @@
     \item \textbf{Titolo}: Gitlab segnala il commento di una issue al Producer Gitlab.
     \item \textbf{Attori primari}: GitLab.
     \item \textbf{Descrizione}: GitLab segnala il commento di una issue esistente tramite webhook a \progetto.
-    I campi di interesse sono gli stessi dell'apertura issue, con la differenza che il campo action contiene ``udpate''.
-    \item \textbf{Precondizione}: Viene modificata una issue già aperta su un
+    I campi di interesse sono gli stessi dell'apertura issue, con la differenza che il campo action contiene ``issue-note''.
+    \item \textbf{Precondizione}: Viene commentata una issue già aperta su un
     progetto di GitLab da segnalare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
     \item \textbf{Scenario principale}: 
@@ -122,9 +122,8 @@
     \item \textbf{Titolo}: Gitlab segnala il commento di un commit al Producer Gitlab.
     \item \textbf{Attori primari}: GitLab.
     \item \textbf{Descrizione}: GitLab segnala il commento di un commit esistente tramite webhook a \progetto.
-    I campi di interesse sono gli stessi dell'apertura issue, con la differenza che il campo action contiene ``udpate''.
-    \item \textbf{Precondizione}: Viene modificata una issue già aperta su un
-    progetto di GitLab da segnalare a \progetto.
+    I campi di interesse sono gli stessi dell'apertura issue, con la differenza che il campo action contiene ``commit-note''.
+    \item \textbf{Precondizione}: Viene commentato un commit di un progetto di GitLab da segnalare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
     \item \textbf{Scenario principale}: 
     \begin{enumerate}
@@ -136,14 +135,14 @@
 
 \stepcounter{subuccount}
 
-\subsubsection{UC\theuccount-PG - GitLab segnala un evento di push a Producer GitLab}
+\subsubsection{UC\theuccount.\thesubuccount-PG - GitLab segnala un evento di push a Producer GitLab}
 %	\begin{figure}[H]
 %		\centering
 %		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC6.png}\\
 %		\caption{UC\theuccount-PG - GitLab segnala un evento di push a Producer GitLab}
 %	\end{figure}
 \begin{itemize}
-    \item \textbf{Codice}: UC\theuccount-PG.
+    \item \textbf{Codice}: UC\theuccount.\thesubuccount-PG.
     \item \textbf{Titolo}: GitLab segnala un evento di push a Producer GitLab.
     \item \textbf{Attori primari}: GitLab.
     \item \textbf{Descrizione}: GitLab segnala un evento di push tramite webhook a \progetto. L'evento di	push può essere composto da uno o più commit.
@@ -162,5 +161,4 @@
         \item Viene effettuato un push in GitLab
         \item GitLab procede all'invio della segnalazione di push al Producer GitLab
     \end{enumerate}
-    
 \end{itemize}
