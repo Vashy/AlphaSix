@@ -1121,3 +1121,76 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\end{tabularx}}
 		\caption{Elenco dei test in correlazione con le componenti}
 	\end{table}
+
+
+
+\newcounter{tu}
+\newcommand{\addtotu}{\stepcounter{tu}TU\thetu}
+\newcommand{\TUtu}{TU\thetu}
+
+\subsubsection{Test di unità} \label{testunita}
+
+\setcounter{tu}{0}
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			% \rowcolor{\tablegray}
+			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+			\addtotu & Verifica l'inizializzazione di un oggetto FlaskServerCreator & \TS \\
+			\addtotu & Verifica l'apertura di un file di configurazione di tipo JSON & \TS \\
+			\addtotu & Verifica l' inizializzazione di un oggetto FlaskServer & \TS \\
+			\addtotu & Verifica il processamento del webhook e verifica se è malformato & \TS \\
+% 			% % \TUtu.1 & Verifica l & \TNI \\
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei test di unità}
+	\end{table}
+
+    \setcounter{tu}{0}
+
+	\paragraph{Tracciamento} \label{tracciamentounita}
+
+	% \begin{table}[H]
+	% 	\centering
+	% 	{\def\arraystretch{1.4}
+	% 	\begin{tabularx}{\textwidth}{YY}
+	% 		% \rowcolor{\tablegray}
+	% 		\textbf{Codice} & \textbf{Componente} \\
+	% 		\toprule
+	% 		\addtotu & Butterfly::FlaskServerCreator \\
+	% 		\addtotu & Butterfly::_open_configs \\
+	% 		\addtotu & Butterfly::FlaskServer \\
+	% % 		\addtoti & Butterfly:: \\
+	% % 		\addtoti & \\
+	% % 		\addtoti &  \\
+	% % 		\addtoti & \\
+	% % 		\addtoti &  \\
+	% % 		\addtoti & \\
+	% % 		\addtoti & \\
+	% 		\bottomrule\\
+	% 	\end{tabularx}}
+	% 	\caption{Elenco dei test in correlazione con le componenti}
+	% \end{table}
+
+
+	\begin{table}[H]
+		\centering
+		{\def\arraystretch{1.4}
+		\begin{tabularx}{\textwidth}{YY}
+			% \rowcolor{\tablegray}
+			\textbf{Codice} & \textbf{Componente} \\
+			\toprule
+			\addtotu & Butterfly::FlaskServerCreator \\
+			%\addtotu & Butterfly::_/open_/configs \\
+			\addtoti &  \\
+			\addtoti & \\
+			\addtoti & \\
+			\addtoti &  \\
+			\addtoti & \\
+			\addtoti &  \\
+			\addtoti & \\
+			\addtoti & \\
+			\bottomrule\\
+		\end{tabularx}}
+		\caption{Elenco dei test in correlazione con le componenti}
+	\end{table}

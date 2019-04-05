@@ -23,6 +23,16 @@ mongofacade.get_project_by_url.return_value = True
 # mongofacade.insert_project.return_value =
 mongofacade.get_users_available.return_value = ['1', '2', '8', '3', '4']
 mongofacade.get_users_max_priority.return_value = ['2', '8', '3']
+
+
+# def side_effect(value: list):
+#     return value.append('GDM')
+
+# mongofacade.get_users_from_list_with_max_priority.return_value = MagicMock(
+#     side_effect=side_effect
+# )
+mongofacade.get_users_from_list_with_max_priority.return_value = ['111', '99']
+
 p._filter_users_by_topic = Mock()
 p._filter_users_by_topic.return_value = []
 
@@ -67,6 +77,12 @@ def test_get_involved_users():
 def test_select_users_more_interested():
     lista = p.select_users_more_interested(message['project_url'])
     assert lista == ['2', '8', '3']
+
+
+def test_filter_users_with_max_priority():
+    users = ['111', '99', '54', '2']
+    lista = p.filter_users_with_max_priority(users)
+    assert lista == ['111', '99']
 
 
 def test_get_telegram_contacts():

@@ -22,10 +22,15 @@ class Processor():
         )
         # Se non c'è nessuno, vedo la persona di priorità
         # più alta disponibile oggi per quel progetto
-        #TODO
         if utenti_interessati == []:
             utenti_interessati = self.select_users_more_interested(
                 progetto
+            )
+        # Altrimenti vedo le persone che hanno priorità più alta
+        # tra quelle disponibili e interessate al topic
+        else:
+            utenti_interessati = self.filter_users_with_max_priority(
+                utenti_interessati
             )
         self.__list_telegram = self.get_telegram_contacts(utenti_interessati)
         self.__list_email = self.get_email_contacts(utenti_interessati)
@@ -59,9 +64,16 @@ class Processor():
     def _filter_users_by_topic(self, users: list, obj: str) -> list:
         pass
 
-    # Lista di tutti gli utenti disponibili e più interessati
+    # Lista di tutti gli utenti disponibili e più interessati del progetto
     def select_users_more_interested(self, project: str) -> list:
         return self._mongofacade.get_users_max_priority(project)
+
+    # Lista degli utenti disponibili e più interessati al
+    # topic, che però hanno dato priorità più alta al progetto
+    # (non vogliamo quindi tutte le persone che hanno dato priorità alta
+    # al progetto, ma filtrarle tra quelle interessate al topic)
+    def filter_users_with_max_priority(self, users: list) -> list:
+        return self._mongofacade.get_users_from_list_with_max_priority(users)
 
     # Crea la lista di contatti telegram a cui inviare il messaggio
     def get_telegram_contacts(self, users: list) -> list:

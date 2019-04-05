@@ -52,6 +52,12 @@ map_message_contacts = {
 KAFKA_CONSUMER.__iter__ = Mock(return_value=iter([message, message2]))
 # Processor.prepare_message.return_value = map_message_contacts
 MONGO.instantiate.return_value = Mock()
+# MONGO.instantiate.get_users_from_list_with_max_priority.__iter__ = Mock(
+#     return_value=iter(1,2)
+# )
+# .return_value.__iter__.return_value =
+MONGO.get_users_from_list_with_max_priority = MagicMock()
+# MONGO.get_users_from_list_with_max_priority.__iter__.return_value = 'a'
 
 
 def test_send_all():
@@ -66,6 +72,7 @@ def test_send_all():
     # KAFKA_PRODUCER.send.assert_called_once()  # Deve dare false: 4
 
 
+# TODO: rivedere
 # @patch('gestore_personale.Processor')
 def test_process():
     client.send_all = Mock()
