@@ -1,77 +1,163 @@
-\subsubsection{UC\theuccount-GP - Accesso}
+\subsubsection{UC\theuccount-GP - Modifica utente}
 		\begin{figure}[H]
 			\centering
-				\includegraphics[width=0.8\textwidth]{img/casi_d'uso/UC12.png}\\
-			\caption{UC\theuccount-GP - Accesso}
+				\includegraphics[width=0.9\textwidth]{img/casi_d'uso/UC16.png}\\
+			\caption{UC\theuccount-GP - Modifica utente}
 		\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount-GP.
-		\item \textbf{Titolo}: accesso.
-		\item \textbf{Attori primari}: utente non acceduto.
-		\item \textbf{Descrizione}: l'utente non acceduto richiede di accedere al sistema attraverso l'inserimento del proprio identificativo.
-		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto.
-		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore di esso come utente acceduto.
+		\item \textbf{Titolo}: modifica utente.
+		\item \textbf{Attori primari}: utente.
+		\item \textbf{Descrizione}: l’utente vuole modificare le informazioni relative a un altro utente, o di se stesso.
+		\item \textbf{Precondizione}: l'utente vuole modificare i dati di un utente già presente nel sistema.
+		\item \textbf{Postcondizione}: i campi dell'utente sono stati modificati correttamente.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
-			\item L'utente non ancora riconosciuto dal sistema procede all'accesso inserendo il proprio identificativo
+			\item L'utente modifica i dati relativi ad un utente
 		\end{enumerate}
 	\end{itemize}
-	
+	%TODO: perchè modifico tramite ID ma non rimuovo tramite ID?
 	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
 		\begin{figure}[H]
 			\centering
-				\includegraphics[width=0.6\textwidth]{img/casi_d'uso/UC12_1.png}\\
-			\caption{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
+			\includegraphics[width=0.8\textwidth]{img/casi_d'uso/UC16_1.png}\\
+			\caption{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
 		\end{figure}
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-			\item \textbf{Titolo}: accesso dell'utente nel sistema.
-			\item \textbf{Attori primari}: utente non acceduto.
-			\item \textbf{Descrizione}: l'utente non acceduto accede al sistema inserendo il proprio identificativo e inviandone la conferma.
-			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto.
-			\item \textbf{Postcondizione}: il sistema riconosce l'utente.
+			\item \textbf{Titolo}: selezione identificativo.
+			\item \textbf{Attori primari}: utente.
+			\item \textbf{Descrizione}: l'utente aggiunge l'identificativo dell'utente che vuole modificare.
+			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
+			\item \textbf{Postcondizione}: l'identificativo è stato inserito.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
-				\item L’utente non ancora riconosciuto dal sistema richiede l'accesso inserendo il proprio identificativo.
-				\item L'utente conferma l'invio dei dati
+				\item L'utente procede con l'inserimento dell'identificativo dell'utente da modificare
 			\end{enumerate}
 			\item \textbf{Estensioni}:
-			\begin{enumerate}
-				\item L'accesso non va a buon fine e viene visualizzato un errore avvisando l'utente [UC\theuccount.2-GP]
-			\end{enumerate}
+			\begin{itemize}
+				\item Errore identificativo inesistente [UC\theuccount.2-GP]
+			\end{itemize}
 		\end{itemize}
 		
-		\newpage
-		
 		\stepcounter{subsubuccount}
-		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento identificativo}
+		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Modifica di un utente del sistema}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.6\columnwidth]{img/casi_d'uso/UC16_1_1.png}\\
+				\caption{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Modifica di un utente del sistema}
+			\end{figure}
 			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount.1.1-GP.
-				\item \textbf{Titolo}: inserimento identificativo.
-				\item \textbf{Attori primari}: utente non acceduto.
-				\item \textbf{Descrizione}: l'utente inserisce l'identificativo.
-				\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e permette all'utente l'inserimento dell'identificativo.
-				\item \textbf{Postcondizione}: l'utente ha inserito l'identificativo desiderato dal sistema.
+				\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
+				\item \textbf{Titolo}: modifica di un utente del sistema.
+				\item \textbf{Attori primari}: utente.
+				\item \textbf{Descrizione}: l'identificativo è presente nel sistema e ne vengono modificati i relativi campi.
+				\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+				\item \textbf{Postcondizione}: l'utente è stato modificato.
 				\item \textbf{Scenario principale}:
 				\begin{enumerate}
-					\item L'utente inserisce l'identificativo per autenticarsi
+					\item L'utente viene modificato
 				\end{enumerate}
+				\item \textbf{Estensioni}:
+				\begin{itemize}
+					\item Errore, nuovi dati dell'utente già esistenti [UC\theuccount.\thesubuccount.2-GP]
+				\end{itemize}
 			\end{itemize}
-	
+			
+			\stepcounter{subsubsubuccount}
+			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP - Inserimento del nuovo nome}
+				
+				\begin{itemize}
+					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP.
+					\item \textbf{Titolo}: inserimento del nuovo nome.
+					\item \textbf{Attori primari}: utente.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo nome relativo all'identificativo inserito che vuole modificare.
+					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Postcondizione}: il nome è stato inserito.
+					\item \textbf{Scenario principale}:
+					\begin{enumerate}
+						\item L'utente inserisce il nuovo nome dell'utente che vuole modificare
+					\end{enumerate}
+				\end{itemize}
+			
+			\stepcounter{subsubsubuccount}
+			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP - Inserimento del nuovo cognome}
+				
+				\begin{itemize}
+					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP.
+					\item \textbf{Titolo}: inserimento del nuovo cognome.
+					\item \textbf{Attori primari}: utente.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo cognome relativo all'identificativo inserito che vuole modificare.
+					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Postcondizione}: il cognome è stato inserito.
+					\item \textbf{Scenario principale}:
+					\begin{enumerate}
+						\item L'utente inserisce il nuovo cognome dell'utente che vuole modificare.
+					\end{enumerate}
+				\end{itemize}
+			
+			\stepcounter{subsubsubuccount}
+			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP - Inserimento del nuovo contatto Email}
+				
+				\begin{itemize}
+					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP.
+					\item \textbf{Titolo}: inserimento del nuovo contatto Email.
+					\item \textbf{Attori primari}: utente.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Email relativo all'identificativo inserito che vuole modificare.
+					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Postcondizione}: il contatto Email è stato inserito.
+					\item \textbf{Scenario principale}:
+					\begin{enumerate}
+						\item L'utente inserisce il nuovo contatto Email dell'utente che vuole modificare
+					\end{enumerate}
+				\end{itemize}
+			
+			\stepcounter{subsubsubuccount}
+			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP - Inserimento del nuovo contatto Telegram}
+				
+				\begin{itemize}
+					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount.\thesubsubsubuccount-GP.
+					\item \textbf{Titolo}: inserimento del nuovo contatto Telegram.
+					\item \textbf{Attori primari}: utente.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Telegram relativo all'identificativo inserito che vuole modificare.
+					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Postcondizione}: il contatto Telegram è stato inserito.
+					\item \textbf{Scenario principale}:
+					\begin{enumerate}
+						\item L'utente inserisce il nuovo contatto Telegram dell'utente che vuole modificare
+					\end{enumerate}
+				\end{itemize}
+			
+		\stepcounter{subsubuccount}
+		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Errore, nuovi dati dell'utente già esistenti}
+		
+		\begin{itemize}
+			\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
+			\item \textbf{Titolo}: errore, nuovi dati dell'utente già esistenti.
+			\item \textbf{Attori primari}: utente.
+			\item \textbf{Descrizione}: i nuovi dati dell'utente da modificare che sono stati inseriti sono già presenti nel sistema, ovvero i nuovi campi corrispondono a quelli di un utente già esistente. In particolare il contatto Telegram o Email, perchè una persona può avere lo stesso nome e cognome di un altro, ma non la stessa mail e nemmeno lo stesso identificativo Telegram.
+			\item \textbf{Precondizione}: l'utente vuole modificare un utente esistente nel sistema.
+			\item \textbf{Postcondizione}: l'utente non è stato modificato e viene visualizzato un messaggio di errore.
+			\item \textbf{Scenario principale}:
+			\begin{enumerate}
+				\item L'utente inserisce i campi richiesti dal sistema per la modifica di un utente
+				\item L'utente visualizza un messaggio di errore
+			\end{enumerate}
+		\end{itemize}
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo inesistente}
+		
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: errore identificativo inesistente.
-			\item \textbf{Attori primari}: utente non acceduto.
-			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito un identificativo non riconosciuto.
-			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e riceve una richiesta di accesso. 
-			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore.
+			\item \textbf{Attori primari}: utente.
+			\item \textbf{Descrizione}:  l’utente inserisce l'identificativo dell'utente di cui vuole modificare le informazioni, ma viene avvisato che ha inserito un'identificativo errato perchè esso non è presente all'interno del sistema.
+			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
+			\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
-				\item L'utente inserisce un identificativo non esistente
-				\item L'utente conferma l'invio dei dati
-				\item L'utente visualizza il messaggio d'errore
+				\item L'utente inserisce un identificativo errato 
+				\item Il sistema comunica all’utilizzatore l’errore
 			\end{enumerate}
 		\end{itemize}
