@@ -78,7 +78,7 @@ class Processor():
     # Crea la lista di contatti telegram a cui inviare il messaggio
     def get_telegram_contacts(self, users: list) -> list:
         contacts = []
-        if users is not None:
+        if users is not None and users is list:
             for user in users:
                 telegramID = self._mongofacade.get_user_telegram(user)
                 if telegramID is not None:
@@ -88,7 +88,7 @@ class Processor():
     # Crea la lista di contatti mail a cui inviare il messaggio
     def get_email_contacts(self, users: list) -> list:
         contacts = []
-        if users is not None:
+        if users is not None and users is list:
             for user in users:
                 emailID = self._mongofacade.get_user_email(user)
                 if emailID is not None:
