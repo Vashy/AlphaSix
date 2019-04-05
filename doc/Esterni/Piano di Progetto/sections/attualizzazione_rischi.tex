@@ -58,11 +58,11 @@
 
 	\subsection{Lista rischi riscontrati}
 
-	Per elencare i rischi usiamo una struttura tabellare dove indichiamo nella prima riga il codice identificativo e il nome di ciascun rischio,
-	mentre nelle righe successive elenchiamo e discutiamo la relativa descrizione, le strategie per la rilevazione e le eventuali contromisure e mitigazioni dei rischi riscontrati.\par
+	Per elencare i rischi usiamo una struttura tabellare dove indichiamo nella prima riga il codice identificativo e il nome di ciascun rischio, mentre nelle righe successive elenchiamo e discutiamo la relativa descrizione, le strategie per la rilevazione e le eventuali contromisure e mitigazioni dei rischi riscontrati.\par
 
-	Potremo modificare la tabella in qualsiasi momento data la dinamicità dei rischi, e scegliamo di riportarli in ordine cronologico.
+	Potremo modificare le tabelle in qualsiasi momento data la dinamicità dei rischi, e scegliamo di riportarli in ordine cronologico.
 
+	\subsubsection{Periodo precedente alla RR}
 
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
@@ -78,9 +78,9 @@
 		\end{risktable}
 		\caption{Specifica rischio P002-122:2018-11-16}
 	\end{table}
-
+	
 	\mydoublerule{\linewidth}{0pt}{2pt}
-
+	
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
 			\thead{P003-122:2019-01-13} &
@@ -96,7 +96,13 @@
 		\caption{Specifica rischio P003-122:2019-01-13}
 	\end{table}
 
-	\mydoublerule{\linewidth}{0pt}{2pt}
+	In seguito poniamo i rischi analizzati la cui priorità è cambiata nel corso del progetto:
+	\begin{itemize}
+		\item \textbf{P005-011}: Intesa parziale tra i membri del team di sviluppo.
+	\end{itemize}
+
+
+	\subsubsection{Periodo tra RR ed RP}
 
 	\begin{table}[H]
 		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
@@ -134,7 +140,7 @@
 		\caption{Specifica rischio O002-111:2019-02-09}
 	\end{table}
 
-	\mydoublerule{\linewidth}{0pt}{2pt}
+	%\mydoublerule{\linewidth}{0pt}{2pt}
 
 	\begin{table}[H]
 
@@ -172,11 +178,43 @@
 		\caption{Specifica rischio T001-100:2019-02-23}
 	\end{table}
 
-    \mydoublerule{\linewidth}{0pt}{2pt}
+    %\mydoublerule{\linewidth}{0pt}{2pt}
 	\vspace{1cm}
 
 	In seguito poniamo i rischi analizzati la cui priorità è cambiata nel corso del progetto:
 	\begin{itemize}
-	    \item \textbf{P005-011}: Intesa parziale tra i membri del team di sviluppo.
 	    \item \textbf{R001-111}: Interpretazione errata dei requisiti: aggiunta o modifica di requisiti in corso di sviluppo.
 	\end{itemize}
+
+	\subsubsection{Periodo tra RP ed RQ}
+	
+	\begin{table}[H]
+		\begin{risktable}{\columnwidth}{m{4cm}m{11cm}}
+			\thead{P001-111:2019-04-02} &
+			Inesperienza del team a livello tecnico \\
+			
+			\rowcolor{\tablegray}
+			\multicolumn{2}{X}{
+				\textbf{Descrizione}: l'inesperienza nell'utilizzo di design pattern visti in maniera teorica a lezione ha portato il gruppo ad utilizzarli in maniera parlzialmente erronea e questo si è dimostrato durante la presentazione della Product Baseline con il professor Cardin. 
+			}\\
+			
+			\multicolumn{2}{X}{
+				\textbf{Strategia adottata}: è stato necessario modificare l'applicazione dei design pattern in maniera tale che questi siano totalmente conformi al progetto senza che ne complichino la progettazione e l'implementazione.
+			}\\
+		\end{risktable}
+		\caption{Specifica rischio T001-100:2019-04-02}
+	\end{table}
+	
+	In seguito poniamo i rischi analizzati la cui priorità è cambiata nel corso del progetto:
+	\begin{itemize}
+		\item \textbf{P002-111}: Impreparazione del team a livello gestionale.
+		\item \textbf{P006-122}: Cattiva amministrazione delle risorse.
+	\end{itemize}
+	
+	
+	%\subsubsection{Periodo successivo alla RQ}
+	
+	%In seguito poniamo i rischi analizzati la cui priorità è cambiata nel corso del progetto:
+	%\begin{itemize}
+	%	\item lorem ipsum
+	%\end{itemize}
