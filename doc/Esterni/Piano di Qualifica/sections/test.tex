@@ -1079,18 +1079,38 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
-		\addtoti & Verifica l'integrazione tra Webhook di GitLab e Producer GitLab & \TNI \\
-		\addtoti & Verifica l'integrazione tra Webhook di Redmine e Producer Redmine & \TNI \\
-		\addtoti & Verifica l'integrazione del Cosumer Telegram con il bot Telegram & \TNI \\
-		\addtoti & Verifica l'integrazione del Consumer Email con il server Email & \TNI \\
-		\addtoti & Verifica l'integrazione di Kafka con le componenti Producer e Consumer & \TNI \\
-		\TIti.1 & Verifica l'integrazione di KafkaProducer nel Producer GitLab & \TNI \\
-		\TIti.2 & Verifica l'integrazione di KafkaProducer nel Producer Redmine & \TNI \\
-		\TIti.3 & Verifica l'integrazione di KafkaConsumer nel Cosumer Telegram & \TNI \\
-		\TIti.4 & Verifica l'integrazione di KafkaConsumer nel Consumer Email & \TNI \\
-		\addtoti & Verifica l'integrazione del database MongoDB con le componenti che lo utiliazzano & \TNI \\
-		\TIti.1 & Verifica l'integrazione del database MongoDB con l'interfaccia del Gestore Personale & \TNI \\
-		\TIti.2 & Verifica l'integrazione del database MongoDB con la componente di processamento dei messaggi & \TI \\
+		\addtoti & Verifica l'integrazione tra Webhook e GitLabProducer & \TS \\
+			\TIti.1 & Verifica l'integrazione tra GitlabIssueWebhook e GitlabProducer & \TS \\
+			\TIti.2 & Verifica l'integrazione tra GitlabPushWebhook e GitlabProducer & \TS \\
+			\TIti.3 & Verifica l'integrazione tra GitlabIssueCommentWebhook e GitlabProducer & \TS \\
+			\TIti.4 & Verifica l'integrazione tra GitlabCommitCommentWebhook e GitlabProducer & \TS \\
+		\addtoti & Verifica l'integrazione tra Webhook e Producer Redmine & \TS \\
+			\TIti.1 & Verifica l'integrazione tra RedmineIssueWebhook e RedmineProducer & \TS \\
+		% \addtoti & Verifica l'integrazione del TelegramCosumer con il bot Telegram & \TNI \\
+		\addtoti & Verifica l'integrazione del EmailConsumer  con il server Email & \TS \\
+		\addtoti & Verifica l'integrazione di Kafka con le componenti Producer & \TS \\
+			\TIti.1 & Verifica l'integrazione di KafkaProducer con GitLabProducer & \TS \\
+			\TIti.2 & Verifica l'integrazione di KafkaProducer con RedmineProducer & \TS \\
+		\addtoti & Verifica l'integrazione di Kafka con le componenti Consumer & \TS \\
+			\TIti.3 & Verifica l'integrazione di KafkaConsumer nel TelegramCosumer & \TS \\
+			\TIti.4 & Verifica l'integrazione di KafkaConsumer nel EmailConsumer & \TS \\
+		\addtoti & Verifica l'integrazione del database PyMongo con l'interfaccia del Gestore Personale & \TS \\
+		\addtoti & Verifica l'integrazione del database PyMongo con la componente di processamento dei messaggi MessageProcessor & \TS \\
+		\addtoti & Verifica l'integrazione di KafkaProducer con ClientGP & \TS \\
+		\addtoti & Verifica l'integrazione di KafkaConsumer con ClientGP & \TS \\
+		\addtoti & Verifica l'integrazione di Flask con FlaskServer & \TS \\
+		\addtoti & Verifica l'integrazione di FlaskServer con GitlabProducer & \TS \\
+		\addtoti & Verifica l'integrazione di FlaskServer con RedmineProducer & \TS \\
+		\addtoti & Verifica l'integrazione di KafkaProducer con KafkaProducerCreator & \TS \\
+		\addtoti & Verifica l'integrazione di KafkaConsumer con KafkaConsumerCreator & \TS \\
+		\addtoti & Verifica l'integrazione di WebhookFactory con Webhook & \TS \\
+			\TIti.1 & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueWebhook & \TS \\
+			\TIti.2 & Verifica l'integrazione di GitlabWebhookFactory con GitlabPushWebhook & \TS \\
+			\TIti.3 & Verifica l'integrazione di GitlabWebhookFactory con GitlabCommitCommentWebhook & \TS \\
+			\TIti.4 & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueCommentWebhook & \TS \\
+			\TIti.5 & Verifica l'integrazione di RedmineWebhookFactory con RedmineIssueWebhook & \TS \\
+		\addtoti & Verifica l'integrazione di MongoFacade con MessageProcessor & \TS \\
+		\addtoti & Verifica l'integrazione di ControllerGestorePersonale con ResourceFlask & \TS \\
 		\bottomrule\\
 	\end{paddedtablex}
 	\caption{Elenco dei test d'integrazione}
@@ -1136,12 +1156,10 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			% \rowcolor{\tablegray}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
-			\addtotu & Verifica l'inizializzazione di un oggetto FlaskServerCreator & \TS \\
-			\addtotu & Verifica l'apertura di un file di configurazione di tipo JSON & \TS \\
-			\addtotu & Verifica l' inizializzazione di un oggetto FlaskServer & \TS \\
 			\addtotu & Verifica il processamento del webhook e se è malformato & \TS \\
 			\addtotu & Verifica la creazione di un oggetto RedmineIssueWebhook & \TS \\
-			% \addtotu &
+			\addtotu & Verifica il parsing del file JSON associato al webhook di apertura issue in Redmine & \TS \\
+			\addtotu & Verifica il parsing del file JSON associato al webhook di modifica issue in Redmine & \TS \\
 % 			% % \TUtu.1 & Verifica l & \TNI \\
 			\bottomrule\\
 		\end{paddedtablex}
@@ -1159,13 +1177,10 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 				% \rowcolor{\tablegray}
 				\textbf{Codice} & \textbf{Componente} \\
 				\toprule
-				\addtotu & Butterfly::FlaskServerCreator \\
-				\addtotu & Butterfly::\_open\_configs \\
-				\addtotu & Butterfly::FlaskServer \\
 				\addtotu & Butterfly::FlaskServer::\_webhook\_handler \\
 				\addtotu & Butterfly::WebhookFactory::RedmineWebhookFactory \\
-				\addtotu & \\
-				\addtotu &  \\
+				\addtotu & Butterfly::Webhook::RedmineIssueWebhook::parse \\
+				\addtotu & Butterfly::Webhook::RedmineIssueWebhook::parse \\
 				\addtotu & \\
 				\addtotu &  \\
 				\addtotu & \\
