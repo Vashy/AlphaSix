@@ -67,7 +67,6 @@ class Producer(ABC):
         # Se non riesce a mandare il messaggio in 10 secondi
         except KafkaTimeoutError:
             print('Impossibile inviare il messaggio\n')
-            # exit(-1)
 
     @abstractmethod
     def webhook_kind(self, whook: dict):
