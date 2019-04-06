@@ -24,28 +24,28 @@
 		\end{itemize}
 		\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 		\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio  \newline elaborato.
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item Il Producer GitLab riceve una segnalazione da GitLab
 			\item Il Producer GitLab prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
 			\item Il Poducer GitLab invia il messaggio al Gestore Personale
-            \item Il Gestore Perosonale riceve il messaggio dal Producer GitLab 
+            \item Il Gestore Perosonale riceve il messaggio dal Producer GitLab
 		\end{enumerate}
-		
+
 	\end{itemize}
 
 	\stepcounter{subuccount}
 
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer GitLab invia messaggio di push al Gestore Personale}
-		
+
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: Producer GitLab invia uno o più messaggi di commit al Gestore Personale.
 			\item \textbf{Attori primari}: Producer GitLab.
-			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di push da  \newline GitLab, suddivide la segnalazione per i commit in più messaggi che verranno catalogati sotto il Topic "commits".
+			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di push da  \newline GitLab, suddivide la segnalazione per i commit in più messaggi che verranno catalogati sotto il Topic ``commits''.
 			\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 			\item \textbf{Postcondizione}: il Producer GitLab ha inviato uno o più messaggi di commit.
-			\item \textbf{Scenario principale}: 
+			\item \textbf{Scenario principale}:
 			\begin{enumerate}
 				\item Il Producer GitLab riceve la segnalazione di un push da GitLab
 				\item Il Producer GitLab prepara i messaggi in modo che vengano inseriti correttamente nel Gestore Personale
@@ -53,7 +53,7 @@
 				commit al Gestore Personale
                 \item Il Gestore Personale riceve i messaggi di commit
 			\end{enumerate}
-			\item \textbf{Estensioni}: 
+			\item \textbf{Estensioni}:
 			\begin{enumerate}
 				\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.6-GP].
 			\end{enumerate}
@@ -62,7 +62,7 @@
 	\stepcounter{subuccount}
 
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer GitLab invia messaggio di una nuova issue al Gestore Personale}
-	
+
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: Producer GitLab invia messaggio di una nuova issue al Gestore Personale.
@@ -71,21 +71,21 @@
 		\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 		\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio
 		elaborato di nuova issue.
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item Il Producer GitLab riceve la segnalazione di una nuova issue da GitLab
 			\item Il Producer GitLab prepara il messaggio di una nuova issue in modo che venga inserito correttamente
 			nel Gestore Personale
 			\item Il Producer GitLab invia il messaggio di una nuova issue al Gestore Personale
 		\end{enumerate}
-		\item \textbf{Estensioni}: 
+		\item \textbf{Estensioni}:
 		\begin{enumerate}
 			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.6-GP].
 		\end{enumerate}
 	\end{itemize}
-		
+
 	\stepcounter{subuccount}
-	
+
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer GitLab invia messaggio di modifica di una issue al Gestore Personale}
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
@@ -107,21 +107,21 @@
 			\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 			\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio
 			elaborato di modifica issue.
-			\item \textbf{Scenario principale}: 
+			\item \textbf{Scenario principale}:
 			\begin{enumerate}
 				\item Il Producer GitLab riceve la segnalazione di issue da GitLab
 				\item Il Producer GitLab prepara il messaggio di modifica issue in modo che venga inserito correttamente nel Gestore Personale
 				\item Il Producer GitLab invia il messaggio di issue al Gestore Personale
                 \item Il Gestore Personale riceve il messaggio di issue dal Producer GitLab
 			\end{enumerate}
-			\item \textbf{Estensioni}: 
+			\item \textbf{Estensioni}:
 			\begin{enumerate}
 				\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.6-GP].
 			\end{enumerate}
 		\end{itemize}
-		
+
 		\stepcounter{subuccount}
-		
+
 		\subsubsection{UC\theuccount.\thesubuccount-GP - Producer GitLab invia messaggio di commento di una issue al Gestore Personale}
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
@@ -131,20 +131,20 @@
 			\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 			\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio
 			elaborato di commento issue.
-			\item \textbf{Scenario principale}: 
+			\item \textbf{Scenario principale}:
 			\begin{enumerate}
 				\item Il Producer GitLab riceve la segnalazione di commento issue da GitLab
 				\item Il Producer GitLab prepara il messaggio di commento issue in modo che venga inserito correttamente nel Gestore Personale
 				\item Il Producer GitLab invia il messaggio di commento issue al Gestore Personale
 			\end{enumerate}
-			\item \textbf{Estensioni}: 
+			\item \textbf{Estensioni}:
 			\begin{enumerate}
 				\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.6-GP].
 			\end{enumerate}
 		\end{itemize}
-		
+
 		\stepcounter{subuccount}
-		
+
 		\subsubsection{UC\theuccount.\thesubuccount-GP - Producer GitLab invia messaggio di commento di un commit al Gestore Personale}
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
@@ -154,22 +154,22 @@
 			\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 			\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio
 			elaborato di commento commit.
-			\item \textbf{Scenario principale}: 
+			\item \textbf{Scenario principale}:
 			\begin{enumerate}
 				\item Il Producer GitLab riceve la segnalazione di commento commit da GitLab
 				\item Il Producer GitLab prepara il messaggio di commento commit in modo che venga inserito correttamente nel Gestore Personale
 				\item Il Producer GitLab invia il messaggio di commento commit al Gestore Personale
 			\end{enumerate}
-			\item \textbf{Estensioni}: 
+			\item \textbf{Estensioni}:
 			\begin{enumerate}
 				\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.6-GP].
 			\end{enumerate}
 		\end{itemize}
-		
+
 		\stepcounter{subuccount}
-		
+
 		\subsubsection{UC\theuccount.\thesubuccount-GP - Producer GitLab scarta i messaggi non validi}
-			
+
 			\begin{itemize}
 				\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 				\item \textbf{Titolo}: Producer GitLab scarta i messaggi non validi.
@@ -178,7 +178,7 @@
                 che il messaggio contenga una segnalazione che \progetto\ sappia analizzare. In caso negativo, il messaggio viene scartato.
                 \item \textbf{Precondizione}: il Producer GitLab ha ricevuto un messaggio da GitLab.
                 \item \textbf{Postcondizione}: il Producer GitLab ha scartato il messaggio.
-                \item \textbf{Scenario principale}: 
+                \item \textbf{Scenario principale}:
                 \begin{enumerate}
                     \item Il Producer GitLab riceve un messaggio
                     \item Il Producer GitLab vede che il messaggio contiene una segnalazione che \progetto\ non sa analizzare

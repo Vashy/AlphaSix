@@ -26,28 +26,28 @@
 		 \end{itemize}
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio.
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item Il Producer Redmine riceve la segnalazione di issue da Redmine
 			\item Il Producer Redmine prepara il messaggio di issue in modo che venga inserito correttamente nel Gestore Personale
 			\item Il Producer Redmine invia il messaggio di issue al Gestore Personale
             \item Il Gestore Personale riceve il messaggio dal Producer Redmine
 		\end{enumerate}
-		
+
 	\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer Redmine invia messaggio di apertura issue al Gestore Personale}
-	
+
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: Producer Redmine invia messaggio di apertura issue al Gestore Personale.
-		\item \textbf{Attori Pimari}: Producer Redmine.
+		\item \textbf{Attori Primari}: Producer Redmine.
 		\item \textbf{Descrizione}: il Producer Redmine, dopo aver
 		ricevuto una segnalazione di apertura issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di apertura issue.
-		\item \textbf{Scenario Pincipale}: 
+		\item \textbf{Scenario Principale}:
 		\begin{enumerate}
 			\item Il Producer Redmine riceve la segnalazione di apertura issue da Redmine
 			\item Il Producer Redmine prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
@@ -55,23 +55,23 @@
 			apertura issue al Gestore Personale
             \item Il Gestore Personale riceve il messaggio di apertura issue
 		\end{enumerate}
-		\item \textbf{Estensioni}: 
+		\item \textbf{Estensioni}:
 		\begin{enumerate}
 			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
 		\end{enumerate}
 	\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer Redmine invia messaggio di modifica issue al Gestore Personale}
-		
+
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: Producer Redmine invia messaggio di modifica issue al Gestore Personale
-			\item \textbf{Attori Pimari}: Producer Redmine.
+			\item \textbf{Attori Primari}: Producer Redmine.
 			\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto una segnalazione di modifica issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
 			\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 			\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di modifica issue.
-			\item \textbf{Scenario Pincipale}: 
+			\item \textbf{Scenario Principale}:
 			\begin{enumerate}
 				\item Il Producer Redmine riceve la segnalazione di modifica issue da Redmine
 				\item Il Producer Redmine prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
@@ -79,31 +79,31 @@
                 \item Il Gestore Personale riceve il messaggio di modifica issue
 			\end{enumerate}
 		\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer Redmine invia messaggio di commento issue al Gestore Personale}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: Producer Redmine invia messaggio di commento issue al Gestore Personale
-		\item \textbf{Attori Pimari}: Producer Redmine.
+		\item \textbf{Attori Primari}: Producer Redmine.
 		\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto una segnalazione di commento issue da Redmine, elabora il messaggio e lo invia al Gestore Personale.
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio di commento issue.
-		\item \textbf{Scenario Pincipale}: 
+		\item \textbf{Scenario Principale}:
 		\begin{enumerate}
 			\item Il Producer Redmine riceve la segnalazione di commento issue da Redmine
 			\item Il Producer Redmine prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
 			\item Il Producer Redmine invia il messaggio di	commento issue al Gestore Personale
 		\end{enumerate}
-		\item \textbf{Estensioni}: 
+		\item \textbf{Estensioni}:
 		\begin{enumerate}
 			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
 		\end{enumerate}
 	\end{itemize}
-	
+
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer Redmine scarta i messaggi non validi}
-	
+
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: Producer Redmine scarta i messaggi non validi.
@@ -112,7 +112,7 @@
 		se il messaggio contiene una segnalazione che \progetto\ sa analizzare. In caso negativo, il messaggio viene scartato.
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto un messaggio da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha scartato il messaggio.
-		\item \textbf{Scenario principale}: 
+		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item Il Producer Redmine riceve un messaggio
 			\item Il Producer Redmine vede che il messaggio contiene una segnalazione che \progetto\ non sa analizzare
