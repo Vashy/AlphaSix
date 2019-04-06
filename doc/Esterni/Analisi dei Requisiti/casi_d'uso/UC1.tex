@@ -14,8 +14,9 @@
 	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
 	\item \textbf{Scenario principale}: 
 	\begin{enumerate}
-		\item Viene eseguita un'operazione
+		\item Viene eseguita un'operazione in Redmine da far scaturire l'invio di una segnalazione
 		\item Redmine procede all'invio della segnalazione al Producer Redmine
+        \item La segnalazione viene ricevuta dal Producer Redmine
 	\end{enumerate}
 	
 \end{itemize}
@@ -48,11 +49,12 @@
 	Il campo status conterrà sempre al suo interno ``opened''.
 	\item \textbf{Precondizione}: Viene aperta una issue su Redmine da
 	segnalare a \progetto.
-	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione di apertura issue da Redmine.
 	\item \textbf{Scenario principale}: 
 	\begin{enumerate}
-		\item Viene aperta una nuova issue su Redmine
+		\item Viene aperta una nuova issue su Redmine compilando i campi indicati
 		\item Redmine procede all'invio della segnalazione di issue al Producer Redmine
+        \item Il Producer Redmine riceve la segnalazione di apertura issue
 	\end{enumerate}
 	
 \end{itemize}
@@ -66,7 +68,7 @@
 %		\caption{UC\theuccount-PR - Redmine segnala la modifica di una issue al Producer Redmine}
 %	\end{figure}
 \begin{itemize}
-	\item \textbf{Codice}: UC\theuccount-PR.
+	\item \textbf{Codice}: UC\theuccount\thesubuccount-PR.
 	\item \textbf{Titolo}: Redmine segnala la modifica di una issue al Producer Redmine.
 	\item \textbf{Attori primari}: Redmine.
 	\item \textbf{Descrizione}: quando una issue viene modificata, l'invio di tale segnalazione
@@ -74,11 +76,12 @@
 	I campi di interesse sono gli stessi dell'apertura di una issue, con la differenza che necessariamente il campo status contiene ora ``updated''.
 	\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
 	progetto di Redmine da segnalare a \progetto.
-	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione di modifica issue da Redmine.
 	\item \textbf{Scenario principale}: 
 	\begin{enumerate}
 		\item Viene modificata una issue già esistente su Redmine
 		\item Redmine procede all'invio della segnalazione di modifica issue al Producer Redmine
+        \item Il Producer Redmine riceve la segnalazione di modifica issue
 	\end{enumerate}
 	
 \end{itemize}
@@ -97,10 +100,10 @@
 	\item \textbf{Attori primari}: Redmine.
 	\item \textbf{Descrizione}: quando una issue viene commentata, l'invio di tale segnalazione
 	avviene da parte di Redmine tramite webhook.
-	I campi di interesse sono gli stessi della modifica di una issue, con la differenza che necessariamente il campo status contiene ora ``updated''.
+	I campi di interesse sono gli stessi dell'apertura di una issue, con la differenza che necessariamente il campo status contiene ora ``updated''.
 	\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
 	progetto di Redmine da segnalare a \progetto.
-	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione da Redmine.
+	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione del commento di una issue da Redmine.
 	\item \textbf{Scenario principale}: 
 	\begin{enumerate}
 		\item Viene modificata una issue già esistente su Redmine

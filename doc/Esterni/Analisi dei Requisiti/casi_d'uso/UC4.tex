@@ -29,6 +29,7 @@
 			\item Il Producer GitLab riceve una segnalazione da GitLab
 			\item Il Producer GitLab prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
 			\item Il Poducer GitLab invia il messaggio al Gestore Personale
+            \item Il Gestore Perosonale riceve il messaggio dal Producer GitLab 
 		\end{enumerate}
 		
 	\end{itemize}
@@ -41,16 +42,16 @@
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: Producer GitLab invia uno o più messaggi di commit al Gestore Personale.
 			\item \textbf{Attori primari}: Producer GitLab.
-			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di push da
-			GitLab, elabora un messaggio che conterrà tutti i commit.
+			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di push da  \newline GitLab, suddivide la segnalazione per i commit in più messaggi che verranno catalogati sotto il Topic "commits".
 			\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
-			\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio
-			elaborato di push.
+			\item \textbf{Postcondizione}: il Producer GitLab ha inviato uno o più messaggi di commit.
 			\item \textbf{Scenario principale}: 
 			\begin{enumerate}
-				\item Il Producer GitLab riceve la segnalazione di push da GitLab
-				\item Il Producer GitLab prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
-				\item Il Producer GitLab invia il messaggio di push al Gestore Personale
+				\item Il Producer GitLab riceve la segnalazione di un push da GitLab
+				\item Il Producer GitLab prepara i messaggi in modo che vengano inseriti correttamente nel Gestore Personale
+				\item Il Producer GitLab invia i messaggi di
+				commit al Gestore Personale
+                \item Il Gestore Personale riceve i messaggi di commit
 			\end{enumerate}
 			\item \textbf{Estensioni}: 
 			\begin{enumerate}
@@ -90,15 +91,28 @@
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: Producer GitLab invia messaggio di modifica di una issue al Gestore Personale.
 			\item \textbf{Attori primari}: Producer GitLab.
-			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di modifica di una issue da GitLab, elabora il messaggio da inoltrare al Gestore Personale.
+			\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto una segnalazione di issue da GitLab, controlla se la issue è appena stata creata o si tratta della modifica di una issue preesistente. Il messaggio, una volta elaborato, conterrà i campi:
+			\begin{itemize}
+				\item Project
+                \item Author
+				\item Topic
+				\item Subject e opzionalmente:
+				\begin{itemize}
+					\item Description
+					\item Due Date
+					\item Milestone
+					\item Assignee
+				\end{itemize}
+			\end{itemize}
 			\item \textbf{Precondizione}: il Producer GitLab ha ricevuto una segnalazione da GitLab.
 			\item \textbf{Postcondizione}: il Producer GitLab ha inviato al Gestore Personale il messaggio
 			elaborato di modifica issue.
 			\item \textbf{Scenario principale}: 
 			\begin{enumerate}
-				\item Il Producer GitLab riceve la segnalazione di modifica issue da GitLab
+				\item Il Producer GitLab riceve la segnalazione di issue da GitLab
 				\item Il Producer GitLab prepara il messaggio di modifica issue in modo che venga inserito correttamente nel Gestore Personale
-				\item Il Producer GitLab invia il messaggio di modifica issue al Gestore Personale
+				\item Il Producer GitLab invia il messaggio di issue al Gestore Personale
+                \item Il Gestore Personale riceve il messaggio di issue dal Producer GitLab
 			\end{enumerate}
 			\item \textbf{Estensioni}: 
 			\begin{enumerate}

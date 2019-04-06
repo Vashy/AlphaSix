@@ -87,7 +87,7 @@
 				\item \textbf{Titolo}: inserimento contatto Email.
 				\item \textbf{Attori primari}: utente.
 				% non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il contatto Email dell'utente da aggiungere.
+				\item \textbf{Descrizione}: l'utente inserisce il contatto Email dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un ID Telegram.
 				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
 				\item \textbf{Postcondizione}: il contatto Email è stato aggiunto.
 				\item \textbf{Scenario principale}:
@@ -104,7 +104,7 @@
 				\item \textbf{Titolo}: inserimento contatto Telegram.
 				\item \textbf{Attori primari}: utente.
 				% non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il contatto Telegram dell'utente da aggiungere.
+				\item \textbf{Descrizione}: l'utente inserisce il contatto Telegram dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un ID Telegram.
 				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
 				\item \textbf{Postcondizione}: il contatto Telegram è stato aggiunto.
 				\item \textbf{Scenario principale}:
@@ -112,6 +112,44 @@
 					\item L'utente aggiunge il contatto Telegram del nuovo utente
 				\end{enumerate}
 			\end{itemize}
+        
+        \stepcounter{subsubuccount}
+        \subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento progetti di interesse}
+        
+        \begin{itemize}
+            \item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
+            \item \textbf{Titolo}: inserimento progetti di interesse.
+            \item \textbf{Attori primari}: utente.
+            % non registrato.
+            \item \textbf{Descrizione}: l'utente seleziona da una lista i progetti da cui è interessato ricevere delle notifiche.
+            \item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
+            \item \textbf{Postcondizione}: almeno un progetto è stato aggiunto.
+            \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item L'utente aggiunge uno o più progetti
+            \end{enumerate}
+%            \item \textbf{Estensioni}
+%            \begin{enumerate}
+%                \item Inserimento priorità progetti [UC\theuccount.\thesubuccount.6-GP]
+%            \end{enumerate}
+        \end{itemize}
+    
+        \stepcounter{subsubuccount}
+        \subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento priorità progetti}
+        
+        \begin{itemize}
+            \item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
+            \item \textbf{Titolo}: inserimento progetti di interesse.
+            \item \textbf{Attori primari}: utente.
+            % non registrato.
+            \item \textbf{Descrizione}: l'utente, per ogni progetto a cui è interessato, seleziona la priorità dei progetti.
+            \item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
+            \item \textbf{Postcondizione}: almeno una priorità per un progetto è stata aggiunto.
+            \item \textbf{Scenario principale}:
+            \begin{enumerate}
+                \item L'utente aggiunge uno o più priorità per uno o più progetti
+            \end{enumerate}
+        \end{itemize}
 
 	\stepcounter{subuccount}
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore utente già presente nel sistema}

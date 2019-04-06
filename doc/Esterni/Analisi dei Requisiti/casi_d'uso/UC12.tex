@@ -41,7 +41,6 @@
 			\item \textbf{Estensioni}:
 			\begin{itemize}
 				\item Errore contatto non presente nel sistema [UC\theuccount.2-GP]
-				\item L'utente vuole rimuovere se stesso [UC\theuccount.3-GP]
 			\end{itemize}
 		\end{itemize}
 			
@@ -52,7 +51,7 @@
 					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 					\item \textbf{Titolo}: inserimento contatto Email.
 					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente ha aggiunto il contatto Email relativo all'utente che vuole rimuovere.
+					\item \textbf{Descrizione}: l'utente ha aggiunto il contatto Email relativo all'utente che vuole rimuovere. L'inserimento di questo capo non avviene se viene invece inserito il contatto Telegram.
 					\item \textbf{Precondizione}: un utente già presente nel sistema deve essere rimosso.
 					\item \textbf{Postcondizione}: il contatto dell'utente da rimuovere Email è stato inserito.
 					\item \textbf{Scenario principale}:
@@ -68,7 +67,7 @@
 					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 					\item \textbf{Titolo}: inserimento contatto Telegram.
 					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente ha aggiunto il contatto Telegram relativo all'utente che vuole \newline rimuovere.
+					\item \textbf{Descrizione}: l'utente ha aggiunto il contatto Telegram relativo all'utente che vuole \newline rimuovere. L'inserimento di questo capo non avviene se viene invece inserito il contatto Email.
 					\item \textbf{Precondizione}: un utente già presente nel sistema deve essere rimosso.
 					\item \textbf{Postcondizione}: il contatto Telegram dell'utente da rimuovere è stato inserito.
 					\item \textbf{Scenario principale}:
@@ -92,21 +91,3 @@
 						\item L'utente selezionato attraverso il contatto Telegram o Email non viene rimosso perché non presente nel sistema.
 					\end{enumerate}
 				\end{itemize}
-			
-			\stepcounter{uccount}
-			\subsubsection{UC\theuccount-GP - L'utente rimuove se stesso dal sistema}
-			
-			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount-GP.
-				\item \textbf{Titolo}: l'utente rimuove se stesso dal sistema.
-				\item \textbf{Attori primari}: utente.
-				\item \textbf{Descrizione}:  l’utente inserisce il proprio identificativo per rimuoversi dal sistema.
-				\item \textbf{Precondizione}: un utente già presente nel sistema deve essere rimosso.
-				\item \textbf{Postcondizione}: l'utente non risulta più acceduto al sistema che non riconosce più l'utente ormai rimosso.
-				\item \textbf{Scenario principale}:
-				\begin{enumerate}
-					\item L'utente selezionato attraverso il contatto Telegram o Email viene rimosso dal sistema.
-					\item L'utente viene automaticamente fatto uscire dall'applicazione.
-					%TODO: aggiungere un caso include perchè se l'utente è rimosso allora => l'utente viene fatto uscire dal sistema?
-				\end{enumerate}
-			\end{itemize}
