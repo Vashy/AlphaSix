@@ -240,13 +240,18 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
 			\rowcolor{\tablegray}\ReqQ{1}{Una frequenza minima di commit devono essere effettuati in una settimana}{Interno QPR004}
 			\rowcolor{white}\ReqQ{1}{Un numero stabilito di requisiti desiderabili deve essere soddisfatto}{Interno QPR006}
-			\rowcolor{\tablegray}\ReqQ{1}{Nessun rischio non verificato precedentemente deve accadere nel corso del progetto}{Interno QPR007}
-			\rowcolor{white}\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
-			\rowcolor{\tablegray}\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
-			\rowcolor{white}\ReqQ{2}{Tutte le \gloss{norme} inserite nelle \NdPd\ devono essere rispettate}{Interno}
-			\rowcolor{\tablegray}\ReqQ{2}{Tutti i vincoli presenti nel \PdQd\ devono essere rispettati}{Interno}
-			\rowcolor{white}\subReqQ{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
-			\rowcolor{\tablegray}\ReqQ{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
+			\rowcolor{\tablegray}\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
+			\rowcolor{white}\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
+			\rowcolor{\tablegray}\ReqQ{2}{Tutte le \gloss{norme} inserite nelle \NdPd\ devono essere rispettate}{Interno}
+			\rowcolor{white}\ReqQ{2}{Tutti i vincoli presenti nel \PdQd\ devono essere rispettati}{Interno}
+			\rowcolor{\tablegray}\subReqQ{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
+			\rowcolor{white}\ReqQ{2}{È necessario presentare il \gloss{bug} reporting per ogni componente}{Capitolato}
+			\ReqQ{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
+			%\req{R\thevaQ.1Q2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\subReqQ{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
+			\ReqQ{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unità, d'integrazione e di sistema}{Capitolato}
+			%\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+			\subReqQ{2}{È necessario fornire test d'unità per ogni componente applicativo}{Capitolato}
 
 			\bottomrule
 		\end{paddedtablex}
@@ -259,12 +264,6 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
 
-			\ReqQ{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
-			%\req{R\thevaQ.1Q2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
-			\subReqQ{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
-			\ReqQ{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unità, d'integrazione e di sistema}{Capitolato}
-			%\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
-			\subReqQ{2}{È necessario fornire test d'unità per ogni componente applicativo}{Capitolato}
 			\subReqQ{2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
 			\subReqQ{2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
 			\ReqQ{1}{Per ogni problema aperto documentato, si allegano delle soluzioni da attuare in futuro}{Capitolato}
@@ -335,12 +334,24 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqV{2}{Le componenti Consumer devono essere in grado di inviare i messaggi provenienti da un Topic verso il corretto destinatario}{Capitolato}
 			\ReqV{2}{Le componenti Consumer devono essere in grado di abbonarsi ai Topic scelti}{Capitolato}
 			\ReqV{2}{Le segnalazioni devono poter essere gestite in maniera automatica e personalizzabile}{Capitolato}
+
+			\bottomrule\\
+		\end{paddedtablex}
+		\caption{Elenco dei requisiti di vincolo (1)}
+	\end{table}
+
+
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc} %\rowcolors{1}{\tablegray}{\lightgray}
+			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
+
 			\ReqV{2}{Nel sistema deve essere presente un Broker che istanzia e gestisce le segnalazioni organizzandole per Topic}{Capitolato}
 			\ReqV{2}{Le componenti Producer devono riuscire a pubblicare le segnalazioni recuperate sotto forma di messaggi secondo i Topic corretti}{Capitolato}
 
 			\bottomrule\\
 		\end{paddedtablex}
-		\caption{Elenco dei requisiti di vincolo}
+		\caption{Elenco dei requisiti di vincolo (2)}
 	\end{table}
 
 
