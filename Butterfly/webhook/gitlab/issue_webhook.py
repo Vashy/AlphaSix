@@ -56,15 +56,16 @@ class GitlabIssueWebhook(Webhook):
         except KeyError:
             pass
 
-        webhook['action'] = whook['object_attributes']['action']
+        try:
+            webhook['action'] = whook['object_attributes']['action']
+        except KeyError:
+            webhook['action'] = None
         webhook['description'] = (
             whook['object_attributes']['description']
         )
-
         webhook['labels'] = []
         for value in whook['labels']:
             webhook['labels'].append(value['title'])
-
         webhook['changes'] = {}
         webhook['changes']['labels'] = {}
         try:
@@ -76,5 +77,4 @@ class GitlabIssueWebhook(Webhook):
             )
         except KeyError:
             pass
-
         return webhook

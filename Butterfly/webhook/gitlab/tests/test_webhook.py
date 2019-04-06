@@ -59,13 +59,16 @@ def test_gitlab_push_webhook():
         whook = json.load(file)
 
     webhook = webhook.parse(whook)
-
-    for value in webhook:
-        assert value['app'] == 'gitlab'
-        assert value['object_kind'] == 'push'
-        assert value['title'] == 'New commit fix #5 close #10 resolves #12'
-        assert value['project_id'] == 'https://gitlab.com/AlphaSix/webhooktest'
-        assert value['author'] == 'AlphaSix'
+    assert webhook['app'] == 'gitlab'
+    assert webhook['object_kind'] == 'push'
+    assert webhook['project_id'] == 'https://gitlab.com/AlphaSix/webhooktest'
+    assert webhook['project_id'] == 'https://gitlab.com/AlphaSix/webhooktest'
+    assert webhook['project_name'] == 'WebHookTest'
+    assert webhook['author'] == 'AlphaSix'
+    assert webhook['commits_count'] == 1
+    assert webhook['repository'] == 'WebHookTest'
+    assert webhook['commits'][0]['id'] \
+        == 'e1ec96b6eb5e67422935913530a54b0c612acf87'
 
 
 def test_gitlab_commit_comment_webhook():

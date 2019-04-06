@@ -23,7 +23,7 @@ class ProducerCreator(ABC):
         """
 
 
-class KafkaProducerCreator(ABC):
+class KafkaProducerCreator(ProducerCreator):
 
     def create(self, configs: dict) -> Producer:
         """Restituisce un'istanza concreta di `KafkaProducer`, inizializzando un

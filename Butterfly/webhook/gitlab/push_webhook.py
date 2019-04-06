@@ -32,37 +32,41 @@ class GitlabPushWebhook(Webhook):
     Parse degli eventi di Push di Gitlab.
     """
 
-    def parse(self, whook: dict = None):
+    def parse(self, whook: dict):
         """Parsing del file JSON. Restituisce un riferimento alla
          lista 'commits' contenente i dizionari ottenuti.
         """
 
         assert whook is not None
 
-        commits = []
-        for value in whook['commits']:
+        webhook = {}
+        webhook['app'] = 'gitlab'
+        webhook['object_kind'] = whook['object_kind']
+        # webhook['title'] = commit['message']
+        webhook['project_id'] = whook['project']['web_url']
+        webhook['project_name'] = whook['project']['name']
+        webhook['author'] = whook['user_name']
+        webhook['commits'] = whook['commits']
+        webhook['commits_count'] = whook['total_commits_count']
+        webhook['repository'] = whook['repository']['name']
 
-            webhook = {}
-            webhook['app'] = 'gitlab'
-            webhook['object_kind'] = whook['object_kind']
-            webhook['title'] = value['message']
-            webhook['project_id'] = whook['project']['web_url']
-            webhook['project_name'] = whook['project']['name']
-            webhook['author'] = value['author']['name']
+        # commits = []
+        # for commit in whook['commits']:
 
-            webhook['added'] = []
-            for content in value['added']:
-                webhook['added'].append(content)
-            commits.append(webhook)
 
-            webhook['modified'] = []
-            for content in value['modified']:
-                webhook['modified'].append(content)
-            commits.append(webhook)
+        #     webhook['added'] = []
+        #     for content in commit['added']:
+        #         webhook['added'].append(content)
+        #     commits.append(webhook)
 
-            webhook['removed'] = []
-            for content in value['removed']:
-                webhook['removed'].append(content)
-            commits.append(webhook)
+        #     webhook['modified'] = []
+        #     for content in commit['modified']:
+        #         webhook['modified'].append(content)
+        #     commits.append(webhook)
 
-        return commits
+        #     webhook['removed'] = []
+        #     for content in commit['removed']:
+        #         webhook['removed'].append(content)
+        #     commits.append(webhook)
+
+        return webhook
