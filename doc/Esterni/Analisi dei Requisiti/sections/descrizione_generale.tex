@@ -168,19 +168,20 @@
 
     Per comprendere meglio il sistema di notifica e inoltro delle segnalazioni, bisogna tener presente che ad una segnalazione fanno sempre riferimento:
     \begin{itemize}
-        \item Uno o più Topic, nel caso di issue, o ad una o più keyword nel caso di commit
+        \item Uno o più label, nel caso di issue, o ad una o più keyword nel caso di commit
         \item Un progetto di GitLab o Redmine
     \end{itemize}
 
     La scelta di poter selezionare i progetti di interesse e la loro priorità permette ad un utente di non dover ricevere le segnalazioni di un certo tipo legate a tutti i progetti, ma solo a quelli in cui si lavora. Inserendo i vari progetti, nel momento di iscrizione ad un Topic, verrannò visualizzati solo i Topic esistenti all'interno dei progetti selezionati. \par
-    L'inserimento della priorità per progetto serve per poter notificare solo gli utenti con la priorità più alta, in modo tale da poter suddividere le segnalazioni tra quelle di primaria importanza e quelle secondarie.  
+    L'inserimento della priorità per progetto serve per poter notificare solo gli utenti con la priorità più alta, in modo tale da poter suddividere le segnalazioni tra quelle di primaria importanza e quelle secondarie.\par
+    Un utente può ricevere delle segnalazioni se è iscritto ai progetti ad esse relativi. In particolare, gli utenti più indicati per la ricezione di una notifica sono quelli che, oltre ad essere interessati ai progetti, sono anche interessati ai Topic legati alla segnalazione.
         
     \paragraph{Inoltro notifiche}
-    Nel caso in cui un utente debba ricevere una segnalazione e non si rivela essere disponibile, l'inoltro della notifica deve funzionare in tale modo:
+    Nel caso in cui un utente debba ricevere una segnalazione ma non si rivela essere disponibile, l'inoltro della notifica deve funzionare in tale modo:
     \begin{itemize}
-        \item Se è presente almeno un altro utente iscritto al Topic legato alla segnalazione, disponibile il giorno dell'invio della notifica e con la stessa priorità di progetto, non avviene alcun inoltro perché almeno un altro utente riceverà la segnalazione
-        \item Se non è presente alcun utente iscritto al Topic legato alla segnalazione, disponibile il giorno dell'invio della notifica e con la stessa priorità di progetto, la notifica viene inoltrata ad un utente sempre iscritto allo steso Topic e disponibile il giorno dell'invio della segnalazione, ma con una priorità di progetto inferiore
-        \item Se non è disponibile alcun utente iscritto al Topic legato alla segnalazione e disponibile il giorno dell'invio della notifica, verrà notificata una persona iscritta al progetto indicato con priorità massima 
+        \item Se è presente almeno un altro utente iscritto al Topic legato alla segnalazione, disponibile il giorno dell'invio della notifica e con la stessa priorità di progetto, non viene inviata la notifica all'utente in questione perché almeno un altro utente riceverà la segnalazione
+        \item Se non è disponibile nessun altro utente con la stessa priorità iscritto al Topic legato alla segnalazione, la notifica viene inoltrata ad un utente sempre iscritto allo stesso Topic e disponibile il giorno dell'invio della segnalazione, ma con una priorità di progetto inferiore
+        \item Se non è disponibile alcun utente iscritto al Topic legato alla segnalazione e disponibile il giorno dell'invio della notifica, verrà notificata una persona iscritta al progetto indicato con priorità massima tra quelli disponibili
     \end{itemize}
 
     \paragraph{Informazioni aggiuntive}
