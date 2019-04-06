@@ -627,26 +627,26 @@
 			\[\dfrac{\sum_{i=1}^{n} x_i}{n} \qquad x_i=\text{numero di modifiche effettuate prima della i-esima verifica.}\]
 
 			\textbf{Metrica}: media del numero massimo di modifiche apportate ai prodotti prima che ricevano una verifica dal parte del \Ver.
-            
+
             \subparagraph{MPR010 Moduli codificati prima della progettazione}
             La progettazione di un \gloss{modulo} è fondamentale per rendere il prodotto estensibile, mantenibile e comprensibile. Per questo è buona prassi avviare il processo di progettazione prima di quello di codifica.
-            
+
             La progettazione di ogni modulo all'interno dell'intero prodotto software deve essere fatta prima della sua codifica, la quale deve rispecchiare la progettazione.
-            
-            \textbf{Metrica}: percentuale di moduli non progettati prima della loro codifica. Per fare ciò, nelle varie fasi di verifica, si contano i moduli codificati prima di essere progettati. Verso il termine del periodo di revisione si calcola la loro percentuale in base al numero totale di moduli prodotti. 
-            
+
+            \textbf{Metrica}: percentuale di moduli non progettati prima della loro codifica. Per fare ciò, nelle varie fasi di verifica, si contano i moduli codificati prima di essere progettati. Verso il termine del periodo di revisione si calcola la loro percentuale in base al numero totale di moduli prodotti.
+
             \subparagraph{MPR011 Numero di design pattern applicati}
             Dato che i design patter possono essere considerati una "buona pratica" per produrre del codice in determinati contesti, la loro presenza può aiutare ad innalzare la qualità del prodotto. Il loro uno massiccio però può portare ad un'eccessiva complessità e talvolta anche ad un mal funzionamento del prodotto se applicati erroneamente.
-            
+
             per questo i design pattern devono essere applicati in maniera ponderata.
-            
-            \textbf{Metrica}: numero di volte che si applica uno o più tipi di design pattern. 
-            
+
+            \textbf{Metrica}: numero di volte che si applica uno o più tipi di design pattern.
+
             \subparagraph{MPR012 Moduli non testati}
             I \gloss{moduli} devo essere sempre testati per assicurasi la loro correttezza, per fare ciò devono essere testa le \gloss{unità} che li compongono attraverso i test di unità in \S\ref{testunita}.
-            
+
             Ogni modulo deve dunque essere testato.
-            
+
             \textbf{Metrica}: moduli codificati e privi di test di unità.
 
 
@@ -708,12 +708,12 @@
 			Se lo è, vuol dire che può essere migliorato organizzandolo in modo differente.
 			Per questo SonarQube ci dà la possibilità di visualizzare esattamente il numero percentuale di codice duplicato all'interno di un file, sul suo totale di righe. \\
 			\textbf{Metrica}: percentuale di linee di codice duplicate presenti nel codice al momento della scansione.
-            
+
             \subparagraph{MPS017 Code coverage} \label{codecoverage}
             Per sapere se un modulo è stato correttamente testato, si verifica in percentuale quante righe di codice vengono eseguite per superare una suite di test. Più è alta questa percentuale, meglio il modulo è stato testato.
-            
+
             \textbf{Metrica}: percentuale di code coverage.
-            		
+
 		\subsubsection{Analisi dinamica}\label{AnalisiDinamica}
 		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
 		Vengono presi in esame i prodotti software e i processi.
@@ -743,10 +743,10 @@
 			\paragraph{Test di sistema} \label{testsistema}
 			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
 			Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
-            
+
             \subparagraph{MPS018 Test di sistema}\label{testsistema:met}
             La qualità di un prodotto si verifica attraverso la percentuale di test di sistema superati.
-            
+
             \textbf{Metrica}: percentuale di test di sistema superati.
 
 			\paragraph{Test d'integrazione} \label{testintegrazione}
@@ -769,20 +769,20 @@
 				\item Riuso di componenti dal comportamento oscuro o inadatto
 				\item Integrazione con altre applicazioni non ben conosciute
 			\end{itemize}
-        
+
             \subparagraph{MPS019 Test di integrazione}\label{testintegrazione:met}
             La qualità di un prodotto si verifica attraverso la percentuale di test di integrazione superati.
-            
+
             \textbf{Metrica}: percentuale di test di integrazione superati.
 
 			\paragraph{Test di unità} \label{testunita}
 			I test di unità sono l'attività di test di singole unità software.
 			Per unità si intende il minimo componente di un programma dotato di funzionamento autonomo, ma non è semplice individuare l'unità.
 			Va scelta durante l'attività di progettazione e deve essere sufficientemente piccola da facilitarne la verifica e la \gloss{liability}.
-            
+
             \subparagraph{MPS020 Test di unità}\label{testunita:met}
             La qualità di un prodotto si verifica attraverso la percentuale di test di unità superati.
-            
+
             \textbf{Metrica}: percentuale di test di unità superati.
 
 			\paragraph{Test di regressione} \label{testregressione}
@@ -804,3 +804,6 @@
 			\item Al fallimento di un test
 		\end{itemize}
 		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
+
+
+	\subsection{Validazione}\label{Validazione}
