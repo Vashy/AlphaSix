@@ -155,6 +155,36 @@
 		\item Selezione dei giorni di calendario in cui l'utente segnala la sua assenza
 		\item Aggiunta / rimozione / modifica utenti
 	\end{itemize}
+
+    Nell'aggiunta o modifica di un utente i campi da poter inserire sono:
+    \begin{itemize}
+        \item Nome
+        \item Cognome
+        \item Contatto Email
+        \item Contatto Telegram
+        \item Progetti di interesse
+        \item Priorità dei progetti
+    \end{itemize}
+
+    Per comprendere meglio il sistema di notifica e inoltro delle segnalazioni, bisogna tener presente che ad una segnalazione fanno sempre riferimento:
+    \begin{itemize}
+        \item Uno o più Topic, nel caso di issue, o ad una o più keyword nel caso di commit
+        \item Un progetto di GitLab o Redmine
+    \end{itemize}
+
+    La scelta di poter selezionare i progetti di interesse e la loro priorità permette ad un utente di non dover ricevere le segnalazioni di un certo tipo legate a tutti i progetti, ma solo a quelli in cui si lavora. Inserendo i vari progetti, nel momento di iscrizione ad un Topic, verrannò visualizzati solo i Topic esistenti all'interno dei progetti selezionati. \par
+    L'inserimento della priorità per progetto serve per poter notificare solo gli utenti con la priorità più alta, in modo tale da poter suddividere le segnalazioni tra quelle di primaria importanza e quelle secondarie.  
+        
+    \paragraph{Inoltro notifiche}
+    Nel caso in cui un utente debba ricevere una segnalazione e non si rivela essere disponibile, l'inoltro della notifica deve funzionare in tale modo:
+    \begin{itemize}
+        \item Se è presente almeno un altro utente iscritto al Topic legato alla segnalazione, disponibile il giorno dell'invio della notifica e con la stessa priorità di progetto, non avviene alcun inoltro perché almeno un altro utente riceverà la segnalazione
+        \item Se non è presente alcun utente iscritto al Topic legato alla segnalazione, disponibile il giorno dell'invio della notifica e con la stessa priorità di progetto, la notifica viene inoltrata ad un utente sempre iscritto allo steso Topic e disponibile il giorno dell'invio della segnalazione, ma con una priorità di progetto inferiore
+        \item Se non è disponibile alcun utente iscritto al Topic legato alla segnalazione e disponibile il giorno dell'invio della notifica, verrà notificata una persona iscritta al progetto indicato con priorità massima 
+    \end{itemize}
+
+    \paragraph{Informazioni aggiuntive}
+    Dato che il nostro sistema di accesso non consiste in un login con username e password, gli utendi possono essere aggiunti al sistema di \progetto\ solo da un altro utente. Al primo utilizzo dell'applicazione sarà perciò già presente un utente, di cui verrà rilasciato l'identificativo, per poter aggiungere di seguito gli altri utenti che utilizzeranno \progetto. 
 %	Nel caso arrivasse una notifica da inoltrare a un utente indisponibile,
 %	questa verrà inoltrata alla persona più adatta e disponibile al momento.
 
