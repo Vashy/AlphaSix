@@ -16,6 +16,7 @@
     \begin{enumerate}
         \item Viene eseguita un'operazione
         \item GitLab procede all'invio della segnalazione al Producer GitLab
+        \item Il Producer GitLab riceve la segnalazione
     \end{enumerate}
     
 \end{itemize}
@@ -54,6 +55,7 @@
     \begin{enumerate}
         \item Viene aperta una nuova issue su GitLab
         \item GitLab procede all'invio della segnalazione di issue al Producer GitLab
+        \item il Producer GitLab riceve la segnalazione di apertura issue
     \end{enumerate}
     
 \end{itemize}
@@ -80,6 +82,7 @@
     \begin{enumerate}
         \item Viene modificata una issue già esistente su GitLab
         \item GitLab procede all'invio della segnalazione di modifica issue al Producer GitLab
+        \item Il Producer GitLab riceve la segnalazione di modifica issue
     \end{enumerate}
     
 \end{itemize}
@@ -111,6 +114,38 @@
 
 \stepcounter{subuccount}
 
+\subsubsection{UC\theuccount.\thesubuccount-PG - GitLab segnala un evento di push a Producer GitLab}
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC6.png}\\
+%		\caption{UC\theuccount-PG - GitLab segnala un evento di push a Producer GitLab}
+%	\end{figure}
+\begin{itemize}
+\item \textbf{Codice}: UC\theuccount.\thesubuccount-PG.
+\item \textbf{Titolo}: GitLab segnala un evento di push a Producer GitLab.
+\item \textbf{Attori primari}: GitLab.
+\item \textbf{Descrizione}: GitLab segnala un evento di push tramite webhook a \progetto. L'evento di	push può essere composto da uno o più commit.
+I campi di interesse sono:
+\begin{itemize}
+    \item Object kind
+    \item Project
+    \item Repository
+    \item Commits
+\end{itemize}
+E in questo caso il campo object kind contiene ``push''.
+\item \textbf{Precondizione}: Viene effettuato un push su GitLab da segnalare a \progetto.
+\item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
+\item \textbf{Scenario principale}: 
+\begin{enumerate}
+    \item Viene effettuato un push in GitLab
+    \item GitLab procede all'invio della segnalazione di push al Producer GitLab
+    \item IlProducer GitLab riceve la segnalazione dell'evento di push
+\end{enumerate}
+
+\end{itemize}
+
+\stepcounter{subuccount}
+
 \subsubsection{UC\theuccount.\thesubuccount-PG - Gitlab segnala il commento di un commit al Producer Gitlab}
 %	\begin{figure}[H]
 %		\centering
@@ -129,36 +164,7 @@
     \begin{enumerate}
         \item Viene commentato un commit già esistente su GitLab
         \item GitLab procede all'invio della segnalazione di commento commit al Producer GitLab
+        \item Il Producer GitLab riceve la segnalazione di commento di un commit
     \end{enumerate}
     
-\end{itemize}
-
-\stepcounter{subuccount}
-
-\subsubsection{UC\theuccount.\thesubuccount-PG - GitLab segnala un evento di push a Producer GitLab}
-%	\begin{figure}[H]
-%		\centering
-%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC6.png}\\
-%		\caption{UC\theuccount-PG - GitLab segnala un evento di push a Producer GitLab}
-%	\end{figure}
-\begin{itemize}
-    \item \textbf{Codice}: UC\theuccount.\thesubuccount-PG.
-    \item \textbf{Titolo}: GitLab segnala un evento di push a Producer GitLab.
-    \item \textbf{Attori primari}: GitLab.
-    \item \textbf{Descrizione}: GitLab segnala un evento di push tramite webhook a \progetto. L'evento di	push può essere composto da uno o più commit.
-    I campi di interesse sono:
-    \begin{itemize}
-        \item Object kind
-        \item Project
-        \item Repository
-        \item Commits
-    \end{itemize}
-    E in questo caso il campo object kind contiene ``push''.
-    \item \textbf{Precondizione}: Viene effettuato un push su GitLab da segnalare a \progetto.
-    \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
-    \item \textbf{Scenario principale}: 
-    \begin{enumerate}
-        \item Viene effettuato un push in GitLab
-        \item GitLab procede all'invio della segnalazione di push al Producer GitLab
-    \end{enumerate}
 \end{itemize}
