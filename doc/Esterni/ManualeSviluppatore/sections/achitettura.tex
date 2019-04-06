@@ -1,0 +1,40 @@
+\section{Architettura}
+
+In questa sezione descriviamo brevemente l'architettura del sistema Butterfly.
+
+L'architettura adottata è \gloss{event-driven}: ogni componente è isolato e asincrono,
+e comunica interfacciandosi e scambiandosi messaggi tramite il broker Apache Kafka.
+
+Il sistema si divide principalmente in tre insiemi di componenti:
+
+\begin{itemize}
+    \item Producers
+    \item Gestore Personale
+    \item Consumers
+\end{itemize}
+
+\subsection{Producers}
+Il Producer è il componente che resta in ascolto degli webhook provenienti dal suo applicativo specifico (e.g. Redmine, GitLab).
+Ha lo scopo di immettere i messaggi su Kafka in formato JSON, conservando solo i campi di interesse e aggiungendone eventualmente di propri.
+
+Al momento della stesura di questo manuale, i Producer implementati sono due:
+\begin{itemize}
+    \item RedmineProducer
+    \item GitlabProducer
+\end{itemize}
+
+\subsection{Gestore Personale}
+Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Ha un proprio KafkaProducer e KafkaConsumer
+che si occupano rispettivamente di ricevere i messaggi da Kafka e re-immetterli nelle code relative ai Consumer finali, passando per la logica
+del personale, in cui ogni utente può selezionare i propri giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul
+quale ricevere la notifica.
+
+\subsection{Consumers}
+Il Consumer è la componente finale. Esso resta in ascolto della sua coda specifica, specifica per applicativo (e.g. telegram, email).
+Si occupa di inoltrare il messaggio al destinatario finale, tramite le API della piattaforma specifica.
+
+Al momento della stesura di questo manuale, i Consumer implementati sono due:
+\begin{itemize}
+    \item TelegramConsumer
+    \item EmailConsumer
+\end{itemize}

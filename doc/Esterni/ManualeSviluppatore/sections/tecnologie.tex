@@ -1,0 +1,84 @@
+\section{Tecnologie interessate}
+
+\section{Strumenti per lo sviluppo} % Non saprei, omettibile?
+
+\subsection{Python}
+
+\subsection{MongoDB}
+
+
+
+
+\subsection{Strumenti per la gestione dei container}
+
+\subsubsection{Docker}
+
+\subsubsection{Rancher}
+
+
+\subsection{Librerie esterne}
+
+Le librerie esterne usate per Python3 scelte sono tutte installabili con il gestore dei pacchetti di Python \gloss{pip}.
+
+Nota: saranno già installate nel cluster fornito dalla proponente.
+
+\subsubsection{Requests}
+Libreria per la gestione delle richieste HTTP. Grazie a essa è possibile effettuare ogni tipo di richiesta (GET, POST, DELETE, PUT).
+Viene utilizzata principalmente per effettuare richieste tramite la API di Telegram.
+
+Maggiori informazioni al link
+
+\begin{center}
+    \url{http://docs.python-requests.org/en/master/}
+\end{center}
+
+Installabile con il comando \texttt{pip install requests}.
+
+\subsubsection{Flask}
+Flask è un framework lightweight per l'installazione di web server, scritto in Python.
+Viene utilizzato dai \gloss{Producer} per restare in ascolto degli \gloss{webhook} e dal \gloss{Gestore Personale} per istanziare l'interfaccia
+web per la gestione del personale.
+
+Maggiori informazioni al link
+
+\begin{center}
+    \url{http://flask.pocoo.org/docs/1.0/}
+\end{center}
+
+Installabile con il comando \texttt{pip install flask}.
+
+\subsubsection{Flask-restful}
+Libreria che estende Flask e semplifica la gestione di API Rest, automatizzando il collegamento tra risorse e le relative tipologie di richiesta.
+Viene usata nel Gestore Personale per implementare lo standard API Rest.
+
+Maggiori informazioni al link
+
+\begin{center}
+    \url{https://flask-restful.readthedocs.io/en/latest/}
+\end{center}
+
+Installabile con il comando \texttt{pip install flask-restful}.
+
+\subsubsection{PyMongo}
+
+Libreria per l'utilizzo di MongoDB con Python. Il database viene utilizzato nel Gestore Personale.
+
+Maggiori informazioni al link
+
+\begin{center}
+    \url{https://api.mongodb.com/python/current/}
+\end{center}
+
+Installabile con il comando \texttt{pip install pymongo}.
+
+\subsubsection{Pytest}
+Pytest è uno dei framework più utilizzati in Python per l'esecuzione dei test. Semplifica di molto la loro gestione e implementazione rispetto al modulo \texttt{unittest}
+della libreria standard.
+
+Maggiori informazioni al link
+
+\begin{center}
+    \url{https://docs.pytest.org/en/latest/}
+\end{center}
+
+Installabile con il comando \texttt{pip install pytest}
