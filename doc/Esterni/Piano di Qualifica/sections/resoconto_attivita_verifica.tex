@@ -374,7 +374,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
         \item \textbf{Considerazioni}: La quantità di codice duplicato, dopo la prima verifica, è rimasto molto basso. Miriamo ad abbassarlo ulteriormente nel prossimo periodo, ma di non raggiungere ad un totale 0\%.
     \end{itemize}
 
-	\subsection{Terzo periodo (RQ)}
+	\subsection{Terzo periodo (RQ)}\label{TerzoPeridodoRQ}
 	Periodo individuato come Revisione di qualifica, la quale dura all'incirca un mese dell'intera durata
 	del progetto. L'obiettivo di questo periodo è quello di misurare il conseguimento di una solida base
 	architetturale.
@@ -524,6 +524,24 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 		abbastanza lineare per tutto il periodo, sintomo di un lavoro costante e di un grande impegno.
 	\end{itemize}
 
+	\subparagraph{MPR010 Moduli codificati prima della progettazione}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR010.png}
+		\label{immagineFrequenzaCommitRQ}
+		\caption{Diagramma con valori misurati tramite MPR010 Moduli codificati prima della progettazione}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPR011 Progettare prima di codificare.
+		\item \textbf{Valore desiderato}: 25\%.
+		\item \textbf{Descrizione}: è mostrato il numero di moduli codificati prima dell'effettiva progettazione.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: studiando il diagramma notiamo che il numero di moduli codificati e non progettati
+		è stato sotto la soglia per tutto il periodo di \RQ,sintomo di un lavoro accurato e di grande passione.
+	\end{itemize}
+
 	\subparagraph{MPR011 Numero di design pattern applicati}
 	
 	\begin{figure}[H]
@@ -544,6 +562,23 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 		esagerato con i design pattern aumentava la complessità computazionale.
 	\end{itemize}
 
+		\subparagraph{MPR012 Moduli non testati}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPR012.png}
+		\label{immaginePresenzaDupplicazioneCodiceRP}
+		\caption{Diagramma con valori misurati tramite MPR012 Moduli non testati}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPR013 I moduli possiedono suite di test.
+		\item \textbf{Valore desiderato}: 0.
+		\item \textbf{Descrizione}: viene mostrato il numero di moduli non testati.
+		\item \textbf{Valutazione}: non soddisfacente.
+		\item \textbf{Considerazioni}: in questo periodo non siamo riusciti a raggiungere l'obiettivo che ci siamo prefissati, questo perché nell'ultima verifica avevamo ancora metodi non testati. Miriamo a raggiungere lo 0 nel prossimo periodo.
+	\end{itemize}
+	
 	\paragraph{Software}
 	
 	\subparagraph{MPS001 Presenza di bug}
@@ -598,26 +633,6 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 		desiderato.
 	\end{itemize}
 	
-	
-	
-	\subparagraph{MPS017 Code coverage}
-	
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS017.png}
-		\label{immaginePresenzaCodeSmellRP}
-		\caption{Diagramma con valori misurati tramite MPS017 Code coverage}
-	\end{figure}
-	
-	\begin{itemize}
-		\item \textbf{Obiettivo}: QPS006 Massima code coverage.
-		\item \textbf{Valore desiderato}: 80\%-100\%.
-		\item \textbf{Descrizione}: viene mostrata la percentuale di codice testato rilevato da SonarQube.
-		\item \textbf{Valutazione}: soddisfacente.
-		\item \textbf{Considerazioni}: dato che non risultano essere errori particolarmente gravi all'interno del codice si ha dato priorità a correggere altri tipi di errori prima della \RQ, raggingendo appena la soglia minima.
-		Prevediamo di raggiungere un valore intorno al 90\%.
-	\end{itemize}
-	
 	\subparagraph{MPS004 Duplicazione del codice}
 	
 	\begin{figure}[H]
@@ -634,3 +649,23 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 		\item \textbf{Valutazione}: soddisfacente.
 		\item \textbf{Considerazioni}: La quantità di codice duplicato, dopo la prima verifica, è rimasto molto basso. Miriamo ad abbassarlo ulteriormente nel prossimo periodo, ma di non raggiungere ad un totale 0\%.
 	\end{itemize}
+
+	\subparagraph{MPS017 Code coverage}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS017.png}
+		\label{immaginePresenzaCodeSmellRP}
+		\caption{Diagramma con valori misurati tramite MPS017 Code coverage}
+	\end{figure}
+	
+	\begin{itemize}
+		\item \textbf{Obiettivo}: QPS006 Massima code coverage.
+		\item \textbf{Valore desiderato}: 80\%-100\%.
+		\item \textbf{Descrizione}: viene mostrata la percentuale di codice testato rilevato da SonarQube.
+		\item \textbf{Valutazione}: soddisfacente.
+		\item \textbf{Considerazioni}: dato che non risultano essere errori particolarmente gravi all'interno del codice si ha dato priorità a correggere altri tipi di errori prima della \RQ, raggiungendo appena la soglia minima.
+		Prevediamo di raggiungere un valore intorno al 90\%.
+	\end{itemize}
+	
+	
