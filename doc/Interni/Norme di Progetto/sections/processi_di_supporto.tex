@@ -151,6 +151,10 @@
 					La riga dell'\gloss{header} può essere bianca o di un grigio più scuro in base al contesto, con il testo che può essere in grassetto.
 			\end{itemize}
 
+			% 6.1.2.3 The prepared documents shall be reviewed and edited for format, techni cal content, and presentation style agai nst their documentation standards. The y shall be approved for ade quacy by authorized personnel prior to issue.
+			\paragraph{Approvazione}	\label{Approvazione}
+			Ogni documento, nel momento in cui viene ritenuto pronto, deve essere revisionato dal \Res affinchè ne venga controllata l'adeguatezza e approvato il rilascio.
+
 
 		\subsubsection{Produzione}
 
@@ -225,47 +229,38 @@
 			\end{itemize}
 
             \subparagraph{Glossarizzazione dei ternimi}
-            Come spiegato in \S\ref{GlossarioDocumentiEsterni}, i termini con un particolare significato vengono riportati e definiti all'interno di \Gld. Per automatizzare questo processo è stato creato uno script che valuta le voci all'interno di \Gld\ e ed inserisce i riferimenti a queste voci alla prima occorrenza di ogni parola in tutti i documenti prodotti.
+			Come spiegato in \S\ref{GlossarioDocumentiEsterni}, i termini con un particolare significato vengono riportati e definiti all'interno di \Gld. Per automatizzare questo processo è stato creato uno script che valuta le voci all'interno di \Gld\ e ed inserisce i riferimenti a queste voci alla prima occorrenza di ogni parola in tutti i documenti prodotti.
 
-		\subsubsection{Mantenimento}\label{Mantenimento}
+			% 6.1.3.2 Controls shall be established in accordance with the Configuration Management Process (6.2).
+			\paragraph{Controllo}	\label{Controllo}
+			I controlli devono essere stabiliti in concordanza con il processo di configurazione alla sezione \S\ref{Configurazione}.
 
-			% \paragraph{Versionamento} \label{Versionamento}
-			% Tutti i documenti redatti supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
-			% precedenti in qualsiasi fase del loro \gloss{ciclo di vita}.
-			% Il modello di versionamento adottato segue lo schema \gloss{change significance}.\\La versione di un file è espressa secondo la notazione
-			% \begin{center}
-			% 	\texttt{X.Y.Z}
-			% \end{center}
-			% \indent dove:
-			% \begin{itemize}
-			% 	\item \texttt{X} indica il numero di versione principale. Inizia da 0 e viene incrementato ogni volta che il \Res\ approva il documento,
-			% 		determinando una major release
-			% 	\item \texttt{Y} indica il numero di versione secondario, contatore delle fasi di verifica effettuate dal \Ver\ superate positivamente.
-			% 		Inizia da 0. Viene azzerato ad ogni incremento della \texttt{X}
-			% 	\item \texttt{Z} è l'indice di modifica minore, incrementato ogni volta che viene effettuato un aggiornamento inferiore, come l'aggiunta
-			% 		di una sezione o paragrafo. Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
-			% \end{itemize}
+			% Da Breaking Bug
+			\subparagraph{Controllo sui processi}	\label{ControlloProcessi}
+			Per il controllo della qualità sui processi abbiamo scelto di seguire in ordine tre attività principali:
+			\begin{enumerate}
+				\item \textbf{Misurazione}: misurazione del processo al fine di accertarne la conformità con gli obiettivi.
+				\item \textbf{Analisi}: precisa analisi dei risultati e problemi rilevati nel processo.
+				\item \textbf{Rettifica}: modifiche correttive volte alla risoluzione dei problemi che contribuiranno alla nuova misurazione del prossimo ciclo di procedure.
+			\end{enumerate}
+			Seguendo le attività passo per passo e ripetendo la sequenza più volte è possibile aiutarci a diminuire i costi di sviluppo in maniera considerevolmente vantaggiosa.
+			% Al termine di ogni periodo viene valutato lo stato di avanzamento del progetto
 
-			%\texttt{X}, \texttt{Y} e \texttt{Z} hanno dominio $[0,+\infty)$, possono assumere pertanto un valore $> 9$.
+			\subparagraph{Controllo sui prodotti}	\label{ControlloProdotti}
+			Per le procedure di misurazione del prodotto effettuiamo:
+			\begin{itemize}
+				\item Uso delle metriche e delle procedure delineate nel documento corrente e dei test descritto nel \PdQv
+				\item Confronto di tali risultati rispetto agli obiettivi prefissati \footnote{Consultabili nelle appendici del \PdQv}
+				\item Valutazioni per il miglioramento \footnote{Consultabili anch'esse nelle appendici del \PdQv}
+			\end{itemize}
+			A questo scopo utilizziamo strumenti di analisi statica e dinamica presenti nella sezione \S\ref{Verifica}.
 
-			% \paragraph{Continuous Integration}\label{ContinuousIntegration} %TODO: rivedere
-			% Durante i vari periodi del progetto adotteremo la pratica della \gloss{Continuous Integration} sia per la produzione dei documenti che per lo sviluppo del codice sorgente.
-			% Per quanto riguarda la stesura dei documenti miriamo a sincronizzarci il prima possibile con la repository remota.
-			% %(non essendoci una vera e propria build o dei test da effettuare), sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
-			% Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.\\
 
-			% \subparagraph{Jenkins}\label{Jenkins}
-			% Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\\
-			% Jenkins ci consente di amministrare in modo immediato tutti i passi dello sviluppo, nell'ordine:
-			% \begin{itemize}
-			% 	\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
-			% 	\item \textbf{Build}: build del codice su docker container.
-			% 	\item \textbf{Unit Test}: test di unità tramite PyUnit.
-			% 	\item \textbf{Integration Test}: test di integrazione tramite PyUnit.
-			% 	\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite tox.
-			% \end{itemize}
-
-			% Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
+		\subsubsection{Mantenimento dei documenti}\label{Mantenimento}
+		% 6.1.4.1 The tasks, that are required to be performed when documentation is to be modified, shall be
+		% performed (see 5.5). For those documents that are under configuration mana gement, modifications
+		% shall be mana ged in accordance with the Configu ration Mana gement Process (6.2).
+		I documenti sotto l'attività di gestione delle configurazioni devono essere gestite secondo il processo di configurazione alla sezione \S\ref{Configurazione}.
 
 			\paragraph{Continuous Integration}\label{ContinuousIntegration}
 			Per la produzione dei documenti adotteremo la pratica della \gloss{Continuous Integration}.
@@ -273,7 +268,7 @@
 			sia per quanto riguarda il \gloss{fetch} che per il \gloss{push}.
 			Questo serve a rendere più remota possibile la probabilità di incappare nell'\gloss{Integration Hell}.
 
-			\paragraph{Nomenclatura} %FIXME: cos'è?
+			\paragraph{Nomenclatura}
 
 			\subparagraph{Verbali}	\label{NomenclaturaVerbali}
 			I Verbali  possono essere interni oppure esterni, nel caso in cui il team incontri gli esponenti di \II\ o il committente.
@@ -300,12 +295,12 @@
 			\end{itemize}
 
 
-	\subsection{Codice sorgente}\label{PS:Codice}
+	% \subsection{Codice sorgente}\label{PS:Codice}
 
-	    \subsubsection{Mantenimento}\label{MantenimentoCodice}
+		\subsubsection{Mantenimento del codice sorgente}\label{MantenimentoCodice}
 
-		\paragraph{Continuous Integration}\label{CI}
-		Anche per quanto riguarda il processo di codifica verrà adottato il principio di Continuous Integration.
+			\paragraph{Continuous Integration}\label{CI}
+			Anche per quanto riguarda il processo di codifica verrà adottato il principio di Continuous Integration.
 
 			\subparagraph{Jenkins}\label{Jenkins}
 			Per quanto concerne il codice sorgente usiamo il tool Jenkins per tenere sotto controllo la CI pipeline, definita come una deployment pipeline priva degli ultimi stadi relativi al deploy.\par
@@ -320,50 +315,75 @@
 
 			Configuriamo Jenkins tramite Jenkinsfile e la CI pipeline viene eseguita in automatico, in modo da avere sempre sotto controllo la correttezza del codice sulla repository.
 
-		\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
-		Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creiamo dei container specifici per ogni componente. Per fare ciò, utilizziamo
-		\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
-		un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
-		\begin{itemize}
-			\item Producer Redmine
-			\item Producer GitLab
-			\item Gestore Personale
-			\item Consumer Email
-			\item Consumer Telegram
-		\end{itemize}
-		Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
+			\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
+			Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creiamo dei container specifici per ogni componente. Per fare ciò, utilizziamo
+			\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
+			un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
+			\begin{itemize}
+				\item Producer Redmine
+				\item Producer GitLab
+				\item Gestore Personale
+				\item Consumer Email
+				\item Consumer Telegram
+			\end{itemize}
+			Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
 
-		\subparagraph{DockerHub}\label{DockerHub}
-		Per evitare di effettuare una build manuale dell'immagine di Docker contenente la specifica componente del software, abbiamo deciso di utilizzare DockerHub collegato alla nostra repository in GitHub in modo tale che ad ogni modifica effettuata e di conseguenza ad ogni push sui branch master e develop scatta una build automatica. Questa prevede quindi la creazione di dieci immagini salvate su cinque repository su DockerHub dell'account di tipo organizzazione denominato `alphasix' come nome\_account/nome\_repository:tag.
-		Le immagini sono quindi:
-		\begin{itemize}
-			\item alphasix/producer-gitlab:master
-			\item alphasix/producer-gitlab:develop
-			\item alphasix/producer-redmine:master
-			\item alphasix/producer-redmine:develop
-			\item alphasix/gestore-personale:master
-			\item alphasix/gestore-personale:develop
-			\item alphasix/consumer-telegram:master
-			\item alphasix/consumer-telegram:develop
-			\item alphasix/consumer-email:master
-			\item alphasix/consumer-email:develop
-		\end{itemize}
-		Abbiamo deciso che il tag rappresenta il branch dal quale è stato effettuata la build.
-		Le immagini con tag `master' saranno più stabili rispetto a quelle col tag `develop' in quanto ancora in fase di sviluppo, possibilmente con funzionalità ancora incomplete.
+			\subparagraph{DockerHub}\label{DockerHub}
+			Per evitare di effettuare una build manuale dell'immagine di Docker contenente la specifica componente del software, abbiamo deciso di utilizzare DockerHub collegato alla nostra repository in GitHub in modo tale che ad ogni modifica effettuata e di conseguenza ad ogni push sui branch master e develop scatta una build automatica. Questa prevede quindi la creazione di dieci immagini salvate su cinque repository su DockerHub dell'account di tipo organizzazione denominato `alphasix' come nome\_account/nome\_repository:tag.
+			Le immagini sono quindi:
+			\begin{itemize}
+				\item alphasix/producer-gitlab:master
+				\item alphasix/producer-gitlab:develop
+				\item alphasix/producer-redmine:master
+				\item alphasix/producer-redmine:develop
+				\item alphasix/gestore-personale:master
+				\item alphasix/gestore-personale:develop
+				\item alphasix/consumer-telegram:master
+				\item alphasix/consumer-telegram:develop
+				\item alphasix/consumer-email:master
+				\item alphasix/consumer-email:develop
+			\end{itemize}
+			Abbiamo deciso che il tag rappresenta il branch dal quale è stato effettuata la build.
+			Le immagini con tag `master' saranno più stabili rispetto a quelle col tag `develop' in quanto ancora in fase di sviluppo, possibilmente con funzionalità ancora incomplete.
+
 
 	\subsection{Configurazione}\label{Configurazione}
 
-	\subsubsection{Descrizione}
-	I sorgenti e i documenti ufficiali del gruppo vengono versionati utilizzando il sistema di controllo versione \gloss{Git}, strumento scelto vista la sua ampia diffusione
-	e la sua integrazione con GitHub. La scelta di utilizzare un client grafico oppure i comandi da terminale è lasciata al singolo membro del team.
+		% Tale e quale a 6.2 Configuration management process
+		\subsubsection{Descrizione}	\label{Descrizione}
+		Il processo di gestione delle configurazioni tratta di applicare procedure tecniche e amministrative attraverso il ciclo di vita del software per:
+		\begin{itemize}
+			\item Identificare, definire e fissare elementi software in un sistema
+			\item Controllare modifiche e rilasci di questi elementi
+			\item Registrare e fornire un resoconto del loro stato e delle richieste di modifica
+			\item Assicurare la loro completezza, consistenza e correttezza
+			\item Conrollare il loro immagazzinamento, gestione e consegna
+		\end{itemize}
+		Per questo motivo le attività che questo processo prevede sono:
+		\begin{enumerate}
+			\item Implementazione del processo
+			\item Identificazione della configurazione
+			\item Controllo della configurazione
+			\item Resoconto dello stato della configurazione
+			\item Valutazione della configurazione
+			\item Gestione del rilascio e consegna
+		\end{enumerate}
+		Nello specifico, i sorgenti e i documenti ufficiali del gruppo vengono versionati utilizzando il sistema di controllo versione \gloss{Git}, strumento scelto vista la sua ampia diffusione e la sua integrazione con GitHub.
+		La scelta di utilizzare un client grafico oppure i comandi da terminale è lasciata al singolo membro del team.
 
-	\subsubsection{Versionamento} \label{Versionamento}
-			Tutti i documenti redatti e i file sorgente supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
-			precedenti in qualsiasi punto del loro \gloss{ciclo di vita}.
-			Il modello di versionamento adottato segue lo schema \gloss{change significance}.\par
-			La versione di un file è espressa secondo la notazione
+		%6.2.1.1 A configu ration mana gement plan shal l be develo ped . The plan shall describe: the configuration management activities; procedures and sched ule for performing these activities; the organ ization(s) responsible for performing these activities; and their rela tionship with other organ izations, such as software develop ment or maintenance. The plan shall be documented and imple mented.
+		\subsubsection{Implementazione del processo}	\label{ImplementazioneProcesso}
+		Ognuno di noi si deve attenere alle norme descritte nei prossimi paragrafi al fine di garantire l'identificazione di ogni versione dei prodotti.
+		Ogni persona è responsabile di queste attività.
+		L'\Amm\ si occupa di controllare versioni e configurazioni del prodotto.
+
+		\subsubsection{Versionamento} \label{Versionamento}
+		Tutti i documenti redatti e i file sorgente supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
+		precedenti in qualsiasi punto del loro \gloss{ciclo di vita}.
+		Il modello di versionamento adottato segue lo schema \gloss{change significance}.\par
+		La versione di un file è espressa secondo la notazione
 			\begin{center}
-				\texttt{X.Y.Z}
+			\texttt{X.Y.Z}
 			\end{center}
 			\indent dove:
 			\begin{itemize}
@@ -375,78 +395,77 @@
 				Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
 			\end{itemize}
 
-	\subsubsection{Struttura delle Repository}
-	Abbiamo creato due repository principali fino a questo momento:
-	\begin{itemize}
-		\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
-		\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi.
-	\end{itemize}
-
-	\subsubsection{Norme di branching}
-	Ogni repository che usiamo avrà due \gloss{branch} principali:
-	\begin{itemize}
-		\item \textbf{master}: branch principale che viene aggiornato solamente in vista di un rilascio, quando il \Res\ approva un file o documento, che causa
-			lo scatto del numero di versione più significativo.
-		\item \textbf{develop}: branch usato per lo sviluppo in vista di un rilascio, senza lasciare il master branch in uno stato di incompletezza. Viene aggiornato
-			quando una funzionalità è matura.
-	\end{itemize}
-
-	Sono presenti poi dei branch dedicati allo sviluppo e alla manutenzione, che verranno aperti in base alle necessità:
-	\begin{itemize}
-		\item \textbf{feature/nome-feature}: branch aperti in vista di uno sviluppo di una qualsiasi funzionalità (nome-feature è un placeholder) o bug fix sul develop.
-			Una volta che la funzionalità raggiunge un adatto stato di maturità, verrà fatto il merge sul develop e cancellato il branch relativo a quella funzionalità.
-		\item \textbf{hotfix/nome-hotfix}: branch aperti in vista di un bug non notato nel master branch che necessita di essere sistemato al più presto o in fase di
-			correzione delle problemi segnalati dai professori a seguito di una revisione.
-	\end{itemize}
-
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=\textwidth]{img/branches.png}\\
-		\caption[Albero dei branch da Gitkraken]{Visione generale dell'albero dei branch in un momento casuale da Gitkraken}
-		\label{fig:butterfly}
-	\end{figure}
-
-	\subsubsection{Aggiornamento della repository}
-
-	Per aggiornare la repository remota con i cambiamenti effettuati nella workcopy locale, la prassi da seguire è la seguente:
-	\begin{itemize}
-		\item Controllare di trovarsi nel branch corretto con il comando:
-			\begin{quote}
-				\texttt{\$\ git branch}
-			\end{quote}
-			In caso negativo, dare il comando \texttt{git checkout nomebranch} per spostarsi nel branch corretto prima di procedere.
-		\item Aggiornare la workcopy locale con eventuali cambiamenti presenti nella repository remota:
-			\begin{quote}
-				\texttt{\$\ git pull}
-			\end{quote}
+		\subsubsection{Struttura delle Repository}
+		Abbiamo creato due repository principali fino a questo momento:
 		\begin{itemize}
-			\item In caso di conflitti, dare la sequenza di comandi che segue per risolverli senza dover effettuare un commit
-				dedicato solo al merge:
-				\begin{quote}
-					\texttt{\$\ git stash}\par
-					\texttt{\$\ git pull}\par
-					\texttt{\$\ git stash pop}\par
-				\end{quote}
-				A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
-				con le proprie modifiche applicate.
+			\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
+			\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi.
 		\end{itemize}
-		\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
-			per aggiungere più file contemporaneamente):
+
+		\subsubsection{Norme di branching}
+		Ogni repository che usiamo avrà due \gloss{branch} principali:
+		\begin{itemize}
+			\item \textbf{master}: branch principale che viene aggiornato solamente in vista di un rilascio, quando il \Res\ approva un file o documento, che causa
+				lo scatto del numero di versione più significativo.
+			\item \textbf{develop}: branch usato per lo sviluppo in vista di un rilascio, senza lasciare il master branch in uno stato di incompletezza. Viene aggiornato
+				quando una funzionalità è matura.
+		\end{itemize}
+
+		Sono presenti poi dei branch dedicati allo sviluppo e alla manutenzione, che verranno aperti in base alle necessità:
+		\begin{itemize}
+			\item \textbf{feature/nome-feature}: branch aperti in vista di uno sviluppo di una qualsiasi funzionalità (nome-feature è un placeholder) o bug fix sul develop.
+				Una volta che la funzionalità raggiunge un adatto stato di maturità, verrà fatto il merge sul develop e cancellato il branch relativo a quella funzionalità.
+			\item \textbf{hotfix/nome-hotfix}: branch aperti in vista di un bug non notato nel master branch che necessita di essere sistemato al più presto o in fase di
+				correzione delle problemi segnalati dai professori a seguito di una revisione.
+		\end{itemize}
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{img/branches.png}\\
+			\caption[Albero dei branch da Gitkraken]{Visione generale dell'albero dei branch in un momento casuale da Gitkraken}
+			\label{fig:butterfly}
+		\end{figure}
+
+		\subsubsection{Aggiornamento della repository}
+		Per aggiornare la repository remota con i cambiamenti effettuati nella workcopy locale, la prassi da seguire è la seguente:
+		\begin{itemize}
+			\item Controllare di trovarsi nel branch corretto con il comando:
+				\begin{quote}
+					\texttt{\$\ git branch}
+				\end{quote}
+				In caso negativo, dare il comando \texttt{git checkout nomebranch} per spostarsi nel branch corretto prima di procedere.
+			\item Aggiornare la workcopy locale con eventuali cambiamenti presenti nella repository remota:
+				\begin{quote}
+					\texttt{\$\ git pull}
+				\end{quote}
+			\begin{itemize}
+				\item In caso di conflitti, dare la sequenza di comandi che segue per risolverli senza dover effettuare un commit
+					dedicato solo al merge:
+					\begin{quote}
+						\texttt{\$\ git stash}\par
+						\texttt{\$\ git pull}\par
+						\texttt{\$\ git stash pop}\par
+					\end{quote}
+					A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
+					con le proprie modifiche applicate.
+			\end{itemize}
+			\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
+				per aggiungere più file contemporaneamente):
+				\begin{quote}
+					\texttt{\$\ git add [nome-file1] [nome-file2] \dots}
+				\end{quote}
+			\item Fare il commit e riassumere i cambiamenti apportati:
 			\begin{quote}
-				\texttt{\$\ git add [nome-file1] [nome-file2] \dots}
+				\texttt{\$\ git commit -m "Cambiamenti apportati"}
 			\end{quote}
-		\item Fare il commit e riassumere i cambiamenti apportati:
-		\begin{quote}
-			\texttt{\$\ git commit -m "Cambiamenti apportati"}
-		\end{quote}
-		\item Effettuare il push per pubblicare le modifiche locali nella repository remota:
-		\begin{quote}
-			\texttt{\$\ git push}
-		\end{quote}
-	\end{itemize}
+			\item Effettuare il push per pubblicare le modifiche locali nella repository remota:
+			\begin{quote}
+				\texttt{\$\ git push}
+			\end{quote}
+		\end{itemize}
 
 
-	\subsection{Verifica}\label{Verifica}
+	\subsection{Verifica e validazione}\label{Verifica}
 
 		\subsubsection{Scopo}
 		Questa sezione vuole descrivere come eseguiamo la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci attendiamo.
@@ -804,6 +823,3 @@
 			\item Al fallimento di un test
 		\end{itemize}
 		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
-
-
-	\subsection{Validazione}\label{Validazione}
