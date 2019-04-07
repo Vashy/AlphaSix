@@ -39,8 +39,8 @@ class TelegramConsumer(Consumer):
     """Implementa Consumer"""
     _CONFIG_PATH = Path(__file__).parent / 'config.json'
 
-    def __init__(self, consumer: KafkaConsumer, topic: str):
-        super(TelegramConsumer, self).__init__(consumer, topic)
+    def __init__(self, consumer: KafkaConsumer):
+        super(TelegramConsumer, self).__init__(consumer)
 
         with open(self._CONFIG_PATH) as file:
             configs = json.load(file)
@@ -93,7 +93,3 @@ class TelegramConsumer(Consumer):
     @property
     def emph(self):
         return '`'
-
-    def close(self):
-        """Chiude la connessione del Consumer"""
-        self._consumer.close()

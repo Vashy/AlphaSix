@@ -29,7 +29,8 @@ Autori:
 from pathlib import Path
 import json
 
-from consumer.telegram.creator import TelegramConsumerCreator
+from consumer.telegram.consumer import TelegramConsumer
+from consumer.creator import KafkaConsumerCreator
 
 
 _config_path = Path(__file__).parents[1] / 'config.json'
@@ -53,13 +54,20 @@ def _open_kafka_configs(path: Path = _config_path):
 def main():
     # Ottiene le configurazioni da Kafka
     configs = _open_kafka_configs()
+    topic = 'telegram'
+
+    # Istanzia il KafkaConsumer
+    kafka = KafkaConsumerCreator().create(configs, topic)
 
     # Istanzia il TelegramConsumer
-    consumer = TelegramConsumerCreator().create(configs)
+    consumer = TelegramConsumer(kafka)
+
     try:
-        consumer.listen()
+        consumer.listen()  # Ascolta i messaggi
     except KeyboardInterrupt:
-        consumer.close()
+        pass
+    finally:
+        consumer.close()  # Chiude la connessione
         print(' Closing Consumer ...')
 
 

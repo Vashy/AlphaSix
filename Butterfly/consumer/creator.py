@@ -31,12 +31,18 @@ import json
 from kafka import KafkaConsumer
 import kafka.errors
 
-from consumer.consumer import Consumer
+# from consumer.consumer import Consumer
 
 
 class ConsumerCreator(ABC):
+    @abstractmethod
+    def create(self, configs: dict, topic: str) -> KafkaConsumer:
+        pass
 
-    def create(self, configs: dict) -> Consumer:
+
+class KafkaConsumerCreator(ConsumerCreator):
+
+    def create(self, configs: dict, topic: str) -> KafkaConsumer:
         # Converte stringa 'inf' nel relativo float
 
         notify = False
@@ -46,7 +52,7 @@ class ConsumerCreator(ABC):
                 # utile successivamente, per ora lasciamo il controllo
                 # del tipo a listen()
                 kafka_consumer = KafkaConsumer(
-                    self.topic,  # Chiamata polimorfa
+                    topic,  # Chiamata polimorfa
                     # Deserializza i messaggi dal formato JSON a oggetti Python
                     value_deserializer=(
                         (lambda m: json.loads(m.decode('utf-8')))
@@ -64,15 +70,15 @@ class ConsumerCreator(ABC):
         print('Connessione con il Broker stabilita')
 
         # Chiamata polimorfa
-        consumer = self.instantiate(kafka_consumer)
+        # consumer = self.instantiate(kafka_consumer)
 
-        return consumer
+        return kafka_consumer
 
-    @abstractmethod
-    def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
-        pass
+    # @abstractmethod
+    # def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
+    #     pass
 
-    @property
-    @abstractmethod
-    def topic(self):
-        pass
+    # @property
+    # @abstractmethod
+    # def topic(self):
+    #     pass
