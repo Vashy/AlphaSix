@@ -59,48 +59,43 @@ class EmailConsumer(Consumer):
             mailserver.starttls()
 
             # Autenticazione
-            while True:
-                try:
-                    # Prompt per l'inserimento della psw
-                    # psw = getpass.getpass(
-                    #     '\nInserisci la password '
-                    #     f'di {self._sender}: '
-                    # )
+            try:
+                psw = os.environ['BUTTERFLY_EMAIL_PSW']
+                mailserver.login(self._sender, psw)  # Login al server SMTP
 
-                    psw = os.environ['BUTTERFLY_EMAIL_PSW']
-                    print(self._sender, psw)
-                    mailserver.login(self._sender, psw)  # Login al server SMTP
-                    break  # Login riuscito, e Filè incacchiato
+                # Login riuscito
 
-                # Errore di autenticazione, riprova
-                except smtplib.SMTPAuthenticationError:
-                    print('Email e password non corrispondono.')
+                msg = EmailMessage()
+                msg['Subject'] = (
+                    "[Butterfly] Segnalazione progetto "
+                    f"{mail_text['project_name']}")
 
-                # Interruzione da parte dell'utente della task
-                except KeyboardInterrupt:
-                    print('\nInvio email annullato. '
-                          'In ascolto di altri messaggi ...')
-                    return
+                msg['From'] = self._sender
+                msg['To'] = receiver
+                msg.set_content(self.format(mail_text))
+                msg.add_alternative(f"""\
+                <html>
+                    <body>
+                        {self.format_html(mail_text)}
+                    </body>
+                </html>
+                    """, subtype='html')
 
-            msg = EmailMessage()
-            msg['Subject'] = 'lul'
-            msg['From'] = self._sender
-            msg['To'] = receiver
-            msg.set_content(self.format(mail_text))
-            msg.add_alternative(f"""\
-<html>
-    <body>
-        {self.format_html(mail_text)}
-    </body>
-</html>
-                """, subtype='html')
+                try:  # Tenta di inviare l'Email
+                    mailserver.send_message(msg)
+                    print(f'Email inviata a {receiver}')
+                except smtplib.SMTPException:
+                    print('Errore, email non inviata. ')
 
-            try:  # Tenta di inviare l'Email
-                mailserver.send_message(msg)
-                print('\nEmail inviata. In ascolto di altri messaggi ...')
-            except smtplib.SMTPException:
-                print('Errore, email non inviata. '
+            # Errore di autenticazione
+            except smtplib.SMTPAuthenticationError:
+                print('Email e password non corrispondono.')
+
+            # Interruzione da parte dell'utente della task
+            except KeyboardInterrupt:
+                print('\nInvio email annullato. '
                       'In ascolto di altri messaggi ...')
+
             finally:
                 mailserver.quit()
 
