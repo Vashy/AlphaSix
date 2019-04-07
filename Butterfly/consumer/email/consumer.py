@@ -27,12 +27,13 @@ Autori:
     Nicola Carlesso
 """
 
-# Posizione: Butterfly/
-# Uso: python3 -m path.to.WebhookConsumer
+from pathlib import Path
+import json
+import smtplib
+from email.message import EmailMessage
+import os
 
 from kafka import KafkaConsumer
-
-import smtplib
 
 from consumer.consumer import Consumer
 
@@ -40,13 +41,16 @@ from consumer.consumer import Consumer
 class EmailConsumer(Consumer):
     """Implementa Consumer"""
 
-    def __init__(self, consumer: KafkaConsumer, topic: str):
-        # self._sender = configs['emailSettings']['sender']
-        super(EmailConsumer, self).__init__(consumer, topic)
-        self._sender = 'alpha.six.unipd@gmail.com'
+    _CONFIG_PATH = Path(__file__).parent / 'config.json'
 
+    def __init__(self, consumer: KafkaConsumer):
+        super(EmailConsumer, self).__init__(consumer)
 
-    def send(self, receiver: str, msg: str):
+        with open(self._CONFIG_PATH) as file:
+            configs = json.load(file)
+        self._sender = configs['email']['sender']
+
+    def send(self, receiver: str, mail_text: str):
         """Manda il messaggio finale, tramite il server mail,
         all'utente finale.
         """
@@ -63,8 +67,9 @@ class EmailConsumer(Consumer):
                     #     f'di {self._sender}: '
                     # )
 
-                    mailserver.login(self._sender, 'VOLEVI')  # Login al server SMTP
-
+                    psw = os.environ['BUTTERFLY_EMAIL_PSW']
+                    print(self._sender, psw)
+                    mailserver.login(self._sender, psw)  # Login al server SMTP
                     break  # Login riuscito, e Filè incacchiato
 
                 # Errore di autenticazione, riprova
@@ -77,30 +82,89 @@ class EmailConsumer(Consumer):
                           'In ascolto di altri messaggi ...')
                     return
 
-            text = '\n'.join([
-                'From: ' + self._sender,
-                'To: ' + receiver,
-                'Subject: ' + 'lul',
-                '',
-                ' ',
-                msg,
-            ])
+            msg = EmailMessage()
+            msg['Subject'] = 'lul'
+            msg['From'] = self._sender
+            msg['To'] = receiver
+            msg.set_content(self.format(mail_text))
+            msg.add_alternative(f"""\
+<html>
+    <body>
+        {self.format_html(mail_text)}
+    </body>
+</html>
+                """, subtype='html')
 
             try:  # Tenta di inviare l'Email
-                mailserver.sendmail(self._sender, receiver, text)
+                mailserver.send_message(msg)
                 print('\nEmail inviata. In ascolto di altri messaggi ...')
             except smtplib.SMTPException:
                 print('Errore, email non inviata. '
                       'In ascolto di altri messaggi ...')
+            finally:
+                mailserver.quit()
 
-    @property
-    def bold(self):
-        return ''
+    def format(self, msg):
+        """Restituisce una stringa con una formattazione migliore da un
+        oggetto JSON (Webhook).
+        """
+        res = ''
+        res = self._preamble(msg['object_kind'])
 
-    @property
-    def emph(self):
-        return ''
+        res += ''.join([
+            f' nel progetto {msg["project_name"]} ',
+            f'({msg["project_id"]})',
+            f'\n\nSorgente: {msg["app"].capitalize()}',
+            f'\nAutore: {msg["author"]}'
+            f'\n\n Information: '
+            f'\n - Title: \t\t{msg["title"]}',
+            f'\n - Description: \n'
+            f'  {msg["description"]}',
+            f'\n - Action: \t{msg["action"]}'
+        ])
 
-    def close(self):
-        """Chiude la connessione del Consumer"""
-        self._consumer.close()
+        return res
+
+    def format_html(self, msg):
+        """Restituisce una stringa in formato HTML da un
+        oggetto JSON.
+        """
+        res = '<p>'
+
+        res += self._preamble(msg['object_kind'])
+
+        res += ''.join([
+            f' nel progetto <strong>{msg["project_name"]}</strong> ',
+            f'(<code>{msg["project_id"]}</code>)</p>',
+            '<ul>'
+            f'<li><strong>Sorgente:</strong> {msg["app"].capitalize()}</li>',
+            f'<li><strong>Autore:</strong> {msg["author"]}</li>'
+            f'<li><strong>Title:</strong> {msg["title"]}</li>',
+            f'<li><strong>Description:</strong> '
+            f'{msg["description"]}</li>',
+            f'<li><strong>Action:</strong> {msg["action"]}</li>'
+            '</ul>'
+        ])
+        return res
+
+    def _preamble(self, field):
+        """Preambolo del messaggio.
+        """
+
+        res = ''
+        if field == 'issue':
+            res += 'È stata aperta una issue '
+
+        elif field == 'push':
+            res += 'È stata fatto un push '
+
+        elif field == 'issue-note':
+            res += 'È stata commentata una issue '
+
+        elif field == 'commit-note':
+            res += 'È stato commentato un commit '
+
+        else:
+            raise KeyError
+
+        return res

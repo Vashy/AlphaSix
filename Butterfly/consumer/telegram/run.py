@@ -57,7 +57,11 @@ def main():
     topic = 'telegram'
 
     # Istanzia il KafkaConsumer
-    kafka = KafkaConsumerCreator().create(configs, topic)
+    try:
+        kafka = KafkaConsumerCreator().create(configs, topic)
+    except kafka.errors.KafkaConfigurationError as e:
+        print(e.with_traceback())
+        exit(-1)
 
     # Istanzia il TelegramConsumer
     consumer = TelegramConsumer(kafka)
