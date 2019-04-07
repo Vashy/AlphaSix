@@ -44,7 +44,7 @@ class Processor():
 
     # Controlla se c'è il progetto nel DB, se non c'è lo aggiunge
     def _check_project(self) -> str:
-        urlProgetto = self._message['project_url']
+        urlProgetto = self._message['project_id']
         # Vediamo nel DB se il prog c'è
         exists_project = self._mongofacade.get_project_by_url(urlProgetto)
         # Se non c'è lo aggiungiamo

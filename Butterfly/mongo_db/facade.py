@@ -48,8 +48,10 @@ class MongoFacade():
     def projects(self, filter={}):
         return self._projects.projects(filter)
 
-    def insert_label(self, label: str):
-        self._projects.insert_label(label)
+    # TODO
+    def insert_label_by_project(self, label: str, project: str):
+        #inserisce la lebel in un particolare progetto, da sostituire con insert_label
+        self._projects.insert_label_by_project(label, project)
 
     def insert_keyword(self, keyword: str):
         self._projects.insert_keyword(keyword)
@@ -81,4 +83,9 @@ class MongoFacade():
     def get_users_from_list_with_max_priority(self, users: list) -> list:
         # filtra, tra gli utenti dati, solo quelli che hanno la priorità maggiore
         # (è diverso da 'get_users_max_priority' perchè non li vogliamo tutti)
+        pass
+
+    # TODO
+    def get_label_project(self, project: str) -> list:
+        #ritorna le label registrate in un progetto
         pass

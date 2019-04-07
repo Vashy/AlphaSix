@@ -1,168 +1,77 @@
-\subsubsection{UC\theuccount-GP - Inserimento utente}
+\subsubsection{UC\theuccount-GP - Accesso}
 		\begin{figure}[H]
 			\centering
-				\includegraphics[width=\columnwidth]{img/casi_d'uso/UC14.png}\\
-			\caption{UC\theuccount-GP - Inserimento utente}
+				\includegraphics[width=0.8\textwidth]{img/casi_d'uso/UC12.png}\\
+			\caption{UC\theuccount-GP - Accesso}
 		\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount-GP.
-		\item \textbf{Titolo}: Inserimento utente.
-		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l'utente, acceduto al sistema, aggiunge un nuovo utente nel sistema.
-		Non è possibile che un utente non acceduto si iscriva da solo per la prima volta.
-		In un primo momento è presente solo un utente predefinito che può aggiungere gli altri utenti.
-		\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-		\item \textbf{Postcondizione}: un utente viene aggiunto al sistema.
+		\item \textbf{Titolo}: accesso.
+		\item \textbf{Attori primari}: utente non acceduto.
+		\item \textbf{Descrizione}: l'utente non acceduto richiede di accedere al sistema attraverso l'inserimento del proprio identificativo.
+		\item \textbf{Precondizione}: il sistema considera l’utilizzatore come un utente non acceduto.
+		\item \textbf{Postcondizione}: il sistema riconosce l'utilizzatore di esso come utente acceduto.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
-			\item L'utente aggiunge un nuovo utente
+			\item L'utente non ancora riconosciuto dal sistema procede all'accesso inserendo il proprio identificativo
 		\end{enumerate}
 	\end{itemize}
-	%TODO:  aggiuora io, povero stronzo, che sono statonto.. come faccio a sapere qual è il mio identificativo?!
+	
 	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Aggiunta nuovo utente}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=\columnwidth]{img/casi_d'uso/UC14_1.png}\\
-			\caption{UC\theuccount.\thesubuccount-GP - Aggiunta nuovo utente}
+				\includegraphics[width=0.6\textwidth]{img/casi_d'uso/UC12_1.png}\\
+			\caption{UC\theuccount.\thesubuccount-GP - Accesso dell'utente nel sistema}
 		\end{figure}
 		\begin{itemize}
-			\item \textbf{Codice}: C\theuccount.\thesubuccount-GP.
-			\item \textbf{Titolo}: Aggiunta nuovo utente.
-			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: un nuovo utente viene inserito nel sistema.
-			\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-			\item \textbf{Postcondizione}: un utente viene aggiunto al sistema.
+			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+			\item \textbf{Titolo}: accesso dell'utente nel sistema.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente non acceduto accede al sistema inserendo il proprio identificativo e inviandone la conferma.
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto.
+			\item \textbf{Postcondizione}: il sistema riconosce l'utente.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
-				\item L'utente inserisce i dati del nuovo utente da aggiungere
+				\item L’utente non ancora riconosciuto dal sistema richiede l'accesso inserendo il proprio identificativo.
 				\item L'utente conferma l'invio dei dati
-				\item L'aggiunta viene effettuata
 			\end{enumerate}
 			\item \textbf{Estensioni}:
 			\begin{enumerate}
-				\item Errore utente già presente nel sistema [UC\theuccount.2-GP]
+				\item L'accesso non va a buon fine e viene visualizzato un errore avvisando l'utente [UC\theuccount.2-GP]
 			\end{enumerate}
 		\end{itemize}
-
+		
+		\newpage
+		
 		\stepcounter{subsubuccount}
-		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento nome utente}
-
+		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento identificativo}
 			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-				\item \textbf{Titolo}: inserimento nome utente.
-				\item \textbf{Attori primari}: utente.
-				%non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il nominativo dell'utente da aggiungere.
-				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-				\item \textbf{Postcondizione}: il nome del nuovo utente è stato aggiunto nel sistema.
+				\item \textbf{Codice}: UC\theuccount.1.1-GP.
+				\item \textbf{Titolo}: inserimento identificativo.
+				\item \textbf{Attori primari}: utente non acceduto.
+				\item \textbf{Descrizione}: l'utente inserisce l'identificativo.
+				\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e permette all'utente l'inserimento dell'identificativo.
+				\item \textbf{Postcondizione}: l'utente ha inserito l'identificativo desiderato dal sistema.
 				\item \textbf{Scenario principale}:
 				\begin{enumerate}
-					\item L'utente aggiunge il nominativo del nuovo utente
+					\item L'utente inserisce l'identificativo per autenticarsi
 				\end{enumerate}
 			\end{itemize}
-
-		\stepcounter{subsubuccount}
-		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento cognome utente}
-
-			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-				\item \textbf{Titolo}: inserimento cognome utente.
-				\item \textbf{Attori primari}: utente.
-				% non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il cognome dell'utente da aggiungere.
-				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-				\item \textbf{Postcondizione}: il cognome del nuovo utente è stato aggiunto nel sistema.
-				\item \textbf{Scenario principale}:
-				\begin{enumerate}
-					\item L'utente aggiunge il cognome del nuovo utente
-				\end{enumerate}
-			\end{itemize}
-
-		\stepcounter{subsubuccount}
-		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento contatto Email}
-
-			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-				\item \textbf{Titolo}: inserimento contatto Email.
-				\item \textbf{Attori primari}: utente.
-				% non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il contatto Email dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un ID Telegram.
-				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-				\item \textbf{Postcondizione}: il contatto Email è stato aggiunto.
-				\item \textbf{Scenario principale}:
-				\begin{enumerate}
-					\item L'utente aggiunge il contatto Email del nuovo utente
-				\end{enumerate}
-		\end{itemize}
-
-		\stepcounter{subsubuccount}
-		\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento contatto Telegram}
-
-			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-				\item \textbf{Titolo}: inserimento contatto Telegram.
-				\item \textbf{Attori primari}: utente.
-				% non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il contatto Telegram dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un ID Telegram.
-				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-				\item \textbf{Postcondizione}: il contatto Telegram è stato aggiunto.
-				\item \textbf{Scenario principale}:
-				\begin{enumerate}
-					\item L'utente aggiunge il contatto Telegram del nuovo utente
-				\end{enumerate}
-			\end{itemize}
-        
-        \stepcounter{subsubuccount}
-        \subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento progetti di interesse}
-        
-        \begin{itemize}
-            \item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-            \item \textbf{Titolo}: inserimento progetti di interesse.
-            \item \textbf{Attori primari}: utente.
-            % non registrato.
-            \item \textbf{Descrizione}: l'utente seleziona da una lista i progetti da cui è interessato ricevere delle notifiche.
-            \item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-            \item \textbf{Postcondizione}: almeno un progetto è stato aggiunto.
-            \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item L'utente aggiunge uno o più progetti
-            \end{enumerate}
-%            \item \textbf{Estensioni}
-%            \begin{enumerate}
-%                \item Inserimento priorità progetti [UC\theuccount.\thesubuccount.6-GP]
-%            \end{enumerate}
-        \end{itemize}
-    
-        \stepcounter{subsubuccount}
-        \subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento priorità progetti}
-        
-        \begin{itemize}
-            \item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-            \item \textbf{Titolo}: inserimento progetti di interesse.
-            \item \textbf{Attori primari}: utente.
-            % non registrato.
-            \item \textbf{Descrizione}: l'utente, per ogni progetto a cui è interessato, seleziona la priorità dei progetti.
-            \item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-            \item \textbf{Postcondizione}: almeno una priorità per un progetto è stata aggiunto.
-            \item \textbf{Scenario principale}:
-            \begin{enumerate}
-                \item L'utente aggiunge uno o più priorità per uno o più progetti
-            \end{enumerate}
-        \end{itemize}
-
+	
 	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore utente già presente nel sistema}
-
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo inesistente}
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-			\item \textbf{Titolo}: errore utente già presente nel sistema.
-			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: l’utente viene avvisato che i contatti Telegram o Email immessi non sono univoci.
-			\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
-			\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore e l'utente non viene inserito.
+			\item \textbf{Titolo}: errore identificativo inesistente.
+			\item \textbf{Attori primari}: utente non acceduto.
+			\item \textbf{Descrizione}: l'utente viene avvisato che ha inserito un identificativo non riconosciuto.
+			\item \textbf{Precondizione}: il sistema riconosce l'utilizzatore come un utente non acceduto e riceve una richiesta di accesso. 
+			\item \textbf{Postcondizione}: il sistema comunica all'utilizzatore l'errore.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
+				\item L'utente inserisce un identificativo non esistente
+				\item L'utente conferma l'invio dei dati
 				\item L'utente visualizza il messaggio d'errore
 			\end{enumerate}
-			\end{itemize}
+		\end{itemize}

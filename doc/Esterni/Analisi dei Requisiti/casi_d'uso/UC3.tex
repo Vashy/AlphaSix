@@ -33,7 +33,10 @@
 			\item Il Producer Redmine invia il messaggio di issue al Gestore Personale
             \item Il Gestore Personale riceve il messaggio dal Producer Redmine
 		\end{enumerate}
-
+        	\item \textbf{Estensioni}:
+        \begin{enumerate}
+            \item Se ci sono dei messaggi non validi, questi vengono scartati [UC4-GP].
+        \end{enumerate}
 	\end{itemize}
 
 	\stepcounter{subuccount}
@@ -54,11 +57,7 @@
 			\item Il Producer Redmine invia il messaggio di
 			apertura issue al Gestore Personale
             \item Il Gestore Personale riceve il messaggio di apertura issue
-		\end{enumerate}
-		\item \textbf{Estensioni}:
-		\begin{enumerate}
-			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
-		\end{enumerate}
+		\end{enumerate}	
 	\end{itemize}
 
 	\stepcounter{subuccount}
@@ -95,27 +94,8 @@
 			\item Il Producer Redmine prepara il messaggio in modo che venga inserito correttamente nel Gestore Personale
 			\item Il Producer Redmine invia il messaggio di	commento issue al Gestore Personale
 		\end{enumerate}
-		\item \textbf{Estensioni}:
-		\begin{enumerate}
-			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
-		\end{enumerate}
-	\end{itemize}
-
-	\stepcounter{subuccount}
-	\subsubsection{UC\theuccount.\thesubuccount-GP - Producer Redmine scarta i messaggi non validi}
-
-	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-		\item \textbf{Titolo}: Producer Redmine scarta i messaggi non validi.
-		\item \textbf{Attori primari}: Producer Redmine.
-		\item \textbf{Descrizione}: il Producer Redmine, dopo aver ricevuto un messaggio da Redmine, controlla
-		se il messaggio contiene una segnalazione che \progetto\ sa analizzare. In caso negativo, il messaggio viene scartato.
-		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto un messaggio da Redmine.
-		\item \textbf{Postcondizione}: il Producer Redmine ha scartato il messaggio.
-		\item \textbf{Scenario principale}:
-		\begin{enumerate}
-			\item Il Producer Redmine riceve un messaggio
-			\item Il Producer Redmine vede che il messaggio contiene una segnalazione che \progetto\ non sa analizzare
-			\item Il Producer Redmine scarta il messaggio non valido.
-		\end{enumerate}
+%		\item \textbf{Estensioni}:
+%		\begin{enumerate}
+%			\item Se ci sono dei messaggi non validi, questi vengono scartati [UC\theuccount.4-GP].
+%		\end{enumerate}
 	\end{itemize}
