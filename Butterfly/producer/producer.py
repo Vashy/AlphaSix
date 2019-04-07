@@ -76,3 +76,8 @@ class Producer(ABC):
 
         `whook` - Webhook contenente campi specifici per il Topic.
         """
+
+    def close(self):
+        """Chiude la connessione con Kafka.
+        """
+        self._producer.close()
