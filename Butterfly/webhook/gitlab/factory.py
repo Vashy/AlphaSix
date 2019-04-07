@@ -14,7 +14,7 @@ class GitlabWebhookFactory(WebhookFactory):
 
         Parameters:
 
-        `kind` - può essere 'issue', 'push'.
+        `kind` - può essere 'issue', 'push', ...
 
         Raises:
 

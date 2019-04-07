@@ -27,28 +27,53 @@ Autori:
     Nicola Carlesso
 """
 
+from pathlib import Path
+import json
+
 import kafka.errors
 
-from consumer.email.creator import EmailConsumerCreator
+from consumer.email.consumer import EmailConsumer
+from consumer.creator import KafkaConsumerCreator
+
+
+_config_path = Path(__file__).parents[0] / 'config.json'
+
+
+def _open_kafka_configs(path: Path = _config_path):
+    """Apre il file di configurazione per Kafka.
+    """
+
+    with open(path) as file:
+        configs = json.load(file)
+
+    configs = configs['kafka']
+    timeout = 'consumer_timeout_ms'
+    if (timeout in configs
+            and configs[timeout] == 'inf'):
+        configs[timeout] = float('inf')
+    return configs
 
 
 def main():
-    """Fetch dei topic dal file topics.json
-    Campi:
-    - topics['id']
-    - topics['label']
-    - topics['project']
-    """
+    # Ottiene le configurazioni da Kafka
+    configs = _open_kafka_configs()
+    topic = 'email'
 
-    # Inizializza WebhookConsumer
+    # Inizializza KafkaConsumer
     try:
-        consumer = EmailConsumerCreator().create()
+        kafka = KafkaConsumerCreator().create(configs, topic)
     except kafka.errors.KafkaConfigurationError as e:
         print(e.with_traceback())
+        exit(-1)
+
+    # Istanzia EmailConsumer
+    consumer = EmailConsumer(kafka)
 
     try:
         consumer.listen()  # Resta in ascolto del Broker
     except KeyboardInterrupt:
+        pass
+    finally:
         consumer.close()
         print(' Closing Consumer ...')
 

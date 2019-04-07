@@ -39,17 +39,46 @@ class TelegramConsumer(Consumer):
     """Implementa Consumer"""
     _CONFIG_PATH = Path(__file__).parent / 'config.json'
 
-    def __init__(self, consumer: KafkaConsumer, topic: str):
-        super(TelegramConsumer, self).__init__(consumer, topic)
+    def __init__(self, consumer: KafkaConsumer):
+        super(TelegramConsumer, self).__init__(consumer)
 
         with open(self._CONFIG_PATH) as file:
             configs = json.load(file)
-
         self._token = configs['telegram']['token_bot']
 
     def send(self, receiver: str, msg: dict) -> bool:
         """Manda il messaggio finale, tramite il bot,
         all'utente finale.
+        """
+
+        # Richiesta POST per l'invio del messaggio finale
+        # via Telegram API
+        response = requests.post(
+            'https://api.telegram.org/'
+            f'bot{self._token}'
+            '/sendMessage',
+            data={
+                'chat_id': receiver,
+                'text': self.format(msg),
+                'parse_mode': 'markdown',
+            })
+        if response.ok:
+            chat = response.json()["result"]["chat"]
+            print(f'({response.status_code}) Inviato un messaggio a '
+                  f'{chat["username"]} ({chat["id"]})')
+
+            return True
+
+        print(f'({response.status_code}) '
+              'Errore: il messaggio non è stato inviato')
+        return False
+
+    def format(self, msg: dict):
+        """Restituisce una stringa con una formattazione migliore da un
+        oggetto JSON (Webhook).
+
+        Arguments:
+        msg -- JSON object
 
         Formato: Markdown
         *bold text*
@@ -62,38 +91,38 @@ class TelegramConsumer(Consumer):
         ```
         """
 
-        # Da modificare nel file config.json
-        # 38883960 Timoty
-        # 265266555 Laura
-        response = requests.post(
-            'https://api.telegram.org/'
-            f'bot{self._token}'
-            '/sendMessage',
-            data={
-                'chat_id': receiver,
-                'text': msg,
-                'parse_mode': 'markdown',
-            })
+        # Queste chiamate vanno bene sia per i webhook di rd che per gt
 
-        if response.ok:
-            chat = response.json()["result"]["chat"]
-            print(f'({response.status_code}) Inviato un messaggio a '
-                  f'{chat["username"]} ({chat["id"]})')
+        res = ''
 
-            return True
+        if msg['object_kind'] == 'issue':
+            res += f'È stata aperta una issue '
 
-        print(f'({response.status_code}) '
-              'Errore: il messaggio non è stato inviato')
-        return False
+        elif msg['object_kind'] == 'push':
+            res += f'È stata fatto un push '
 
-    @property
-    def bold(self):
-        return '*'
+        elif msg['object_kind'] == 'issue-note':
+            res += f'È stata commentata una issue '
 
-    @property
-    def emph(self):
-        return '`'
+        elif msg['object_kind'] == 'commit-note':
+            res += f'È stato commentato un commit '
 
-    def close(self):
-        """Chiude la connessione del Consumer"""
-        self._consumer.close()
+        else:
+            raise KeyError
+
+        emph = '`'
+        bold = '**'
+
+        res += ''.join([
+            f' nel progetto {bold}{msg["project_name"]}{bold} ',
+            f'({emph}{msg["project_id"]}{emph})',
+            f' su {msg["app"].capitalize()}',
+            f'\n\n{bold}Informazioni:{bold} '
+            f'\n - {bold}Autore:{bold} {msg["author"]}'
+            f'\n - {bold}Title:{bold} {msg["title"]}',
+            f'\n - {bold}Description:{bold}\n'
+            f'  {msg["description"]}',
+            f'\n - {bold}Action:{bold} {msg["action"]}'
+        ])
+
+        return res

@@ -29,7 +29,6 @@ Autori:
 
 from abc import ABC, abstractmethod
 import json
-from pprint import pprint
 
 from kafka import KafkaConsumer
 
@@ -37,15 +36,19 @@ from kafka import KafkaConsumer
 class Consumer(ABC):
     """Interfaccia Consumer"""
 
-    def __init__(self, consumer: KafkaConsumer, topic: str):
+    def __init__(self, consumer: KafkaConsumer):
 
         self._consumer = consumer
-        self._topic = topic
 
     def prelisten_hook(self):
         """Metodo ridefinibile dalle sotto classi per effettuare
         operazioni prima dell'avvio dell'ascolto dei messaggi.
         """
+
+    def topics(self):
+        """Restituisce i topic a cui il Consumer è iscritto.
+        """
+        return self._consumer.subscription()
 
     def listen(self):
         """Ascolta i messaggi provenienti dai Topic a cui il
@@ -57,7 +60,8 @@ class Consumer(ABC):
         """
 
         print('Listening to messages from topic:')
-        print(f'- {self._topic}')
+        for topic in self.topics():
+            print(f'- {topic}')
         print()
 
         self.prelisten_hook()  # Hook!
@@ -67,81 +71,22 @@ class Consumer(ABC):
 
             value = message.value
             try:
-                receiver, value = self.format(value)
+                # receiver, value = self.format(value)
 
                 # Invia il messaggio al destinatario finale
-                self.send(receiver, value)
+                self.send(value['receiver'], value)
 
             except json.decoder.JSONDecodeError:
-                print(f'\n-----\nLa stringa "{value}" non è in formato JSON\n-----\n')
+                print(f'\n-----\n"{value}" '
+                      'non è in formato JSON\n-----\n')
             except Exception:
-                print('Errore nella formattazione del messaggio finale')
-
+                print('Errore nella formattazione del messaggio finale:')
+                # print(e.with_traceback())
 
     @abstractmethod
     def send(self, receiver: str, msg: dict) -> bool:
         """Invia il messaggio all'utente finale."""
 
-    def format(self, msg: dict):
-        """Restituisce una stringa con una formattazione migliore da un
-        oggetto JSON (Webhook).
-
-        Arguments:
-        msg -- JSON object
-        """
-        # Queste chiamate vanno bene sia per i webhook di rd che per gt
-
-        emph = self.emph
-        bold = self.bold
-
-        res = ''
-
-        if msg['object_kind'] == 'issue':
-            res += f'È stata aperta una issue '
-
-        elif msg['object_kind'] == 'push':
-            res += f'È stata fatto un push '
-
-        elif msg['object_kind'] == 'issue-note':
-            res += f'È stata commentata una issue '
-
-        elif msg['object_kind'] == 'commit-note':
-            res += f'È stato commentato un commit '
-
-        else:
-            raise KeyError
-
-        res += ''.join([
-            f'{bold}{msg["project_name"]}{bold} ',
-            f'({emph}{msg["project_id"]}{emph})',
-            f'\n\n{bold}Sorgente:{bold} {msg["app"]}',
-            f'\n{bold}Autore:{bold} {msg["author"]}'
-            f'\n\n {bold}Information:{bold} '
-            f'\n - {bold}Title:{bold} \t\t{msg["title"]}',
-            f'\n - {bold}Description:{bold} \n'
-            f'  {msg["description"]}',
-            f'\n - {bold}Action:{bold} \t{msg["action"]}'
-        ])
-
-        # Avendo gitlab che può avere più assignees e redmine
-        # che invece può averne soltanto uno
-        # hanno due profondità diverse nel file json,
-        # quindi vanno scorse in modo diverso
-        # if msg["app"] == 'redmine':
-        #     res += f'\n - {msg["assignees"]["firstname"]}'
-        # elif msg["app"] == 'gitlab':
-        #     for value in msg["assignees"]:
-        #         res += f'\n - {value["name"]}'
-
-        return msg['receiver'], res
-
-    @property
-    @abstractmethod
-    def bold(self):
-        pass
-
-
-    @property
-    @abstractmethod
-    def emph(self):
-        pass
+    def close(self):
+        """Chiude la connessione del Consumer"""
+        self._consumer.close()
