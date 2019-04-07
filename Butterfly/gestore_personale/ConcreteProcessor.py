@@ -5,10 +5,10 @@ class GitlabProcessor(Processor):
 
     def _filter_users_by_topic(self, users: list, obj: str) -> list:
         """
-        Cerca gli utendi disponibili nella data della notifica iscritti ai
+        Cerca gli utenti disponibili nella data della notifica iscritti ai
         topic della segnalazione
-        :param users: lista di utenti apparteneti al progetto della
-            segnalazione e diponibili nel giorno della segnalazione
+        :param users: lista di utenti appartenenti al progetto della
+            segnalazione e disponibili nel giorno della segnalazione
         :param obj: tipologia della segnalazione per GitLab
         :return: lista di utenti iscritti a quel topic
         """
@@ -57,10 +57,10 @@ class RedmineProcessor(Processor):
 
     def _filter_users_by_topic(self, users: list, obj: str) -> list:
         """
-        Cerca gli utendi disponibili nella data della notifica iscritti ai
+        Cerca gli utenti disponibili nella data della notifica iscritti ai
         topic della segnalazione
-        :param users: lista di utenti apparteneti al progetto della
-            segnalazione e diponibili nel giorno della segnalazione
+        :param users: lista di utenti appartenenti al progetto della
+            segnalazione e disponibili nel giorno della segnalazione
         :param obj: tipologia della segnalazione per redmine
         :return: lista di utenti iscritti a quel topic
         """

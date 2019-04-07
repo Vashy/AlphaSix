@@ -1,19 +1,9 @@
-from abc import ABC, abstractmethod
-
 import pymongo
 
 
-class MongoAdapter(ABC):
+class MongoSingleton:
 
-    @property
-    @abstractmethod
-    def instance(self):
-        pass
-
-
-class MongoDBImpl(MongoAdapter):
-
-    class MongoSingleton:
+    class Singleton:
 
         def __init__(
                 self,
@@ -31,14 +21,14 @@ class MongoDBImpl(MongoAdapter):
             `collection`, se non è già presente. Restituisce un
             `InsertOneResult`.
             """
-            return MongoDBImpl.instance._db[collection].insert_one(document)
+            return MongoSingleton.instance._db[collection].insert_one(document)
 
         def read(
                 self, collection_name: str
         ) -> pymongo.collection.Collection:
             """Restituisce la collezione con il nome passato come
             argomento."""
-            return MongoDBImpl.instance._db[collection_name]
+            return MongoSingleton.instance._db[collection_name]
 
         def delete(
                 self, filter: dict, collection: str
@@ -47,14 +37,14 @@ class MongoDBImpl(MongoAdapter):
             `filter`, se presente, e restituisce il risultato.
             Restituisce un `DeleteResult`.
             """
-            return MongoDBImpl.instance._db[collection].delete_one(filter)
+            return MongoSingleton.instance._db[collection].delete_one(filter)
 
-    _INSTANCE = MongoSingleton('butterfly')
+    _INSTANCE = Singleton('butterfly')
 
     # def __init__(self):
-    #     if not MongoDBImpl.instance:
-    #         MongoDBImpl.instance = MongoDBImpl.MongoSingleton('butterfly')
+    #     if not MongoSingleton.instance:
+    # MongoSingleton.instance = MongoSingleton.MongoSingleton('butterfly')
 
     @property
     def instance(self):
-        return MongoDBImpl._INSTANCE
+        return MongoSingleton._INSTANCE

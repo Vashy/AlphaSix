@@ -1,12 +1,12 @@
 import copy
 
-from mongo_db.singleton import MongoAdapter
+from mongo_db.singleton import MongoSingleton
 
 
-class MongoUsers():
+class MongoUsers:
 
-    def __init__(self, mongo: MongoAdapter):
-        self._mongo = mongo
+    def __init__(self, mongo: MongoSingleton):
+        self._mongo = mongo.instance()
 
     @classmethod
     def _user_dict_no_id(cls, obj: dict):
@@ -423,6 +423,16 @@ class MongoUsers():
         """Dato un progetto, ritorno la lista di
         utenti disponibili oggi di priorità maggiore
         (la lista di ritorno contiene gli ID del DB)
+        """
+        for priority in range(1, 4):
+            max_priority = self._get_users_by_priority(url, priority)
+            if max_priority:
+                return max_priority
+        return None
+
+    def filter_max_priority(self, url: str) -> list:
+        """Data una lista di utenti, ritorno la sottolista di
+        utenti con priorità maggiore
         """
         for priority in range(1, 4):
             max_priority = self._get_users_by_priority(url, priority)

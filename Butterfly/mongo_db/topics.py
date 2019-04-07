@@ -1,11 +1,10 @@
-from mongo_db.mongointerface import MongoInterface
-from mongo_db.mongosingleton import MongoAdapter
+from mongo_db.singleton import MongoSingleton
 
 
-class MongoTopics (MongoInterface):
+class MongoTopics:
 
-    def __init__(self):
-        self._mongo = MongoAdapter().getInstance()
+    def __init__(self, mongo: MongoSingleton):
+        self._mongo = mongo.instance()
 
     def create(self, label: str, project: str):
         """Aggiunge il documento `topic`, corrispondente alla coppia

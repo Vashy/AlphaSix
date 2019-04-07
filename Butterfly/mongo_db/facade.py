@@ -4,7 +4,11 @@ from mongo_db.projects import MongoProjects
 
 class MongoFacade():
 
-    def __init__(self, mongo_users: MongoUsers, mongo_projects: MongoProjects):
+    def __init__(
+        self,
+        mongo_users: MongoUsers,
+        mongo_projects: MongoProjects
+    ):
         super().__init__()
         self._users = mongo_users
         self._projects = mongo_projects
@@ -45,16 +49,14 @@ class MongoFacade():
     def delete_project(self, project: str):
         self._projects.delete(project)
 
-    def projects(self, filter={}):
-        return self._projects.projects(filter)
+    def projects(self, mongofilter={}):
+        return self._projects.projects(mongofilter)
 
-    # TODO
     def insert_label_by_project(self, label: str, project: str):
-        #inserisce la lebel in un particolare progetto, da sostituire con insert_label
         self._projects.insert_label_by_project(label, project)
 
-    def insert_keyword(self, keyword: str):
-        self._projects.insert_keyword(keyword)
+    def insert_keyword_by_project(self, keyword: str, project: str):
+        self._projects.insert_keyword(keyword, project)
 
 # Metodi per la ricerca dei dati
 
@@ -79,13 +81,13 @@ class MongoFacade():
     def get_match_labels(self, users: list, labels: list) -> list:
         return self._users.get_match_labels(users, labels)
 
-    # TODO
+    # TODO : dove viene usata? Deve esserci un progetto,
+    # altrimenti non ha senso
     def get_users_from_list_with_max_priority(self, users: list) -> list:
-        # filtra, tra gli utenti dati, solo quelli che hanno la priorità maggiore
+        # filtra, tra gli utenti dati, solo quelli che hanno la priorità
+        # maggiore
         # (è diverso da 'get_users_max_priority' perchè non li vogliamo tutti)
         pass
 
-    # TODO
     def get_label_project(self, project: str) -> list:
-        #ritorna le label registrate in un progetto
-        pass
+        return self._projects.labels(project)
