@@ -1,48 +1,18 @@
-# import json
-# import unittest
-# from pathlib import Path
+from unittest.mock import patch
 
-from unittest.mock import MagicMock, patch
+from consumer.creator import KafkaConsumerCreator, KafkaConsumer
 
-import pytest
-
-from consumer.telegram.creator import TelegramConsumerCreator, TelegramConsumer
-
-
-@patch('consumer.telegram.creator.TelegramConsumer', autospec=True)
-def test_instantiate(
-        consumer,
-):
-    creator = TelegramConsumerCreator()
-    consumer = creator.instantiate(MagicMock())
-
-    assert isinstance(consumer, TelegramConsumer)
-
-
+@patch('consumer.creator.json.loads')
+@patch('consumer.creator.kafka.errors.NoBrokersAvailable', autospec=True)
 @patch('consumer.creator.KafkaConsumer', autospec=True)
-@patch('consumer.telegram.creator.TelegramConsumer', autospec=True)
-@patch('consumer.creator.json', autospec=True)
 def test_create(
-        json,
-        consumer,
         kafka,
+        errors,
+        json_loads,
 ):
-    json.loads.return_value = {
-        'kafka': {
-            'consumer_timeout_ms': 1,
-        },
-        'telegram': {
-            'token_bot': '123123',
-        },
-        'another': 'value',
-    }
-    creator = TelegramConsumerCreator()
-    consumer = creator.create({})
 
-    assert isinstance(consumer, TelegramConsumer)
+    creator = KafkaConsumerCreator()
+    kafka_consumer = creator.create({}, 'topic')
+
     kafka.assert_called_once()
-
-
-def test_topic():
-    creator = TelegramConsumerCreator()
-    assert creator.topic == 'telegram'
+    assert isinstance(kafka_consumer, KafkaConsumer)
