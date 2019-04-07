@@ -1,9 +1,9 @@
 \subsubsection{UC\theuccount-PG - GitLab invia segnalazione al Producer GitLab}
-%	\begin{figure}[H]
-%		\centering
-%		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC4.png}\\
-%		\caption{UC\theuccount-PG - GitLab segnala apertura issue al Producer GitLab}
-%	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{img/casi_d'uso/UC\theuccount.png}\\
+		\caption{UC2-PG - GitLab invia segnalazione al Producer GitLab}
+	\end{figure}
 \begin{itemize}
     \item \textbf{Codice}: UC\theuccount-PG.
     \item \textbf{Titolo}: GitLab invia segnalazione al Producer GitLab.
@@ -12,13 +12,13 @@
     \item \textbf{Precondizione}: su GitLab viene eseguita una operazione che scaturisce una
     segnalazione da inviare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
-    \item \textbf{Scenario principale}: 
+    \item \textbf{Scenario principale}:
     \begin{enumerate}
         \item Viene eseguita un'operazione
         \item GitLab procede all'invio della segnalazione al Producer GitLab
         \item Il Producer GitLab riceve la segnalazione
     \end{enumerate}
-    
+
 \end{itemize}
 
 \stepcounter{subuccount}
@@ -48,16 +48,16 @@
         \end{itemize}
     \end{itemize}
     Il campo object kind ci permette di capire il tipo di oggetto, in questo caso infatti contiene ``issue'', mentre il campo action ha ``open''.
-    \item \textbf{Precondizione}: viene aperta una issue su GitLab da 
+    \item \textbf{Precondizione}: viene aperta una issue su GitLab da
     segnalare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
-    \item \textbf{Scenario principale}: 
+    \item \textbf{Scenario principale}:
     \begin{enumerate}
         \item Viene aperta una nuova issue su GitLab
         \item GitLab procede all'invio della segnalazione di issue al Producer GitLab
         \item il Producer GitLab riceve la segnalazione di apertura issue
     \end{enumerate}
-    
+
 \end{itemize}
 
 \stepcounter{subuccount}
@@ -78,13 +78,13 @@
     \item \textbf{Precondizione}: Viene modificata una issue già aperta su un
     progetto di GitLab da segnalare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
-    \item \textbf{Scenario principale}: 
+    \item \textbf{Scenario principale}:
     \begin{enumerate}
         \item Viene modificata una issue già esistente su GitLab
         \item GitLab procede all'invio della segnalazione di modifica issue al Producer GitLab
         \item Il Producer GitLab riceve la segnalazione di modifica issue
     \end{enumerate}
-    
+
 \end{itemize}
 
 \stepcounter{subuccount}
@@ -104,12 +104,12 @@
     \item \textbf{Precondizione}: Viene commentata una issue già aperta su un
     progetto di GitLab da segnalare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
-    \item \textbf{Scenario principale}: 
+    \item \textbf{Scenario principale}:
     \begin{enumerate}
         \item Viene commentata una issue già esistente su GitLab
         \item GitLab procede all'invio della segnalazione di commento issue al Producer GitLab
     \end{enumerate}
-    
+
 \end{itemize}
 
 \stepcounter{subuccount}
@@ -135,7 +135,7 @@ I campi di interesse sono:
 E in questo caso il campo object kind contiene ``push''.
 \item \textbf{Precondizione}: Viene effettuato un push su GitLab da segnalare a \progetto.
 \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
-\item \textbf{Scenario principale}: 
+\item \textbf{Scenario principale}:
 \begin{enumerate}
     \item Viene effettuato un push in GitLab
     \item GitLab procede all'invio della segnalazione di push al Producer GitLab
@@ -160,11 +160,11 @@ E in questo caso il campo object kind contiene ``push''.
     I campi di interesse sono gli stessi dell'apertura issue, con la differenza che il campo action contiene ``commit-note''.
     \item \textbf{Precondizione}: Viene commentato un commit di un progetto di GitLab da segnalare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione da GitLab.
-    \item \textbf{Scenario principale}: 
+    \item \textbf{Scenario principale}:
     \begin{enumerate}
         \item Viene commentato un commit già esistente su GitLab
         \item GitLab procede all'invio della segnalazione di commento commit al Producer GitLab
         \item Il Producer GitLab riceve la segnalazione di commento di un commit
     \end{enumerate}
-    
+
 \end{itemize}
