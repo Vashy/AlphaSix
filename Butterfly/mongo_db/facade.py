@@ -9,7 +9,6 @@ class MongoFacade():
         mongo_users: MongoUsers,
         mongo_projects: MongoProjects
     ):
-        super().__init__()
         self._users = mongo_users
         self._projects = mongo_projects
 

@@ -8,9 +8,9 @@ from flask import Flask, request, session, make_response
 import flask_restful
 
 from mongo_db.facade import MongoFacade
-from mongo_db.creator import MongoFacadeCreator
+from mongo_db.singleton import MongoSingleton
 
-root = (pathlib.Path(__file__).parent / 'public_html').resolve()
+html = (pathlib.Path(__file__).parent / 'public_html').resolve()
 
 
 class Observer(ABC):
@@ -33,11 +33,11 @@ class Subject(ABC):
         pass
 
 
-class FinalMeta(type(Subject), type(flask_restful.Resource)):
+class SubjectResource(type(Subject), type(flask_restful.Resource)):
     pass
 
 
-class Resource(Subject, flask_restful.Resource, metaclass=FinalMeta):
+class Resource(Subject, flask_restful.Resource, metaclass=SubjectResource):
 
     def __init__(self):
         super(Resource, self).__init__()
@@ -104,8 +104,14 @@ class Preference(Resource):
 
 class Controller(Observer):
 
-    def __init__(self, api: flask_restful.Api, model: MongoFacade):
+    def __init__(
+        self,
+        server: Flask,
+        api: flask_restful.Api,
+        model: MongoFacade
+    ):
         self.model = model
+        self.server = server
         self.api = api
 
         self.user = User
@@ -113,26 +119,21 @@ class Controller(Observer):
         self.preference = Preference
 
         self.api.add_resource(
-            self.panel, '/'
+            self.user, '/api/user'
         )
 
         self.api.add_resource(
-            self.user, '/user'
-        )
-
-        self.api.add_resource(
-            self.preference, '/preference'
+            self.preference, '/api/preference'
         )
 
         self.user.addObserver(self.user, obs=self)
-        self.panel.addObserver(self.panel, obs=self)
         self.preference.addObserver(self.preference, obs=self)
 
     def _checkSession(self):
         return 'userid' in session
 
     def access(self):
-        file = root / 'access.html'
+        file = html / 'access.html'
         page = file.read_text()
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
@@ -170,9 +171,13 @@ class Controller(Observer):
 def main():
     flask = Flask(__name__)
     flask.secret_key = urandom(16)
+    api = flask_restful.Api(flask)
+    mongo = MongoSingleton().instance()
+    facade = MongoFacade(mongo, mongo)
     Controller(
-        flask_restful.Api(flask),
-        MongoFacadeCreator().instantiate()
+        flask,
+        api,
+        facade
     )
 
     flask.run(debug=True)
