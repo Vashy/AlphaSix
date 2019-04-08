@@ -53,7 +53,6 @@ class Producer(ABC):
 
     def produce(self, whook: dict):
         """Produce il messaggio `whook` nel Topic designato del Broker"""
-
         webhook = self._webhook_factory.create_webhook(
             self.webhook_kind(whook)
         )

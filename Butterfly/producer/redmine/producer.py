@@ -35,10 +35,7 @@ class RedmineProducer(Producer):
     """
 
     def webhook_kind(self, whook: dict):
-        """Restituisce il tipo di segnalazione (e.g. issue, push, etc..).
+        """Restituisce il tipo di segnalazione (Per Redmine c'è solo 'issue', al momento).
         """
 
-        if whook['object_kind'] == 'issue' in whook:
-            return 'issue'
-
-        return whook['object_kind']
+        return 'issue'

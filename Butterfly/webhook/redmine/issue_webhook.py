@@ -32,13 +32,12 @@ from webhook.webhook import Webhook
 class RedmineIssueWebhook(Webhook):
     """GitLab Issue event Webhook"""
 
-    def parse(self, whook: dict = None):
+    def parse(self, whook: dict):
         """Parsing del file JSON associato al webhook."""
 
         assert whook is not None
 
         webhook = {}
-
         webhook['app'] = 'redmine'
         webhook['object_kind'] = 'issue'
         webhook['title'] = whook['payload']['issue']['subject']
@@ -47,9 +46,9 @@ class RedmineIssueWebhook(Webhook):
         webhook['project_name'] = whook['payload']['issue']['project']['name']
         webhook['action'] = whook["payload"]["action"]
         webhook['author'] = whook['payload']['issue']['author']['firstname']
-        webhook['assignees'] = (
-            whook['payload']['issue']['assignee']['firstname']
-        )
+        # webhook['assignees'] = (
+        #     whook['payload']['issue']['assignee']['firstname']
+        # )
         webhook['labels'] = whook['payload']['issue']['tracker']['name']
 
         webhook['update'] = {}

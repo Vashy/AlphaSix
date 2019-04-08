@@ -36,7 +36,7 @@ class FlaskServer:
 
             webhook = request.get_json()
             print(
-                '\n\n\nMessaggio da GitLab:\n'
+                '\n\n\nMessaggio da Redmine:\n'
                 f'{pformat(webhook)}\n\n\n'
                 'Parsing del messaggio ...'
             )
