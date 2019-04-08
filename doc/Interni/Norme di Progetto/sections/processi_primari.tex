@@ -413,7 +413,7 @@
 		La presente sezione ha lo scopo di normare l'attività di codifica che svolgeremo nel corso della realizzazione del progetto \progetto, per
 		evitare qualsiasi tipo di inconsistenza e rendere il codice il quanto più omogeneo possibile.
 
-		Il progetto sarà sviluppato perlopiù usando il linguaggio \gloss{Python} (per una parte sarà valutato se utilizzare Ruby).
+		Il progetto sarà sviluppato utilizzando il linguaggio \gloss{Python}.
 		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce ``PEP 8'' in \S\ref{rifnorma}},
 		lo standard Python che definisce lo stile da seguire nella codifica e in attività correlate ad essa.
 
@@ -521,11 +521,13 @@ def cheeseshop(kind, *arguments, **keywords):
 
 
 		\paragraph{Ereditarietà}\label{PP:Sviluppo:Codifica:Ereditarietà}
-		Evitare l'ereditarietà tra classi che hanno stato. È invece possibile che una classe derivi da un'altra se quest'ultima è a tutti gli
-		effetti un'\gloss{interfaccia}, ossia definisce solo comportamenti astratti (i.e. è composta solo da metodi astratti).\par
-		Viene adottato, per ovviare alla assente ereditarietà, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce %
+		Evitare l'ereditarietà tra classi concrete. È invece possibile che una classe derivi da un'altra se quest'ultima è
+		un'\gloss{interfaccia} o una classe astratta.
+
+		Viene adottato, per ovviare all'ereditarietà tra classi concrete, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce %
 		``Composition over inheritance'' in \S\ref{rifnorma}.}.
 
+		Va limitato, ove possibile, la dipendenza tra classi concrete: dipendere quindi sulle astrazioni (interfacce e classi astratte).
 
         \paragraph{Commenti}\label{PP:Sviluppo:Codifica:Commenti}
 		Il \Progr\ è tenuto ad inserire commenti ove ritiene che questo possa migliorare la leggibilità del codice. Per contro, i commenti vanno
