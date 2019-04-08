@@ -42,8 +42,8 @@
         \item Assignees
     \end{itemize}
 	Il campo action conterrà al suo interno ``opened''.
-	\item \textbf{Precondizione}: Viene aperta una issue su Redmine da
-	segnalare a \progetto.
+		\item \textbf{Precondizione}: su Redmine viene eseguita un'operazione che scaturisce una
+    segnalazione da inviare a \progetto.
 	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione di apertura issue da Redmine.
 	\item \textbf{Scenario principale}:
 	\begin{enumerate}
@@ -64,8 +64,8 @@
 	\item \textbf{Descrizione}: quando una issue viene modificata, l'invio di tale segnalazione
 	avviene da parte di Redmine tramite webhook.
 	I campi di interesse sono gli stessi dell'apertura di una issue, con la differenza che necessariamente il campo action contiene ora ``updated''.
-	\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
-	progetto di Redmine da segnalare a \progetto.
+		\item \textbf{Precondizione}: su Redmine viene eseguita un'operazione che scaturisce una
+    segnalazione da inviare a \progetto.
 	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione di modifica issue da Redmine.
 	\item \textbf{Scenario principale}:
 	\begin{enumerate}
@@ -86,13 +86,13 @@
 	\item \textbf{Descrizione}: quando una issue viene commentata, l'invio di tale segnalazione
 	avviene da parte di Redmine tramite webhook.
 	I campi di interesse sono gli stessi dell'apertura di una issue, con la differenza che necessariamente il campo action contiene ora ``updated''.
-	\item \textbf{Precondizione}: Viene modificata una issue già aperta su un
-	progetto di Redmine da segnalare a \progetto.
+		\item \textbf{Precondizione}: su Redmine viene eseguita un'operazione che scaturisce una
+    segnalazione da inviare a \progetto.
 	\item \textbf{Postcondizione}: il Producer Redmine riceve la segnalazione del commento di una issue da Redmine.
 	\item \textbf{Scenario principale}:
 	\begin{enumerate}
-		\item Viene modificata una issue già esistente su Redmine
-		\item Redmine procede all'invio della segnalazione di modifica issue al Producer Redmine
+		\item Viene commentata una issue già esistente su Redmine
+		\item Redmine procede all'invio della segnalazione di commento issue al Producer Redmine
 	\end{enumerate}
 
 \end{itemize}

@@ -9,8 +9,9 @@
 		\item \textbf{Titolo}: rimozione preferenze.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l’utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o più. Le preferenze consistono in Topic, date di calendario e la piattaforma di messaggistica (Telegram e email).
-		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno	una preferenza selezionata tra quelle proposte da Butterfly.
-		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in meno rispetto	a quella precedente.
+		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+        una preferenza selezionata tra quelle proposte da Butterfly.
+		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in meno rispetto a quella precedente.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item L'utente procede alla rimozione di una o più preferenze
@@ -25,7 +26,8 @@
 			\item \textbf{Titolo}: disiscrizione Topic.
 			\item \textbf{Attori primari}: utente.
 			\item \textbf{Descrizione}: l’utente si disiscrive da uno o più Topic dai quali prima riceveva delle notifiche.
-			\item \textbf{Precondizione}: l’utente ha acceduto correttamente nel sistema e non ha già selezionato tutti i Topic possibili proposti da \progetto.
+			\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+            una preferenza selezionata tra quelle proposte da Butterfly.
 			\item \textbf{Postcondizione}: il numero di Topic a cui è iscritto l’utente è diminuito.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
@@ -40,7 +42,8 @@
 		\item \textbf{Titolo}: rimozione di uno o più giorni di irreperibilità nel calendario.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l’utente rimuove i giorni di calendario in cui precedentemente	non era reperibile, tornando disponibile.
-		\item \textbf{Precondizione}: l’utente ha acceduto correttamente nel sistema ed è presente almeno un giorno di calendario selezionato.
+		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+        una preferenza selezionata tra quelle proposte da Butterfly.
 		\item \textbf{Postcondizione}: il numero di giorni di calendario in cui l’utente non è reperibile è diminuito.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -55,7 +58,8 @@
 		\item \textbf{Titolo}: rimozione preferenza piattaforma di messaggistica.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l’utente rimuove una o più preferenze tra Telegram e Email dalle	quali non vuole più ricevere notifiche tramite \progetto.
-		\item \textbf{Precondizione}: l’utente ha acceduto correttamente nel sistema ed è presente almeno una piattaforma di messaggistica selezionata tra quelle proposte da \progetto.
+		\item \textbf{Precondizione}: \item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+        una preferenza selezionata tra quelle proposte da Butterfly.
 		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica da cui l’utente vuole ricevere notifiche è diminuito.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -108,7 +112,8 @@
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l’utente seleziona e rimuove una o più keyword già presente nel sistema per non ricevere la notifica di push in
 		cui i messaggi di commit contengono la keyword rimossa.
-		\item \textbf{Precondizione}:  l’utente ha acceduto al sistema.
+		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+        una preferenza selezionata tra quelle proposte da Butterfly.
 		\item \textbf{Postcondizione}: nelle nuove configurazioni dell'utente selezionato sono state rimosse delle keyword precedentemente presenti.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -128,7 +133,8 @@
 		\item \textbf{Titolo}: errore keyword da rimuovere non presente.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l'utente vuole rimuovere una keyword che non ha mai inserito o che ha rimosso precedentemente.
-		\item \textbf{Precondizione}: l’utente ha acceduto al sistema.
+		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+        una preferenza selezionata tra quelle proposte da Butterfly.
 		\item \textbf{Postcondizione}: viene visualizzato un messaggio d'errore con indicato che la keyword	selezionata che non è presente nel sistema.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -146,8 +152,9 @@
         \item \textbf{Titolo}: inserimento dei nuovi progetti.
         \item \textbf{Attori primari}: utente.
         \item \textbf{Descrizione}: l'utente modifica la lista di progetti a cui è iscritto.
-        \item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
-        \item \textbf{Postcondizione}: la lista di progetti a cui un utente è iscritto è stata modificata.
+        \item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+        una preferenza selezionata tra quelle proposte da Butterfly.
+        \item \textbf{Postcondizione}: la lista di progetti a cui un utente è iscritto è diminuita.
         \item \textbf{Scenario principale}:
         \begin{enumerate}
             \item L'utente modifica la lista di progetti a cui è iscritto
@@ -162,8 +169,9 @@
         \item \textbf{Titolo}: inserimento delle nuove priorità sui progetti.
         \item \textbf{Attori primari}: utente.
         \item \textbf{Descrizione}: l'utente modifica la priorità dei progetti a cui è iscritto.
-        \item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
-        \item \textbf{Postcondizione}: la priorità della lista di progetti a cui un utente è iscritto è stata modificata.
+        \item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
+        una preferenza selezionata tra quelle proposte da Butterfly.
+        \item \textbf{Postcondizione}: la priorità di un progetto presente nella lista dei progetti è stata rimossa.
         \item \textbf{Scenario principale}:
         \begin{enumerate}
             \item L'utente modifica la priorità della lista di progetti a cui è iscritto

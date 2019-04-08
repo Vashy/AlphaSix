@@ -17,30 +17,7 @@
 		\end{enumerate}
 	\end{itemize}
 
-
 	\stepcounter{subuccount}
-%	\subsubsection{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
-%		\begin{figure}[H]
-%			\centering
-%			\includegraphics[width=0.8\textwidth]{img/casi_d'uso/UC16_1.png}\\
-%			\caption{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
-%		\end{figure}
-%		\begin{itemize}
-%			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-%			\item \textbf{Titolo}: selezione identificativo.
-%			\item \textbf{Attori primari}: utente.
-%			\item \textbf{Descrizione}: l'utente aggiunge l'identificativo dell'utente che vuole modificare.
-%			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
-%			\item \textbf{Postcondizione}: l'identificativo è stato inserito.
-%			\item \textbf{Scenario principale}:
-%			\begin{enumerate}
-%				\item L'utente procede con l'inserimento dell'identificativo dell'utente da modificare
-%			\end{enumerate}
-%			\item \textbf{Estensioni}:
-%			\begin{itemize}
-%				\item Errore identificativo inesistente [UC\theuccount.2-GP]
-%			\end{itemize}
-%		\end{itemize}
 
 		\subsubsection{UC\theuccount.\thesubuccount-GP - Modifica di un utente del sistema}
 			\begin{figure}[H]
@@ -135,7 +112,7 @@
 			\item \textbf{Titolo}: errore, nuovi dati dell'utente già esistenti.
 			\item \textbf{Attori primari}: utente.
 			\item \textbf{Descrizione}: i nuovi dati dell'utente da modificare che sono stati inseriti sono già presenti nel sistema, ovvero i nuovi campi corrispondono a quelli di un utente già esistente. In particolare il contatto Telegram o Email, perchè una persona può avere lo stesso nome e cognome di un altro, ma non la stessa mail e nemmeno lo stesso identificativo Telegram.
-			\item \textbf{Precondizione}: l'utente vuole modificare un utente esistente nel sistema.
+			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
 			\item \textbf{Postcondizione}: l'utente non è stato modificato e viene visualizzato un messaggio di errore.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
