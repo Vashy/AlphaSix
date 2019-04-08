@@ -153,7 +153,7 @@
 
 			% 6.1.2.3 The prepared documents shall be reviewed and edited for format, techni cal content, and presentation style agai nst their documentation standards. The y shall be approved for ade quacy by authorized personnel prior to issue.
 			\paragraph{Approvazione}	\label{Approvazione}
-			Ogni documento, nel momento in cui viene ritenuto pronto, deve essere revisionato dal \Res affinchè ne venga controllata l'adeguatezza e approvato il rilascio.
+			Ogni documento, nel momento in cui viene ritenuto pronto, deve essere revisionato dal \Res\ affinchèTODO ne venga controllata l'adeguatezza e approvato il rilascio.
 
 
 		\subsubsection{Produzione}
@@ -249,9 +249,9 @@
 			\subparagraph{Controllo sui prodotti}	\label{ControlloProdotti}
 			Per le procedure di misurazione del prodotto effettuiamo:
 			\begin{itemize}
-				\item Uso delle metriche e delle procedure delineate nel documento corrente e dei test descritto nel \PdQv
-				\item Confronto di tali risultati rispetto agli obiettivi prefissati \footnote{Consultabili nelle appendici del \PdQv}
-				\item Valutazioni per il miglioramento \footnote{Consultabili anch'esse nelle appendici del \PdQv}
+				\item Uso delle metriche e delle procedure delineate nel documento corrente e dei test descritto nel \PdQd
+				\item Confronto di tali risultati rispetto agli obiettivi prefissati \footnote{Consultabili nelle appendici del \PdQd}
+				\item Valutazioni per il miglioramento \footnote{Consultabili anch'esse nelle appendici del \PdQd}
 			\end{itemize}
 			A questo scopo utilizziamo strumenti di analisi statica e dinamica presenti nella sezione \S\ref{Verifica}.
 
@@ -260,7 +260,7 @@
 		% 6.1.4.1 The tasks, that are required to be performed when documentation is to be modified, shall be
 		% performed (see 5.5). For those documents that are under configuration mana gement, modifications
 		% shall be mana ged in accordance with the Configu ration Mana gement Process (6.2).
-		I documenti sotto l'attività di gestione delle configurazioni devono essere gestite secondo il processo di configurazione alla sezione \S\ref{Configurazione}.
+		I documenti sotto l'attività di gestione delle configurazioni devono essere gestiti secondo il processo di configurazione alla sezione \S\ref{Configurazione}.
 
 			\paragraph{Continuous Integration}\label{ContinuousIntegration}
 			Per la produzione dei documenti adotteremo la pratica della \gloss{Continuous Integration}.
@@ -377,9 +377,12 @@
 		Ogni persona è responsabile di queste attività.
 		L'\Amm\ si occupa di controllare versioni e configurazioni del prodotto.
 
-		\subsubsection{Versionamento} \label{Versionamento}
-		Tutti i documenti redatti e i file sorgente supportano il versionamento, in modo da essere univoci e per rendere disponibile la possibilità di consultare versioni
-		precedenti in qualsiasi punto del loro \gloss{ciclo di vita}.
+
+		\subsubsection{Identificazione della configurazione} \label{IdentificazioneConfigurazione}
+		Questa sezione determina le modalità con cui identifichiamo le versioni di ogni componente software e di ogni documento.
+
+		\paragraph{Versionamento} \label{Versionamento}
+		Tutti i documenti redatti, i file sorgente e il codice sorgente supportano il versionamento, in modo da essere univoci e rendere disponibile la possibilità di consultare versioni precedenti in qualsiasi punto del loro \gloss{ciclo di vita}.
 		Il modello di versionamento adottato segue lo schema \gloss{change significance}.\par
 		La versione di un file è espressa secondo la notazione
 			\begin{center}
@@ -395,74 +398,115 @@
 				Viene azzerato ad ogni incremento della \texttt{Y} o della \texttt{X}
 			\end{itemize}
 
-		\subsubsection{Struttura delle Repository}
+		\subsubsection{Resoconto dello stato della configurazione e struttura delle repository} \label{ResocontoConfigurazione}
+		Una repository, essendo GitHub un \gloss{version control system}, ci serve per tenere traccia delle modifiche e di tutte le versioni delle nostre componenti.
 		Abbiamo creato due repository principali fino a questo momento:
 		\begin{itemize}
 			\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
 			\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi.
 		\end{itemize}
 
-		\subsubsection{Norme di branching}
-		Ogni repository che usiamo avrà due \gloss{branch} principali:
-		\begin{itemize}
-			\item \textbf{master}: branch principale che viene aggiornato solamente in vista di un rilascio, quando il \Res\ approva un file o documento, che causa
-				lo scatto del numero di versione più significativo.
-			\item \textbf{develop}: branch usato per lo sviluppo in vista di un rilascio, senza lasciare il master branch in uno stato di incompletezza. Viene aggiornato
-				quando una funzionalità è matura.
-		\end{itemize}
-
-		Sono presenti poi dei branch dedicati allo sviluppo e alla manutenzione, che verranno aperti in base alle necessità:
-		\begin{itemize}
-			\item \textbf{feature/nome-feature}: branch aperti in vista di uno sviluppo di una qualsiasi funzionalità (nome-feature è un placeholder) o bug fix sul develop.
-				Una volta che la funzionalità raggiunge un adatto stato di maturità, verrà fatto il merge sul develop e cancellato il branch relativo a quella funzionalità.
-			\item \textbf{hotfix/nome-hotfix}: branch aperti in vista di un bug non notato nel master branch che necessita di essere sistemato al più presto o in fase di
-				correzione delle problemi segnalati dai professori a seguito di una revisione.
-		\end{itemize}
-
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=\textwidth]{img/branches.png}\\
-			\caption[Albero dei branch da Gitkraken]{Visione generale dell'albero dei branch in un momento casuale da Gitkraken}
-			\label{fig:butterfly}
-		\end{figure}
-
-		\subsubsection{Aggiornamento della repository}
-		Per aggiornare la repository remota con i cambiamenti effettuati nella workcopy locale, la prassi da seguire è la seguente:
-		\begin{itemize}
-			\item Controllare di trovarsi nel branch corretto con il comando:
-				\begin{quote}
-					\texttt{\$\ git branch}
-				\end{quote}
-				In caso negativo, dare il comando \texttt{git checkout nomebranch} per spostarsi nel branch corretto prima di procedere.
-			\item Aggiornare la workcopy locale con eventuali cambiamenti presenti nella repository remota:
-				\begin{quote}
-					\texttt{\$\ git pull}
-				\end{quote}
+			\paragraph{Norme di branching}
+			Ogni repository che usiamo avrà due \gloss{branch} principali:
 			\begin{itemize}
-				\item In caso di conflitti, dare la sequenza di comandi che segue per risolverli senza dover effettuare un commit
-					dedicato solo al merge:
-					\begin{quote}
-						\texttt{\$\ git stash}\par
-						\texttt{\$\ git pull}\par
-						\texttt{\$\ git stash pop}\par
-					\end{quote}
-					A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
-					con le proprie modifiche applicate.
+				\item \textbf{master}: branch principale che viene aggiornato solamente in vista di un rilascio, quando il \Res\ approva un file o documento, che causa
+					lo scatto del numero di versione più significativo.
+				\item \textbf{develop}: branch usato per lo sviluppo in vista di un rilascio, senza lasciare il master branch in uno stato di incompletezza. Viene aggiornato
+					quando una funzionalità è matura.
 			\end{itemize}
-			\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
-				per aggiungere più file contemporaneamente):
+
+			Sono presenti poi dei branch dedicati allo sviluppo e alla manutenzione, che verranno aperti in base alle necessità:
+			\begin{itemize}
+				\item \textbf{feature/nome-feature}: branch aperti in vista di uno sviluppo di una qualsiasi funzionalità (nome-feature è un placeholder) o bug fix sul develop.
+					Una volta che la funzionalità raggiunge un adatto stato di maturità, verrà fatto il merge sul develop e cancellato il branch relativo a quella funzionalità.
+				\item \textbf{hotfix/nome-hotfix}: branch aperti in vista di un bug non notato nel master branch che necessita di essere sistemato al più presto o in fase di
+					correzione delle problemi segnalati dai professori a seguito di una revisione.
+			\end{itemize}
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=\textwidth]{img/branches.png}\\
+				\caption[Albero dei branch da Gitkraken]{Visione generale dell'albero dei branch in un momento casuale da Gitkraken}
+				\label{fig:butterfly}
+			\end{figure}
+
+		\subsubsection{Controllo della configurazione} \label{ControlloConfigurazione}
+		Per il controllo e l'approvazione dei cambiamenti alle repository adottiamo le seguenti regole.
+		È cura del \Ver\ controllare che vengano rispettate.
+
+			\paragraph{Aggiornamento della repository}
+			Per aggiornare la repository remota con i cambiamenti effettuati nella workcopy locale, la prassi da seguire è la seguente:
+			\begin{itemize}
+				\item Controllare di trovarsi nel branch corretto con il comando:
+					\begin{quote}
+						\texttt{\$\ git branch}
+					\end{quote}
+					In caso negativo, dare il comando \texttt{git checkout nomebranch} per spostarsi nel branch corretto prima di procedere.
+				\item Aggiornare la workcopy locale con eventuali cambiamenti presenti nella repository remota:
+					\begin{quote}
+						\texttt{\$\ git pull}
+					\end{quote}
+				\begin{itemize}
+					\item In caso di conflitti, dare la sequenza di comandi che segue per risolverli senza dover effettuare un commit
+						dedicato solo al merge:
+						\begin{quote}
+							\texttt{\$\ git stash}\par
+							\texttt{\$\ git pull}\par
+							\texttt{\$\ git stash pop}\par
+						\end{quote}
+						A questo punto, si potrebbero avere dei conflitti marcati opportunamente da Git, oppure avere la copia aggiornata
+						con le proprie modifiche applicate.
+				\end{itemize}
+				\item Aggiungere i file allo ``stage'' relativi a una specifica modifica con il comando (è possibile usare * come wildcard
+					per aggiungere più file contemporaneamente):
+					\begin{quote}
+						\texttt{\$\ git add [nome-file1] [nome-file2] \dots}
+					\end{quote}
+				\item Fare il commit e riassumere i cambiamenti apportati:
 				\begin{quote}
-					\texttt{\$\ git add [nome-file1] [nome-file2] \dots}
+					\texttt{\$\ git commit -m "Cambiamenti apportati"}
 				\end{quote}
-			\item Fare il commit e riassumere i cambiamenti apportati:
-			\begin{quote}
-				\texttt{\$\ git commit -m "Cambiamenti apportati"}
-			\end{quote}
-			\item Effettuare il push per pubblicare le modifiche locali nella repository remota:
-			\begin{quote}
-				\texttt{\$\ git push}
-			\end{quote}
+				\item Effettuare il push per pubblicare le modifiche locali nella repository remota:
+				\begin{quote}
+					\texttt{\$\ git push}
+				\end{quote}
+			\end{itemize}
+
+	% 6.2.5.1 The following shall be determined and ensured: the functional completeness of the software items against their requirements and the physical completeness of the software items (whether their design and code reflect an up-to-date technical description).
+	\subsubsection{Valutazione della configurazione}
+	\label{ValutazioneConfigurazione}
+	Per valutare la completezza delle funzionalità fornite da \progetto\ facciamo riferimento ai test di validazione presenti nel \PdQd.
+	Per quel che riguarda la progettazione e il codice ci basiamo sul feedback ottenuto dal committente tramite la Product Baseline. Grazie ad esso infatti ci interroghiamo sulla conformità della nostra progettazione software.
+
+	\subsubsection{Gestione del rilascio e consegna}	\label{GestioneRilascio}
+	La consegna del prodotto finale avverrà al termine del progetto tramite un supporto fisico dato direttamente al committente.
+
+
+	\subsection{Quality assurance}	\label{QualityAssurance}
+	Il processo di \gloss{quality assurance} ci fornisce l'adeguata certezza che il nostro prodotto software e processi siano conformi ai loro specifici requisiti e che aderiscano ai piani stabiliti per essi.
+
+		\subsubsection{Implementazione del processo} \label{ImplementazioneQA}
+		Il nostro piano, che determina come i processi e i compiti di quality assurance devono essere sviluppati e implementati, è delineato nel \PdQd.
+		Esso include:
+		\begin{itemize}
+			\item Standard di qualità, metodologie, procedure e strumenti per eseguire attività di quality assurance
+			% \item 6.3.1.3 Procedures for contract review and coordination thereof
+			\item Procedure per l'identificazione, raccolta, archiviazione e mantenimento dei risultati di qualità
+			\item Risorse e programma per condurre le attività di quality assurance
 		\end{itemize}
+
+		\input{sections/standard_qualita}
+
+		\subsubsection{Attività}	\label{AttivitaPDQ}
+		Nello specifico, le attività trattate dal \PdQd\ sono:
+		\begin{itemize}
+			\item Qualità di processo
+			\item Qualità di prodotto
+			\item Resoconto delle attività di verifica
+			\item Mitigazione delle variazioni orarie
+			\item Valutazione per il miglioramento
+		\end{itemize}
+
 
 
 	\subsection{Verifica e validazione}\label{Verifica}
@@ -471,6 +515,7 @@
 		Questa sezione vuole descrivere come eseguiamo la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci attendiamo.
 		La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il
 		ritorno ad una fase stabile del progetto per poi ripartire da lì, prendendo in considerazione i risultati della precedente verifica.
+		Per questo motivo
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
@@ -478,7 +523,7 @@
 		Ogni processo e prodotto deve essere valutato in modo quantificabile attraverso metriche apposite, quando possibile, e stabilendo il risultato che si vuole
 		raggiungere.
 
-		Come indicato dal \gloss{Ciclo di Deming} nel \PdQd, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
+		Come indicato dal \gloss{Ciclo di Deming}, nel momento in cui tale risultato sarà raggiunto, se esso non è il migliore,
 		servirà come ``base'' per alzare il livello di qualità di quel processo o prodotto.
 
 		I risultati ottenuti nella fase di verifica sono riportati nel \PdQd: in questo modo, confrontandoli con gli esiti attesi,
@@ -518,6 +563,15 @@
 			Per la natura di Inspection, questa non può essere applicata fin dall'inizio, dunque nel momento in cui si presentano nuove tipologie di
 			prodotti e processi da verificare viene effettuato Walkthrough; nel momento in cui il metodo di verifica è ben consolidato da tutti noi,
 			si passa ad effettuare verifica secondo Inspection.
+
+		\subsubsection{Verifica del design e conformità del codice}	\label{VerificaDesign}
+		Il \Ver\ ha il compito di verificare la progettazione da noi svolta.
+		In particolare si occupa di:
+		\begin{itemize}
+			\item Controllare che i design pattern che abbiamo scelto vengano effettivamente rappresentati nella maniera corretta tramite i diagrammi e che rispettino gli obiettivi preposti
+			\item Verificare che il codice sviluppato sia coerente con quanto dichiarato nella progettazione
+		\end{itemize}
+
 
 		\subsubsection{Metodologie di sviluppo del software}
 
@@ -753,7 +807,8 @@
 			\item \textbf{Notifica risultato}: notifiche riguardanti il risultato ottenuto dal test (opzionale).
 		\end{itemize}
 
-        Per effettuare analisi dinamica è necessario sviluppare dei dei test che verifichino l'integrità dei prodotti. Questi sono classificati attraverso un identificativo univoco descritto in \S\ref{ClassificazioneTest} e suddivisi per tipo in base alla tipologia dell'oggetto di test.
+		Per effettuare analisi dinamica è necessario sviluppare dei dei test che verifichino l'integrità dei prodotti. Questi sono classificati attraverso un identificativo univoco descritto in \S\ref{ClassificazioneTest} e suddivisi per tipo in base alla tipologia dell'oggetto di test.
+
 
 
 			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST:
@@ -813,6 +868,10 @@
 			\paragraph{Test di accettazione} \label{testaccettazione}
 			Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
 			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
+
+			\paragraph{Tracciamento dei test} \label{TracciamentoTest}
+			Tutti i test da noi delineati presentano un tracciamento in forma tabellare con i requisiti o componenti applicative a loro associati.
+			Questo ci assicura una verifica più completa.
 
 
 		\subsubsection{Anomalie riscontrate}\label{Anomalie}
