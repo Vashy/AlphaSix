@@ -1,0 +1,21 @@
+\subsubsection{UC\theuccount-GP - Producer GitLab scarta i messaggi non validi}
+    \begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{img/casi_d'uso/UC\theuccount.png}\\
+		\caption{UC\theuccount-GP - Producer GitLab scarta i messaggi non validi}
+	\end{figure}
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount-GP.
+		\item \textbf{Titolo}: Producer GitLab scarta i messaggi non validi.
+		\item \textbf{Attori primari}: Producer GitLab.
+		\item \textbf{Descrizione}: il Producer GitLab, dopo aver ricevuto un messaggio da GitLab, controlla
+        che il messaggio contenga una segnalazione che \progetto\ sappia analizzare. In caso negativo, il messaggio viene scartato.
+        \item \textbf{Precondizione}: il Producer GitLab ha ricevuto un messaggio da GitLab.
+        \item \textbf{Postcondizione}: il Producer GitLab ha scartato il messaggio.
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item Il Producer GitLab riceve un messaggio
+            \item Il Producer GitLab vede che il messaggio contiene una segnalazione che \progetto\ non sa analizzare
+            \item Il Producer GitLab scarta il messaggio non valido.
+        \end{enumerate}
+    \end{itemize}

@@ -24,6 +24,7 @@
 		 	\item Labels
 		 	\item Update
 		 \end{itemize}
+        Se il Producer Redmine riceve una segnalazione che non è in grado di analizzare, questa viene scartata.
 		\item \textbf{Precondizione}: il Producer Redmine ha ricevuto una segnalazione da Redmine.
 		\item \textbf{Postcondizione}: il Producer Redmine ha elaborato e inviato al Gestore Personale il messaggio.
 		\item \textbf{Scenario principale}:
@@ -33,10 +34,6 @@
 			\item Il Producer Redmine invia il messaggio di issue al Gestore Personale
             \item Il Gestore Personale riceve il messaggio dal Producer Redmine
 		\end{enumerate}
-        	\item \textbf{Estensioni}:
-        \begin{enumerate}
-            \item Se ci sono dei messaggi non validi, questi vengono scartati [UC4-GP].
-        \end{enumerate}
 	\end{itemize}
 
 	\stepcounter{subuccount}

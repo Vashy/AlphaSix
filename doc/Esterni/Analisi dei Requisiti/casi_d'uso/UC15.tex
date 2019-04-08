@@ -1,163 +1,175 @@
-\subsubsection{UC\theuccount-GP - Modifica utente}
+\subsubsection{UC\theuccount-GP - Rimozione preferenze}
 		\begin{figure}[H]
 			\centering
-				\includegraphics[width=0.9\textwidth]{img/casi_d'uso/UC\theuccount.png}\\
-			\caption{UC\theuccount-GP - Modifica utente}
+				\includegraphics[width=\textwidth]{img/casi_d'uso/UC\theuccount.png}\\
+			\caption{UC\theuccount-GP - Rimozione preferenze}
 		\end{figure}
 	\begin{itemize}
 		\item \textbf{Codice}: UC\theuccount-GP.
-		\item \textbf{Titolo}: modifica utente.
+		\item \textbf{Titolo}: rimozione preferenze.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l’utente vuole modificare le informazioni relative a un altro utente, o di se stesso.
-		\item \textbf{Precondizione}: l'utente vuole modificare i dati di un utente già presente nel sistema.
-		\item \textbf{Postcondizione}: i campi dell'utente sono stati modificati correttamente.
+		\item \textbf{Descrizione}: l’utente, dopo aver selezionato delle preferenze dalle opzioni di configurazione, ne rimuove una o più. Le preferenze consistono in Topic, date di calendario e la piattaforma di messaggistica (Telegram e email).
+		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno	una preferenza selezionata tra quelle proposte da Butterfly.
+		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in meno rispetto	a quella precedente.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
-			\item L'utente modifica i dati relativi ad un utente
+			\item L'utente procede alla rimozione di una o più preferenze
 		\end{enumerate}
 	\end{itemize}
-	%TODO: perchè modifico tramite ID ma non rimuovo tramite ID?
+
 	\stepcounter{subuccount}
-%	\subsubsection{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
-%		\begin{figure}[H]
-%			\centering
-%			\includegraphics[width=0.8\textwidth]{img/casi_d'uso/UC16_1.png}\\
-%			\caption{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
-%		\end{figure}
-%		\begin{itemize}
-%			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-%			\item \textbf{Titolo}: selezione identificativo.
-%			\item \textbf{Attori primari}: utente.
-%			\item \textbf{Descrizione}: l'utente aggiunge l'identificativo dell'utente che vuole modificare.
-%			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
-%			\item \textbf{Postcondizione}: l'identificativo è stato inserito.
-%			\item \textbf{Scenario principale}:
-%			\begin{enumerate}
-%				\item L'utente procede con l'inserimento dell'identificativo dell'utente da modificare
-%			\end{enumerate}
-%			\item \textbf{Estensioni}:
-%			\begin{itemize}
-%				\item Errore identificativo inesistente [UC\theuccount.2-GP]
-%			\end{itemize}
-%		\end{itemize}
-
-		\subsubsection{UC\theuccount.\thesubuccount-GP - Modifica di un utente del sistema}
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.6\columnwidth]{img/casi_d'uso/UC\theuccount_\thesubuccount.png}\\
-				\caption{UC\theuccount.\thesubuccount-GP - Modifica di un utente del sistema}
-			\end{figure}
-			\begin{itemize}
-				\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-				\item \textbf{Titolo}: modifica di un utente del sistema.
-				\item \textbf{Attori primari}: utente.
-				\item \textbf{Descrizione}: l'identificativo è presente nel sistema e ne vengono modificati i relativi campi.
-				\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
-				\item \textbf{Postcondizione}: l'utente è stato modificato.
-				\item \textbf{Scenario principale}:
-				\begin{enumerate}
-					\item L'utente viene modificato
-				\end{enumerate}
-				\item \textbf{Estensioni}:
-				\begin{itemize}
-					\item Errore, nuovi dati dell'utente già esistenti [UC\theuccount.2-GP]
-				\end{itemize}
-			\end{itemize}
-
-			\stepcounter{subsubuccount}
-			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento del nuovo nome}
-
-				\begin{itemize}
-					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-					\item \textbf{Titolo}: inserimento del nuovo nome.
-					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo nome relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
-					\item \textbf{Postcondizione}: il nome è stato inserito.
-					\item \textbf{Scenario principale}:
-					\begin{enumerate}
-						\item L'utente inserisce il nuovo nome dell'utente che vuole modificare
-					\end{enumerate}
-				\end{itemize}
-
-			\stepcounter{subsubuccount}
-			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento del nuovo cognome}
-
-				\begin{itemize}
-					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-					\item \textbf{Titolo}: inserimento del nuovo cognome.
-					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo cognome relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
-					\item \textbf{Postcondizione}: il cognome è stato inserito.
-					\item \textbf{Scenario principale}:
-					\begin{enumerate}
-						\item L'utente inserisce il nuovo cognome dell'utente che vuole modificare.
-					\end{enumerate}
-				\end{itemize}
-
-			\stepcounter{subsubuccount}
-			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento del nuovo contatto Email}
-
-				\begin{itemize}
-					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-					\item \textbf{Titolo}: inserimento del nuovo contatto Email.
-					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Email relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
-					\item \textbf{Postcondizione}: il contatto Email è stato inserito.
-					\item \textbf{Scenario principale}:
-					\begin{enumerate}
-						\item L'utente inserisce il nuovo contatto Email dell'utente che vuole modificare
-					\end{enumerate}
-				\end{itemize}
-
-			\stepcounter{subsubuccount}
-			\subsubsection{UC\theuccount.\thesubuccount.\thesubsubuccount-GP - Inserimento del nuovo contatto Telegram}
-
-				\begin{itemize}
-					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
-					\item \textbf{Titolo}: inserimento del nuovo contatto Telegram.
-					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Telegram relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
-					\item \textbf{Postcondizione}: il contatto Telegram è stato inserito.
-					\item \textbf{Scenario principale}:
-					\begin{enumerate}
-						\item L'utente inserisce il nuovo contatto Telegram dell'utente che vuole modificare
-					\end{enumerate}
-				\end{itemize}
-
-		\stepcounter{subuccount}
-		\subsubsection{UC\theuccount.\thesubuccount-GP - Errore, nuovi dati dell'utente già esistenti}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Disiscrizione Topic}
 
 		\begin{itemize}
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-			\item \textbf{Titolo}: errore, nuovi dati dell'utente già esistenti.
+			\item \textbf{Titolo}: disiscrizione Topic.
 			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: i nuovi dati dell'utente da modificare che sono stati inseriti sono già presenti nel sistema, ovvero i nuovi campi corrispondono a quelli di un utente già esistente. In particolare il contatto Telegram o Email, perchè una persona può avere lo stesso nome e cognome di un altro, ma non la stessa mail e nemmeno lo stesso identificativo Telegram.
-			\item \textbf{Precondizione}: l'utente vuole modificare un utente esistente nel sistema.
-			\item \textbf{Postcondizione}: l'utente non è stato modificato e viene visualizzato un messaggio di errore.
+			\item \textbf{Descrizione}: l’utente si disiscrive da uno o più Topic dai quali prima riceveva delle notifiche.
+			\item \textbf{Precondizione}: l’utente ha acceduto correttamente nel sistema e non ha già selezionato tutti i Topic possibili proposti da \progetto.
+			\item \textbf{Postcondizione}: il numero di Topic a cui è iscritto l’utente è diminuito.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
-				\item L'utente inserisce i campi richiesti dal sistema per la modifica di un utente
-				\item L'utente visualizza un messaggio di errore
+				\item L'utente procede alla disiscrizione di uno o più Topic
 			\end{enumerate}
 		\end{itemize}
 
-%	\stepcounter{subuccount}
-%	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo inesistente}
-%
-%		\begin{itemize}
-%			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-%			\item \textbf{Titolo}: errore identificativo inesistente.
-%			\item \textbf{Attori primari}: utente.
-%			\item \textbf{Descrizione}:  l’utente inserisce l'identificativo dell'utente di cui vuole modificare le informazioni, ma viene avvisato che ha inserito un'identificativo errato perchè esso non è presente all'interno del sistema.
-%			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
-%			\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore.
-%			\item \textbf{Scenario principale}:
-%			\begin{enumerate}
-%				\item L'utente inserisce un identificativo errato
-%				\item Il sistema comunica all’utilizzatore l’errore
-%			\end{enumerate}
-%		\end{itemize}
+	\stepcounter{subuccount}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione di uno o più giorni di irreperibilità nel calendario}
+
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+		\item \textbf{Titolo}: rimozione di uno o più giorni di irreperibilità nel calendario.
+		\item \textbf{Attori primari}: utente.
+		\item \textbf{Descrizione}: l’utente rimuove i giorni di calendario in cui precedentemente	non era reperibile, tornando disponibile.
+		\item \textbf{Precondizione}: l’utente ha acceduto correttamente nel sistema ed è presente almeno un giorno di calendario selezionato.
+		\item \textbf{Postcondizione}: il numero di giorni di calendario in cui l’utente non è reperibile è diminuito.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente procede alla rimozione di uno o più giorni di irreperibilità
+		\end{enumerate}
+	\end{itemize}
+
+	\stepcounter{subuccount}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione preferenza piattaforma di messaggistica}
+
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+		\item \textbf{Titolo}: rimozione preferenza piattaforma di messaggistica.
+		\item \textbf{Attori primari}: utente.
+		\item \textbf{Descrizione}: l’utente rimuove una o più preferenze tra Telegram e Email dalle	quali non vuole più ricevere notifiche tramite \progetto.
+		\item \textbf{Precondizione}: l’utente ha acceduto correttamente nel sistema ed è presente almeno una piattaforma di messaggistica selezionata tra quelle proposte da \progetto.
+		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica da cui l’utente vuole ricevere notifiche è diminuito.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente procede alla rimozione di una o più piattaforme di messaggistica
+		\end{enumerate}
+	\end{itemize}
+
+	% \stepcounter{subuccount}
+	% \subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione persona di fiducia}
+
+	% \begin{itemize}
+	% 	\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+	% 	\item \textbf{Titolo}: aggiunta persona di fiducia.
+	% 	\item \textbf{Attori primari}: utente.
+	% 	\item \textbf{Descrizione}:  l’utente rimuove l'utente legato a un identificativo di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
+	% 	\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema e vuole rimuovere la sua persona di fiducia.
+	% 	\item \textbf{Postcondizione}: la preferenza viene rimossa correttamente.
+	% 	\item \textbf{Scenario principale}:
+	% 	\begin{enumerate}
+	% 		\item L’utente procede alla rimozione della sua persona di fiducia
+	% 	\end{enumerate}
+	% 	\item \textbf{Estensioni}:
+	% 	\begin{enumerate}
+	% 		\item Errore identificativo persona di fiducia inesistente [UC\theuccount.5-GP].
+	% 	\end{enumerate}
+	% \end{itemize}
+
+	% \stepcounter{subuccount}
+	% \subsubsection{UC\theuccount.\thesubuccount-GP - Errore identificativo persona di fiducia inesistente}
+
+	% \begin{itemize}
+	% 	\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+	% 	\item \textbf{Titolo}: errore identificativo persona di fiducia inesistente.
+	% 	\item \textbf{Attori primari}: utente.
+	% 	\item \textbf{Descrizione}: l’utente viene avvisato che ha inserito un identificativo errato.
+	% 	\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e vuole rimuovere la sua persona di fiducia.
+	% 	\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore.
+	% 	\item \textbf{Scenario principale}:
+	% 	\begin{enumerate}
+	% 		\item L'utente inserisce l'identificativo della sua persona di fiducia
+	% 		\item Il sistema rileva che questo identificativo non esiste
+	% 		\item L'utente visualizza il messaggio di errore
+	% 	\end{enumerate}
+	% \end{itemize}
+
+	\stepcounter{subuccount}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione di keyword per i push di GitLab}
+
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+		\item \textbf{Titolo}: rimozione di keyword per i push di GitLab.
+		\item \textbf{Attori primari}: utente.
+		\item \textbf{Descrizione}: l’utente seleziona e rimuove una o più keyword già presente nel sistema per non ricevere la notifica di push in
+		cui i messaggi di commit contengono la keyword rimossa.
+		\item \textbf{Precondizione}:  l’utente ha acceduto al sistema.
+		\item \textbf{Postcondizione}: nelle nuove configurazioni dell'utente selezionato sono state rimosse delle keyword precedentemente presenti.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente rimuove una o più keyword per cui non vuole iù ricevere messaggi di push
+		\end{enumerate}
+		\item \textbf{Estensioni}:
+		\begin{enumerate}
+			\item Errore keyword da rimuovere non presente [UC\theuccount.7-GP]
+		\end{enumerate}
+	\end{itemize}
+
+	\stepcounter{subuccount}
+	\subsubsection{UC\theuccount.\thesubuccount-GP - Errore keyword da rimuovere non presente}
+
+	\begin{itemize}
+		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+		\item \textbf{Titolo}: errore keyword da rimuovere non presente.
+		\item \textbf{Attori primari}: utente.
+		\item \textbf{Descrizione}: l'utente vuole rimuovere una keyword che non ha mai inserito o che ha rimosso precedentemente.
+		\item \textbf{Precondizione}: l’utente ha acceduto al sistema.
+		\item \textbf{Postcondizione}: viene visualizzato un messaggio d'errore con indicato che la keyword	selezionata che non è presente nel sistema.
+		\item \textbf{Scenario principale}:
+		\begin{enumerate}
+			\item L'utente inserisce la keyword che vuole rimuovere
+			\item Il sistema rileva che non è presente
+			\item L'utente visualizza il messaggio di errore
+		\end{enumerate}
+	\end{itemize}
+
+    \stepcounter{subuccount}
+    \subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione progetti di interesse}
+    
+    \begin{itemize}
+        \item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+        \item \textbf{Titolo}: inserimento dei nuovi progetti.
+        \item \textbf{Attori primari}: utente.
+        \item \textbf{Descrizione}: l'utente modifica la lista di progetti a cui è iscritto.
+        \item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+        \item \textbf{Postcondizione}: la lista di progetti a cui un utente è iscritto è stata modificata.
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item L'utente modifica la lista di progetti a cui è iscritto
+        \end{enumerate}
+    \end{itemize}
+    
+    \stepcounter{subuccount}
+    \subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione delle priorità sui progetti}
+    
+    \begin{itemize}
+        \item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
+        \item \textbf{Titolo}: inserimento delle nuove priorità sui progetti.
+        \item \textbf{Attori primari}: utente.
+        \item \textbf{Descrizione}: l'utente modifica la priorità dei progetti a cui è iscritto.
+        \item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+        \item \textbf{Postcondizione}: la priorità della lista di progetti a cui un utente è iscritto è stata modificata.
+        \item \textbf{Scenario principale}:
+        \begin{enumerate}
+            \item L'utente modifica la priorità della lista di progetti a cui è iscritto
+        \end{enumerate}
+    \end{itemize}

@@ -1,40 +1,21 @@
-\subsubsection{UC\theuccount-CE - Gestore Personale invia il messaggio finale al Consumer Email}
+\subsubsection{UC\theuccount-SE - Consumer Email inoltra il messaggio finale al server Email}
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=0.6\textwidth]{img/casi_d'uso/UC\theuccount.png}\\
-		\caption{UC\theuccount-CE - Gestore Personale invia il messaggio finale al Consumer Email}
+		\includegraphics[width=0.7\textwidth]{img/casi_d'uso/UC\theuccount.png}\\
+		\caption{UC\theuccount-SE - Consumer Email inoltra il messaggio finale al server Email}
 	\end{figure}
 	\begin{itemize}
-		\item \textbf{Codice}: UC\theuccount-CE.
-		\item \textbf{Titolo}: Gestore Personale invia il messaggio finale al Consumer Email.
-		\item \textbf{Attori primari}: Gestore Personale.
-		\item \textbf{Descrizione}: il Gestore Personale, dopo aver ricevuto il messaggio elaborato
-		dal Producer Redmine o GitLab, controlla i Topic del messaggio, gli utenti iscritti, la loro disponibilità e se la loro preferenza è Email.
-		Se tutte queste condizioni sono verificate, viene preparato il messaggio finale da inviare successivamente viene inviato al Consumer Email.
-		Se il destinatario è iscritto a quel Topic ma non è disponibile, si verifica se è presente almeno un altro utente iscritto allo stesso Topic e con la stessa priorità di progetto, in caso contrario la segnalazione viene inviata a chi è iscritto al Topic indicato e con una priorità del progetto più bassa. Se non è disponibile alcuna persona iscritta al Topic indicato, il messaggio verrà inviato alla persona con più alta priorità nel progetto. \par
-		Il messaggio finale, una volta elaborato, conterrà i campi:
-		\begin{itemize}
-			\item Email del destinatario
-			\item Applicazione di provenienza
-			\item Ora di invio
-			\item Tipo di segnalazione(commit, issue o commento)
-			\item Project
-			\item Topic
-			\item Description
-			\item Subject e opzionalmente
-		 	\begin{itemize}
-				\item Due date
-				\item Milestone
-				\item Assignee
-			\end{itemize}
-		\end{itemize}
-		\item \textbf{Precondizione}: il Gestore Personale ha ricevuto il messaggio elaborato dal Producer Redmine o GitLab.
-		\item \textbf{Postcondizione}: Il Gestore Personale ha inviato il messaggio finale al Consumer Email.
+		\item \textbf{Codice}: UC\theuccount-SE.
+		\item \textbf{Titolo}: Consumer Email inoltra il messaggio finale al server Email.
+		\item \textbf{Attori primari}: Consumer Email.
+		\item \textbf{Descrizione}: il Consumer Email inoltra il messaggio finale al server Email, il quale notifica il destinatario finale attraverso una mail.
+		\item \textbf{Precondizione}: il Consumer Email ha ricevuto almeno un messaggio.
+		\item \textbf{Postcondizione}: il server Email ha ricevuto il messaggio finale.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
-			\item ll Gestore Personale riceve un messaggio dal Producer Redmine o dal Producer GitLab
-			\item Il Gestore Personale valuta quali utenti sono iscritti al Topic del messaggio ricevuto e se vogliono ricevere il messaggio tramite Email
-			\item Il Gestore Personale procede all'invio del messaggio finale al Consumer Email
-            \item Il Consumer Email riceve il messaggio dal Gestore Personale
+			\item Il Consumer Email riceve un messaggio dal Gestore Personale
+			\item Il Consumer Email procede all'inoltro del messaggio finale al server Email
+            \item Il server email riceve il messaggio dal Consumer Email
 		\end{enumerate}
+
 	\end{itemize}
