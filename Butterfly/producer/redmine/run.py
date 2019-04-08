@@ -1,6 +1,6 @@
 """
-File: redmine_run.py
-Data creazione: 2019-02-18
+File: gitlab_run.py
+Data creazione: 2019-02-19
 
 <descrizione>
 
@@ -34,8 +34,8 @@ from flask import Flask
 
 from producer.server import FlaskServer
 from producer.creator import KafkaProducerCreator
-from producer.gitlab.producer import GitlabProducer
-from webhook.gitlab.factory import GitlabWebhookFactory
+from producer.redmine.producer import RedmineProducer
+from webhook.redmine.factory import RedmineWebhookFactory
 
 _CONFIG_PATH = Path(__file__).parents[1] / 'config.json'
 
@@ -49,9 +49,9 @@ def _open_configs(path: Path):
 def main():
     configs = _open_configs(_CONFIG_PATH)
     kafka = KafkaProducerCreator().create(configs['kafka'])
-    producer = GitlabProducer(kafka, GitlabWebhookFactory())
+    producer = RedmineProducer(kafka, RedmineWebhookFactory())
 
-    server = FlaskServer(Flask(__name__), producer, 'gitlab')
+    server = FlaskServer(Flask(__name__), producer, 'redmine')
     server.run(configs)
 
 

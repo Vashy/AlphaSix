@@ -73,7 +73,7 @@ class TelegramConsumer(Consumer):
               'Errore: il messaggio non è stato inviato')
         return False
 
-    def format(self, msg: dict):
+    def format(self, msg: dict) -> str:
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
 

@@ -1,0 +1,74 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_2019-03-27.pdf}
+\newcommand{\redazione}{\TG}
+\newcommand{\verifica}{\CV}
+\newcommand{\approvazione}{\NC}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{27 marzo 2019}
+\newcommand{\datamodifica}{28 marzo 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VE_2019-03-27/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+
+    \section{Informazioni incontro}
+    	\begin{itemize}
+    		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite chiamata telefonica.
+    		\item \textbf{Data}: 2019-03-27.
+    		\item \textbf{Ora inizio}: 16:30.
+    		\item \textbf{Ora fine}: 17:30.
+    		\item \textbf{Partecipanti di AlphaSix}: team al completo.
+    		\item \textbf{Partecipanti esterni}: \DZ~di \II.
+    		\item \textbf{Ordine del giorno}: comprensione di un dubbio riguardante le funzioni legate ai giorni di indisponibilità degli utenti.
+
+    	\end{itemize}
+
+    \section{Argomenti}
+    Inizialmente avevamo compreso che nel momento in cui una persona non fosse reperibile, la notifica a lui destinata sarebbe stata inoltrata ad un altro utente indicato come ``persona di fiducia''. \par
+    Dopo la chiamata con \DZ\ abbiamo capito che in realtà la modifica deve essere inoltrata alla persona più indicata, non ad una specifica. Per questo è stata introdotta la priorità nei progetti stabilito in \Doc{VE\_2019-03-12.5} \par
+    I passaggi ora per stabilire la persona più adatta sono:
+    \begin{enumerate}
+        \item Se è presente almeno un altro utente che riceve la stessa notifica non avviene alcun inoltro
+        \item Se non è presente alcun utente che riceve la stessa notifica, questa viene inoltra ad un utente iscritta allo stesso Tpic ma con priorità di progetto inferiore
+        \item Se non è presente alcun utente che riceve la stessa notifica e nessun'altro iscritto allo stesso Topic, questa viene inoltrata all'utente con la priorità di progetto più alta
+    \end{enumerate}
+    
+    \section{Tracciamento delle decisioni}
+    
+    \newcounter{tracc}
+    \begin{table}[H]
+        \centering
+        \rowcolors{2}{white}{\tablegray}
+        {\def\arraystretch{1.5}
+            \begin{tabularx}{\textwidth}{YY}
+                \rowcolor{gray!30}
+                \textbf{Codice} & \textbf{Descrizione}\\
+                \toprule
+                \stepcounter{tracc}
+                VE\_2019-03-27.\thetracc & Cambiamo il processo di inoltro delle notifiche per gli utenti non reperibili\\
+                \bottomrule
+        \end{tabularx}}
+        \caption{Tracciamento decisioni}
+    \end{table}
+    
+    
+\end{document}

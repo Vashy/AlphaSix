@@ -1,5 +1,5 @@
 """
-File: redmine_run.py
+File: redmine_producer.py
 Data creazione: 2019-02-18
 
 <descrizione>
@@ -20,40 +20,25 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Versione: 0.2.0
+Versione: 0.3.1
 Creatore: Timoty Granziero, timoty.granziero@gmail.com
 Autori:
     Laura Cameran, lauracameran@gmail.com
     Samuele Gardin, samuelegardin@gmail.com
 """
 
-from pathlib import Path
-import json
-
-from flask import Flask
-
-from producer.server import FlaskServer
-from producer.creator import KafkaProducerCreator
-from producer.gitlab.producer import GitlabProducer
-from webhook.gitlab.factory import GitlabWebhookFactory
-
-_CONFIG_PATH = Path(__file__).parents[1] / 'config.json'
+from producer.producer import Producer
 
 
-def _open_configs(path: Path):
-    with open(path) as file:
-        config = json.load(file)
-    return config
+class RedmineProducer(Producer):
+    """Classe concreta `RedmineProducer`. Implementa `Producer`.
+    """
 
+    def webhook_kind(self, whook: dict):
+        """Restituisce il tipo di segnalazione (e.g. issue, push, etc..).
+        """
 
-def main():
-    configs = _open_configs(_CONFIG_PATH)
-    kafka = KafkaProducerCreator().create(configs['kafka'])
-    producer = GitlabProducer(kafka, GitlabWebhookFactory())
+        if whook['object_kind'] == 'issue' in whook:
+            return 'issue'
 
-    server = FlaskServer(Flask(__name__), producer, 'gitlab')
-    server.run(configs)
-
-
-if __name__ == '__main__':
-    main()
+        return whook['object_kind']
