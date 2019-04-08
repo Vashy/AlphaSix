@@ -284,7 +284,7 @@
         Tra le classi rappresentiamo le seguenti relazioni di dipendenza:
         \begin{itemize}
             \item \textbf{Dipendenza}: rappresentata da una linea orientata tratteggiata, indica che una classe usa un'operazione fornita dalla classe puntata.
-            %TODO: la mettiamo? \item \textbf{Associazione}: rappresentata da una linea continua semplice, indica che una classe possiede uno o più attributi (a seconda delle molteplicità indicate sulla linea) dell'altra, o viceversa.
+            \item \textbf{Associazione}: rappresentata da una linea continua semplice, indica che una classe possiede uno o più attributi (a seconda delle molteplicità indicate sulla linea) dell'altra, o viceversa.
             \item \textbf{Aggregazione}: rappresentata da un diamante vuoto seguito da una linea continua, indica che una classe (puntata dal diamante) possiede un'istanza di un'altra classe tra gli attributi. Tale istanza può essere condivisa.
             \item \textbf{Composizione}: rappresentata da un diamante pieno seguito da una linea continua, è come l'aggregazione ma in tal caso l'aggregato non è condiviso tra più istanze.
             \item \textbf{Generalizzazione}: rappresentata da una freccia vuota, indica che ogni classe che punta verso un'altra è anche un'istanza di essa (eredita metodi e attributi).
@@ -297,7 +297,7 @@
                 Possono essere indicate con un pallino vuoto e un semicerchio a destra per indicare che l'interfaccia viene usata da un componente in un punto qualsiasi (ritorno di un'operazione, attributo\dots).
             \end{itemize}
 
-		%\subparagraph{Semantica} %TODO
+		%\subparagraph{Semantica}
 		%Dipendenza generica, Associazione, Aggregazione..
         %Meglio qui o lasciamo sopra?
 
@@ -331,12 +331,11 @@
 %                    Può trovarsi all'inizio del flusso, sostituendo il nodo iniziale, per indicare che un'attività verrà eseguita ogni volta che l'evento temporale consuma il tempo indicato.
 %            \end{itemize}
 %        \end{itemize}
-%        %TODO verificare se parlare di flussi e archi
 %        Per indicare azioni che si ripetono su più elementi, ad esempio su una lista di elementi, usiamo le regioni di espansione.
 %        Le indichiamo con un rettangolo tratteggiato ad angoli arrotondati, e rettangoli piccoli presenti sui lati di inizio e fine regione, che rappresentano le liste di elementi processati.\par
 %        Le frecce di entrata e uscita indicano in quale verso viene svolta l'attività che include la regione di espansione.
 
-		%\subparagraph{Semantica} %TODO
+		%\subparagraph{Semantica}
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
 
 
@@ -373,7 +372,7 @@
         Cerchiamo di usare per quanto possibile la modellazione a controllo distribuito, per non dare troppe responsabilità a una singola entità che diventerebbe il punto critico dell'architettura.
 
 
-		%\subparagraph{Semantica} %TODO
+		%\subparagraph{Semantica}
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
 
 		\newpage
@@ -398,7 +397,7 @@
 		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\par
         Per modellare la logica di controllo è meglio usare i diagrammi di attività perché di più semplice lettura.
 
-		%\paragraph{Qualità dei diagrammi dei casi d'uso} %TODO: facoltativo..
+		%\paragraph{Qualità dei diagrammi dei casi d'uso}
 		%Contenuto
 
 		%manuale utente da presentare in RQ, quindi da fare più avanti
@@ -461,9 +460,6 @@ def somma(x, y):	# Si, x e y sono concessi per il chiaro contesto matematico
 def foo(a, b):		# No
 	return a + b
 \end{lstlisting}
-
-        % \paragraph{Funzioni anonime} %TODO Solo in caso di necessità
-        %Contenuto
 
         \paragraph{Indentazione}\label{PP:Sviluppo:Codifica:Indentazione}
 		Per l'indentazione, come da PEP 8, vanno usano 4 spazi. L'IDE utilizzato dovrà essere configurato in modo che, premendo il
@@ -556,11 +552,6 @@ def complex(real=0.0, imag=0.0):
     return complex_zero
     ...
 \end{verbatim}
-
-        % \paragraph{Codetags} % TODO: e mettere parola in gloss
-        % Già presente nei processi organizzativi, alla sezione "Gestione dei problemi emersi"
-
-        % TODO: Per altri formalismi da aggiungere, vedere un po' dei punti del link: http://checkstyle.sourceforge.net/checks.html
 
         \subsubsection{Metriche per la codifica}\label{PP:Sviluppo:MetricheCodifica}
         Tutti i paragrafi sulle norme di codifica precedentemente descritte devono corrispondere ad una metrica in modo tale da tenere traccia dei cambiamenti nella qualità dei prodotti contenenti codice in Python.

@@ -8,40 +8,19 @@
 		\item \textbf{Codice}: UC\theuccount-GP.
 		\item \textbf{Titolo}: modifica utente.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l’utente vuole modificare le informazioni relative a un altro utente, o di se stesso.
-		\item \textbf{Precondizione}: l'utente vuole modificare i dati di un utente già presente nel sistema.
-		\item \textbf{Postcondizione}: i campi dell'utente sono stati modificati correttamente.
+		\item \textbf{Descrizione}: l’utente vuole modificare le proprie informazioni.
+		\item \textbf{Precondizione}: l'utente vuole modificare i propri dati.
+		\item \textbf{Postcondizione}: i campi sono stati modificati correttamente.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
-			\item L'utente modifica i dati relativi ad un utente
+			\item L'utente modifica i propri dati
 		\end{enumerate}
 	\end{itemize}
-	%TODO: perchè modifico tramite ID ma non rimuovo tramite ID?
-	\stepcounter{subuccount}
-%	\subsubsection{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
-%		\begin{figure}[H]
-%			\centering
-%			\includegraphics[width=0.8\textwidth]{img/casi_d'uso/UC16_1.png}\\
-%			\caption{UC\theuccount.\thesubuccount-GP - Selezione identificativo}
-%		\end{figure}
-%		\begin{itemize}
-%			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
-%			\item \textbf{Titolo}: selezione identificativo.
-%			\item \textbf{Attori primari}: utente.
-%			\item \textbf{Descrizione}: l'utente aggiunge l'identificativo dell'utente che vuole modificare.
-%			\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente.
-%			\item \textbf{Postcondizione}: l'identificativo è stato inserito.
-%			\item \textbf{Scenario principale}:
-%			\begin{enumerate}
-%				\item L'utente procede con l'inserimento dell'identificativo dell'utente da modificare
-%			\end{enumerate}
-%			\item \textbf{Estensioni}:
-%			\begin{itemize}
-%				\item Errore identificativo inesistente [UC\theuccount.2-GP]
-%			\end{itemize}
-%		\end{itemize}
 
-		\subsubsection{UC\theuccount.\thesubuccount-GP - Modifica di un utente del sistema}
+
+	\stepcounter{subuccount}
+
+		\subsubsection{UC\theuccount.\thesubuccount-GP - Modifica utente del sistema}
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.6\columnwidth]{img/casi_d'uso/UC\theuccount_\thesubuccount.png}\\
@@ -51,8 +30,8 @@
 				\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 				\item \textbf{Titolo}: modifica di un utente del sistema.
 				\item \textbf{Attori primari}: utente.
-				\item \textbf{Descrizione}: l'identificativo è presente nel sistema e ne vengono modificati i relativi campi.
-				\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+				\item \textbf{Descrizione}: l'utente modifica i propri campi.
+				\item \textbf{Precondizione}: l'utente vuole modificare i propri dati.
 				\item \textbf{Postcondizione}: l'utente è stato modificato.
 				\item \textbf{Scenario principale}:
 				\begin{enumerate}
@@ -71,12 +50,12 @@
 					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 					\item \textbf{Titolo}: inserimento del nuovo nome.
 					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo nome relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo nome.
+					\item \textbf{Precondizione}: l'utente vuole modificare i propri dati.
 					\item \textbf{Postcondizione}: il nome è stato inserito.
 					\item \textbf{Scenario principale}:
 					\begin{enumerate}
-						\item L'utente inserisce il nuovo nome dell'utente che vuole modificare
+						\item L'utente inserisce il nuovo nome
 					\end{enumerate}
 				\end{itemize}
 
@@ -87,12 +66,12 @@
 					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 					\item \textbf{Titolo}: inserimento del nuovo cognome.
 					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo cognome relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo cognome
+					\item \textbf{Precondizione}: l'utente vuole modificare i propri dati.
 					\item \textbf{Postcondizione}: il cognome è stato inserito.
 					\item \textbf{Scenario principale}:
 					\begin{enumerate}
-						\item L'utente inserisce il nuovo cognome dell'utente che vuole modificare.
+						\item L'utente inserisce il nuovo cognome
 					\end{enumerate}
 				\end{itemize}
 
@@ -103,12 +82,12 @@
 					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 					\item \textbf{Titolo}: inserimento del nuovo contatto Email.
 					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Email relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Email.
+					\item \textbf{Precondizione}: l'utente vuole modificare i propri dati.
 					\item \textbf{Postcondizione}: il contatto Email è stato inserito.
 					\item \textbf{Scenario principale}:
 					\begin{enumerate}
-						\item L'utente inserisce il nuovo contatto Email dell'utente che vuole modificare
+						\item L'utente inserisce il nuovo contatto Email
 					\end{enumerate}
 				\end{itemize}
 
@@ -119,12 +98,12 @@
 					\item \textbf{Codice}: UC\theuccount.\thesubuccount.\thesubsubuccount-GP.
 					\item \textbf{Titolo}: inserimento del nuovo contatto Telegram.
 					\item \textbf{Attori primari}: utente.
-					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Telegram relativo all'identificativo inserito che vuole modificare.
-					\item \textbf{Precondizione}: l'utente vuole modificare un utente già presente nel sistema.
+					\item \textbf{Descrizione}: l'utente aggiunge il nuovo contatto Telegram.
+					\item \textbf{Precondizione}: l'utente vuole modificare i propri dati.
 					\item \textbf{Postcondizione}: il contatto Telegram è stato inserito.
 					\item \textbf{Scenario principale}:
 					\begin{enumerate}
-						\item L'utente inserisce il nuovo contatto Telegram dell'utente che vuole modificare
+						\item L'utente inserisce il nuovo contatto Telegram
 					\end{enumerate}
 				\end{itemize}
 
@@ -135,7 +114,10 @@
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: errore, nuovi dati dell'utente già esistenti.
 			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: i nuovi dati dell'utente da modificare che sono stati inseriti sono già presenti nel sistema, ovvero i nuovi campi corrispondono a quelli di un utente già esistente. In particolare il contatto Telegram o Email, perchè una persona può avere lo stesso nome e cognome di un altro, ma non la stessa mail e nemmeno lo stesso identificativo Telegram.
+			\item \textbf{Descrizione}: i nuovi dati dell'utente da modificare che sono stati inseriti sono già
+			presenti nel sistema, ovvero i nuovi campi corrispondono a quelli di un utente già esistente.
+			In particolare il contatto Telegram o Email, perchè una persona può avere lo stesso nome e cognome di un
+			altro, ma non la stessa mail e nemmeno lo stesso identificativo Telegram.
 			\item \textbf{Precondizione}: l'utente vuole modificare un utente esistente nel sistema.
 			\item \textbf{Postcondizione}: l'utente non è stato modificato e viene visualizzato un messaggio di errore.
 			\item \textbf{Scenario principale}:
