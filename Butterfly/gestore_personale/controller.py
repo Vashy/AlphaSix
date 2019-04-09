@@ -3,6 +3,7 @@
 from os import urandom
 from abc import ABC, abstractmethod
 import pathlib
+import json
 
 from flask import Flask, request, session, make_response
 import flask_restful
@@ -48,20 +49,6 @@ class Resource(Subject, flask_restful.Resource, metaclass=SubjectResource):
             return obs.update(request_type, resource, msg)
 
 
-class Panel(Resource):
-
-    def get(self):
-        """Restituisce il pannello di controllo
-
-        Usage example:
-            `curl http://localhost:5000/panel`
-        """
-        return make_response(
-            self.notify('panel', 'GET', self._response),
-            200
-        )
-
-
 class User(Resource):
 
     def get(self):
@@ -88,7 +75,7 @@ class Preference(Resource):
         """Restituisce le preferenze dello user con l'id specificato
 
         Usage example:
-            `curl http://localhost:5000/preference/1`
+            `curl http://localhost:5000/api/preference/1`
         """
         return self.notify('preference', 'GET', self._response)
 
@@ -96,10 +83,10 @@ class Preference(Resource):
         """Modifica le preferenze dello user indicato nel corpo della request
 
         Usage example:
-            `curl http://localhost:5000/users -X POST -d "data=some data"`
+        `curl http://localhost:5000/api/preference -X POST -d "data=some data"`
         """
         data = request.get_json(force=True)
-        return self.notify('user', 'POST', data)
+        return self.notify('preference', 'POST', data)
 
 
 class Controller(Observer):
@@ -115,7 +102,6 @@ class Controller(Observer):
         self.api = api
 
         self.user = User
-        self.panel = Panel
         self.preference = Preference
 
         self.api.add_resource(
@@ -129,50 +115,77 @@ class Controller(Observer):
         self.user.addObserver(self.user, obs=self)
         self.preference.addObserver(self.preference, obs=self)
 
+        self.server.add_url_rule(
+            '/',
+            '',
+            self.dispatcher,
+            methods=['GET', 'POST', 'PUT', 'DELETE']
+        )
+
     def _checkSession(self):
         return 'userid' in session
 
-    def access(self):
+    def access(self, request: request):
+        if request.form.get('userid'):
+            if(
+                self.model.user_has_telegram(request.form['userid']) or
+                self.model.user_has_email(request.form['userid'])
+            ):
+                session['userid'] = request.form['userid']
+                return self.panel()
         file = html / 'access.html'
         page = file.read_text()
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
         return page
 
-    def panel(self, request_type: str, msg: str):
+    def panel(self):
+        file = html / 'panel.html'
+        page = file.read_text()
+        return page
+
+    def user(self, request: request):
+        return 'user'
+
+    def preference(self, request: request):
+        return 'preference'
+
+    def apiUser(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
             pass
 
-    def user(self, request_type: str, msg: str):
-        if request_type == 'GET':
-            pass
-        elif request_type == 'POST':
-            pass
-
-    def preference(self, request_type: str, msg: str):
+    def apiPreference(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
             pass
 
     def update(self, resource: str, request_type: str, msg: str):
-        if self._checkSession():
-            if resource == 'panel':
-                return self.panel(request_type, msg)
-            elif resource == 'user':
-                return self.user(request_type, msg)
-            elif resource == 'preference':
-                return self.preference(request_type, msg)
-        return self.access()
+        if resource == 'user':
+            return self.apiUser(request_type, msg)
+        elif resource == 'preference':
+            return self.apiPreference(request_type, msg)
+
+    def dispatcher(self):
+
+            if self._checkSession():
+                path = request.path
+                if path == '/':
+                    return self.panel()
+                if path == '/user':
+                    return self.user(request)
+                if path == '/preference':
+                    return self.preference(request)
+            return self.access(request)
 
 
 def main():
     flask = Flask(__name__)
     flask.secret_key = urandom(16)
     api = flask_restful.Api(flask)
-    mongo = MongoSingleton().instance()
+    mongo = MongoSingleton.instance
     facade = MongoFacade(mongo, mongo)
     Controller(
         flask,

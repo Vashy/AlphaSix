@@ -862,134 +862,6 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \end{table}
 
 
-%Per ogni test vengono affrontati i seguenti punti:
-%
-%\begin{itemize}
-%	\item \textbf{Scopo}: lo scopo del test che; il titolo del punto non verrà inserito nei paragrafi dei test.
-%	\item \textbf{Procedura}: vengono descritti i passaggi da compiere per eseguire il test.
-%	\item \textbf{Approvazione}: vengono descritte le condizioni affinché il test sia considerato superato.
-%\end{itemize}
-%
-%Alcuni termini ed espressioni assumono il seguente significato:
-%
-%\begin{itemize}
-%	\item \textbf{Piattaforma di messaggistica}: s'intende sempre Telegram ed Email.
-%	\item \textbf{Notifica}: s'intende una notifica in una delle piattaforme di messaggistica causata dall'applicazione.
-%	\item \textbf{Topic}: s'intende l'insieme delle etichette delle issue di GitLab e Redmine e delle keyword presenti nei messaggi di commit notificati dai push di GitLab.
-%	\item \textbf{Persona delegata}: s'intende l'utente a cui verranno inoltrate le notifiche nei giorni di indisponibilità dell'utente che sta usando l'applicazione.
-%\end{itemize}
-
-		%\paragraph*{Accettazione}
-		%Il nuovo utente deve comparire all'interno della lista degli utenti inseriti nell'applicazione.
-
-%	\subsubsection{TS002 Iscrizione ad una label, ad una piattaforma di messaggistica e apertura issue}
-%		Un utente quando s'iscrive ad una label, lo fa con l'intenzione di ricevere le notifiche inerenti solo a quella label provenienti da GitLab o Redmine e l'iscrizione alla piattaforma di messaggistica (Telegram o Email) per scegliere dove ricevere tali notifiche.
-%
-%		\paragraph*{Procedura}
-%			\begin{enumerate}
-%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalle label è possibile capire quali notifiche derivano da Redmine e quali da GitLab.
-%				\item Selezionare Telegram o Email per decidere in che piattaforma di messaggistica ricevere le notifiche della label.
-%				\item Aprire una issue da GitLab se l'iscrizione è stata fatta da una label proveniente da GitLab, o aprire una issue da Redmine se l'iscrizione è stata fatta da una label proveniente da Redmine.
-%			\end{enumerate}
-%
-%		\paragraph*{Accettazione}
-%		Alla piattaforma di messaggistica selezionata arriva una notifica dell'apertura della issue inerente al topic selezionato.
-%
-%	\subsubsection{TS003 Iscrizione a una label, a una piattaforma di messaggistica e modifica issue}
-%		Come descritto nel test precedente, un utente può iscriversi a una label e a una piattaforma di messaggistica per ricevere una notifica.
-%
-%		\paragraph*{Procedura}
-%			\begin{enumerate}
-%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%				\item Selezionare la label da cui si vuole ricevere le notifiche. Dalla label è possibile capire quali derivano da Redmine e quali da GitLab.
-%				\item Selezionare Telegram o Email per decidere in che piattaforma di messaggistica ricevere le notifiche delle label.
-%				\item Selezionare su Redmine, se ci si è iscritti ad una label di Redmine, o su GitLab, se ci si è inscritti ad una label su GitLab, una issue già aperta e modificarla in termini di label o titolo della issue.
-%				\item Se tra i campi modificati nella issue ci sono anche le label, iscriversi nel Gestore Personale alla label della issue modificata.
-%			\end{enumerate}
-%
-%		\paragraph*{Accettazione}
-%		La modifica del titolo o delle label di una issue di Redmine o GitLab comporta l'invio della notifica a tutti gli iscritti alle nuove label, se queste sono cambiate, altrimenti agli iscritti delle solite label se è cambiato solo il titolo della issue. La modifica di qualsiasi altro campo non comporta l'invio di una notifica.
-%
-%	\subsubsection{TS004 Disiscrizione da una label}
-%		La disiscrizione ad una label deve terminare la notifica delle segnalazioni legate a quella label.
-%
-%		\paragraph*{Procedura}
-%			\begin{enumerate}
-%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%				\item Disiscriversi da una label a cui precedentemente si era iscritti.
-%				\item Aprire o modificare una issue da Redmine o GitLab con la label da cui ci si è disiscritti precedentemente.
-%			\end{enumerate}
-%
-%		\paragraph*{Accettazione}
-%		Una volta disiscritti ad una label non vengono più ricevute notifica riguardanti quella label.
-%
-%	\subsubsection{TS005 Aggiunta di una keyword, iscrizione ad una piattaforma di messaggistica e push di GitLab}
-%		Per ricevere le notifiche dei push di GitLab è possibile selezionare delle keyword che possono essere presenti nei messaggi di commit.
-%
-%		\paragraph*{Procedura}
-%		\begin{itemize}
-%			\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%			\item Aggiungere una keyword nel Gestore Personale.
-%			\item Effettuare un push su GitLab dove il messaggio di commit contiene la keyword appena inserita.
-%		\end{itemize}
-%
-%		\paragraph*{Accettazione}
-%		L'utente le notifiche dei push che nel loro messaggio di commit contengo la keyword aggiunta.
-%
-%	\subsubsection{TS006 Rimozione di una keyword}
-%		La rimozione di una delle keyword aggiunta precedentemente evita di ricevere la notifica dei push di GitLab con il messaggio di commit con la keyword rimossa.
-%
-%		\paragraph*{Procedura}
-%			\begin{enumerate}
-%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%				\item Rimuovere una delle keyword selezionate in precedenza.
-%				\item Effettuare un push su GitLab dove il messaggio di commit contiene la keyword appena rimossa.
-%			\end{enumerate}
-%
-%		\paragraph*{Accettazione}
-%		Non arrivano le notifiche dei push di GitLab in cui nel messaggio di commit è presente la keyword appena rimossa.
-%
-%	\subsubsection{TS007 Rimozione di una piattaforma di messaggistica}
-%		Come per il test precedente, anche rimuovendo una piattaforma di messaggistica (Telegram o Email), le notifiche a quella piattaforma non dovrebbero più arrivare.
-%
-%		\paragraph*{Procedura}
-%		\begin{enumerate}
-%			\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%			\item Deselezionare una piattaforma di messaggistica precedentemente selezionata
-%			\item Creare o modificare una issue da Redmine o GitLab, oppure effettuare un \gloss{push}.
-%		\end{enumerate}
-%
-%		\paragraph*{Accettazione}
-%		Dopo aver aperto una issue o effettuato un push da GitLab o Redmine, non si ricevono più notifiche dalle piattaforme di messaggistica rimosse.
-%
-%	\subsubsection{TS008 Aggiunta della persona delegata e dei giorni di indisponibilità}
-%		All'interno del Gestore Personale è possibile indicare i giorni di calendario in cui si è irreperibili ed è possibile selezionare una persona a cui inoltrare le notifiche che arrivano nei giorni selezionati.
-%
-%		\paragraph*{Procedura}
-%			\begin{enumerate}
-%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%				\item Aggiungere nel Gestore Personale il giorno di esecuzione del test come giorno di indisponibilità in cui non si vogliono ricevere notifiche dall'applicativo.
-%				\item Aggiungere, tra gli utenti inseriti nell'applicazione, l'utente a cui inoltrare le notifiche nei giorni di indisponibilità.
-%				\item Creare o modificare una issue da Redmine o GitLab, oppure effettuare un \gloss{push}.
-%			\end{enumerate}
-%
-%		\paragraph*{Accettazione}
-%		La persona delegata riceve la notifica del messaggio che sarebbe dovuta arrivare all'utente che non è disponibile.
-%
-%	\subsubsection{TS009 Rimozione giorni di indisponibilità}
-%		Nel momento in cui si rimuovono i giorni in cui ci si considera non reperibili, le notifiche dei topic a cui ci si è iscritti tornano ad essere inviate.
-%
-%		\paragraph*{Procedura}
-%			\begin{enumerate}
-%				\item Selezionare l'utente con cui si vuole usare l'applicativo.
-%				\item Deselezionare tra i giorni di irreperibilità il giorno di esecuzione del test (se il giorno è già selezionato, selezionarlo e poi deselezionarlo).
-%				\item Effettuare un push da GitLab oppure aprire o modificare una issue su Redmine o GitLab.
-%			\end{enumerate}
-%
-%		\paragraph*{Accettazione}
-%		L'utente selezionato ricomincia a ricevere notifiche.
-
 	\paragraph{Tracciamento}
 
     \setcounter{ts}{0}
@@ -1068,8 +940,9 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\end{table}
 
 \newcounter{ti}
-\newcommand{\addtoti}{\stepcounter{ti}TI\theti}
-\newcommand{\TIti}{TI\theti}
+\newcounter{subti}
+\newcommand{\addtoti}{\stepcounter{ti}\setcounter{subti}{0}TI\theti}
+\newcommand{\TIti}{\stepcounter{subti}TI\theti.\thesubti}
 
 \subsubsection{Test d'integrazione} \label{testintegrazione}
 
@@ -1080,30 +953,29 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 		\addtoti & Verifica l'integrazione di WebhookFactory con Webhook & \TS \\
-			\TIti.1 & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueWebhook & \TS \\
-			\TIti.2 & Verifica l'integrazione di GitlabWebhookFactory con GitlabPushWebhook & \TS \\
-			\TIti.3 & Verifica l'integrazione di GitlabWebhookFactory con GitlabCommitCommentWebhook & \TS \\
-			\TIti.4 & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueCommentWebhook & \TS \\
-			\TIti.5 & Verifica l'integrazione di RedmineWebhookFactory con RedmineIssueWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabIssueWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabPushWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabCommitCommentWebhook & \TS \\
+            \TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabIssueCommentWebhook & \TS \\
+			\TIti & Verifica l'integrazione di RedmineWebhookFactory con RedmineIssueWebhook & \TS \\
 		\addtoti & Verifica l'integrazione tra Webhook e GitLabProducer & \TS \\
-			\TIti.1 & Verifica l'integrazione tra GitlabIssueWebhook e GitlabProducer & \TS \\
-			\TIti.2 & Verifica l'integrazione tra GitlabPushWebhook e GitlabProducer & \TS \\
-			\TIti.3 & Verifica l'integrazione tra GitlabIssueCommentWebhook e GitlabProducer & \TS \\
-			\TIti.4 & Verifica l'integrazione tra GitlabCommitCommentWebhook e GitlabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabIssueWebhook e GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabPushWebhook e GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabIssueCommentWebhook e GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabCommitCommentWebhook e GitLabProducer & \TS \\
 		\addtoti & Verifica l'integrazione tra Webhook e RedmineProducer & \TS \\
-			\TIti.1 & Verifica l'integrazione tra RedmineIssueWebhook e RedmineProducer & \TS \\
+			\TIti & Verifica l'integrazione tra RedmineIssueWebhook e RedmineProducer & \TS \\
 		% \addtoti & Verifica l'integrazione del TelegramCosumer con il bot Telegram & \TNI \\
 		\addtoti & Verifica l'integrazione del EmailConsumer  con il server Email & \TS \\
+        \addtoti & Verifica l'integrazione del TelegramConsumer  con il bot Telegram & \TS \\
 		\addtoti & Verifica l'integrazione di Kafka con le componenti Producer & \TS \\
-			\TIti.1 & Verifica l'integrazione di KafkaProducer con GitLabProducer & \TS \\
-			\TIti.2 & Verifica l'integrazione di KafkaProducer con RedmineProducer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaProducer con GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaProducer con RedmineProducer & \TS \\
 		\addtoti & Verifica l'integrazione di Kafka con le componenti Consumer & \TS \\
-			\TIti.3 & Verifica l'integrazione di KafkaConsumer nel TelegramCosumer & \TS \\
-			\TIti.4 & Verifica l'integrazione di KafkaConsumer nel EmailConsumer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaConsumer nel TelegramCosumer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaConsumer nel EmailConsumer & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con ClientGestorePersonale & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaConsumer con ClientGestorePersonale & \TS \\
-		\addtoti & Verifica l'integrazione di Flask con FlaskServer & \TS \\
-		\addtoti & Verifica l'integrazione di FlaskServer con GitlabProducer & \TS \\
 
 		\bottomrule
 	\end{paddedtablex}
@@ -1116,6 +988,9 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+
+        \addtoti & Verifica l'integrazione di Flask con FlaskServer & \TS \\
+        \addtoti & Verifica l'integrazione di FlaskServer con GitLabProducer & \TS \\
 		\addtoti & Verifica l'integrazione di FlaskServer con RedmineProducer & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con KafkaProducerCreator & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaConsumer con KafkaConsumerCreator & \TS \\
@@ -1145,22 +1020,57 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			% \rowcolor{\tablegray}
 			\textbf{Codice} & \textbf{Componente} \\
 			\toprule
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti & \\
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti & \\
+			\addtoti & Webhook::WebhookFactory \par Webhook::Webhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GitLabIssueWebhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GitLabPushWebhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GtLabCommitCommentWebhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par  Webhook::GitLabIssueCommentWebhook\\
+            \TIti & Webhook::RedmineWebhookFactory \par Webhook::RedmineIssueWebhook\\
+			\addtoti & Webhook::Webhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GitLabIssueWebhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GitLabPushWebhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GtLabCommitCommentWebhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GitLabIssueCommentWebhook \par Producer::GitLabProducer\\
+            \addtoti & Webhook::Webhook \par Producer::RedmineProducer\\
+            \TIti & Webhook::RedmineIssueWebhook \par Producer::RedmineProducer\\
+			\addtoti &  Consumer::EmailConsumer \par server Email\\
+			\addtoti & Consumer::TelegramConsumer \par bot Telegram\\
+			\addtoti & Kafka \par Producer\\
+			\TIti & KafkaProducer \par Producer::GitLabProducer\\
+            \TIti & KafkaProducer \par Producer::RedmineProducer\\
 			\bottomrule
 		\end{tabularx}}
-		\caption{Elenco dei test in correlazione con le componenti}
+		\caption{Tracciamento dei test in correlazione con le componenti (1)}
 	\end{table}
 
-
+    \begin{table}[H]
+        \centering
+        {\def\arraystretch{1.4}
+            \begin{tabularx}{\textwidth}{YY}
+                % \rowcolor{\tablegray}
+                \textbf{Codice} & \textbf{Componente} \\
+                \toprule
+                \addtoti & Kafka \par Consumer\\
+                \TIti & KafkaConsumer \par Consumer::TelegramConsumer\\
+                \TIti & KafkaConsumer \par Consumer::EmailConsumer\\
+                \addtoti &  KafkaProducer \par GestorePersonale::ClientGestorePersonale\\
+                \addtoti &  KafkaConsumer \par GestorePersonale::ClientGestorePersonale\\
+                \addtoti & Flask \par Producer::Server::Flaskserver\\
+                \addtoti & Producer::Server::Flaskserver \par Producer::GitLabProducer\\
+                \addtoti & Producer::Server::Flaskserver \par Producer::RedmineProducer\\
+                \addtoti & KafkaProducer \par Producer::KafkaProducerCreator\\
+                \addtoti & KafkaConsumer \par Producer::KafkaConsumerCreator\\
+                \addtoti & MongoClient \par WebInterface::FrontEnd\\
+                \addtoti & MongoClient \par GestorePersonale::Processor\\
+                \addtoti & MongoClient \par MongoDB::Singleton\\
+                \addtoti & MongoDB::MongoFacade \par Gestorepersonale::Processor\\
+                \addtoti & GestorePersonale::Controller \par Flask\\
+                \addtoti & MongoDB::MongoFacade \par MongoDB::MongoProject\\
+                \addtoti & MongoDB::MongoFacade \par MongoDB::MongoUser\\
+                \bottomrule
+            \end{tabularx}}
+        \caption{Tracciamento dei test in correlazione con le componenti (2)}
+    \end{table}
 
 \newcounter{tu}
 \newcommand{\addtotu}{\stepcounter{tu}TU\thetu}

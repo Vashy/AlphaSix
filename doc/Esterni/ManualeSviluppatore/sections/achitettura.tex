@@ -23,6 +23,10 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
     \item GitlabProducer
 \end{itemize}
 
+\subsubsection{RedmineProducer}
+
+
+
 \subsection{Gestore Personale}
 Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Ha un proprio KafkaProducer e KafkaConsumer
 che si occupano rispettivamente di ricevere i messaggi da Kafka e re-immetterli nelle code relative ai Consumer finali, passando per la logica
