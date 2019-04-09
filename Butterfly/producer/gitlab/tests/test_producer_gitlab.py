@@ -38,6 +38,7 @@ def test_produce():
     )
     producer.produce({'object_kind': 'issue'})
 
+
 # @pytest.mark.skip(reason="no way of currently testing this")
 def test_constructor():
     with pytest.raises(AssertionError):
