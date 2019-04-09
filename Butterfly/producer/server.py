@@ -50,7 +50,8 @@ class FlaskServer:
                       'In attesa di altri messaggi...\n\n')
                 return 'Messaggio malformato', 402
             except NameError:
-                return 'Tipo di messaggio non riconosciuto', 401  # Errore messaggio malformato
+                # Errore messaggio malformato
+                return 'Tipo di messaggio non riconosciuto', 401
             return 'Ok', 200  # Ok
 
         return '', 400  # Errore, tipo di richiesta non adatta

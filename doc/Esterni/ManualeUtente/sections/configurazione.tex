@@ -1,0 +1,77 @@
+\section{Configurazione}\label{configurazione}
+
+Su richiesta di \II, tutti i servizi sono stati configurati sotto forma di container. È quindi possibile avviarli su macchine fisiche differenti, ma collegate in rete fra loro, con Docker.\\
+Sempre sotto richiesta di \II viene utilizzato Rancher come software per la gestione dei container, quindi questa guida verterà principalmente sulla configurazione di \progetto utilizzando Rancher. %TODO riverere frase per ripetizione
+
+\subsection{Requisiti di sistema}
+
+	Non sono necessari particolari requisiti in modo da poter configurare e utilizzare il nostro prodotte, tuttavia valgono i requisiti minimi dei sistemi di terze parti che vengono utilizzati da \progetto.
+
+	\subsubsection{Software}
+		\begin{itemize}
+			\item Docker\footnote{\url{https://docs.docker.com/v17.09/datacenter/ucp/2.1/guides/admin/install/system-requirements}}: è necessario avere installata e configurata correttamente almeno la versione v18.09.
+			\item Docker Compose\footnote{\url{https://docs.docker.com/compose/install/}} :  nel caso si decidesse di utilizzare Docker Compose per l'avvio dei container è consigliata l'installazione e configurazione corretta della versione v3.7.
+			\item Kubernetes\footnote{\url{https://kubernetes.io/docs/setup/independent/install-kubeadm}}: nel caso si decidesse di utilizzare Kubernetes per la gestione dei container è consigliata l'installazione e configurazione corretta della versione v1.13.
+			\item Rancher\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/requirements/}}: nel caso si decidesse di utilizzare Rancher per la gestione grafica di oggetti Kubernetes contenenti i container Docker, è consigliata l'installazione e configurazione della versione v2.1.4.
+			\item Kafka\footnote{\url{https://docs.confluent.io/current/installation/system-requirements.html}}: è necessario avere installata e configurata correttamente almeno la versione v2.12.
+			\item GitLab\footnote{\url{https://git.ucd.ie/help/install/requirements.md}} 11.7
+			\item Redmine\footnote{\url{https://www.easyredmine.com/faq/technical-info/176-hardware-and-software-requirements-for-server-solution}}: durante lo sviluppo di \progetto abbiamo utilizzato 4.0.1
+		\end{itemize}
+	
+	%TODO rivedere
+	GitLab e Redmine sono componenti esterne a \progetto, tuttavia vengono citate in quanto è possibile configurare tutto il progetto in un ambiente unico.\\
+	Le versioni specificate possono essere trovate anche nella sezione ``Requisiti di vincolo'' del documento \AdRv.
+	
+	\subsubsection{Hardware}
+	Per \progetto~non sono necessari ulteriori requisiti a livello hardware particolari se non quelli di cui hanno bisogno i software precedentemente elencati.
+
+\subsection{Mappatura delle porte}
+Per la configurazione di ciascun tipo servizio abbiamo deciso di dare un range di porte da poter esporre in modo tale da effettuare una separazione a logico.\\
+Questa regola non influisce col corretto funzionamento di \progetto ma è solamente per non assegnare le porte in modalità casuale e facilitare le analisi di eventuali errori come anche la facile manutenzione e aggiunta di servizi.
+
+La suddivisione delle porte è la seguente:
+
+\begin{table}[H]
+	\centering
+	\begin{paddedtablex}[1.3]{\textwidth}{YYY}
+		\thead{Servizio} & \thead{Porta inizio} & \thead{Porta fine}\\\toprule
+		Software di terze parti& 30000& 30029\\\hline
+		Kafka e servizi correlati& 30030& 30059\\\hline
+		Producer& 30060& 30089\\\hline
+		Consumer& 30090& 30119\\\hline
+		Gestore personale& 30120& 30149\\
+	\end{paddedtablex}
+	\caption{Suddivisione delle porte}
+\end{table}
+
+La suddivisione che abbiamo utilizzato durante lo sviluppo ed alla consegna del progetto prevede la seguente esposizione delle porte:
+
+\begin{table}[H]
+	\centering
+	\begin{paddedtablex}[1.3]{\textwidth}{YYY}
+		\thead{Servizio} & \thead{Porta interna} & \thead{Porta esposta}\\\toprule
+		Redmine& 3000& 30000\\\hline
+		GitLab& 80& 30001\\\hline
+		Kafka& 9092& 30030\\\hline
+		Producer GitLab& 5000& 30060\\\hline
+		Producer Redmine& 5000& 30061\\\hline
+		Consumer Telegram& 30090& \\\hline
+		Consumer Email& 30091& \\\hline
+		Producer Gestore personale& 30120& 5000\\\hline
+		Consumer Gestore personale& 30121& \\
+	\end{paddedtablex}
+	\caption{Configurazione delle porte in fase di sviluppo e consegna}
+\end{table}
+
+Le specifiche relative alla configurazione delle porte in Rancher possono essere trovate nella pagina dedicata\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/references/}} sulla sezione della documentazione presente nel loro sito.
+
+\subsection{Configurazione servizi principali container}
+
+	\subsubsection{Redmine} + sottoparagrafo plugin
+	gitlab
+	kafka
+	
+	
+\subsection{Servizi aggiuntivi}
+Aggiungere servizio necessario per il monitoraggio di kafka
+Altri servizi per monitoraggio ?
