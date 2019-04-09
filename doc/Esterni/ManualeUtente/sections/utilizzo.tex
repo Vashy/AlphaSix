@@ -30,7 +30,7 @@ Tramite il form apposito, selezionare il bottone ``Iscrizione'' e inserire delle
 È necessario inserire almeno un campo tra e-mail e Telegram, per avere un'identificativo univoco
 all'interno del sistema.
 
-È anche possibile inserire un nuovo utente tramite API Rest. Vedere la sezione apposita.
+È anche possibile inserire un nuovo utente tramite \hyperref[APIRest]{API Rest}. Vedere la sezione apposita.
 
 
 \subsubsection{Modifica preferenze}
@@ -49,7 +49,7 @@ all'interno del sistema.
 Per Butterfly abbiamo utilizzato lo standard API Rest per la gestione delle risorse.
 Viene descritto nelle prossime sezioni come interagire con le API del sistema.
 
-Il root path sottointeso sarà sempre \texttt{\homeUrl/api/v1/}
+Il root path sottinteso sarà sempre \texttt{\homeUrl/api/v1/}
 
 Ad esempio, per la GET degli user, l'indirizzo sarà:
 \begin{center}
@@ -115,7 +115,7 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 \paragraph{Riepilogo}
 
 \begin{table}[H]
-    \begin{paddedtablex}[1.3]{\textwidth}{cYY} % 0 opz  2 obb
+    \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
         \texttt{GET} & \texttt{/users} & Restituisce un payload in JSON di tutti gli utenti\\
         \texttt{GET} & \texttt{/users/<id>} & Restituisce un payload in JSON dell'utente che corrisponde a \texttt{<id>}\\
@@ -149,7 +149,6 @@ i dati:
 \begin{itemize}[noitemsep]
     \item \texttt{url}
 \end{itemize}
-% Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al payload.
 
 
 \paragraph{Modifica}
@@ -178,7 +177,7 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 \paragraph{Riepilogo}
 
 \begin{table}[H]
-    \begin{paddedtablex}[1.3]{\textwidth}{cYY} % 0 opz  2 obb
+    \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
         \texttt{GET} & \texttt{/projects} & Restituisce un payload in JSON di tutti i progetti\\
         \texttt{GET} & \texttt{/projects/<id>} & Restituisce un payload in JSON del progetto che corrisponde a \texttt{<id>}\\
