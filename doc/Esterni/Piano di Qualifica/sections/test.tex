@@ -1175,14 +1175,69 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			% \rowcolor{\tablegray}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 			\addtotu & Verifica il processamento del webhook e se è malformato & \TS \\
-			\addtotu & Verifica la creazione di un oggetto RedmineIssueWebhook & \TS \\
-			\addtotu & Verifica il parsing del file JSON associato al webhook di apertura issue in Redmine & \TS \\
-			\addtotu & Verifica il parsing del file JSON associato al webhook di modifica issue in Redmine & \TS \\
+			\addtotu & Verifica l'avviamento di FlaskServer con le configurazioni date & \TS \\
+
+			\addtotu & Verifica la creazione di un oggetto KafkaProducer & \TS \\
+			\addtotu & Verifica il tipo di segnalazione ricevuta da GitlabProducer & \TS \\
+			\addtotu & Verifica l'invio di un messaggio proveniente da Gitlab a KafkaProducer & \TS \\
+			\addtotu & Verifica il tipo di segnalazione ricevuta da RedmineProducer & \TS \\
+			\addtotu & Verifica l'invio di un messaggio proveniente da Redmine a KafkaProducer & \TS \\
+
+			\addtotu & Verifica la creazione di un oggetto KafkaConsumer & \TS \\
+			\addtotu & Verifica l'invio del messaggio finale a Telegram tramite bot  & \TS \\
+			\addtotu & Verifica la formattazione del messaggio Telegram da un oggetto JSON & \TS \\
+			\addtotu & Verifica che TelegramConsumer sia in ascolto di messaggi provenienti da KafkaConsumer & \TS \\
+
+			\addtotu & Verifica l'invio del messaggio finale tramite server mail  & \TS \\
+			\addtotu & Verifica la formattazione della mail da un oggetto JSON & \TS \\
+			\addtotu & Verifica che EmailConsumer sia in ascolto di messaggi provenienti da KafkaConsumer & \TS \\
+			\addtotu & Verifica la formattazione della mail in formato HTML  & \TS \\
+
+			\addtotu & Verifica l'inserimento di un utente nel database & \TS \\
+			\addtotu & Verifica la rimozione di un utente dal database & \TS \\
+			\addtotu & Verifica l'inserimento di un topic nel database & \TS \\
+			\addtotu & Verifica la rimozione di un topic dal database & \TS \\
+			\addtotu & Verifica l'inserimento di un progetto nel database & \TS \\
+			\addtotu & Verifica la rimozione di un progetto dal database & \TS \\
+			\addtotu & Verifica la presenza di un utente nel database  & \TS \\
+			\bottomrule
+		\end{paddedtablex}
+		\caption{Elenco dei test di unità (1)}
+	\end{table}
+
+
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			% \rowcolor{\tablegray}
+			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+			\addtotu & Verifica la presenza di un progetto nel database & \TS \\
+			\addtotu & Verifica la presenza di un topic, legato al progetto dato, nel database & \TS \\
+			\addtotu & Verifica la presenza di un topic, legato all'utente dato, nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento di una preferenza utente nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento di un identificativo telegram di un utente nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento di una mail di un utente nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento del nome di un utente nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento del cognome di un utente nel database & \TS \\
+			\addtotu & Verifica l'aggiunta di un topic alla lista dei topic utente nel database & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			\addtotu &  & \TS \\
+			% \addtotu & Verifica la creazione di un oggetto RedmineIssueWebhook & \TS \\
+			% \addtotu & Verifica il parsing del file JSON associato al webhook di apertura issue in Redmine & \TS \\
+			% \addtotu & Verifica il parsing del file JSON associato al webhook di modifica issue in Redmine & \TS \\
 			% \TUtu.1 & Verifica l & \TNI \\
 			\bottomrule
 		\end{paddedtablex}
-		\caption{Elenco dei test di unità}
+		\caption{Elenco dei test di unità (2)}
 	\end{table}
+
 
     \setcounter{tu}{0}
 
@@ -1191,18 +1246,57 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
-			\begin{tabularx}{\textwidth}{YY}
+			\begin{tabularx}{\textwidth}{cY}
 				% \rowcolor{\tablegray}
 				\textbf{Codice} & \textbf{Componente} \\
 				\toprule
-				\addtotu & Butterfly::FlaskServer::\_webhook\_handler \\
-				\addtotu & Butterfly::WebhookFactory::RedmineWebhookFactory \\
-				\addtotu & Butterfly::Webhook::RedmineIssueWebhook::parse \\
-				\addtotu & Butterfly::Webhook::RedmineIssueWebhook::parse \\
+				\addtotu & FlaskServer.\_webhook\_handler() \\
+				\addtotu & FlaskServer.run() \\
+
+				\addtotu & KafkaProducerCreator.create() \\
+				\addtotu & GitlabProducer.webhook\_kind() \\
+				\addtotu & GitLabProducer.\_produce() \\
+				\addtotu & RedmineProducer.webhook\_kind() \\
+				\addtotu & RedmineProducer.\_produce() \\
+
+				\addtotu & KafkaConsumerCreator.create() \\
+				\addtotu & TelegramConsumer.send() \\
+				\addtotu & TelgramConsumer.format() \\
+				\addtotu & TelgramConsumer.listen() \\
+
+				\addtotu & EmailConsumer.send() \\
+				\addtotu & EmailConsumer.format() \\
+				\addtotu & EmailConsumer.listen() \\
+				\addtotu & EmailConsumer.format\_html() \\
+
+				\addtotu & DBController.insert\_user() \\
+				\addtotu & DBController.delete\_one\_user()\\
+				\addtotu & DBController.insert\_topic()\\
+				\addtotu & DBController.delete\_one\_topic() \\
+				\addtotu & DBController.user\_exists() \\
+				\addtotu & DBController.project\_exists() \\
+				\addtotu & DBController.topic\_exists() \\
+				\addtotu & DBController.topic\_from\_id\_exists() \\
+				\addtotu & DBController.update\_user\_preference() \\
+				\addtotu & DBController.update\_user\_telegram() \\
+				\addtotu & DBController.update\_user\_email() \\
+				\addtotu & DBController.update\_user\_name() \\
+				\addtotu & DBController.update\_user\_surname() \\
+				\addtotu & DBController.add\_user\_topic() \\
+				\addtotu & DBController.add\_user\_topic\_from\_id() \\
 				\addtotu & \\
-				\addtotu &  \\
 				\addtotu & \\
 				\addtotu & \\
+				\addtotu & \\
+				\addtotu & \\
+				\addtotu & \\
+				\addtotu & \\
+				\addtotu & \\
+				\addtotu & \\
+				\addtotu & \\
+				% \addtotu & WebhookFactory.RedmineWebhookFactory \\
+				% \addtotu & Webhook.RedmineIssueWebhook.parse() \\
+				% \addtotu & Webhook.RedmineIssueWebhook.parse() \\
 				\bottomrule
 			\end{tabularx}}
 			\caption{Elenco dei test in correlazione con le componenti}
