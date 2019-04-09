@@ -67,10 +67,72 @@ Le specifiche relative alla configurazione delle porte in Rancher possono essere
 
 \subsection{Configurazione servizi principali container}
 
-	\subsubsection{Redmine} + sottoparagrafo plugin
-	gitlab
-	kafka
+	\subsection{Webhook}
+	Per il corretto invio dei webhook (in formato JSON) da parte dei software che comunicano con i nostri Producer è necessaria una piccola configurazione:
 	
+	\paragraph{Redmine}
+	
+		\subparagraph{Configurazione del plugin}
+	
+		scaricarlo nella cartella... 
+		verificare in sezione admin in configurazioni parte amministratore...
+	
+	L'implementazione per Redmine si appoggia sul plugin \texttt{redmine\_webhook}, raggiungibile al link
+	\url{https://github.com/suer/redmine_webhook}.
+	
+	Questo plugin implementa il concetto di Hook offerto dalla API di Redmine, inviando a un determinato URL
+	un \gloss{payload} costituito da un file JSON quando un evento si innesca, contenente le informazioni relative
+	a tale evento.
+	
+	Per installarlo su un'istanza di Redmine, seguire le istruzione riportate nel README presente nella repository.
+	
+		\subparagraph{Configurazione destinazione}
+		Per aggiungere una destinazione del webhook per un progetto, andare nella sezione relativa al webhook all'interno del menu del progetto...
+		...aggiungere la destinazione e premere add..
+		%todo inserire immagine
+	
+		\subparagraph{Eventi supportati}
+		\begin{itemize}
+			\item Comments
+		\end{itemize}
+	
+		
+	\paragraph{GitLab}
+		\subparagraph{Configurazione webhook nella rete locale}
+		È necessario abilitare l'invio dei webhook a dispositivi presenti nella stessa rete dalla parte amministrativa.
+		Questo può essere effettuato accedendo con un account con privilegi amministratore all'indirizzo:
+		\begin{center}
+			\texttt{\url{/admin/application_settings/network}}
+		\end{center}
+		Per abilitare questa funzionalità cliccare sul riquadro rappresentato nell'immagine e che si trova all'indirizzo sopra indicato.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=13cm]{img/webhook_gitlab_setup.png}\\
+			\caption[Webhook, GitLab]{Configurazione webhook con destinazione in rete locale}
+		\end{figure}
+		Ulteriori informazioni al riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a questo argomento sulla parte del sito relativa alla documentazione di GitLab.
+		\subparagraph{Configurazione destinazione}
+		Successivamente si può aggiungere indirizzo di destinazione un webhook al progetto andando sulle impostazioni:
+		\begin{center}
+			\texttt{Settings > Integrations}
+		\end{center}
+		Da qui si possono selezionare gli eventi di interessi per i quali i webhook verranno attivati (attenzione: \progetto~non supporta tutti gli eventi, solamente quelli richiesti da \II).
+		Nel campo relativo all'URL di destinazione inserire l'indirizzo, con relativa porta (nel nostro caso quella specificata nella Tabella 2), su cui il Producer GitLab è in ascolto.
+		\subparagraph{Eventi supportati}
+		Per GitLab gli eventi supportati sono:
+		\begin{itemize}
+			\item Push events
+			\item Comments
+			\item Issues events
+		\end{itemize}
+
+
+---
+
+
+	%TODO RIVEDERE
+	La configurazione dei consumer e dei producer sono composte da file json contenti informazioni come ad esempio la mail di invio e la password relativa utilizzate per accedere al server mail.
+	Queste possono essere modificate in modo tale da rispecchiare la configurazione che si vuole usare.
 	
 \subsection{Servizi aggiuntivi}
 Aggiungere servizio necessario per il monitoraggio di kafka
