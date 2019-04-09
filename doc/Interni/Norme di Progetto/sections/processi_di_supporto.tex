@@ -329,8 +329,7 @@
 			Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
 
 			\subparagraph{DockerHub}\label{DockerHub}
-			Per evitare di effettuare una build manuale dell'immagine di Docker contenente la specifica componente del software, abbiamo deciso di utilizzare DockerHub collegato alla nostra repository in GitHub in modo tale che ad ogni modifica effettuata e di conseguenza ad ogni push sui branch master e develop scatta una build automatica. Questa prevede quindi la creazione di dieci immagini salvate su cinque repository su DockerHub dell'account di tipo organizzazione denominato `alphasix' come nome\_account/nome\_repository:tag.
-			Le immagini sono quindi:
+			Per evitare di effettuare una build manuale dell'immagine di Docker contenente una specifica componente del software, abbiamo deciso di utilizzare DockerHub collegato alla nostra repository in GitHub. In questo modo ogni modifica effettuata nella repository, attraverso push sui branch master e develop, scatta una build automatica. Questa prevede quindi la creazione di dieci immagini salvate su cinque repository su DockerHub in un account denominato `alphasix'. Le immagine sono classificate in questo modo nome\_account/nome\_repository:tag:
 			\begin{itemize}
 				\item alphasix/producer-gitlab:master
 				\item alphasix/producer-gitlab:develop
@@ -343,8 +342,8 @@
 				\item alphasix/consumer-email:master
 				\item alphasix/consumer-email:develop
 			\end{itemize}
-			Abbiamo deciso che il tag rappresenta il branch dal quale è stato effettuata la build.
-			Le immagini con tag `master' saranno più stabili rispetto a quelle col tag `develop' in quanto ancora in fase di sviluppo, possibilmente con funzionalità ancora incomplete.
+			Il tag rappresenta il branch dal quale è stata effettuata la build.
+			Le immagini con tag `master' saranno più stabili rispetto a quelle con altri tag, in quanto ancora in fase di sviluppo dato che possiedono funzionalità incomplete.
 
 
 	\subsection{Configurazione}\label{Configurazione}

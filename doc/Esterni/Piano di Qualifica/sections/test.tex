@@ -1068,8 +1068,9 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\end{table}
 
 \newcounter{ti}
-\newcommand{\addtoti}{\stepcounter{ti}TI\theti}
-\newcommand{\TIti}{TI\theti}
+\newcounter{subti}
+\newcommand{\addtoti}{\stepcounter{ti}\setcounter{subti}{0}TI\theti}
+\newcommand{\TIti}{\stepcounter{subti}TI\theti.\thesubti}
 
 \subsubsection{Test d'integrazione} \label{testintegrazione}
 
@@ -1080,30 +1081,29 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 		\addtoti & Verifica l'integrazione di WebhookFactory con Webhook & \TS \\
-			\TIti.1 & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueWebhook & \TS \\
-			\TIti.2 & Verifica l'integrazione di GitlabWebhookFactory con GitlabPushWebhook & \TS \\
-			\TIti.3 & Verifica l'integrazione di GitlabWebhookFactory con GitlabCommitCommentWebhook & \TS \\
-			\TIti.4 & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueCommentWebhook & \TS \\
-			\TIti.5 & Verifica l'integrazione di RedmineWebhookFactory con RedmineIssueWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabIssueWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabPushWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabCommitCommentWebhook & \TS \\
+            \TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabIssueCommentWebhook & \TS \\
+			\TIti & Verifica l'integrazione di RedmineWebhookFactory con RedmineIssueWebhook & \TS \\
 		\addtoti & Verifica l'integrazione tra Webhook e GitLabProducer & \TS \\
-			\TIti.1 & Verifica l'integrazione tra GitlabIssueWebhook e GitlabProducer & \TS \\
-			\TIti.2 & Verifica l'integrazione tra GitlabPushWebhook e GitlabProducer & \TS \\
-			\TIti.3 & Verifica l'integrazione tra GitlabIssueCommentWebhook e GitlabProducer & \TS \\
-			\TIti.4 & Verifica l'integrazione tra GitlabCommitCommentWebhook e GitlabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabIssueWebhook e GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabPushWebhook e GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabIssueCommentWebhook e GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitLabCommitCommentWebhook e GitLabProducer & \TS \\
 		\addtoti & Verifica l'integrazione tra Webhook e RedmineProducer & \TS \\
-			\TIti.1 & Verifica l'integrazione tra RedmineIssueWebhook e RedmineProducer & \TS \\
+			\TIti & Verifica l'integrazione tra RedmineIssueWebhook e RedmineProducer & \TS \\
 		% \addtoti & Verifica l'integrazione del TelegramCosumer con il bot Telegram & \TNI \\
 		\addtoti & Verifica l'integrazione del EmailConsumer  con il server Email & \TS \\
+        \addtoti & Verifica l'integrazione del TelegramConsumer  con il bot Telegram & \TS \\
 		\addtoti & Verifica l'integrazione di Kafka con le componenti Producer & \TS \\
-			\TIti.1 & Verifica l'integrazione di KafkaProducer con GitLabProducer & \TS \\
-			\TIti.2 & Verifica l'integrazione di KafkaProducer con RedmineProducer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaProducer con GitLabProducer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaProducer con RedmineProducer & \TS \\
 		\addtoti & Verifica l'integrazione di Kafka con le componenti Consumer & \TS \\
-			\TIti.3 & Verifica l'integrazione di KafkaConsumer nel TelegramCosumer & \TS \\
-			\TIti.4 & Verifica l'integrazione di KafkaConsumer nel EmailConsumer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaConsumer nel TelegramCosumer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaConsumer nel EmailConsumer & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con ClientGestorePersonale & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaConsumer con ClientGestorePersonale & \TS \\
-		\addtoti & Verifica l'integrazione di Flask con FlaskServer & \TS \\
-		\addtoti & Verifica l'integrazione di FlaskServer con GitlabProducer & \TS \\
 
 		\bottomrule
 	\end{paddedtablex}
@@ -1116,6 +1116,9 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 		% \rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+        
+        \addtoti & Verifica l'integrazione di Flask con FlaskServer & \TS \\
+        \addtoti & Verifica l'integrazione di FlaskServer con GitLabProducer & \TS \\
 		\addtoti & Verifica l'integrazione di FlaskServer con RedmineProducer & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con KafkaProducerCreator & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaConsumer con KafkaConsumerCreator & \TS \\
@@ -1145,22 +1148,57 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			% \rowcolor{\tablegray}
 			\textbf{Codice} & \textbf{Componente} \\
 			\toprule
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti & \\
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti &  \\
-			\addtoti & \\
-			\addtoti & \\
+			\addtoti & Webhook::WebhookFactory \par Webhook::Webhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GitLabIssueWebhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GitLabPushWebhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GtLabCommitCommentWebhook\\
+            \TIti & Webhook::GitLabWebhookFactory \par  Webhook::GitLabIssueCommentWebhook\\
+            \TIti & Webhook::RedmineWebhookFactory \par Webhook::RedmineIssueWebhook\\
+			\addtoti & Webhook::Webhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GitLabIssueWebhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GitLabPushWebhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GtLabCommitCommentWebhook \par Producer::GitLabProducer\\
+            \TIti & Webhook::GitLabIssueCommentWebhook \par Producer::GitLabProducer\\
+            \addtoti & Webhook::Webhook \par Producer::RedmineProducer\\
+            \TIti & Webhook::RedmineIssueWebhook \par Producer::RedmineProducer\\
+			\addtoti &  Consumer::EmailConsumer \par server Email\\
+			\addtoti & Consumer::TelegramConsumer \par bot Telegram\\
+			\addtoti & Kafka \par Producer\\
+			\TIti & KafkaProducer \par Producer::GitLabProducer\\
+            \TIti & KafkaProducer \par Producer::RedmineProducer\\
 			\bottomrule
 		\end{tabularx}}
-		\caption{Elenco dei test in correlazione con le componenti}
+		\caption{Tracciamento dei test in correlazione con le componenti (1)}
 	\end{table}
 
-
+    \begin{table}[H]
+        \centering
+        {\def\arraystretch{1.4}
+            \begin{tabularx}{\textwidth}{YY}
+                % \rowcolor{\tablegray}
+                \textbf{Codice} & \textbf{Componente} \\
+                \toprule
+                \addtoti & Kafka \par Consumer\\
+                \TIti & KafkaConsumer \par Consumer::TelegramConsumer\\
+                \TIti & KafkaConsumer \par Consumer::EmailConsumer\\
+                \addtoti &  KafkaProducer \par GestorePersonale::ClientGestorePersonale\\
+                \addtoti &  KafkaConsumer \par GestorePersonale::ClientGestorePersonale\\
+                \addtoti & Flask \par Producer::Server::Flaskserver\\
+                \addtoti & Producer::Server::Flaskserver \par Producer::GitLabProducer\\
+                \addtoti & Producer::Server::Flaskserver \par Producer::RedmineProducer\\
+                \addtoti & KafkaProducer \par Producer::KafkaProducerCreator\\
+                \addtoti & KafkaConsumer \par Producer::KafkaConsumerCreator\\
+                \addtoti & MongoClient \par WebInterface::FrontEnd\\
+                \addtoti & MongoClient \par GestorePersonale::Processor\\
+                \addtoti & MongoClient \par MongoDB::Singleton\\
+                \addtoti & MongoDB::MongoFacade \par Gestorepersonale::Processor\\
+                \addtoti & GestorePersonale::Controller \par Flask\\
+                \addtoti & MongoDB::MongoFacade \par MongoDB::MongoProject\\
+                \addtoti & MongoDB::MongoFacade \par MongoDB::MongoUser\\
+                \bottomrule
+            \end{tabularx}}
+        \caption{Tracciamento dei test in correlazione con le componenti (2)}
+    \end{table}
 
 \newcounter{tu}
 \newcommand{\addtotu}{\stepcounter{tu}TU\thetu}
@@ -1196,9 +1234,9 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 				\textbf{Codice} & \textbf{Componente} \\
 				\toprule
 				\addtotu & Butterfly::FlaskServer::\_webhook\_handler \\
-				\addtotu & Butterfly::WebhookFactory::RedmineWebhookFactory \\
-				\addtotu & Butterfly::Webhook::RedmineIssueWebhook::parse \\
-				\addtotu & Butterfly::Webhook::RedmineIssueWebhook::parse \\
+				\addtotu & Butterfly::WebhookFactory:: RedmineWebhookFactory \\
+				\addtotu & Butterfly::Webhook::RedmineIssueWebhook:: parse \\
+				\addtotu & Butterfly::Webhook::RedmineIssueWebhook:: parse \\
 				\addtotu & \\
 				\addtotu &  \\
 				\addtotu & \\
