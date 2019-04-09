@@ -26,12 +26,6 @@ Creatore: Timoty Granziero, timoty.granziero@gmail.com
 
 import pymongo
 
-class DBConnection(ABC):
-    def enter
-    
-    def close():
-        pass
-
 class DBConnection(object):
     """Classe con la funzionalità di connessione e sconnessione
     a un database. Dovrebbe essere usata in un costrutto with,
