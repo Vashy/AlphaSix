@@ -4,7 +4,7 @@ from mongo_db.singleton import MongoSingleton
 class MongoProjects:
 
     def __init__(self, mongo: MongoSingleton):
-        self._mongo = mongo.instance()
+        self._mongo = mongo
 
     def projects(self, mongofilter={}):
         """Restituisce un `Cursor` che corrisponde al `filter` passato
@@ -12,13 +12,13 @@ class MongoProjects:
         Per accedere agli elementi del cursore, è possibile iterare con
         un `for .. in ..`, oppure usare il subscripting `[i]`.
         """
-        return self._mongo.collection('projects').find(mongofilter)
+        return self._mongo.read('projects').find(mongofilter)
 
     def exists(self, project: str) -> bool:
         """Restituisce `True` se l'`id` di un utente
         (che può essere Telegram o Email) è salvato nel DB.
         """
-        count = self._mongo.collection('projects').count_documents({
+        count = self._mongo.read('projects').count_documents({
             {'url': project}
         })
         return count != 0
@@ -85,11 +85,12 @@ class MongoProjects:
         """Inserisce una nuova keyword nel progetto
         """
         keywords = self.keywords(project)
-        keywords.append(label)
+        keywords.append(keyword)
         self._mongo.db['projects'].update(
-            {'url':project},
-            {'$set':
-                {'keywords':keywords}
+            {'url': project},
+            {
+                '$set':
+                {'keywords': keywords}
             }
         )
 
@@ -99,8 +100,9 @@ class MongoProjects:
         labels = self.labels(project)
         labels.append(label)
         self._mongo.db['projects'].update(
-            {'url':project},
-            {'$set':
-                {'labels':labels}
+            {'url': project},
+            {
+                '$set':
+                {'labels': labels}
             }
         )

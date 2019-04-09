@@ -23,7 +23,7 @@ class MongoTopics:
             # Ottiene l'id massimo
             # TODO: DESCENDING è molto dipendente da pymongo...
             max_id = (
-                self.collection('topics')
+                self.read('topics')
                     .find()
                     .sort('_id', -1)
                     .limit(1)[0]['_id']

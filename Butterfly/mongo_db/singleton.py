@@ -21,14 +21,14 @@ class MongoSingleton:
             `collection`, se non è già presente. Restituisce un
             `InsertOneResult`.
             """
-            return MongoSingleton.instance._db[collection].insert_one(document)
+            return self._db[collection].insert_one(document)
 
         def read(
                 self, collection_name: str
         ) -> pymongo.collection.Collection:
             """Restituisce la collezione con il nome passato come
             argomento."""
-            return MongoSingleton.instance._db[collection_name]
+            return self._db[collection_name]
 
         def delete(
                 self, filter: dict, collection: str
@@ -39,12 +39,17 @@ class MongoSingleton:
             """
             return MongoSingleton.instance._db[collection].delete_one(filter)
 
-    _INSTANCE = Singleton('butterfly')
+    _INSTANCE = None
 
-    # def __init__(self):
-    #     if not MongoSingleton.instance:
-    # MongoSingleton.instance = MongoSingleton.MongoSingleton('butterfly')
-
-    @property
-    def instance(self):
+    def __new__(cls):
+        if not MongoSingleton._INSTANCE:
+            MongoSingleton._INSTANCE = MongoSingleton.Singleton(db='butterfly')
         return MongoSingleton._INSTANCE
+
+#    def __init__(self):
+#        if not MongoSingleton._instance:
+#            MongoSingleton._instance = MongoSingleton.Singleton('butterfly')
+
+#    @property
+#    def instance(self):
+#        return self._INSTANCE

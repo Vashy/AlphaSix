@@ -9,6 +9,8 @@ from flask import Flask, request, session, make_response
 import flask_restful
 
 from mongo_db.facade import MongoFacade
+from mongo_db.users import MongoUsers
+from mongo_db.projects import MongoProjects
 from mongo_db.singleton import MongoSingleton
 
 html = (pathlib.Path(__file__).parent / 'public_html').resolve()
@@ -126,15 +128,16 @@ class Controller(Observer):
         return 'userid' in session
 
     def access(self, request: request):
-        if request.form.get('userid'):
-            if(
-                self.model.user_has_telegram(request.form['userid']) or
-                self.model.user_has_email(request.form['userid'])
-            ):
-                session['userid'] = request.form['userid']
-                return self.panel()
         file = html / 'access.html'
         page = file.read_text()
+        userid = request.form.get('userid')
+        if request.form.get('userid'):
+            if self.model.user_exists(request.form['userid']):
+                session['userid'] = request.form['userid']
+                return self.panel()
+            else:
+                page = page.replace('*access*', '<p>Accesso non riuscito. '+ userid+' non trovato.</p>')
+                page = page.replace('*userid*', userid)
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
         return page
@@ -170,23 +173,25 @@ class Controller(Observer):
 
     def dispatcher(self):
 
-            if self._checkSession():
-                path = request.path
-                if path == '/':
-                    return self.panel()
-                if path == '/user':
-                    return self.user(request)
-                if path == '/preference':
-                    return self.preference(request)
-            return self.access(request)
+        if self._checkSession():
+            path = request.path
+            if path == '/':
+                return self.panel()
+            if path == '/user':
+                return self.user(request)
+            if path == '/preference':
+                return self.preference(request)
+        return self.access(request)
 
 
 def main():
     flask = Flask(__name__)
     flask.secret_key = urandom(16)
     api = flask_restful.Api(flask)
-    mongo = MongoSingleton.instance
-    facade = MongoFacade(mongo, mongo)
+    mongo = MongoSingleton()
+    users = MongoUsers(mongo)
+    projects = MongoProjects(mongo)
+    facade = MongoFacade(users, projects)
     Controller(
         flask,
         api,

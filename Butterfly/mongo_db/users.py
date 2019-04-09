@@ -6,7 +6,7 @@ from mongo_db.singleton import MongoSingleton
 class MongoUsers:
 
     def __init__(self, mongo: MongoSingleton):
-        self._mongo = mongo.instance()
+        self._mongo = mongo
 
     @classmethod
     def _user_dict_no_id(cls, obj: dict):
@@ -28,13 +28,13 @@ class MongoUsers:
         Per accedere agli elementi del cursore, è possibile iterare con
         un `for .. in ..`, oppure usare il subscripting `[i]`.
         """
-        return self._mongo.collection('users').find(mongofilter)
+        return self._mongo.read('users').find(mongofilter)
 
     def exists(self, mongoid: str) -> bool:
         """Restituisce `True` se l'`id` di un utente
         (che può essere Telegram o Email) è salvato nel DB.
         """
-        count = self._mongo.collection('users').count_documents({
+        count = self._mongo.read('users').count_documents({
             '$or': [
                 # {'_id': mongoid},
                 {'telegram': mongoid},
@@ -43,23 +43,9 @@ class MongoUsers:
         })
         return count != 0
 
-    def user_has_telegram(self, telegram: str) -> bool:
-        """Restituisce `True` se lo user corrispondente a `id`
-        ha il campo `telegram` impostato.
-        """
-        assert self.exists(telegram), f'User {telegram} inesistente'
-        return self.exists(telegram)
-
-    def user_has_email(self, email: str) -> bool:
-        """Restituisce `True` se lo user corrispondente a `id`
-        ha il campo `email` impostato.
-        """
-        assert self._mongo.user_exists(email), f'User {email} inesistente'
-        return self.exists(email)
-
     def create(self, **fields):
         # Collezione di interesse
-        users = self._mongo.collection('users')
+        users = self._mongo.read('users')
 
         # Valori di default dei campi
         deaultfields = {
@@ -193,7 +179,7 @@ class MongoUsers:
         """
         assert self.exists(user), f'User {user} inesistente'
 
-        return self._mongo.collection('users').find_one_and_update(
+        return self._mongo.read('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
                 {'email': id},
@@ -214,7 +200,7 @@ class MongoUsers:
         """
         assert self.exists(user), f'User {user} inesistente'
 
-        return self._mongo.collection('users').find_one_and_update(
+        return self._mongo.read('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
                 {'email': id},
@@ -252,7 +238,7 @@ class MongoUsers:
 
         # self._print_user(id)
         # print(new_telegram)
-        return self._mongo.collection('users').find_one_and_update(
+        return self._mongo.read('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
                 {'email': id},
@@ -289,7 +275,7 @@ class MongoUsers:
             raise AssertionError('Operazione fallita. Impostare prima '
                                  'un account Telegram')
 
-        return self._mongo.collection('users').find_one_and_update(
+        return self._mongo.read('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
                 {'email': id},
@@ -317,7 +303,7 @@ class MongoUsers:
         # Controllo esistenza id user
         assert self.user_exists(user), f'User {id} inesistente'
 
-        count = self._mongo.collection('users').count_documents({
+        count = self._mongo.read('users').count_documents({
             '$or': [  # Confronta id sia con telegram che con email
                 {'telegram': id},
                 {'email': id},
@@ -328,7 +314,7 @@ class MongoUsers:
         # Controllo su preferenza non su un campo null
         assert count == 0, f'Il campo "{preference}" non è impostato'
 
-        return self._mongo.collection('users').find_one_and_update(
+        return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta id sia con telegram che con email
                 {'telegram': id},
                 {'email': id},
@@ -348,7 +334,7 @@ class MongoUsers:
         `AssertionError` -- se `id` non è presente nel DB.
         """
         assert self.user_exists(user), f'User {id} inesistente'
-        return self._mongo.collection('users').find_one_and_update(
+        return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta id sia con telegram che con email
                 {'telegram': id},
                 {'email': id},

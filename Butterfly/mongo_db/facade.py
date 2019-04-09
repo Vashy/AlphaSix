@@ -57,8 +57,8 @@ class MongoFacade():
     def insert_keyword_by_project(self, keyword: str, project: str):
         self._projects.insert_keyword(keyword, project)
 
-    def user_has_telegram(self, telegram: str):
-        return self._users.user_has_telegram(telegram)
+    def user_exists(self, userid: str):
+        return self._users.exists(userid)
 
     def user_has_email(self, email: str):
         return self._users.user_has_email(email)
