@@ -9,8 +9,8 @@
 		\item \textbf{Titolo}: aggiunta preferenze.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l’utente, date le varie opzioni per configurare Butterfly, aggiunge una
-		preferenza tra Topic, giorni di calendario e la piattaforma di messaggistica (Telegram o Email) preferita
-		\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+		preferenza tra Topic, giorni di calendario e la piattaforma di messaggistica (Telegram o Email) preferita.
+		\item \textbf{Precondizione}: l’utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: la nuova configurazione contiene una o più preferenze in aggiunta rispetto a quella precedente.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -26,7 +26,7 @@
 			\item \textbf{Titolo}: iscrizione Topic.
 			\item \textbf{Attori primari}: utente.
 			\item \textbf{Descrizione}: data la lista di Topic presenti per i progetti a cui è iscritto, l’utente ne seleziona uno o	più a cui è interessato, ricevendone una notifica. I Topic sono divisi per categoria e	comprendono etichette, progetto a cui sono legate e l'applicazione di provenienza: Redmine o GitLab.
-			\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+			\item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
 			\item \textbf{Postcondizione}: il numero di Topic a cui è interessato l’utente è aumentato.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
@@ -42,7 +42,7 @@
 			\item \textbf{Titolo}: aggiunta dei giorni di indisponibilità nel calendario.
 			\item \textbf{Attori primari}: utente.
 			\item \textbf{Descrizione}: dato il calendario lavorativo, l’utente aggiunge uno o più giorni in cui non è reperibile e non vuole ricevere notifiche.
-			\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+			\item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
 			\item \textbf{Postcondizione}: il numero di giorni in cui l’utente non si rende disponibile è aumentato.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
@@ -58,7 +58,7 @@
 			\item \textbf{Titolo}: aggiunta della piattaforma di messaggistica preferita.
 			\item \textbf{Attori primari}: utente.
 			\item \textbf{Descrizione}: l’utente aggiunge la sua preferenza tra Telegram e Email dove vuole ricevere le notifiche.
-			\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+			\item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
 			\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica selezionate dall’utente è aumentato.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
@@ -74,7 +74,7 @@
 	% 		\item \textbf{Titolo}: aggiunta persona di fiducia.
 	% 		\item \textbf{Attori primari}: utente.
 	% 		\item \textbf{Descrizione}: l’utente aggiunge l'utente legato a un identificativo di sua preferenza a cui inoltrare i messaggi in caso di indisponibilità.
-	% 		\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
+	% 		\item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
 	% 		\item \textbf{Postcondizione}: la preferenza viene aggiunta correttamente.
 	% 		\item \textbf{Scenario principale}:
 	% 		\begin{enumerate}
@@ -94,7 +94,7 @@
 	% 		\item \textbf{Titolo}: errore identificativo persona di fiducia inesistente.
 	% 		\item \textbf{Attori primari}: utente.
 	% 		\item \textbf{Descrizione}: l’utente cerca di aggiungere una persona di fiducia ma viene avvisato che ha inserito un identificativo errato.
-	% 		\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
+	% 		\item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato la persona a cui inoltrare le notifiche.
 	% 		\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore di preferenza.
 	% 		\item \textbf{Scenario principale}:
 	% 		\begin{enumerate}
@@ -112,7 +112,7 @@
 			\item \textbf{Titolo}: aggiunta keyword per i push di GitLab.
 			\item \textbf{Attori primari}: utente.
 			\item \textbf{Descrizione}: l’utente aggiunge le keyword che vuole che siano contenute nei messaggi di commit dei push di cui vuole ricevere la notifica.
-			\item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+			\item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
 			\item \textbf{Postcondizione}: nelle nuove configurazioni dell'utente selezionato sono presenti una o più nuove keyword per ricevere le notifiche da push di GitLab di interesse.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
@@ -120,7 +120,7 @@
 			\end{enumerate}
 			\item \textbf{Estensioni}:
 			\begin{enumerate}
-				\item Errore keyword già esistente [UC\theuccount.7-GP]
+				\item Errore keyword già esistente [UC\theuccount.5-GP]
 			\end{enumerate}
 		\end{itemize}
 
@@ -132,7 +132,7 @@
 		\item \textbf{Titolo}: errore keyword già esistente.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l'utente vuole aggiungere una keyword che ha già aggiunto in precedenza.
-		\item \textbf{Precondizione}:  l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+		\item \textbf{Precondizione}:  l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
 		\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore della keyword.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
@@ -151,7 +151,7 @@
         \item \textbf{Attori primari}: utente.
         % non registrato.
         \item \textbf{Descrizione}: l'utente seleziona da una lista i progetti da cui è interessato ricevere delle notifiche.
-        \item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+        \item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
         \item \textbf{Postcondizione}: almeno un progetto è stato aggiunto.
         \item \textbf{Scenario principale}:
         \begin{enumerate}
@@ -172,7 +172,7 @@
         \item \textbf{Attori primari}: utente.
         % non registrato.
         \item \textbf{Descrizione}: l'utente, per ogni progetto a cui è interessato, seleziona la priorità dei progetti.
-        \item \textbf{Precondizione}: l’utente ha acceduto con le sue credenziali corrette nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
+        \item \textbf{Precondizione}: l'utente ha acceduto con l'identificativo corretto nel sistema e non ha già selezionato tutte le preferenze possibili proposte da \progetto.
         \item \textbf{Postcondizione}: almeno una priorità per un progetto è stata aggiunta.
         \item \textbf{Scenario principale}:
         \begin{enumerate}
