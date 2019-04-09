@@ -44,14 +44,16 @@ all'interno del sistema.
 
 \subsection{API Rest}\label{APIRest}
 
+\newcommand{\homeUrl}{home\_url}
+
 Per Butterfly abbiamo utilizzato lo standard API Rest per la gestione delle risorse.
 Viene descritto nelle prossime sezioni come interagire con le API del sistema.
 
-Il root path sottointeso sarà sempre \texttt{\UriImola/api/v1/}
+Il root path sottointeso sarà sempre \texttt{\homeUrl/api/v1/}
 
 Ad esempio, per la GET degli user, l'indirizzo sarà:
 \begin{center}
-    \texttt{GET \UriImola/api/v1/users}
+    \texttt{GET \homeUrl/api/v1/users}
 \end{center}
 
 \subsubsection{Users}
@@ -115,8 +117,8 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 \begin{table}[H]
     \begin{paddedtablex}[1.3]{\textwidth}{cYY} % 0 opz  2 obb
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
-        \texttt{GET} & \texttt{/users} & Visualizza tutti gli utenti\\
-        \texttt{GET} & \texttt{/users/<id>} & Visualizza l'utente che corrisponde a \texttt{<id>}\\
+        \texttt{GET} & \texttt{/users} & Restituisce un payload in JSON di tutti gli utenti\\
+        \texttt{GET} & \texttt{/users/<id>} & Restituisce un payload in JSON dell'utente che corrisponde a \texttt{<id>}\\
         \texttt{POST} & \texttt{/users} & Inserisce un nuovo utente. È necessario fornire uno tra i campi telegram o email\\
         \texttt{PUT} & \texttt{/users/<id>} & Modifica l'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
         \texttt{DELETE} & \texttt{/users/<id>} & Elimina l'utente corrispondente a \texttt{<id>} dal sistema\\
@@ -178,8 +180,8 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 \begin{table}[H]
     \begin{paddedtablex}[1.3]{\textwidth}{cYY} % 0 opz  2 obb
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
-        \texttt{GET} & \texttt{/projects} & Payload di tutti i progetti\\
-        \texttt{GET} & \texttt{/projects/<id>} & Payload del progetto che corrisponde a \texttt{<id>}\\
+        \texttt{GET} & \texttt{/projects} & Restituisce un payload in JSON di tutti i progetti\\
+        \texttt{GET} & \texttt{/projects/<id>} & Restituisce un payload in JSON del progetto che corrisponde a \texttt{<id>}\\
         \texttt{POST} & \texttt{/projects} & Inserisce un nuovo progetto\\
         \texttt{PUT} & \texttt{/projects/<id>} & Modifica il progetto corrispondente a \texttt{<id>} con i campi passati nel payload\\
         \texttt{DELETE} & \texttt{/projects/<id>} & Elimina il progetto corrispondente a \texttt{<id>} dal sistema\\
@@ -190,7 +192,7 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 
 
 
-\subsection{Configurazione piattaforma di messaggistica}
+\subsection{Piattaforma di messaggistica}
 
 \subsubsection{Email}
 
