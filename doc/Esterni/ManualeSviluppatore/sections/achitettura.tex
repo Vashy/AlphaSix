@@ -23,11 +23,47 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
     \item GitlabProducer
 \end{itemize}
 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Producers.png}\\
+    \caption{Visione generale dei Producers}
+    \label{fig:producers}
+\end{figure}
+
 \subsection{Gestore Personale}
 Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Ha un proprio KafkaProducer e KafkaConsumer
 che si occupano rispettivamente di ricevere i messaggi da Kafka e re-immetterli nelle code relative ai Consumer finali, passando per la logica
 del personale, in cui ogni utente può selezionare i propri giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul
-quale ricevere la notifica.
+quale ricevere la notifica. Abbiamo pensato di dividerlo in tre parti per rendere tutto più chiaro.\newline
+Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model.
+La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’API REST.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/GP-Processor.png}\\
+    \caption{Interfaccia del Gestore Personale}
+    \label{fig:GP-Processor}
+\end{figure}
+
+Qua viene mostrato come il Gestore Personale si interfaccia con MongoDB, ovvero MongoUser e MongoProject. Sono suddivisi in base alla risorsa di interesse.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/GP-Mongo.png}\\
+    \caption{Interazione con MongoDB del Gestore Personale}
+    \label{fig:GP-Mongo}
+\end{figure}
+
+Mentre in quest'ultima viene mostrato come il Gestore Personale si interfaccia con Kafka, questa riguarda il core del Gestore Personale, si occupa di processare
+i messaggi
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/GP-Kafka.png}\\
+    \caption{Interazione con Kafka del Gestore Personale}
+    \label{fig:GP-Kafka}
+\end{figure}
 
 \subsection{Consumers}
 Il Consumer è la componente finale. Esso resta in ascolto della sua coda specifica, specifica per applicativo (e.g. telegram, email).
@@ -38,3 +74,30 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
     \item TelegramConsumer
     \item EmailConsumer
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Consumers.png}\\
+    \caption{Visione generale dei Consumers}
+    \label{fig:producers}
+\end{figure}
+
+\subsection{Impostazioni dei vari componenti}
+
+Per fare in modo che tutti i componenti vengano istanziati con i determinati parametri che permettano la giusta comunicazione tra le componenti,
+ci sono dei file di configurazioni che contengono per esempio il token del bot Telegram, l'email e la password per accedere al server Email. Queste configurazioni
+sono contenute nei file ``config.json'' contenuto nelle cartelle producer e consumer.
+
+\subsection{Interazione tra i componenti}
+
+\Prog vedendola ad alto livello si identificano 6 componenti. Redmine e GitLab per comunicare con i relativi Producer utilizzano dei webhook in formato JSON
+mettendosi in ascolto su determinate porte utilizzando il webserver Flask. Per quanto riguarda la comunicazione tra i Producer e Kafka utilizziamo delle istanze
+di KafkaProucer. 
+
+
+
+
+
+
+
+
