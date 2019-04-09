@@ -1,59 +1,6 @@
 \section{Utilizzo di Butterfly}\label{utilizzo}
 
-
-\subsection{Webhooks} % Boh, da vedere se mettere qui o in configurazione
-
-Butterfly ha lo scopo di restare in ascolto degli \gloss{webhook} provenienti da GitLab e Redmine.
-Per fare ciò, è necessario configurare degli webhook dalle applicazioni e progetti interessati e aggiungere
-la porta dove il \gloss{Producer} di quell'applicazione è in ascolto.
-
-
-\subsection{Redmine}
-
-L'implementazione per Redmine si appoggia sul plugin \texttt{redmine\_webhook}, raggiungibile al link
-\url{https://github.com/suer/redmine_webhook}.
-
-Questo plugin implementa il concetto di Hook offerto dalla API di Redmine, inviando a un determinato URL
-un \gloss{payload} costituito da un file JSON quando un evento si innesca, contenente le informazioni relative
-a tale evento.
-
-Per installarlo su un'istanza di Redmine, seguire le istruzione riportate nel README presente nella repository.
-
-TODO configurazione webhooks
-
-
-\subsection{GitLab}
-
-Per aggiungere un webhook relativo a un progetto su GitLab, andare sulle impostazioni di quel progetto:
-
-\begin{center}
-    \texttt{Settings > Integrations}
-\end{center}
-
-Aggiungere gli eventi di interesse (attenzione: Butterfly non supporta tutti gli eventi) e mettere nel campo URL l'indirizzo su cui il Producer GitLab è in ascolto (di default la porta è 5003, è possibile cambiare questa impostazione
-nel file \texttt{producer/gitlab/config.json}): % TODO: JSON cambiabile da rancher? Meglio prendere la variabile d'ambiente?
-
-\begin{center}
-    \texttt{\UriImola:5003}
-\end{center}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/webhook-gitlab.png}\\
-    \caption[Webhook, GitLab]{Inserimento URL per configurare un webhook su un progetto (GitLab)}
-\end{figure}
-
-
-\subsubsection{Eventi supportati}
-Segue la lista degli eventi supportati dal Producer GitLab:
-\begin{itemize}
-    \item Push events
-    \item Comments
-    \item Issues events
-\end{itemize}
-
 % TODO: Resto delle attività utile all'amministratore che configura l'applicazione
-
 
 \subsection{Gestore Personale}
 
