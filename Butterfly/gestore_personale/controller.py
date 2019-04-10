@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 import pathlib
 import json
 
-from flask import Flask, request, session, make_response
+from flask import Flask, request, session, make_response, redirect, url_for
 import flask_restful
 
 from mongo_db.facade import MongoFacade
@@ -121,31 +121,45 @@ class Controller(Observer):
             '/',
             '',
             self.dispatcher,
-            methods=['GET', 'POST', 'PUT', 'DELETE']
+            methods=['GET', 'POST']
         )
 
     def _checkSession(self):
         return 'userid' in session
 
+    def basicRender(self, fileHtml: pathlib.Path):
+        page = fileHtml.read_text()
+        return page
+
     def access(self, request: request):
-        file = html / 'access.html'
-        page = file.read_text()
+        fileHtml = html / 'access.html'
+        page = fileHtml.read_text()
         userid = request.form.get('userid')
         if request.form.get('userid'):
             if self.model.user_exists(request.form['userid']):
                 session['userid'] = request.form['userid']
-                return self.panel()
+                return redirect(url_for(''), code=303)
             else:
-                page = page.replace('*access*', '<p>Accesso non riuscito. '+ userid+' non trovato.</p>')
+                page = page.replace(
+                    '*access*',
+                    '<p>Accesso non riuscito. ' + userid + ' non trovato.</p>')
                 page = page.replace('*userid*', userid)
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
         return page
 
-    def panel(self):
-        file = html / 'panel.html'
-        page = file.read_text()
-        return page
+    def panel(self, request: request):
+        if request.args.get('add'):
+            fileHtml = html / 'adduser.html'
+        elif request.args.get('remove'):
+            fileHtml = html / 'removeuser.html'
+        elif request.args.get('modify'):
+            fileHtml = html / 'modifyuser.html'
+        elif request.args.get('preference'):
+            fileHtml = html / 'preferences.html'
+        else:
+            fileHtml = html / 'panel.html'
+        return self.basicRender(fileHtml)
 
     def user(self, request: request):
         return 'user'
@@ -175,8 +189,8 @@ class Controller(Observer):
 
         if self._checkSession():
             path = request.path
-            if path == '/':
-                return self.panel()
+            if path == '/' or path == '/panel':
+                return self.panel(request)
             if path == '/user':
                 return self.user(request)
             if path == '/preference':
