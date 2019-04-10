@@ -1,7 +1,7 @@
 \subsubsection{UC\theuccount-GP - Inserimento utente}
 		\begin{figure}[H]
 			\centering
-				\includegraphics[width=0.75\columnwidth]{img/casi_d'uso/UC\theuccount.png}\\
+				\includegraphics[width=0.85\columnwidth]{img/casi_d'uso/UC\theuccount.png}\\
 			\caption{UC\theuccount-GP - Inserimento utente}
 		\end{figure}
 	\begin{itemize}
@@ -38,7 +38,7 @@
 			\begin{enumerate}
 				\item L'utente inserisce i dati del nuovo utente da aggiungere
 				\item L'utente conferma l'invio dei dati
-				\item L'aggiunta viene effettuata
+				\item Il nuovo utente ora è riconosciuto dal sistema
 			\end{enumerate}
 			\item \textbf{Estensioni}:
 			\begin{enumerate}
@@ -88,7 +88,7 @@
 				\item \textbf{Titolo}: inserimento contatto Email.
 				\item \textbf{Attori primari}: utente.
 				% non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il contatto Email dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un ID Telegram.
+				\item \textbf{Descrizione}: l'utente inserisce il contatto Email dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un contatto Telegram.
 				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
 				\item \textbf{Postcondizione}: il contatto Email è stato aggiunto.
 				\item \textbf{Scenario principale}:
@@ -105,7 +105,7 @@
 				\item \textbf{Titolo}: inserimento contatto Telegram.
 				\item \textbf{Attori primari}: utente.
 				% non registrato.
-				\item \textbf{Descrizione}: l'utente inserisce il contatto Telegram dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un ID Telegram.
+				\item \textbf{Descrizione}: l'utente inserisce il contatto Telegram dell'utente da aggiungere. L'inserimento di questo campo è opzionale, ma è obbligatorio che l'utente da aggiungere possieda un contatto Email o un contatto Telegram.
 				\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
 				\item \textbf{Postcondizione}: il contatto Telegram è stato aggiunto.
 				\item \textbf{Scenario principale}:
@@ -121,7 +121,7 @@
 			\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 			\item \textbf{Titolo}: errore utente già presente nel sistema.
 			\item \textbf{Attori primari}: utente.
-			\item \textbf{Descrizione}: l’utente viene avvisato che i contatti Telegram o Email immessi non sono univoci.
+			\item \textbf{Descrizione}: l’utente viene avvisato che i contatti Telegram o Email immessi non sono univoci all'interno del sistema.
 			\item \textbf{Precondizione}: un nuovo utente deve essere aggiunto nel sistema.
 			\item \textbf{Postcondizione}: il sistema comunica all’utilizzatore l’errore e l'utente non viene inserito.
 			\item \textbf{Scenario principale}:

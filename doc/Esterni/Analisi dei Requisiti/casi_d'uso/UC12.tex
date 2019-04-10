@@ -10,7 +10,7 @@
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l'utente rimuove l'utente selezionato dal sistema.
 		\item \textbf{Precondizione}: un utente già presente nel sistema deve essere rimosso.
-		\item \textbf{Postcondizione}: un utente viene rimosso dal sistema.
+		\item \textbf{Postcondizione}: un utente viene rimosso dal sistema e non è ora più riconoscibile.
 		\item \textbf{Scenario principale}:
 		\begin{enumerate}
 			\item L'utente rimuove l'utente selezionato
@@ -21,7 +21,7 @@
 	\subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione utente dal sistema}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.5\columnwidth]{img/casi_d'uso/UC\theuccount_\thesubuccount.png}\\
+			\includegraphics[width=0.7\columnwidth]{img/casi_d'uso/UC\theuccount_\thesubuccount.png}\\
 			\caption{UC\theuccount.\thesubuccount-GP - Rimozione utente dal sistema}
 		\end{figure}
 		\begin{itemize}
@@ -34,7 +34,7 @@
 			\item \textbf{Postcondizione}: un utente con il contatto Email o Telegram inserito viene rimosso dal sistema.
 			\item \textbf{Scenario principale}:
 			\begin{enumerate}
-				\item L'utente inserisce ciò che è richiesto dal sistema
+				\item L'utente inserisce il contatto dell'utente da rimuovere
 				\item L'utente conferma l'invio dei dati
 				\item L'utente da rimuovere è stato rimosso dal sistema
 			\end{enumerate}
@@ -85,9 +85,10 @@
 					\item \textbf{Attori primari}: utente.
 					\item \textbf{Descrizione}: l’utente viene avvisato che il contatto inserito non è presente nel sistema.
 					\item \textbf{Precondizione}: un utente già presente nel sistema deve essere rimosso.
-					\item \textbf{Postcondizione}: il sistema comunica all’utente che utilizza il sistema l’errore e nessun utente viene rimosso.
+					\item \textbf{Postcondizione}: il sistema comunica all’utente l’errore e nessun utente viene rimosso.
 					\item \textbf{Scenario principale}:
 					\begin{enumerate}
+						\item L'utente inserisce il contatto dell'utente da rimuovere
 						\item L'utente selezionato attraverso il contatto Telegram o Email non viene rimosso perché non presente nel sistema.
 					\end{enumerate}
 				\end{itemize}
