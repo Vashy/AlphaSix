@@ -153,7 +153,7 @@
 
 			% 6.1.2.3 The prepared documents shall be reviewed and edited for format, techni cal content, and presentation style agai nst their documentation standards. The y shall be approved for ade quacy by authorized personnel prior to issue.
 			\paragraph{Approvazione}	\label{Approvazione}
-			Ogni documento, nel momento in cui viene ritenuto pronto, deve essere revisionato dal \Res\ affinchèTODO ne venga controllata l'adeguatezza e approvato il rilascio.
+			Ogni documento, nel momento in cui viene ritenuto pronto, deve essere revisionato dal \Res\ affinché ne venga controllata l'adeguatezza e approvato il rilascio.
 
 
 		\subsubsection{Produzione}
@@ -329,7 +329,7 @@
 			Attraverso l'uso di uno specifico \texttt{docker-compose.yml} e il comando \texttt{docker-compose up} il processo di build e avvio dell'applicativo sarà semplice e immediato.
 
 			\subparagraph{DockerHub}\label{DockerHub}
-			Per evitare di effettuare una build manuale dell'immagine di Docker contenente una specifica componente del software, abbiamo deciso di utilizzare DockerHub collegato alla nostra repository in GitHub. In questo modo ogni modifica effettuata nella repository, attraverso push sui branch master e develop, scatta una build automatica. Questa prevede quindi la creazione di dieci immagini salvate su cinque repository su DockerHub in un account denominato `alphasix'. Le immagine sono classificate in questo modo nome\_account/nome\_repository:tag:
+			Per evitare di effettuare una build manuale dell'immagine di Docker contenente una specifica componente del software, abbiamo deciso di utilizzare DockerHub collegato alla nostra repository in GitHub. In questo modo ogni modifica effettuata nella repository, attraverso push sui branch master e develop, scatta una build automatica. Questa prevede quindi la creazione di dieci immagini salvate su cinque repository su DockerHub in un account denominato `alphasix'. Le immagini sono classificate in questo modo nome\_account/nome\_repository:tag:
 			\begin{itemize}
 				\item alphasix/producer-gitlab:master
 				\item alphasix/producer-gitlab:develop
@@ -514,7 +514,6 @@
 		Questa sezione vuole descrivere come eseguiamo la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci attendiamo.
 		La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il
 		ritorno ad una fase stabile del progetto per poi ripartire da lì, prendendo in considerazione i risultati della precedente verifica.
-		Per questo motivo
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
@@ -529,7 +528,7 @@
 		è possibile valutare un miglioramento per i vari processi e prodotti.
 
 		\subsubsection{Walkthrough e Inspection}
-		Due modi di effettuare la verifica sono attraverso \gloss{Walkthrough} e Inspection.
+		Due modi di effettuare la verifica sono attraverso Walkthrough e Inspection.
 		Li adotteremo entrambi, ma non contemporaneamente, per i vantaggi che comporta ogni metodo.
 
 			\paragraph{Walkthrough}
@@ -708,14 +707,14 @@
             \textbf{Metrica}: percentuale di moduli non progettati prima della loro codifica. Per fare ciò, nelle varie fasi di verifica, si contano i moduli codificati prima di essere progettati. Verso il termine del periodo di revisione si calcola la loro percentuale in base al numero totale di moduli prodotti.
 
             \subparagraph{MPR011 Numero di design pattern applicati}
-            Dato che i design patter possono essere considerati una "buona pratica" per produrre del codice in determinati contesti, la loro presenza può aiutare ad innalzare la qualità del prodotto. Il loro uno massiccio però può portare ad un'eccessiva complessità e talvolta anche ad un mal funzionamento del prodotto se applicati erroneamente.
+            Dato che i design patter possono essere considerati una "buona pratica" per produrre del codice in determinati contesti, la loro presenza può aiutare ad innalzare la qualità del prodotto. Il loro uso massiccio però può portare ad un'eccessiva complessità e talvolta anche ad un mal funzionamento del prodotto se applicati erroneamente.
 
             per questo i design pattern devono essere applicati in maniera ponderata.
 
             \textbf{Metrica}: numero di volte che si applica uno o più tipi di design pattern.
 
             \subparagraph{MPR012 Moduli non testati}
-            I \gloss{moduli} devo essere sempre testati per assicurasi la loro correttezza, per fare ciò devono essere testa le \gloss{unità} che li compongono attraverso i test di unità in \S\ref{testunita}.
+            I \gloss{moduli} devo essere sempre testati per assicurasi la loro correttezza, per fare ciò devono essere testate le \gloss{unità} che li compongono attraverso i test di unità in \S\ref{testunita}.
 
             Ogni modulo deve dunque essere testato.
 
@@ -870,7 +869,7 @@
 			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
 
 			\paragraph{Tracciamento dei test} \label{TracciamentoTest}
-			Tutti i test da noi delineati presentano un tracciamento in forma tabellare con i requisiti o componenti applicative a loro associati.
+			Tutti i test da noi delineati presentano un tracciamento in forma tabellare con i requisiti o componenti applicativi a loro associati.
 			Questo ci assicura una verifica più completa.
 
 
