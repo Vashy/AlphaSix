@@ -940,8 +940,8 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\end{table}
 
 \newcounter{ti}
-\newcounter{subti}
-\newcommand{\addtoti}{\stepcounter{ti}\setcounter{subti}{0}TI\theti}
+\newcounter{subti}[ti]
+\newcommand{\addtoti}{\stepcounter{ti}TI\theti}
 \newcommand{\TIti}{\stepcounter{subti}TI\theti.\thesubti}
 
 \subsubsection{Test d'integrazione} \label{testintegrazione}
@@ -1020,24 +1020,24 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			% \rowcolor{\tablegray}
 			\textbf{Codice} & \textbf{Componente} \\
 			\toprule
-			\addtoti & Webhook::WebhookFactory \par Webhook::Webhook\\
-            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GitLabIssueWebhook\\
-            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GitLabPushWebhook\\
-            \TIti & Webhook::GitLabWebhookFactory \par Webhook::GtLabCommitCommentWebhook\\
-            \TIti & Webhook::GitLabWebhookFactory \par  Webhook::GitLabIssueCommentWebhook\\
-            \TIti & Webhook::RedmineWebhookFactory \par Webhook::RedmineIssueWebhook\\
-			\addtoti & Webhook::Webhook \par Producer::GitLabProducer\\
-            \TIti & Webhook::GitLabIssueWebhook \par Producer::GitLabProducer\\
-            \TIti & Webhook::GitLabPushWebhook \par Producer::GitLabProducer\\
-            \TIti & Webhook::GtLabCommitCommentWebhook \par Producer::GitLabProducer\\
-            \TIti & Webhook::GitLabIssueCommentWebhook \par Producer::GitLabProducer\\
-            \addtoti & Webhook::Webhook \par Producer::RedmineProducer\\
-            \TIti & Webhook::RedmineIssueWebhook \par Producer::RedmineProducer\\
-			\addtoti &  Consumer::EmailConsumer \par server Email\\
-			\addtoti & Consumer::TelegramConsumer \par bot Telegram\\
+			\addtoti & Webhook.WebhookFactory \par Webhook.Webhook\\
+            \TIti & Webhook.GitLabWebhookFactory \par Webhook.GitLabIssueWebhook\\
+            \TIti & Webhook.GitLabWebhookFactory \par Webhook.GitLabPushWebhook\\
+            \TIti & Webhook.GitLabWebhookFactory \par Webhook.GtLabCommitCommentWebhook\\
+            \TIti & Webhook.GitLabWebhookFactory \par  Webhook.GitLabIssueCommentWebhook\\
+            \TIti & Webhook.RedmineWebhookFactory \par Webhook.RedmineIssueWebhook\\
+			\addtoti & Webhook.Webhook \par Producer.GitLabProducer\\
+            \TIti & Webhook.GitLabIssueWebhook \par Producer.GitLabProducer\\
+            \TIti & Webhook.GitLabPushWebhook \par Producer.GitLabProducer\\
+            \TIti & Webhook.GtLabCommitCommentWebhook \par Producer.GitLabProducer\\
+            \TIti & Webhook.GitLabIssueCommentWebhook \par Producer.GitLabProducer\\
+            \addtoti & Webhook.Webhook \par Producer.RedmineProducer\\
+            \TIti & Webhook.RedmineIssueWebhook \par Producer.RedmineProducer\\
+			\addtoti &  Consumer.EmailConsumer \par server Email\\
+			\addtoti & Consumer.TelegramConsumer \par bot Telegram\\
 			\addtoti & Kafka \par Producer\\
-			\TIti & KafkaProducer \par Producer::GitLabProducer\\
-            \TIti & KafkaProducer \par Producer::RedmineProducer\\
+			\TIti & KafkaProducer \par Producer.GitLabProducer\\
+            \TIti & KafkaProducer \par Producer.RedmineProducer\\
 			\bottomrule
 		\end{tabularx}}
 		\caption{Tracciamento dei test in correlazione con le componenti (1)}
@@ -1051,22 +1051,22 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
                 \textbf{Codice} & \textbf{Componente} \\
                 \toprule
                 \addtoti & Kafka \par Consumer\\
-                \TIti & KafkaConsumer \par Consumer::TelegramConsumer\\
-                \TIti & KafkaConsumer \par Consumer::EmailConsumer\\
-                \addtoti &  KafkaProducer \par GestorePersonale::ClientGestorePersonale\\
-                \addtoti &  KafkaConsumer \par GestorePersonale::ClientGestorePersonale\\
-                \addtoti & Flask \par Producer::Server::Flaskserver\\
-                \addtoti & Producer::Server::Flaskserver \par Producer::GitLabProducer\\
-                \addtoti & Producer::Server::Flaskserver \par Producer::RedmineProducer\\
-                \addtoti & KafkaProducer \par Producer::KafkaProducerCreator\\
-                \addtoti & KafkaConsumer \par Producer::KafkaConsumerCreator\\
-                \addtoti & MongoClient \par WebInterface::FrontEnd\\
-                \addtoti & MongoClient \par GestorePersonale::Processor\\
-                \addtoti & MongoClient \par MongoDB::Singleton\\
-                \addtoti & MongoDB::MongoFacade \par Gestorepersonale::Processor\\
-                \addtoti & GestorePersonale::Controller \par Flask\\
-                \addtoti & MongoDB::MongoFacade \par MongoDB::MongoProject\\
-                \addtoti & MongoDB::MongoFacade \par MongoDB::MongoUser\\
+                \TIti & KafkaConsumer \par Consumer.TelegramConsumer\\
+                \TIti & KafkaConsumer \par Consumer.EmailConsumer\\
+                \addtoti &  KafkaProducer \par GestorePersonale.ClientGestorePersonale\\
+                \addtoti &  KafkaConsumer \par GestorePersonale.ClientGestorePersonale\\
+                \addtoti & Flask \par Producer.Server.Flaskserver\\
+                \addtoti & Producer.Server.Flaskserver \par Producer.GitLabProducer\\
+                \addtoti & Producer.Server.Flaskserver \par Producer.RedmineProducer\\
+                \addtoti & KafkaProducer \par Producer.KafkaProducerCreator\\
+                \addtoti & KafkaConsumer \par Producer.KafkaConsumerCreator\\
+                \addtoti & MongoClient \par WebInterface.FrontEnd\\
+                \addtoti & MongoClient \par GestorePersonale.Processor\\
+                \addtoti & MongoClient \par MongoDB.Singleton\\
+                \addtoti & MongoDB.MongoFacade \par Gestorepersonale.Processor\\
+                \addtoti & GestorePersonale.Controller \par Flask\\
+                \addtoti & MongoDB.MongoFacade \par MongoDB.MongoProject\\
+                \addtoti & MongoDB.MongoFacade \par MongoDB.MongoUser\\
                 \bottomrule
             \end{tabularx}}
         \caption{Tracciamento dei test in correlazione con le componenti (2)}
