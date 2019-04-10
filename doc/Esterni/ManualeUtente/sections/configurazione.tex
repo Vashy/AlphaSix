@@ -14,9 +14,9 @@ Sempre sotto richiesta di \II\ viene utilizzato Rancher come software per la ges
 			\item \textbf{Kubernetes}\footnote{\url{https://kubernetes.io/docs/setup/independent/install-kubeadm}}: nel caso si decidesse di utilizzare Kubernetes per la gestione dei container è consigliata l'installazione e configurazione corretta della versione v1.13.
 			\item \textbf{Rancher}\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/requirements/}}: nel caso si decidesse di utilizzare Rancher per la gestione grafica di oggetti Kubernetes contenenti i container Docker, è consigliata l'installazione e configurazione della versione v2.1.4.
 			\item \textbf{Kafka}\footnote{\url{https://docs.confluent.io/current/installation/system-requirements.html}}: è necessario avere installata e configurata correttamente almeno la versione v2.12.
-			\item \textbf{GitLab}\footnote{\url{https://git.ucd.ie/help/install/requirements.md}} 11.7.
+			\item \textbf{GitLab}\footnote{\url{https://git.ucd.ie/help/install/requirements.md}}: durante lo sviluppo di \progetto~abbiamo fatto riferimento alla versione v11.7.
 			\item \textbf{Redmine}\footnote{%
-			\url{https://www.easyredmine.com/faq/technical-info/176-hardware-and-software-requirements-for-server-solution}}: durante lo sviluppo di \progetto\ abbiamo utilizzato 4.0.1.
+			\url{https://www.easyredmine.com/faq/technical-info/176-hardware-and-software-requirements-for-server-solution}}: durante lo sviluppo di \progetto~abbiamo fatto riferimento alla versione v4.0.1.
 		\end{itemize}
 
 	%TODO rivedere
@@ -31,7 +31,7 @@ Per la configurazione di ciascun tipo servizio abbiamo deciso di dare un range d
 Questa regola non influisce col corretto funzionamento di \progetto\ ma è solamente per non assegnare le porte in modalità casuale e facilitare le analisi di eventuali errori come anche la facile manutenzione e aggiunta di servizi.
 
 La suddivisione delle porte è la seguente:
-
+%TODO verificare bene questo e che sia implementato in questa maniera
 \begin{table}[H]
 	\centering
 	\begin{paddedtablex}[1.3]{\textwidth}{YYY}
@@ -56,10 +56,10 @@ La suddivisione che abbiamo utilizzato durante lo sviluppo ed alla consegna del 
 		Kafka& 9092& 30030\\
 		Producer GitLab& 5000& 30060\\
 		Producer Redmine& 5000& 30061\\
-		Consumer Telegram& 30090& \\
-		Consumer Email& 30091& \\
-		Producer Gestore personale& 30120& 5000\\
-		Consumer Gestore personale& 30121& \\\bottomrule
+		Consumer Telegram& & 30090\\
+		Consumer Email& & 30091\\
+		Producer Gestore personale& 5000& 30120\\
+		Consumer Gestore personale& & 30121\\\bottomrule
 	\end{paddedtablex}
 	\caption{Configurazione delle porte in fase di sviluppo e consegna}
 \end{table}
@@ -76,17 +76,15 @@ Le specifiche relative alla configurazione delle porte in Rancher possono essere
 
 		\paragraph{Configurazione del plugin}
 
-		scaricarlo nella cartella...
-		verificare in sezione admin in configurazioni parte amministratore...
+		Per poter inviare i webhook da Redmine è necessario installare un plugin esterno chiamato \texttt{redmine\_webhook}\footnote{\url{https://github.com/suer/redmine_webhook.git}}.\\
+		Per installarlo è necessario scaricarlo (tramite il comando \texttt{git clone} ad esempio) nella cartella \texttt{/plugins/redmine}.
+		Non sono necessarie ulteriori configurazioni in quanto questo software è di tipo plug and play.\\ %TODO verificare
+		Per verificare la corretta integrazione con Redmine, controllare da un profilo con privilegi amministratore che nella sezione \texttt{Settings > Plugins} sia elencato quello appena scaricato.
+		%TODO inserire immagine
 
-	L'implementazione per Redmine si appoggia sul plugin \texttt{redmine\_webhook}, raggiungibile al link
-	\url{https://github.com/suer/redmine_webhook}.
+		%Questo plugin implementa il concetto di Hook offerto dalla API di Redmine, inviando a un determinato URL un \gloss{payload} costituito da un file JSON quando un evento si innesca, contenente le informazioni relative a tale evento.
 
-	Questo plugin implementa il concetto di Hook offerto dalla API di Redmine, inviando a un determinato URL
-	un \gloss{payload} costituito da un file JSON quando un evento si innesca, contenente le informazioni relative
-	a tale evento.
-
-	Per installarlo su un'istanza di Redmine, seguire le istruzione riportate nel README presente nella repository.
+		Queste istruzioni saranno contenute anche nel README della repository sul quale è stato versionato il codice.
 
 		\paragraph{Configurazione destinazione}
 		Per aggiungere una destinazione del webhook per un progetto, andare nella sezione relativa al webhook all'interno del menu del progetto...
@@ -94,10 +92,10 @@ Le specifiche relative alla configurazione delle porte in Rancher possono essere
 		%todo inserire immagine
 
 		\paragraph{Eventi supportati}
+		Per Redmine gli eventi supportati sono:
 		\begin{itemize}
-			\item Issue (unico evento offerto dal plugin per gli webhook)
+			\item Issue\footnote{Il plugin \texttt{redmine\_webhook} offre l'invio dei webhook solamente da parte degli eventi relativi alle Issue}
 		\end{itemize}
-
 
 	\subsubsection{GitLab}
 
@@ -118,13 +116,9 @@ Le specifiche relative alla configurazione delle porte in Rancher possono essere
 
 
 		\paragraph{Configurazione destinazione}
-		Successivamente si può aggiungere indirizzo di destinazione un webhook al progetto andando sulle impostazioni:
-		\begin{center}
-			\texttt{Settings > Integrations}
-		\end{center}
-		Da qui si possono selezionare gli eventi di interessi per i quali i webhook verranno attivati (attenzione: \progetto~non supporta tutti gli eventi, solamente quelli richiesti da \II).
+		Successivamente si può aggiungere un indirizzo di destinazione di un webhook al progetto andando su \texttt{Settings > Integrations}.\\
+		Da qui si possono selezionare gli eventi di interessi per i quali i webhook verranno attivati (attenzione: \progetto~non supporta tutti gli eventi, solamente quelli richiesti da \II).\\
 		Nel campo relativo all'URL di destinazione inserire l'indirizzo, con relativa porta (nel nostro caso quella specificata nella Tabella 2), su cui il Producer GitLab è in ascolto.
-
 
 		\paragraph{Eventi supportati}
 		Per GitLab gli eventi supportati sono:
