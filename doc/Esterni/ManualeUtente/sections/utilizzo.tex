@@ -4,34 +4,25 @@
 
 \subsection{Gestore Personale}
 
-Il Gestore Personale è la componente principale di Butterfly. %che tiene la logica di business di Butterfly.
-Esso si può distinguere in due sotto-componenti:
+Il Gestore Personale è la componente principale di \progetto\ e si può suddividere in due sotto-componenti:
 
 \begin{itemize}
     \item Interfaccia utente
-    \item Message processor, che tiene la logica di business di Butterfly
+    \item Message processor, che contiene la logica di business di \progetto
 \end{itemize}
 
-Il Message processor non è di pertinenza di questo manuale, per cui verrà discusso l'utilizzo del sistema tramite
-l'interfaccia utente.
+Il secondo non è di pertinenza di questo manuale in quanto l'utente non lo utilizza direttamente, per cui verrà discusso l'utilizzo del sistema tramite l'interfaccia utente.
 
 % \subsection{Interfaccia utente}
 
 \subsubsection{Iscrizione a Butterfly}
 
-Per iscriversi a Butterfly, accedere all'interfaccia web tramite il link
-
-\begin{center}
-    \url{link/pannello/utente}
-\end{center}
-
+Per iscriversi al sistema \progetto, accedere all'interfaccia web tramite il link specificato nella configurazione effettuata precedentemente.
 Tramite il form apposito, selezionare il bottone ``Iscrizione'' e inserire delle credenziali valide.
-
-È necessario inserire almeno un campo tra e-mail e Telegram, per avere un'identificativo univoco
-all'interno del sistema.
-
-È anche possibile inserire un nuovo utente tramite \hyperref[APIRest]{API Rest}. Vedere la sezione apposita.
-
+%TODO inserire immagine
+È necessaria la compilazione di almeno un campo tra Email e Telegram, per avere un'identificativo univoco all'interno del sistema.
+%TODO inserire immagine
+È anche possibile inserire un nuovo utente attraverso l'utilizzo delle \hyperref[APIRest]{API Rest}, come descritto nella sezione apposita.
 
 \subsubsection{Modifica preferenze}
 
@@ -39,19 +30,16 @@ all'interno del sistema.
 
 \subsubsection{Aggiunta progetti e priorità}
 
-\subsubsection{Disiscrizione}
-
+\subsubsection{Disiscrizione dal sistema}
 
 \subsection{API Rest}\label{APIRest}
 
 \newcommand{\homeUrl}{home\_url}
 
-Per Butterfly abbiamo utilizzato lo standard API Rest per la gestione delle risorse.
-Viene descritto nelle prossime sezioni come interagire con le API del sistema.
-
+Per \progetto abbiamo utilizzato lo standard architetturale delle API Rest per la gestione delle risorse.
+Nelle sezioni successive viene descritto come interagire con le API fornite dal sistema.
 Il root path sottinteso sarà sempre \texttt{\homeUrl/api/v1/}
-
-Ad esempio, per la GET degli user, l'indirizzo sarà:
+Ad esempio, per effettuare la GET degli user, l'indirizzo sarà:
 \begin{center}
     \texttt{GET \homeUrl/api/v1/users}
 \end{center}
@@ -75,8 +63,7 @@ richiesta HTTP.
         \texttt{POST /users}
     \end{center}
 
-È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione
-i dati:
+È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
 \begin{itemize}[noitemsep]
     \item \texttt{name}
     \item \texttt{surname}
@@ -85,15 +72,13 @@ i dati:
 \end{itemize}
 Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al payload.
 
-
 \paragraph{Modifica}
 
 È possibile modificare un utente tramite la richiesta
 \begin{center}
     \texttt{PUT /users/<id>}
 \end{center}
-È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione
-i dati:
+È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
 \begin{itemize}[noitemsep]
     \item \texttt{name}
     \item \texttt{surname}
@@ -104,7 +89,7 @@ i dati:
 
 \paragraph{Rimozione}
 
-È possibile rimuovere un utente dal sistema Butterfly con la richiesta
+È possibile rimuovere un utente dal sistema \progetto\ con la richiesta
 \begin{center}
     \texttt{DELETE /users/<id>}
 \end{center}
