@@ -1,0 +1,31 @@
+\newcommand{\lettera}[1]{
+  % \newpage
+  \rule{\textwidth}{0.4pt}
+  \invisiblesection{#1}
+  \begin{center}
+    {\Huge #1} \\
+  \end{center}
+  \vspace{0.9cm}
+}
+
+\newcommand\invisiblesection[1]{%
+  \refstepcounter{section}
+  \addcontentsline{toc}{section}{\protect\numberline{}#1}%
+  \sectionmark{#1}
+}
+
+\newcommand\invisiblesubsection[1]{%
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{subsection}{\protect\numberline{}#1}%
+  \sectionmark{#1}
+}
+
+\newcommand{\parola}[2]{
+  \invisiblesubsection{#1}
+  \textbf{\large{#1}} \\
+  #2
+  \vspace{0.3cm}
+}
+
+% no indentazione paragrafo
+\setlength{\parindent}{0pt}
