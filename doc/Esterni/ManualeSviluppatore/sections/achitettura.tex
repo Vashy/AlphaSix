@@ -78,7 +78,7 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
     \centering
     \includegraphics[width=\textwidth]{img/Consumers.png}\\
     \caption{Visione generale dei Consumers}
-    \label{fig:producers}
+    \label{fig:consumers}
 \end{figure}
 
 \subsection{Impostazioni dei vari componenti}
@@ -89,11 +89,16 @@ sono contenute nei file ``config.json'' contenuto nelle cartelle producer e cons
 
 \subsection{Interazione tra i componenti}
 
-\Prog vedendola ad alto livello si identificano 6 componenti. Redmine e GitLab per comunicare con i relativi Producer utilizzano dei webhook in formato JSON
+\progetto\ vedendola ad alto livello si identificano 6 componenti. Redmine e GitLab per comunicare con i relativi Producer utilizzano dei webhook in formato JSON,
 mettendosi in ascolto su determinate porte utilizzando il webserver Flask. Per quanto riguarda la comunicazione tra i Producer e Kafka utilizziamo delle istanze
-di KafkaProucer. 
+di KafkaProucer. Per far comunicare Kafka con i vari Consumer utilizziamo istanze di KafkaConsumer. Nell'ultimo passo, quello che riguarda i Consumer e le applicazioni finali, quali Telegram e Email, usiamo le API messe a disposizione dagli applicativi.
 
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/butterfly.png}\\
+    \caption{Visione generale di \progetto}
+    \label{fig:butterfly}
+\end{figure}
 
 
 
