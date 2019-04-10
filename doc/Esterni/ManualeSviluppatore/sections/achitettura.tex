@@ -57,7 +57,7 @@ Il package \texttt{producer} ha tre dipendenze esterne:
 \begin{itemize}
     \item \texttt{Flask}, classe concreta del package di libreria \texttt{flask}. È il server che si mette in ascolto degli webhook provenienti da Redmine
     \item \texttt{KafkaProducer}, classe concreta del package di libreria \texttt{kafka}. Ha il compito di interfacciarsi con il broker Kafka e di immettere
-        in esso i messaggi. È costruito su di esso un \textit{adapter}, in cui KafkaProducer viene adattato all'astrazione \texttt{Producer}
+        in esso i messaggi. È costruito su di esso un \gloss{Adapter}, in cui KafkaProducer viene adattato all'astrazione \texttt{Producer}
     \item Package \texttt{webhook}, che ha il compito di effettuare il parsing dei messaggi in entrata
 \end{itemize}
 
@@ -130,7 +130,7 @@ isolato il container.
     % \label{fig:producers}
 \end{figure}
 
-Abbiamo implementato per GitlabProducer 4 tipologie di Webhook.
+Abbiamo implementato per GitlabProducer 4 tipologie di \texttt{Webhook}.
 Il parametro \texttt{kind} del metodo \texttt{create\_webhook(kind)} può quindi assumere 4 valori, in base al quale
 \texttt{GitlabWebhookFactory} costruirà un parser di Webhook apposito:
 \begin{itemize}
