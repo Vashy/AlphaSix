@@ -23,6 +23,11 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
     \item GitlabProducer
 \end{itemize}
 
+L'algoritmo di invio dei messaggi differirà solamente nella modalità in cui verrà formato il messaggio finale: per questo motivo abbiamo deciso di utilizzare
+il design pattern \gloss{Template Method} per l'implementazione dell'algoritmo. Le classi concrete avranno esclusivamente il compito di implementare
+il parser degli Webhook e il metodo del Producer \texttt{webhook\_kind()}
+
+
 % \begin{figure}[H]
 %     \centering
 %     \includegraphics[width=\textwidth]{img/Producers.png}\\
@@ -33,7 +38,28 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
 
 \subsubsection{RedmineProducer}
 
+Il Producer di Redmine si occupa di ascoltare gli webhook provenienti dai progetti di Redmine che hanno configurato la porta relativa al componente,
+e di immettere nella coda \textit{redmine} di Kafka i messaggi.
+
+Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione, che parte dall'arrivo di un webhook da Redmine e si conclude con
+l'inoltro del messaggio sulla coda \textit{redmine} di Kafka.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Producer-MsgRedmine.png}\\
+    \caption[Diagramma di sequenza di RedmineProducer]{Diagramma di sequenza per la ricezione di un messaggio su RedmineProducer e invio del messaggio su Kafka}
+    % \label{fig:producers}
+\end{figure}
+
 \paragraph{Diagramma dei package}
+
+Il package \texttt{producer} ha tre dipendenze esterne:
+\begin{itemize}
+    \item \texttt{Flask}, classe concreta del package di libreria \texttt{flask}. È il server che si mette in ascolto degli webhook provenienti da Redmine
+    \item \texttt{KafkaProducer}, classe concreta del package di libreria \texttt{kafka}. Ha il compito di interfacciarsi con il broker Kafka e di immettere
+        in esso i messaggi. È costruito su di esso un \textit{adapter}, in cui KafkaProducer viene adattato all'astrazione \texttt{Producer}
+    \item Package \texttt{webhook}, che ha il compito di effettuare il parsing dei messaggi in entrata
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -51,6 +77,19 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
     % \label{fig:producers}
 \end{figure}
 
+Per fare il parsing dei webhook, \texttt{RedmineProducer} si appoggia alla gerarchia \texttt{Webhook}.
+Ogni istanza di \texttt{RedmineProducer} ha un riferimento a una \texttt{WebhookFactory}: quando viene
+catturato un webhook da Redmine, chiama il metodo \texttt{create\_webhook(kind)} della
+factory associata, passandogli come parametro la tipologia di webhook, in formato stringa.
+
+Essa si occuperà di creare il parser di webhook adeguato al messaggio in entrata.
+La classe concreta derivata da Webhook costruisce il messaggio con i campi di interesse da
+immettere nella coda di Kafka, e lo restituisce al Produer.
+
+Per Redmine, è presente una sola tipologia di webhook. Tenendo a mente la \gloss{open world assumption},
+è stata implementata la gerarchia relativa ai Webhook per permettere agli sviluppatori di poter facilmente
+aggiungerne di nuovi.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{img/Producers-RedmineWebhook.png}\\
@@ -61,6 +100,16 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
 
 
 \subsubsection{GitlabProducer}
+Il Producer di GitLab si occupa di ascoltare gli webhook provenienti dai progetti di GitLab
+che hanno configurato la porta relativa al componente, e di immettere nella coda gitlab di
+Kafka i messaggi.
+
+Esso è implementato allo stesso modo di quello di Redmine, per cui non verrà ripetuta l'analisi delle
+funzionalità che sono identiche al Producer di Redmine. Per tenere totalmente separate e isolate
+le componenti, i diagrammi sono stati totalmente separati, anche se le classi risiedono nello stesso package.
+Sarà compito dei \gloss{Dockerfile} copiare solamente i file necessari al componente specifico per poter mantenere
+isolato il container.
+
 
 \paragraph{Diagramma dei package}
 
@@ -80,6 +129,18 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
     \caption{Diagramma delle classi di GitlabProducer}
     % \label{fig:producers}
 \end{figure}
+
+Abbiamo implementato per GitlabProducer 4 tipologie di Webhook.
+Il parametro \texttt{kind} del metodo \texttt{create\_webhook(kind)} può quindi assumere 4 valori, in base al quale
+\texttt{GitlabWebhookFactory} costruirà un parser di Webhook apposito:
+\begin{itemize}
+    \item '\texttt{issue}': verrà istanziato un \texttt{GitlabIssueWebhook}
+    \item '\texttt{push}': verrà istanziato un \texttt{GitlabPushWebhook}
+    \item '\texttt{issue-comment}': verrà istanziato un \texttt{GitlabIssueCommentWebhook}
+    \item '\texttt{commit-comment}': verrà istanziato un \texttt{GitlabCommitCommentWebhook}
+\end{itemize}
+
+Questo è un pattern creazionale specifico: \gloss{Factory Method}.
 
 
 \begin{figure}[H]
@@ -109,11 +170,13 @@ La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i co
 \end{figure}
 
 
+\subsection{Diagramma delle classi}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/GP-Processor.png}\\
-    \caption{Interfaccia del Gestore Personale}
-    \label{fig:GP-Processor}
+    \includegraphics[width=\textwidth]{img/GP-View.png}\\
+    \caption{Logica della view del Gestore Personale}
+    \label{fig:GP-View}
 \end{figure}
 
 Qua viene mostrato come il Gestore Personale si interfaccia con \gloss{MongoDB}, ovvero MongoUser e MongoProject. Sono suddivisi in base alla risorsa di interesse.
@@ -126,20 +189,22 @@ Qua viene mostrato come il Gestore Personale si interfaccia con \gloss{MongoDB},
 \end{figure}
 
 Mentre in quest'ultima viene mostrato come il Gestore Personale si interfaccia con Kafka, questa riguarda il core del Gestore Personale, si occupa di processare
-i messaggi
+i messaggi.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/GP-Kafka.png}\\
-    \caption{Interazione con Kafka del Gestore Personale}
-    \label{fig:GP-Kafka}
+    \includegraphics[width=\textwidth]{img/GP-Processor.png}\\
+    \caption{Message processor del Gestore Personale}
+    \label{fig:GP-Processor}
 \end{figure}
+
 
 \subsection{Consumers}
 Il Consumer è la componente finale. Esso resta in ascolto della sua coda specifica per applicativo (e.g. telegram, email).
 Si occupa di inoltrare il messaggio al destinatario finale, tramite le API della piattaforma specifica.
 
 Al momento della stesura di questo manuale, i Consumer implementati sono due:
+
 \begin{itemize}
     \item TelegramConsumer
     \item EmailConsumer
@@ -160,7 +225,7 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/Consumers-TelegramConsumer.png}\\
+    \includegraphics[width=0.8\textwidth]{img/Consumers-TelegramConsumer.png}\\
     \caption{Diagramma delle classi di TelegramConsumer}
     % \label{fig:GP-Kafka}
 \end{figure}
@@ -182,7 +247,7 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/Consumers-EmailConsumer.png}\\
+    \includegraphics[width=0.8\textwidth]{img/Consumers-EmailConsumer.png}\\
     \caption{Diagramma delle classi di EmailConsumer}
     % \label{fig:GP-Kafka}
 \end{figure}
