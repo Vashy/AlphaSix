@@ -1,10 +1,10 @@
 \newcommand{\lettera}[1]{
-  \newpage
-  \invisiblesection{#1}
+  % \newpage
+  \rule{\textwidth}{0.4pt}
+  \invisiblesubsection{#1}
   \begin{center}
     {\Huge #1} \\
   \end{center}
-  \rule{\textwidth}{0.4pt}
   \vspace{0.9cm}
 }
 
@@ -20,8 +20,14 @@
   \sectionmark{#1}
 }
 
+\newcommand\invisiblesubsubsection[1]{%
+  \refstepcounter{subsubsection}%
+  \addcontentsline{toc}{subsubsection}{\protect\numberline{}#1}%
+  \sectionmark{#1}
+}
+
 \newcommand{\parola}[2]{
-  \invisiblesubsection{#1}
+  \invisiblesubsubsection{#1}
   \textbf{\large{#1}} \\
   #2
   \vspace{0.3cm}

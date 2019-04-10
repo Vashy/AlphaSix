@@ -5,10 +5,11 @@ implementato e come eseguirli.
 
 \subsection{Test di unità}
 
-Per eseguire i test di unità bisogna posizionarsi nella root di \progetto\ e eseguire il seguente comando: \\ 
+Per eseguire la suite di test di unità, bisogna posizionarsi nella root di \progetto\ e eseguire il seguente comando:
 
-\begin{lstlisting}
-    python3 -m pytest /PathFile/test.py
-\end{lstlisting}
+\begin{center}
+    \texttt{python3 -m pytest}
+\end{center}
 
-Questo eseguirà tutta la batteria di test contenuti nel file \texttt{test.py} restituendo il numero di test passati e non passati.
+Questo eseguirà tutta la batteria di test del progetto, restituendo il numero di test passati e non passati ed eventuali informazioni relativi ai fallimenti.
+I test si appoggiano sulla libreria \texttt{pytest}.
