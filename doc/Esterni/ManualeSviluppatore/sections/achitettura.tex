@@ -23,12 +23,73 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
     \item GitlabProducer
 \end{itemize}
 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{img/Producers.png}\\
+%     \caption{Visione generale dei Producers}
+%     \label{fig:producers}
+% \end{figure}
+
+
+\subsubsection{RedmineProducer}
+
+\paragraph{Diagramma dei package}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/Producers.png}\\
-    \caption{Visione generale dei Producers}
-    \label{fig:producers}
+    \includegraphics[width=\textwidth]{img/Package-RedmineProducer.png}\\
+    \caption{Diagramma dei package di RedmineProducer}
+    % \label{fig:producers}
 \end{figure}
+
+\paragraph{Diagramma delle classi}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Producers-RedmineProducer.png}\\
+    \caption{Diagramma delle classi di RedmineProducer}
+    % \label{fig:producers}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/Producers-RedmineWebhook.png}\\
+    \caption{Diagramma delle classi di RedmineWebhookFactory}
+    % \label{fig:producers}
+\end{figure}
+
+
+
+\subsubsection{GitlabProducer}
+
+\paragraph{Diagramma dei package}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Package-GitLabProducer.png}\\
+    \caption{Diagramma dei package di GitlabProducer}
+    % \label{fig:producers}
+\end{figure}
+
+
+\paragraph{Diagramma delle classi}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Producers-GitlabProducer.png}\\
+    \caption{Diagramma delle classi di GitlabProducer}
+    % \label{fig:producers}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/Producers-GitlabWebhook.png}\\
+    \caption{Diagramma delle classi di GitlabWebhookFactory}
+    % \label{fig:producers}
+\end{figure}
+
+
 
 \subsection{Gestore Personale}
 Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Ha un proprio KafkaProducer e KafkaConsumer
@@ -37,6 +98,16 @@ del personale, in cui ogni utente può selezionare i propri giorni di indisponib
 quale ricevere la notifica. Abbiamo pensato di dividerlo in tre parti per rendere tutto più chiaro.\newline
 Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model.
 La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}.
+
+\subsubsection{Diagramma dei package}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Package-GestorePersonale.png}\\
+    \caption{Diagramma dei package del Gestore Personale}
+    % \label{fig:GP-Processor}
+\end{figure}
+
 
 \begin{figure}[H]
     \centering
@@ -65,7 +136,7 @@ i messaggi
 \end{figure}
 
 \subsection{Consumers}
-Il Consumer è la componente finale. Esso resta in ascolto della sua coda specifica, specifica per applicativo (e.g. telegram, email).
+Il Consumer è la componente finale. Esso resta in ascolto della sua coda specifica per applicativo (e.g. telegram, email).
 Si occupa di inoltrare il messaggio al destinatario finale, tramite le API della piattaforma specifica.
 
 Al momento della stesura di questo manuale, i Consumer implementati sono due:
@@ -74,12 +145,48 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
     \item EmailConsumer
 \end{itemize}
 
+\subsubsection{TelegramConsumer}
+
+\paragraph{Diagramma dei package}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{img/Consumers.png}\\
-    \caption{Visione generale dei Consumers}
-    \label{fig:consumers}
+    \includegraphics[width=\textwidth]{img/Package-TelegramConsumer.png}\\
+    \caption{Diagramma dei package di TelegramConsumer}
+    % \label{fig:GP-Kafka}
 \end{figure}
+
+\paragraph{Diagramma delle classi}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Consumers-TelegramConsumer.png}\\
+    \caption{Diagramma delle classi di TelegramConsumer}
+    % \label{fig:GP-Kafka}
+\end{figure}
+
+
+\subsubsection{EmailConsumer}
+
+\paragraph{Diagramma dei package}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Package-EmailConsumer.png}\\
+    \caption{Diagramma dei package di EmailConsumer}
+    % \label{fig:GP-Kafka}
+\end{figure}
+
+
+\paragraph{Diagramma delle classi}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Consumers-EmailConsumer.png}\\
+    \caption{Diagramma delle classi di EmailConsumer}
+    % \label{fig:GP-Kafka}
+\end{figure}
+
 
 \subsection{Impostazioni dei vari componenti}
 
@@ -99,9 +206,3 @@ di KafkaProucer. Per far comunicare Kafka con i vari Consumer utilizziamo istanz
     \caption{Visione generale di \progetto}
     \label{fig:butterfly}
 \end{figure}
-
-
-
-
-
-
