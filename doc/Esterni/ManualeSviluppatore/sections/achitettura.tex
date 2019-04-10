@@ -25,7 +25,7 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
 
 L'algoritmo di invio dei messaggi differirà solamente nella modalità in cui verrà formato il messaggio finale: per questo motivo abbiamo deciso di utilizzare
 il design pattern \gloss{Template Method} per l'implementazione dell'algoritmo. Le classi concrete avranno esclusivamente il compito di implementare
-il parser degli Webhook e il metodo del Producer \texttt{webhook\_kind()}
+il parser degli Webhook e il metodo del Producer \texttt{webhook\_kind()}.
 
 
 % \begin{figure}[H]
@@ -55,10 +55,10 @@ l'inoltro del messaggio sulla coda \textit{redmine} di Kafka.
 
 Il package \texttt{producer} ha tre dipendenze esterne:
 \begin{itemize}
-    \item \texttt{Flask}, classe concreta del package di libreria \texttt{flask}. È il server che si mette in ascolto degli webhook provenienti da Redmine
-    \item \texttt{KafkaProducer}, classe concreta del package di libreria \texttt{kafka}. Ha il compito di interfacciarsi con il broker Kafka e di immettere
-        in esso i messaggi. È costruito su di esso un \gloss{Adapter}, in cui KafkaProducer viene adattato all'astrazione \texttt{Producer}
-    \item Package \texttt{webhook}, che ha il compito di effettuare il parsing dei messaggi in entrata
+    \item \texttt{Flask}, classe concreta del package di libreria \texttt{flask}: è il server che si mette in ascolto degli webhook provenienti da Redmine.
+    \item \texttt{KafkaProducer}, classe concreta del package di libreria \texttt{kafka}: ha il compito di interfacciarsi con il broker Kafka e di immettere
+        in esso i messaggi. È costruito su di esso un \gloss{Adapter}, in cui KafkaProducer viene adattato all'astrazione \texttt{Producer}.
+    \item Package \texttt{webhook}: ha il compito di effettuare il parsing dei messaggi in entrata.
 \end{itemize}
 
 \begin{figure}[H]
@@ -134,10 +134,10 @@ Abbiamo implementato per GitlabProducer 4 tipologie di \texttt{Webhook}.
 Il parametro \texttt{kind} del metodo \texttt{create\_webhook(kind)} può quindi assumere 4 valori, in base al quale
 \texttt{GitlabWebhookFactory} costruirà un parser di Webhook apposito:
 \begin{itemize}
-    \item '\texttt{issue}': verrà istanziato un \texttt{GitlabIssueWebhook}
-    \item '\texttt{push}': verrà istanziato un \texttt{GitlabPushWebhook}
-    \item '\texttt{issue-comment}': verrà istanziato un \texttt{GitlabIssueCommentWebhook}
-    \item '\texttt{commit-comment}': verrà istanziato un \texttt{GitlabCommitCommentWebhook}
+    \item '\texttt{issue}': verrà istanziato un \texttt{GitlabIssueWebhook}.
+    \item '\texttt{push}': verrà istanziato un \texttt{GitlabPushWebhook}.
+    \item '\texttt{issue-comment}': verrà istanziato un \texttt{GitlabIssueCommentWebhook}.
+    \item '\texttt{commit-comment}': verrà istanziato un \texttt{GitlabCommitCommentWebhook}.
 \end{itemize}
 
 Questo è un pattern creazionale specifico: \gloss{Factory Method}.
@@ -200,8 +200,8 @@ i messaggi.
 
 
 \subsection{Consumers}
-Il Consumer è la componente finale. Esso resta in ascolto della sua coda specifica per applicativo (e.g. telegram, email).
-Si occupa di inoltrare il messaggio al destinatario finale, tramite le API della piattaforma specifica.
+Il Consumer è la componente finale del sistema \progetto. Esso resta in ascolto della sua coda specifica di Kafka per applicativo (e.g. telegram, email).
+Si occupa di inoltrare il messaggio al destinatario finale.
 
 Al momento della stesura di questo manuale, i Consumer implementati sono due:
 
@@ -210,9 +210,24 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
     \item EmailConsumer
 \end{itemize}
 
+L'algoritmo di ascolto dei messaggi è identico per ogni Consumer: come per i Producer, abbiamo utilizzato
+Template Method per l'implementazione di \texttt{listen()}.
+Le classi concrete avranno esclusivamente il compito di implementare il metodo \texttt{send()}, il quale invierà il messaggio
+al destinatario finale tramite le API dell'applicativo su cui il Consumer è basato.
+
+
 \subsubsection{TelegramConsumer}
 
 \paragraph{Diagramma dei package}
+
+Il TelegramConsumer ha 2 dipendenze esterne:
+\begin{itemize}
+    \item \texttt{KafkaConsumer} dalla libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto
+        di una o più code specifiche. È costruito su di esso un adapter, per adattare KafkaConsumer alle funzionalità
+        di \texttt{Consumer}.
+    \item Package \texttt{requests}: effettua le richieste POST e poter inviare i messaggi tramite l'API di Telegram
+        al destinatario finale.
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -222,6 +237,8 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
 \end{figure}
 
 \paragraph{Diagramma delle classi}
+
+Il metodo \texttt{format()} costruisce il testo del messaggio finale utilizzando il formato \gloss{markdown} specifico per Telegram.
 
 \begin{figure}[H]
     \centering
@@ -235,15 +252,29 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
 
 \paragraph{Diagramma dei package}
 
+L'EmailConsumer ha 2 dipendenze esterne:
+\begin{itemize}
+    \item \texttt{KafkaConsumer} della libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto dei messaggi
+        proveniente da una o più code specifiche. È costruito su di esso un adapter, per adattare le funzionalità di KafkaConsumer a
+        \texttt{Consumer}.
+    \item \texttt{SMTP} della libreria esterna \texttt{smtplib}: server e-mail che, dopo aver effettuato il login,
+        invia al destinatario una mail contenente il messaggio finale.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/Package-EmailConsumer.png}\\
     \caption{Diagramma dei package di EmailConsumer}
-    % \label{fig:GP-Kafka}
 \end{figure}
 
 
 \paragraph{Diagramma delle classi}
+
+\begin{itemize}
+    \item Il metodo \texttt{format\_html()} costruisce il testo del messaggio finale in formato HTML
+    \item Il metodo \texttt{format()} costruisce il testo per il messaggio senza i tag HTML, in caso il client mail del ricevente non sia in grado
+        di interpretare tale linguaggio
+\end{itemize}
 
 \begin{figure}[H]
     \centering
