@@ -86,9 +86,8 @@ class MongoFacade():
     def get_match_labels(self, users: list, labels: list) -> list:
         return self._users.get_match_labels(users, labels)
 
-    # TODO : dove viene usata? Deve esserci un progetto,
-    # altrimenti non ha senso
-    def get_users_from_list_with_max_priority(self, users: list) -> list:
+    # TODO : relativamente a quel progetto
+    def get_users_from_list_with_max_priority(self, users: list, url: str) -> list:
         # filtra, tra gli utenti dati, solo quelli che hanno la priorità
         # maggiore
         # (è diverso da 'get_users_max_priority' perchè non li vogliamo tutti)

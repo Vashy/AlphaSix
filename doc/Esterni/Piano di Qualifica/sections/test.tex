@@ -1104,12 +1104,14 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\addtotu & Verifica la formattazione della mail in formato HTML  & \TS \\
 
 			\addtotu & Verifica l'inserimento di un utente nel database & \TS \\
-			\addtotu & Verifica la rimozione di un utente dal database & \TS \\
-			\addtotu & Verifica l'inserimento di un topic nel database & \TS \\
-			\addtotu & Verifica la rimozione di un topic dal database & \TS \\
-			\addtotu & Verifica l'inserimento di un progetto nel database & \TS \\
-			\addtotu & Verifica la rimozione di un progetto dal database & \TS \\
 			\addtotu & Verifica la presenza di un utente nel database  & \TS \\
+			\addtotu & Verifica l'identificativo di un utente nel database  & \TS \\
+			\addtotu & Verifica la rimozione di un utente dal database & \TS \\
+			\addtotu & Verifica l'aggiornamento del nome di un utente nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento del cognome di un utente nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento di un identificativo telegram di un utente nel database & \TS \\
+			\addtotu & Verifica l'aggiornamento di una mail di un utente nel database & \TS \\
+
 			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei test di unità (1)}
@@ -1121,24 +1123,31 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			% \rowcolor{\tablegray}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+			\addtotu & Verifica l'aggiornamento di una preferenza per l'applicazione di messaggistica dell'utente nel database & \TS \\
+			\addtotu & Verifica l'aggiunta di alcune keywords alle preferenze dell'utente nel database & \TS \\
+			\addtotu & Verifica la presenza di keywords nelle preferenze dell'utente nel database & \TS \\
+			\addtotu & Verifica l'aggiunta di alcune labels alle preferenze dell'utente nel database & \TS \\
+			\addtotu & Verifica la presenza di labels nelle preferenze dell'utente nel database & \TS \\
+			\addtotu & Verifica la presenza di utenti con una determinata priorità relativa ad un progetto nel database & \TS \\
+			\addtotu & Verifica la presenza di utenti disponibili nel database & \TS \\
+			\addtotu & Verifica la presenza di utenti con priorità più alta relativa ad un progetto nel database & \TS \\
+			\addtotu & Verifica l'identificativo Telegram di un utente nel database & \TS \\
+			\addtotu & Verifica l'email di un utente nel database & \TS \\
+			\addtotu & Verifica la corrispondenza del commit dato con le keywords presenti nel database & \TS \\
+			\addtotu & Verifica la corrispondenza delle labales date con le labels presenti nel database & \TS \\
+
+			\addtotu & Verifica l'inserimento di un progetto nel database & \TS \\
 			\addtotu & Verifica la presenza di un progetto nel database & \TS \\
-			\addtotu & Verifica la presenza di un topic, legato al progetto dato, nel database & \TS \\
-			\addtotu & Verifica la presenza di un topic, legato all'utente dato, nel database & \TS \\
-			\addtotu & Verifica l'aggiornamento di una preferenza utente nel database & \TS \\
-			\addtotu & Verifica l'aggiornamento di un identificativo telegram di un utente nel database & \TS \\
-			\addtotu & Verifica l'aggiornamento di una mail di un utente nel database & \TS \\
-			\addtotu & Verifica l'aggiornamento del nome di un utente nel database & \TS \\
-			\addtotu & Verifica l'aggiornamento del cognome di un utente nel database & \TS \\
-			\addtotu & Verifica l'aggiunta di un topic alla lista dei topic utente nel database & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
-			\addtotu &  & \TS \\
+			\addtotu & Verifica la url di un progetto nel database  & \TS \\
+			\addtotu & Verifica la rimozione di un progetto dal database & \TS \\
+			\addtotu & Verifica le keyword,s legate al progetto, dato nel database & \TS \\
+			\addtotu & Verifica le labels, legate al progetto, dato nel database & \TS \\
+			\addtotu & Verifica l'inserimento di una nuova keyword, legata al progetto dato, nel database & \TS \\
+			\addtotu & Verifica l'inserimento di una nuova label,legata al progetto dato, nel database & \TS \\
+
+			\addtotu & Verifica l'ascolto di messaggi provenienti da Kafka da parte del ClientGestorePersonale & \TS \\
+			\addtotu & Verifica il processamento del messaggio da inviare a Kafka & \TS \\
+			\addtotu & Verifica l'invio del messaggio processato su Kafka per tutti i destinatari & \TS \\
 			% \addtotu & Verifica la creazione di un oggetto RedmineIssueWebhook & \TS \\
 			% \addtotu & Verifica il parsing del file JSON associato al webhook di apertura issue in Redmine & \TS \\
 			% \addtotu & Verifica il parsing del file JSON associato al webhook di modifica issue in Redmine & \TS \\
@@ -1147,6 +1156,23 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\end{paddedtablex}
 		\caption{Elenco dei test di unità (2)}
 	\end{table}
+
+
+	\begin{table}[H]
+		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+			% \rowcolor{\tablegray}
+			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+			\addtotu & Verifica la preparazione del messaggio da dare al ClientGestorePersonale & \TS \\
+			\addtotu & Verifica il progetto a cui appertiene il messaggio dato & \TS \\
+			\addtotu & Verifica gli utenti coinvolti nel progetto dato & \TS \\
+			\addtotu & Verifica gli utenti con priorità maggiore per un determinato progetto da una lista di utenti dati & \TS \\
+			\addtotu & Verifica i contatti Telegram degli utenti dati & \TS \\
+			\addtotu & Verifica i contatti email degli utenti dati & \TS \\
+			\bottomrule
+		\end{paddedtablex}
+		\caption{Elenco dei test di unità (3)}
+	\end{table}
+
 
 
     \setcounter{tu}{0}
@@ -1179,35 +1205,63 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 				\addtotu & EmailConsumer.listen() \\
 				\addtotu & EmailConsumer.format\_html() \\
 
-				\addtotu & DBController.insert\_user() \\
-				\addtotu & DBController.delete\_one\_user()\\
-				\addtotu & DBController.insert\_topic()\\
-				\addtotu & DBController.delete\_one\_topic() \\
-				\addtotu & DBController.user\_exists() \\
-				\addtotu & DBController.project\_exists() \\
-				\addtotu & DBController.topic\_exists() \\
-				\addtotu & DBController.topic\_from\_id\_exists() \\
-				\addtotu & DBController.update\_user\_preference() \\
-				\addtotu & DBController.update\_user\_telegram() \\
-				\addtotu & DBController.update\_user\_email() \\
-				\addtotu & DBController.update\_user\_name() \\
-				\addtotu & DBController.update\_user\_surname() \\
-				\addtotu & DBController.add\_user\_topic() \\
-				\addtotu & DBController.add\_user\_topic\_from\_id() \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
-				\addtotu & \\
+				\addtotu & MongoUsers.create() \\
+				\addtotu & MongoUsers.exists() \\
+				\addtotu & MongoUsers.read() \\
+				\addtotu & MongoUsers.delete() \\
+				\addtotu & MongoUsers.update\_name() \\
+				\addtotu & MongoUsers.update\_surname() \\
+				\addtotu & MongoUsers.update\_telegram() \\
+				\addtotu & MongoUsers.update\_email() \\
+				\addtotu & MongoUsers.update\_user\_preference() \\
+				\addtotu & MongoUsers.add\_keywords() \\
+				\addtotu & MongoUsers.user\_keywords() \\
+				\addtotu & MongoUsers.add\_labels() \\
+				\addtotu & MongoUsers.user\_labels() \\
+				\addtotu & MongoUsers.\_get\_users\_by\_priority() \\
+				\addtotu & MongoUsers.\_get\_users\_available() \\
+
+				\bottomrule
+			\end{tabularx}}
+			\caption{Elenco dei test in correlazione con le componenti (1)}
+		\end{table}
+
+
+		\begin{table}[H]
+			\centering
+			{\def\arraystretch{1.4}
+			\begin{tabularx}{\textwidth}{cY}
+				\addtotu & MongoUsers.\_get\_users\_max\_priority() \\
+				%\addtotu & MongoUsers.\_filter\_max\_priority() \\
+				\addtotu & MongoUsers.\_get\_user\_telegram() \\
+				\addtotu & MongoUsers.\_get\_user\_email() \\
+				\addtotu & MongoUsers.\_get\_match\_keywords() \\
+				\addtotu & MongoUsers.\_get\_match\_labels() \\
+
+				\addtotu & MongoProjects.create() \\
+				\addtotu & MongoProjects.exists() \\
+				\addtotu & MongoProjects.read() \\
+				\addtotu & MongoProjects.delete() \\
+				\addtotu & MongoProjects.keywords() \\
+				\addtotu & MongoProjects.labels() \\
+				\addtotu & MongoProjects.insert\_keyword\_by\_project() \\
+				\addtotu & MongoProjects.insert\_label\_by\_project() \\
+
+				\addtotu & ClientGestorePersonale.read\_message() \\
+				\addtotu & ClientGestorePersonale.process() \\
+				\addtotu & ClientGestorePersonale.send\_all() \\
+
+				\addtotu & Processor.prepare\_message() \\
+				\addtotu & Processor.\_check\_project() \\
+				\addtotu & Processor.get\_involved\_users() \\
+				%\addtotu & Processor.select\_users\_more\_interested() \\
+				\addtotu & Processor.filter\_users\_with\_max\_priority() \\
+				\addtotu & Processor.get\_telegram\_contacts() \\
+				\addtotu & Processor.get\_email\_contacts() \\
 				% \addtotu & WebhookFactory.RedmineWebhookFactory \\
 				% \addtotu & Webhook.RedmineIssueWebhook.parse() \\
 				% \addtotu & Webhook.RedmineIssueWebhook.parse() \\
 				\bottomrule
 			\end{tabularx}}
-			\caption{Elenco dei test in correlazione con le componenti}
+			\caption{Elenco dei test in correlazione con le componenti (2)}
 		\end{table}
