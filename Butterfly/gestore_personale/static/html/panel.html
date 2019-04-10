@@ -31,21 +31,22 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
         <title>Pannello | Butterfly</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'style/style.css') }}">
     </head>
     <body lang="it">
         <h1>Pannello di controllo</h1>
-        <div>
+        <div id="menu">
             <form>
                 <input id='adduser' type='button' value='Inserisci nuovo utente'>
             </form>
             <form>
-                <input id='removeuser' type='button' value='Inserisci nuovo utente'>
+                <input id='removeuser' type='button' value='Rimuovi un utente'>
             </form>
             <form>
-                <input id='modifyuser' type='button' value='Inserisci nuovo utente'>
+                <input id='modifyuser' type='button' value='Modifica i tuoi dati'>
             </form>
             <form>
-                <input id='preference' type='button' value='Inserisci nuovo utente'>
+                <input id='preference' type='button' value='Modifica le tue preferenze'>
             </form>
         </div>
         <script src='{{ url_for('static', filename = 'script/script.js') }}'></script>

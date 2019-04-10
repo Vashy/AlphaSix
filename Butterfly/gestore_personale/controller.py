@@ -125,7 +125,7 @@ class Controller(Observer):
         )
 
         self.server.add_url_rule(
-            '/user',
+            '/web_user',
             'web_user',
             self.web_user,
             methods=['GET', 'POST', 'PUT', 'DELETE']
@@ -134,9 +134,10 @@ class Controller(Observer):
     def _checkSession(self):
         return 'userid' in session
 
-    def basicRender(self, fileHtml: pathlib.Path):
+    def render(self, fileHtml: pathlib.Path, request: request):
         page = fileHtml.read_text()
         return render_template_string(page)
+
 
     def access(self, request: request):
         fileHtml = html / 'access.html'
@@ -157,23 +158,14 @@ class Controller(Observer):
 
     def panel(self):
         if self._checkSession():
-            if request.args.get('remove'):
-                fileHtml = html / 'removeuser.html'
-            elif request.args.get('modify'):
-                fileHtml = html / 'modifyuser.html'
-            elif request.args.get('preference'):
-                fileHtml = html / 'preferences.html'
-            else:
-                fileHtml = html / 'panel.html'
-            return self.basicRender(fileHtml)
+            fileHtml = html / 'panel.html'
+            return self.render(fileHtml, request)
         return self.access(request)
 
     def web_user(self):
         if request.method == 'PUT' and request.values.get('id') is None:
             fileHtml = html / 'adduser.html'
-        else:
-            fileHtml = html / 'panel.html'
-        return self.basicRender(fileHtml)
+        return self.render(fileHtml, request)
 
 
     def web_preference(self):
