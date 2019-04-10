@@ -39,17 +39,17 @@ class MongoSingleton:
             """
             return MongoSingleton.instance._db[collection].delete_one(filter)
 
-    _INSTANCE = None
+    _INSTANCE = Singleton('butterfly')
 
-    def __new__(cls):
-        if not MongoSingleton._INSTANCE:
-            MongoSingleton._INSTANCE = MongoSingleton.Singleton(db='butterfly')
+    # def __new__(cls):
+    #     if not MongoSingleton._INSTANCE:
+    #         MongoSingleton._INSTANCE = MongoSingleton.Singleton(db='butterfly')
+    #     return MongoSingleton._INSTANCE
+
+    @staticmethod
+    def instance():
         return MongoSingleton._INSTANCE
 
 #    def __init__(self):
 #        if not MongoSingleton._instance:
 #            MongoSingleton._instance = MongoSingleton.Singleton('butterfly')
-
-#    @property
-#    def instance(self):
-#        return self._INSTANCE
