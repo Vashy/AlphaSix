@@ -36,7 +36,7 @@ che si occupano rispettivamente di ricevere i messaggi da Kafka e re-immetterli 
 del personale, in cui ogni utente può selezionare i propri giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul
 quale ricevere la notifica. Abbiamo pensato di dividerlo in tre parti per rendere tutto più chiaro.\newline
 Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model.
-La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’API REST.
+La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}.
 
 \begin{figure}[H]
     \centering
@@ -45,7 +45,7 @@ La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i co
     \label{fig:GP-Processor}
 \end{figure}
 
-Qua viene mostrato come il Gestore Personale si interfaccia con MongoDB, ovvero MongoUser e MongoProject. Sono suddivisi in base alla risorsa di interesse.
+Qua viene mostrato come il Gestore Personale si interfaccia con \gloss{MongoDB}, ovvero MongoUser e MongoProject. Sono suddivisi in base alla risorsa di interesse.
 
 \begin{figure}[H]
     \centering
@@ -85,7 +85,7 @@ Al momento della stesura di questo manuale, i Consumer implementati sono due:
 
 Per fare in modo che tutti i componenti vengano istanziati con i determinati parametri che permettano la giusta comunicazione tra le componenti,
 ci sono dei file di configurazioni che contengono per esempio il token del bot Telegram, l'email e la password per accedere al server Email. Queste configurazioni
-sono contenute nei file ``config.json'' contenuto nelle cartelle producer e consumer.
+sono contenute nei file \texttt{``config.json''} contenuto nelle cartelle producer e consumer.
 
 \subsection{Interazione tra i componenti}
 

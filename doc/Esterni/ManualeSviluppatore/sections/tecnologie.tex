@@ -1,19 +1,25 @@
 \section{Tecnologie interessate}
+In questa sezione descriviamo le tecnologie che dopo una fase di analisi, abbiamo deciso di utilizzare per lo sviluppo di \progetto
+\subsection{Strumenti per lo sviluppo} % Non saprei, omettibile?
 
-\section{Strumenti per lo sviluppo} % Non saprei, omettibile?
+\subsubsection{Python}
 
-\subsection{Python}
-
-\subsection{MongoDB}
-
-
-
+\subsubsection{MongoDB}
+Abbiamo deciso di utilizzare \gloss{MongoDB} Rispetto ad un database relazionale, quale \gloss{MySQL}, perchè non sfrutta una struttura tradizionale basata su tabelle ma si basa sui documenti in stile \gloss{JSON} con schema dinamico, rendendo l’integrazione di dati di alcuni tipi di applicazioni più facile e performante.
 
 \subsection{Strumenti per la gestione dei container}
 
 \subsubsection{Docker}
+Abbiamo deciso di utilizzare \gloss{Docker} per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
+La configurazione avverrà tramite un \gloss{Dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio,
+numero di istanze ed altri parametri specifici. \\
+Docker oltretutto ci consente di creare dei container aventi la capacità di simulare un ambiente virtuale dov'è possibile testare e mantenere le proprie applicazioni, permettendo di aumentare l'efficienza riducendone i costi e simulando l'esecuzione di sistema operativo su una macchina con \gloss{risorse} condivise.\\
+A differenza delle \gloss{macchine virtuali}, dove lo stato dell'ambiente viene salvato su disco, occupando memoria, i container si adattano in maniera più performante all'applicativo richiesto, in quanto il loro scopo è quello di massimizzare la quantità delle applicazioni in esecuzione riducendo al minimo il numero delle macchine per eseguirla.
+Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse.
 
 \subsubsection{Rancher}
+Per la gestione dei container in remoto, la proponte \II~ci ha messo a disposizione un \gloss{cluster} con due server sui quali è stato installato Rancher. Questo è un software di gestione di oggetti di \gloss{Kubernetes}.
+Da qui possiamo quindi gestire i nostri container installando le immagini direttamente da \gloss{DockerHub} senza aver bisogno di file di configurazione come ad esempio quello necessario al docker-compose.
 
 
 \subsection{Librerie esterne}
@@ -36,7 +42,7 @@ Installabile con il comando \texttt{pip install requests}.
 
 \subsubsection{Flask}
 Flask è un framework lightweight per l'installazione di web server, scritto in Python.
-Viene utilizzato dai \gloss{Producer} per restare in ascolto degli \gloss{webhook} e dal \gloss{Gestore Personale} per istanziare l'interfaccia
+Viene utilizzato dai \gloss{Producer} per restare in ascolto degli \gloss{webhook} e dal Gestore Personale per istanziare l'interfaccia
 web per la gestione del personale.
 
 Maggiori informazioni al link
