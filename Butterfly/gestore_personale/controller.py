@@ -5,7 +5,8 @@ from abc import ABC, abstractmethod
 import pathlib
 import json
 
-from flask import Flask, request, session, make_response, redirect, url_for
+from flask import Flask, request, session, make_response, redirect, url_for, render_template_string
+
 import flask_restful
 
 from mongo_db.facade import MongoFacade
@@ -13,8 +14,7 @@ from mongo_db.users import MongoUsers
 from mongo_db.projects import MongoProjects
 from mongo_db.singleton import MongoSingleton
 
-html = (pathlib.Path(__file__).parent / 'public_html').resolve()
-
+html = (pathlib.Path(__file__).parent / 'static/html').resolve()
 
 class Observer(ABC):
 
@@ -119,9 +119,16 @@ class Controller(Observer):
 
         self.server.add_url_rule(
             '/',
-            '',
-            self.dispatcher,
+            'panel',
+            self.panel,
             methods=['GET', 'POST']
+        )
+
+        self.server.add_url_rule(
+            '/user',
+            'web_user',
+            self.web_user,
+            methods=['GET', 'POST', 'PUT', 'DELETE']
         )
 
     def _checkSession(self):
@@ -129,7 +136,7 @@ class Controller(Observer):
 
     def basicRender(self, fileHtml: pathlib.Path):
         page = fileHtml.read_text()
-        return page
+        return render_template_string(page)
 
     def access(self, request: request):
         fileHtml = html / 'access.html'
@@ -138,7 +145,7 @@ class Controller(Observer):
         if request.form.get('userid'):
             if self.model.user_exists(request.form['userid']):
                 session['userid'] = request.form['userid']
-                return redirect(url_for(''), code=303)
+                return redirect(url_for('panel'), code=303)
             else:
                 page = page.replace(
                     '*access*',
@@ -148,23 +155,28 @@ class Controller(Observer):
         page = page.replace('*userid*', '')
         return page
 
-    def panel(self, request: request):
-        if request.args.get('add'):
+    def panel(self):
+        if self._checkSession():
+            if request.args.get('remove'):
+                fileHtml = html / 'removeuser.html'
+            elif request.args.get('modify'):
+                fileHtml = html / 'modifyuser.html'
+            elif request.args.get('preference'):
+                fileHtml = html / 'preferences.html'
+            else:
+                fileHtml = html / 'panel.html'
+            return self.basicRender(fileHtml)
+        return self.access(request)
+
+    def web_user(self):
+        if request.method == 'PUT' and request.values.get('id') is None:
             fileHtml = html / 'adduser.html'
-        elif request.args.get('remove'):
-            fileHtml = html / 'removeuser.html'
-        elif request.args.get('modify'):
-            fileHtml = html / 'modifyuser.html'
-        elif request.args.get('preference'):
-            fileHtml = html / 'preferences.html'
         else:
             fileHtml = html / 'panel.html'
         return self.basicRender(fileHtml)
 
-    def user(self, request: request):
-        return 'user'
 
-    def preference(self, request: request):
+    def web_preference(self):
         return 'preference'
 
     def apiUser(self, request_type: str, msg: str):
@@ -185,24 +197,12 @@ class Controller(Observer):
         elif resource == 'preference':
             return self.apiPreference(request_type, msg)
 
-    def dispatcher(self):
-
-        if self._checkSession():
-            path = request.path
-            if path == '/' or path == '/panel':
-                return self.panel(request)
-            if path == '/user':
-                return self.user(request)
-            if path == '/preference':
-                return self.preference(request)
-        return self.access(request)
-
 
 def main():
     flask = Flask(__name__)
     flask.secret_key = urandom(16)
     api = flask_restful.Api(flask)
-    mongo = MongoSingleton()
+    mongo = MongoSingleton.instance()
     users = MongoUsers(mongo)
     projects = MongoProjects(mongo)
     facade = MongoFacade(users, projects)
