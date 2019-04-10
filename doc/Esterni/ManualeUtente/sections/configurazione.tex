@@ -17,6 +17,7 @@ Sempre sotto richiesta di \II\ viene utilizzato Rancher come software per la ges
 			\item \textbf{GitLab}\footnote{\url{https://git.ucd.ie/help/install/requirements.md}}: durante lo sviluppo di \progetto~abbiamo fatto riferimento alla versione v11.7.
 			\item \textbf{Redmine}\footnote{%
 			\url{https://www.easyredmine.com/faq/technical-info/176-hardware-and-software-requirements-for-server-solution}}: durante lo sviluppo di \progetto~abbiamo fatto riferimento alla versione v4.0.1.
+			%todo: che questo link sia migliore? https://wiki.archlinux.org/index.php/Redmine#Prerequisites
 		\end{itemize}
 
 	%TODO rivedere
@@ -66,76 +67,130 @@ La suddivisione che abbiamo utilizzato durante lo sviluppo ed alla consegna del 
 
 Le specifiche relative alla configurazione delle porte in Rancher possono essere trovate nella pagina dedicata\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/references/}} sulla sezione della documentazione presente nel loro sito.
 
+\subsection{Suddivisione dei container ed immagini utilizzate}
+Come detto in precedenza, su consiglio di \II, \progetto\ è stato sviluppato con l'utilizzo di Rancher per la gestione dei container.\\
+Durante la fase di sviluppo e per il progetto consegnato i container sono stati suddivisi in modo da utilizzare un Cluster (nel nostro caso chiamato Butterfly), vari Namespace per separare i servizi fra loro e i Pod che rappresentano ciascuno un container.
+Le immagini utilizzate sono tutte presenti sul DockerHub, incluse quelle dei Producer e dei Consumer, che come detto nel documento \NdPd sono state create utilizzando le build automatiche che scattano ad ogni push nella repository del codice.
 
-\subsection{Configurazione servizi principali container}
+\begin{itemize}
+	\item Namespace: \texttt{gitlab}
+	\begin{itemize}
+		\item Pod: \texttt{gitlab} (immagine: \texttt{gitlab/gitlab-ce:latest})
+	\end{itemize}
+	
+	\item Namespace: \texttt{redmine}
+	\begin{itemize}
+		\item Pod: \texttt{redmine} (immagine: \texttt{redmine:3.3.9})
+		\item Pod: \texttt{postgres-redmine} (immagine: \texttt{postgres:11-alpine})
+	\end{itemize}
+	
+	\item Namespace: \texttt{producer}
+	\begin{itemize}
+		\item Pod: \texttt{producer-gitlab} (immagine: \texttt{alphasix/producer-gitlab:master})
+		\item Pod: \texttt{producer-redmine} (immagine: \texttt{alphasix/producer-redmine:master})
+	\end{itemize}
+	
+	%TODO Aggiungere pod di monitoraggio
+	\item Namespace: \texttt{kafka}
+	\begin{itemize}
+		\item Pod: \texttt{kafka-kafka} (immagine: \texttt{confluentinc/cp-kafka:4.0.1-1})
+		\item Pod: \texttt{kafka-zookeeper} (immagine: \texttt{confluentinc/cp-zookeeper:4.1.1})
+	\end{itemize}
+	
+	%TODO: da vedere se è in un unico pod oppure se in pod separati
+	\item Namespace: \texttt{gestore-personale}
+	\begin{itemize}
+		\item Pod: \texttt{gestore-personale} (immagine: \texttt{alphasix/gestore-personale:master})
+		\item Pod: \texttt{mongo} (immagine: \texttt{bitnami/mongodb:latest})
+	\end{itemize}
+	
+	\item Namespace: \texttt{consumer}
+	\begin{itemize}
+		\item Pod: \texttt{consumer-telegram} (immagine: \texttt{alphasix/consumer-telegram:master})
+		\item Pod: \texttt{consumer-email} (immagine: \texttt{alphasix/consumer-email:master})
+	\end{itemize}
+\end{itemize}
 
-	\subsection{Webhook}
-	Per il corretto invio dei webhook (in formato JSON) da parte dei software che comunicano con i nostri Producer è necessaria una piccola configurazione:
-
+%TODO rivedere parole piccola configurazione
+\subsection{Configurazione webhook}
+Per il corretto invio dei webhook (in formato JSON) da parte dei software che comunicano con i nostri Producer è necessaria una piccola configurazione:
+	
 	\subsubsection{Redmine}
+	\paragraph{Configurazione del plugin}
+	Per poter inviare i webhook da Redmine è necessario installare un plugin esterno chiamato \texttt{redmine\_webhook}\footnote{\url{https://github.com/suer/redmine_webhook.git}}.
+	Per installarlo è necessario scaricarlo (tramite il comando \texttt{git clone} ad esempio) nella cartella \texttt{/plugins/redmine}.
+	Non sono necessarie ulteriori configurazioni in quanto questo software è di tipo plug and play. %TODO verificare che sia effettivamente così
+	Per verificare la corretta integrazione con Redmine, controllare da un profilo con privilegi amministratore che nella sezione \texttt{Settings > Plugins} sia elencato quello appena scaricato.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=13cm]{img/redmine_webhook_admin.png}
+		\caption{Lista plugin configurati}
+	\end{figure}
 
-		\paragraph{Configurazione del plugin}
+	%Questo plugin implementa il concetto di Hook offerto dalla API di Redmine, inviando a un determinato URL un \gloss{payload} costituito da un file JSON quando un evento si innesca, contenente le informazioni relative a tale evento.	Queste istruzioni saranno contenute anche nel README della repository sul quale è stato versionato il codice.
 
-		Per poter inviare i webhook da Redmine è necessario installare un plugin esterno chiamato \texttt{redmine\_webhook}\footnote{\url{https://github.com/suer/redmine_webhook.git}}.\\
-		Per installarlo è necessario scaricarlo (tramite il comando \texttt{git clone} ad esempio) nella cartella \texttt{/plugins/redmine}.
-		Non sono necessarie ulteriori configurazioni in quanto questo software è di tipo plug and play.\\ %TODO verificare
-		Per verificare la corretta integrazione con Redmine, controllare da un profilo con privilegi amministratore che nella sezione \texttt{Settings > Plugins} sia elencato quello appena scaricato.
-		%TODO inserire immagine
-
-		%Questo plugin implementa il concetto di Hook offerto dalla API di Redmine, inviando a un determinato URL un \gloss{payload} costituito da un file JSON quando un evento si innesca, contenente le informazioni relative a tale evento.
-
-		Queste istruzioni saranno contenute anche nel README della repository sul quale è stato versionato il codice.
-
-		\paragraph{Configurazione destinazione}
-		Per aggiungere una destinazione del webhook per un progetto, andare nella sezione relativa al webhook all'interno del menu del progetto...
-		...aggiungere la destinazione e premere add..
-		%todo inserire immagine
-
-		\paragraph{Eventi supportati}
-		Per Redmine gli eventi supportati sono:
-		\begin{itemize}
-			\item Issue\footnote{Il plugin \texttt{redmine\_webhook} offre l'invio dei webhook solamente da parte degli eventi relativi alle Issue}
-		\end{itemize}
+	\paragraph{Configurazione destinazione}
+	Per aggiungere una destinazione del webhook per un progetto, andare nella sezione relativa a questo all'interno del menu del progetto selezionato (\texttt{Settings > Webhook}).\\
+	Nell'area di input aggiungere l'indirizzo di destinazione e premere ``Add''. Nel caso si volesse rimuovere un indirizzo precedentemente inserito allora premere ``Remove''.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=13cm]{img/redmine_webhook_menu.png}
+		\caption{Menu plugin \texttt{redmine\_webhook}}
+	\end{figure}	
+	\paragraph{Eventi supportati}
+	Per Redmine gli eventi supportati sono:
+	\begin{itemize}
+		\item Issue\footnote{Il plugin \texttt{redmine\_webhook} offre l'invio dei webhook solamente da parte degli eventi relativi alle Issue}
+	\end{itemize}
 
 	\subsubsection{GitLab}
+	\paragraph{Configurazione webhook nella rete locale}
+	È necessario abilitare l'invio dei webhook a dispositivi presenti nella stessa rete dalla parte amministrativa.
+	Questo può essere effettuato accedendo con un account con privilegi amministratore all'indirizzo:
+	\begin{center}
+		\texttt{\url{/admin/application_settings/network}}
+	\end{center}
+	Per abilitare questa funzionalità cliccare sul riquadro rappresentato nell'immagine e che si trova all'indirizzo sopra indicato.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=13cm]{img/webhook_gitlab_setup.png}\\
+		\caption[Webhook, GitLab]{Configurazione webhook con destinazione in rete locale}
+	\end{figure}
+	Ulteriori informazioni al riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a questo argomento sulla parte del sito relativa lla documentazione di GitLab.	
 
+	\paragraph{Configurazione destinazione}
+	Successivamente si può aggiungere un indirizzo di destinazione di un webhook al progetto andando su \texttt{Settings > Integrations}.\\
+	Da qui si possono selezionare gli eventi di interessi per i quali i webhook verranno attivati (attenzione: \progetto~non supporta tutti gli eventi, solamente quelli richiesti da \II).\\
+	Nel campo relativo all'URL di destinazione inserire l'indirizzo, con relativa porta (nel nostro caso quella specificata nella Tabella 2), su cui il Producer GitLab è in ascolto.
+	\paragraph{Eventi supportati}
+	Per GitLab gli eventi supportati sono:
+	\begin{itemize}
+		\item Push events
+		\item Comments
+		\item Issues events
+	\end{itemize}
 
-		\paragraph{Configurazione webhook nella rete locale}
-		È necessario abilitare l'invio dei webhook a dispositivi presenti nella stessa rete dalla parte amministrativa.
-		Questo può essere effettuato accedendo con un account con privilegi amministratore all'indirizzo:
-		\begin{center}
-			\texttt{\url{/admin/application_settings/network}}
-		\end{center}
-		Per abilitare questa funzionalità cliccare sul riquadro rappresentato nell'immagine e che si trova all'indirizzo sopra indicato.
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=13cm]{img/webhook_gitlab_setup.png}\\
-			\caption[Webhook, GitLab]{Configurazione webhook con destinazione in rete locale}
-		\end{figure}
-		Ulteriori informazioni al riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a questo argomento sulla parte del sito relativa alla documentazione di GitLab.
+%TODO aggiungere variabili che possono essere configurate
+\subsection{Configurazione servizi \progetto}
+	
+	\subsubsection{Producer}
+	Per i Producer è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
+	\begin{itemize}
+		\item var
+	\end{itemize}
+	
+	\subsubsection{Consumer}
+	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
+	\begin{itemize}
+		\item var
+	\end{itemize}
 
-
-		\paragraph{Configurazione destinazione}
-		Successivamente si può aggiungere un indirizzo di destinazione di un webhook al progetto andando su \texttt{Settings > Integrations}.\\
-		Da qui si possono selezionare gli eventi di interessi per i quali i webhook verranno attivati (attenzione: \progetto~non supporta tutti gli eventi, solamente quelli richiesti da \II).\\
-		Nel campo relativo all'URL di destinazione inserire l'indirizzo, con relativa porta (nel nostro caso quella specificata nella Tabella 2), su cui il Producer GitLab è in ascolto.
-
-		\paragraph{Eventi supportati}
-		Per GitLab gli eventi supportati sono:
-		\begin{itemize}
-			\item Push events
-			\item Comments
-			\item Issues events
-		\end{itemize}
-
-
----
-
-
-	%TODO RIVEDERE
-	La configurazione dei consumer e dei producer sono composte da file json contenti informazioni come ad esempio la mail di invio e la password relativa utilizzate per accedere al server mail.
-	Queste possono essere modificate in modo tale da rispecchiare la configurazione che si vuole usare.
-
-\subsection{Servizi aggiuntivi}
-Aggiungere servizio necessario per il monitoraggio di kafka
-Altri servizi per monitoraggio ?
+	\subsubsection{Gestore personale}
+	Per il Gestore personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
+	\begin{itemize}
+		\item var
+	\end{itemize}
+	
+	\subsubsection{Kafka}
+	Per l'utilizzo richiestoci da parte dell'azienda di Kafka non sono state necessarie ulteriori configurazioni oltre a quelle di default successive all'installazione.
+	
