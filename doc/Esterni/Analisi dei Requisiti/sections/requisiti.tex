@@ -101,7 +101,7 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			% \stepcounter{vaF} e usare \subReqF per rientrare di un livello
 			\rowcolor{\tablegray}\ReqF{0}{L'utente può eseguire l'accesso al Gestore Personale}{Interno UC9.1-GP}
 				\rowcolor{white}\subReqF{0}{L'utente può inserire il proprio identificativo all'interno del sistema}{Interno UC9.1.1-GP}
-			\rowcolor{\tablegray}\ReqF{0}{\progetto\ deve saper notificare l'utente se il tentativo di accesso non è andato a buon fine}{Interno UC9.2}
+			\rowcolor{\tablegray}\ReqF{0}{\progetto\ deve saper notificare l'utente se il tentativo di accesso non è andato a buon fine}{Interno UC9.2-GP}
 			\rowcolor{white}\ReqF{0}{L'utente acceduto deve poter uscire dal sistema}{Interno UC10-GP}
 			\bottomrule\\
 		\end{paddedtablex}
@@ -228,10 +228,13 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\rowcolor{white}\ReqQ{1}{L'\gloss{indice di Gulpease} di ogni documento deve rientrare all'interno di un intervallo stabilito}{Interno QPD001}
 			%\Qreq{1}{I costi previsti dalla \gloss{pianificazione} non dovrebbero variare più di quanto stabilito}{Interno QPR002}
 			\rowcolor{\tablegray}\ReqQ{1}{Una frequenza minima di commit devono essere effettuati in una settimana}{Interno QPR004}
-			\rowcolor{white}\ReqQ{1}{Un numero stabilito di requisiti desiderabili deve essere soddisfatto}{Interno QPR006}
-			\rowcolor{\tablegray}\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
-			\rowcolor{white}\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
-            \rowcolor{\tablegray}\ReqQ{1}{arg2}{Interno}
+            \rowcolor{white}\ReqQ{1}{Tutte le norme scelte dallo standard PEP8 devono essere rispettate}{Interno QPS005}
+			\rowcolor{\tablegray}\ReqQ{1}{Un numero stabilito di requisiti desiderabili deve essere soddisfatto}{Interno QPR006}
+			\rowcolor{white}\ReqQ{1}{Ogni documento deve attraversare tutte le fasi previste dal suo \gloss{ciclo di vita}}{Interno QPR008}
+			\rowcolor{\tablegray}\ReqQ{1}{Viene stabilito il numero massimo di modifiche che può ricevere un prodotto prima di essere verificato}{Interno QPR009}
+            \rowcolor{white}\ReqQ{1}{Ogni modulo deve essere prima progettato e solo successivamente codificato}{Interno QPR011}
+            \rowcolor{\tablegray}\ReqQ{1}{L'intera progettazione del progetto non deve contenere un numero massimo di design patter}{Interno QPR012}
+            \rowcolor{white}\ReqQ{1}{Tutti i moduli devono possedere una suite di test allegata}{Interno QPR013}
 			\rowcolor{\tablegray}\ReqQ{2}{Tutte le \gloss{norme} inserite nelle \NdPd\ devono essere rispettate}{Interno}
 			\rowcolor{white}\ReqQ{2}{Tutti i vincoli presenti nel \PdQd\ devono essere rispettati}{Interno}
 			\rowcolor{\tablegray}\subReqQ{2}{Le applicazioni sviluppate devono rispettare i fattori trattati in The Twelve-Factor App segnati nel \PdQd}{Capitolato \Doc{VE\_2018-12-12}}
@@ -239,9 +242,6 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\ReqQ{2}{Deve essere redatta la documentazione sulle scelte progettuali effettuate}{Capitolato}
 			%\req{R\thevaQ.1Q2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
 			\subReqQ{2}{Ogni scelta descritta nella documentazione deve essere correlata dalle relative motivazioni}{Capitolato}
-			\ReqQ{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unità, d'integrazione e di sistema}{Capitolato}
-			%\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
-			\subReqQ{2}{È necessario fornire test d'unità per ogni componente applicativo}{Capitolato}
 
 			\bottomrule
 		\end{paddedtablex}
@@ -253,7 +253,11 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 			\textbf{Codice} & \textbf{Requisito} & \textbf{Fonte} \\\toprule
-
+            
+            
+            \ReqQ{2}{È necessario testare ogni prodotto software considerando ogni sistema di riferimento e interazione tra le sue parti, perciò con test d'unità, d'integrazione e di sistema}{Capitolato}
+            %\req{R\thevaQ.1Q2}{È necessario fornire test unitari per ogni componente applicativo}{Capitolato}
+            \subReqQ{2}{È necessario fornire test d'unità per ogni componente applicativo}{Capitolato}
 			\subReqQ{2}{È necessario fornire test d'integrazione per ogni componente applicativo}{Capitolato}
 			\subReqQ{2}{È necessario testare interamente il sistema con test di sistema}{Capitolato}
 			\ReqQ{1}{Per ogni problema aperto documentato, si allegano delle soluzioni da attuare in futuro}{Capitolato}
@@ -367,29 +371,23 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
-				& \cellcolor{\tablegray} R22F2 \\
-				& R23F2 \\
-				& \cellcolor{\tablegray} R24F2 \\
-				& R25F2 \\
-				& \cellcolor{\tablegray} R26F2 \\
-				& R27F2 \\
-				% \cmidrule{2-2}
-				& \cellcolor{\tablegray} R10Q2 \\
-				& R11Q2 \\
-				& \cellcolor{\tablegray} R12Q2 \\
-				& R12.1Q2 \\
-				& \cellcolor{\tablegray} R13Q2 \\
-				& R13.1Q2 \\
-				& \cellcolor{\tablegray} R13.2Q2 \\
-				& R13.3Q2 \\
-				& \cellcolor{\tablegray} R14Q1 \\
+				& \cellcolor{\tablegray} R12.1Q2 \\
+				& R13Q2 \\
+				& \cellcolor{\tablegray} R14Q2 \\
 				& R14.1Q2 \\
 				& \cellcolor{\tablegray} R15Q2 \\
 				& R15.1Q2 \\
 				& \cellcolor{\tablegray} R15.2Q2 \\
 				& R15.3Q2 \\
-				& \cellcolor{\tablegray} R15.3.1Q2 \\
-				\multirow{-22}{*}{Capitolato} & R15.3.2Q2 \\
+				& \cellcolor{\tablegray} R16Q1 \\
+                & R16.1Q2 \\
+                & \cellcolor{\tablegray} R17Q2 \\
+                & R17.1Q2 \\
+                & \cellcolor{\tablegray} R17.2Q2 \\
+                & R17.3Q2 \\
+                & \cellcolor{\tablegray} R17.3.1Q2 \\
+                
+				\multirow{-16}{*}{Capitolato} &  R17.3.2Q2 \\
 
 				\bottomrule
 			\end{oldtabularx}}
@@ -404,14 +402,19 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\textbf{Fonte} & \textbf{Requisito} \\
 				\toprule
 
-				& \cellcolor{\tablegray} R1V2 \\
-				& R1.1V0 \\
-				& \cellcolor{\tablegray} R2V2 \\
-				& R2.1V0 \\
-				& \cellcolor{\tablegray} R3V2 \\
-				& R3.1V2 \\
-				& \cellcolor{\tablegray} R4V1 \\
-				\multirow{-8}{*}{Capitolato} & R5V1 \\
+                & \cellcolor{\tablegray} R1V2 \\
+                & R1.1V0 \\
+                & \cellcolor{\tablegray} R2V2 \\
+                & R2.1V0 \\
+                & \cellcolor{\tablegray} R3V2 \\
+                & R3.1V2 \\
+                & \cellcolor{\tablegray} R4V1 \\
+                & R5V1 \\
+                & \cellcolor{\tablegray} R11V2 \\
+                & R12V2 \\
+                & \cellcolor{\tablegray} R13V2 \\
+                & R14V2 \\
+				\multirow{-13}{*}{Capitolato} & \cellcolor{\tablegray} R15V2 \\
 
 				\bottomrule
 			\end{oldtabularx}}
@@ -562,12 +565,15 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			QPR001 & R1Q1 \\
 			QPD001 & R2Q1 \\
 			QPR004 & R3Q1 \\
-			QPR006 & R4Q1 \\
-			QPR007 & R5Q1 \\
-			QPR008 & R6Q2 \\
-			QPR009 & R7Q1 \\
-			\Doc{VE\_2018-12-12} & R10Q2 \\
-			\bottomrule
+            QPS005 & R4Q1 \\
+			QPR006 & R5Q1 \\
+			QPR008 & R6Q1 \\
+			QPR009 & R7Q2 \\
+			QPR011 & R8Q1 \\
+            QPR012 & R9Q1 \\
+            QPR013 & R10Q1 \\
+			\Doc{VE\_2018-12-12} & R12.1Q2 \\
+			\bottomrule\\
 		\end{tabularx}}
 		\caption{Elenco dei requisiti per gli obiettivi di qualità e verbali}
 	\end{table}
@@ -582,33 +588,33 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\toprule
 
 			& \cellcolor{\tablegray} R1F2 \\
-			& R2F2 \\
+            & R1.1F2 \\
+            & \cellcolor{\tablegray} R1.2F2 \\
+            & R1.3F2 \\
+            & \cellcolor{\tablegray} R2F2 \\
+			& R2.1F2 \\
+            & \cellcolor{\tablegray} R2.2F2 \\
+            & R2.3F2 \\
+            & \cellcolor{\tablegray} R2.4F2 \\
+            & R2.5F2 \\
 			& \cellcolor{\tablegray} R3F2 \\
-			& R4F2 \\
+            & R3.1F2 \\
+            & \cellcolor{\tablegray} R3.2F2 \\
+            & R3.3F2 \\
+			& \cellcolor{\tablegray} R4F2 \\
+            & R4.1F2 \\
+            & \cellcolor{\tablegray} R4.2F2 \\
+            & R4.3F2 \\
+            & \cellcolor{\tablegray} R4.4F2 \\
+            & R4.5F2 \\
 			& \cellcolor{\tablegray} R5F2 \\
 			& R6F2 \\
-			& \cellcolor{\tablegray} R6.1F2 \\
-			& R6.2F2 \\
-			& \cellcolor{\tablegray} R7F1 \\
-			& R8.1F2 \\
-			& \cellcolor{\tablegray} R8.2F2 \\
-			& R8.2.1F2 \\
-			& \cellcolor{\tablegray} R8.2.2F2 \\
-			& R9F1 \\
-			& \cellcolor{\tablegray} R10F2 \\
-			& R11F2 \\
-			& \cellcolor{\tablegray} R12F2 \\
-			& R13F2 \\
-			& \cellcolor{\tablegray} R14F0 \\
-			& R14.1F0 \\
-			& \cellcolor{\tablegray} R15F0 \\
-			& R16F0 \\
-			& \cellcolor{\tablegray} R17F0 \\
-			& R17.1F0 \\
-			& \cellcolor{\tablegray} R17.2F0 \\
-			& R17.3F0 \\
-			& \cellcolor{\tablegray} R17.3.1F0 \\
-			\multirow{-29}{*}{Interno} & R17.4F0 \\
+			& \cellcolor{\tablegray} R7F2 \\
+			& R8F2 \\
+			& \cellcolor{\tablegray} R9F0 \\
+            & R9.1F0 \\
+			& \cellcolor{\tablegray} R10F0 \\
+			\multirow{-29}{*}{Interno} & R11F0 \\
 
 			\bottomrule
 		\end{oldtabularx}}
@@ -622,36 +628,34 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{oldtabularx}{0.7\textwidth}{YY}
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
-
-			& \cellcolor{\tablegray} R17.4.1F0 \\
-			& R18F0 \\
-			& \cellcolor{\tablegray} R18.1F0 \\
-			& R18.2F0 \\
-			& \cellcolor{\tablegray} R18.3F0 \\
-			& R18.4F0 \\
-			& \cellcolor{\tablegray} R19F0 \\
-			& R19.1F0 \\
-			& \cellcolor{\tablegray} R19.1.1F0 \\
-			& R19.2F0 \\
-			& \cellcolor{\tablegray} R19.3F0 \\
-			& R19.4F0 \\
-			& \cellcolor{\tablegray} R19.4.1F0 \\
-			& R19.5F0 \\
-			& \cellcolor{\tablegray} R19.5.1F0 \\
-			& R20F0 \\
-			& \cellcolor{\tablegray} R20.1F0 \\
-			& R20.2F0 \\
-			& \cellcolor{\tablegray} R20.3F0 \\
-			& R20.4F0 \\
-			& \cellcolor{\tablegray} R20.4.1F0 \\
-			& R20.4.2F0 \\
+            
+            & \cellcolor{\tablegray} R12F0 \\
+            & R12.1F0 \\
+            & \cellcolor{\tablegray} R12.2F0 \\
+            & R12.3F0 \\
+            & \cellcolor{\tablegray} R12.4F0 \\
+            & R13F0 \\
+            & \cellcolor{\tablegray} R14F0 \\
+            & R15F0 \\
+            & \cellcolor{\tablegray} R15.1F0 \\
+            & R15.2F0 \\
+            & \cellcolor{\tablegray} R16F0 \\
+            & R17F0 \\
+            & \cellcolor{\tablegray} R17.1F0 \\
+            & R17.2F0 \\
+            & \cellcolor{\tablegray} R17.3F0 \\
+            & R17.4F0 \\
+			& \cellcolor{\tablegray} R18F0 \\
+			& R19F0 \\
+			& \cellcolor{\tablegray} R20F0 \\
+			& R20.1F0 \\
+			& \cellcolor{\tablegray} R20.2F0 \\
+			& R20.3F0 \\
+			& \cellcolor{\tablegray} R20.4F0 \\
+			& R20.5F0 \\
 			& \cellcolor{\tablegray} R20.5F0 \\
-			& R20.5.1F0 \\
-			& \cellcolor{\tablegray} R21F0 \\
-			& R21.1F0 \\
-			& \cellcolor{\tablegray} R21.2F0 \\
-			& R21.3F0 \\
-			\multirow{-29}{*}{Interno} & \cellcolor{\tablegray} R21.4F0 \\
+			& R20.6F0 \\
+			\multirow{-27}{*}{Interno} & \cellcolor{\tablegray} R20.7F0 \\		 
 
 			\bottomrule
 		\end{oldtabularx}}
@@ -665,11 +669,15 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		\begin{oldtabularx}{0.7\textwidth}{YY}
 			\textbf{Fonte} & \textbf{Requisito} \\
 			\toprule
-
-			& \cellcolor{\tablegray} R21.4.1F0 \\
-			& R21.4.2F0 \\
-			& \cellcolor{\tablegray} R21.5F0 \\
-			& R21.5.1F0 \\
+            
+            & \cellcolor{\tablegray} R21F0 \\
+			& R21.1F0 \\
+            & \cellcolor{\tablegray} R21.2F0 \\
+            & R21.3F0 \\
+            & \cellcolor{\tablegray} R21.4F0 \\
+            & R21.5F0 \\
+            & \cellcolor{\tablegray} R21.6F0 \\
+            & R21.7F0 \\
 			& \cellcolor{\tablegray} R1Q1 \\
 			& R2Q1 \\
 			& \cellcolor{\tablegray} R3Q1 \\
@@ -677,13 +685,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			& \cellcolor{\tablegray} R5Q1 \\
 			& R6Q1 \\
 			& \cellcolor{\tablegray} R7Q1 \\
-			& R7Q1 \\
+			& R8Q1 \\
 			& \cellcolor{\tablegray} R9Q2 \\
-			& R6V0 \\
-			& \cellcolor{\tablegray} R7V0 \\
-			& R8V0 \\
-			& \cellcolor{\tablegray} R9V0 \\
-			\multirow{-18}{*}{Interno} & R10V0 \\
+            & R10Q1 \\
+            & \cellcolor{\tablegray} R11Q1 \\
+            & R12Q1 \\
+			& \cellcolor{\tablegray} R6V0 \\
+			& R7V0 \\
+			& \cellcolor{\tablegray} R8V0 \\
+			& R9V0 \\
+			\multirow{-25}{*}{Interno} & \cellcolor{\tablegray} R10V0 \\
 			\bottomrule
 		\end{oldtabularx}}
 		\caption{Elenco dei requisiti da fonte interna (\thetableCounter)}
@@ -758,66 +769,140 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R1F2}
 				& UC1-PR \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R1.1F2}
+                & UC1.1-PR \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R1.2F2}
+                & UC1.2-PR \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R1.3F2}
+                & UC1.3-PR \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R1.4F2}
+                & UC1.4-PR \\
+                
+            	& Interno \\
+                \multirow{-2}{*}{R2F2}
+				& UC2-PG \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R2.1F2}
+                & UC2.1-PG \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R2.2F2}
+                & UC2.2-PG \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R2.3F2}
+                & UC2.3-PG \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R2.4F2}
+                & UC2.4-PG \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R2.5F2}
+                & UC2.5-PG \\
 
-				& Interno \\
-				\multirow{-2}{*}{R2F2}
-				& UC2-PR \\
+				\bottomrule
+			\end{oldtabularx}}
+			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
+		\end{table}
 
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R3F2}
-				& UC3-PG \\
 
-				& Interno \\
-				\multirow{-2}{*}{R4F2}
-				& UC4-PG \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R5F2}
-				& UC5-PG \\
-
-				& Interno \\
-				\multirow{-2}{*}{R6F2}
-				& UC6-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R6F2}
-				& UC6.1-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R6.2F2}
-				& UC6.2-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R7F1}
-				& UC6.3-GP \\
+		\stepcounter{tableCounter}
+		\begin{table}[H]
+			\centering
+			{\def\arraystretch{1.6}
+			\begin{oldtabularx}{0.7\textwidth}{YY}
+				\textbf{Requisito} & \textbf{Fonte} \\
+				\toprule
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R3F2}
+                & UC3-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R3.1F2}
+                & UC3.1-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R3.2F2}
+                & UC3.2-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R3.3F2}
+                & UC3.3-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R4F2}
+                & UC4-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R4.1F2}
+                & UC4.1-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R4.2F2}
+                & UC4.2-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R4.3F2}
+                & UC4.3-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R4.4F2}
+                & UC4.4-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R4.5F2}
+                & UC4.5-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R5F2}
+                & UC5-CT \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R6F2}
+                & UC6-CE \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R7F2}
+                & UC7-BT \\
 
 				& Interno \\
 				\multirow{-2}{*}{R8F2}
-				& UC7-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R8.1F2}
-				& UC7.1-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R8.2F2}
-				& UC7.2-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R8.2.1F2}
-				& UC7.2.1-GP \\
+				& UC8-SE \\
 
 				\bottomrule
 			\end{oldtabularx}}
@@ -832,73 +917,83 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R8.2.2F2}
-				& UC7.2.2-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R9F1}
-				& UC7.2.3-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R10F2}
-				& UC8-CT \\
-
-				& Interno \\
-				\multirow{-2}{*}{R11F2}
-				& UC9-CE \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R12F2}
-				& UC10-BT \\
-
-				& Interno \\
-				\multirow{-2}{*}{R13F2}
-				& UC11-SE \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R14F0}
-				& UC12.1-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R14.1F0}
-				& UC12.1.1 \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R15F0}
-				& UC12.1.2 \\
-
-				& Interno \\
-				\multirow{-2}{*}{R16F0}
-				& UC13-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R17F0}
-				& UC14-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R17.1F0}
-				& UC14.1.1-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R17.2F0}
-				& UC14.1.2-GP \\
-
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R9F2}
+                & UC9.1-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R9.1F0}
+                & UC9.1.1-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R10F0}
+                & UC9.2-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R11F0}
+                & UC10-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R12F0}
+                & UC11.1-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R12.1F0}
+                & UC11.1.1-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R12.2F0}
+                & UC11.1.2-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R12.3F0}
+                & UC11.1.3-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R12.4F0}
+                & UC11.1.4-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R13F0}
+                & UC11.2-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R14F0}
+                & UC11.1-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R15F0}
+                & UC12.1-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R15.1F0}
+                & UC12.1.1-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R15.2F0}
+                & UC12.1.2-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R16F0}
+                & UC12.2-GP \\
+                
 				\bottomrule
 			\end{oldtabularx}}
 			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
@@ -912,152 +1007,82 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R17.3F0}
-				& UC14.1.3-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R17.3.1F0}
-				& UC14.2-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R17.4F0}
-				& UC14.1.4-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R17.4.1F0}
-				& UC14.2-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R18F0}
-				& UC15-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R18.1F0}
-				& UC15.1.1-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R18.2F0}
-				& UC15.1.2-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R18.3F0}
-				& UC15.2-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R18.4F0}
-				& UC15.3-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R19F0}
-				& UC16-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R19.1F0}
-				& UC16.1-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R19.1.1F0}
-				& UC16.2-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R19.2F0}
-				& UC16.1.1.1-GP \\
-
-				\bottomrule
-			\end{oldtabularx}}
-			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
-		\end{table}
-
-
-		\stepcounter{tableCounter}
-		\begin{table}[H]
-			\centering
-			{\def\arraystretch{1.6}
-			\begin{oldtabularx}{0.7\textwidth}{YY}
-				\textbf{Requisito} & \textbf{Fonte} \\
-				\toprule
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R19.3F0}
-				& UC16.1.1.2-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R19.4F0}
-				& UC16.1.1.3-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R19.4.1F0}
-				& UC16.1.2-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R19.5F0}
-				& UC16.1.1.4-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R19.5.1F0}
-				& UC16.1.2-GP \\
-
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R17F0}
+                & UC13.1-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R17.1F0}
+                & UC13.1.1-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R17.2F0}
+                & UC13.1.2-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R17.3F0}
+                & UC13.1.3-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R17.4F0}
+                & UC13.1.4-GP \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R18F0}
+                & UC13.2-GP \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R19F0}
+                & UC13.2-GP \\
+                
 				& Interno \\
 				\multirow{-2}{*}{R20F0}
-				& UC17-GP \\
+				& UC14-GP \\
 
 				\rowcolor{\tablegray}
 				& Interno \\
 				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R20.1F0}
-				& UC17.1-GP \\
+				& UC14.1-GP \\
 
 				& Interno \\
 				\multirow{-2}{*}{R20.2F0}
-				& UC17.2-GP \\
+				& UC14.2-GP \\
 
 				\rowcolor{\tablegray}
 				& Interno \\
 				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R20.3F0}
-				& UC17.3-GP \\
+				& UC14.3-GP \\
 
 				& Interno \\
 				\multirow{-2}{*}{R20.4F0}
-				& UC17.4-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R20.4.1F0}
-				& UC17.5-GP \\
-
-				& Interno \\
-				\multirow{-2}{*}{R20.4.2F0}
-				& UC17.5-GP \\
+				& UC14.4-GP \\
 
 				\rowcolor{\tablegray}
 				& Interno \\
 				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R20.5F0}
-				& UC17.6-GP \\
+				& UC14.5-GP \\
+
+				& Interno \\
+				\multirow{-2}{*}{R20.6F0}
+				& UC14.6-GP \\
+
+				\rowcolor{\tablegray}
+				& Interno \\
+				\rowcolor{\tablegray}
+				\multirow{-2}{*}{R20.7F0}
+				& UC14.7-GP \\
 
 				\bottomrule
 			\end{oldtabularx}}
@@ -1072,63 +1097,46 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
-
-				\rowcolor{\tablegray}
+                
+                \rowcolor{\tablegray}
 				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R20.5.1F0}
-				& UC17.7-GP \\
-
-				& Interno \\
+                \rowcolor{\tablegray}
 				\multirow{-2}{*}{R21F0}
-				& UC18-GP \\
+				& UC15-GP \\
 
-				\rowcolor{\tablegray}
 				& Interno \\
-				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R21.1F0}
-				& UC18.1-GP \\
-
+				& UC15.1-GP \\
+                
+                \rowcolor{\tablegray}
 				& Interno \\
+                \rowcolor{\tablegray}
 				\multirow{-2}{*}{R21.2F0}
-				& UC18.2-GP \\
+				& UC15.2-GP \\
 
-				\rowcolor{\tablegray}
 				& Interno \\
-				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R21.3F0}
-				& UC18.3-GP \\
-
+				& UC15.3-GP \\
+                
+                \rowcolor{\tablegray}
 				& Interno \\
+                \rowcolor{\tablegray}
 				\multirow{-2}{*}{R21.4F0}
-				& UC18.4-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
-				\multirow{-2}{*}{R21.4.1F0}
-				& UC18.5-GP \\
+				& UC15.4-GP \\
 
 				& Interno \\
-				\multirow{-2}{*}{R21.4.2F0}
-				& UC18.5-GP \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R21.5F0}
-				& UC18.6-GP \\
+				& UC15.5-GP \\
+                
+                \rowcolor{\tablegray}
+				& Interno \\
+                \rowcolor{\tablegray}
+				\multirow{-2}{*}{R21.6F0}
+				& UC15.6-GP \\
 
 				& Interno \\
-				\multirow{-2}{*}{R21.5.1F0}
-				& UC18.7-GP \\
-
-				\rowcolor{\tablegray} R22F2 & Capitolato \\
-				R23F2 & Capitolato \\
-				\rowcolor{\tablegray} R24F2 & Capitolato \\
-				R25F2 & Capitolato \\
-				\rowcolor{\tablegray} R26F2 & Capitolato \\
-				R27F2 & Capitolato \\
+				\multirow{-2}{*}{R21.7F0}
+				& UC15.7-GP \\
 				\bottomrule
 			\end{oldtabularx}}
 			\caption{Elenco dei requisiti funzionali in rapporto alle fonti (\thetableCounter)}
@@ -1158,16 +1166,16 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R3Q1}
 				& QPR004 \\
-
+                
+                & Interno \\
+                \multirow{-2}{*}{R4Q1}
+                & QPS005 \\
+                
+                \rowcolor{\tablegray}
 				& Interno \\
-				\multirow{-2}{*}{R4Q1}
-				& QPR006 \\
-
-				\rowcolor{\tablegray}
-				& Interno \\
-				\rowcolor{\tablegray}
+                \rowcolor{\tablegray}
 				\multirow{-2}{*}{R5Q1}
-				& QPR007 \\
+				& QPR006 \\
 
 				& Interno \\
 				\multirow{-2}{*}{R6Q1}
@@ -1178,24 +1186,32 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				\rowcolor{\tablegray}
 				\multirow{-2}{*}{R7Q1}
 				& QPR009 \\
-
-				R8Q2 & Interno \\
-				\rowcolor{\tablegray} R9Q2 & Interno \\
-
-				\multirow{2}{*}{R10Q2}
+                
+                & Interno \\
+                \multirow{-2}{*}{R8Q1}
+                & QPR011 \\
+                
+                \rowcolor{\tablegray}
+                & Interno \\
+                \rowcolor{\tablegray}
+                \multirow{-2}{*}{R9Q1}
+                & QPR012 \\
+                
+                & Interno \\
+                \multirow{-2}{*}{R10Q1}
+                & QPR013 \\
+                
+                \rowcolor{\tablegray}R11Q2 & Interno \\
+				R12Q2 & Interno \\
+                
+                \rowcolor{\tablegray}
 				& Capitolato \\
-				& \Doc{VE\_2018-12-12} \\
-
-				\rowcolor{\tablegray} R11Q2 & Capitolato \\
-				R12Q2 & Capitolato \\
-				\rowcolor{\tablegray} R12.1Q2 & Capitolato \\
-				R13Q2 & Capitolato \\
-				\rowcolor{\tablegray} R13.1Q2 & Capitolato \\
-				R13.2Q2 & Capitolato \\
-				\rowcolor{\tablegray} R13.3Q2 & Capitolato \\
-				R14Q1 & Capitolato \\
-				\rowcolor{\tablegray} R14.1Q2 & Capitolato \\
-
+                \rowcolor{\tablegray}
+				\multirow{-2}{*}{R12.1Q2} & \Doc{VE\_2018-12-12} \\
+                
+                R13Q2 & Capitolato \\
+                \rowcolor{\tablegray}R14Q2 & Capitolato \\
+				R14.1Q2 & Capitolato \\
 				\bottomrule
 			\end{oldtabularx}}
 			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (\thetableCounter)}
@@ -1209,12 +1225,18 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 			\begin{oldtabularx}{0.7\textwidth}{YY}
 				\textbf{Requisito} & \textbf{Fonte} \\
 				\toprule
-				\rowcolor{\tablegray} R15Q2 & Capitolato \\
-				R15.1Q2 & Capitolato \\
-				\rowcolor{\tablegray} R15.2Q2 & Capitolato \\
-				R15.3Q2 & Capitolato \\
-				\rowcolor{\tablegray} R15.3.1F2 & Capitolato \\
-				R15.3.2F2 & Capitolato \\
+                
+                \rowcolor{\tablegray} R15Q2 & Capitolato \\
+                R15.1Q2 & Capitolato \\
+                \rowcolor{\tablegray} R15.2Q2 & Capitolato \\
+                R15.3Q2 & Capitolato \\
+                \rowcolor{\tablegray} R16Q1 & Capitolato \\
+                R16.1Q2 & Capitolato \\
+				\rowcolor{\tablegray} R17Q2 & Capitolato \\
+				R17.1Q2 & Capitolato \\
+				\rowcolor{\tablegray} R17.3Q2 & Capitolato \\
+				R17.3.1Q2 & Capitolato \\
+                \rowcolor{\tablegray} R17.3.2Q2 & Capitolato \\
 				\bottomrule
 			\end{oldtabularx}}
 			\caption{Elenco dei requisiti di qualità in rapporto alle fonti (\thetableCounter)}
@@ -1238,9 +1260,14 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 				R5V1 & Capitolato \\
 				\rowcolor{\tablegray} R6V0 & Interno \\
 				R7V0 & Interno \\
-				\rowcolor{\tablegray} R7V0 & Interno \\
+				\rowcolor{\tablegray} R8V0 & Interno \\
 				R9V0 & Interno \\
 				\rowcolor{\tablegray} R10V0 & Interno \\
+                R11V2 & Capitolato \\
+                \rowcolor{\tablegray} R12V2 & Capitolato \\
+                R13V2 & Capitolato \\
+                \rowcolor{\tablegray} R14V2 & Capitolato \\
+                R15V2 & Capitolato \\
 				\bottomrule
 			\end{oldtabularx}}
 			\caption{Elenco dei requisiti di vincolo in rapporto alle fonti}
@@ -1340,9 +1367,9 @@ Ad ogni requisito viene assegnato il codice identificativo univoco:
 		{\def\arraystretch{1.7}
 		\begin{oldtabularx}{\textwidth}{YYYY}
 			\textbf{Tipologia} & \textbf{Obbligatori} & \textbf{Desiderabili} & \textbf{Opzionali} \\\toprule
-			\rowcolor{\tablegray} Di funzionalità & 23 & 2 & 43 \\
-			Di qualità & 17 & 8 & 0 \\
-			\rowcolor{\tablegray} Di vincolo & 4 & 2 & 7
+			\rowcolor{\tablegray} Di funzionalità & 24 & 0 & 38 \\
+			Di qualità & 17 & 11 & 0 \\
+			\rowcolor{\tablegray} Di vincolo & 9 & 2 & 7
 			\\\bottomrule
 		\end{oldtabularx}}
 		\caption{Riepilogo dei requisiti}
