@@ -42,7 +42,7 @@
             \item Due Date
         \end{itemize}
     \end{itemize}
-    Il campo object kind ci permette di capire il tipo di oggetto, in questo caso infatti contiene ``issue'', mentre il campo action ha ``open''.
+    Il campo object kind ci permette di capire il tipo di oggetto. In questo caso infatti contiene ``issue'', mentre il campo action ha ``open''.
     \item \textbf{Precondizione}: su GitLab viene eseguita una operazione che scaturisce una
     segnalazione da inviare a \progetto.
     \item \textbf{Postcondizione}: il Producer GitLab riceve la segnalazione di apertura issue da GitLab.
@@ -50,7 +50,7 @@
     \begin{enumerate}
         \item Viene aperta una nuova issue su GitLab
         \item GitLab procede all'invio della segnalazione di issue al Producer GitLab
-        \item il Producer GitLab riceve la segnalazione di apertura issue
+        \item Il Producer GitLab riceve la segnalazione di apertura issue
     \end{enumerate}
 
 \end{itemize}
@@ -93,6 +93,7 @@
     \begin{enumerate}
         \item Viene commentata una issue già esistente su GitLab
         \item GitLab procede all'invio della segnalazione di commento issue al Producer GitLab
+        \item \item Il Producer GitLab riceve la segnalazione di commento di una issue
     \end{enumerate}
 
 \end{itemize}
@@ -120,7 +121,7 @@ segnalazione da inviare a \progetto.
 \begin{enumerate}
     \item Viene effettuato un push in GitLab
     \item GitLab procede all'invio della segnalazione di push al Producer GitLab
-    \item IlProducer GitLab riceve la segnalazione dell'evento di push
+    \item Il Producer GitLab riceve la segnalazione dell'evento di push
 \end{enumerate}
 
 \end{itemize}
