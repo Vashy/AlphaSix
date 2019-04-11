@@ -245,6 +245,13 @@ al destinatario finale tramite le API dell'applicativo su cui il Consumer è bas
 Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{telegram}
 di Kafka all'invio del messaggio all'utente finale su Telegram.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Consumer-MsgTelegram.png}\\
+    \caption[Diagramma di sequenza TelegramConsumer]{Diagramma di sequenza dell'invio di un messaggio da parte di TelegramConsumer}
+    % \label{fig:GP-Kafka}
+\end{figure}
+
 \paragraph{Diagramma dei package}
 
 Il TelegramConsumer ha 2 dipendenze esterne:
@@ -276,6 +283,16 @@ Il metodo \texttt{format()} costruisce il testo del messaggio finale utilizzando
 
 
 \subsubsection{EmailConsumer}
+Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{email}
+di Kafka all'invio del messaggio all'utente finale tramite server SMTP.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Consumer-MsgEmail.png}\\
+    \caption[Diagramma di sequenza EmailConsumer]{Diagramma di sequenza dell'invio di un messaggio da parte di EmailConsumer}
+    % \label{fig:GP-Kafka}
+\end{figure}
+
 
 \paragraph{Diagramma dei package}
 
