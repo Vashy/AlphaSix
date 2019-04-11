@@ -430,17 +430,13 @@ class MongoUsers:
         return self.users({
             '_id': user,
             'telegram': {'$exists': 'true', '$ne': ''}
-        }, {
-            'telegram': 1
-        })[0]
+        })[0]['telegram']
 
     def get_user_email(self, user: int):
         return self.users({
             '_id': user,
             'email': {'$exists': 'true', '$ne': ''}
-        }, {
-            'email': 1
-        })[0]
+        })[0]['email']
 
     def get_match_keywords(self, users: list, commit: str) -> list:
         keyword_user = []

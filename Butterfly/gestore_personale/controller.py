@@ -16,6 +16,7 @@ from mongo_db.singleton import MongoSingleton
 
 html = (pathlib.Path(__file__).parent / 'static/html').resolve()
 
+
 class Observer(ABC):
 
     @abstractmethod
@@ -131,13 +132,24 @@ class Controller(Observer):
             methods=['GET', 'POST', 'PUT', 'DELETE']
         )
 
-    def _checkSession(self):
+        self.server.add_url_rule(
+            '/web_preference',
+            'web_preference',
+            self.web_preference,
+            methods=['GET', 'POST', 'PUT', 'DELETE']
+        )
+
+    def _users_id(self, userid: str):
+        ids = []
+        for user in self.model.users():
+            ids.append(user[userid])
+        return ids
+
+    def _check_session(self):
         return 'userid' in session
 
-    def render(self, fileHtml: pathlib.Path, request: request):
-        page = fileHtml.read_text()
-        return render_template_string(page)
-
+    def _check_values(self, request: request):
+        return len(request.values) != 0
 
     def access(self, request: request):
         fileHtml = html / 'access.html'
@@ -157,27 +169,52 @@ class Controller(Observer):
         return page
 
     def panel(self):
-        if self._checkSession():
+        if self._check_session():
             fileHtml = html / 'panel.html'
-            return self.render(fileHtml, request)
-        return self.access(request)
+            return render_template_string(fileHtml.read_text())
+        else:
+            return self.access(request)
 
     def web_user(self):
-        if request.method == 'PUT' and request.values.get('id') is None:
-            fileHtml = html / 'adduser.html'
-        return self.render(fileHtml, request)
-
+        if self._check_session():
+            if(not self._check_values(request)):
+                if request.method == 'PUT':
+                    fileHtml = html / 'adduser.html'
+                elif request.method == 'POST':
+                    fileHtml = html / 'modifyuser.html'
+                elif request.method == 'DELETE':
+                    values = self._users_id('_id')
+                    display = []
+                    print(values)
+                    for user in values:
+                        display.append(
+                            self.model.get_user_telegram(user) +
+                            ' ' +
+                            self.model.get_user_email(user)
+                        )
+                    fileHtml = html / 'removeuser.html'
+                page = fileHtml.read_text()
+                page = page.replace('userids', display)
+                return render_template_string(page)
+        else:
+            return self.access(request)
 
     def web_preference(self):
-        return 'preference'
+        if self._check_session():
+            if(not self._check_values(request)):
+                fileHtml = html / 'preference.html'
+                page = fileHtml.read_text()
+                return render_template_string(page)
+        else:
+            return self.access(request)
 
-    def apiUser(self, request_type: str, msg: str):
+    def api_user(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
             pass
 
-    def apiPreference(self, request_type: str, msg: str):
+    def api_preference(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
@@ -185,9 +222,9 @@ class Controller(Observer):
 
     def update(self, resource: str, request_type: str, msg: str):
         if resource == 'user':
-            return self.apiUser(request_type, msg)
+            return self.api_user(request_type, msg)
         elif resource == 'preference':
-            return self.apiPreference(request_type, msg)
+            return self.api_preference(request_type, msg)
 
 
 def main():

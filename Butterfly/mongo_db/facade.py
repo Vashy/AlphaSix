@@ -19,7 +19,7 @@ class MongoFacade():
         return self._users.read(user)
 
     def users(self, mongofilter={}):
-        return self._proj_users.users(mongofilter)
+        return self._users.users(mongofilter)
 
     def delete_user(self, user: str):
         self._users.delete(user)
@@ -75,10 +75,10 @@ class MongoFacade():
         return self._projects.exists(url)
 
     def get_user_telegram(self, userID: str) -> str:
-        return self._users.telegram(userID)
+        return self._users.get_user_telegram(userID)
 
     def get_user_email(self, userID: str) -> str:
-        return self._users.email(userID)
+        return self._users.get_user_email(userID)
 
     def get_match_keywords(self, users: list, commit: str) -> list:
         return self._users.get_match_keywords(users, commit)
