@@ -11,8 +11,8 @@ Lo scopo del modello a V è quello di mostrare quali tipi di test accompagnano o
 	\centering
 	%\includegraphics[width=0.8\textwidth]{img/modellov-sweki.jpg}
 	\includegraphics[width=0.8\textwidth]{img/modellov-sweki_inv.png}
-	\label{img:vmodel}
 	\caption[Modello a V]{Modello a V\protect\footnotemark}
+	\label{img:vmodel}
 \end{figure}
 
 \footnotetext{Vedere modello a V in \S\ref{riferimenti informativi}}
@@ -58,7 +58,7 @@ Le tabelle che raccolgono i test di una determinata tipologia presentano i campi
 
 \subsubsection{Test di validazione} \label{testvalidazione}
 È un tipo di test da determinare e sviluppare in parallelo con la comprensione del capitolato.
-Come si può vedere dal modello a V, sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
+Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi di test che vengono creati e saranno gli ultimi ad essere eseguiti prima della consegna del prodotto.
 
 \newenvironment{VTtable}[1][1]{%
 	\renewcommand*{\arraystretch}{#1}%
@@ -1015,7 +1015,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\addtoti & Verifica l'integrazione di FlaskServer con RedmineProducer & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con KafkaProducerCreator & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaConsumer con KafkaConsumerCreator & \TS \\
-		\addtoti & Verifica l'integrazione del database MongoClient con l'interfaccia del Gestore Personale & \TS \\
+		\addtoti & Verifica l'integrazione del database MongoClient con ControllerGestorePersonale & \TS \\
 		\addtoti & Verifica l'integrazione del database MongoClient con la componente di processamento dei messaggi MessageProcessor & \TS \\
 		\addtoti & Verifica l'integrazione di MongoClient con MongoSingleton & \TS \\
 		\addtoti & Verifica l'integrazione di MongoFacade con MessageProcessor & \TS \\

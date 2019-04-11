@@ -193,14 +193,14 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci
         \end{itemize}
 
     \subsubsection{PROC006 Codifica}\label{proc006}
-    Successivamente alla progettazione avviene la realizzazione del prodotto finale che verrà rilasciato. Il processo di codifica, insieme a quello di verifica restituisce il prodotto che verrà usato e mantenuto. La codifica di ogni modulo deve trattarsi della ``traduzione'' in codice della progettazione.
+    Successivamente alla progettazione avviene la realizzazione del prodotto finale che verrà rilasciato. Il processo di codifica, insieme a quello di verifica, restituisce il prodotto che verrà usato e mantenuto. La codifica di ogni modulo deve trattarsi della ``traduzione'' in codice della progettazione.
 
         \paragraph*{Funzioni}
         \begin{itemize}
             \item \textbf{Produrre codice comprensibile}: il prodotto rilasciato in futuro potrà essere usato da altre persone, per questo il codice deve poter essere facilmente comprensibile.
-            \item \textbf{Produrre codice mantenibile}: le componenti del prodotto nel tempo potranno risultare superate, per questo le nuove tecnologie devono poter essere applicate all'interno del prodotto.
+            \item \textbf{Produrre codice mantenibile}: le componenti del prodotto nel tempo potranno risultare obsolete, per questo le nuove tecnologie devono poter essere applicate all'interno del prodotto.
             \item \textbf{Produrre codice estensibile}: il prodotto deve poter concedere la possibilità di ricevere nuove funzionalità in modo semplice e veloce.
-            \item \textbf{Produrre codice corretto}: il prodotto, al momento del rilascio, non deve riscontrare errori anomali ed essere eseguito correttamente.
+            \item \textbf{Produrre codice corretto}: il prodotto, al momento del rilascio, non deve riscontrare anomalie ed essere eseguito correttamente.
         \end{itemize}
 
         \paragraph*{Metriche}
@@ -210,7 +210,7 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci
 
         \paragraph*{Obiettivi}
         \begin{itemize}
-            \item \textbf{QPR013 I moduli possiedono suite di test}: i moduli codificati devono possedere una suite di test per essere verificati nelle loro parti e in relazione tra di loro.
+            \item \textbf{QPR013 I moduli possiedono suite di test}: i moduli codificati devono possedere una suite di test per essere verificati in tutte le loro parti e in correlazione tra di loro.
             \item \textbf{QPR014 Rispetto delle norme di codifica}: il codice, per essere meglio comprensibile e corretto deve essere prodotto seguendo delle norme. Il rispetto di tali norme viene verificato in \S\ref{prodottosw}.
         \end{itemize}
 
@@ -336,7 +336,7 @@ Ogni obiettivo di qualità è indicato con:
             \textbf{Valore desiderato}\\\toprule
 
             \rowcolor{white}
-            QPR011 Progettare prima di codificare & MPR010 Moduli codificati prima della progettazione & 25\%\\
+            QPR011 Progettare prima di codificare & MPR010 Moduli codificati prima della progettazione & 0\% - 25\%\\
             \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i moduli devono essere progettati prima della loro codifica. Purtroppo questo è difficilmente possibile nel periodo che antecede la fase di progettazione e che richiede il rilascio  di un \gloss{PoC}, per questo la soglia di tolleranza per moduli codificati prima di essere progettati è al 0\% - 25\%.} \\
 
             \hline \rowcolor{white}
