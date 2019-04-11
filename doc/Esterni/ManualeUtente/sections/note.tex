@@ -1,16 +1,21 @@
 \section{Note sulla gestione delle notifiche}\label{note}
-Considerando che un messaggio appartiene ad un progetto e possiede dei Topic, un utente riceve una notifica se:
+Considerando che un messaggio appartiene ad un progetto e possiede un  Topic, un utente riceve una notifica se:
 \begin{itemize}
-    \item L'utente è iscritto al progetto del messaggio
-    \item L'utente è iscritto ad almeno uno dei Topic del messaggio
-    \item L'utente possiede la priorità del progetto più alta tra tutti gli utenti iscritti al progetto indicato
+    \item L'utente è iscritto al Topic del messaggio
+    \item L'utente è iscritto al progetto del messaggio e possiede la priorità del progetto più alta tra tutti gli utenti iscritti al progetto indicato
     \item L'utente è disponibile il giorno di invio del messaggio
 \end{itemize}
 
-\subsection{Caso in cui una persona non sia disponibile}
-Nel caso in cui una persona a cui dovrebbe arrivare una notifica non sia disponibile (e quindi lo abbia precedentemente notificato nel calendario come descritto in \S\ref{indisponibilita}), la procedura del possibile inoltro del messaggio avviene nel seguente modo:
+\subsection{Caso di persona non disponibile}
+Nel caso in cui una persona a cui dovrebbe arrivare una notifica non sia disponibile (e quindi lo abbia precedentemente notificato nel calendario come descritto in \S\ref{preferenze}), la procedura del possibile inoltro del messaggio avviene nel seguente modo:
 \begin{itemize}
-    \item Se è presente un altro utente disponibile che possiede la stessa priorità del progetto nel messaggio ed è iscritto allo stesso Topic, e dunque che deve ricevere anch'egli la notifica, non avviene alcun inoltro
-    \item Se non è presente alcun utente disponibile con la stessa priorità del progetto nel messaggio e iscritto allo stesso Topic, la notifica viene inoltrata al primo utente disponibile iscritto allo stesso Topic ma con una priorità di progetto più bassa
-    \item Se non è disponibile alcun utente iscritto allo stesso Topic, la notifica viene inoltrata al primo utente disponibile iscritto al progetto indicato nel messaggio col la priorità più alta
+    \item Se è presente almeno un altro utente iscritto al Topic legato alla segnalazione, disponibile
+    il giorno dell’invio della notifica e con la stessa priorità di progetto, non viene inviata la
+    notifica all’utente in questione perché almeno un altro utente riceverà la segnalazione
+    \item Se non è disponibile nessun altro utente con la stessa priorità iscritto al Topic legato alla
+    segnalazione, la notifica viene inoltrata ad un utente sempre iscritto allo stesso Topic e
+    disponibile il giorno dell’invio della segnalazione, ma con una priorità di progetto inferiore
+    \item Se non è disponibile alcun utente iscritto al Topic legato alla segnalazione e disponibile
+    il giorno dell’invio della notifica, verrà notificata una persona iscritta al progetto indicato
+    con priorità massima tra quelli disponibili
 \end{itemize}
