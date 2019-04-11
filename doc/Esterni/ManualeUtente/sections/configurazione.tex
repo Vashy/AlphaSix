@@ -40,13 +40,14 @@ La suddivisione delle porte è la seguente:
 		Kafka e servizi correlati& 30030& 30059\\
 		Producer& 30060& 30089\\
 		Consumer& 30090& 30119\\
-		Gestore personale& 30120& 30149\\\bottomrule
+		Gestore Personale& 30120& 30149\\\bottomrule
 	\end{paddedtablex}
 	\caption{Suddivisione del range delle porte a disposizione su Rancher}
 \end{table}
 
 La suddivisione che abbiamo utilizzato, durante lo sviluppo e la consegna del progetto, prevede la seguente esposizione delle porte:
 
+%TODO verificare bene questo e che sia implementato in questa maniera
 \begin{table}[H]
 	\centering
 	\begin{paddedtablex}[1.3]{\textwidth}{YYY}
@@ -56,10 +57,10 @@ La suddivisione che abbiamo utilizzato, durante lo sviluppo e la consegna del pr
 		Kafka& 9092& 30030\\
 		Producer GitLab& 5000& 30060\\
 		Producer Redmine& 5000& 30061\\
-		Consumer Telegram& & 30090\\
-		Consumer Email& & 30091\\
-		Producer Gestore personale& 5000& 30120\\
-		Consumer Gestore personale& & 30121\\\bottomrule
+		Consumer Telegram& 80& 30090\\
+		Consumer Email& 80& 30091\\
+		Producer Gestore Personale& 5000& 30120\\
+		Consumer Gestore Personale& 80& 30121\\\bottomrule
 	\end{paddedtablex}
 	\caption{Configurazione delle porte in fase di sviluppo e consegna}
 \end{table}
@@ -90,17 +91,17 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 		\item Pod: \texttt{producer-redmine} (immagine: \texttt{alphasix/producer-redmine:master}\footnote{\url{https://hub.docker.com/r/alphasix/producer-redmine}})
 	\end{itemize}
 	
-	%TODO Aggiungere pod di monitoraggio
+	%TODO Successivamente aggiungere pod di monitoraggio
 	\item Namespace: \texttt{kafka}
 	\begin{itemize}
-		\item Pod: \texttt{kafka-kafka} (immagine: \texttt{confluentinc/cp-kafka:4.0.1-1}\footnote{\url{}})
-		\item Pod: \texttt{kafka-zookeeper} (immagine: \texttt{confluentinc/cp-zookeeper:4.1.1}\footnote{\url{}})
+		\item Pod: \texttt{kafka-kafka} (immagine: \texttt{confluentinc/cp-kafka:4.0.1-1}\footnote{\url{https://hub.docker.com/r/confluentinc/cp-kafka/}})
+		\item Pod: \texttt{kafka-zookeeper} (immagine: \texttt{confluentinc/cp-zookeeper:4.1.1}\footnote{\url{https://hub.docker.com/r/confluentinc/cp-zookeeper/}})
 	\end{itemize}
 	
-	%TODO: da vedere se è in un unico pod oppure se in pod separati
-	\item Namespace: \texttt{gestore-personale}
+	%TODO successivamente da vedere se è in un unico pod oppure se in pod separati
+	\item Namespace: \texttt{gestore-Personale}
 	\begin{itemize}
-		\item Pod: \texttt{gestore-personale} (immagine: \texttt{alphasix/gestore-personale:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-personale}})
+		\item Pod: \texttt{gestore-Personale} (immagine: \texttt{alphasix/gestore-Personale:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-Personale}})
 		\item Pod: \texttt{mongo} (immagine: \texttt{bitnami/mongodb:latest}\footnote{\url{https://hub.docker.com/r/bitnami/mongodb/}})
 	\end{itemize}
 	
@@ -178,63 +179,36 @@ Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei softwar
 	
 	\subsubsection{Producer}
 	Per i Producer è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
-	\begin{table}[H]
-		\centering
-		\begin{paddedtablex}[1.3]{\textwidth}{cX}
-			\thead{Nome variabile} & \thead{Descrizione}\\\toprule
-			\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS} & \\
-			\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_IP} & \\
-			\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT} & \\
-			\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP} & \\
-			\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT} & \\\bottomrule
-		\end{paddedtablex}
-		\caption{Variabili di ambiente configurabili tramite Docker per i Producer}
-	\end{table}
+	\begin{itemize}
+		\item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP}: Indirizzo dell'istanza di Redmine disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT}: Porta dell'istanza di Redmine disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_IP}: Indirizzo dell'istanza di GitLab disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: Porta dell'istanza di GitLab disponibile.
+	\end{itemize}
 
 	\subsubsection{Consumer}\label{var_consumer}
 	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. 
 	Queste sono: 
-	\begin{table}[H]
-		\begin{paddedtablex}[1.3]{\textwidth}{cX}
-			\thead{Nome variabile} & \thead{Descrizione}\\\toprule
-			\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_ENABLE\_AUTO\_COMMIT} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_CONSUMER\_TIMEOUT\_MS} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_AUTO\_OFFSET\_RESET} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_RECEIVER} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SUBJECT} & \\
-			\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW} & \\\bottomrule
-		\end{paddedtablex}
-		\caption{Variabili di ambiente configurabili tramite Docker per i Consumer}
-	\end{table}
+	\begin{itemize}
+		\item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: ID del Bot di Telegram che inoltra la notifica.
+		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: Email che manda inoltra la notifica.
+		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SUBJECT}: Oggetto della mail da spedire.
+		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: Password della casella Email.
+	\end{itemize}
 
-	\subsubsection{Gestore personale}
-	Per il Gestore personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
-	\begin{table}[H]
-		\centering
-		\begin{paddedtablex}[1.3]{\textwidth}{cX}
-			\thead{Nome variabile} & \thead{Descrizione}\\\toprule
-			\texttt{BUTTERFLY\_GP\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS} & \\
-			\texttt{BUTTERFLY\_GP\_PRODUCER\_REDMINE} & \\
-			\texttt{BUTTERFLY\_GP\_PRODUCER\_IP} & \\
-			\texttt{BUTTERFLY\_GP\_PRODUCER\_IP} & \\
-			\texttt{BUTTERFLY\_GP\_PRODUCER\_PORT} & \\
-			\texttt{BUTTERFLY\_GP\_KAFKA\_BOOTSTRAP\_SERVERS} & \\
-			\texttt{BUTTERFLY\_GP\_KAFKA\_ENABLE\_AUTO\_COMMIT} & \\
-			\texttt{BUTTERFLY\_GP\_KAFKA\_CONSUMER\_TIMEOUT\_MS} & \\
-			\texttt{BUTTERFLY\_GP\_KAFKA\_AUTO\_OFFSET\_RESET} & \\
-			\texttt{BUTTERFLY\_GP\_TELEGRAM\_TOKEN\_BOT} & \\
-			\texttt{BUTTERFLY\_GP\_TELEGRAM\_RECEIVER} & \\
-			\texttt{BUTTERFLY\_GP\_EMAIL\_RECEIVER} & \\
-			\texttt{BUTTERFLY\_GP\_EMAIL\_SUBJECT} & \\
-			\texttt{BUTTERFLY\_GP\_EMAIL\_EMAIL\_SETTINGS} & \\
-			\texttt{BUTTERFLY\_GP\_EMAIL\_SENDER} & \\
-			\texttt{BUTTERFLY\_GP\_EMAIL\_PWD} & \\\bottomrule
-		\end{paddedtablex}
-		\caption{Variabili di ambiente configurabili tramite Docker per il Gestore Personale}
-	\end{table}
+	\subsubsection{Gestore Personale}
+	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker.
+	Per la componente Producer del Gestore Personale queste sono:
+	\begin{itemize}
+		\item\texttt{BUTTERFLY\_GP\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
+	\end{itemize}
+
+	Per la componente Consumer del Gestore Personale queste sono:
+	\begin{itemize}
+		\item\texttt{BUTTERFLY\_GP\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
+	\end{itemize}
 
 	
 	\subsubsection{Kafka}
