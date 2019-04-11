@@ -600,7 +600,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	
 	\begin{figure}[H]
 		\centering
-		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS001.png} TODO
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS001.png}
 		\label{immaginePresenzaBugRQ}
 		\caption{Diagramma con valori misurati tramite MPS001 Presenza di bug}
 	\end{figure}
@@ -617,7 +617,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	
 	\begin{figure}[H]
 		\centering
-		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS002.png} TODO
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS002.png}
 		\label{immaginePresenzaVulnerabilitàRQ}
 		\caption{Diagramma con valori misurati tramite MPS002 Presenza di vulnerabilità}
 	\end{figure}
@@ -634,7 +634,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	
 	\begin{figure}[H]
 		\centering
-		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS003.png} TODO
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS003.png}
 		\label{immaginePresenzaCodeSmellRQ}
 		\caption{Diagramma con valori misurati tramite MPS003 Presenza di code smell}
 	\end{figure}
@@ -652,7 +652,7 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 	
 	\begin{figure}[H]
 		\centering
-		% \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS004.png} TODO
+		\includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS004.png}
 		\label{immaginePresenzaDupplicazioneCodiceRQ}
 		\caption{Diagramma con valori misurati tramite MPS004 Duplicazione del codice}
 	\end{figure}
@@ -682,6 +682,40 @@ I test che vengono introdotti nel corso del progetto non vanno a sostituire i te
 		\item \textbf{Considerazioni}: dato che non risultano essere errori particolarmente gravi all'interno del codice si ha dato priorità a correggere altri tipi di errori prima della \RQ, raggiungendo appena la soglia minima.
 		Prevediamo di raggiungere un valore intorno al 90\%.
 	\end{itemize}
+    
+    \subparagraph{MPS019 Test di integrazione}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS019.png}
+        \label{immagineTestIntegrazioneRQ}
+        \caption{Diagramma con valori misurati tramite MPS019 Test di integrazione}
+    \end{figure}
+    
+    \begin{itemize}
+        \item \textbf{Obiettivo}: QPS008 Superamento test di integrazione.
+        \item \textbf{Valore desiderato}: 100\%.
+        \item \textbf{Descrizione}: viene mostrata la percentuale di codice coperto da test di integrazione.
+        \item \textbf{Valutazione}: soddisfacente.
+        \item \textbf{Considerazioni}: studiando il diagramma si nota che inizialmente ci siamo concentrati più sullo sviluppo individuale delle parti del
+        software e successivamente sulle relazioni che esistono tra queste.
+    \end{itemize}
 
-	%\subsubsection{Considerazioni sui risultati e sull'esito della revisione}
-	%\paragraph{Considerazioni Product Baseline (PB)}
+       \subparagraph{MPS020 Test di unità}
+   
+   \begin{figure}[H]
+       \centering
+       \includegraphics[width=0.9\textwidth]{img/cruscotti/RQ/MPS020.png}
+       \label{immagineTestunitaRQ}
+       \caption{Diagramma con valori misurati tramite MPS020 Test di unità}
+   \end{figure}
+   
+   \begin{itemize}
+       \item \textbf{Obiettivo}: QPS009 Superamento test di unità.
+       \item \textbf{Valore desiderato}: 100\%.
+       \item \textbf{Descrizione}: viene mostrata la percentuale di codice coperto da test di unità.
+       \item \textbf{Valutazione}: soddisfacente.
+       \item \textbf{Considerazioni}: guardando le tre verifiche si nota che nel periodo antecedente alla Product Baseline il valore raccolto nella fase di
+       verifica è molto insoddisfacente. Avvicinandosi alla PB e alla consegna della \RQ\ il valore è salito e siamo riusciti a raggiungere il valore desiderato.
+   \end{itemize}
+    
