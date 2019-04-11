@@ -150,9 +150,9 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale:
+        \addtotv & Verifica di invio del messaggio di apertura issue dal Producer Redmine al Gestore Personale:
 		\begin{enumerate}
-			\item Producer Redmine rielabora un messaggio di apertura issue precedentemente ricevuto.
+			\item Producer Redmine elabora il messaggio di apertura issue precedentemente ricevuto.
 			\item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
 		\end{enumerate}
@@ -168,40 +168,40 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 
-        \addtotv & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale:
+        \addtotv & Verifica di invio del messaggio di modifica issue dal Producer Redmine al Gestore Personale:
         \begin{enumerate}
-            \item Producer Redmine rielabora un messaggio di modifica issue precedentemente ricevuto.
+            \item Producer Redmine elabora il messaggio di modifica issue precedentemente ricevuto.
             \item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di un messaggio di commento issue dal Producer Redmine al Gestore Personale:
+        \addtotv & Verifica di invio del messaggio di commento issue dal Producer Redmine al Gestore Personale:
         \begin{enumerate}
-            \item Producer Redmine rielabora un messaggio del commento di issue precedentemente ricevuto.
+            \item Producer Redmine elabora il messaggio del commento di issue precedentemente ricevuto.
             \item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
         & TNI \\\midrule
 
-        \addtotv & Verifica di scarto di messaggi non validi nel Producer Redmine:
+        \addtotv & Verifica scarto di messaggio non valido nel Producer Redmine:
         \begin{enumerate}
             \item Producer Redmine riceve un messaggio che non è in grado di interpretare.
             \item Producer Redmine scarta il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale:
+        \addtotv & Verifica di invio del messaggio di commit dal Producer GitLab al Gestore Personale:
         \begin{enumerate}
-            \item Producer GitLab rielabora un messaggio di commit.
+            \item Producer GitLab elabora il messaggio di commit.
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale:
+        \addtotv & Verifica di invio del messaggio di apertura issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
-			\item Producer GitLab rielabora un messaggio di apertura issue.
+			\item Producer GitLab elabora il messaggio di apertura issue.
 			\item Producer GitLab invia il messaggio.
             \item Gestore Personale riceve il messaggio.
 		\end{enumerate}
@@ -218,42 +218,42 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 
-         \addtotv & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale:
+         \addtotv & Verifica di invio del messaggio di modifica issue dal Producer GitLab al Gestore Personale:
         \begin{enumerate}
-            \item Producer GitLab rielabora un messaggio di modifica issue.
+            \item Producer GitLab elabora il messaggio di modifica issue.
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio del commenti di una issue dal Producer GitLab al Gestore Personale:
+        \addtotv & Verifica di invio del commento di una issue dal Producer GitLab al Gestore Personale:
         \begin{enumerate}
-            \item Producer GitLab rielabora un messaggio di commento di issue.
+            \item Producer GitLab elabora il messaggio di commento di issue.
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di un messaggio del commento di un commit dal Producer GitLab al Gestore Personale:
+        \addtotv & Verifica di invio del messaggio del commento di un commit dal Producer GitLab al Gestore Personale:
         \begin{enumerate}
-            \item Producer GitLab rielabora un messaggio del commento di commit.
+            \item Producer GitLab elabora il messaggio del commento di commit.
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di scarto di messaggi non validi nel Producer GitLab:
+        \addtotv & Verifica scarto di messaggio non valido nel Producer GitLab:
         \begin{enumerate}
-            \item Producer GitLab riceve che non è in grado di interpretare.
+            \item Producer GitLab riceve un messaggio che non è in grado di interpretare.
             \item Producer GitLab scarta il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di messaggi al Consumer Telegram:
+        \addtotv & Verifica di invio del messaggio dal Gestore Personale al Consumer Telegram:
         \begin{enumerate}
             \item Gestore Personale riceve un messaggio da un Producer (Redmine o GitLab).
-            \item Gestore Personale rielabora il messaggio ricevuto.
-            \item Gestore Personale invia il messaggio rielaborato.
+            \item Gestore Personale elabora il messaggio ricevuto.
+            \item Gestore Personale invia il messaggio elaborato.
             \item Consumer Telegram riceve il messaggio.
         \end{enumerate}
         & \TNI \\
@@ -268,16 +268,16 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\rowcolor{\tablegray}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 
-        \addtotv & Verifica di invio di messaggi al Consumer Email:
+        \addtotv & Verifica di invio del messaggio dal Gestore Personale al Consumer Email:
         \begin{enumerate}
             \item Gestore Personale riceve un messaggio da un Producer (Redmine o GitLab).
-            \item Gestore Personale rielabora il messaggio ricevuto.
-            \item Gestore Personale invia il messaggio rielaborato.
+            \item Gestore Personale elabora il messaggio ricevuto.
+            \item Gestore Personale invia il messaggio elaborato.
             \item Consumer Email riceve il messaggio.
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di messaggi al bot Telegram:
+        \addtotv & Verifica di invio del messaggio dal Consumer Telegram al bot Telegram:
         \begin{enumerate}
             \item Consumer Telegram riceve un messaggio dal Gestore Personale.
             \item Consumer Telegram invia il messaggio.
@@ -285,7 +285,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         \end{enumerate}
         & \TNI \\\midrule
 
-        \addtotv & Verifica di invio di messaggi al server Email:
+        \addtotv & Verifica di invio del messaggio dal consumer Email al server Email:
         \begin{enumerate}
             \item Consumer Email riceve un messaggio dal Gestore Personale.
             \item Consumer Email invia il messaggio.
@@ -397,7 +397,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                 \item Contatto Telegram
             \end{itemize}
             \item Confermare l'invio dei dati.
-            \item Viene segnalato un errore per aver inserito una mail già esistente.
+            \item Viene segnalato un errore per aver inserito una Email già esistente.
         \end{enumerate}
         & \TNI \\\midrule
 
@@ -527,7 +527,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
                 \item Contatto Telegram già esistente
             \end{itemize}
             \item Confermare l'invio dei dati.
-            \item Viene segnalato un errore per aver inserito un Id Telegram già esistente.
+            \item Viene segnalato un errore per aver inserito un ID Telegram già esistente.
         \end{enumerate}
         & \TNI \\\midrule
 
@@ -572,7 +572,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         \addtotv & Verifica di aggiunta delle keyword per i push di GitLab:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Aggiungere le keyword GitLab.
+            \item Aggiungere le keyword di GitLab.
             \item Confermare l'invio dei dati.
             \item Le keyword di GitLab sono state aggiornate correttamente.
 		\end{enumerate}
@@ -581,7 +581,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         \addtotv & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Aggiungere delle keyword GitLab già presenti.
+            \item Aggiungere delle keyword di GitLab già presenti.
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
@@ -646,9 +646,9 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         \addtotv & Verifica di rimozione delle keyword per i push di GitLab:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Aggiungere le keyword GitLab.
+            \item Aggiungere le keyword di GitLab.
             \item Confermare l'invio dei dati.
-            \item Le keyword GitLab sono state aggiornate correttamente.
+            \item Le keyword di GitLab sono state aggiornate correttamente.
 		\end{enumerate}
 		& \TNI \\
         \bottomrule
@@ -665,7 +665,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
         \addtotv & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab:
 		\begin{enumerate}
 			\item Accedere al sistema.
-            \item Aggiungere delle keyword GitLab non presenti.
+            \item Aggiungere delle keyword di GitLab non presenti.
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
@@ -803,13 +803,13 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica che il sistema riceva la segnalazione del commento di una issue da parte di GitLab & \TS \\
         \addtots & Verifica che il sistema riceva eventi di push da parte di GitLab & \TS \\
         \addtots & Verifica che il sistema riceva la segnalazione del commento di un commit da parte di GitLab & \TS \\
-		\addtots & Verifica di invio di un messaggio di apertura issue dal Producer Redmine al Gestore Personale & \TS \\
-		\addtots & Verifica di invio di un messaggio di modifica issue dal Producer Redmine al Gestore Personale & \TS \\
-        \addtots & Verifica di invio di un messaggio di commento issue dal Producer Redmine al Gestore Personale & \TS \\
-		\addtots & Verifica di scarto di messaggi non validi nel Producer Redmine & \TI \\
-		\addtots & Verifica di invio di un messaggio di commit dal Producer GitLab al Gestore Personale & \TS \\
-        \addtots & Verifica di invio di un messaggio di apertura issue dal Producer GitLab al Gestore Personale & \TS \\
-        \addtots & Verifica di invio di un messaggio di modifica issue dal Producer GitLab al Gestore Personale & \TS \\
+		\addtots & Verifica di invio del messaggio di apertura issue dal Producer Redmine al Gestore Personale & \TS \\
+		\addtots & Verifica di invio del messaggio di modifica issue dal Producer Redmine al Gestore Personale & \TS \\
+        \addtots & Verifica di invio del messaggio di commento issue dal Producer Redmine al Gestore Personale & \TS \\
+		\addtots & Verifica scarto di messaggio non valido nel Producer Redmine & \TI \\
+		\addtots & Verifica di invio del messaggio di commit dal Producer GitLab al Gestore Personale & \TS \\
+        \addtots & Verifica di invio del messaggio di apertura issue dal Producer GitLab al Gestore Personale & \TS \\
+        \addtots & Verifica di invio del messaggio di modifica issue dal Producer GitLab al Gestore Personale & \TS \\
         \bottomrule
 	\end{paddedtablex}
 	\caption{Elenco dei test di sistema (\thetableCounter)}
@@ -820,13 +820,13 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
 		\rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
-        \addtots & Verifica di invio di un messaggio di commento issue dal Producer GitLab al Gestore Personale & \TS \\
-        \addtots & Verifica di invio di un messaggio di commento di commit dal Producer GitLab al Gestore Personale & \TS \\
-        \addtots & Verifica di scarto di messaggi non validi nel Producer GitLab & \TI \\
-        \addtots & Verifica di invio di messaggi al Consumer Telegram & \TS \\
-        \addtots & Verifica di invio di messaggi al Consumer Email & \TS \\
-        \addtots & Verifica di invio di messaggi al bot Telegram & \TS \\
-        \addtots & Verifica di invio di messaggi al server Email & \TS \\
+        \addtots & Verifica di invio del messaggio di commento issue dal Producer GitLab al Gestore Personale & \TS \\
+        \addtots & Verifica di invio del messaggio di commento di commit dal Producer GitLab al Gestore Personale & \TS \\
+        \addtots & Verifica scarto di messaggio non valido nel Producer GitLab & \TI \\
+        \addtots & Verifica di invio del messaggio al Consumer Telegram & \TS \\
+        \addtots & Verifica di invio del messaggio al Consumer Email & \TS \\
+        \addtots & Verifica di invio del messaggio al bot Telegram & \TS \\
+        \addtots & Verifica di invio del messaggio al server Email & \TS \\
         \addtots & Verifica di accesso di un utente al sistema tramite Email & \TS \\
         \addtots & Verifica di accesso di un utente al sistema tramite ID Telegram & \TS \\
         \addtots & Verifica di errore per accesso con Email inesistente & \TS \\
@@ -844,7 +844,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica di modifica dei propri dati utente & \TS \\
         \addtots & Verifica di errore nella modifica di un utente con Email già esistente & \TS \\
         \addtots & Verifica di errore nella modifica di un utente con ID Telegram & \TS \\
-        \addtots & Verifica di iscrizione a un nuovo topic & \TS \\
+        \addtots & Verifica di iscrizione a un nuovo Topic & \TS \\
         \bottomrule
 	\end{paddedtablex}
 	\caption{Elenco dei test di sistema (\thetableCounter)}
@@ -861,7 +861,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
         \addtots & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti & \TI \\
         \addtots & Verifica di aggiunta progetti d'interesse per GitLab o Redmine & \TS \\
         \addtots & Verifica di aggiunta delle priorità per i progetti d'interesse & \TS \\
-        \addtots & Verifica di rimozione di un topic & \TS \\
+        \addtots & Verifica di rimozione di un Topic & \TS \\
         \addtots & Verifica di rimozione dei giorni di indisponibilità dal calendario & \TI \\
         \addtots & Verifica di rimozione della piattaforma di messaggistica preferita & \TS \\
         \addtots & Verifica di rimozione delle keyword per i push di GitLab & \TI \\
@@ -1110,9 +1110,9 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 			\addtotu & Verifica la creazione di un oggetto KafkaProducer & \TS \\
 			\addtotu & Verifica il tipo di segnalazione ricevuta da GitlabProducer & \TS \\
-			\addtotu & Verifica l'invio di un messaggio proveniente da Gitlab a KafkaProducer & \TS \\
+			\addtotu & Verifica l'invio del messaggio proveniente da Gitlab a KafkaProducer & \TS \\
 			\addtotu & Verifica il tipo di segnalazione ricevuta da RedmineProducer & \TS \\
-			\addtotu & Verifica l'invio di un messaggio proveniente da Redmine a KafkaProducer & \TS \\
+			\addtotu & Verifica l'invio del messaggio proveniente da Redmine a KafkaProducer & \TS \\
 
 			\addtotu & Verifica la creazione di un oggetto KafkaConsumer & \TS \\
 			\addtotu & Verifica l'invio del messaggio finale a Telegram tramite bot  & \TS \\
