@@ -203,12 +203,11 @@ Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le 
 \subsubsection{Client}
 Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio.
 
-%\newpage
 Per analizzare il messaggio il Client opera in questo modo:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{img/Client_attivita.png}\\
+    \includegraphics[width=0.69\textwidth]{img/Client_attivita.png}\\
     \caption{Diagramma di attività del Client}
     % \label{fig:GP-Processor}
 \end{figure}
