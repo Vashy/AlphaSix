@@ -5,7 +5,8 @@ from abc import ABC, abstractmethod
 import pathlib
 import json
 
-from flask import Flask, request, session, make_response, redirect, url_for
+from flask import Flask, request, session, make_response, redirect, url_for, render_template_string
+
 import flask_restful
 
 from mongo_db.facade import MongoFacade
@@ -13,7 +14,7 @@ from mongo_db.users import MongoUsers
 from mongo_db.projects import MongoProjects
 from mongo_db.singleton import MongoSingleton
 
-html = (pathlib.Path(__file__).parent / 'public_html').resolve()
+html = (pathlib.Path(__file__).parent / 'static/html').resolve()
 
 
 class Observer(ABC):
@@ -119,17 +120,36 @@ class Controller(Observer):
 
         self.server.add_url_rule(
             '/',
-            '',
-            self.dispatcher,
+            'panel',
+            self.panel,
             methods=['GET', 'POST']
         )
 
-    def _checkSession(self):
+        self.server.add_url_rule(
+            '/web_user',
+            'web_user',
+            self.web_user,
+            methods=['GET', 'POST', 'PUT', 'DELETE']
+        )
+
+        self.server.add_url_rule(
+            '/web_preference',
+            'web_preference',
+            self.web_preference,
+            methods=['GET', 'POST', 'PUT', 'DELETE']
+        )
+
+    def _users_id(self, userid: str):
+        ids = []
+        for user in self.model.users():
+            ids.append(user[userid])
+        return ids
+
+    def _check_session(self):
         return 'userid' in session
 
-    def basicRender(self, fileHtml: pathlib.Path):
-        page = fileHtml.read_text()
-        return page
+    def _check_values(self, request: request):
+        return len(request.values) != 0
 
     def access(self, request: request):
         fileHtml = html / 'access.html'
@@ -138,7 +158,7 @@ class Controller(Observer):
         if request.form.get('userid'):
             if self.model.user_exists(request.form['userid']):
                 session['userid'] = request.form['userid']
-                return redirect(url_for(''), code=303)
+                return redirect(url_for('panel'), code=303)
             else:
                 page = page.replace(
                     '*access*',
@@ -148,32 +168,66 @@ class Controller(Observer):
         page = page.replace('*userid*', '')
         return page
 
-    def panel(self, request: request):
-        if request.args.get('add'):
-            fileHtml = html / 'adduser.html'
-        elif request.args.get('remove'):
-            fileHtml = html / 'removeuser.html'
-        elif request.args.get('modify'):
-            fileHtml = html / 'modifyuser.html'
-        elif request.args.get('preference'):
-            fileHtml = html / 'preferences.html'
-        else:
+    def panel(self):
+        if self._check_session():
             fileHtml = html / 'panel.html'
-        return self.basicRender(fileHtml)
+            return render_template_string(fileHtml.read_text())
+        else:
+            return self.access(request)
 
-    def user(self, request: request):
-        return 'user'
+    def remove_user(self):
+        values = self._users_id('_id')
+        display = []
+        for user in values:
+            telegram = self.model.get_user_telegram(user)
+            email = self.model.get_user_email(user)
+            if telegram is None:
+                telegram = ''
+            if email is None:
+                email = ''
+            display.append(
+                telegram +
+                ' ' +
+                email
+            )
+        options = '<select>'
+        for i,voice in enumerate(display):
+            options += '<option value="' + str(values[i]) + '">' + display[i] + '</option>'
+        options += '</select>'
+        fileHtml = html / 'removeuser.html'
+        page = fileHtml.read_text()
+        return page.replace('*userids*', options)
 
-    def preference(self, request: request):
-        return 'preference'
 
-    def apiUser(self, request_type: str, msg: str):
+    def web_user(self):
+        if self._check_session():
+            if(not self._check_values(request)):
+                if request.method == 'PUT':
+                    fileHtml = html / 'adduser.html'
+                elif request.method == 'POST':
+                    fileHtml = html / 'modifyuser.html'
+                elif request.method == 'DELETE':
+                    page = self.remove_user()
+                return render_template_string(page)
+        else:
+            return self.access(request)
+
+    def web_preference(self):
+        if self._check_session():
+            if(not self._check_values(request)):
+                fileHtml = html / 'preference.html'
+                page = fileHtml.read_text()
+                return render_template_string(page)
+        else:
+            return self.access(request)
+
+    def api_user(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
             pass
 
-    def apiPreference(self, request_type: str, msg: str):
+    def api_preference(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
@@ -181,28 +235,16 @@ class Controller(Observer):
 
     def update(self, resource: str, request_type: str, msg: str):
         if resource == 'user':
-            return self.apiUser(request_type, msg)
+            return self.api_user(request_type, msg)
         elif resource == 'preference':
-            return self.apiPreference(request_type, msg)
-
-    def dispatcher(self):
-
-        if self._checkSession():
-            path = request.path
-            if path == '/' or path == '/panel':
-                return self.panel(request)
-            if path == '/user':
-                return self.user(request)
-            if path == '/preference':
-                return self.preference(request)
-        return self.access(request)
+            return self.api_preference(request_type, msg)
 
 
 def main():
     flask = Flask(__name__)
     flask.secret_key = urandom(16)
     api = flask_restful.Api(flask)
-    mongo = MongoSingleton()
+    mongo = MongoSingleton.instance()
     users = MongoUsers(mongo)
     projects = MongoProjects(mongo)
     facade = MongoFacade(users, projects)

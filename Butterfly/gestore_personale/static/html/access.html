@@ -1,5 +1,5 @@
 <!--
-File: panel.html
+File: access.html
 Data creazione: 2019-02-20
 
 <descrizione>
@@ -23,24 +23,22 @@ limitations under the License.
 Versione: 0.1.0
 Creatore: Matteo Marchiori, matteomarchiori@gmail.com
 -->
-
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Pannello | Butterfly</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Accesso | Butterfly</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body lang="it">
-        <h1>Pannello di controllo</h1>
         <div>
-            <ul>
-                <li><a href="/?add=1">Inserisci nuovo utente</a></li>
-                <li><a href="/?remove=1">Rimuovi utente</a></li>
-                <li><a href="/?modify=1">Modifica utente</a></li>
-                <li><a href="/?preference=1">Modifica preferenze</a></li>
-            </ul>
+            <h1>Butterfly</h1>
+            <form action="/" method="POST">
+                <label for="userid">Email o Telegram:</label>
+                <input id="userid" name="userid" value="*userid*" type="text" placeholder="Inserire email o telegram"/>
+                <input id="access" name="access" type="submit" value="Accedi"/>
+            </form>
+            *access*
         </div>
     </body>
 </html>

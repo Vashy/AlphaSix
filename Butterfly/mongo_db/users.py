@@ -157,17 +157,12 @@ class MongoUsers:
 
     def delete(self, user: str):
         """Rimuove un documento che corrisponde a
-        `user`, se presente. `user` può riferirsi sia al contatto
-        Telegram che email. Restituisce il risultato dell'operazione.
+        `user`, se presente. `user` è l'identificativo nel db
         """
         return self._mongo.delete(
             {
-                '$or': [
-                    {'telegram': user},
-                    {'email': user},
-                ]
-            },
-            'users',
+                {'_id': user},
+            }, 'users'
         )
 
     def update_name(self, user: str, name: str):
@@ -430,17 +425,13 @@ class MongoUsers:
         return self.users({
             '_id': user,
             'telegram': {'$exists': 'true', '$ne': ''}
-        }, {
-            'telegram': 1
-        })[0]
+        })[0]['telegram']
 
     def get_user_email(self, user: int):
         return self.users({
             '_id': user,
             'email': {'$exists': 'true', '$ne': ''}
-        }, {
-            'email': 1
-        })[0]
+        })[0]['email']
 
     def get_match_keywords(self, users: list, commit: str) -> list:
         keyword_user = []
