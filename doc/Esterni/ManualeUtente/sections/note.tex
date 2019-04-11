@@ -7,10 +7,10 @@ Considerando che un messaggio appartiene ad un progetto e possiede dei Topic, un
     \item L'utente è disponibile il giorno di invio del messaggio
 \end{itemize}
 
-\subsection{Caso in cui una persona non è disponibile}
-Nel caso in cui una persona a cui dovrebbe arrivare una notifica non sia disponibile (e quindi lo ha precedentemente notificato nel calendario come descritto in \S\ref{indisponibilita}), la procedura del possibile inoltro del messaggio avviene nel seguente modo:
+\subsection{Caso in cui una persona non sia disponibile}
+Nel caso in cui una persona a cui dovrebbe arrivare una notifica non sia disponibile (e quindi lo abbia precedentemente notificato nel calendario come descritto in \S\ref{indisponibilita}), la procedura del possibile inoltro del messaggio avviene nel seguente modo:
 \begin{itemize}
-    \item Se è presente un altro utente disponibile che possiede la stessa priorità del progetto nel messaggio ed è iscritto allo stesso Topic, e dunque che deve riceve anch'egli la notifica, non avviene alcun inoltro
+    \item Se è presente un altro utente disponibile che possiede la stessa priorità del progetto nel messaggio ed è iscritto allo stesso Topic, e dunque che deve ricevere anch'egli la notifica, non avviene alcun inoltro
     \item Se non è presente alcun utente disponibile con la stessa priorità del progetto nel messaggio e iscritto allo stesso Topic, la notifica viene inoltrata al primo utente disponibile iscritto allo stesso Topic ma con una priorità di progetto più bassa
     \item Se non è disponibile alcun utente iscritto allo stesso Topic, la notifica viene inoltrata al primo utente disponibile iscritto al progetto indicato nel messaggio col la priorità più alta
 \end{itemize}
