@@ -153,26 +153,28 @@ Questo è un pattern creazionale specifico: \gloss{Factory Method}.
 
 
 \subsection{Gestore Personale}
-Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Esso ha un proprio KafkaProducer e KafkaConsumer
-che si occupano rispettivamente di ricevere i messaggi da Kafka e reinserirli nelle code relative ai Consumer finali. Per stabilire il destinatario e il Consumer finale appropriato, il Client del Gestore Personale interroga MongoDB per ottenere per selezionare i giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul
-quale ricevere la notifica per ogni utente. Tutte queste informazioni vengono inserite in MongoDB attraverso la View. \par
-Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model.
-La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}.
 
 \subsubsection{Diagramma dei package}
+Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Esso ha un proprio KafkaProducer e KafkaConsumer
+che si occupano rispettivamente di ricevere i messaggi da Kafka e reinserirli nelle code relative ai Consumer finali. Per stabilire il destinatario e il Consumer finale appropriato, il Client del Gestore Personale interroga MongoDB per ottenere le informazioni relative ad i giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul quale ricevere la notifica per ogni utente.
+Tutte queste informazioni vengono inserite in MongoDB attraverso la View. \par
+Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model, ovvero \texttt{rest\_hadler} nella figura \ref{GP-Package}.
+La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}. \par
+Esiste poi invece anche un'altra parte chiamata \texttt{message\_processor} che è collegata al MongoDB.
+Questo perchè deve poter analizzare i dati dei vari utenti in modo da capire dove inserire su Kafka il mesaggio elaborato.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{img/Package-GestorePersonale.png}\\
     \caption{Diagramma dei package del Gestore Personale}
-    % \label{fig:GP-Processor}
+    \label{GP-Package}
 \end{figure}
 
 \subsubsection{Mongo}
-Model dell'MVC
+\gloss{MongoDB} è un database non relazionale e orientato ai documenti (tabelle). Ci è molto utile in questo progetto perché ci dà la possibilità di aggiungere dati ai documenti senza modificarne la struttura.
+Questo lo rende un database molto estendibile, quindi uno sviluppatore può facilmente ampliare le informazioni in esso contenute.
 
     \paragraph{Diagramma delle classi}
-    Qua viene mostrato come il Gestore Personale si interfaccia con \gloss{MongoDB}, ovvero MongoUser e MongoProject. Sono suddivisi in base alla risorsa di interesse.
 
     \begin{figure}[H]
         \centering
@@ -180,6 +182,11 @@ Model dell'MVC
         \caption{Interazione con MongoDB del Gestore Personale}
         \label{fig:GP-Mongo}
     \end{figure}
+
+    Per quanto riguarda il database, abbiamo una classe singleton che permette al nostro sistema di avere un'unica istanza della connessione con PyMongo.
+    I metodi che agiscono sulla base di dati sono implementati nelle classi MongoUser e MongoProject, e sono suddivisi in base alla risorsa di interesse.
+    Tali classi vengono raccolte in un facade che espone solamente i metodi che servono verso l’esterno, per renderli più facilmente fruibili. \par
+    Nella figura \ref{fig:GP-Mongo} vengono mostrate queste classi e le loro dipendenze.
 
 
 \subsubsection{View}

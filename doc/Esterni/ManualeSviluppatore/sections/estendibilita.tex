@@ -52,11 +52,11 @@ del topic specifico su Kafka.
 È concreto nella class base, ma non fa nulla. Serve per aumentare la flessibilità delle classi che implementano la classe astratta \texttt{Consumer}.
 
 
-\subsection{Aggiungere un MessageProcessor}
+\subsection{Aggiungere un MessageProcessor} \label{EstProcessor}
 
-Per far conoscere al Gestore Personale la presenza di un nuovo tipo di Producer, è necessario implementare la logica di filtro degli utenti in base al tipo di messaggi
-implementando una classe concreta che erediti da \texttt{Processor}.
-Va implementato il metodo \texttt{filter\_users\_by\_topic()}.
+Per far conoscere al Gestore Personale la presenza di un nuovo tipo di Producer, è necessario creare una classe concreta che erediti da \texttt{Processor} e di conseguenza implementare il metodo \texttt{filter\_users\_by\_topic()}.
+Questo perchè ogni tecnologia (come Redmine e Gitlab) può avere un tipo diverso di messaggio da elaborare (una messaggio di issue o un messaggio di push).
+
 
 \begin{figure}[H]
     \centering
