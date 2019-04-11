@@ -2,7 +2,7 @@
 
 \subsection{Gestore Personale}
 
-Il Gestore Personale è la componente principale di \progetto\ e si può suddividere in due sotto-componenti:
+Il Gestore Personale è la componente principale di \progetto\ e si può suddividere in due sotto-componenti principali:
 
 \begin{itemize}
     \item Interfaccia utente
@@ -25,8 +25,9 @@ In caso l'identificativo inserito non fosse valido, e non corrispondesse quindi 
 	\includegraphics[width=10cm]{img/accesso_2.png}
 	\caption{Messaggio di errore durante accesso al sistema}
 \end{figure}
-Nel caso in cui un utente non autenticato cerchi di accedere ad una sezione per cui non ha i privilegi, questo verrà rimandato alla pagina di autenticazione.\par
-Se un utente iscritto correttamente nel sistema ha inserito sia indirizzo Email che ID Telegram, allora può accedere utilizzando indipendentemente il primo o il secondo.
+% TODO: qual è la sezione con i privilegi??
+%Nel caso in cui un utente non autenticato cerchi di accedere ad una sezione per cui non ha i privilegi, questo verrà rimandato alla pagina di autenticazione.\par
+Se un utente iscritto correttamente nel sistema ha registrato precedentemente sia indirizzo Email che ID Telegram, allora può accedere utilizzando indipendentemente il primo o il secondo.
 
 \subsubsection{Pannello di controllo}
 Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
@@ -69,10 +70,10 @@ In questa sezione si possono trovare le principali impostazioni del sistema dal 
 	\item Modifica della priorità assegnata ad un progetto
 	\item Lista dei Topic (formati dall'insieme di Label e Keyword) disponibili e iscrizione o disiscrizione da questi, che vengono mostrati dinamicamente in base ai progetti a cui si è iscritti.
 	\item Inserimento dei giorni di indisponibilità
-	\item Impostare su quale delle due piattaforme (Email o Telegram) ricevere le notifiche
+	\item Impostare su quale delle due piattaforme di messaggistica (Email o Telegram) ricevere le notifiche
 \end{itemize}
-Le Label non sono modificabili in quanto vengono aggiornate solamente da una componente del Gestore Personale che le memorizza quando avvengono update alle issue relative ai progetti.
-Le Keyword, invece, sono formate da una lista di parole che possono essere contenute nei messaggi di push di GitLab e di cui si è interessati a ricevere notifiche.
+Le ``label'' non sono modificabili in quanto vengono aggiornate solamente da una componente del Gestore Personale che le memorizza quando avvengono \gloss{update} alle issue relative ai progetti.
+Le ``keyword'' invece, sono formate da una lista di parole che possono essere contenute nei messaggi di push di GitLab e di cui si è interessati a ricevere notifiche.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{img/preferenze_1.png}

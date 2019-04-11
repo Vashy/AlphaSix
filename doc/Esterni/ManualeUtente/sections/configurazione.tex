@@ -1,7 +1,7 @@
 \section{Configurazione}\label{configurazione}
 
 Su richiesta di \II, tutti i servizi sono stati configurati sotto forma di container. È quindi possibile avviarli su macchine fisiche differenti, ma collegate in rete fra loro, con Docker.\\
-Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software per la gestione dei container, quindi questa guida verterà principalmente sulla configurazione di \progetto\ utilizzando questo.
+Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software per la gestione dei container, quindi questa guida verterà principalmente sulla configurazione di \progetto\ utilizzando questa tecnologia.
 
 \subsection{Requisiti di sistema}
 
@@ -10,9 +10,9 @@ Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software pe
 	\subsubsection{Software}
 		\begin{itemize}
 			\item \textbf{Docker}\footnote{\url{https://docs.docker.com/v17.09/datacenter/ucp/2.1/guides/admin/install/system-requirements}}: è necessario avere installata e configurata correttamente almeno la versione v18.09.
-			\item \textbf{Docker Compose}\footnote{\url{https://docs.docker.com/compose/install/}}:  nel caso si decidesse di utilizzare Docker Compose per l'avvio dei container è consigliata l'installazione e configurazione corretta della versione v3.7.
-			\item \textbf{Kubernetes}\footnote{\url{https://kubernetes.io/docs/setup/independent/install-kubeadm}}: nel caso si decidesse di utilizzare Kubernetes per la gestione dei container è consigliata l'installazione e configurazione corretta della versione v1.13.
-			\item \textbf{Rancher}\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/requirements/}}: nel caso si decidesse di utilizzare Rancher per la gestione grafica di oggetti Kubernetes contenenti i container Docker, è consigliata l'installazione e configurazione della versione v2.1.4.
+			\item \textbf{Docker Compose}\footnote{\url{https://docs.docker.com/compose/install/}}:  nel caso si decidesse di utilizzare \gloss{Docker Compose} per l'avvio dei container è consigliata l'installazione e configurazione corretta della versione v3.7.
+			\item \textbf{Kubernetes}\footnote{\url{https://kubernetes.io/docs/setup/independent/install-kubeadm}}: nel caso si decidesse di utilizzare \gloss{Kubernetes} per la gestione dei container è consigliata l'installazione e configurazione corretta della versione v1.13.
+			\item \textbf{Rancher}\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/requirements/}}: nel caso si decidesse di utilizzare \gloss{Rancher} per la gestione grafica di oggetti Kubernetes contenenti i container Docker, è consigliata l'installazione e configurazione della versione v2.1.4.
 			\item \textbf{Kafka}\footnote{\url{https://docs.confluent.io/current/installation/system-requirements.html}}: è necessario avere installata e configurata correttamente almeno la versione v2.12.
 			\item \textbf{GitLab}\footnote{\url{https://git.ucd.ie/help/install/requirements.md}}: durante lo sviluppo di \progetto~abbiamo fatto riferimento alla versione v11.7.
 			\item \textbf{Redmine}\footnote{%
@@ -22,7 +22,7 @@ Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software pe
 
 	%TODO rivedere
 	GitLab e Redmine sono componenti esterne a \progetto, tuttavia vengono citate in quanto è possibile configurare tutto il progetto in un ambiente unico.\par
-	Le versioni specificate possono essere trovate anche nella sezione ``Requisiti di vincolo'' del documento \AdRd.
+	Le versioni specificate possono essere trovate anche tra i requisiti di vincolo nel documento \AdRd.
 
 	\subsubsection{Hardware}
 	Per \progetto\ non sono necessari ulteriori requisiti a livello hardware particolari se non quelli di cui hanno bisogno i software precedentemente elencati.
@@ -63,14 +63,17 @@ La suddivisione che abbiamo utilizzato, durante lo sviluppo e la consegna del pr
 		Consumer Gestore Personale& 80& 30121\\\bottomrule
 	\end{paddedtablex}
 	\caption{Configurazione delle porte in fase di sviluppo e consegna}
+	\label{TabellaPorteEsposte}
 \end{table}
 
 Le specifiche relative alla configurazione delle porte in Rancher possono essere trovate nella documentazione presente sul sito di Rancher nella pagina dedicata\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/references/}}.
 
 \subsection{Suddivisione dei container ed immagini utilizzate}
 Come detto in precedenza, su consiglio di \II, \progetto\ è stato sviluppato con l'utilizzo di Rancher per la gestione dei container.\\
-I container sono stati suddivisi in modo tale da utilizzare un unico Cluster (nel nostro caso chiamato Butterfly), vari \gloss{Namespace} per separare i servizi fra loro e i \gloss{Pod}, che rappresentano ciascuno un container.
-Le immagini utilizzate sono tutte presenti in DockerHub, incluse quelle dei Producer e dei Consumer che, come detto nel documento \NdPd, sono state create utilizzando build automatiche innescate ad ogni push nella repository del codice.
+I container sono stati suddivisi in modo tale da utilizzare un unico \gloss{Cluster} (nel nostro caso chiamato Butterfly), vari \gloss{Namespace} per separare i servizi fra loro e i \gloss{Pod}, che rappresentano ciascuno un container.
+Le immagini utilizzate sono tutte presenti in DockerHub, incluse quelle dei \gloss{Producer} e dei \gloss{Consumer} che
+%, come detto nel documento \NdPd,
+sono state create utilizzando build automatiche innescate ad ogni \gloss{push} nella repository del codice.
 \newpage
 La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 \begin{itemize}
@@ -78,33 +81,33 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 	\begin{itemize}
 		\item Pod: \texttt{gitlab} (immagine: \texttt{gitlab/gitlab-ce:latest}\footnote{\url{https://hub.docker.com/r/gitlab/gitlab-ce/}})%\footnote{Non sono necessari ulteriori servizi per GitLab in quanto l'immagine ufficiale contiene tutte le componenti necessarie per il suo corretto funzionamento.}
 	\end{itemize}
-	
+
 	\item Namespace: \texttt{redmine}
 	\begin{itemize}
 		\item Pod: \texttt{redmine} (immagine: \texttt{redmine:3.3.9}\footnote{\url{https://hub.docker.com/_/redmine}})
 		\item Pod: \texttt{postgres-redmine} (immagine: \texttt{postgres:11-alpine}\footnote{\url{https://hub.docker.com/_/postgres}})
 	\end{itemize}
-	
+
 	\item Namespace: \texttt{producer}
 	\begin{itemize}
 		\item Pod: \texttt{producer-gitlab} (immagine: \texttt{alphasix/producer-gitlab:master}\footnote{\url{https://hub.docker.com/r/alphasix/producer-gitlab}})
 		\item Pod: \texttt{producer-redmine} (immagine: \texttt{alphasix/producer-redmine:master}\footnote{\url{https://hub.docker.com/r/alphasix/producer-redmine}})
 	\end{itemize}
-	
+
 	%TODO Successivamente aggiungere pod di monitoraggio
 	\item Namespace: \texttt{kafka}
 	\begin{itemize}
 		\item Pod: \texttt{kafka-kafka} (immagine: \texttt{confluentinc/cp-kafka:4.0.1-1}\footnote{\url{https://hub.docker.com/r/confluentinc/cp-kafka/}})
 		\item Pod: \texttt{kafka-zookeeper} (immagine: \texttt{confluentinc/cp-zookeeper:4.1.1}\footnote{\url{https://hub.docker.com/r/confluentinc/cp-zookeeper/}})
 	\end{itemize}
-	
+
 	%TODO successivamente da vedere se è in un unico pod oppure se in pod separati
 	\item Namespace: \texttt{gestore-Personale}
 	\begin{itemize}
 		\item Pod: \texttt{gestore-Personale} (immagine: \texttt{alphasix/gestore-Personale:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-Personale}})
 		\item Pod: \texttt{mongo} (immagine: \texttt{bitnami/mongodb:latest}\footnote{\url{https://hub.docker.com/r/bitnami/mongodb/}})
 	\end{itemize}
-	
+
 	\item Namespace: \texttt{consumer}
 	\begin{itemize}
 		\item Pod: \texttt{consumer-telegram} (immagine: \texttt{alphasix/consumer-telegram:master}\footnote{\url{https://hub.docker.com/r/alphasix/consumer-telegram}})
@@ -117,8 +120,8 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 
 %TODO rivedere parole piccola configurazione
 \subsection{Configurazione webhook}
-Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei software che comunicano con i nostri Producer è necessaria una breve configurazione delle applicazioni che dialogano coi Consumer (GitLab e Redmine):
-	
+Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei software che comunicano con i nostri Producer, è necessaria una breve configurazione delle applicazioni che dialogano con i Producer (GitLab e Redmine) spiegata nel dettaglio nei prossimi paragrafi.
+
 	\subsubsection{Redmine}
 	\paragraph{Configurazione del plugin}
 	Per poter inviare un webhook con Redmine è necessario installare un \gloss{plugin} esterno chiamato \texttt{redmine\_webhook}\footnote{\url{https://github.com/suer/redmine_webhook.git}}.
@@ -127,7 +130,7 @@ Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei softwar
 	Per verificare la corretta integrazione con Redmine, controllare da un profilo con privilegi amministratore che nella sezione \texttt{Settings > Plugins} sia presente il plugin appena scaricato.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=13cm]{img/redmine_webhook_admin.png}
+		\includegraphics[width=14cm]{img/redmine_webhook_admin.png}
 		\caption{Lista plugin configurati}
 	\end{figure}
 
@@ -138,9 +141,9 @@ Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei softwar
 	Nell'area di input aggiungere l'indirizzo di destinazione e premere ``Add''. Nel caso si volesse rimuovere un indirizzo precedentemente inserito allora premere ``Remove''.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=13cm]{img/redmine_webhook_menu.png}
+		\includegraphics[width=14cm]{img/redmine_webhook_menu.png}
 		\caption{Menu plugin \texttt{redmine\_webhook}}
-	\end{figure}	
+	\end{figure}
 	\paragraph{Eventi supportati}
 	Per Redmine gli eventi supportati sono:
 	\begin{itemize}
@@ -154,18 +157,21 @@ Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei softwar
 	\begin{center}
 		\texttt{\url{/admin/application_settings/network}}
 	\end{center}
-	Per abilitare questa funzionalità cliccare sul riquadro rappresentato nell'immagine e che si trova all'indirizzo sopra indicato.
+	Per abilitare questa funzionalità, è necessario cliccare sul riquadro visibile nell'immagine \ref{ConfigWebGit} e che si trova all'indirizzo sopra indicato.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=13cm]{img/webhook_gitlab_setup.png}\\
 		\caption{Configurazione webhook con destinazione in rete locale}
+		\label{ConfigWebGit}
 	\end{figure}
-	Ulteriori informazioni a riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a tale argomento nella sezione relativa alla documentazione di GitLab.	
+	Ulteriori informazioni a riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a tale argomento nella sezione relativa alla documentazione di GitLab.
 
 	\paragraph{Configurazione destinazione}
 	Successivamente si può aggiungere un indirizzo di destinazione di un webhook al progetto in \texttt{Settings > Integrations}.
-	Da qui si possono selezionare gli eventi di interessi per i quali i webhook verranno attivati (attenzione: \progetto~non supporta tutti gli eventi, solamente quelli richiesti da \II).\\
-	Nel campo relativo all'URL di destinazione inserire l'indirizzo con la relativa porta (nel nostro caso quella specificata nella Tabella 2) su cui il Producer GitLab è in ascolto.
+	Da qui si possono selezionare gli eventi di interesse per i quali i webhook verranno attivati.\\
+	%NB: c'è scritto sotto quali sono quelli supportati
+	%(attenzione: \progetto~non supporta qualunque tipo di evento, ma solamente quelli richiesti da \II).\\
+	Nel campo relativo all'URL di destinazione inserire l'indirizzo con la relativa porta (nel nostro caso quella specificata nella Tabella \ref{TabellaPorteEsposte}) su cui il Producer GitLab è in ascolto.
 	\paragraph{Eventi supportati}
 	Per GitLab gli eventi supportati sono:
 	\begin{itemize}
@@ -176,41 +182,41 @@ Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei softwar
 
 %TODO aggiungere variabili che possono essere configurate
 \subsection{Configurazione servizi \progetto}\label{var}
-	
+
 	\subsubsection{Producer}
-	Per i Producer è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
+	Per i Producer è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP}: Indirizzo dell'istanza di Redmine disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT}: Porta dell'istanza di Redmine disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_IP}: Indirizzo dell'istanza di GitLab disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: Porta dell'istanza di GitLab disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP}: indirizzo dell'istanza di Redmine disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT}: porta dell'istanza di Redmine disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_IP}: indirizzo dell'istanza di GitLab disponibile.
+		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: porta dell'istanza di GitLab disponibile.
 	\end{itemize}
 
 	\subsubsection{Consumer}\label{var_consumer}
-	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. 
-	Queste sono: 
+	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker.
+	Queste sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
 		\item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: ID del Bot di Telegram che inoltra la notifica.
-		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: Email che manda inoltra la notifica.
-		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SUBJECT}: Oggetto della mail da spedire.
-		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: Password della casella Email.
+		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: email che manda inoltra la notifica.
+		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SUBJECT}: oggetto della mail da spedire.
+		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
 	\subsubsection{Gestore Personale}
-	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker.
+	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. \\
+
 	Per la componente Producer del Gestore Personale queste sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_GP\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{BUTTERFLY\_GP\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
 	\end{itemize}
 
 	Per la componente Consumer del Gestore Personale queste sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_GP\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: Indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{BUTTERFLY\_GP\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
 	\end{itemize}
 
-	
+
 	\subsubsection{Kafka}
-	Per l'utilizzo richiestoci da parte dell'azienda di Kafka non sono state necessarie ulteriori configurazioni oltre a quelle di default successive all'installazione.
-	
+	Per l'utilizzo richiestoci da parte dell'azienda di Kafka non sono state necessarie ulteriori configurazioni oltre a quelle di \gloss{default} successive all'installazione.
