@@ -224,8 +224,6 @@ Per analizzare il messaggio il Client opera in questo modo:
     \end{figure}
 
 
-
-
 \subsection{Consumers}
 Il Consumer è la componente finale del sistema \progetto. Esso resta in ascolto della sua coda specifica di Kafka per applicativo (e.g. telegram, email).
 Si occupa di inoltrare il messaggio al destinatario finale.
@@ -244,6 +242,8 @@ al destinatario finale tramite le API dell'applicativo su cui il Consumer è bas
 
 
 \subsubsection{TelegramConsumer}
+Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{telegram}
+di Kafka all'invio del messaggio all'utente finale su Telegram.
 
 \paragraph{Diagramma dei package}
 
