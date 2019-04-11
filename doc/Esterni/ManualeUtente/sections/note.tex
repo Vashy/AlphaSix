@@ -1,7 +1,16 @@
-\section{Note sulla gestione delle notifiche in casi particolari}\label{note}
+\section{Note sulla gestione delle notifiche}\label{note}
+Considerando che un messaggio appartiene ad un progetto e possiede dei Topic, un utente riceve una notifica se:
+\begin{itemize}
+    \item L'utente è iscritto al progetto del messaggio
+    \item L'utente è iscritto ad almeno uno dei Topic del messaggio
+    \item L'utente possiede la priorità del progetto più alta tra tutti gli utenti iscritti al progetto indicato
+    \item L'utente è disponibile il giorno di invio del messaggio
+\end{itemize}
 
-\subsection{Nel caso in cui una persona non è disponibile}
-Nel caso in cui una persona per cui arriva una notifica non sia disponibile (e quindi lo ha precedentemente notificato nel calendario come descritto in \S\ref{indisponibilita}), questa viene inoltrata all'utente che ha priorità più alta nel progetto ed è iscritto allo stesso Topic.
-
-\subsection{Nel caso in cui non ci sia nessuno disponibile}
-Nel caso in cui non ci sia nessun utente disponibile per una notifica con un dato progetto ed un dato Topic, questa viene mandata in modalità broadcast a tuttigli utenti con priorità più alta che sono iscritti al progetto.
+\subsection{Caso in cui una persona non è disponibile}
+Nel caso in cui una persona a cui dovrebbe arrivare una notifica non sia disponibile (e quindi lo ha precedentemente notificato nel calendario come descritto in \S\ref{indisponibilita}), la procedura del possibile inoltro del messaggio avviene nel seguente modo:
+\begin{itemize}
+    \item Se è presente un altro utente disponibile che possiede la stessa priorità del progetto nel messaggio ed è iscritto allo stesso Topic, e dunque che deve riceve anch'egli la notifica, non avviene alcun inoltro
+    \item Se non è presente alcun utente disponibile con la stessa priorità del progetto nel messaggio e iscritto allo stesso Topic, la notifica viene inoltrata al primo utente disponibile iscritto allo stesso Topic ma con una priorità di progetto più bassa
+    \item Se non è disponibile alcun utente iscritto allo stesso Topic, la notifica viene inoltrata al primo utente disponibile iscritto al progetto indicato nel messaggio col la priorità più alta
+\end{itemize}
