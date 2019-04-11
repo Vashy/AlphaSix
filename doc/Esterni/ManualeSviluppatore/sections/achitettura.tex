@@ -213,8 +213,7 @@ Per analizzare il messaggio il Client opera in questo modo:
 \end{figure}
 
     \paragraph{Diagramma delle classi}
-    .. viene mostrato come il Gestore Personale si interfaccia con Kafka, questa riguarda il core del Gestore Personale, si occupa di processare
-    i messaggi.
+    Il Gestore Personale (ClientGP) si interfaccia con Kafka attraverso KafkaProducer e KafkaConsumer, e per elaborare i messaggi che riceve crea un'implementazione di Processor. Questa, in base alle informazioni nel messaggio, indica qual è il destinatario del messaggio e attraverso quale applicazione notificarlo, interrogando il database con MongoFacade.
 
     \begin{figure}[H]
         \centering
