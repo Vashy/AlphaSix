@@ -1,7 +1,7 @@
 \section{Configurazione}\label{configurazione}
 
 Su richiesta di \II, tutti i servizi sono stati configurati sotto forma di container. È quindi possibile avviarli su macchine fisiche differenti, ma collegate in rete fra loro, con Docker.\\
-Sempre sotto richiesta di \II\ viene utilizzato Rancher come software per la gestione dei container, quindi questa guida verterà principalmente sulla configurazione di \progetto\ utilizzando Rancher. %TODO riverere frase per ripetizione
+Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software per la gestione dei container, quindi questa guida verterà principalmente sulla configurazione di \progetto\ utilizzando Rancher. %TODO riverere frase per ripetizione
 
 \subsection{Requisiti di sistema}
 
@@ -28,8 +28,8 @@ Sempre sotto richiesta di \II\ viene utilizzato Rancher come software per la ges
 	Per \progetto~non sono necessari ulteriori requisiti a livello hardware particolari se non quelli di cui hanno bisogno i software precedentemente elencati.
 
 \subsection{Mappatura delle porte}
-Per la configurazione di ciascun tipo servizio abbiamo deciso di dare un range di porte da poter esporre in modo tale da effettuare una separazione a logico.\\
-Questa regola non influisce col corretto funzionamento di \progetto\ ma è solamente per non assegnare le porte in modalità casuale e facilitare le analisi di eventuali errori come anche la facile manutenzione e aggiunta di servizi.
+Per la configurazione di ciascun tipo servizio abbiamo deciso di dare un range di porte da poter esporre in modo tale da effettuare una separazione logica.\\
+Questa regola non influisce col corretto funzionamento di \progetto, ma è solamente per non assegnare le porte in modalità casuale e facilitare le analisi di eventuali errori, la manutenzione e l'aggiunta futura di nuovi servizi.
 
 La suddivisione delle porte è la seguente:
 %TODO verificare bene questo e che sia implementato in questa maniera
@@ -46,7 +46,7 @@ La suddivisione delle porte è la seguente:
 	\caption{Suddivisione delle porte}
 \end{table}
 
-La suddivisione che abbiamo utilizzato durante lo sviluppo ed alla consegna del progetto prevede la seguente esposizione delle porte:
+La suddivisione che abbiamo utilizzato, durante lo sviluppo e la consegna del progetto, prevede la seguente esposizione delle porte:
 
 \begin{table}[H]
 	\centering
@@ -65,13 +65,15 @@ La suddivisione che abbiamo utilizzato durante lo sviluppo ed alla consegna del 
 	\caption{Configurazione delle porte in fase di sviluppo e consegna}
 \end{table}
 
-Le specifiche relative alla configurazione delle porte in Rancher possono essere trovate nella pagina dedicata\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/references/}} sulla sezione della documentazione presente nel loro sito.
+Le specifiche relative alla configurazione delle porte in Rancher possono essere trovate nella pagina dedicata\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/references/}}, alla sezione della documentazione presente nel loro sito.
 
 \subsection{Suddivisione dei container ed immagini utilizzate}
 Come detto in precedenza, su consiglio di \II, \progetto\ è stato sviluppato con l'utilizzo di Rancher per la gestione dei container.\\
-Durante la fase di sviluppo e per il progetto consegnato i container sono stati suddivisi in modo da utilizzare un Cluster (nel nostro caso chiamato Butterfly), vari Namespace per separare i servizi fra loro e i Pod che rappresentano ciascuno un container.
-Le immagini utilizzate sono tutte presenti sul DockerHub, incluse quelle dei Producer e dei Consumer, che come detto nel documento \NdPd sono state create utilizzando le build automatiche che scattano ad ogni push nella repository del codice.
+I container sono stati suddivisi in modo da utilizzare un Cluster (nel nostro caso chiamato Butterfly), vari \gloss{Namespace} per separare i servizi fra loro e i %TODO glossarizzare Pod e Namespace
+\gloss{Pod} che rappresentano ciascuno un container.
+Le immagini utilizzate sono tutte presenti in DockerHub, incluse quelle dei Producer e dei Consumer che, come detto nel documento \NdPd, sono state create utilizzando build automatiche che si innescano ad ogni push nella repository del codice.
 
+I Namespace sono:
 \begin{itemize}
 	\item Namespace: \texttt{gitlab}
 	\begin{itemize}
@@ -113,14 +115,14 @@ Le immagini utilizzate sono tutte presenti sul DockerHub, incluse quelle dei Pro
 
 %TODO rivedere parole piccola configurazione
 \subsection{Configurazione webhook}
-Per il corretto invio dei webhook (in formato JSON) da parte dei software che comunicano con i nostri Producer è necessaria una piccola configurazione:
+Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei software che comunicano con i nostri Producer è necessaria una breve configurazione delle applicazioni che dialogano coi Consumer (GitLab e Redmine):
 	
 	\subsubsection{Redmine}
 	\paragraph{Configurazione del plugin}
-	Per poter inviare i webhook da Redmine è necessario installare un plugin esterno chiamato \texttt{redmine\_webhook}\footnote{\url{https://github.com/suer/redmine_webhook.git}}.
+	Per poter inviare un webhook con Redmine è necessario installare un \gloss{plugin} esterno chiamato \texttt{redmine\_webhook}\footnote{\url{https://github.com/suer/redmine_webhook.git}}.
 	Per installarlo è necessario scaricarlo (tramite il comando \texttt{git clone} ad esempio) nella cartella \texttt{/plugins/redmine}.
-	Non sono necessarie ulteriori configurazioni in quanto questo software è di tipo plug and play. %TODO verificare che sia effettivamente così
-	Per verificare la corretta integrazione con Redmine, controllare da un profilo con privilegi amministratore che nella sezione \texttt{Settings > Plugins} sia elencato quello appena scaricato.
+	Non sono necessarie ulteriori configurazioni in quanto questo software è di tipo \gloss{plug and play}. %TODO verificare che sia effettivamente così e glossarizzare plug and play e plugin
+	Per verificare la corretta integrazione con Redmine, controllare da un profilo con privilegi amministratore che nella sezione \texttt{Settings > Plugins} sia presente il plugin appena scaricato.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=13cm]{img/redmine_webhook_admin.png}
@@ -130,7 +132,7 @@ Per il corretto invio dei webhook (in formato JSON) da parte dei software che co
 	%Questo plugin implementa il concetto di Hook offerto dalla API di Redmine, inviando a un determinato URL un \gloss{payload} costituito da un file JSON quando un evento si innesca, contenente le informazioni relative a tale evento.	Queste istruzioni saranno contenute anche nel README della repository sul quale è stato versionato il codice.
 
 	\paragraph{Configurazione destinazione}
-	Per aggiungere una destinazione del webhook per un progetto, andare nella sezione relativa a questo all'interno del menu del progetto selezionato (\texttt{Settings > Webhook}).\\
+	Per aggiungere una destinazione del webhook per un progetto, andare nella sezione relativa a quest'ultimo all'interno del menu del progetto selezionato (\texttt{Settings > Webhook}).\\
 	Nell'area di input aggiungere l'indirizzo di destinazione e premere ``Add''. Nel caso si volesse rimuovere un indirizzo precedentemente inserito allora premere ``Remove''.
 	\begin{figure}[H]
 		\centering
@@ -156,12 +158,12 @@ Per il corretto invio dei webhook (in formato JSON) da parte dei software che co
 		\includegraphics[width=13cm]{img/webhook_gitlab_setup.png}\\
 		\caption[Webhook, GitLab]{Configurazione webhook con destinazione in rete locale}
 	\end{figure}
-	Ulteriori informazioni al riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a questo argomento sulla parte del sito relativa lla documentazione di GitLab.	
+	Ulteriori informazioni a riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a tale argomento nella sezione relativa alla documentazione di GitLab.	
 
 	\paragraph{Configurazione destinazione}
-	Successivamente si può aggiungere un indirizzo di destinazione di un webhook al progetto andando su \texttt{Settings > Integrations}.\\
+	Successivamente si può aggiungere un indirizzo di destinazione di un webhook al progetto in \texttt{Settings > Integrations}.\\
 	Da qui si possono selezionare gli eventi di interessi per i quali i webhook verranno attivati (attenzione: \progetto~non supporta tutti gli eventi, solamente quelli richiesti da \II).\\
-	Nel campo relativo all'URL di destinazione inserire l'indirizzo, con relativa porta (nel nostro caso quella specificata nella Tabella 2), su cui il Producer GitLab è in ascolto.
+	Nel campo relativo all'URL di destinazione inserire l'indirizzo con la relativa porta (nel nostro caso quella specificata nella Tabella 2) su cui il Producer GitLab è in ascolto.
 	\paragraph{Eventi supportati}
 	Per GitLab gli eventi supportati sono:
 	\begin{itemize}
