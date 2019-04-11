@@ -39,6 +39,10 @@ class MongoSingleton:
             """
             return MongoSingleton.instance._db[collection].delete_one(filter)
 
+#    try:
+#        _INSTANCE = Singleton('butterfly')
+#    except pymongo.errors.PyMongoError as e:
+#        print('Si prega di avviare mongo usando il comando "service mongod start"')
     _INSTANCE = Singleton('butterfly')
 
     # def __new__(cls):

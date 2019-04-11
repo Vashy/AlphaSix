@@ -1,5 +1,5 @@
 <!--
-File: access.html
+File: panel.html
 Data creazione: 2019-02-20
 
 <descrizione>
@@ -23,23 +23,24 @@ limitations under the License.
 Versione: 0.1.0
 Creatore: Matteo Marchiori, matteomarchiori@gmail.com
 -->
+
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Accesso | Butterfly</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="shortcut icon" href="favicon.ico"/>
+        <title>Pannello | Butterfly</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'style/style.css') }}">
     </head>
     <body lang="it">
-        <div>
-            <h1>Butterfly</h1>
-            <form action="/" method="POST">
-                <label for="userid">Email o Telegram:</label>
-                <input id="userid" name="userid" value="*userid*" type="text" placeholder="Inserire email o telegram"/>
-                <input id="access" name="access" type="submit" value="Accedi"/>
-            </form>
-            *access*
-        </div>
+        <h1>Pannello di controllo</h1>
+        <form id="menu">
+            <input id='adduser' type='button' value='Inserisci nuovo utente'>
+            <input id='removeuser' type='button' value='Rimuovi un utente'>
+            <input id='modifyuser' type='button' value='Modifica i tuoi dati'>
+            <input id='preference' type='button' value='Modifica le tue preferenze'>
+        </form>
+        <script src='{{ url_for('static', filename = 'script/script.js') }}'></script>
     </body>
 </html>
