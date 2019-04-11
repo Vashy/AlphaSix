@@ -170,7 +170,7 @@ Questo perchè deve poter analizzare i dati dei vari utenti in modo da capire do
     \label{GP-Package}
 \end{figure}
 
-\subsubsection{Mongo}
+\subsubsection{Mongo} \label{Mongo}
 \gloss{MongoDB} è un database non relazionale e orientato ai documenti (tabelle). Ci è molto utile in questo progetto perché ci dà la possibilità di aggiungere dati ai documenti senza modificarne la struttura.
 Questo lo rende un database molto estendibile, quindi uno sviluppatore può facilmente ampliare le informazioni in esso contenute.
 
@@ -189,15 +189,18 @@ Questo lo rende un database molto estendibile, quindi uno sviluppatore può faci
     Nella figura \ref{fig:GP-Mongo} vengono mostrate queste classi e le loro dipendenze.
 
 
-\subsubsection{View}
-View dell'MVC
+\subsubsection{Controller e View}
+Il Controller del Gestore Personale serve per collegare la componente del Model con la componente View.
+Una volta istanziati il server Flask, l'api REST e MongoDB vengono passati al Controller che resta in ascolto.\par
+Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le dovute operazioni su MongoDB e restituisce una risposta alla vista di provenienza, in formato JSON se si tratta dell'api REST o in formato HTML se si tratta della view consultabile da browser Web.
+
 
     \paragraph{Diagramma delle classi}
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{img/GP-View.png}\\
-        \caption{Logica della view del Gestore Personale}
+        \caption{Logica del Controller del Gestore Personale}
         \label{fig:GP-View}
     \end{figure}
 
@@ -205,21 +208,19 @@ View dell'MVC
 
 %\newpage
 \subsubsection{Client}
-Si tratta del controller dell'MVC. Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio.
+Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio.
 
-%\newpage
 Per analizzare il messaggio il Client opera in questo modo:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{img/Client_attivita.png}\\
+    \includegraphics[width=0.69\textwidth]{img/Client_attivita.png}\\
     \caption{Diagramma di attività del Client}
     % \label{fig:GP-Processor}
 \end{figure}
 
     \paragraph{Diagramma delle classi}
-    .. viene mostrato come il Gestore Personale si interfaccia con Kafka, questa riguarda il core del Gestore Personale, si occupa di processare
-    i messaggi.
+    Il Gestore Personale (ClientGP) si interfaccia con Kafka attraverso KafkaProducer e KafkaConsumer, e per elaborare i messaggi che riceve crea un'implementazione di Processor. Questa, in base alle informazioni nel messaggio, indica qual è il destinatario del messaggio e attraverso quale applicazione notificarlo, interrogando il database con MongoFacade.
 
     \begin{figure}[H]
         \centering
@@ -227,8 +228,6 @@ Per analizzare il messaggio il Client opera in questo modo:
         \caption{Message processor del Gestore Personale}
         \label{fig:GP-Processor}
     \end{figure}
-
-
 
 
 \subsection{Consumers}
@@ -249,6 +248,15 @@ al destinatario finale tramite le API dell'applicativo su cui il Consumer è bas
 
 
 \subsubsection{TelegramConsumer}
+Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{telegram}
+di Kafka all'invio del messaggio all'utente finale su Telegram.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Consumer-MsgTelegram.png}\\
+    \caption[Diagramma di sequenza TelegramConsumer]{Diagramma di sequenza dell'invio di un messaggio da parte di TelegramConsumer}
+    % \label{fig:GP-Kafka}
+\end{figure}
 
 \paragraph{Diagramma dei package}
 
@@ -281,6 +289,16 @@ Il metodo \texttt{format()} costruisce il testo del messaggio finale utilizzando
 
 
 \subsubsection{EmailConsumer}
+Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{email}
+di Kafka all'invio del messaggio all'utente finale tramite server SMTP.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/Consumer-MsgEmail.png}\\
+    \caption[Diagramma di sequenza EmailConsumer]{Diagramma di sequenza dell'invio di un messaggio da parte di EmailConsumer}
+    % \label{fig:GP-Kafka}
+\end{figure}
+
 
 \paragraph{Diagramma dei package}
 

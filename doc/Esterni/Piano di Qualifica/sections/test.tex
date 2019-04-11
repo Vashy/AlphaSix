@@ -704,8 +704,8 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 	\begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{\textwidth}{YY}
-			% \rowcolor{\tablegray}
+		\begin{tabularx}{0.5\textwidth}{YY}
+			\rowcolor{white}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
 			\addtotv & R1.1F2 \\
@@ -719,7 +719,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 			\addtotv & R3.1F2 \\
 			\addtotv & R3.2F2 \\
 			\addtotv & R3.3F2 \\
-			\addtotv & R3F2\\
+			\addtotv & R3F2 \\
 			\addtotv & R4.1F2 \\
 			\addtotv & R4.2F2 \\
 			\addtotv & R4.3F2 \\
@@ -748,8 +748,8 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
     \begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{\textwidth}{YY}
-			% \rowcolor{\tablegray}
+		\begin{tabularx}{0.5\textwidth}{YY}
+			\rowcolor{white}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
             \addtotv & R15.2F0 \\
@@ -793,7 +793,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \setcounter{tableCounter}{1}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+		\rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica che il sistema riceva la segnalazione dell'apertura di una issue da parte di Redmine & \TS \\
         \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di Redmine & \TS \\
@@ -818,7 +818,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+		\rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica di invio di un messaggio di commento issue dal Producer GitLab al Gestore Personale & \TS \\
         \addtots & Verifica di invio di un messaggio di commento di commit dal Producer GitLab al Gestore Personale & \TS \\
@@ -852,7 +852,8 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \stepcounter{tableCounter}
 \begin{table}[H]
-	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+    \begin{paddedtablex}[1.7]{\textwidth}{cXc}
+        \rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & \TI \\
 		\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & \TS \\
@@ -882,8 +883,8 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \begin{table}[H]
     \centering
     {\def\arraystretch{1.4}
-        \begin{tabularx}{\textwidth}{YY}
-            % \rowcolor{\tablegray}
+        \begin{tabularx}{0.5\textwidth}{YY}
+            \rowcolor{white}
             \textbf{Codice} & \textbf{Requisito} \\
             \toprule
             \addtots & R1.1F2 \\
@@ -926,8 +927,8 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \begin{table}[H]
     \centering
     {\def\arraystretch{1.4}
-        \begin{tabularx}{\textwidth}{YY}
-            % \rowcolor{\tablegray}
+        \begin{tabularx}{0.5\textwidth}{YY}
+            \rowcolor{white}
             \textbf{Codice} & \textbf{Requisito} \\
             \toprule
             \addtots & R15.2F0 \\
@@ -970,28 +971,28 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+		\rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 		\addtoti & Verifica l'integrazione di WebhookFactory con Webhook & \TS \\
-			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabIssueWebhook & \TS \\
-			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabPushWebhook & \TS \\
-			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabCommitCommentWebhook & \TS \\
-            \TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabIssueCommentWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitlabWebhookFactory con GitlabPushWebhook & \TS \\
+			\TIti & Verifica l'integrazione di GitlabWebhookFactory con GitlabCommitCommentWebhook & \TS \\
+            \TIti & Verifica l'integrazione di GitlabWebhookFactory con GitlabIssueCommentWebhook & \TS \\
 			\TIti & Verifica l'integrazione di RedmineWebhookFactory con RedmineIssueWebhook & \TS \\
-		\addtoti & Verifica l'integrazione tra Webhook e GitLabProducer & \TS \\
-			\TIti & Verifica l'integrazione tra GitLabIssueWebhook e GitLabProducer & \TS \\
-			\TIti & Verifica l'integrazione tra GitLabPushWebhook e GitLabProducer & \TS \\
-			\TIti & Verifica l'integrazione tra GitLabIssueCommentWebhook e GitLabProducer & \TS \\
-			\TIti & Verifica l'integrazione tra GitLabCommitCommentWebhook e GitLabProducer & \TS \\
+		\addtoti & Verifica l'integrazione tra Webhook e GitlabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitlabIssueWebhook e GitlabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitlabPushWebhook e GitlabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitlabIssueCommentWebhook e GitlabProducer & \TS \\
+			\TIti & Verifica l'integrazione tra GitlabCommitCommentWebhook e GitlabProducer & \TS \\
 		\addtoti & Verifica l'integrazione tra Webhook e RedmineProducer & \TS \\
 			\TIti & Verifica l'integrazione tra RedmineIssueWebhook e RedmineProducer & \TS \\
 		% \addtoti & Verifica l'integrazione del TelegramCosumer con il bot Telegram & \TNI \\
-		\addtoti & Verifica l'integrazione del EmailConsumer  con il server Email & \TS \\
-        \addtoti & Verifica l'integrazione del TelegramConsumer  con il bot Telegram & \TS \\
-		\addtoti & Verifica l'integrazione di Kafka con le componenti Producer & \TS \\
-			\TIti & Verifica l'integrazione di KafkaProducer con GitLabProducer & \TS \\
+		\addtoti & Verifica l'integrazione del EmailConsumer con SMTP & \TS \\
+        \addtoti & Verifica l'integrazione del TelegramConsumer con la libreria requests & \TS \\
+		\addtoti & Verifica l'integrazione di KafkaProducer con le componenti Producer & \TS \\
+			\TIti & Verifica l'integrazione di KafkaProducer con GitlabProducer & \TS \\
 			\TIti & Verifica l'integrazione di KafkaProducer con RedmineProducer & \TS \\
-		\addtoti & Verifica l'integrazione di Kafka con le componenti Consumer & \TS \\
+		\addtoti & Verifica l'integrazione di KafkaConsumer con le componenti Consumer & \TS \\
 			\TIti & Verifica l'integrazione di KafkaConsumer nel TelegramCosumer & \TS \\
 			\TIti & Verifica l'integrazione di KafkaConsumer nel EmailConsumer & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con ClientGestorePersonale & \TS \\
@@ -1006,11 +1007,11 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+        \rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 
         \addtoti & Verifica l'integrazione di Flask con FlaskServer & \TS \\
-        \addtoti & Verifica l'integrazione di FlaskServer con GitLabProducer & \TS \\
+        \addtoti & Verifica l'integrazione di FlaskServer con GitlabProducer & \TS \\
 		\addtoti & Verifica l'integrazione di FlaskServer con RedmineProducer & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con KafkaProducerCreator & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaConsumer con KafkaConsumerCreator & \TS \\
@@ -1036,28 +1037,28 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 	\begin{table}[H]
 		\centering
 		{\def\arraystretch{1.4}
-		\begin{tabularx}{\textwidth}{YY}
-			% \rowcolor{\tablegray}
+		\begin{tabularx}{0.84\textwidth}{cX}
+			\rowcolor{white}
 			\textbf{Codice} & \textbf{Componente} \\
 			\toprule
-			\addtoti & Webhook.WebhookFactory \par Webhook.Webhook\\
-            \TIti & Webhook.GitLabWebhookFactory \par Webhook.GitLabIssueWebhook\\
-            \TIti & Webhook.GitLabWebhookFactory \par Webhook.GitLabPushWebhook\\
-            \TIti & Webhook.GitLabWebhookFactory \par Webhook.GtLabCommitCommentWebhook\\
-            \TIti & Webhook.GitLabWebhookFactory \par  Webhook.GitLabIssueCommentWebhook\\
-            \TIti & Webhook.RedmineWebhookFactory \par Webhook.RedmineIssueWebhook\\
-			\addtoti & Webhook.Webhook \par Producer.GitLabProducer\\
-            \TIti & Webhook.GitLabIssueWebhook \par Producer.GitLabProducer\\
-            \TIti & Webhook.GitLabPushWebhook \par Producer.GitLabProducer\\
-            \TIti & Webhook.GtLabCommitCommentWebhook \par Producer.GitLabProducer\\
-            \TIti & Webhook.GitLabIssueCommentWebhook \par Producer.GitLabProducer\\
-            \addtoti & Webhook.Webhook \par Producer.RedmineProducer\\
-            \TIti & Webhook.RedmineIssueWebhook \par Producer.RedmineProducer\\
-			\addtoti &  Consumer.EmailConsumer \par server Email\\
-			\addtoti & Consumer.TelegramConsumer \par bot Telegram\\
-			\addtoti & Kafka \par Producer\\
-			\TIti & KafkaProducer \par Producer.GitLabProducer\\
-            \TIti & KafkaProducer \par Producer.RedmineProducer\\
+			\addtoti & \texttt{webhook.WebhookFactory.create\_webhook()} \\
+            \TIti & \texttt{webhook.gitlab.GitlabWebhookFactory.create\_webhook()} \\
+            \TIti & \texttt{webhook.gitlab.GitlabWebhookFactory.create\_webhook()} \\
+            \TIti & \texttt{webhook.gitlab.GitlabWebhookFactory.create\_webhook()} \\
+            \TIti & \texttt{webhook.gitlab.GitlabWebhookFactory.create\_webhook()} \\
+            \TIti & \texttt{webhook.redmine.RedmineWebhookFactory.create\_webhook()} \\
+			\addtoti & \texttt{producer.gitlab.GitlabProducer.produce()} \\
+            \TIti & \texttt{producer.gitlab.GitlabProducer.produce()} \\
+            \TIti & \texttt{producer.gitlab.GitlabProducer.produce()} \\
+            \TIti & \texttt{producer.gitlab.GitlabProducer.produce()} \\
+            \TIti & \texttt{producer.gitlab.GitlabProducer.produce()} \\
+            \addtoti & \texttt{producer.redmine.RedmineProducer.produce()} \\
+            \TIti & \texttt{producer.redmine.GitlabProducer.produce()} \\
+			\addtoti & \texttt{consumer.email.EmailConsumer.send()} \\
+			\addtoti & \texttt{consumer.email.EmailConsumer.send()} \\
+			\addtoti & \texttt{producer.Producer.produce()} \\
+			\TIti & \texttt{producer.gitlab.GitlabProducer.produce()} \\
+            \TIti & \texttt{producer.redmine.RedmineProducer.produce()} \\
 			\bottomrule
 		\end{tabularx}}
 		\caption{Tracciamento dei test in correlazione con le componenti (1)}
@@ -1066,27 +1067,27 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
     \begin{table}[H]
         \centering
         {\def\arraystretch{1.4}
-            \begin{tabularx}{\textwidth}{YY}
-                % \rowcolor{\tablegray}
+            \begin{tabularx}{\textwidth}{cX}
+                \rowcolor{white}
                 \textbf{Codice} & \textbf{Componente} \\
                 \toprule
-                \addtoti & Kafka \par Consumer\\
-                \TIti & KafkaConsumer \par Consumer.TelegramConsumer\\
-                \TIti & KafkaConsumer \par Consumer.EmailConsumer\\
-                \addtoti &  KafkaProducer \par GestorePersonale.ClientGestorePersonale\\
-                \addtoti &  KafkaConsumer \par GestorePersonale.ClientGestorePersonale\\
-                \addtoti & Flask \par Producer.Server.Flaskserver\\
-                \addtoti & Producer.Server.Flaskserver \par Producer.GitLabProducer\\
-                \addtoti & Producer.Server.Flaskserver \par Producer.RedmineProducer\\
-                \addtoti & KafkaProducer \par Producer.KafkaProducerCreator\\
-                \addtoti & KafkaConsumer \par Producer.KafkaConsumerCreator\\
-                \addtoti & MongoClient \par WebInterface.FrontEnd\\
-                \addtoti & MongoClient \par GestorePersonale.Processor\\
-                \addtoti & MongoClient \par MongoDB.Singleton\\
-                \addtoti & MongoDB.MongoFacade \par Gestorepersonale.Processor\\
-                \addtoti & GestorePersonale.Controller \par Flask\\
-                \addtoti & MongoDB.MongoFacade \par MongoDB.MongoProject\\
-                \addtoti & MongoDB.MongoFacade \par MongoDB.MongoUser\\
+                \addtoti & \texttt{consumer.Producer.listen()} \\
+                \TIti & \texttt{consumer.telegram.TelegramConsumer.listen()} \\
+                \TIti & \texttt{consumer.email.EmailConsumer.listen()} \\
+                \addtoti & \texttt{consumer.email.EmailConsumer.send()} \\
+                \addtoti & \texttt{gestore\_personale.client.ClientGP.read\_messages()} \\
+                \addtoti & \texttt{gestore\_personale.client.ClientGP.send\_all()} \\
+                \addtoti & \texttt{producer.Server.run()} \\
+                \addtoti & \texttt{producer.Server.run()} \\
+                \addtoti & \texttt{producer.creator.KafkaProducerCreator.create()} \\
+                \addtoti & \texttt{consumer.creator.KafkaConsumerCreator.create()} \\
+                \addtoti & \texttt{gestore\_personale.Controller.access()} \\
+                \addtoti & \texttt{gestore\_personale.processor.GitlabProcessor.\_filter\_users\_by\_topic()} \\
+                \addtoti & \texttt{mongo\_db.MongoSingleton.instance()} \\
+                \addtoti & \texttt{gestore\_personale.processor.GitlabProcessor.\_check\_labels()} \\
+                \addtoti & \texttt{gestore\_personale.Controller.access()} \\
+                \addtoti & \texttt{mongo\_db.MongoSingleton.instance().read()} \\
+                \addtoti & \texttt{mongo\_db.MongoSingleton.instance().read()} \\
                 \bottomrule
             \end{tabularx}}
         \caption{Tracciamento dei test in correlazione con le componenti (2)}
@@ -1102,7 +1103,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 			\addtotu & Verifica il processamento del webhook e se è malformato & \TS \\
 			\addtotu & Verifica l'avviamento di FlaskServer con le configurazioni date & \TS \\
@@ -1141,7 +1142,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 			\addtotu & Verifica l'aggiornamento di una preferenza per l'applicazione di messaggistica dell'utente nel database & \TS \\
 			\addtotu & Verifica l'aggiunta di alcune keywords alle preferenze dell'utente nel database & \TS \\
@@ -1154,19 +1155,19 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\addtotu & Verifica l'identificativo Telegram di un utente nel database & \TS \\
 			\addtotu & Verifica l'email di un utente nel database & \TS \\
 			\addtotu & Verifica la corrispondenza del commit dato con le keywords presenti nel database & \TS \\
-			\addtotu & Verifica la corrispondenza delle labales date con le labels presenti nel database & \TS \\
+			\addtotu & Verifica la corrispondenza delle labels date con le labels presenti nel database & \TS \\
 
 			\addtotu & Verifica l'inserimento di un progetto nel database & \TS \\
 			\addtotu & Verifica la presenza di un progetto nel database & \TS \\
 			\addtotu & Verifica la url di un progetto nel database  & \TS \\
 			\addtotu & Verifica la rimozione di un progetto dal database & \TS \\
-			\addtotu & Verifica le keyword,s legate al progetto, dato nel database & \TS \\
-			\addtotu & Verifica le labels, legate al progetto, dato nel database & \TS \\
-			\addtotu & Verifica l'inserimento di una nuova keyword, legata al progetto dato, nel database & \TS \\
-			\addtotu & Verifica l'inserimento di una nuova label,legata al progetto dato, nel database & \TS \\
+			\addtotu & Verifica le keyword legate al progetto dato nel database & \TS \\
+			\addtotu & Verifica le labels legate al progetto dato nel database & \TS \\
+			\addtotu & Verifica l'inserimento di una nuova keyword legata al progetto dato, nel database & \TS \\
+			\addtotu & Verifica l'inserimento di una nuova labe,legata al progetto dato, nel database & \TS \\
 
 			\addtotu & Verifica l'ascolto di messaggi provenienti da Kafka da parte del ClientGestorePersonale & \TS \\
-			\addtotu & Verifica il processamento del messaggio da inviare a Kafka & \TS \\
+			\addtotu & Verifica l'elaboraziones del messaggio da inviare a Kafka & \TS \\
 			\addtotu & Verifica l'invio del messaggio processato su Kafka per tutti i destinatari & \TS \\
 			% \addtotu & Verifica la creazione di un oggetto RedmineIssueWebhook & \TS \\
 			% \addtotu & Verifica il parsing del file JSON associato al webhook di apertura issue in Redmine & \TS \\
@@ -1180,10 +1181,10 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 			\addtotu & Verifica la preparazione del messaggio da dare al ClientGestorePersonale & \TS \\
-			\addtotu & Verifica il progetto a cui appertiene il messaggio dato & \TS \\
+			\addtotu & Verifica il progetto a cui appartiene il messaggio dato & \TS \\
 			\addtotu & Verifica gli utenti coinvolti nel progetto dato & \TS \\
 			\addtotu & Verifica gli utenti con priorità maggiore per un determinato progetto da una lista di utenti dati & \TS \\
 			\addtotu & Verifica i contatti Telegram degli utenti dati & \TS \\
@@ -1202,44 +1203,44 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
-			\begin{tabularx}{\textwidth}{cY}
-				% \rowcolor{\tablegray}
+			\begin{tabularx}{0.6\textwidth}{cX}
+				\rowcolor{white}
 				\textbf{Codice} & \textbf{Componente} \\
 				\toprule
-				\addtotu & FlaskServer.\_webhook\_handler() \\
-				\addtotu & FlaskServer.run() \\
+				\addtotu & \texttt{FlaskServer.\_webhook\_handler()} \\
+				\addtotu & \texttt{FlaskServer.run()} \\
 
-				\addtotu & KafkaProducerCreator.create() \\
-				\addtotu & GitlabProducer.webhook\_kind() \\
-				\addtotu & GitLabProducer.\_produce() \\
-				\addtotu & RedmineProducer.webhook\_kind() \\
-				\addtotu & RedmineProducer.\_produce() \\
+				\addtotu & \texttt{KafkaProducerCreator.create()} \\
+				\addtotu & \texttt{GitlabProducer.webhook\_kind()} \\
+				\addtotu & \texttt{GitLabProducer.\_produce()} \\
+				\addtotu & \texttt{RedmineProducer.webhook\_kind()} \\
+				\addtotu & \texttt{RedmineProducer.\_produce()} \\
 
-				\addtotu & KafkaConsumerCreator.create() \\
-				\addtotu & TelegramConsumer.send() \\
-				\addtotu & TelgramConsumer.format() \\
-				\addtotu & TelgramConsumer.listen() \\
+				\addtotu & \texttt{KafkaConsumerCreator.create()} \\
+				\addtotu & \texttt{TelegramConsumer.send()} \\
+				\addtotu & \texttt{TelgramConsumer.format()} \\
+				\addtotu & \texttt{TelgramConsumer.listen()} \\
 
-				\addtotu & EmailConsumer.send() \\
-				\addtotu & EmailConsumer.format() \\
-				\addtotu & EmailConsumer.listen() \\
-				\addtotu & EmailConsumer.format\_html() \\
+				\addtotu & \texttt{EmailConsumer.send()} \\
+				\addtotu & \texttt{EmailConsumer.format()} \\
+				\addtotu & \texttt{EmailConsumer.listen()} \\
+				\addtotu & \texttt{EmailConsumer.format\_html()} \\
 
-				\addtotu & MongoUsers.create() \\
-				\addtotu & MongoUsers.exists() \\
-				\addtotu & MongoUsers.read() \\
-				\addtotu & MongoUsers.delete() \\
-				\addtotu & MongoUsers.update\_name() \\
-				\addtotu & MongoUsers.update\_surname() \\
-				\addtotu & MongoUsers.update\_telegram() \\
-				\addtotu & MongoUsers.update\_email() \\
-				\addtotu & MongoUsers.update\_user\_preference() \\
-				\addtotu & MongoUsers.add\_keywords() \\
-				\addtotu & MongoUsers.user\_keywords() \\
-				\addtotu & MongoUsers.add\_labels() \\
-				\addtotu & MongoUsers.user\_labels() \\
-				\addtotu & MongoUsers.\_get\_users\_by\_priority() \\
-				\addtotu & MongoUsers.\_get\_users\_available() \\
+				\addtotu & \texttt{MongoUsers.create()} \\
+				\addtotu & \texttt{MongoUsers.exists()} \\
+				\addtotu & \texttt{MongoUsers.read()} \\
+				\addtotu & \texttt{MongoUsers.delete()} \\
+				\addtotu & \texttt{MongoUsers.update\_name()} \\
+				\addtotu & \texttt{MongoUsers.update\_surname()} \\
+				\addtotu & \texttt{MongoUsers.update\_telegram()} \\
+				\addtotu & \texttt{MongoUsers.update\_email()} \\
+				\addtotu & \texttt{MongoUsers.update\_user\_preference()} \\
+				\addtotu & \texttt{MongoUsers.add\_keywords()} \\
+				\addtotu & \texttt{MongoUsers.user\_keywords()} \\
+				\addtotu & \texttt{MongoUsers.add\_labels()} \\
+				\addtotu & \texttt{MongoUsers.user\_labels()} \\
+				\addtotu & \texttt{MongoUsers.\_get\_users\_by\_priority()} \\
+				\addtotu & \texttt{MongoUsers.\_get\_users\_available()} \\
 
 				\bottomrule
 			\end{tabularx}}
@@ -1250,34 +1251,34 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
-			\begin{tabularx}{\textwidth}{cY}
-				\addtotu & MongoUsers.\_get\_users\_max\_priority() \\
+            \begin{tabularx}{0.65\textwidth}{cX}
+				\addtotu & \texttt{MongoUsers.\_get\_users\_max\_priority()} \\
 				%\addtotu & MongoUsers.\_filter\_max\_priority() \\
-				\addtotu & MongoUsers.\_get\_user\_telegram() \\
-				\addtotu & MongoUsers.\_get\_user\_email() \\
-				\addtotu & MongoUsers.\_get\_match\_keywords() \\
-				\addtotu & MongoUsers.\_get\_match\_labels() \\
+				\addtotu & \texttt{MongoUsers.\_get\_user\_telegram()} \\
+				\addtotu & \texttt{MongoUsers.\_get\_user\_email()} \\
+				\addtotu & \texttt{MongoUsers.\_get\_match\_keywords()} \\
+				\addtotu & \texttt{MongoUsers.\_get\_match\_labels()} \\
 
-				\addtotu & MongoProjects.create() \\
-				\addtotu & MongoProjects.exists() \\
-				\addtotu & MongoProjects.read() \\
-				\addtotu & MongoProjects.delete() \\
-				\addtotu & MongoProjects.keywords() \\
-				\addtotu & MongoProjects.labels() \\
-				\addtotu & MongoProjects.insert\_keyword\_by\_project() \\
-				\addtotu & MongoProjects.insert\_label\_by\_project() \\
+				\addtotu & \texttt{MongoProjects.create()} \\
+				\addtotu & \texttt{MongoProjects.exists()} \\
+				\addtotu & \texttt{MongoProjects.read()} \\
+				\addtotu & \texttt{MongoProjects.delete()} \\
+				\addtotu & \texttt{MongoProjects.keywords()} \\
+				\addtotu & \texttt{MongoProjects.labels()} \\
+				\addtotu & \texttt{MongoProjects.insert\_keyword\_by\_project()} \\
+				\addtotu & \texttt{MongoProjects.insert\_label\_by\_project()} \\
 
-				\addtotu & ClientGestorePersonale.read\_message() \\
-				\addtotu & ClientGestorePersonale.process() \\
-				\addtotu & ClientGestorePersonale.send\_all() \\
+				\addtotu & \texttt{ClientGestorePersonale.read\_message()} \\
+				\addtotu & \texttt{ClientGestorePersonale.process()} \\
+				\addtotu & \texttt{ClientGestorePersonale.send\_all()} \\
 
-				\addtotu & Processor.prepare\_message() \\
-				\addtotu & Processor.\_check\_project() \\
-				\addtotu & Processor.get\_involved\_users() \\
+				\addtotu & \texttt{Processor.prepare\_message()} \\
+				\addtotu & \texttt{Processor.\_check\_project()} \\
+				\addtotu & \texttt{Processor.get\_involved\_users()} \\
 				%\addtotu & Processor.select\_users\_more\_interested() \\
-				\addtotu & Processor.filter\_users\_with\_max\_priority() \\
-				\addtotu & Processor.get\_telegram\_contacts() \\
-				\addtotu & Processor.get\_email\_contacts() \\
+				\addtotu & \texttt{Processor.filter\_users\_with\_max\_priority()} \\
+				\addtotu & \texttt{Processor.get\_telegram\_contacts()} \\
+				\addtotu & \texttt{Processor.get\_email\_contacts()} \\
 				% \addtotu & WebhookFactory.RedmineWebhookFactory \\
 				% \addtotu & Webhook.RedmineIssueWebhook.parse() \\
 				% \addtotu & Webhook.RedmineIssueWebhook.parse() \\

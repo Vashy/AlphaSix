@@ -156,7 +156,7 @@ Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei softwar
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=13cm]{img/webhook_gitlab_setup.png}\\
-		\caption[Webhook, GitLab]{Configurazione webhook con destinazione in rete locale}
+		\caption{Configurazione webhook con destinazione in rete locale}
 	\end{figure}
 	Ulteriori informazioni a riguardo possono essere trovate nella pagina\footnote{\url{https://docs.gitlab.com/ee/security/webhooks.html}} relativa a tale argomento nella sezione relativa alla documentazione di GitLab.	
 
@@ -173,25 +173,43 @@ Per il corretto invio dei \gloss{webhook} (in formato JSON) da parte dei softwar
 	\end{itemize}
 
 %TODO aggiungere variabili che possono essere configurate
-\subsection{Configurazione servizi \progetto}
+\subsection{Configurazione servizi \progetto}\label{var}
 	
 	\subsubsection{Producer}
 	Per i Producer è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
-	\begin{itemize}
-		\item var
-	\end{itemize}
-	
-	\subsubsection{Consumer}
+	\begin{table}[H]
+		\centering
+		\begin{paddedtablex}[1.3]{\textwidth}{cY}
+			\thead{Nome variabile} & \thead{Descrizione}\\\toprule
+			\texttt{test}& test\\
+			\bottomrule
+		\end{paddedtablex}
+		\caption{Variabili di ambiente configurabili tramite Docker per i Producer}
+	\end{table}
+		
+	\subsubsection{Consumer}\label{var_consumer}
 	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
-	\begin{itemize}
-		\item var
-	\end{itemize}
+	\begin{table}[H]
+		\centering
+		\begin{paddedtablex}[1.3]{\textwidth}{cY}
+			\thead{Nome variabile} & \thead{Descrizione}\\\toprule
+			\texttt{test}& test\\
+			\bottomrule
+		\end{paddedtablex}
+		\caption{Variabili di ambiente configurabili tramite Docker per i Producer}
+	\end{table}
 
 	\subsubsection{Gestore personale}
 	Per il Gestore personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono: 
-	\begin{itemize}
-		\item var
-	\end{itemize}
+	\begin{table}[H]
+		\centering
+		\begin{paddedtablex}[1.3]{\textwidth}{cY}
+			\thead{Nome variabile} & \thead{Descrizione}\\\toprule
+			\texttt{test}& test\\
+			\bottomrule
+		\end{paddedtablex}
+		\caption{Variabili di ambiente configurabili tramite Docker per i Producer}
+	\end{table}
 	
 	\subsubsection{Kafka}
 	Per l'utilizzo richiestoci da parte dell'azienda di Kafka non sono state necessarie ulteriori configurazioni oltre a quelle di default successive all'installazione.

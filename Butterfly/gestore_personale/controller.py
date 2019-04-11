@@ -204,8 +204,10 @@ class Controller(Observer):
             if(not self._check_values(request)):
                 if request.method == 'PUT':
                     fileHtml = html / 'adduser.html'
+                    page = fileHtml.read_text()
                 elif request.method == 'POST':
                     fileHtml = html / 'modifyuser.html'
+                    page = fileHtml.read_text()
                 elif request.method == 'DELETE':
                     page = self.remove_user()
                 return render_template_string(page)
