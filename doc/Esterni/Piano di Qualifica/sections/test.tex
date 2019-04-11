@@ -705,7 +705,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
 			\addtotv & R1.1F2 \\
@@ -749,7 +749,7 @@ Come si può vedere dal modello a V, sono i primi tipi di test che vengono creat
 		\centering
 		{\def\arraystretch{1.4}
 		\begin{tabularx}{\textwidth}{YY}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \textbf{Requisito} \\
 			\toprule
             \addtotv & R15.2F0 \\
@@ -793,7 +793,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \setcounter{tableCounter}{1}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+		\rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica che il sistema riceva la segnalazione dell'apertura di una issue da parte di Redmine & \TNI \\
         \addtots & Verifica che il sistema riceva la segnalazione della modifica di una issue da parte di Redmine & \TNI \\
@@ -818,7 +818,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 \stepcounter{tableCounter}
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+		\rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica di invio di un messaggio di commento issue dal Producer GitLab al Gestore Personale & \TNI \\
         \addtots & Verifica di invio di un messaggio di commento di commit dal Producer GitLab al Gestore Personale & \TNI \\
@@ -852,7 +852,8 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \stepcounter{tableCounter}
 \begin{table}[H]
-	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
+    \begin{paddedtablex}[1.7]{\textwidth}{cXc}
+        \rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & \TNI \\
 		\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & \TNI \\
@@ -883,7 +884,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
     \centering
     {\def\arraystretch{1.4}
         \begin{tabularx}{\textwidth}{YY}
-            % \rowcolor{\tablegray}
+            \rowcolor{white}
             \textbf{Codice} & \textbf{Requisito} \\
             \toprule
             \addtots & R1.1F2 \\
@@ -927,7 +928,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
     \centering
     {\def\arraystretch{1.4}
         \begin{tabularx}{\textwidth}{YY}
-            % \rowcolor{\tablegray}
+            \rowcolor{white}
             \textbf{Codice} & \textbf{Requisito} \\
             \toprule
             \addtots & R15.2F0 \\
@@ -970,7 +971,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+		\rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 		\addtoti & Verifica l'integrazione di WebhookFactory con Webhook & \TS \\
 			\TIti & Verifica l'integrazione di GitLabWebhookFactory con GitLabIssueWebhook & \TS \\
@@ -1006,7 +1007,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 \begin{table}[H]
 	\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-		% \rowcolor{\tablegray}
+        \rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 
         \addtoti & Verifica l'integrazione di Flask con FlaskServer & \TS \\
@@ -1102,7 +1103,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 			\addtotu & Verifica il processamento del webhook e se è malformato & \TS \\
 			\addtotu & Verifica l'avviamento di FlaskServer con le configurazioni date & \TS \\
@@ -1141,7 +1142,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 			\addtotu & Verifica l'aggiornamento di una preferenza per l'applicazione di messaggistica dell'utente nel database & \TS \\
 			\addtotu & Verifica l'aggiunta di alcune keywords alle preferenze dell'utente nel database & \TS \\
@@ -1154,7 +1155,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\addtotu & Verifica l'identificativo Telegram di un utente nel database & \TS \\
 			\addtotu & Verifica l'email di un utente nel database & \TS \\
 			\addtotu & Verifica la corrispondenza del commit dato con le keywords presenti nel database & \TS \\
-			\addtotu & Verifica la corrispondenza delle labales date con le labels presenti nel database & \TS \\
+			\addtotu & Verifica la corrispondenza delle labals date con le labels presenti nel database & \TS \\
 
 			\addtotu & Verifica l'inserimento di un progetto nel database & \TS \\
 			\addtotu & Verifica la presenza di un progetto nel database & \TS \\
@@ -1180,7 +1181,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 
 	\begin{table}[H]
 		\begin{paddedtablex}[1.7]{\textwidth}{cXc}
-			% \rowcolor{\tablegray}
+			\rowcolor{white}
 			\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
 			\addtotu & Verifica la preparazione del messaggio da dare al ClientGestorePersonale & \TS \\
 			\addtotu & Verifica il progetto a cui appertiene il messaggio dato & \TS \\
@@ -1203,7 +1204,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\centering
 			{\def\arraystretch{1.4}
 			\begin{tabularx}{\textwidth}{cY}
-				% \rowcolor{\tablegray}
+				\rowcolor{white}
 				\textbf{Codice} & \textbf{Componente} \\
 				\toprule
 				\addtotu & FlaskServer.\_webhook\_handler() \\
@@ -1250,7 +1251,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\begin{table}[H]
 			\centering
 			{\def\arraystretch{1.4}
-			\begin{tabularx}{\textwidth}{cY}
+            \begin{tabularx}{\textwidth}{cY}
 				\addtotu & MongoUsers.\_get\_users\_max\_priority() \\
 				%\addtotu & MongoUsers.\_filter\_max\_priority() \\
 				\addtotu & MongoUsers.\_get\_user\_telegram() \\
