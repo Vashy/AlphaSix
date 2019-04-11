@@ -159,13 +159,44 @@ quale ricevere la notifica per ogni utente. Tutte queste informazioni vengono in
 Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model.
 La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}.
 
+\subsubsection{Diagramma dei package}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Package-GestorePersonale.png}\\
+    \caption{Diagramma dei package del Gestore Personale}
+    % \label{fig:GP-Processor}
+\end{figure}
+
 \subsubsection{Mongo}
 Model dell'MVC
+
+    \paragraph{Diagramma delle classi}
+    Qua viene mostrato come il Gestore Personale si interfaccia con \gloss{MongoDB}, ovvero MongoUser e MongoProject. Sono suddivisi in base alla risorsa di interesse.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/GP-Mongo.png}\\
+        \caption{Interazione con MongoDB del Gestore Personale}
+        \label{fig:GP-Mongo}
+    \end{figure}
+
 
 \subsubsection{View}
 View dell'MVC
 
-\newpage
+    \paragraph{Diagramma delle classi}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/GP-View.png}\\
+        \caption{Logica della view del Gestore Personale}
+        \label{fig:GP-View}
+    \end{figure}
+
+
+
+%\newpage
 \subsubsection{Client}
 Si tratta del controller dell'MVC. Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio.
 
@@ -179,43 +210,18 @@ Per analizzare il messaggio il Client opera in questo modo:
     % \label{fig:GP-Processor}
 \end{figure}
 
-\subsubsection{Diagramma dei package}
+    \paragraph{Diagramma delle classi}
+    .. viene mostrato come il Gestore Personale si interfaccia con Kafka, questa riguarda il core del Gestore Personale, si occupa di processare
+    i messaggi.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/Package-GestorePersonale.png}\\
-    \caption{Diagramma dei package del Gestore Personale}
-    % \label{fig:GP-Processor}
-\end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{img/GP-Processor.png}\\
+        \caption{Message processor del Gestore Personale}
+        \label{fig:GP-Processor}
+    \end{figure}
 
 
-\subsubsection{Diagramma delle classi}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/GP-View.png}\\
-    \caption{Logica della view del Gestore Personale}
-    \label{fig:GP-View}
-\end{figure}
-
-Qua viene mostrato come il Gestore Personale si interfaccia con \gloss{MongoDB}, ovvero MongoUser e MongoProject. Sono suddivisi in base alla risorsa di interesse.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/GP-Mongo.png}\\
-    \caption{Interazione con MongoDB del Gestore Personale}
-    \label{fig:GP-Mongo}
-\end{figure}
-
-Mentre in quest'ultima viene mostrato come il Gestore Personale si interfaccia con Kafka, questa riguarda il core del Gestore Personale, si occupa di processare
-i messaggi.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/GP-Processor.png}\\
-    \caption{Message processor del Gestore Personale}
-    \label{fig:GP-Processor}
-\end{figure}
 
 
 \subsection{Consumers}
