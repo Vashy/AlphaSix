@@ -58,6 +58,7 @@
 		\item \textbf{Titolo}: rimozione preferenza piattaforma di messaggistica.
 		\item \textbf{Attori primari}: utente.
 		\item \textbf{Descrizione}: l’utente rimuove una o più preferenze tra Telegram e Email dalle	quali non vuole più ricevere notifiche tramite \progetto.
+		Questo non comporta la rimozione dell'identificativo Telegram o del proprio contatto Email, ma solo della deselezione della preferenza tra le due tecnologie.
 		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
         una preferenza selezionata tra quelle proposte da Butterfly.
 		\item \textbf{Postcondizione}: il numero di piattaforme di messaggistica da cui l’utente vuole ricevere notifiche è diminuito.
@@ -110,8 +111,7 @@
 		\item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
 		\item \textbf{Titolo}: rimozione di keyword per i push di GitLab.
 		\item \textbf{Attori primari}: utente.
-		\item \textbf{Descrizione}: l’utente seleziona e rimuove una o più keyword già presente nel sistema per non ricevere la notifica di push in
-		cui i messaggi di commit contengono la keyword rimossa.
+		\item \textbf{Descrizione}: l’utente seleziona e rimuove una o più keyword già presente nel sistema per non ricevere la notifica di push in cui i messaggi di commit contengono la keyword rimossa.
 		\item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
         una preferenza selezionata tra quelle proposte da Butterfly.
 		\item \textbf{Postcondizione}: nelle nuove configurazioni dell'utente selezionato sono state rimosse delle keyword precedentemente presenti.
@@ -146,32 +146,33 @@
 
     \stepcounter{subuccount}
     \subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione progetti di interesse}
-    
+
     \begin{itemize}
         \item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
         \item \textbf{Titolo}: rimozione progetti di interesse.
         \item \textbf{Attori primari}: utente.
-        \item \textbf{Descrizione}: l'utente modifica la lista di progetti a cui è iscritto.
+        \item \textbf{Descrizione}: l'utente modifica la lista di progetti a cui è iscritto rimuovendone uno.
         \item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
         una preferenza selezionata tra quelle proposte da Butterfly.
         \item \textbf{Postcondizione}: la lista di progetti a cui un utente è iscritto è diminuita.
         \item \textbf{Scenario principale}:
         \begin{enumerate}
-            \item L'utente modifica la lista di progetti a cui è iscritto
+            \item L'utente rimuove un progetto a cui è iscritto
         \end{enumerate}
     \end{itemize}
-    
+
     \stepcounter{subuccount}
     \subsubsection{UC\theuccount.\thesubuccount-GP - Rimozione delle priorità sui progetti}
-    
+
     \begin{itemize}
         \item \textbf{Codice}: UC\theuccount.\thesubuccount-GP.
         \item \textbf{Titolo}: rimozione delle priorità sui progetti.
         \item \textbf{Attori primari}: utente.
-        \item \textbf{Descrizione}: l'utente modifica la priorità dei progetti a cui è iscritto.
+        \item \textbf{Descrizione}: l'utente modifica la priorità dei progetti a cui è iscritto rimuovendo la priorità precedentemente inserita per quel progetto.
+        Un progetto però non può restare tra le preferenze dell'utente senza aver segnalato una priorità, per cui sarà necessario aggiungerne un'altra subito dopo la rimozione.
         \item \textbf{Precondizione}: l’utente ha eseguito l'accesso nel sistema ed è presente almeno
         una preferenza selezionata tra quelle proposte da Butterfly.
-        \item \textbf{Postcondizione}: la priorità di un progetto presente nella lista dei progetti è stata rimossa.
+        \item \textbf{Postcondizione}: la priorità di un progetto presente nella lista dei progetti è stata cambiata.
         \item \textbf{Scenario principale}:
         \begin{enumerate}
             \item L'utente modifica la priorità della lista di progetti a cui è iscritto
