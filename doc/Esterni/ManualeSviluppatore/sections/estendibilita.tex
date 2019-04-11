@@ -50,3 +50,16 @@ chiave-valore, produca un messaggio formattato e lo invii al destinatario, trami
 Viene inoltre offerta la possibilità di ridefinire il metodo \texttt{prelisten\_hook()} che viene chiamato prima che il Consumer si metta effettivamente in ascolto
 del topic specifico su Kafka.
 È concreto nella class base, ma non fa nulla. Serve per aumentare la flessibilità delle classi che implementano la classe astratta \texttt{Consumer}.
+
+
+\subsection{Aggiungere un MessageProcessor}
+
+Per far conoscere al Gestore Personale la presenza di un nuovo tipo di Producer, è necessario implementare la logica di filtro degli utenti in base al tipo di messaggi
+implementando una classe concreta che erediti da \texttt{Processor}.
+Va implementato il metodo \texttt{filter\_users\_by\_topic()}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/EstensioneGP-Processor.png}\\
+    \caption{Aggiungere un Processor}
+\end{figure}
