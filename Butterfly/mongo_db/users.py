@@ -157,17 +157,12 @@ class MongoUsers:
 
     def delete(self, user: str):
         """Rimuove un documento che corrisponde a
-        `user`, se presente. `user` può riferirsi sia al contatto
-        Telegram che email. Restituisce il risultato dell'operazione.
+        `user`, se presente. `user` è l'identificativo nel db
         """
         return self._mongo.delete(
             {
-                '$or': [
-                    {'telegram': user},
-                    {'email': user},
-                ]
-            },
-            'users',
+                {'_id': user},
+            }, 'users'
         )
 
     def update_name(self, user: str, name: str):

@@ -1,0 +1,82 @@
+<!--
+File: preferences.html
+Data creazione: 2019-02-20
+
+<descrizione>
+
+Licenza: Apache 2.0
+
+Copyright 2019 AlphaSix
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Versione: 0.1.0
+Creatore: Matteo Marchiori, matteomarchiori@gmail.com
+-->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modifica preferenze | Butterfly</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body lang="it">
+        <div>
+            <h1>Butterfly</h1>
+            <form action="/subscriptiontopic" method="post">
+                *topics*
+                <input id="subscriptiontopic" name="subscriptiontopic" type="submit" value="Modifica iscrizioni topic"/>
+            </form>
+            *subscriptiontopic*
+            <form action="/indisponibilita" method="post">
+                <fieldset>
+                    <legend>Giorni di indisponibilità</legend>
+                    <label for="calendario">Indisponibilità</label>
+                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Modifica indisponibilità"/>
+                </fieldset>
+            </form>
+            *indisponibilita*
+            <form action="/favouriteplatform" method="post">
+                <fieldset>
+                    <legend>Piattaforma preferita</legend>
+                    <label for="email">Email</label>
+                    <input name="platform" id="email" type="radio" />
+                    <label for="telegram">Telegram</label>
+                    <input name="platform" id="telegram" type="radio" />
+                    <input id="favouriteplatform" name="favouriteplatform" type="submit" value="Modifica piattaforma preferita"/>
+                </fieldset>
+            </form>
+            *favouriteplatform*
+            <form action="/favouriteuser" method="post">
+                <fieldset>
+                    <legend>Persona di fiducia</legend>
+                    <label for="userid">User ID (email o telegram)</label>
+                    <input name="userid" type="text" />
+                    <input id="favouriteuser" name="favouriteuser" type="submit" value="Modifica utente preferito"/>
+                </fieldset>
+            </form>
+            *favouriteuser*
+            <form action="/keywords" method="post">
+                <fieldset>
+                    <legend>Keyword di interesse</legend>
+                    <label for="textkeywords">Gitlab keywords</label>
+                    <textarea id="textkeywords" name="keywords">*textkeywords*</textarea>
+                    <input id="keywords" name="keywords" type="submit" value="Modifica parole chiave"/>
+                </fieldset>
+            </form>
+            *keywords*
+        </div>
+    </body>
+</html>

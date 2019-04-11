@@ -175,6 +175,30 @@ class Controller(Observer):
         else:
             return self.access(request)
 
+    def remove_user(self):
+        values = self._users_id('_id')
+        display = []
+        for user in values:
+            telegram = self.model.get_user_telegram(user)
+            email = self.model.get_user_email(user)
+            if telegram is None:
+                telegram = ''
+            if email is None:
+                email = ''
+            display.append(
+                telegram +
+                ' ' +
+                email
+            )
+        options = '<select>'
+        for i,voice in enumerate(display):
+            options += '<option value="' + str(values[i]) + '">' + display[i] + '</option>'
+        options += '</select>'
+        fileHtml = html / 'removeuser.html'
+        page = fileHtml.read_text()
+        return page.replace('*userids*', options)
+
+
     def web_user(self):
         if self._check_session():
             if(not self._check_values(request)):
@@ -183,18 +207,7 @@ class Controller(Observer):
                 elif request.method == 'POST':
                     fileHtml = html / 'modifyuser.html'
                 elif request.method == 'DELETE':
-                    values = self._users_id('_id')
-                    display = []
-                    print(values)
-                    for user in values:
-                        display.append(
-                            self.model.get_user_telegram(user) +
-                            ' ' +
-                            self.model.get_user_email(user)
-                        )
-                    fileHtml = html / 'removeuser.html'
-                page = fileHtml.read_text()
-                page = page.replace('userids', display)
+                    page = self.remove_user()
                 return render_template_string(page)
         else:
             return self.access(request)
