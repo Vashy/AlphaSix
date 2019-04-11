@@ -190,9 +190,7 @@ Questo lo rende un database molto estendibile, quindi uno sviluppatore può faci
 
 
 \subsubsection{Controller e View}
-Il Controller del Gestore Personale serve per collegare la componente del Model con la componente View.
-Una volta istanziati il server Flask, l'api REST e MongoDB vengono passati al Controller che resta in ascolto.\par
-Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le dovute operazioni su MongoDB e restituisce una risposta alla vista di provenienza, in formato JSON se si tratta dell'api REST o in formato HTML se si tratta della view consultabile da browser Web.
+Il controller recupera gli input che gli utenti inseriscono attraverso la View, le interpreta, per poi poterle elaborare correttamente, interagendo eventualmente con il database. Nel momento in cui cambiano i dati relativi agli utenti nel database il controller aggiorna la View.
 
 
     \paragraph{Diagramma delle classi}
@@ -204,6 +202,9 @@ Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le 
         \label{fig:GP-View}
     \end{figure}
 
+    Il Controller del Gestore Personale serve per collegare la componente del Model con la componente View.
+    Una volta istanziati il server Flask, l'api REST e MongoDB vengono passati al Controller che resta in ascolto.\par
+    Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le dovute operazioni su MongoDB e restituisce una risposta alla vista di provenienza, in formato JSON se si tratta dell'api REST o in formato HTML se si tratta della view consultabile da browser Web.
 
 
 %\newpage
@@ -220,8 +221,7 @@ Per analizzare il messaggio il Client opera in questo modo:
 \end{figure}
 
     \paragraph{Diagramma delle classi}
-    Il Gestore Personale (ClientGP) si interfaccia con Kafka attraverso KafkaProducer e KafkaConsumer, e per elaborare i messaggi che riceve crea un'implementazione di Processor. Questa, in base alle informazioni nel messaggio, indica qual è il destinatario del messaggio e attraverso quale applicazione notificarlo, interrogando il database con MongoFacade.
-
+    
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{img/GP-Processor.png}\\
@@ -229,6 +229,7 @@ Per analizzare il messaggio il Client opera in questo modo:
         \label{fig:GP-Processor}
     \end{figure}
 
+    Il Gestore Personale (ClientGP) si interfaccia con Kafka attraverso KafkaProducer e KafkaConsumer, e per elaborare i messaggi che riceve crea un'implementazione di Processor. Questa, in base alle informazioni nel messaggio ricevuto, indica qual è il destinatario del messaggio e attraverso quale applicazione notificarlo, interrogando il database con MongoFacade.
 
 \subsection{Consumers}
 Il Consumer è la componente finale del sistema \progetto. Esso resta in ascolto della sua coda specifica di Kafka per applicativo (e.g. telegram, email).
@@ -250,13 +251,6 @@ al destinatario finale tramite le API dell'applicativo su cui il Consumer è bas
 \subsubsection{TelegramConsumer}
 Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{telegram}
 di Kafka all'invio del messaggio all'utente finale su Telegram.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/Consumer-MsgTelegram.png}\\
-    \caption[Diagramma di sequenza TelegramConsumer]{Diagramma di sequenza dell'invio di un messaggio da parte di TelegramConsumer}
-    % \label{fig:GP-Kafka}
-\end{figure}
 
 \paragraph{Diagramma dei package}
 
@@ -289,17 +283,6 @@ Il metodo \texttt{format()} costruisce il testo del messaggio finale utilizzando
 
 
 \subsubsection{EmailConsumer}
-Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{email}
-di Kafka all'invio del messaggio all'utente finale tramite server SMTP.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/Consumer-MsgEmail.png}\\
-    \caption[Diagramma di sequenza EmailConsumer]{Diagramma di sequenza dell'invio di un messaggio da parte di EmailConsumer}
-    % \label{fig:GP-Kafka}
-\end{figure}
-
-
 \paragraph{Diagramma dei package}
 
 L'EmailConsumer ha 2 dipendenze esterne:
