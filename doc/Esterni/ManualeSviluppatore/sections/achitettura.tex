@@ -157,7 +157,7 @@ Il Gestore Personale è la componente con la logica più complessa del sistema B
 che si occupano rispettivamente di ricevere i messaggi da Kafka e reinserirli nelle code relative ai Consumer finali. Per stabilire il destinatario e il Consumer finale appropriato, il Client del Gestore Personale interroga MongoDB per ottenere per selezionare i giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul
 quale ricevere la notifica per ogni utente. Tutte queste informazioni vengono inserite in MongoDB attraverso la View. \par
 Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model.
-La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}.
+La View è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente al Controller.
 
 \subsubsection{Diagramma dei package}
 
@@ -182,15 +182,18 @@ Model dell'MVC
     \end{figure}
 
 
-\subsubsection{View}
-View dell'MVC
+\subsubsection{Controller e View}
+Il Controller del Gestore Personale serve per collegare la componente del Model con la componente View.
+Una volta istanziati il server Flask, l'api REST e MongoDB vengono passati al Controller che resta in ascolto.\par
+Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le dovute operazioni su MongoDB e restituisce una risposta alla vista di provenienza, in formato JSON se si tratta dell'api REST o in formato HTML se si tratta della view consultabile da browser Web.
+
 
     \paragraph{Diagramma delle classi}
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{img/GP-View.png}\\
-        \caption{Logica della view del Gestore Personale}
+        \caption{Logica del Controller del Gestore Personale}
         \label{fig:GP-View}
     \end{figure}
 
@@ -198,7 +201,7 @@ View dell'MVC
 
 %\newpage
 \subsubsection{Client}
-Si tratta del controller dell'MVC. Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio.
+Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio.
 
 %\newpage
 Per analizzare il messaggio il Client opera in questo modo:
