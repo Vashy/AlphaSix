@@ -68,13 +68,13 @@ In questa sezione si possono trovare le principali impostazioni del sistema dal 
 \end{figure}
 
 \subsubsection{Inserimento giorni di indisponibilità}\label{indisponibilita}
-Sempre dal Pannello di controllo è possibile raggiungere la pagina relativa alla disponibilità di calendario. 
+Sempre dal Pannello di controllo è possibile raggiungere la pagina relativa alla disponibilità di calendario.
 %TODO verificare con Matteo
 In questa è possibile specificare attraverso un calendario i giorni in cui non si è disponibili e quindi in caso di una notifica in arrivo mandarla ad un'altra persona che è in grado di gestirla.
 %TODO inserire immagine di calendario
 \begin{figure}[H]
 	\centering
-	%\includegraphics[width=\textwidth]{img/disponibilita_1.png} 
+	%\includegraphics[width=\textwidth]{img/disponibilita_1.png}
 	\caption{Interfaccia iscrizione nuovo utente}
 \end{figure}
 
@@ -102,28 +102,27 @@ Viene inoltre data la possibilità di disiscrivere un altro utente dal sistema f
 Per la gestione delle risorse di \progetto\ abbiamo utilizzato lo standard architetturale delle API Rest.
 Nelle sezioni successive viene descritto come interagire con le API fornite dal sistema.
 Il root path sottinteso sarà sempre \texttt{\homeUrl/api/v1/}.
-Ad esempio, per effettuare la GET degli user, l'indirizzo sarà:
+Ad esempio, per effettuare la GET dell'user \texttt{@user1}, l'indirizzo sarà:
 \begin{center}
-    \texttt{GET \homeUrl/api/v1/users}
+    \texttt{GET \homeUrl/api/v1/user/@user1}
 \end{center}
 
-\subsubsection{Users}
+\subsubsection{User}
 
-\texttt{Users} è la risorsa che corrisponde agli utenti.
+\texttt{User} è la risorsa utente.
 È possibile visualizzare, aggiungere, modificare o rimuovere gli utenti tramite una semplice
 richiesta HTTP.
 
 \paragraph{Visualizzazione}
-
-\begin{itemize}
-    \item \textbf{Payload di tutti gli utenti}: \texttt{GET /users}
-    \item \textbf{Utente specifico}: \texttt{GET /users/<id>}
-\end{itemize}
+È possibile visualizzare i dati di un utente tramite la richiesta
+    \begin{center}
+        \texttt{GET  /user/<id>}
+    \end{center}
 
 \paragraph{Inserimento}
 È possibile inserire un nuovo utente tramite la richiesta
     \begin{center}
-        \texttt{POST /users}
+        \texttt{PUT /user}
     \end{center}
 
 È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
@@ -139,8 +138,9 @@ Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme 
 
 È possibile modificare un utente tramite la richiesta
 \begin{center}
-    \texttt{PUT /users/<id>}
+    \texttt{POST /user/<id>}
 \end{center}
+
 È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
 \begin{itemize}[noitemsep]
     \item \texttt{name}
@@ -154,7 +154,7 @@ Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme 
 
 È possibile rimuovere un utente dal sistema \progetto\ con la richiesta
 \begin{center}
-    \texttt{DELETE /users/<id>}
+    \texttt{DELETE /user/<id>}
 \end{center}
 
 Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà rimosso.
@@ -165,77 +165,113 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 \begin{table}[H]
     \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
-        \texttt{GET} & \texttt{/users} & Restituisce un payload in JSON di tutti gli utenti\\
-        \texttt{GET} & \texttt{/users/<id>} & Restituisce un payload in JSON dell'utente che corrisponde a \texttt{<id>}\\
-        \texttt{POST} & \texttt{/users} & Inserisce un nuovo utente. È necessario fornire uno tra i campi telegram o email\\
-        \texttt{PUT} & \texttt{/users/<id>} & Modifica l'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
-        \texttt{DELETE} & \texttt{/users/<id>} & Elimina l'utente corrispondente a \texttt{<id>} dal sistema\\
+        \texttt{GET} & \texttt{/user/<id>} & Restituisce un payload in JSON dell'utente che corrisponde a \texttt{<id>}\\
+        \texttt{PUT} & \texttt{/user} & Inserisce un nuovo utente. È necessario fornire uno tra i campi telegram o email\\
+        \texttt{POST} & \texttt{/user/<id>} & Modifica l'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
+        \texttt{DELETE} & \texttt{/user/<id>} & Elimina l'utente corrispondente a \texttt{<id>} dal sistema\\
         \bottomrule
     \end{paddedtablex}
-    \caption{Riepilogo delle Rest API per gli Users}
+    \caption{Riepilogo delle Rest API per la risorsa User}
 \end{table}
 
 
-\subsubsection{Projects}
+\subsubsection{Preference}
+Preference è la risorsa preferenza. È possibile visualizzare, aggiungere, modificare o rimuovere le preferenze di un utente tramite una semplice richiesta HTTP.
 
 \paragraph{Visualizzazione}
+È possibile visualizzare le preferenze di un utente tramite la richiesta
+    \begin{center}
+        \texttt{GET  /preference/<user>/<id>}
+    \end{center}
+Se il campo \texttt{<user>} corrisponde a un utente presente nel sistema e il campo \texttt{<id>} corrisponde a un tipo di preferenza, verranno mostrati i dati relativi a tale preferenza.
 
-
-\begin{itemize}
-    \item \textbf{Payload di tutti i progetti}: \texttt{GET /projects}
-    \item \textbf{Progetto specifico}: \texttt{GET /projects/<id>}
+I tipi di preferenza disponibili sono:
+\begin{itemize}[noitemsep]
+    \item \texttt{progetto}
+    \item \texttt{disponibilità}
+    \item \texttt{piattaforma}
 \end{itemize}
 
 \paragraph{Inserimento}
-È possibile inserire un nuovo progetto tramite la richiesta
+È possibile inserire una nuova preferenza tramite la richiesta
     \begin{center}
-        \texttt{POST /projects}
+        \texttt{PUT /preference/<user>/<id>}
     \end{center}
 
-È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione
-i dati:
+È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
+In base al tipo della preferenza, i campi sono:
 \begin{itemize}[noitemsep]
-    \item \texttt{url}
+    \item progetto
+        \begin{itemize}[noitemsep]
+            \item \texttt{nome}
+            \item \texttt{priorità}
+            \item \texttt{labels}
+            \item \texttt{keywords}
+        \end{itemize}
+    \item disponibilità
+        \begin{itemize}[noitemsep]
+            \item \texttt{data}
+        \end{itemize}
+    \item piattaforma
+        \begin{itemize}[noitemsep]
+            \item \texttt{piattaforma}
+        \end{itemize}
 \end{itemize}
 
 
 \paragraph{Modifica}
 
-È possibile modificare un progetto tramite la richiesta
+È possibile modificare una preferenza tramite la richiesta
 \begin{center}
-    \texttt{PUT /projects/<id>}
+    \texttt{POST /preference/<user>/<id>}
 \end{center}
-È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione
-i dati:
+
+
+È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
+In base al tipo della preferenza, i campi sono:
 \begin{itemize}[noitemsep]
-    \item \texttt{url}
+    \item progetto
+        \begin{itemize}[noitemsep]
+            \item \texttt{nome}
+            \item \texttt{priorità}
+            \item \texttt{labels}
+            \item \texttt{keywords}
+        \end{itemize}
+    \item disponibilità
+        \begin{itemize}[noitemsep]
+            \item \texttt{data}
+        \end{itemize}
+    \item piattaforma
+        \begin{itemize}[noitemsep]
+            \item \texttt{piattaforma}
+        \end{itemize}
 \end{itemize}
 
 
 \paragraph{Rimozione}
 
-È possibile rimuovere un progetto dal sistema Butterfly con la richiesta
+È possibile rimuovere una preferenza dal sistema Butterfly con la richiesta
 \begin{center}
-    \texttt{DELETE /projects/<id>}
+    \texttt{DELETE /preference/<user>/<id>}
 \end{center}
 
-Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà rimosso.
-
+Se il campo \texttt{<user>} corrisponde a un ID presente nel sistema e il campo \texttt{<id>} corrisponde a un tipo di preferenza, essa verrà rimossa dl sistema.
 
 \paragraph{Riepilogo}
 
 \begin{table}[H]
     \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
-        \texttt{GET} & \texttt{/projects} & Restituisce un payload in JSON di tutti i progetti\\
-        \texttt{GET} & \texttt{/projects/<id>} & Restituisce un payload in JSON del progetto che corrisponde a \texttt{<id>}\\
-        \texttt{POST} & \texttt{/projects} & Inserisce un nuovo progetto\\
-        \texttt{PUT} & \texttt{/projects/<id>} & Modifica il progetto corrispondente a \texttt{<id>} con i campi passati nel payload\\
-        \texttt{DELETE} & \texttt{/projects/<id>} & Elimina il progetto corrispondente a \texttt{<id>} dal sistema\\
+        \texttt{GET} & \texttt{/preference/<user>/<id>} & Restituisce un payload in JSON della preferenza dell'utente \texttt{<user>} di tipo \texttt{<id>}\\
+        \texttt{PUT} & \texttt{/preference/<user>/<id>} & Inserisce una preferenza di tipo \texttt{<id>} all'utente \texttt{<user>} \\
+        \texttt{POST} & \texttt{/preference/<user>/<id>} & Modifica la preferenza corrispondente a \texttt{<id>} dell'utente \texttt{<user>} con i campi passati nel payload\\
+        \texttt{DELETE} & \texttt{/preference/<user>/<id>} & Elimina la preferenza corrispondente a \texttt{<id>} dell'utente \texttt{<user>} dal sistema\\
         \bottomrule
     \end{paddedtablex}
-    \caption{Riepilogo delle Rest API per i progetti}
+    \caption{Riepilogo delle Rest API per le preferenze}
 \end{table}
+
+\newpage
 
 \subsection{Piattaforma di messaggistica}
 
@@ -245,7 +281,7 @@ Per ricevere i messaggi di Butterfly tramite Email, è sufficiente fornire trami
 
 \subsubsection{Telegram}
 
-Per ricevere le notifiche via Telegram, è necessario fare un passaggio addizionale: va fornita l'autorizzazione al bot per poter inviare messaggi agli utenti. 
+Per ricevere le notifiche via Telegram, è necessario fare un passaggio addizionale: va fornita l'autorizzazione al bot per poter inviare messaggi agli utenti.
 Il bot è raggiungibile al seguente link:
 \begin{center}
     \url{http://t.me/ButterflyBot}
