@@ -10,30 +10,30 @@ determina quali processi attivare e che devono essere verificati e valutati adeg
 La nomenclatura degli obiettivi di qualità, delle \gloss{metriche} ed il loro funzionamento è spiegato in dettaglio nelle \NdP. In questa sezione gli obiettivi e le metriche vengono sinteticamente descritte:
 
 	\begin{itemize}
-		\item \textbf{Obiettivi}: 
-		
+		\item \textbf{Obiettivi}:
+
 		\begin{center}
 			\texttt{QPR[ID] [Nome]}
-		\end{center} 
-		
+		\end{center}
+
 		\begin{itemize}
 			\item \textbf{QPR}: indica ``Qualità di processo''.
 			\item \textbf{ID}: numero progressivo di tre cifre.
 			\item \textbf{Nome}: descrive brevemente il processo.
 		\end{itemize}
-		
+
 		\item \textbf{Metriche}:
-		
+
 		\begin{center}
 			\texttt{MPR[ID] [Nome]}
 		\end{center}
-		
+
 		\begin{itemize}
 			\item \textbf{MPR}: indica ``Metrica di processo''.
 			\item \textbf{ID}: numero progressivo di tre cifre.
 			\item \textbf{Nome}: descrive brevemente la metrica.
 		\end{itemize}
-		
+
 	\end{itemize}
 
 
@@ -53,13 +53,13 @@ I processi saranno elencati nel seguente modo:
 \end{itemize}
 
 Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci prefiggiamo per ottenere la qualità desiderata e le metriche adottate per raggiungere quell'obiettivo (quando previste).
-%Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una particolare metrica. 
+%Gli obiettivi di qualità elencati, quando è possibile, sono affiancati da una particolare metrica.
 
 	\subsubsection{PROC001 Pianificazione del progetto, organizzazione e struttura}
 	Tale \gloss{macro-processo} ha lo scopo di pianificare il lavoro da svolgere per soddisfare i \gloss{requisiti} richiesti dal \gloss{progetto}. È in questo processo che viene messo in atto il nostro \gloss{way of working} che ha un'importanza particolarmente alta perché i suoi risultati vanno a condizionare l'esito della qualità dell'intero progetto.
-	
+
 		\paragraph*{Funzioni}
-	
+
 		\begin{itemize}
 			\item \textbf{Sviluppare \gloss{sotto-processi}}: i vari obiettivi devono poter essere associati ad azioni ben precise, ognuna delle quali appartiene ad un sotto-processo.
 			\item \textbf{Suddividere i compiti}: assegnazione dei compiti che ognuno di noi deve realizzare.
@@ -68,34 +68,34 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci
 			\item \textbf{Standard}: vengono scelti gli standard più convenienti da seguire.
 			\item \textbf{\gloss{Budget}}: è necessario conoscere le proprie \gloss{risorse} in termini di tempo $\frac{\text{costo}}{\text{persona}}$ in modo tale da restare il più fedeli possibile al \gloss{preventivo} stilato.
 		\end{itemize}
-	
+
 		\paragraph*{Metriche}
-		
+
 		\begin{itemize}
 			\item MPR001 Varianza della \gloss{pianificazione}
 			\item MPR002 Varianza dei costi
 			\item MPR003 Aderenza agli standard
 			\item MPR004 Frequenza \gloss{commit} nella \gloss{repository}
 		\end{itemize}
-	
+
 		\paragraph*{Obiettivi}
-		
-		\begin{itemize} 
+
+		\begin{itemize}
 			\item \textbf{QPR001 Rispetto dei periodi della pianificazione}: all'interno della presente nel \PdPd, sono presenti le date di scadenza delle varie attività. L'obiettivo è rispettarle il più possibile per proseguire al meglio la realizzazione del progetto.
 			\item \textbf{QPR002 Variazione del budget}: le risorse messe a disposizione all'inizio del progetto devono potersi mantenere tali in tutta la sua durata.
 			\item \textbf{QPR003 Rispetto delle fasi del ciclo di vita}: ogni processo deve rispettare le fasi del Ciclo di Deming.
 			\item \textbf{QPR004 \gloss{Versionamento}}: durante ogni processo, i prodotti che vengono realizzati devono possedere un numero di versione in modo da tener traccia delle modifiche. In questo modo è possibile sapere le cause di certi comportamenti dovuti ad un mutamento del prodotto in modo molto rapido. L'obiettivo è quindi tenere sotto controllo l'andamento dei cambiamenti.
 		\end{itemize}
-	
+
 	\subsubsection{PROC002 Analisi}
 	Per processo di analisi si intende in questo caso un'attività di analisi generica, di più contenuti, non riferendosi
 	solo all'analisi dei requisiti (consultabile al documento \AdRd), ma anche all'analisi dei rischi (presente nel \PdPd)
 	e altre attività di identificazione e analisi riportate qui di seguito tra le funzioni.
 	La prima parte di questo processo consiste nel poter dire se il progetto risulta fattibile per le sue possibilità in
 	termini di competenze e risorse. Tale processo non deve essere rendicontato per il preventivo a finire.
-	
+
 		\paragraph*{Funzioni}
-		
+
 		\begin{itemize}
 			\item \textbf{Individuare i requisiti}: il capitolato che viene presentato dal cliente può possedere un lessico più discorsivo che tecnico.
 			È necessario dunque effettuare un lavoro più approfondito per individuare i requisiti, espliciti ed impliciti, e classificarli.
@@ -113,88 +113,88 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci
 			\item MPR007 Requisiti opzionali non soddisfatti
 			\item MPR008 Rischi non previsti avvenuti
 		\end{itemize}
-		I risultati di tutte queste metriche possono essere pubblicate ed analizzate solo a progetto terminato, prima avrebbero poca utilità. 
-		%compiuto; prima avrebbe poca utilità. 
-	
+		I risultati di tutte queste metriche possono essere pubblicate ed analizzate solo a progetto terminato, prima avrebbero poca utilità.
+		%compiuto; prima avrebbe poca utilità.
+
 		\paragraph*{Obiettivi}
-		
+
 		\begin{itemize}
 			\item \textbf{QPR005 Soddisfacimento dei requisiti obbligatori}: tutti i requisiti obbligatori devono essere soddisfatti a fine progetto.
 			\item \textbf{QPR006 Soddisfacimento dei requisiti opzionali e desiderabili}: i requisiti opzionali e desiderabili possono essere soddisfatti
-				solo se si avanzano ancora risorse in termini di $ \frac{\text{tempo}}{\text{persona}}$ prima del definitivo termine del progetto. 
+				solo se si avanzano ancora risorse in termini di $ \frac{\text{tempo}}{\text{persona}}$ prima del definitivo termine del progetto.
 				I requisiti inoltre devono essere stabiliti in modo corretto: hanno l'obbligo di rispecchiare quanto chiesto dal cliente e non sovrapporsi tra loro.
 			\item \textbf{QPR007 Verificarsi dei rischi previsti}: lo sviluppo del progetto dovrebbe procedere senza incertezze e non presentare imprevisti non precedentemente studiati. Questo perché potrebbe aumenterebbe di molto il ritardo nello sviluppo del progetto rispetto al previsto.
 		\end{itemize}
-	
+
 	\subsubsection{PROC003 Produzione documenti}
 	Questo processo rimane attivo in tutta la durata dello sviluppo del prodotto perché ha il compito di produrre dei documenti che riportino le scelte effettuate, gli strumenti utilizzati e le modifiche attuate nell'intera durata del progetto.
-	
+
 		\paragraph*{Funzioni}
 		Il processo comprende il ciclo di vita di ogni documento, che è spiegato in dettaglio nelle \NdP, e prevede:
-		
+
 		\begin{itemize}
 			\item Redazione
 			\item Verifica
 			\item Approvazione
 		\end{itemize}
-	
+
 		\paragraph*{Obiettivi}
-		
+
 		\begin{itemize}
-			\item \textbf{QPR008 Rispetto delle fasi del ciclo di vita}: il ciclo di vita di ogni documento deve essere rispettato in ogni sua fase e questo deve venir pubblicato secondo le scadenze prestabilite. 
+			\item \textbf{QPR008 Rispetto delle fasi del ciclo di vita}: il ciclo di vita di ogni documento deve essere rispettato in ogni sua fase e questo deve venir pubblicato secondo le scadenze prestabilite.
 		\end{itemize}
 
 	\subsubsection{PROC004 Verifica}
 	Il processo, attivo in tutta la durata del progetto, ha il compito di valutare la correttezza dei prodotti dati in input, stabilire se presentano errori
 	e se sono sufficientemente di qualità.
-	
+
 		\paragraph*{Funzioni}
-		
+
 		\begin{itemize}
 			\item \textbf{Verificare le funzionalità dei prodotti}: i prodotti devono saper soddisfare i requisiti richiesti. Nella fase di verifica viene accertato che questo effettivamente avvenga.
 			\item \textbf{Verificare la corretta esecuzione dei processi}: i processi possiedono un ciclo di vita che è suddiviso in fasi, per la buona esecuzione del processo queste devono essere eseguite nell'ordine corretto restituendo gli output attesi.
 			\item \textbf{Verificare che siano rispettate le \NdP}: viene stabilito un nostro Way of Working che dobbiamo rispettare per tutta la durata del progetto. Anche la verifica di queste norme deve essere effettuata.
 		\end{itemize}
-		
+
 		\paragraph*{Metriche}
-		
+
 		\begin{itemize}
 			\item MPR009 Frequenza controllo prodotti
 		\end{itemize}
-		
+
 		\paragraph*{Obiettivi}
-		
+
 		\begin{itemize}
 			\item \textbf{QPR009 Effettuare una verifica costante}: la fase di verifica è sempre attiva perché ogni singolo prodotto deve essere testato e controllato ogni volta che viene modificato o prima dell'arrivo di una \gloss{milestone}.
 			\item \textbf{QPR010 Rispetto delle fasi di verifica}: la fase di verifica deve essere eseguita in iterativamente senza cambiare in modo sostanziale nel corso del progetto. Un mutamento della fase di verifica renderebbe incoerenti i risultati delle precedenti iterazioni, impedendo di vedere se è presente un miglioramento della qualità o meno.
 		\end{itemize}
-    
+
     \subsubsection{PROC005 Progettazione}\label{proc005}
     Tale processo si attiva successivamente al processo di analisi e si occupa di restituire la progettazione completa dei prodotti che verranno infine eseguiti. \par
     La progettazione è fondamentale per tracciare il percorso di esecuzione del processo di codifica, onde per cui deve essere eseguito con criterio e cautela.
-    
+
         \paragraph*{Funzioni}
         \begin{itemize}
-            \item \textbf{Progettare i moduli prima di codificarli}: specialmente alle prime esperienze di progetti come quelli che stiamo svolgendo ora, è facile cadere nella tentazione di codificare un \gloss{modulo} prima di averlo progettato. In questo modo però, spesso non si realizza un modulo nell'ottica di renderlo estendibile, mantenibile e disaccoppiato dagli altri moduli. La progettazione serve invece ad evitare questi difetti in un prodotto, per questo è meglio svolgerla prima della codifica.
+            \item \textbf{Progettare i moduli prima di codificarli}: specialmente alle prime esperienze di progetti come quello che stiamo svolgendo ora, è facile cadere nella tentazione di codificare un \gloss{modulo} prima di averlo progettato. In questo modo però, spesso non si realizza un modulo nell'ottica di renderlo estendibile, mantenibile e disaccoppiato dagli altri moduli. La progettazione serve invece ad evitare questi difetti in un prodotto, per questo è meglio svolgerla prima della codifica.
             \item \textbf{Applicazione ponderata dei design pattern}: i \gloss{design patter} sono molto utili ai fini della progettazione per ottenere più facilmente le caratteristiche descritte al punto precedente. La loro applicazione però rischia di aggiungere eccessiva complessità al prodotto, per questo un design patter deve essere applicato solo se aiuta nella realizzazione del progetto, non perché un alto numero di design pattern equivale ad una buona progettazione. Dunque il loro utilizzo deve essere ragionato e non eccessivo.
             \item \textbf{Documentazione e tracciamento della progettazione}: un prodotto, per essere mantenibile, deve essere documentato anche nella sua struttura. Dunque anche la progettazione deve essere documentata e tracciata attraverso i \MUd\ e \MSd.
         \end{itemize}
-    
+
         \paragraph*{Metriche}
         \begin{itemize}
             \item MPR010 Moduli codificati prima della progettazione
             \item MPR011 Numero di design pattern applicati
         \end{itemize}
-    
+
         \paragraph*{Obiettivi}
         \begin{itemize}
             \item \textbf{QPR011 Progettare prima di codificare}: ogni modulo dovrebbe essere progettato in relazione agli altri del progetto prima di essere codificato.
             \item \textbf{QPR012 Usare un numero limitato di design pattern}: usare design pattern solo nel caso in cui questi semplifichino la struttura del progetto.
         \end{itemize}
-         
+
     \subsubsection{PROC006 Codifica}\label{proc006}
     Successivamente alla progettazione avviene la realizzazione del prodotto finale che verrà rilasciato. Il processo di codifica, insieme a quello di verifica restituisce il prodotto che verrà usato e mantenuto. La codifica di ogni modulo deve trattarsi della ``traduzione'' in codice della progettazione.
-        
+
         \paragraph*{Funzioni}
         \begin{itemize}
             \item \textbf{Produrre codice comprensibile}: il prodotto rilasciato in futuro potrà essere usato da altre persone, per questo il codice deve poter essere facilmente comprensibile.
@@ -202,12 +202,12 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci
             \item \textbf{Produrre codice estensibile}: il prodotto deve poter concedere la possibilità di ricevere nuove funzionalità in modo semplice e veloce.
             \item \textbf{Produrre codice corretto}: il prodotto, al momento del rilascio, non deve riscontrare errori anomali ed essere eseguito correttamente.
         \end{itemize}
-        
+
         \paragraph*{Metriche}
         \begin{itemize}
             \item MPR012 Moduli non testati
         \end{itemize}
-    
+
         \paragraph*{Obiettivi}
         \begin{itemize}
             \item \textbf{QPR013 I moduli possiedono suite di test}: i moduli codificati devono possedere una suite di test per essere verificati nelle loro parti e in relazione tra di loro.
@@ -238,7 +238,7 @@ Ogni obiettivo di qualità è indicato con:
 		\textbf{Obiettivo} &
 		\textbf{Metrica} &
 		\textbf{Valore desiderato}\\\toprule
-		
+
 		\rowcolor{white}
 		QPR001 Rispetto dei periodi della pianificazione & MPR001 Varianza della pianificazione & 96 ore\\
 		\rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: le scadenze orarie per ogni ruolo riportate nel \PdP\ considerano anche un tempo di \gloss{slack} per eventuali ritardi. Queste sono state stabilite all'inizio del progetto, perciò molto probabilmente possono subire variazioni in corso d'opera, l'importante è che queste variazioni non siano eccessive. Considerando che ogni membro del gruppo deve svolgere un numero fisso di ore, è naturale che togliendo ore au un ruolo se ne aggiungano ad un altro o viceversa, per questo una variazione totale di 96 ore (4 giorni), non ci nè sembra eccessiva nè restringente.} \\
@@ -334,11 +334,11 @@ Ogni obiettivo di qualità è indicato con:
             \textbf{Obiettivo} &
             \textbf{Metrica} &
             \textbf{Valore desiderato}\\\toprule
-            
+
             \rowcolor{white}
             QPR011 Progettare prima di codificare & MPR010 Moduli codificati prima della progettazione & 25\%\\
             \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i moduli devono essere progettati prima della loro codifica. Purtroppo questo è difficilmente possibile nel periodo che antecede la fase di progettazione e che richiede il rilascio  di un \gloss{PoC}, per questo la soglia di tolleranza per moduli codificati prima di essere progettati è al 0\% - 25\%.} \\
-            
+
             \hline \rowcolor{white}
             QPR012 Usare un numero limitato di design pattern & MPR011 Numero di design pattern applicati & 10 - 15\\
             \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: data la dimensione del progetto, dai 10 ai 15 design pattern applicati ci sembrano un numero sufficiente per ottenere un codice di qualità non troppo complesso.}\\
@@ -357,11 +357,11 @@ Ogni obiettivo di qualità è indicato con:
             \textbf{Obiettivo} &
             \textbf{Metrica} &
             \textbf{Valore desiderato}\\\toprule
-            
+
             \rowcolor{white}
             QPR013 I moduli possiedono suite di test & MPR012 Moduli non testati & 0\\
             \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: ogni modulo deve essere testato per verificarne l'integrità e la correttezza.} \\
-            
+
             \hline \rowcolor{white}
             QPR014 Rispetto delle norme di codifica & - & -\\
             \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: all'interno del processo di codifica bisogna seguire delle norme per produrre del codice di qualità. Tali norme sono meglio indicate in \S\ref{prodottosw}.}\\

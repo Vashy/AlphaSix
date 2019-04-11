@@ -707,18 +707,15 @@
             \textbf{Metrica}: percentuale di moduli non progettati prima della loro codifica. Per fare ciò, nelle varie fasi di verifica, si contano i moduli codificati prima di essere progettati. Verso il termine del periodo di revisione si calcola la loro percentuale in base al numero totale di moduli prodotti.
 
             \subparagraph{MPR011 Numero di design pattern applicati}
-            Dato che i design patter possono essere considerati una "buona pratica" per produrre del codice in determinati contesti, la loro presenza può aiutare ad innalzare la qualità del prodotto. Il loro uso massiccio però può portare ad un'eccessiva complessità e talvolta anche ad un mal funzionamento del prodotto se applicati erroneamente.
-
-            per questo i design pattern devono essere applicati in maniera ponderata.
+            Dato che i design patter possono essere considerati una ``buona pratica'' per produrre del codice in determinati contesti, la loro presenza può aiutare ad innalzare la qualità del prodotto. Il loro uso massiccio però può portare ad un'eccessiva complessità e talvolta anche ad un mal funzionamento del prodotto se applicati erroneamente; per questo i design pattern devono essere applicati in maniera ponderata.
 
             \textbf{Metrica}: numero di volte che si applica uno o più tipi di design pattern.
 
             \subparagraph{MPR012 Moduli non testati}
-            I \gloss{moduli} devo essere sempre testati per assicurasi la loro correttezza, per fare ciò devono essere testate le \gloss{unità} che li compongono attraverso i test di unità in \S\ref{testunita}.
-
+            Dobbiamo sempre testare i \gloss{moduli} per assicurarci la loro correttezza. Per fare ciò, devono essere testate le \gloss{unità} che li compongono attraverso i test di unità (definiti in \S\ref{testunita}).
             Ogni modulo deve dunque essere testato.
 
-            \textbf{Metrica}: moduli codificati e privi di test di unità.
+            \textbf{Metrica}: numero di moduli codificati e privi di test di unità.
 
 
 			\paragraph{Analisi del software} \label{analisisw}
@@ -782,9 +779,9 @@
 			\textbf{Metrica}: percentuale di linee di codice duplicate presenti nel codice al momento della scansione.
 
             \subparagraph{MPS017 Code coverage} \label{codecoverage}
-            Per sapere se un modulo è stato correttamente testato, si verifica in percentuale quante righe di codice vengono eseguite per superare una suite di test. Più è alta questa percentuale, meglio il modulo è stato testato.
+            Per sapere se un modulo è stato correttamente testato, si verifica in percentuale quante righe di codice vengono eseguite per superare una suite di test. Più è alta questa percentuale, più è bassa la probabilità che il codice contenga dei bug.
 
-            \textbf{Metrica}: percentuale di code coverage.
+            \textbf{Metrica}: percentuale di \gloss{code coverage}.
 
 		\subsubsection{Analisi dinamica}\label{AnalisiDinamica}
 		L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
@@ -806,12 +803,66 @@
 			\item \textbf{Notifica risultato}: notifiche riguardanti il risultato ottenuto dal test (opzionale).
 		\end{itemize}
 
-		Per effettuare analisi dinamica è necessario sviluppare dei dei test che verifichino l'integrità dei prodotti. Questi sono classificati attraverso un identificativo univoco descritto in \S\ref{ClassificazioneTest} e suddivisi per tipo in base alla tipologia dell'oggetto di test.
+		Per effettuare analisi dinamica è necessario sviluppare dei dei test che verifichino l'integrità dei prodotti. Questi sono classificati attraverso un identificativo univoco descritto nel prossimo paragrafo e suddivisi per tipo in base alla tipologia dell'oggetto di test.
 
+			\paragraph{Classificazione dei test}\label{ClassificazioneTest}
+			Ogni test viene classificato identificato univocamente da tale codice:
 
+			\begin{center}
+				\texttt{T[Tipo][ID]}
+			\end{center}
 
-			%RICONTROLLARE BENE MODELLO A V PER I PROSSIMI PARAGRAFI DI TEST:
-			%fino ad RP si fanno test d'integrazione, non unità
+			\begin{itemize}
+				\item \textbf{T}: si riferisce a ``Test''.
+				\item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}, può essere:
+				\begin{itemize}
+					\item \textbf{V}: validazione.
+					\item \textbf{S}: sistema
+					\item \textbf{I}: integrazione.
+					\item \textbf{U}: unità.
+				\end{itemize}
+				%per la corrispondenza con i requisiti, non vanno bene le "tre cifre"
+				\item \textbf{ID}: numero incrementale che rispetta una struttura gerarchica.
+			\end{itemize}
+
+			% COLORI
+			\newcommand{\TNI}{{\color{gray}\textbf{NI}}}
+			\newcommand{\TI}{{\color{blue}\textbf{I}}}
+			\newcommand{\TNS}{{\color{red}\textbf{NS}}}
+			\newcommand{\TS}{{\color{green}\textbf{S}}}
+
+			Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
+			\begin{itemize}
+				\item \textbf{Codice}: comprendente il codice identificativo del test.
+				\item \textbf{Test}: descrive cosa il test deve verificare.
+				\item \textbf{Stato}: indica lo stato del test e può essere:
+				\begin{itemize}
+					\item \TNI: non implementato.
+					\item \TI: implementato ma non ancora avviato.
+					\item \TNS: avviato e fallito.
+					\item \TS: avviato e superato.
+				\end{itemize}
+			\end{itemize}
+
+			Ad esempio:
+
+			\newenvironment{VTtable}[1][1]{%
+				\renewcommand*{\arraystretch}{#1}%
+				\renewcommand\theadfont{\bfseries}%
+				\oldtabularx%
+			}{\endoldtabularx}
+			\newcounter{tv}
+			\newcommand{\addtotv}{\stepcounter{tv}TV\thetv}
+			\begin{table}[H]
+				\begin{VTtable}[1.7]{\textwidth}{cXc}
+					\rowcolor{\tablegray}
+					\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
+					\addtotv & Verifica la segnalazione dell'apertura di una issue in Redmine \dots
+					& \TNI \\
+					\bottomrule
+				\end{VTtable}
+			\end{table}
+
 
 			\paragraph{Test di sistema} \label{testsistema}
 			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
