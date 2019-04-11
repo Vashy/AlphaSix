@@ -9,93 +9,99 @@ Il Gestore Personale è la componente principale di \progetto\ e si può suddivi
     \item Message processor, che contiene la logica di business di \progetto
 \end{itemize}
 
-Il secondo non è di pertinenza di questo manuale in quanto l'utente non lo utilizza direttamente, per cui verrà discusso l'utilizzo del sistema tramite l'interfaccia utente.
-
-\subsubsection{Iscrizione a Butterfly}
-Per iscriversi al sistema \progetto, accedere all'interfaccia web tramite il link del container sul quale è in esecuzione e specificato nella configurazione effettuata precedentemente.
-Tramite il form, selezionare il bottone ``Iscrizione'' e inserire delle credenziali valide.
-È necessaria la compilazione di almeno un campo tra Email e Telegram, per avere un'identificativo univoco all'interno del sistema.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/iscrizione_1.png}%TODO verificare immagine
-	\caption{Interfaccia iscrizione nuovo utente}
-\end{figure}
-È anche possibile inserire un nuovo utente attraverso l'utilizzo delle \hyperref[APIRest]{API Rest}, come descritto nella sezione apposita.
-Dopo aver effettuato l'iscrizione si è automaticamente autenticati all'interno del sistema. %TODO verificare
+Il secondo non è di pertinenza di questo manuale (ma del \MSd), in quanto l'utente non lo utilizza direttamente, per cui verrà solamente discusso l'utilizzo del sistema tramite l'interfaccia utente.
 
 \subsubsection{Autenticazione}
-È possibile effettuare l'autenticazione all'interno del sistema tramite il link del container sul quale è in esecuzione e specificato nella configurazione effettuata precedentemente.
+È possibile effettuare l'autenticazione all'interno del sistema tramite il link del container sul quale è in esecuzione, specificato nella configurazione effettuata precedentemente.
 Per effettuare correttamente l'autenticazione è necessario l'inserimento del proprio ID Telegram o Email con il quale si è iscritti nel sistema.
-%TODO inserire immagine
-In caso l'identificativo inserito non fosse valido, e non corrispondesse quindi ad un match nel database, verrà mostrato all'utente un messaggio di errore.
-%TODO inserire immagine
-Nel caso in cui un utente non autenticato cerchi di accedere ad una sezione per cui non ha i privilegi, questo verrà rimandato alla pagina di autenticazione.
-%TODO verificare
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{img/accesso_1.png}
+	\caption{Form di accesso al sistema}
+\end{figure}
+In caso l'identificativo inserito non fosse valido, e non corrispondesse quindi a un match nel database, verrà mostrato all'utente un messaggio di errore.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{img/accesso_2.png}
+	\caption{Messaggio di errore durante accesso al sistema}
+\end{figure}
+Nel caso in cui un utente non autenticato cerchi di accedere ad una sezione per cui non ha i privilegi, questo verrà rimandato alla pagina di autenticazione.\par
+Se un utente iscritto correttamente nel sistema ha inserito sia indirizzo Email che ID Telegram, allora può accedere utilizzando indipendentemente il primo o il secondo.
 
 \subsubsection{Pannello di controllo}
-%TODO è veramente così?
-Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e che operazioni quindi un utente può eseguire.
-Le pagine a cui si può navigare dal Pannello di controllo sono:
-%TODO completare
+Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
+Le sezioni a cui si può navigare dal Pannello di controllo sono:
 \begin{itemize}
-	\item pagina
+	\item inserimento di un nuovo utente
+	\item rimozione di un utente
+	\item modifica dei propri dati 
+	\item modifica delle proprie preferenze
 \end{itemize}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{img/pannello_1.png} %TODO verificare immagine
+	\includegraphics[width=14cm]{img/pannello_1.png}
 	\caption{Interfaccia modifica preferenze}
 \end{figure}
 
-\subsubsection{Modifica preferenze} \label{modificaPreferenze}
-%TODO inserire immagine unica se si riescono a vedere tutte le impostazioni che possono essere modificate
+\subsubsection{Iscrizione a Butterfly}
+L'iscrizione al sistema \progetto\ è permessa, secondo i requisiti del capitolato, solamente tramite l'utilizzo delle API Rest (come descritto in \S\ref{APIRest}) oppure è permesso agli utenti già registrati di inserirne altri.
+La sezione di inserimento di un nuovo utente è raggiungibile dal Pannello di controllo e prevede l'inserimento dei seguenti dati: 
+\begin{itemize}
+	\item Nome
+	\item Cognome
+	\item Email
+	\item Telegram
+\end{itemize}
+È necessario inserire almeno un campo a scelta tra Email e Telegram.
+Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/inserimento_1.png}
+	\caption{Interfaccia inserimento nuovo utente}
+\end{figure}
+
+\subsubsection{Modifica preferenze}
 La modifica delle preferenze è possibile solamente per utenti già iscritti ed autenticati nel sistema.
-È raggiungibile tramite il Pannello di Controllo sotto la voce ... % TODO che voce
+È raggiungibile tramite il Pannello di Controllo sotto la voce ``Modifica le tue preferenze''.
 In questa sezione si possono trovare le principali impostazioni del sistema dal punto di vista dell'utente finale:
 \begin{itemize}
-	%TODO modificare in modo da non scrivere la parola utente?
-	\item Come il sistema effettua la comunicazione con l'utente: modificare il proprio ID Telegram o indirizzo Email e impostare quale tra i due scegliere. Una modifica a questi campi comporta il cambiamento dell'identificativo utilizzato per accedere al sistema
-	%TODO in caso ci fossero sia id telegram che indirizzo email che cosa si usa per l'autenticazione?
-	\item Lista dei progetti disponibili e a cui si è iscritti. Un utente può essere iscritto a più progetti
+	\item Lista dei progetti a cui si è iscritti
 	\item Modifica della priorità assegnata ad un progetto
-	\item Lista dei Topic disponibili e iscrizione o disiscrizione da questi. Vengono mostrati in base ai progetti a cui si è iscritti.
-	%TODO rivedere
-	\item Lista delle keyword di interesse alle quali si è interessati, queste sono inserite in base al contenuto dei \texttt{commit\_message} che l'utente vuole ricevere
+	\item Lista dei Topic (formati dall'insieme di Label e Keyword) disponibili e iscrizione o disiscrizione da questi, che vengono mostrati dinamicamente in base ai progetti a cui si è iscritti.
+	\item Inserimento dei giorni di indisponibilità
+	\item Impostare su quale delle due piattaforme (Email o Telegram) ricevere le notifiche
 \end{itemize}
+Le Label non sono modificabili in quanto vengono aggiornate solamente da una componente del Gestore Personale che le memorizza quando avvengono update alle issue relative ai progetti.
+Le Keyword, invece, sono formate da una lista di parole che possono essere contenute nei messaggi di push di GitLab e di cui si è interessati a ricevere notifiche.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/preferenze_1.png} %TODO verificare immagine
+	\includegraphics[width=12cm]{img/preferenze_1.png}
 	\caption{Interfaccia modifica preferenze}
 \end{figure}
 
-\subsubsection{Inserimento giorni di indisponibilità}\label{indisponibilita}
-Sempre dal Pannello di controllo è possibile raggiungere la pagina relativa alla disponibilità di calendario. 
-%TODO verificare con Matteo
-In questa è possibile specificare attraverso un calendario i giorni in cui non si è disponibili e quindi in caso di una notifica in arrivo mandarla ad un'altra persona che è in grado di gestirla.
-%TODO inserire immagine di calendario
+\subsubsection{Modifica dei propri dati}
+La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi dati'' accessibile dal Pannello di controllo.
+Qui un utente può modificare i dati forniti in fase di registrazione.
 \begin{figure}[H]
 	\centering
-	%\includegraphics[width=\textwidth]{img/disponibilita_1.png} 
-	\caption{Interfaccia iscrizione nuovo utente}
+	\includegraphics[width=\textwidth]{img/modifica_1.png}
+	\caption{Modifica dei dati di un utente}
 \end{figure}
+Come nella registrazione di un nuovo utente, nel caso questi fossero già associati ad una persona iscritta a \progetto\ verrà visualizzato un messaggio di errore.
 
 \subsubsection{Uscita dal sistema}
-%TODO spiegare
-Per effettuare il logout dal sistema, cliccare su logout
-%TODO inserire immagine
+Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente in alto a destra di ciascuna pagina.
 
-\subsubsection{Disiscrizione dal sistema}
-%TODO verificare tutto
-Viene data la possibilità di disiscriversi dal sistema ed eliminare quindi i propri dati all'interno di questo.
-Per disiscriversi andare su ... dal pannello di controllo ...
+\subsubsection{Rimozione di un utente dal sistema}
+Viene data la possibilità di rimuovere un utente dal sistema eliminando quindi i suoi dati precedentemente salvati nel database.
+La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibile dal Pannello di controllo.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{img/rimozione_1.png} %TODO verificare immagine
-	\caption{Interfaccia iscrizione nuovo utente}
+	\includegraphics[width=12cm]{img/rimozione_1.png}
+	\caption{Interfaccia rimozione di un utente}
 \end{figure}
-Viene inoltre data la possibilità di disiscrivere un altro utente dal sistema facendo ...
+Nel caso in cui un utente desideri eliminare il proprio profilo dal sistema, dopo aver selezionato il proprio identificativo e cliccato il pulsante ``Rimuovi utente'', verrà effettuato il logout automatico.
 
-
-%TODO da mettere un esempio per ciascuna
 \subsection{API Rest}\label{APIRest}
 \newcommand{\homeUrl}{home\_url}
 
@@ -243,6 +249,12 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 
 Per ricevere i messaggi di Butterfly tramite Email, è sufficiente fornire tramite l'interfaccia del Gestore Personale l'Email sulla quale si vuole ricevere la notifica.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/notifica_email_1.png}
+	\caption{Formato dell' Email ricevuta da un utente finale}
+\end{figure}
+
 \subsubsection{Telegram}
 
 Per ricevere le notifiche via Telegram, è necessario fare un passaggio addizionale: va fornita l'autorizzazione al bot per poter inviare messaggi agli utenti. 
@@ -254,6 +266,10 @@ Il bot è raggiungibile al seguente link:
 Dare il comando \texttt{/start} per dare l'autorizzazione di inoltro dei messaggi al bot.
 È necessario inoltre aggiungere tramite l'interfaccia del Gestore Personale il proprio account Telegram.
 In qualsiasi momento sarà possibile bloccare il bot in caso non si voglia più ricevere messaggi relativi a Butterfly su Telegram, tramite le funzionalità dell'applicazione.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{img/notifica_telegram_1.png}
+	\caption{Formato del messaggio Telegram ricevuto da un utente finale}
+\end{figure}
 Nel caso in cui si volesse utilizzare un altro bot, i passaggi da seguire possono essere trovati sulla pagina apposita della documentazione di Telegram\footnote{\url{https://core.telegram.org/bots}}.
-%TODO aggiungere nome variabile
-Per comunicare con questo bisogna modificare la variabile di ambiente ... che rappresenta il \texttt{token} univoco del nuovo bot, come descritto in \S\ref{var_consumer}.
+Per comunicare con questo bisogna modificare la variabile di ambiente \texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT} che rappresenta il \texttt{token} univoco del nuovo bot, come descritto in \S\ref{var_consumer}.
