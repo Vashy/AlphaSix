@@ -1,6 +1,7 @@
 \section{Tecnologie interessate}
-In questa sezione descriviamo le tecnologie che dopo una fase di analisi, abbiamo deciso di utilizzare per lo sviluppo di \progetto
-\subsection{Strumenti per lo sviluppo} % Non saprei, omettibile?
+In questa sezione descriviamo le tecnologie che dopo una fase di analisi, abbiamo deciso di utilizzare per lo sviluppo di \progetto.
+
+\subsection{Strumenti per lo sviluppo}
 
 \subsubsection{Python}
 I linguaggi consigliati per l'implementazione di \progetto\ sono: Python, Java e NodeJS. Dopo un'analisi che abbiamo svolto sui vari linguaggi proposti, siamo
@@ -10,17 +11,19 @@ può essere imparato in pochi giorni.
 
 
 \subsubsection{MongoDB}
-Abbiamo deciso di utilizzare \gloss{MongoDB} rispetto ad un database relazionale, quale \gloss{MySQL}, perchè non sfrutta una struttura tradizionale basata su
+Abbiamo deciso di utilizzare \gloss{MongoDB} rispetto ad un database relazionale, quale \gloss{MySQL}, perché non sfrutta una struttura tradizionale basata su
 tabelle ma si basa sui documenti in stile \gloss{JSON} con schema dinamico, rendendo l’integrazione di dati di alcuni tipi di applicazioni più facile e performante.
 
 \subsection{Strumenti per la gestione dei container}
 
 \subsubsection{Docker}
-Abbiamo deciso di utilizzare \gloss{Docker} per la semplicità di utilizzo e per l'adattamento all'architettura a microservizi.
+Abbiamo deciso di utilizzare \gloss{Docker} per la semplicità di utilizzo e per mantenere le componenti del tutto isolate.
 La configurazione avverrà tramite un \gloss{Dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio,
-numero di istanze ed altri parametri specifici. \\
-Docker oltretutto ci consente di creare dei container aventi la capacità di simulare un ambiente virtuale dov'è possibile testare e mantenere le proprie applicazioni,
-permettendo di aumentare l'efficienza riducendone i costi e simulando l'esecuzione di sistema operativo su una macchina con \gloss{risorse} condivise.\\
+numero di istanze ed altri parametri specifici.
+
+Docker oltretutto ci consente di creare dei \gloss{container} aventi la capacità di simulare un ambiente virtuale dov'è possibile testare e mantenere le proprie applicazioni,
+permettendo di aumentare l'efficienza riducendone i costi e simulando l'esecuzione di sistema operativo su una macchina con \gloss{risorse} condivise.
+
 A differenza delle \gloss{macchine virtuali}, dove lo stato dell'ambiente viene salvato su disco, occupando memoria, i container si adattano in maniera più performante
 all'applicativo richiesto, in quanto il loro scopo è quello di massimizzare la quantità delle applicazioni in esecuzione riducendo al minimo il numero delle macchine per eseguirla.
 Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno risorse.

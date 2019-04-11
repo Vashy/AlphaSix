@@ -84,9 +84,9 @@ factory associata, passandogli come parametro la tipologia di webhook, in format
 
 Essa si occuperà di creare il parser di webhook adeguato al messaggio in entrata.
 La classe concreta derivata da Webhook costruisce il messaggio con i campi di interesse da
-immettere nella coda di Kafka, e lo restituisce al Produer.
+immettere nella coda di Kafka, e lo restituisce al Producer.
 
-Per Redmine, è presente una sola tipologia di webhook. Tenendo a mente la \gloss{open world assumption},
+Per Redmine, è presente una sola tipologia di webhook. Tenendo a mente la \gloss{open-closed principle},
 è stata implementata la gerarchia relativa ai Webhook per permettere agli sviluppatori di poter facilmente
 aggiungerne di nuovi.
 
@@ -107,7 +107,7 @@ Kafka i messaggi.
 Esso è implementato allo stesso modo di quello di Redmine, per cui non verrà ripetuta l'analisi delle
 funzionalità che sono identiche al Producer di Redmine. Per tenere totalmente separate e isolate
 le componenti, i diagrammi sono stati totalmente separati, anche se le classi risiedono nello stesso package.
-Sarà compito dei \gloss{Dockerfile} copiare solamente i file necessari al componente specifico per poter mantenere
+Sarà compito dei Dockerfile copiare solamente i file necessari al componente specifico per poter mantenere
 isolato il container.
 
 
@@ -221,7 +221,7 @@ Per analizzare il messaggio il Client opera in questo modo:
 \end{figure}
 
     \paragraph{Diagramma delle classi}
-    
+
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{img/GP-Processor.png}\\
