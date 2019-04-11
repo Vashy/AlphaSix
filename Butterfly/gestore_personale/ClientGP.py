@@ -5,6 +5,7 @@ from kafka.errors import KafkaTimeoutError
 from gestore_personale.KafkaCreator.KafkaConsumerCreator import KafkaConsumerCreator
 from gestore_personale.KafkaCreator.KafkaProducerCreator import KafkaProducerCreator
 from gestore_personale.Processor import Processor
+from gestore_personale.ConcreteProcessor import GitlabProcessor, RedmineProcessor
 from mongo_db.creator import MongoFacadeCreator
 
 
@@ -30,7 +31,16 @@ class ClientGP():
             self.process(message)
 
     def process(self, message: dict):
-        processore_messaggio = Processor(message, self._mongo.instantiate())
+        tecnology = message['app']
+        if tecnology == 'gitlab':
+            processore_messaggio = GitlabProcessor(
+                message, self._mongo.instantiate()
+            )
+        elif tecnology == 'redmine':
+            processore_messaggio = RedmineProcessor(
+                message, self._mongo.instantiate()
+            )
+        # processore_messaggio = Processor(message, self._mongo.instantiate())
         mappa_contatto_messaggio = processore_messaggio.prepare_message()
         self.send_all(mappa_contatto_messaggio, message)
 
