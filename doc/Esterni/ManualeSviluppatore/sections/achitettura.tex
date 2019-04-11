@@ -153,12 +153,28 @@ Questo è un pattern creazionale specifico: \gloss{Factory Method}.
 
 
 \subsection{Gestore Personale}
-Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Ha un proprio KafkaProducer e KafkaConsumer
-che si occupano rispettivamente di ricevere i messaggi da Kafka e re-immetterli nelle code relative ai Consumer finali, passando per la logica
-del personale, in cui ogni utente può selezionare i propri giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul
-quale ricevere la notifica. Abbiamo pensato di dividerlo in tre parti per rendere tutto più chiaro.\newline
+Il Gestore Personale è la componente con la logica più complessa del sistema Butterfly. Esso ha un proprio KafkaProducer e KafkaConsumer
+che si occupano rispettivamente di ricevere i messaggi da Kafka e reinserirli nelle code relative ai Consumer finali. Per stabilire il destinatario e il Consumer finale appropriato, il Client del Gestore Personale interroga MongoDB per ottenere per selezionare i giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul
+quale ricevere la notifica di ogni utente. \par
 Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model.
 La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}.
+
+\subsubsection{Mongo}
+Model dell'MVC
+
+\subsubsection{View}
+View dell'MVC
+
+\subsubsection{Client}
+Si tratta del controller dell'MVC. Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio. \par
+Per analizzare il messaggio il Client opera in questo modo:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Client_attività.png}\\
+    \caption{Diagramma dei package del Gestore Personale}
+    % \label{fig:GP-Processor}
+\end{figure}
 
 \subsubsection{Diagramma dei package}
 
@@ -170,7 +186,7 @@ La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i co
 \end{figure}
 
 
-\subsection{Diagramma delle classi}
+\subsubsection{Diagramma delle classi}
 
 \begin{figure}[H]
     \centering
