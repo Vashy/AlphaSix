@@ -1,6 +1,7 @@
 \section{Configurazione}\label{configurazione}
 
-Su richiesta di \II, tutti i servizi sono stati configurati sotto forma di container. È quindi possibile avviarli su macchine fisiche differenti, ma collegate in rete fra loro, con Docker.\\
+Questa sezione è dedicata alla persona delegata alla configurazione di \progetto.
+Su richiesta di \II, tutti i servizi sono stati configurati sotto forma di \gloss{container}. È quindi possibile avviarli su macchine fisiche differenti, ma collegate in rete fra loro, con \gloss{Docker}.\\
 Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software per la gestione dei container, quindi questa guida verterà principalmente sulla configurazione di \progetto\ utilizzando questa tecnologia.
 
 \subsection{Requisiti di sistema}
@@ -12,7 +13,7 @@ Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software pe
 			\item \textbf{Docker}\footnote{\url{https://docs.docker.com/v17.09/datacenter/ucp/2.1/guides/admin/install/system-requirements}}: è necessario avere installata e configurata correttamente almeno la versione v18.09.
 			\item \textbf{Docker Compose}\footnote{\url{https://docs.docker.com/compose/install/}}:  nel caso si decidesse di utilizzare \gloss{Docker Compose} per l'avvio dei container è consigliata l'installazione e configurazione corretta della versione v3.7.
 			\item \textbf{Kubernetes}\footnote{\url{https://kubernetes.io/docs/setup/independent/install-kubeadm}}: nel caso si decidesse di utilizzare \gloss{Kubernetes} per la gestione dei container è consigliata l'installazione e configurazione corretta della versione v1.13.
-			\item \textbf{Rancher}\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/requirements/}}: nel caso si decidesse di utilizzare \gloss{Rancher} per la gestione grafica di oggetti Kubernetes contenenti i container Docker, è consigliata l'installazione e configurazione della versione v2.1.4.
+			\item \textbf{Rancher}\footnote{\url{https://rancher.com/docs/rancher/v2.x/en/installation/requirements/}}: nel caso si decidesse di utilizzare Rancher per la gestione grafica di oggetti Kubernetes contenenti i container Docker, è consigliata l'installazione e configurazione della versione v2.1.4.
 			\item \textbf{Kafka}\footnote{\url{https://docs.confluent.io/current/installation/system-requirements.html}}: è necessario avere installata e configurata correttamente almeno la versione v2.12.
 			\item \textbf{GitLab}\footnote{\url{https://git.ucd.ie/help/install/requirements.md}}: durante lo sviluppo di \progetto~abbiamo fatto riferimento alla versione v11.7.
 			\item \textbf{Redmine}\footnote{%
@@ -118,7 +119,6 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 %TODO lo facciamo? magari per la seconda relase
 % All'interno della repository è possibile trovare un file in formato .yml conforme agli standard del docker compose per poter istanziare l'ambiente. Inoltre sono presenti i Dockerfile che permettono di effettuare la build di ciascuno dei componenti che abbiamo sviluppato.
 
-%TODO rivedere parole piccola configurazione
 \subsection{Configurazione webhook}
 Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei software che comunicano con i nostri Producer, è necessaria una breve configurazione delle applicazioni che dialogano con i Producer (GitLab e Redmine) spiegata nel dettaglio nei prossimi paragrafi.
 
@@ -126,7 +126,7 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 	\paragraph{Configurazione del plugin}
 	Per poter inviare un webhook con Redmine è necessario installare un \gloss{plugin} esterno chiamato \texttt{redmine\_webhook}\footnote{\url{https://github.com/suer/redmine_webhook.git}}.
 	Per installarlo è necessario scaricarlo (tramite il comando \texttt{git clone} ad esempio) nella cartella \texttt{/plugins/redmine}.
-	Non sono necessarie ulteriori configurazioni in quanto questo software è di tipo \gloss{plug and play}. %TODO verificare che sia effettivamente così e glossarizzare plug and play e plugin
+	Non sono necessarie ulteriori configurazioni in quanto questo software è di tipo \gloss{plug and play}.
 	Per verificare la corretta integrazione con Redmine, controllare da un profilo con privilegi amministratore che nella sezione \texttt{Settings > Plugins} sia presente il plugin appena scaricato.
 	\begin{figure}[H]
 		\centering
@@ -198,7 +198,7 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 	Queste sono:
 	\begin{itemize}
 		\item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
-		\item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: ID del Bot di Telegram che inoltra la notifica.
+		\item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: \gloss{ID} del Bot di Telegram che inoltra la notifica.
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: email che manda inoltra la notifica.
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SUBJECT}: oggetto della mail da spedire.
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.

@@ -16,13 +16,13 @@ Il secondo non è di pertinenza di questo manuale (ma del \MSd), in quanto l'ute
 Per effettuare correttamente l'autenticazione è necessario l'inserimento del proprio ID Telegram o Email con il quale si è iscritti nel sistema.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{img/accesso_1.png}
+	\includegraphics[width=9cm]{img/accesso_1.png}
 	\caption{Form di accesso al sistema}
 \end{figure}
 In caso l'identificativo inserito non fosse valido, e non corrispondesse quindi a un match nel database, verrà mostrato all'utente un messaggio di errore.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{img/accesso_2.png}
+	\includegraphics[width=9cm]{img/accesso_2.png}
 	\caption{Messaggio di errore durante accesso al sistema}
 \end{figure}
 % TODO: qual è la sezione con i privilegi??
@@ -33,10 +33,10 @@ Se un utente iscritto correttamente nel sistema ha registrato precedentemente si
 Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
 Le sezioni a cui si può navigare dal Pannello di controllo sono:
 \begin{itemize}
-	\item inserimento di un nuovo utente
-	\item rimozione di un utente
-	\item modifica dei propri dati
-	\item modifica delle proprie preferenze
+	\item Inserimento di un nuovo utente
+	\item Rimozione di un utente
+	\item Modifica dei propri dati
+	\item Modifica delle proprie preferenze
 \end{itemize}
 \begin{figure}[H]
 	\centering
@@ -54,12 +54,12 @@ La sezione di inserimento di un nuovo utente è raggiungibile dal Pannello di co
 	\item Telegram
 \end{itemize}
 È necessario inserire almeno un campo a scelta tra Email e Telegram.
-Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/inserimento_1.png}
 	\caption{Interfaccia inserimento nuovo utente}
 \end{figure}
+Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
 
 \subsubsection{Modifica preferenze}\label{preferenze}
 La modifica delle preferenze è possibile solamente per utenti già iscritti ed autenticati nel sistema.
@@ -68,7 +68,7 @@ In questa sezione si possono trovare le principali impostazioni del sistema dal 
 \begin{itemize}
 	\item Lista dei progetti a cui si è iscritti
 	\item Modifica della priorità assegnata ad un progetto
-	\item Lista dei Topic (formati dall'insieme di Label e Keyword) disponibili e iscrizione o disiscrizione da questi, che vengono mostrati dinamicamente in base ai progetti a cui si è iscritti.
+	\item Lista dei Topic (formati dall'insieme di label e keyword) disponibili e iscrizione o disiscrizione da questi, che vengono mostrati dinamicamente in base ai progetti a cui si è iscritti
 	\item Inserimento dei giorni di indisponibilità
 	\item Impostare su quale delle due piattaforme di messaggistica (Email o Telegram) ricevere le notifiche
 \end{itemize}
@@ -81,21 +81,21 @@ Le ``keyword'' invece, sono formate da una lista di parole che possono essere co
 \end{figure}
 
 \subsubsection{Modifica dei propri dati}
-La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi dati'' accessibile dal Pannello di controllo.
+La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi dati'' accessibile dal Pannello di Controllo.
 Qui un utente può modificare i dati forniti in fase di registrazione.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/modifica_1.png}
 	\caption{Modifica dei dati di un utente}
 \end{figure}
-Come nella registrazione di un nuovo utente, nel caso questi fossero già associati ad una persona iscritta a \progetto\ verrà visualizzato un messaggio di errore.
+Come nella registrazione di un nuovo utente, nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore.
 
 \subsubsection{Uscita dal sistema}
 Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente in alto a destra di ciascuna pagina.
 
 \subsubsection{Rimozione di un utente dal sistema}
 Viene data la possibilità di rimuovere un utente dal sistema eliminando quindi i suoi dati precedentemente salvati nel database.
-La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibile dal Pannello di controllo.
+La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibile dal Pannello di Controllo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{img/rimozione_1.png}
@@ -108,7 +108,7 @@ Nel caso in cui un utente desideri eliminare il proprio profilo dal sistema, dop
 
 Per la gestione delle risorse di \progetto\ abbiamo utilizzato lo standard architetturale delle API Rest.
 Nelle sezioni successive viene descritto come interagire con le API fornite dal sistema.
-Il root path sottinteso sarà sempre \texttt{\homeUrl/api/v1/}.
+Il \gloss{root path} sottinteso sarà sempre \texttt{\homeUrl/api/v1/}.
 Ad esempio, per effettuare la GET dell'user \texttt{@user1}, l'indirizzo sarà:
 \begin{center}
     \texttt{GET \homeUrl/api/v1/user/@user1}
@@ -127,19 +127,19 @@ richiesta HTTP.
     \end{center}
 
 \paragraph{Inserimento}
-È possibile inserire un nuovo utente tramite la richiesta
+È possibile inserire un nuovo utente tramite la richiesta:
     \begin{center}
         \texttt{PUT /user}
     \end{center}
 
-È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
+È inoltre possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
 \begin{itemize}[noitemsep]
     \item \texttt{name}
     \item \texttt{surname}
     \item \texttt{telegram}
     \item \texttt{email}
 \end{itemize}
-Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al payload.
+Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al \gloss{payload}.
 
 \paragraph{Modifica}
 
@@ -208,18 +208,18 @@ I tipi di preferenza disponibili sono:
 È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
 In base al tipo della preferenza, i campi sono:
 \begin{itemize}[noitemsep]
-    \item progetto
+    \item Progetto:
         \begin{itemize}[noitemsep]
             \item \texttt{nome}
             \item \texttt{priorità}
             \item \texttt{labels}
             \item \texttt{keywords}
         \end{itemize}
-    \item disponibilità
+    \item Disponibilità:
         \begin{itemize}[noitemsep]
             \item \texttt{data}
         \end{itemize}
-    \item piattaforma
+    \item Piattaforma:
         \begin{itemize}[noitemsep]
             \item \texttt{piattaforma}
         \end{itemize}
@@ -237,18 +237,18 @@ In base al tipo della preferenza, i campi sono:
 È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
 In base al tipo della preferenza, i campi sono:
 \begin{itemize}[noitemsep]
-    \item progetto
+    \item Progetto
         \begin{itemize}[noitemsep]
             \item \texttt{nome}
             \item \texttt{priorità}
             \item \texttt{labels}
             \item \texttt{keywords}
         \end{itemize}
-    \item disponibilità
+    \item Disponibilità
         \begin{itemize}[noitemsep]
             \item \texttt{data}
         \end{itemize}
-    \item piattaforma
+    \item Piattaforma
         \begin{itemize}[noitemsep]
             \item \texttt{piattaforma}
         \end{itemize}
@@ -302,7 +302,7 @@ Il bot è raggiungibile al seguente link:
 
 Dare il comando \texttt{/start} per dare l'autorizzazione di inoltro dei messaggi al bot.
 È necessario inoltre aggiungere tramite l'interfaccia del Gestore Personale il proprio account Telegram.
-In qualsiasi momento sarà possibile bloccare il bot in caso non si voglia più ricevere messaggi relativi a Butterfly su Telegram, tramite le funzionalità dell'applicazione.
+In qualsiasi momento sarà possibile bloccare il bot in caso non si vogliano più ricevere messaggi relativi a Butterfly su Telegram, tramite le funzionalità dell'applicazione.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{img/notifica_telegram_1.png}
