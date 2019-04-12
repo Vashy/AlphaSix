@@ -143,8 +143,7 @@
 
 	\subsubsection{Gestore Personale}\label{TecnologieGestorePersonale}
 	Il Gestore Personale è quel \gloss{componente} che permette agli utenti di impostare le
-	proprie preferenze e i dati personali tramite interfaccia web, installata in un server
-	interno all'azienda.
+	proprie preferenze e i dati personali tramite interfaccia web, installata in un server dell'azienda.
 
 	Questo è accessibile dai dipendenti interessati, i quali potranno quindi modificare, aggiungere e rimuovere, determinate impostazioni riguardanti le proprie
 	preferenze. Quest'ultime sono:
@@ -154,6 +153,8 @@
 		\item Aggiunta / rimozione di determinate keyword per i commit di GitLab
 		\item Selezione dei giorni di calendario in cui l'utente segnala la sua assenza
 		\item Aggiunta / rimozione / modifica utenti
+        \item Aggiunta e rimozione progetti di interesse
+        \item Modifica priorità dei progetti
 	\end{itemize}
 
     Nell'aggiunta o modifica di un utente i campi da poter inserire sono:
@@ -162,8 +163,6 @@
         \item Cognome
         \item Contatto Email
         \item Contatto Telegram
-        \item Progetti di interesse
-        \item Priorità dei progetti
     \end{itemize}
 
     Per comprendere meglio il sistema di notifica e inoltro delle segnalazioni, bisogna tener presente che ad una segnalazione fanno sempre riferimento:
@@ -176,8 +175,8 @@
     L'inserimento della priorità per progetto serve per poter notificare solo gli utenti con la priorità più alta, in modo tale da poter suddividere le segnalazioni tra quelle di primaria importanza e quelle secondarie.\par
     Un utente può ricevere delle segnalazioni se è iscritto ai progetti ad esse relativi. In particolare, gli utenti più indicati per la ricezione di una notifica sono quelli che, oltre ad essere interessati ai progetti, sono anche interessati ai Topic legati alla segnalazione.
         
-    \paragraph{Inoltro notifiche}
-    Nel caso in cui un utente debba ricevere una segnalazione ma non si rivela essere disponibile, l'inoltro della notifica deve funzionare in tale modo:
+    \paragraph{Inoltro notifiche}\label{InoltroNotifiche}
+    Nel caso in cui un utente debba ricevere una segnalazione ma non si riveli essere disponibile, l'inoltro della notifica deve funzionare in tale modo:
     \begin{itemize}
         \item Se è presente almeno un altro utente iscritto al Topic legato alla segnalazione, disponibile il giorno dell'invio della notifica e con la stessa priorità di progetto, non viene inviata la notifica all'utente in questione perché almeno un altro utente riceverà la segnalazione
         \item Se non è disponibile nessun altro utente con la stessa priorità iscritto al Topic legato alla segnalazione, la notifica viene inoltrata ad un utente sempre iscritto allo stesso Topic e disponibile il giorno dell'invio della segnalazione, ma con una priorità di progetto inferiore

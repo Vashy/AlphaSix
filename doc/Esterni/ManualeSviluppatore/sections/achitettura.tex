@@ -215,7 +215,7 @@ Per analizzare il messaggio il Client opera in questo modo:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.79\textwidth]{img/Client_attivita.png}\\
+    \includegraphics[width=0.95\textwidth]{img/Client_attivita.png}\\
     \caption{Diagramma di attività del Client}
     % \label{fig:GP-Processor}
 \end{figure}
@@ -229,7 +229,7 @@ Per analizzare il messaggio il Client opera in questo modo:
         \label{fig:GP-Processor}
     \end{figure}
 
-    Il Gestore Personale (ClientGP) si interfaccia con Kafka attraverso KafkaProducer e KafkaConsumer, e per elaborare i messaggi che riceve crea un'implementazione di Processor. Questa, in base alle informazioni nel messaggio ricevuto, indica qual è il destinatario del messaggio e attraverso quale applicazione notificarlo, interrogando il database con MongoFacade.
+    Il Gestore Personale usa ora \texttt{ClientGP} che si interfaccia con Kafka attraverso \texttt{KafkaProducer} e \texttt{KafkaConsumer}, e per elaborare i messaggi che riceve crea un'implementazione di Processor. Questa, in base alle informazioni nel messaggio ricevuto, indica qual è il destinatario e attraverso quale applicazione notificarlo interrogando il database con \texttt{MongoFacade}.
 
 \subsection{Consumers}
 Il Consumer è la componente finale del sistema \progetto. Esso resta in ascolto della sua coda specifica di Kafka per applicativo (e.g. telegram, email).
@@ -249,7 +249,7 @@ al destinatario finale tramite le API dell'applicativo su cui il Consumer è bas
 
 
 \subsubsection{TelegramConsumer}
-Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \texttt{telegram}
+Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla \textit{coda telegram}
 di Kafka all'invio del messaggio all'utente finale su Telegram.
 
 \paragraph{Diagramma dei package}
@@ -257,7 +257,7 @@ di Kafka all'invio del messaggio all'utente finale su Telegram.
 Il TelegramConsumer ha 2 dipendenze esterne:
 \begin{itemize}
     \item \texttt{KafkaConsumer} dalla libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto
-        di una o più code specifiche. È costruito su di esso un adapter, per adattare KafkaConsumer alle funzionalità
+        di una o più code specifiche. È costruito su di esso un adapter, per adattare \textit{KafkaConsumer} alle funzionalità
         di \texttt{Consumer}.
     \item Package \texttt{requests}: effettua le richieste POST e poter inviare i messaggi tramite l'API di Telegram
         al destinatario finale.
@@ -288,7 +288,7 @@ Il metodo \texttt{format()} costruisce il testo del messaggio finale utilizzando
 L'EmailConsumer ha 2 dipendenze esterne:
 \begin{itemize}
     \item \texttt{KafkaConsumer} della libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto dei messaggi
-        proveniente da una o più code specifiche. È costruito su di esso un adapter, per adattare le funzionalità di KafkaConsumer a
+        proveniente da una o più code specifiche. È costruito su di esso un adapter, per adattare le funzionalità di \textit{KafkaConsumer} a
         \texttt{Consumer}.
     \item \texttt{SMTP} della libreria esterna \texttt{smtplib}: server e-mail che, dopo aver effettuato il login,
         invia al destinatario una mail contenente il messaggio finale.
