@@ -6,8 +6,8 @@ In questa sezione descriviamo le tecnologie che dopo una fase di analisi, abbiam
 \subsubsection{Python}
 I linguaggi consigliati per l'implementazione di \progetto\ sono: Python, Java e NodeJS. Dopo un'analisi che abbiamo svolto sui vari linguaggi proposti, siamo
 arrivati a scegliere Python perché è un linguaggio di programmazione dinamico, orientato agli oggetti, distribuito con licenza Open-Source e utilizzabile
-per molti tipi di sviluppo software. Offre un forte supporto all'integrazione con altri linguaggi e programmi, è fornito di una estesa libreria standard e
-può essere imparato in pochi giorni.
+per molti tipi di sviluppo software. Offre inoltre un forte supporto all'integrazione con altri linguaggi e programmi, è fornito di una estesa libreria standard e
+può essere imparato in poco tempo.
 
 
 \subsubsection{MongoDB}
@@ -18,7 +18,7 @@ tabelle ma si basa sui documenti in stile \gloss{JSON} con schema dinamico, rend
 
 \subsubsection{Docker}
 Abbiamo deciso di utilizzare \gloss{Docker} per la semplicità di utilizzo e per mantenere le componenti del tutto isolate.
-La configurazione avverrà tramite un \gloss{Dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio,
+La sua configurazione avverrà tramite un \gloss{Dockerfile} in cui verranno specificate informazioni come sistema operativo, script di avvio,
 numero di istanze ed altri parametri specifici.
 
 Docker oltretutto ci consente di creare dei \gloss{container} aventi la capacità di simulare un ambiente virtuale dov'è possibile testare e mantenere le proprie applicazioni,
@@ -32,14 +32,14 @@ Sono quindi più leggeri, occupando meno memoria su disco e impiegando meno riso
 Per la gestione dei container in remoto, la proponte \II~ci ha messo a disposizione un \gloss{cluster} con due server sui quali è stato installato Rancher. Questo
 è un software di gestione di oggetti di \gloss{Kubernetes}.
 Da qui possiamo quindi gestire i nostri container installando le immagini direttamente da \gloss{DockerHub} senza aver bisogno di file di configurazione
-come ad esempio quello necessario al docker-compose.
+come ad esempio quello necessario al \gloss{docker-compose}.
 
 
 \subsection{Librerie esterne}
 
-Le librerie esterne usate per Python3 scelte sono tutte installabili con il gestore dei pacchetti di Python \gloss{pip}.
+Le librerie esterne usate per Python3 scelte sono tutte installabili con il gestore dei pacchetti di Python \gloss{pip}. \par
 
-Nota: saranno già installate nel cluster fornito dalla proponente.
+Queste saranno già installate nel cluster fornito dalla proponente.
 
 \subsubsection{Requests}
 Libreria per la gestione delle richieste HTTP. Grazie a essa è possibile effettuare ogni tipo di richiesta (GET, POST, DELETE, PUT).
@@ -58,7 +58,7 @@ Flask è un framework lightweight per l'installazione di web server, scritto in 
 Viene utilizzato dai \gloss{Producer} per restare in ascolto degli \gloss{webhook} e dal Gestore Personale per istanziare l'interfaccia
 web per la gestione del personale.
 
-Maggiori informazioni al link
+Maggiori informazioni al link:
 
 \begin{center}
     \url{http://flask.pocoo.org/docs/1.0/}
@@ -70,7 +70,7 @@ Installabile con il comando \texttt{pip install flask}.
 Libreria che estende Flask e semplifica la gestione di API Rest, automatizzando il collegamento tra risorse e le relative tipologie di richiesta.
 Viene usata nel Gestore Personale per implementare lo standard API Rest.
 
-Maggiori informazioni al link
+Maggiori informazioni al link:
 
 \begin{center}
     \url{https://flask-restful.readthedocs.io/en/latest/}
@@ -82,7 +82,7 @@ Installabile con il comando \texttt{pip install flask-restful}.
 
 Libreria per l'utilizzo di MongoDB con Python. Il database viene utilizzato nel Gestore Personale.
 
-Maggiori informazioni al link
+Maggiori informazioni al link:
 
 \begin{center}
     \url{https://api.mongodb.com/python/current/}
@@ -94,10 +94,10 @@ Installabile con il comando \texttt{pip install pymongo}.
 Pytest è uno dei framework più utilizzati in Python per l'esecuzione dei test. Semplifica di molto la loro gestione e implementazione rispetto al modulo \texttt{unittest}
 della libreria standard.
 
-Maggiori informazioni al link
+Maggiori informazioni al link:
 
 \begin{center}
     \url{https://docs.pytest.org/en/latest/}
 \end{center}
 
-Installabile con il comando \texttt{pip install pytest}
+Installabile con il comando \texttt{pip install pytest}.

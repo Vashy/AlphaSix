@@ -3,7 +3,7 @@
 In questa sezione descriviamo brevemente l'architettura del sistema \progetto.
 
 L'architettura adottata è \gloss{event-driven}: ogni componente è isolato e asincrono,
-e comunica interfacciandosi e scambiandosi messaggi tramite il broker Apache Kafka.
+e comunica attraverso interfacce scambiandosi messaggi tramite il broker Apache Kafka.
 
 Il sistema si divide principalmente in tre insiemi di componenti:
 
@@ -39,7 +39,7 @@ il parser degli Webhook e il metodo del Producer \texttt{webhook\_kind()}.
 \subsubsection{RedmineProducer}
 
 Il Producer di Redmine si occupa di ascoltare gli webhook provenienti dai progetti di Redmine che hanno configurato la porta relativa al componente,
-e di immettere nella coda \textit{redmine} di Kafka i messaggi.
+e di immettere nella \textit{coda redmine} di Kafka i messaggi.
 
 Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione, che parte dall'arrivo di un webhook da Redmine e si conclude con
 l'inoltro del messaggio sulla coda \textit{redmine} di Kafka.
@@ -83,11 +83,11 @@ catturato un webhook da Redmine, chiama il metodo \texttt{create\_webhook(kind)}
 factory associata, passandogli come parametro la tipologia di webhook, in formato stringa.
 
 Essa si occuperà di creare il parser di webhook adeguato al messaggio in entrata.
-La classe concreta derivata da Webhook costruisce il messaggio con i campi di interesse da
+La classe concreta derivata da \texttt{Webhook} costruisce il messaggio con i campi di interesse da
 immettere nella coda di Kafka, e lo restituisce al Producer.
 
 Per Redmine, è presente una sola tipologia di webhook. Tenendo a mente la \gloss{open-closed principle},
-è stata implementata la gerarchia relativa ai Webhook per permettere agli sviluppatori di poter facilmente
+è stata implementata la gerarchia relativa ai webhook per permettere agli sviluppatori di poter facilmente
 aggiungerne di nuovi.
 
 \begin{figure}[H]
@@ -105,7 +105,7 @@ che hanno configurato la porta relativa al componente, e di immettere nella coda
 Kafka i messaggi.
 
 Esso è implementato allo stesso modo di quello di Redmine, per cui non verrà ripetuta l'analisi delle
-funzionalità che sono identiche al Producer di Redmine. Per tenere totalmente separate e isolate
+funzionalità che sono identiche al Producer di Redmine. \par Per tenere isolate
 le componenti, i diagrammi sono stati totalmente separati, anche se le classi risiedono nello stesso package.
 Sarà compito dei Dockerfile copiare solamente i file necessari al componente specifico per poter mantenere
 isolato il container.
@@ -130,9 +130,9 @@ isolato il container.
     % \label{fig:producers}
 \end{figure}
 
-Abbiamo implementato per GitlabProducer 4 tipologie di \texttt{Webhook}.
+Abbiamo implementato per \texttt{GitlabProducer} 4 tipologie di \texttt{Webhook}.
 Il parametro \texttt{kind} del metodo \texttt{create\_webhook(kind)} può quindi assumere 4 valori, in base al quale
-\texttt{GitlabWebhookFactory} costruirà un parser di Webhook apposito:
+\texttt{GitlabWebhookFactory} costruirà un parser di \texttt{Webhook} apposito:
 \begin{itemize}
     \item '\texttt{issue}': verrà istanziato un \texttt{GitlabIssueWebhook}.
     \item '\texttt{push}': verrà istanziato un \texttt{GitlabPushWebhook}.
@@ -159,7 +159,7 @@ Il Gestore Personale è la componente con la logica più complessa del sistema B
 che si occupano rispettivamente di ricevere i messaggi da Kafka e reinserirli nelle code relative ai Consumer finali. Per stabilire il destinatario e il Consumer finale appropriato, il Client del Gestore Personale interroga MongoDB per ottenere le informazioni relative ad i giorni di indisponibilità, la priorità dei progetti e la piattaforma di messaggistica sul quale ricevere la notifica per ogni utente.
 Tutte queste informazioni vengono inserite in MongoDB attraverso la View. \par
 Questa prima parte riguarda la sezione del gestore personale che va a interfacciarsi con l’utente adottando un’architettura MVC pull model, ovvero \texttt{rest\_hadler} nella figura \ref{GP-Package}.
-La view è pertanto totalmente passiva e l’unica cosa che fa è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}. \par
+L’unica cosa che fa le View è inoltrare i comandi ricevuti dall’utente all’\gloss{API REST}. \par
 Esiste poi invece anche un'altra parte chiamata \texttt{message\_processor} che è collegata al MongoDB.
 Questo perchè deve poter analizzare i dati dei vari utenti in modo da capire dove inserire su Kafka il mesaggio elaborato.
 
@@ -171,7 +171,7 @@ Questo perchè deve poter analizzare i dati dei vari utenti in modo da capire do
 \end{figure}
 
 \subsubsection{Mongo} \label{Mongo}
-\gloss{MongoDB} è un database non relazionale e orientato ai documenti (tabelle). Ci è molto utile in questo progetto perché ci dà la possibilità di aggiungere dati ai documenti senza modificarne la struttura.
+\gloss{MongoDB} è un database non relazionale orientato all'utilizzo di documenti, e non di tabelle come nei database relazionali. Ci è molto utile in questo progetto perché ci dà la possibilità di aggiungere dati ai documenti senza modificarne la struttura.
 Questo lo rende un database molto estensibile, quindi uno sviluppatore può facilmente ampliare le informazioni in esso contenute.
 
     \paragraph{Diagramma delle classi}
@@ -184,7 +184,7 @@ Questo lo rende un database molto estensibile, quindi uno sviluppatore può faci
     \end{figure}
 
     Per quanto riguarda il database, abbiamo una classe singleton che permette al nostro sistema di avere un'unica istanza della connessione con PyMongo.
-    I metodi che agiscono sulla base di dati sono implementati nelle classi MongoUser e MongoProject, e sono suddivisi in base alla risorsa di interesse.
+    I metodi che agiscono sulla base di dati sono implementati nelle classi \texttt{MongoUser} e \texttt{MongoProject}, e sono suddivisi in base alle risorse di interesse.
     Tali classi vengono raccolte in un facade che espone solamente i metodi che servono verso l’esterno, per renderli più facilmente fruibili. \par
     Nella figura \ref{fig:GP-Mongo} vengono mostrate queste classi e le loro dipendenze.
 
@@ -207,15 +207,15 @@ Il controller recupera gli input che gli utenti inseriscono attraverso la View, 
     Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le dovute operazioni su MongoDB e restituisce una risposta alla vista di provenienza, in formato JSON se si tratta dell'api REST o in formato HTML se si tratta della view consultabile da browser Web.
 
 
-%\newpage
 \subsubsection{Client}
 Il suo compito è quello di recuperare i messaggi inseriti in Kafka dai Producer GitLab e Redmine attraverso un Consumer fittizio, analizzare il messaggio, associargli il destinatario corretto e inserirlo nella coda di Kafka appropriata (di Telegram o Email) attraverso un Producer fittizio.
 
+\newpage
 Per analizzare il messaggio il Client opera in questo modo:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.69\textwidth]{img/Client_attivita.png}\\
+    \includegraphics[width=0.79\textwidth]{img/Client_attivita.png}\\
     \caption{Diagramma di attività del Client}
     % \label{fig:GP-Processor}
 \end{figure}
