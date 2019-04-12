@@ -1,4 +1,4 @@
-\section{Architettura}
+\section{Architettura}\label{Architettura}
 
 In questa sezione descriviamo brevemente l'architettura del sistema \progetto.
 
@@ -172,7 +172,7 @@ Questo perchè deve poter analizzare i dati dei vari utenti in modo da capire do
 
 \subsubsection{Mongo} \label{Mongo}
 \gloss{MongoDB} è un database non relazionale e orientato ai documenti (tabelle). Ci è molto utile in questo progetto perché ci dà la possibilità di aggiungere dati ai documenti senza modificarne la struttura.
-Questo lo rende un database molto estendibile, quindi uno sviluppatore può facilmente ampliare le informazioni in esso contenute.
+Questo lo rende un database molto estensibile, quindi uno sviluppatore può facilmente ampliare le informazioni in esso contenute.
 
     \paragraph{Diagramma delle classi}
 
@@ -321,17 +321,11 @@ L'EmailConsumer ha 2 dipendenze esterne:
 
 Per fare in modo che tutti i componenti vengano istanziati con i determinati parametri che permettano la giusta comunicazione tra le componenti,
 ci sono dei file di configurazioni che contengono per esempio il token del bot Telegram, l'email e la password per accedere al server Email. Queste configurazioni
-sono contenute nei file \texttt{``config.json''} contenuto nelle cartelle producer e consumer.
+sono contenute nelle variabili d'ambiente descritte nel \MSd, oppure nei file \texttt{``config.json''} contenuti nelle cartelle dei vari componenti (e.g. producer,
+consumer ecc.).
 
 \subsection{Interazione tra i componenti}
 
 \progetto\ vedendola ad alto livello si identificano 6 componenti. Redmine e GitLab per comunicare con i relativi Producer utilizzano dei webhook in formato JSON,
 mettendosi in ascolto su determinate porte utilizzando il webserver Flask. Per quanto riguarda la comunicazione tra i Producer e Kafka utilizziamo delle istanze
 di KafkaProucer. Per far comunicare Kafka con i vari Consumer utilizziamo istanze di KafkaConsumer. Nell'ultimo passo, quello che riguarda i Consumer e le applicazioni finali, quali Telegram e Email, usiamo le API messe a disposizione dagli applicativi.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{img/butterfly.png}\\
-    \caption{Visione generale di \progetto}
-    \label{fig:butterfly}
-\end{figure}

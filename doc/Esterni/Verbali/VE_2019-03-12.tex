@@ -52,14 +52,14 @@
         \item Salvare i dati delle varie tecnologie all'interno dei \gloss{Dockerfile} in volumi, in modo da poterli conservare in modo persistente
         \item Provare a sfruttare \gloss{Rancher}, il quale lavora con oggetti di \gloss{Kubernetes}, in modo tale da poter conoscere ulteriori tecnologie utili al progetto
         \item I vari Dokerfile non non devono essere montati insieme attraverso un \gloss{Docker compose}, ma con uno \gloss{script}
-        \item Ai fini delle funzionalità di \progetto, il campo "destinatario" di una \gloss{issue} può essere ignorato
+        \item Ai fini delle funzionalità di \progetto, il campo ``destinatario'' di una \gloss{issue} può essere ignorato
     \end{enumerate}
 
     Le decisioni relative ai requisiti sono:
     \begin{enumerate}
         \item Gli utenti, dato che sono considerati \gloss{utenza tecnica}, non devono autenticarsi con tutte le tecnologie da cui si ricevono le notifiche (\gloss{Redmine} e \gloss{GitLab}), perché questi vedranno tutti i progetti presenti nei Dockerfile montati
-        \item Precedentemente era stato deciso di inviare la modifica di una issue solo nel caso in cui fossero stati modificati particolari campi indicati negli UC1.1-PR e UC2.1-PG in\\ \textit{AnalisiDeiRequisitiv2.0.0\ped{D}}. Ora invece le notifiche di modifica issue avverranno con la modifica di qualsiasi campo, ma solo se tali issue possiederanno una priorità urgente
-        \item La presenza della figura della "persona di fiducia" indicata in \textit{AnalisiDeiRequisitiv2.0.0\ped{D}} in §3 per inoltrare i messaggi non è corretta, perché nel momento in cui un utente si rimuove da \progetto\ il messaggio verrebbe perso, oppure si rischierebbe di cadere nel problema dell'inoltro circolare. Perciò gli utenti ora dovranno inserire una priorità ai progetti a cui sono interessati, in modo tale che \progetto\ possa gestire gli inoltri in automatico
+        \item Precedentemente era stato deciso di inviare la modifica di una issue solo nel caso in cui fossero stati modificati particolari campi indicati nei casi d'uso UC1.1-PR e UC2.1-PG in\\ \textit{AnalisiDeiRequisiti v2.0.0\ped{D}}. Ora invece le notifiche di modifica issue avverranno con la modifica di qualsiasi campo, ma solo se tali issue possiederanno una priorità urgente
+        \item La presenza della figura della ``persona di fiducia'' indicata in \textit{AnalisiDeiRequisiti v2.0.0\ped{D}} in §3 per inoltrare i messaggi non è corretta, perché nel momento in cui un utente si rimuove da \progetto\ il messaggio verrebbe perso, oppure si rischierebbe di cadere nel problema dell'inoltro circolare. Perciò gli utenti ora dovranno inserire una priorità ai progetti a cui sono interessati, in modo tale che \progetto\ possa gestire gli inoltri in automatico
     \end{enumerate}
 
     \section{Tracciamento delle decisioni}
@@ -69,20 +69,20 @@
         \centering
         \rowcolors{2}{white}{\tablegray}
         {\def\arraystretch{1.5}
-            \begin{tabularx}{\textwidth}{YY}
+            \begin{tabularx}{\textwidth}{cX}
                 \rowcolor{gray!30}
                 \textbf{Codice} & \textbf{Descrizione}\\
                 \toprule
                 \stepcounter{tracc}
-                VE\_2019-03-12.\thetracc & Creare volumi per i Dockerfile \\
+                \texttt{VE\_2019-03-12.\thetracc} & Creare volumi per i Dockerfile \\
                 \stepcounter{tracc}
-                VE\_2019-03-12.\thetracc & Studio della tecnologia Rancher \\
+                \texttt{VE\_2019-03-12.\thetracc} & Studio della tecnologia Rancher \\
                 \stepcounter{tracc}
-                VE\_2019-03-12.\thetracc & Un utente che si registra non deve inserire anche le proprie credenziali di GitLab o Redmine \\
+                \texttt{VE\_2019-03-12.\thetracc} & Un utente che si registra non deve inserire anche le proprie credenziali di GitLab o Redmine \\
                 \stepcounter{tracc}
-                VE\_2019-03-12.\thetracc & Le notifiche di modifica issue vengono inviate solo per le issue con priorità urgente \\
+                \texttt{VE\_2019-03-12.\thetracc} & Le notifiche di modifica issue vengono inviate solo per le issue con priorità urgente \\
                 \stepcounter{tracc}
-                VE\_2019-03-12.\thetracc & La figura della "persona di fiducia" viene rimossa inserendo invece la possibilità di inserire una priorità d'interesse per i vari progetti di GitLab o Redmine \\
+                \texttt{VE\_2019-03-12.\thetracc} & La figura della ``persona di fiducia'' viene rimossa inserendo invece la possibilità di inserire una priorità d'interesse per i vari progetti di GitLab o Redmine \\
                 \bottomrule
         \end{tabularx}}
         \caption{Tracciamento decisioni}
