@@ -11,9 +11,9 @@ Il Gestore Personale è la componente principale di \progetto\ e si può suddivi
 
 Il secondo non è di pertinenza di questo manuale (ma del \MSd), in quanto l'utente non lo utilizza direttamente, per cui verrà solamente discusso l'utilizzo del sistema tramite l'interfaccia utente.
 
-\subsubsection{Autenticazione}
-È possibile effettuare l'autenticazione all'interno del sistema tramite il link del container sul quale è in esecuzione, specificato nella configurazione effettuata precedentemente.
-Per effettuare correttamente l'autenticazione è necessario l'inserimento del proprio ID Telegram o Email con il quale si è iscritti nel sistema.
+\subsubsection{Accesso}
+È possibile effettuare l'accesso all'interno del sistema tramite il link del container sul quale è in esecuzione, specificato nella configurazione effettuata precedentemente.
+Per effettuare correttamente l'accesso è necessario l'inserimento del proprio ID Telegram o Email con il quale si è iscritti nel sistema.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=9cm]{img/accesso_1.png}
@@ -26,7 +26,7 @@ In caso l'identificativo inserito non fosse valido, e non corrispondesse quindi 
 	\caption{Messaggio di errore durante accesso al sistema}
 \end{figure}
 
-Nel caso in cui un utente cerchi di accedere ad una sezione, ma senza aver effettuato l'autenticazione, questo verrà rimandato alla pagina di autenticazione.\par
+Nel caso in cui un utente cerchi di accedere ad una sezione, ma senza aver effettuato l'accesso, questo verrà rimandato alla pagina di accesso.\par
 Se un utente iscritto correttamente nel sistema ha registrato precedentemente sia indirizzo Email che ID Telegram, allora può accedere utilizzando indipendentemente il primo o il secondo.
 
 \subsubsection{Pannello di controllo}
@@ -131,7 +131,7 @@ richiesta HTTP.
 \paragraph{Inserimento}
 È possibile inserire un nuovo utente tramite la richiesta:
     \begin{center}
-        \texttt{PUT /user}
+        \texttt{POST /user}
     \end{center}
 
 È inoltre possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
@@ -147,7 +147,7 @@ Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme 
 
 È possibile modificare un utente tramite la richiesta
 \begin{center}
-    \texttt{POST /user/<id>}
+    \texttt{PUT /user/<id>}
 \end{center}
 
 È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
@@ -175,8 +175,8 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
     \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
         \texttt{GET} & \texttt{/user/<id>} & Restituisce un payload in JSON dell'utente che corrisponde a \texttt{<id>}\\
-        \texttt{PUT} & \texttt{/user} & Inserisce un nuovo utente. È necessario fornire uno tra i campi telegram o email\\
-        \texttt{POST} & \texttt{/user/<id>} & Modifica l'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
+        \texttt{POST} & \texttt{/user} & Inserisce un nuovo utente. È necessario fornire uno tra i campi telegram o email\\
+        \texttt{PUT} & \texttt{/user/<id>} & Modifica l'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
         \texttt{DELETE} & \texttt{/user/<id>} & Elimina l'utente corrispondente a \texttt{<id>} dal sistema\\
         \bottomrule
     \end{paddedtablex}
@@ -190,9 +190,9 @@ Preference è la risorsa preferenza. È possibile visualizzare, aggiungere, modi
 \paragraph{Visualizzazione}
 È possibile visualizzare le preferenze di un utente tramite la richiesta
     \begin{center}
-        \texttt{GET  /preference/<user>/<id>}
+        \texttt{GET  /preference/<id>}
     \end{center}
-Se il campo \texttt{<user>} corrisponde a un utente presente nel sistema e il campo \texttt{<id>} corrisponde a un tipo di preferenza, verranno mostrati i dati relativi a tale preferenza.
+Se il campo \texttt{<id>} corrisponde a una preferenza, verranno mostrati i dati relativi a tale preferenza.
 
 I tipi di preferenza disponibili sono:
 \begin{itemize}[noitemsep]
@@ -204,12 +204,16 @@ I tipi di preferenza disponibili sono:
 \paragraph{Inserimento}
 È possibile inserire una nuova preferenza tramite la richiesta
     \begin{center}
-        \texttt{PUT /preference/<user>/<id>}
+        \texttt{POST /preference}
     \end{center}
 
 È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
 In base al tipo della preferenza, i campi sono:
 \begin{itemize}[noitemsep]
+    \item Utente:
+        \begin{itemize}[noitemsep]
+            \item \texttt{id}
+        \end{itemize}
     \item Progetto:
         \begin{itemize}[noitemsep]
             \item \texttt{nome}
@@ -232,25 +236,29 @@ In base al tipo della preferenza, i campi sono:
 
 È possibile modificare una preferenza tramite la richiesta
 \begin{center}
-    \texttt{POST /preference/<user>/<id>}
+    \texttt{PUT /preference/<id>}
 \end{center}
 
 
 È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
 In base al tipo della preferenza, i campi sono:
 \begin{itemize}[noitemsep]
-    \item Progetto
+    \item Utente:
+        \begin{itemize}[noitemsep]
+            \item \texttt{id}
+        \end{itemize}
+    \item Progetto:
         \begin{itemize}[noitemsep]
             \item \texttt{nome}
             \item \texttt{priorità}
             \item \texttt{labels}
             \item \texttt{keywords}
         \end{itemize}
-    \item Disponibilità
+    \item Disponibilità:
         \begin{itemize}[noitemsep]
             \item \texttt{data}
         \end{itemize}
-    \item Piattaforma
+    \item Piattaforma:
         \begin{itemize}[noitemsep]
             \item \texttt{piattaforma}
         \end{itemize}
@@ -261,20 +269,20 @@ In base al tipo della preferenza, i campi sono:
 
 È possibile rimuovere una preferenza dal sistema Butterfly con la richiesta
 \begin{center}
-    \texttt{DELETE /preference/<user>/<id>}
+    \texttt{DELETE /preference/<id>}
 \end{center}
 
-Se il campo \texttt{<user>} corrisponde a un ID presente nel sistema e il campo \texttt{<id>} corrisponde a un tipo di preferenza, essa verrà rimossa dl sistema.
+Se il campo \texttt{<id>} corrisponde a una preferenza, essa verrà rimossa dal sistema.
 
 \paragraph{Riepilogo}
 
 \begin{table}[H]
     \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
-        \texttt{GET} & \texttt{/preference/<user>/<id>} & Restituisce un payload in JSON della preferenza dell'utente \texttt{<user>} di tipo \texttt{<id>}\\
-        \texttt{PUT} & \texttt{/preference/<user>/<id>} & Inserisce una preferenza di tipo \texttt{<id>} all'utente \texttt{<user>} \\
-        \texttt{POST} & \texttt{/preference/<user>/<id>} & Modifica la preferenza corrispondente a \texttt{<id>} dell'utente \texttt{<user>} con i campi passati nel payload\\
-        \texttt{DELETE} & \texttt{/preference/<user>/<id>} & Elimina la preferenza corrispondente a \texttt{<id>} dell'utente \texttt{<user>} dal sistema\\
+        \texttt{GET} & \texttt{/preference/<id>} & Restituisce un payload in JSON della preferenza corrispondente a \texttt{<id>}\\
+        \texttt{POST} & \texttt{/preference} & Inserisce una nuova preferenza \\
+        \texttt{PUT} & \texttt{/preference/<id>} & Modifica la preferenza corrispondente a \texttt{<id>} con i campi passati nel payload \\
+        \texttt{DELETE} & \texttt{/preference/<id>} & Elimina la preferenza corrispondente a \texttt{<id>} dal sistema \\
         \bottomrule
     \end{paddedtablex}
     \caption{Riepilogo delle Rest API per le preferenze}
