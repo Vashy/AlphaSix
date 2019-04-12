@@ -21,7 +21,6 @@ Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software pe
 			%todo: che questo link sia migliore? https://wiki.archlinux.org/index.php/Redmine#Prerequisites
 		\end{itemize}
 
-	%TODO rivedere
 	GitLab e Redmine sono componenti esterne a \progetto, tuttavia vengono citate in quanto è possibile configurare tutto il progetto in un ambiente unico.\par
 	Le versioni specificate possono essere trovate anche tra i requisiti di vincolo nel documento \AdRd.
 
@@ -72,9 +71,7 @@ Le specifiche relative alla configurazione delle porte in Rancher possono essere
 \subsection{Suddivisione dei container ed immagini utilizzate}
 Come detto in precedenza, su consiglio di \II, \progetto\ è stato sviluppato con l'utilizzo di Rancher per la gestione dei container.\\
 I container sono stati suddivisi in modo tale da utilizzare un unico \gloss{Cluster} (nel nostro caso chiamato Butterfly), vari \gloss{Namespace} per separare i servizi fra loro e i \gloss{Pod}, che rappresentano ciascuno un container.
-Le immagini utilizzate sono tutte presenti in DockerHub, incluse quelle dei \gloss{Producer} e dei \gloss{Consumer} che
-%, come detto nel documento \NdPd,
-sono state create utilizzando build automatiche innescate ad ogni \gloss{push} nella repository del codice.
+Le immagini utilizzate sono tutte presenti in DockerHub, incluse quelle dei \gloss{Producer} e dei \gloss{Consumer} che sono state create utilizzando build automatiche innescate ad ogni \gloss{push} nella repository del codice.
 \newpage
 La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 \begin{itemize}
@@ -180,7 +177,6 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 		\item Issues events
 	\end{itemize}
 
-%TODO aggiungere variabili che possono essere configurate
 \subsection{Configurazione servizi \progetto}\label{var}
 
 	\subsubsection{Producer}
@@ -205,7 +201,7 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 	\end{itemize}
 
 	\subsubsection{Gestore Personale}
-	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. \\
+	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. \par
 
 	Per la componente Producer del Gestore Personale queste sono:
 	\begin{itemize}
