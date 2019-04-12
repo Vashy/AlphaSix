@@ -117,7 +117,7 @@ L' ID_CONTAINER può essere recuperato tramite il comando
 ## Strumenti di terze parti
 Per facilitare la gestione dei container e velocizzare il modo di interfacciarsi con questi è stato utilizzato un software di terze parti chiamato [*DockStation*](https://dockstation.io/).
 
-#Connessione ai cluster aziendali (da togliere in repo pubblica)
+# Connessione ai cluster aziendali (da togliere in repo pubblica)
 Per potersi collegare ai cluster aziendali id *Imola Informatica* e testare l'applicazione sulle loro macchine è necessario eseguire i seguenti passi:
 
 1. Aggiungere la riga `nameserver 192.168.188.3` in fondo al file `/etc/resolv.conf`. Questo comando server per aggiungere il puntatore al server pfSense (Firewall) del laboratorio aziendale in quanto il DNS non è automatico.
