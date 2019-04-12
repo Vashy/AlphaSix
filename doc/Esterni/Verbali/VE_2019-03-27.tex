@@ -57,14 +57,14 @@
     \newcounter{tracc}
     \begin{table}[H]
         \centering
-        \rowcolors{2}{white}{\tablegray}
+        %\rowcolors{2}{white}{\tablegray}
         {\def\arraystretch{1.5}
-            \begin{tabularx}{\textwidth}{YY}
-                \rowcolor{gray!30}
+            \begin{tabularx}{\textwidth}{cX}
+                \rowcolor{gray!15}
                 \textbf{Codice} & \textbf{Descrizione}\\
-                \toprule
+                \toprule%\rowcolor{}
                 \stepcounter{tracc}
-                VE\_2019-03-27.\thetracc & Cambiamo il processo di inoltro delle notifiche per gli utenti non reperibili\\
+                \texttt{VE\_2019-03-27.\thetracc} & Cambiamo il processo di inoltro delle notifiche per gli utenti non reperibili\\
                 \bottomrule
         \end{tabularx}}
         \caption{Tracciamento decisioni}

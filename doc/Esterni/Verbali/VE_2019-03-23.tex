@@ -62,14 +62,14 @@
             \centering
             \rowcolors{2}{white}{\tablegray}
             {\def\arraystretch{1.5}
-                \begin{tabularx}{\textwidth}{YY}
+                \begin{tabularx}{\textwidth}{cX}
                     \rowcolor{gray!30}
                     \textbf{Codice} & \textbf{Descrizione}\\
-                    \toprule
+                    \toprule\rowcolor{white}
                     \stepcounter{tracc}
-                    VE\_2019-03-23.\thetracc & Usiamo Rancher e Kubernetes al posto di Docker \\
+                    \texttt{VE\_2019-03-23.\thetracc} & Usiamo Rancher e Kubernetes al posto di Docker \\\rowcolor{gray!15}
                     \stepcounter{tracc}
-                    VE\_2019-03-23.\thetracc & Usiamo il pattern MVC pull model per il gestore personale \\
+                    \texttt{VE\_2019-03-23.\thetracc} & Usiamo il pattern MVC pull model per il gestore personale \\
                     \bottomrule
             \end{tabularx}}
             \caption{Tracciamento decisioni}
