@@ -15,7 +15,7 @@ Il sistema si divide principalmente in tre insiemi di componenti:
 
 \subsection{Producers}
 Il Producer è il componente che resta in ascolto degli webhook provenienti dal suo applicativo specifico (e.g. Redmine, GitLab).
-Ha lo scopo di immettere i messaggi su Kafka in formato JSON, conservando solo i campi di interesse e aggiungendone eventualmente di propri.
+Ha lo scopo di immettere i messaggi su Kafka in formato \gloss{JSON}, conservando solo i campi di interesse e aggiungendone eventualmente di propri.
 
 Al momento della stesura di questo manuale, i Producer implementati sono due:
 \begin{itemize}
@@ -25,21 +25,13 @@ Al momento della stesura di questo manuale, i Producer implementati sono due:
 
 L'algoritmo di invio dei messaggi differirà solamente nella modalità in cui verrà formato il messaggio finale: per questo motivo abbiamo deciso di utilizzare
 il design pattern \gloss{Template Method} per l'implementazione dell'algoritmo. Le classi concrete avranno esclusivamente il compito di implementare
-il parser degli Webhook e il metodo del Producer \texttt{webhook\_kind()}.
-
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth]{img/Producers.png}\\
-%     \caption{Visione generale dei Producers}
-%     \label{fig:producers}
-% \end{figure}
+il parser degli webhook e il metodo del Producer \texttt{webhook\_kind()}.
 
 
 \subsubsection{RedmineProducer}
 
 Il Producer di Redmine si occupa di ascoltare gli webhook provenienti dai progetti di Redmine che hanno configurato la porta relativa al componente,
-e di immettere nella \textit{coda redmine} di Kafka i messaggi.
+e di immettere nella coda \textit{redmine} di Kafka i messaggi.
 
 Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione, che parte dall'arrivo di un webhook da Redmine e si conclude con
 l'inoltro del messaggio sulla coda \textit{redmine} di Kafka.
@@ -56,7 +48,7 @@ l'inoltro del messaggio sulla coda \textit{redmine} di Kafka.
 Il package \texttt{producer} ha tre dipendenze esterne:
 \begin{itemize}
     \item \texttt{Flask}, classe concreta del package di libreria \texttt{flask}: è il server che si mette in ascolto degli webhook provenienti da Redmine.
-    \item \texttt{KafkaProducer}, classe concreta del package di libreria \texttt{kafka}: ha il compito di interfacciarsi con il broker Kafka e di immettere
+    \item \texttt{KafkaProducer}, classe concreta del package di libreria \texttt{kafka-python}: ha il compito di interfacciarsi con il broker Kafka e di immettere
         in esso i messaggi. È costruito su di esso un \gloss{Adapter}, in cui KafkaProducer viene adattato all'astrazione \texttt{Producer}.
     \item Package \texttt{webhook}: ha il compito di effettuare il parsing dei messaggi in entrata.
 \end{itemize}
@@ -86,9 +78,9 @@ Essa si occuperà di creare il parser di webhook adeguato al messaggio in entrat
 La classe concreta derivata da \texttt{Webhook} costruisce il messaggio con i campi di interesse da
 immettere nella coda di Kafka, e lo restituisce al Producer.
 
-Per Redmine, è presente una sola tipologia di webhook. Tenendo a mente la \gloss{open-closed principle},
-è stata implementata la gerarchia relativa ai webhook per permettere agli sviluppatori di poter facilmente
-aggiungerne di nuovi.
+Per Redmine, è presente una sola tipologia di webhook. Tenendo a mente l'\gloss{open-closed principle},
+è stata implementata la gerarchia relativa ai webhook per permettere agli sviluppatori di poterne facilmente
+aggiungere di nuovi.
 
 \begin{figure}[H]
     \centering
@@ -105,7 +97,9 @@ che hanno configurato la porta relativa al componente, e di immettere nella coda
 Kafka i messaggi.
 
 Esso è implementato allo stesso modo di quello di Redmine, per cui non verrà ripetuta l'analisi delle
-funzionalità che sono identiche al Producer di Redmine. \par Per tenere isolate
+funzionalità che sono identiche al Producer di Redmine.
+
+Per tenere isolate
 le componenti, i diagrammi sono stati totalmente separati, anche se le classi risiedono nello stesso package.
 Sarà compito dei Dockerfile copiare solamente i file necessari al componente specifico per poter mantenere
 isolato il container.
@@ -203,8 +197,8 @@ Il controller recupera gli input che gli utenti inseriscono attraverso la View, 
     \end{figure}
 
     Il Controller del Gestore Personale serve per collegare la componente del Model con la componente View.
-    Una volta istanziati il server Flask, l'api REST e MongoDB vengono passati al Controller che resta in ascolto.\par
-    Quando arriva una richiesta dall'api REST o dalla View, il Controller esegue le dovute operazioni su MongoDB e restituisce una risposta alla vista di provenienza, in formato JSON se si tratta dell'api REST o in formato HTML se si tratta della view consultabile da browser Web.
+    Una volta istanziati il server Flask, l'API REST e MongoDB vengono passati al Controller che resta in ascolto.\par
+    Quando arriva una richiesta dall'API REST o dalla View, il Controller esegue le dovute operazioni su MongoDB e restituisce una risposta alla vista di provenienza, in formato JSON se si tratta dell'API REST o in formato HTML se si tratta della view consultabile da browser Web.
 
 
 \subsubsection{Client}
@@ -249,7 +243,7 @@ al destinatario finale tramite le API dell'applicativo su cui il Consumer è bas
 
 
 \subsubsection{TelegramConsumer}
-Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla \textit{coda telegram}
+Nel seguente diagramma di sequenza è possibile vedere il flusso di esecuzione che parte dalla ricezione del messaggio dalla coda \textit{telegram}
 di Kafka all'invio del messaggio all'utente finale su Telegram.
 
 \paragraph{Diagramma dei package}
@@ -257,7 +251,7 @@ di Kafka all'invio del messaggio all'utente finale su Telegram.
 Il TelegramConsumer ha 2 dipendenze esterne:
 \begin{itemize}
     \item \texttt{KafkaConsumer} dalla libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto
-        di una o più code specifiche. È costruito su di esso un adapter, per adattare \textit{KafkaConsumer} alle funzionalità
+        di una o più code specifiche. È costruito su di esso un adapter, per adattare \texttt{KafkaConsumer} alle funzionalità
         di \texttt{Consumer}.
     \item Package \texttt{requests}: effettua le richieste POST e poter inviare i messaggi tramite l'API di Telegram
         al destinatario finale.
@@ -288,7 +282,7 @@ Il metodo \texttt{format()} costruisce il testo del messaggio finale utilizzando
 L'EmailConsumer ha 2 dipendenze esterne:
 \begin{itemize}
     \item \texttt{KafkaConsumer} della libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto dei messaggi
-        proveniente da una o più code specifiche. È costruito su di esso un adapter, per adattare le funzionalità di \textit{KafkaConsumer} a
+        proveniente da una o più code specifiche. È costruito su di esso un adapter, per adattare le funzionalità di \texttt{KafkaConsumer} a
         \texttt{Consumer}.
     \item \texttt{SMTP} della libreria esterna \texttt{smtplib}: server e-mail che, dopo aver effettuato il login,
         invia al destinatario una mail contenente il messaggio finale.
@@ -326,6 +320,6 @@ consumer ecc.).
 
 \subsection{Interazione tra i componenti}
 
-\progetto\ vedendola ad alto livello si identificano 6 componenti. Redmine e GitLab per comunicare con i relativi Producer utilizzano dei webhook in formato JSON,
+Vedendo \progetto\ ad alto livello, si possono identificare sei componenti. Redmine e GitLab, per comunicare con i relativi Producer, utilizzano dei webhook in formato JSON,
 mettendosi in ascolto su determinate porte utilizzando il webserver Flask. Per quanto riguarda la comunicazione tra i Producer e Kafka utilizziamo delle istanze
 di KafkaProucer. Per far comunicare Kafka con i vari Consumer utilizziamo istanze di KafkaConsumer. Nell'ultimo passo, quello che riguarda i Consumer e le applicazioni finali, quali Telegram e Email, usiamo le API messe a disposizione dagli applicativi.
