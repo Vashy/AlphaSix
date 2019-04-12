@@ -38,7 +38,7 @@ Definire il metodo astratto \texttt{webhook\_kind(webhook)}.
 
 Per aggiungere un Consumer di una nuova applicazione, creare una classe che estenda la classe astratta \texttt{Consumer}.
 Definire il metodo astratto \texttt{send(receiver: String, msg: Map)} che, dato in input un destinatario e un insieme di coppie
-chiave-valore, produca un messaggio formattato e lo invii al destinatario, tramite le API dell'applicazione sulla quale inviare il messaggio.
+chiave-valore, produca un messaggio formattato e lo invii al destinatario tramite le API dell'applicazione sulla quale inviare il messaggio.
 È consigliato creare un metodo a parte per la formazione del messaggio.
 
 \begin{figure}[H]
@@ -54,7 +54,7 @@ del topic specifico su Kafka.
 
 \subsection{Aggiungere un MessageProcessor} \label{EstProcessor}
 
-Per far conoscere al Gestore Personale la presenza di un nuovo tipo di Producer, è necessario creare una classe concreta che erediti da \texttt{Processor} e di conseguenza implementare il metodo \texttt{filter\_users\_by\_topic()}.
+Per far conoscere al Gestore Personale la presenza di un nuovo tipo di Producer è necessario creare una classe concreta che erediti da \texttt{Processor} e, di conseguenza, implementare il metodo \texttt{filter\_users\_by\_topic(users: Integer[*], object\_kind: String)} che riceve la lista degli utenti interessati al progetto legato al messaggio e la sua tipologia.
 Questo perchè ogni tecnologia (come Redmine e Gitlab) può avere un tipo diverso di messaggio da elaborare (una messaggio di issue o un messaggio di push).
 
 
