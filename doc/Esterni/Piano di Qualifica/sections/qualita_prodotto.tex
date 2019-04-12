@@ -10,11 +10,11 @@ La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionam
 	\begin{itemize}
 
 		\item \textbf{Metriche}:
-		
+
 		\begin{center}
 			\texttt{M[Prodotto][ID] [Nome]}
 		\end{center}
-	
+
 		\begin{itemize}
 			\item \textbf{Prodotto}: può essere:
 			\begin{itemize}
@@ -25,12 +25,12 @@ La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionam
 			\item \textbf{Nome}: descrive brevemente la metrica.
 		\end{itemize}
 
-		\item \textbf{Obiettivi}: 
-		
+		\item \textbf{Obiettivi}:
+
 		\begin{center}
 			\texttt{Q[Prodotto][ID] [Nome]}
-		\end{center} 
-		
+		\end{center}
+
 		\begin{itemize}
 			\item \textbf{Prodotto}: può essere:
 			\begin{itemize}
@@ -40,27 +40,27 @@ La nomenclatura degli obiettivi di qualità, delle metriche ed il loro funzionam
 			\item \textbf{ID}: numero progressivo di tre cifre.
 			\item \textbf{Nome}: descrive brevemente il processo.
 		\end{itemize}
-		
-		
+
+
 	\end{itemize}
 
 
-\subsection{Prodotti} 
+\subsection{Prodotti}
 Per prodotti è inteso tutto ciò che è concretamente utilizzabile, consultabile o eseguibile.
 Nel contesto di questo progetto i prodotti sono documenti e software.
 
 	\subsubsection{Documenti}
 	I documenti rilasciati devono presentarsi leggibili e comprensibili già ad una prima lettura, con contenuti che rispecchino le premesse del documento.
 
-		\paragraph*{Metriche} 
+		\paragraph{Metriche}
 		\begin{itemize}
 			\item MPD001 \gloss{Indice di Gulpease}
 			\item MPD002 Correttezza ortografica
-		\end{itemize} 
-		
-		\paragraph*{Obiettivi} 		
+		\end{itemize}
+
+		\paragraph{Obiettivi}
 		Le caratteristiche di un documento che vengono analizzate sono:
-		
+
 		\begin{itemize}
 			\item \textbf{QPD001 Leggibilità del testo}: i documenti devono poter essere letti in modo fluido, evitando perciò periodi troppo lunghi o un alto numero di subordinate.
 			\item \textbf{QPD002 Correttezza ortografica}: non devono essere presenti errori ortografici.
@@ -74,7 +74,7 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
 	Per fare ciò, utilizziamo i dati che ci vengono resi disponibili da \gloss{SonarQube} e le norme dello standard PEP 8\footnote{Vedere in \S\ref{riferimenti informativi}} per l'analisi statica del codice.
 	Essi ci consentono di definire delle semplici metriche con dei grandi obiettivi da raggiungere nel corso del tempo.
 
-		\paragraph*{Metriche} 
+		\paragraph{Metriche}
 		\begin{itemize}
 			\item MPS001 Presenza di bug
 			\item MPS002 Presenza di vulnerabilità
@@ -96,9 +96,9 @@ Nel contesto di questo progetto i prodotti sono documenti e software.
             \item MPS018 Test di sistema
             \item MPS019 Test di integrazione
             \item MPS020 Test di unità
-		\end{itemize} 
+		\end{itemize}
 
-		\paragraph*{Obiettivi} 	
+		\paragraph{Obiettivi}
 		L'intero nostro prodotto software mira a raggiungere:
 		\begin{itemize}
 			\item \textbf{QPS001 Assenza di bug}: la totale assenza di bug è essenziale per la buona riuscita al rilascio del nostro software.
@@ -176,18 +176,18 @@ Ogni obiettivo di qualità è indicato con:
 		QPS001 Assenza di bug & MPS001 Presenza di bug & 0\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il codice non deve presentare bug al momento del rilascio per evitare problemi nella sua esecuzione, per questo il suo numero di bug deve essere nullo al termine del progetto.} \\
-		
+
 		\hline \rowcolor{white}
 		QPS002 Assenza di vulnerabilità & MPS002 Presenza di vulnerabilità & 0\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il codice non deve possedere vulnerabilità per quanto riguarda la sicurezza o la manutenibilità entro il termine del progetto.} \\
-		
+
 		\rowcolor{gray!15}
 		\hline \rowcolor{white}
 		QPS003 Assenza di code smell & MPS003 Presenza di code smell & 0\\
 		\rowcolor{gray!15}
 		\multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: per mantenere il codice leggibile, il numero di code smell deve essere nullo al termine del progetto.} \\
-		
+
 		\hline \rowcolor{white}
 		QPS004 Minima duplicazione del codice & MPS004 Duplicazione del codice & 0 - 5\%\\
 		\rowcolor{gray!15}
@@ -205,16 +205,16 @@ Ogni obiettivo di qualità è indicato con:
 
 		\hline \rowcolor{white}
         QPS005 Rispetto delle norme di PEP 8 & MPS007 Nomi di variabili, metodi e classi non normati & 0 \\
-        
+
         \rowcolor{gray!15}
         \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i nomi delle variabili, classi e metodi devono risultare il più descrittivi possibile, per questo sono presenti delle norme per la loro dichiarazione. Il numero di nomi di variabili, metodi e classi non normati deve essere nullo al termine del progetto.}\\
-        
+
         \hline \rowcolor{white}
         QPS005 Rispetto delle norme di PEP 8 & MPS008 Righe non indentate & 0
         \\
         \rowcolor{gray!15}
         \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: la lunghezza delle tabulazioni nel codice deve essere sempre uguale per favorirne la leggibilità, per questo il numero di righe non correttamente indentate deve essere nullo al termine del progetto.}\\
-        
+
         \hline
 	\end{tabularx}}
 \caption{Obiettivi di qualità per il software (1)}
@@ -231,7 +231,7 @@ Ogni obiettivo di qualità è indicato con:
             \textbf{Obiettivo} &
             \textbf{Metrica} &
             \textbf{Valore desiderato}\\
-            
+
             \toprule\rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS009 Stringhe non normate & 0
             \\
@@ -249,7 +249,7 @@ Ogni obiettivo di qualità è indicato con:
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: perché un metodo sia facilmente testabile questo deve avere il minor numero di compiti, un modo per limitarne il numero è stabilire una lunghezza massima di righe (50) dei metodi. Il numero di metodi che eccedono questo limite deve essere nullo al termine del progetto.}\\
-            
+
             \hline\rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS012 Metodi con troppi parametri & 0
             \\
@@ -267,7 +267,7 @@ Ogni obiettivo di qualità è indicato con:
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'ereditarietà è da evitare, per impedire dipendenza tra le classi, per questo il numero di classi che implementano una o più classi concrete deve essere nullo al termine del progetto.}\\
-                        
+
             \hline
         \end{tabularx}}
     \caption{Obiettivi di qualità per il software (2)}
@@ -284,43 +284,43 @@ Ogni obiettivo di qualità è indicato con:
             \textbf{Obiettivo} &
             \textbf{Metrica} &
             \textbf{Valore desiderato}\\
-            
+
             \toprule \rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS015 Commenti non normati & 0
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i commenti, per essere utili devono essere coerenti col codice che commentano, sintetici e ben strutturati; nel nostro caso devono possedere uno spazio prima dell'inizio e cominciare con la lettera maiuscola.}\\
-            
+
             \hline\rowcolor{white}
             QPS005 Rispetto delle norme di PEP 8 & MPS016 Metodi non documentati & 0
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: come per i file, anche per i metodi è necessaria una documentazione per capire subito il compito di tale metodo, per questo il numero di metodi non documentati deve essere nullo al termine del progetto.}\\
-            
+
             \hline\rowcolor{white}
             QPS006 Massima code coverage & MPS017 Code coverage & 80\% - 100\%
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: l'esecuzione dei test deve eseguire tutto il codice testato per fare in modo che questo sia analizzato in tutti i suoi cammini di esecuzione.}\\
-            
+
             \hline\rowcolor{white}
             QPS007 Superamento test di sistema & MPS018 Test di sistema & 100\%
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i test di sistema eseguiti ad ogni fase di verifica devono essere tutti superati.}\\
-            
+
             \hline\rowcolor{white}
             QPS008 Superamento test di integrazione & MPS019 Test di integrazione & 100\%
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i test di integrazione eseguiti ad ogni fase di verifica devono essere tutti superati.}\\
-            
+
             \hline\rowcolor{white}
             QPS009 Superamento test di unità & MPS020 Test di unità & 100\%
             \\
             \rowcolor{gray!15}
             \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: i test di unità eseguiti ad ogni fase di verifica devono essere tutti superati.}\\
-            
+
             \hline
         \end{tabularx}}
     \caption{Obiettivi di qualità per il software (3)}
