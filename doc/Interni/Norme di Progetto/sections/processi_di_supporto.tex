@@ -161,7 +161,7 @@
 			\paragraph{Suddivisione dei documenti}\label{SuddivisioneDeiDocumenti}
 
 			\subparagraph{Documenti interni}
-			Le \NdP\ e lo \SdF\ sono documenti interni, consultabili solo dal team e dal committente, per motivi didattici.
+			Le \NdPd\ e lo \SdFd\ sono documenti interni, consultabili solo dal team e dal committente, per motivi didattici.
 
 			\subparagraph{Documenti esterni}
 			Sono considerati esterni, invece, il \PdPd, il \PdQd, il \Gld\ e l'\AdRd\ che, al contrario dei precedenti, vengono consegnati al proponente.
@@ -174,7 +174,8 @@
 			\begin{itemize}
 				\item \textbf{Informazioni incontro}: lista delle informazioni principali riguardanti la riunione quali luogo, data, orario, ordine del giorno, ecc.
 				\item \textbf{Argomenti}: lista dei principali argomenti trattati, con breve descrizione.
-				\item \textbf{Tracciamento delle decisioni}: contiene il resoconto delle decisioni prese nella riunione, tracciate con un codice nel formato yyyy-mm-dd-n, dove yyyy-mm-dd è la data in cui si è tenuta la riunione e n è il numero della decisione presa.
+				\item \textbf{Tracciamento delle decisioni}: contiene il resoconto delle decisioni prese nella riunione, tracciate con un codice nel formato \texttt{yyyy-mm-dd-n}, dove \texttt{yyyy-mm-dd} è
+				la data in cui si è tenuta la riunione e \texttt{n} è il numero della decisione presa, che parte da 1.
 
 			\end{itemize}
 
@@ -401,7 +402,7 @@
 		Una repository, essendo GitHub un \gloss{version control system}, ci serve per tenere traccia delle modifiche e di tutte le versioni delle nostre componenti.
 		Abbiamo creato due repository principali fino a questo momento:
 		\begin{itemize}
-			\item \textbf{AlphaSix}: contenente tutti i documenti ufficiali redatti.
+			\item \textbf{Butterfly}: contenente tutti i documenti ufficiali redatti e il relativo codice sorgente di \progetto.
 			\item \textbf{Butterfly-PoC}: contenente i sorgenti nello stato in cui erano per la dimostrazione del Proof of Concept e i README esplicativi.
 		\end{itemize}
 
@@ -563,7 +564,7 @@
 			si passa ad effettuare verifica secondo Inspection.
 
 		\subsubsection{Verifica del design e conformità del codice}	\label{VerificaDesign}
-		Il \Ver\ ha il compito di verificare la progettazione da noi svolta.
+		Il \Ver\ ha il compito di verificare la progettazione.
 		In particolare si occupa di:
 		\begin{itemize}
 			\item Controllare che i design pattern che abbiamo scelto vengano effettivamente rappresentati nella maniera corretta tramite i diagrammi e che rispettino gli obiettivi preposti
