@@ -6,7 +6,6 @@ import pathlib
 import json
 
 from flask import Flask, request, session, make_response, redirect, url_for, render_template_string
-
 import flask_restful
 
 from mongo_db.facade import MongoFacade
@@ -100,70 +99,75 @@ class Controller(Observer):
         api: flask_restful.Api,
         model: MongoFacade
     ):
-        self.model = model
-        self.server = server
-        self.api = api
+        self._model = model
+        self._server = server
+        self._api = api
 
-        self.user = User
-        self.preference = Preference
+        self._user = User
+        self._preference = Preference
 
-        self.api.add_resource(
-            self.user, '/api/user'
+        self._api.add_resource(
+            self._user, '/api/user'
         )
 
-        self.api.add_resource(
-            self.preference, '/api/preference'
+        self._api.add_resource(
+            self._preference, '/api/preference'
         )
 
-        self.user.addObserver(self.user, obs=self)
-        self.preference.addObserver(self.preference, obs=self)
+        self._user.addObserver(self._user, obs=self)
+        self._preference.addObserver(self._preference, obs=self)
 
-        self.server.add_url_rule(
+        self._server.add_url_rule(
             '/',
             'panel',
             self.panel,
             methods=['GET', 'POST']
         )
 
-        self.server.add_url_rule(
+        self._server.add_url_rule(
             '/web_user',
             'web_user',
             self.web_user,
             methods=['GET', 'POST', 'PUT', 'DELETE']
         )
 
-        self.server.add_url_rule(
+        self._server.add_url_rule(
             '/web_preference',
             'web_preference',
             self.web_preference,
             methods=['GET', 'POST', 'PUT', 'DELETE']
         )
 
-    def _users_id(self, userid: str):
+    def _users_id(self):
         ids = []
-        for user in self.model.users():
-            ids.append(user[userid])
+        for user in self._model.users():
+            ids.append(user['_id'])
         return ids
 
     def _check_session(self):
         return 'userid' in session
 
-    def _check_values(self, request: request):
+    def _check_values(self):
         return len(request.values) != 0
 
-    def access(self, request: request):
+    def access(self):
         fileHtml = html / 'access.html'
         page = fileHtml.read_text()
-        userid = request.form.get('userid')
-        if request.form.get('userid'):
-            if self.model.user_exists(request.form['userid']):
-                session['userid'] = request.form['userid']
+        userid = request.values.get('userid')
+        if userid:
+            if self._model.user_exists(userid):
+                session['userid'] = userid
                 return redirect(url_for('panel'), code=303)
             else:
                 page = page.replace(
                     '*access*',
                     '<p>Accesso non riuscito. ' + userid + ' non trovato.</p>')
                 page = page.replace('*userid*', userid)
+        if request.values.get('access'):
+            page = page.replace(
+                    '*access*',
+                    '<p>Si prega di inserire un identificativo\
+                    per eseguire l\'accesso.</p>')
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
         return page
@@ -173,14 +177,118 @@ class Controller(Observer):
             fileHtml = html / 'panel.html'
             return render_template_string(fileHtml.read_text())
         else:
-            return self.access(request)
+            return self.access()
+
+    def add_user(self):
+        fileHtml = html / 'adduser.html'
+        page = fileHtml.read_text()
+        nome = request.values.get('nome')
+        cognome = request.values.get('cognome')
+        email = request.values.get('email')
+        telegram = request.values.get('telegram')
+        if email or telegram:
+            if nome:
+                page = page.replace('*nome*', nome)
+            if cognome:
+                page = page.replace('*cognome*', cognome)
+            if email:
+                page = page.replace('*email*', email)
+            if telegram:
+                page = page.replace('*telegram*', telegram)
+            if (
+                (email and self._model.user_exists(email)) or
+                (telegram and self._model.user_exists(telegram))
+            ):
+                page = page.replace(
+                    '*adduser*',
+                    '<p>L\'utente inserito esiste già.</p>'
+                )
+            else:
+                page = page.replace(
+                    '*adduser*',
+                    '<p>Utente inserito correttamente.</p>'
+                )
+                self._model.insert_user(
+                    name=nome,
+                    surname=cognome,
+                    email=email,
+                    telegram=telegram
+                )
+        if request.values.get('adduser'):
+            page = page.replace(
+                    '*adduser*',
+                    '<p>Si prega di inserire almeno email o telegram\
+                    per inserire l\'utente.</p>')
+        page = page.replace('*nome*', '')
+        page = page.replace('*cognome*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*adduser*', '')
+        return page
+
+    def modify_user(self):
+        fileHtml = html / 'modifyuser.html'
+        page = fileHtml.read_text()
+        nome = request.values.get('nome')
+        cognome = request.values.get('cognome')
+        email = request.values.get('email')
+        telegram = request.values.get('telegram')
+        if email or telegram:
+            if nome:
+                page = page.replace('*nome*', nome)
+            if cognome:
+                page = page.replace('*cognome*', cognome)
+            if email:
+                page = page.replace('*email*', email)
+            if telegram:
+                page = page.replace('*telegram*', telegram)
+            if (
+                (
+                    (email!=session['userid']) and
+                    (telegram!=session['userid'])
+                ) and
+                (email and self._model.user_exists(email)) or
+                (telegram and self._model.user_exists(telegram))
+            ):
+                page = page.replace(
+                    '*modifyuser*',
+                    '<p>I dati inseriti confliggono con altri già esistenti.</p>'
+                )
+            else:
+                page = page.replace(
+                    '*modifyuser*',
+                    '<p>Utente modificato correttamente.</p>'
+                )
+#                self._model.insert_user(
+#                    name=nome,
+#                    surname=cognome,
+#                    email=email,
+#                    telegram=telegram
+#                )
+        page = page.replace('*nome*', '')
+        page = page.replace('*cognome*', '')
+        page = page.replace('*email*', '')
+        page = page.replace('*telegram*', '')
+        page = page.replace('*modifyuser*', '')
+        return page
 
     def remove_user(self):
-        values = self._users_id('_id')
+        fileHtml = html / 'removeuser.html'
+        page = fileHtml.read_text()
+        userid = request.values.get('userid')
+        if userid:
+            page = page.replace(
+                '*removeuser*',
+                '<p>Utente rimosso correttamente.</p>'
+            )
+            print(self._model.delete_user(userid).deleted_count)
+        page = page.replace('*removeuser*', '')
+
+        values = self._users_id()
         display = []
         for user in values:
-            telegram = self.model.get_user_telegram(user)
-            email = self.model.get_user_email(user)
+            telegram = self._model.get_user_telegram(user)
+            email = self._model.get_user_email(user)
             if telegram is None:
                 telegram = ''
             if email is None:
@@ -190,38 +298,34 @@ class Controller(Observer):
                 ' ' +
                 email
             )
-        options = '<select>'
-        for i,voice in enumerate(display):
-            options += '<option value="' + str(values[i]) + '">' + display[i] + '</option>'
+        options = '<select id="userid" name="userid">'
+        for i, voice in enumerate(display):
+            options += '<option value="' + str(values[i]) + '">'
+            options += display[i]
+            options += '</option>'
         options += '</select>'
-        fileHtml = html / 'removeuser.html'
-        page = fileHtml.read_text()
         return page.replace('*userids*', options)
-
 
     def web_user(self):
         if self._check_session():
-            if(not self._check_values(request)):
-                if request.method == 'PUT':
-                    fileHtml = html / 'adduser.html'
-                    page = fileHtml.read_text()
-                elif request.method == 'POST':
-                    fileHtml = html / 'modifyuser.html'
-                    page = fileHtml.read_text()
-                elif request.method == 'DELETE':
-                    page = self.remove_user()
-                return render_template_string(page)
+            if request.method == 'POST':
+                page = self.add_user()
+            elif request.method == 'PUT':
+                page = self.modify_user()
+            elif request.method == 'DELETE':
+                page = self.remove_user()
+            return render_template_string(page)
         else:
-            return self.access(request)
+            return self.access()
 
     def web_preference(self):
         if self._check_session():
-            if(not self._check_values(request)):
+            if(not self._check_values()):
                 fileHtml = html / 'preference.html'
                 page = fileHtml.read_text()
                 return render_template_string(page)
         else:
-            return self.access(request)
+            return self.access()
 
     def api_user(self, request_type: str, msg: str):
         if request_type == 'GET':
@@ -237,9 +341,9 @@ class Controller(Observer):
 
     def update(self, resource: str, request_type: str, msg: str):
         if resource == 'user':
-            return self.api_user(request_type, msg)
+            return self._api_user(request_type, msg)
         elif resource == 'preference':
-            return self.api_preference(request_type, msg)
+            return self._api_preference(request_type, msg)
 
 
 def main():

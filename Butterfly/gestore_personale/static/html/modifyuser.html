@@ -25,7 +25,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
 -->
 
 <!DOCTYPE html>
-<html>
+<html id="html">
     <head>
         <title>Modifica utente | Butterfly</title>
         <meta charset="UTF-8"/>
@@ -34,18 +34,18 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
     <body lang="it">
         <div>
             <h1>Butterfly</h1>
-            <form action="/modifyuser" method="post">
+            <form id="data">
                 <label for="nome">Nome:</label>
-                <input id="nome" name="nome" type="text" placeholder="Inserire nome" value="Mattia"/>
+                <input id="nome" name="nome" type="text" placeholder="Inserire nome" value="*nome*"/>
                 <label for="cognome">Cognome:</label>
-                <input id="cognome" name="cognome" type="text" placeholder="Inserire cognome" value="Ridolfi"/>
+                <input id="cognome" name="cognome" type="text" placeholder="Inserire cognome" value="*cognome*"/>
                 <label for="email">Email:</label>
-                <input id="email" name="email" type="email" placeholder="Inserire email" value="mattia.ridolfi@gmail.com"/>
+                <input id="email" name="email" type="email" placeholder="Inserire email" value="*email*"/>
                 <label for="telegram">Telegram:</label>
-                <input id="telegram" name="telegram" type="text" placeholder="Inserire Telegram ID" value="@user3"/>
-                <input id="modifyuser" name="modifyuser" type="submit" value="Modifica utente"/>
+                <input id="telegram" name="telegram" type="text" placeholder="Inserire Telegram ID" value="*telegram*"/>
+                <input id="modifyuser" name="modifyuser" type="button" value="Modifica utente"/>
             </form>
-            <p>Utente modificato correttamente.</p>
+            *modifyuser*
         </div>
     </body>
 </html>

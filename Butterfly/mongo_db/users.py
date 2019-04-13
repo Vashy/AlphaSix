@@ -14,12 +14,7 @@ class MongoUsers:
             'name': obj['name'],
             'surname': obj['surname'],
             'telegram': obj['telegram'],
-            'email': obj['email'],
-            'preferenza': None,
-            'topics': [],
-            'keywords': [],
-            'irreperibilità': obj['irreperibilità'],
-            'sostituto': None,
+            'email': obj['email']
         }
 
     def users(self, mongofilter={}):
@@ -48,20 +43,15 @@ class MongoUsers:
         users = self._mongo.read('users')
 
         # Valori di default dei campi
-        deaultfields = {
+        defaultfields = {
             '_id': None,
             'name': None,
             'surname': None,
             'telegram': None,
-            'email': None,
-            'preferenza': None,
-            'irreperibilità': [],
-            'sostituto': None,
-            'keywords': [],
-            'topics': [],
+            'email': None
         }
 
-        new_user = copy.copy(deaultfields)  # Copia profonda del dict default
+        new_user = copy.copy(defaultfields)  # Copia profonda del dict default
 
         # Aggiorna i valori di default con quelli passati al costruttore
         for key in new_user:
@@ -101,14 +91,14 @@ class MongoUsers:
 
         # Via libera all'aggiunta al DB
         if new_user['_id'] is None:  # Per non mettere _id = None sul DB
-            partial_result = MongoUsers._user_dict_no_id(new_user)
+            partial_result = self._user_dict_no_id(new_user)
             result = self._mongo.create(
                 partial_result,
                 'users'
             )
 
         else:
-            partial_result = MongoUsers._user_dict_no_id(new_user)
+            partial_result = self._user_dict_no_id(new_user)
             partial_result['_id'] = new_user['_id']
             result = self._mongo.create(
                 partial_result,
@@ -120,19 +110,19 @@ class MongoUsers:
         # mano a mano che vengono considerati validi. AssertionError
         # verrà lanciata se qualcosa lo è
 
-        # Valida e aggiunge la preferenza
-        if new_user['preferenza'] is not None:
-            self.update_user_preference(
-                new_user[new_user['preferenza']],
-                new_user['preferenza']
-            )
+#        # Valida e aggiunge la preferenza
+#        if new_user['preferenza'] is not None:
+#            self.update_user_preference(
+#                new_user[new_user['preferenza']],
+#                new_user['preferenza']
+#            )
 
-        # Valida e aggiunge i topic
-        for topic in new_user['topics']:
-            self.add_user_topic_from_id(id, topic)
+#        # Valida e aggiunge i topic
+#        for topic in new_user['topics']:
+#            self.add_user_topic_from_id(id, topic)
 
-        # Aggiunge le kw
-        self.add_keywords(id, *new_user['keywords'])
+#        # Aggiunge le kw
+#        self.add_keywords(id, *new_user['keywords'])
 
 #        # Valida e aggiunge il sostituto
 #        self.update_user_sostituto(id, new_user['sostituto'])
@@ -153,16 +143,14 @@ class MongoUsers:
                 {'telegram': user},
                 {'email': user},
             ]
-        })[0]
+        }).next()
 
     def delete(self, user: str):
         """Rimuove un documento che corrisponde a
         `user`, se presente. `user` è l'identificativo nel db
         """
         return self._mongo.delete(
-            {
-                {'_id': user},
-            }, 'users'
+            {'_id': user}, 'users'
         )
 
     def update_name(self, user: str, name: str):
@@ -350,7 +338,7 @@ class MongoUsers:
         cursor = self.users({
             {'_id': user}
         })
-        return cursor[0]['keywords']
+        return cursor.next()['keywords']
 
     # TODO
     def add_labels(self, user: str, *new_labels):
@@ -373,7 +361,7 @@ class MongoUsers:
                 {'email': id},
             ]
         })
-        return cursor[0]['labels']
+        return cursor.next()['labels']
 
     def _get_users_by_priority(self, url: str, priority: int):
         return self.users({
@@ -423,15 +411,13 @@ class MongoUsers:
 
     def get_user_telegram(self, user: int):
         return self.users({
-            '_id': user,
-            'telegram': {'$exists': 'true', '$ne': ''}
-        })[0]['telegram']
+            '_id': user
+        }).next()['telegram']
 
     def get_user_email(self, user: int):
         return self.users({
-            '_id': user,
-            'email': {'$exists': 'true', '$ne': ''}
-        })[0]['email']
+            '_id': user
+        }).next()['email']
 
     def get_match_keywords(self, users: list, commit: str) -> list:
         keyword_user = []

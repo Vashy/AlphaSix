@@ -26,7 +26,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
 
 
 <!DOCTYPE html>
-<html>
+<html id="html">
     <head>
         <title>Rimozione utente | Butterfly</title>
         <meta charset="UTF-8"/>
@@ -35,12 +35,12 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
     <body lang="it">
         <div>
             <h1>Rimozione utente | Butterfly</h1>
-            <form action="/removeuser" method="post">
+            <form id="data">
                 <label for="userid">Email o Telegram:</label>
                 *userids*
-                <input id="removeuser" name="removeuser" type="submit" value="Rimuovi utente"/>
+                <input id="removeuser" name="removeuser" type="button" value="Rimuovi utente"/>
             </form>
-            <p>Utente rimosso correttamente dal Gestore Personale.</p>
+            *removeuser*
         </div>
     </body>
 </html>

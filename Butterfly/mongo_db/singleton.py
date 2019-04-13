@@ -1,4 +1,5 @@
 import pymongo
+#import bson.objectid.ObjectId
 
 
 class MongoSingleton:
@@ -31,13 +32,14 @@ class MongoSingleton:
             return self._db[collection_name]
 
         def delete(
-                self, filter: dict, collection: str
+                self, mongofilter: dict, collection: str
         ) -> pymongo.collection.DeleteResult:
             """Rimuove un documento che corrisponde al
             `filter`, se presente, e restituisce il risultato.
             Restituisce un `DeleteResult`.
             """
-            return MongoSingleton.instance._db[collection].delete_one(filter)
+            # return self._db[collection].delete_one({'_id':ObjectId('')})
+            return self._db[collection].delete_one(mongofilter)
 
 #    try:
 #        _INSTANCE = Singleton('butterfly')

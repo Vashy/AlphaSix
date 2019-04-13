@@ -13,7 +13,7 @@ class MongoFacade():
         self._projects = mongo_projects
 
     def insert_user(self, **fields):
-        self._users.create(fields)
+        self._users.create(**fields)
 
     def read_user(self, user: str):
         return self._users.read(user)
@@ -22,7 +22,7 @@ class MongoFacade():
         return self._users.users(mongofilter)
 
     def delete_user(self, user: str):
-        self._users.delete(user)
+        return self._users.delete(user)
 
     def update_user_name(self, user: str, name: str):
         self._users.update_user_name(user, name)
@@ -60,8 +60,8 @@ class MongoFacade():
     def user_exists(self, userid: str):
         return self._users.exists(userid)
 
-    def user_has_email(self, email: str):
-        return self._users.user_has_email(email)
+#    def user_has_email(self, email: str):
+#        return self._users.user_has_email(email)
 
 # Metodi per la ricerca dei dati
 
