@@ -1,0 +1,108 @@
+users:
+  -
+    name: Timoty
+    surname: Granziero
+    email: null
+    telegram: 12312
+    preference: telegram
+    irreperibilita:
+      - 2018/12/05
+      - 2019/04/05
+      - 2019/04/06
+      - 2019/04/07
+    priorities:
+      -
+        url: http://localhost/gitlab/gitlab-2
+        priority: 3
+        topics:
+          - java
+          - coding
+        keywords:
+          - kw1
+          - kw2
+          - kw3
+  -
+    name: Simone
+    surname: Granziero
+    email: simone.granziero@email.it
+    telegram: 123432
+    preference: email
+    irreperibilita:
+      - 2018/12/05
+      - 2019/04/05
+      - 2019/04/06
+      - 2019/04/07
+    priorities:
+      -
+        url: http://localhost/redmine/project-1
+        priority: 1
+        topics:
+          - CI
+          - bug
+        keywords:
+          - kw1
+          - kw2
+          - kw3
+      -
+        url: http://localhost/gitlab/gitlab-2
+        priority: 3
+        topics:
+          - java
+          - coding
+        keywords:
+          - kw1
+          - kw2
+          - kw3
+
+projects:
+  -
+    url: "http://localhost/redmine/project-1"
+    name: Project-1
+    app: redmine
+    topics:
+      - enhancement
+      - bug
+      - CI
+  -
+    url: "http://localhost/gitlab/gitlab-1"
+    name: Gitlab-1
+    app: gitlab
+    topics:
+      - python
+      - coding
+      - bug
+      - kafka
+  -
+    url: "http://localhost/gitlab/gitlab-2"
+    name: Gitlab-2
+    app: gitlab
+    topics:
+      - java
+      - coding
+      - enhancement
+      - bug
+  -
+    url: "http://localhost/redmine/project-2"
+    name: Project-2
+    app: redmine
+    topics:
+      - golang
+      - bug
+      - wontfix
+  -
+    url: "http://localhost/redmine/project-4"
+    name: Project-4
+    app: redmine
+    topics:
+      - bug
+      - python
+      - docker
+
+
+# telegram:
+#   -
+#     - id: 123123
+#     - user: "@aaaaa"
+#   -
+#     - id: 234234
+#     - user: "@bbbb"

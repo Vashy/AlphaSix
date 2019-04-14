@@ -1,162 +1,127 @@
 {
-    "users" : [
+  "users": [
+    {
+      "irreperibilita": [
+        "2018/12/05",
+        "2019/04/05",
+        "2019/04/06",
+        "2019/04/07"
+      ],
+      "surname": "Granziero",
+      "name": "Timoty",
+      "telegram": 12312,
+      "email": null,
+      "priorities": [
         {
-            "_id": 1,
-            "name" : "Timoty",
-            "surname" : "Granziero",
-            "email" : null,
-            "telegram" : "@user1",
-            "topics" : [
-                1,
-                2,
-                3
-            ],
-            "keywords" : [
-                "mongodb",
-                "python",
-                "test"
-            ],
-            "irreperibilità" : [
-                "2019-06-17",
-                "2019-06-18"
-            ],
-            "priorities": [
-                {
-                    "project-url": "http://localhost/redmine/project-1",
-                    "priority": 3
-                },
-                {
-                    "project-url": "http://localhost/redmine/project-2",
-                    "priority": 2
-                }
-            ],
-            "preferenza": "telegram",
-            "sostituto" : 2
-        },
-        {
-            "_id": 2,
-            "name" : "Simone",
-            "surname" : "Granziero",
-            "telegram" : "@user2",
-            "email" : "simone.granziero@gmail.com",
-            "topics" : [
-                2,
-                4
-            ],
-            "keywords" : [
-                "bug",
-                "banana"
-            ],
-            "irreperibilità" : [
-                "2019-07-17",
-                "2019-04-01",
-                "2019-04-05"
-            ],
-            "priorities": [
-                {
-                    "project-url": "http://localhost/gitlab/gitlab-2",
-                    "priority": 5
-                },
-                {
-                    "project-url": "http://localhost/redmine/project-4",
-                    "priority": 2
-                }
-            ],
-            "preferenza": "email",
-            "sostituto" : 1
-        },
-        {
-            "_id": 3,
-            "name" : "Mattia",
-            "surname" : "Ridolfi",
-            "telegram" : null,
-            "email" : "mattia.ridolfi@gmail.com",
-            "topics" : [
-                
-            ],
-            "keywords" : [
-                "CI",
-                "jenkins"
-            ],
-            "irreperibilità" : [
-                "2019-07-17",
-                "2019-07-20"
-            ],
-            "priorities": [
-                {
-                    "project-url": "http://localhost/gitlab/gitlab-1",
-                    "priority": 3
-                },
-                {
-                    "project-url": "http://localhost/redmine/project-2",
-                    "priority": 2
-                },
-                {
-                    "project-url": "http://localhost/redmine/project-4",
-                    "priority": 2
-                }
-            ],
-            "preferenza": "email",
-            "sostituto" : 1
+          "url": "http://localhost/gitlab/gitlab-2",
+          "priority": 3,
+          "topics": [
+            "java",
+            "coding"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
         }
-    ],
-    "projects" : [
+      ],
+      "preference": "telegram"
+    },
+    {
+      "irreperibilita": [
+        "2018/12/05",
+        "2019/04/05",
+        "2019/04/06",
+        "2019/04/07"
+      ],
+      "surname": "Granziero",
+      "name": "Simone",
+      "telegram": 123432,
+      "email": "simone.granziero@email.it",
+      "priorities": [
         {
-            "url" : "http://localhost/redmine/project-1",
-            "name": "Project-1",
-            "app" : "redmine" 
+          "url": "http://localhost/redmine/project-1",
+          "priority": 1,
+          "topics": [
+            "CI",
+            "bug"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
         },
         {
-            "url" : "http://localhost/gitlab/gitlab-1",
-            "name": "Gitlab-1",
-            "app" : "gitlab"
-        },
-        {
-            "url" : "http://localhost/gitlab/gitlab-2",
-            "name": "Gitlab-2",
-            "app" : "gitlab"
-        },
-        {
-            "url" : "http://localhost/redmine/project-2",
-            "name": "Project-2",
-            "app" : "redmine"
-        },
-        {
-            "url": "http://localhost/redmine/project-4",
-            "name": "Project-4",
-            "app": "redmine"
+          "url": "http://localhost/gitlab/gitlab-2",
+          "priority": 3,
+          "topics": [
+            "java",
+            "coding"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
         }
-    ],
-    "topics" : [
-        {
-            "_id" : 0,
-            "label" : "rivedere",
-            "project" : "http://localhost/redmine/project-4"
-        },
-        {
-            "_id" : 1,
-            "label" : "bug",
-            "project" : "http://localhost/redmine/project-1"
-        },
-        {
-            "_id" : 2,
-            "label" : "enhancement",
-            "project" : "http://localhost/gitlab/gitlab-2"
-        },
-        {
-            "_id" : 3,
-            "label" : "bug",
-            "project" : "http://localhost/gitlab/gitlab-2"
-        },
-        {
-            "_id" : 4,
-            "label" : "wip",
-            "project" : "http://localhost/redmine/project-2"
-        },
-        {
-            "_id" : 5,
-            "label" : "wontfix",
-            "project" : "http://localhost/gitlab/gitlab-2"
-        }
-    ]
+      ],
+      "preference": "email"
+    }
+  ],
+  "projects": [
+    {
+      "url": "http://localhost/redmine/project-1",
+      "app": "redmine",
+      "name": "Project-1",
+      "topics": [
+        "enhancement",
+        "bug",
+        "CI"
+      ]
+    },
+    {
+      "url": "http://localhost/gitlab/gitlab-1",
+      "app": "gitlab",
+      "name": "Gitlab-1",
+      "topics": [
+        "python",
+        "coding",
+        "bug",
+        "kafka"
+      ]
+    },
+    {
+      "url": "http://localhost/gitlab/gitlab-2",
+      "app": "gitlab",
+      "name": "Gitlab-2",
+      "topics": [
+        "java",
+        "coding",
+        "enhancement",
+        "bug"
+      ]
+    },
+    {
+      "url": "http://localhost/redmine/project-2",
+      "app": "redmine",
+      "name": "Project-2",
+      "topics": [
+        "golang",
+        "bug",
+        "wontfix"
+      ]
+    },
+    {
+      "url": "http://localhost/redmine/project-4",
+      "app": "redmine",
+      "name": "Project-4",
+      "topics": [
+        "bug",
+        "python",
+        "docker"
+      ]
+    }
+  ]
 }
