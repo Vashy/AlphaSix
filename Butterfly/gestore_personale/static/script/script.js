@@ -10,10 +10,15 @@ function panel(request, url, method, formId, requestId, outputId){
         if (request.readyState == 4 && request.status == 200){
             if (request.responseText){
                 document.getElementById(outputId).innerHTML = request.responseText;
-                addListener('adduser', function (){addUserPanel(request, 'adduser')});
-                addListener('removeuser', function (){removeUserPanel(request, 'removeuser')});
-                addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser')});
-                addListener('preference', function (){modifyPreferencePanel(request, 'preference')});
+                addListener('adduser', function (){addUserPanel(request, 'adduser', 'html')});
+                addListener('removeuser', function (){removeUserPanel(request, 'removeuser', 'html')});
+                addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser', 'html')});
+                addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html')});
+                addListener('modifytopics', function (){modifyPreferencePanel(request, 'preference', 'topics')});
+                addListener('addproject', function (){modifyPreferencePanel(request, 'preference', 'projects')});
+                addListener('removeproject', function (){modifyPreferencePanel(request, 'preference', 'projects')});
+                addListener('indisponibilita', function (){modifyPreferencePanel(request, 'preference', 'availability')});
+                addListener('piattaforma', function (){modifyPreferencePanel(request, 'preference', 'platform')});
             }
         }
     };
