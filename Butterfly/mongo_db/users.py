@@ -25,15 +25,15 @@ class MongoUsers:
         """
         return self._mongo.read('users').find(mongofilter)
 
-    def exists(self, mongoid: str) -> bool:
+    def exists(self, user: str) -> bool:
         """Restituisce `True` se l'`id` di un utente
         (che può essere Telegram o Email) è salvato nel DB.
         """
         count = self._mongo.read('users').count_documents({
             '$or': [
                 # {'_id': mongoid},
-                {'telegram': mongoid},
-                {'email': mongoid},
+                {'telegram': user},
+                {'email': user},
             ]
         })
         return count != 0
@@ -84,10 +84,10 @@ class MongoUsers:
             raise AssertionError(f'Email {new_user["email"]} già presente')
 
         # Ottiene un id valido
-        if new_user['telegram'] is None:
-            id = new_user['email']
-        else:
-            id = new_user['telegram']
+        # if new_user['telegram'] is None:
+        #     identifier = new_user['email']
+        # else:
+        #     identifier = new_user['telegram']
 
         # Via libera all'aggiunta al DB
         if new_user['_id'] is None:  # Per non mettere _id = None sul DB
@@ -136,7 +136,7 @@ class MongoUsers:
         Raises:
         `AssertionError` -- se `user` non è presente nel DB.
         """
-        assert self.exists(id), f'User {id} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         return self.users({
             '$or': [
@@ -145,13 +145,24 @@ class MongoUsers:
             ]
         }).next()
 
-    def delete(self, user: str):
+    def delete_from_id(self, user: str):
         """Rimuove un documento che corrisponde a
         `user`, se presente. `user` è l'identificativo nel db
         """
         return self._mongo.delete(
             {'_id': user}, 'users'
         )
+
+    def delete(self, user: str):
+        """Rimuove un documento che corrisponde a
+        `user`, che può essere `telegram` o `email`.
+        """
+        return self._mongo.delete({
+            '$or': [
+                {'telegram': user},
+                {'email': user},
+            ]
+        }, 'users')
 
     def update_name(self, user: str, name: str):
         """Aggiorna il `name` dell'utente corrispondente a
@@ -208,9 +219,7 @@ class MongoUsers:
             ],
             'telegram': None,
         })
-        if count == 1:
-            return False
-        return True
+        return count != 1
 
     def _user_has_email(self, user: str) -> bool:
         """Restituisce `True` se lo user corrispondente a `user`
@@ -225,9 +234,7 @@ class MongoUsers:
             ],
             'email': None,
         })
-        if count == 1:
-            return False
-        return True
+        return count != 1
 
     def update_telegram(self, user: str, telegram: str):
         """Aggiorna lo user ID di Telegram dell'utente corrispondente a

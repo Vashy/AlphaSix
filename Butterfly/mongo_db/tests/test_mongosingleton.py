@@ -1,5 +1,5 @@
 """
-File: test_mongousers.py
+File: test_mongosingleton.py
 Data creazione: 2019-04-01
 
 <descrizione>
@@ -28,7 +28,7 @@ import unittest
 from mongo_db.singleton import MongoSingleton
 
 
-class TestDBController(unittest.TestCase):
+class TestMongoSingleton(unittest.TestCase):
 
     # Chiamato all'inizio
     @classmethod
