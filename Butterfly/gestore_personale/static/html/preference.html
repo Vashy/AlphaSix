@@ -35,7 +35,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
     <body lang="it">
         <div>
             <h1>Butterfly</h1>
-            <form>
+            <form id="topics">
                 <table border="1">
                     <tr>
                         <th>
@@ -107,7 +107,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                     </tr>
                 </table>
             </form>
-            <form>
+            <form id="projects">
                 <select>
                     <option value="1">Butterfly</option>
                     <option value="2">Colletta</option>
@@ -115,10 +115,10 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                     <option value="4">Progetto4</option>
                     <option value="5">Progetto5</option>
                 </select>
-                <input type="button" value="Aggiungi il progetto">
-                <input type="button" value="Rimuovi il progetto">
+                <input id="addproject" name="addproject" type="button" value="Aggiungi il progetto">
+                <input id="removeproject" name="removeproject" type="button" value="Rimuovi il progetto">
             </form>
-            <form action="/indisponibilita" method="post">
+            <form id="availability">
                 <fieldset>
                     <legend>Giorni di indisponibilità</legend>
                     <div id="calendario">
@@ -129,19 +129,19 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                             calendario.innerHTML += '<label for="'+i+'">'+i+'</label><input type="checkbox" name="'+i+'">'
                         }
                     </script>
-                    <input name="indisponibilita" type="button" value="Mese precedente"/>
-                    <input name="indisponibilita" type="button" value="Mese successivo"/>
+                    <input type="button" value="Mese precedente"/>
+                    <input type="button" value="Mese successivo"/>
                     <input id="indisponibilita" name="indisponibilita" type="button" value="Modifica indisponibilità"/>
                 </fieldset>
             </form>
-            <form action="/favouriteplatform" method="post">
+            <form id="platform">
                 <fieldset>
                     <legend>Piattaforma preferita</legend>
                     <label for="email">Email</label>
                     <input name="platform" id="email" type="radio" checked="checked"/>
                     <label for="telegram">Telegram</label>
                     <input name="platform" id="telegram" type="radio" />
-                    <input id="favouriteplatform" name="favouriteplatform" type="button" value="Modifica piattaforma preferita"/>
+                    <input id="piattaforma" name="piattaforma" type="button" value="Modifica piattaforma preferita"/>
                 </fieldset>
             </form>
         </div>

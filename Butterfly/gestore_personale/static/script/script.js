@@ -1,4 +1,4 @@
-function panel(request, url, method, formId, requestId){
+function panel(request, url, method, formId, requestId, outputId){
     var form = document.getElementById(formId)
     var formData = new FormData(form);
     if(requestId){
@@ -9,7 +9,7 @@ function panel(request, url, method, formId, requestId){
     request.onreadystatechange = function(){
         if (request.readyState == 4 && request.status == 200){
             if (request.responseText){
-                document.getElementById('html').innerHTML = request.responseText;
+                document.getElementById(outputId).innerHTML = request.responseText;
                 addListener('adduser', function (){addUserPanel(request, 'adduser')});
                 addListener('removeuser', function (){removeUserPanel(request, 'removeuser')});
                 addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser')});
@@ -19,20 +19,20 @@ function panel(request, url, method, formId, requestId){
     };
 }
 
-function addUserPanel(request, id){
-    panel(request, 'web_user', 'POST', 'data', id)
+function addUserPanel(request, id, outputId){
+    panel(request, 'web_user', 'POST', 'data', id, outputId)
 }
 
-function removeUserPanel(request, id){
-    panel(request, 'web_user', 'DELETE', 'data', id)
+function removeUserPanel(request, id, outputId){
+    panel(request, 'web_user', 'DELETE', 'data', id, outputId)
 }
 
-function modifyUserPanel(request, id){
-    panel(request, 'web_user', 'PUT', 'data', id)
+function modifyUserPanel(request, id, outputId){
+    panel(request, 'web_user', 'PUT', 'data', id, outputId)
 }
 
-function modifyPreferencePanel(request, id){
-    panel(request, 'web_preference', 'PUT', 'data', id)
+function modifyPreferencePanel(request, id, outputId){
+    panel(request, 'web_preference', 'POST', 'data', id, outputId)
 }
 
 function addListener(id, listener) {
@@ -44,8 +44,8 @@ function addListener(id, listener) {
 
 window.onload = function () {
     var request = new XMLHttpRequest();
-    addListener('adduser', function (){addUserPanel(request, null)});
-    addListener('removeuser', function (){removeUserPanel(request, null)});
-    addListener('modifyuser', function (){modifyUserPanel(request, null)});
-    addListener('preference', function (){modifyPreferencePanel(request, null)});
+    addListener('adduser', function (){addUserPanel(request, null, 'html')});
+    addListener('removeuser', function (){removeUserPanel(request, null, 'html')});
+    addListener('modifyuser', function (){modifyUserPanel(request, null, 'html')});
+    addListener('preference', function (){modifyPreferencePanel(request, null, 'html')});
 };

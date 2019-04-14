@@ -135,7 +135,7 @@ class Controller(Observer):
             '/web_preference',
             'web_preference',
             self.web_preference,
-            methods=['GET', 'POST', 'PUT', 'DELETE']
+            methods=['POST']
         )
 
     def _users_id(self):
@@ -339,12 +339,15 @@ class Controller(Observer):
         else:
             return self.access()
 
+    def modify_preference(self):
+        fileHtml = html / 'preference.html'
+        page = fileHtml.read_text()
+        return page
+
     def web_preference(self):
         if self._check_session():
-            if(not self._check_values()):
-                fileHtml = html / 'preference.html'
-                page = fileHtml.read_text()
-                return render_template_string(page)
+            page = self.modify_preference()
+            return render_template_string(page)
         else:
             return self.access()
 
