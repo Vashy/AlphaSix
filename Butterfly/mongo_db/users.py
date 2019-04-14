@@ -155,17 +155,17 @@ class MongoUsers:
 
     def update_name(self, user: str, name: str):
         """Aggiorna il `name` dell'utente corrispondente a
-        `id` (Telegram o Email).
+        `user` (Telegram o Email).
 
         Raises:
-        `AssertionError` -- se `id` non è presente nel DB
+        `AssertionError` -- se `user` non è presente nel DB
         """
         assert self.exists(user), f'User {user} inesistente'
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'telegram': id},
-                {'email': id},
+                {'telegram': user},
+                {'email': user},
             ]},
             {
                 '$set': {
@@ -176,17 +176,17 @@ class MongoUsers:
 
     def update_surname(self, user: str, surname: str):
         """Aggiorna il `surname` dell'utente corrispondente a
-        `id` (Telegram o Email).
+        `user` (Telegram o Email).
 
         Raises:
-        `AssertionError` -- se `id` non è presente nel DB
+        `AssertionError` -- se `user` non è presente nel DB
         """
         assert self.exists(user), f'User {user} inesistente'
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'telegram': id},
-                {'email': id},
+                {'telegram': user},
+                {'email': user},
             ]},
             {
                 '$set': {
@@ -195,14 +195,48 @@ class MongoUsers:
             }
         )
 
+    def _user_has_telegram(self, user: str) -> bool:
+        """Restituisce `True` se lo user corrispondente a `user`
+        ha il campo `telegram` impostato.
+        """
+        assert self.user_exists(user), f'User {user} inesistente'
+
+        count = self.collection('users').count_documents({
+            '$or': [
+                {'telegram': user},
+                {'email': user},
+            ],
+            'telegram': None,
+        })
+        if count == 1:
+            return False
+        return True
+
+    def _user_has_email(self, user: str) -> bool:
+        """Restituisce `True` se lo user corrispondente a `user`
+        ha il campo `email` impostato.
+        """
+        assert self.user_exists(user), f'User {user} inesistente'
+
+        count = self.collection('users').count_documents({
+            '$or': [
+                {'telegram': user},
+                {'email': user},
+            ],
+            'email': None,
+        })
+        if count == 1:
+            return False
+        return True
+
     def update_telegram(self, user: str, telegram: str):
         """Aggiorna lo user ID di Telegram dell'utente corrispondente a
-        `id` (Telegram o Email).
+        `user` (Telegram o Email).
 
         Raises:
         `AssertionError` -- se `new_telegram` corrisponde a un
             campo `telegram` già esistente,
-            se `id` non è presente nel DB oppure se tenta di
+            se `user` non è presente nel DB oppure se tenta di
             settare a `None` mentre lo è anche `Email`.
         """
         assert self.exists(user), f'User {user} inesistente'
@@ -210,21 +244,21 @@ class MongoUsers:
         assert not self.exists(telegram), \
             f'User {telegram} già presente nel sistema'
 
-        new_telegram = 'new telegram'
+        new_telegram = telegram
 
         if telegram == '':
             new_telegram = None
 
-        if new_telegram is None and not self.user_has_email(id):
+        if new_telegram is None and not self._user_has_email(user):
             raise AssertionError('Operazione fallita. Impostare prima '
                                  'una Email')
 
-        # self._print_user(id)
+        # self._print_user(user)
         # print(new_telegram)
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'telegram': id},
-                {'email': id},
+                {'telegram': user},
+                {'email': user},
             ]},
             {
                 '$set': {
@@ -235,12 +269,12 @@ class MongoUsers:
 
     def update_email(self, user: str, email: str):
         """Aggiorna l'Email dell'utente corrispondente a
-        `id` (Telegram o Email).
+        `user` (Telegram o Email).
 
         Raises:
         `AssertionError` -- se `new_email` corrisponde a un
             campo `email` già esistente,
-            se `id` non è presente nel DB oppure se tenta di
+            se `user` non è presente nel DB oppure se tenta di
             settare a `None` mentre lo è anche il campo
             `telegram`.
         """
@@ -249,19 +283,19 @@ class MongoUsers:
         assert not self.exists(email), \
             f'User {email} già presente nel sistema'
 
-        new_email = 'new_email'
+        new_email = email
 
         if email == '':
             new_email = None
 
-        if new_email is None and not self.user_has_telegram(id):
+        if new_email is None and not self._user_has_telegram(user):
             raise AssertionError('Operazione fallita. Impostare prima '
                                  'un account Telegram')
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'telegram': id},
-                {'email': id},
+                {'telegram': user},
+                {'email': user},
             ]},
             {
                 '$set': {
@@ -272,24 +306,24 @@ class MongoUsers:
 
     def update_user_preference(self, user: str, preference: str):
         """Aggiorna la preferenza (tra Telegram e Email) dell'utente
-        corrispondente all'`id` (Telegram o Email).
+        corrispondente all'`user` (Telegram o Email).
 
         Raises:
         `AssertionError` -- se preference non è `telegram` o `email`
-            oppure se `id` non è presente nel DB.
+            oppure se `user` non è presente nel DB.
         """
 
         # Controllo validità campo preference
         assert preference.lower() in ('telegram', 'email'), \
             f'Selezione {preference} non valida: scegli tra Telegram o Email'
 
-        # Controllo esistenza id user
-        assert self.user_exists(user), f'User {id} inesistente'
+        # Controllo esistenza user user
+        assert self.user_exists(user), f'User {user} inesistente'
 
         count = self._mongo.read('users').count_documents({
-            '$or': [  # Confronta id sia con telegram che con email
-                {'telegram': id},
-                {'email': id},
+            '$or': [  # Confronta user sia con telegram che con email
+                {'telegram': user},
+                {'email': user},
             ],
             preference: None,
         })
@@ -298,9 +332,9 @@ class MongoUsers:
         assert count == 0, f'Il campo "{preference}" non è impostato'
 
         return self._mongo.read('users').find_one_and_update(
-            {'$or': [  # Confronta id sia con telegram che con email
-                {'telegram': id},
-                {'email': id},
+            {'$or': [  # Confronta user sia con telegram che con email
+                {'telegram': user},
+                {'email': user},
             ]},
             {
                 '$set': {
@@ -311,16 +345,16 @@ class MongoUsers:
 
     def add_keywords(self, user: str, *new_keywords):
         """Aggiunge le keywords passate come argomento all'user
-        corrispondente a `id`.
+        corrispondente a `user`.
 
         Raises:
-        `AssertionError` -- se `id` non è presente nel DB.
+        `AssertionError` -- se `user` non è presente nel DB.
         """
-        assert self.user_exists(user), f'User {id} inesistente'
+        assert self.user_exists(user), f'User {user} inesistente'
         return self._mongo.read('users').find_one_and_update(
-            {'$or': [  # Confronta id sia con telegram che con email
-                {'telegram': id},
-                {'email': id},
+            {'$or': [  # Confronta user sia con telegram che con email
+                {'telegram': user},
+                {'email': user},
             ]},
             {
                 '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
@@ -343,22 +377,22 @@ class MongoUsers:
     # TODO
     def add_labels(self, user: str, *new_labels):
         """Aggiunge le labels passate come argomento all'user
-        corrispondente a `id`.
+        corrispondente a `user`.
 
         Raises:
-        `AssertionError` -- se `id` non è presente nel DB.
+        `AssertionError` -- se `user` non è presente nel DB.
         """
         pass
 
     # TODO controllare se è corretta
-    def user_labels(self, id: str) -> list:
+    def user_labels(self, user: str) -> list:
         """Restituisce una lista contenente le label corrispondenti
-        all'`id`: esso può essere sia il contatto Telegram che Email.
+        all'`user`: esso può essere sia il contatto Telegram che Email.
         """
         cursor = self.users({
             '$or': [
-                {'telegram': id},
-                {'email': id},
+                {'telegram': user},
+                {'email': user},
             ]
         })
         return cursor.next()['labels']

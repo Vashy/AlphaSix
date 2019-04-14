@@ -25,16 +25,16 @@ class MongoFacade():
         return self._users.delete(user)
 
     def update_user_name(self, user: str, name: str):
-        self._users.update_user_name(user, name)
+        self._users.update_name(user, name)
 
     def update_user_surname(self, user: str, surname: str):
-        self._users.update_user_surname(user, surname)
+        self._users.update_surname(user, surname)
 
     def update_user_telegram(self, user: str, telegram: str):
-        self._users.update_user_telegram(user, telegram)
+        self._users.update_telegram(user, telegram)
 
     def update_user_email(self, user: str, email: str):
-        self._users.update_user_email(user, email)
+        self._users.update_email(user, email)
 
     def insert_user_project(self, user: str, project: str):
         self._users.insert_user_project(user, project)

@@ -214,6 +214,7 @@ class Controller(Observer):
                     email=email,
                     telegram=telegram
                 )
+        print(request.values)
         if request.values.get('adduser'):
             page = page.replace(
                     '*adduser*',
@@ -233,38 +234,59 @@ class Controller(Observer):
         cognome = request.values.get('cognome')
         email = request.values.get('email')
         telegram = request.values.get('telegram')
+        modify = {}
         if email or telegram:
             if nome:
                 page = page.replace('*nome*', nome)
+                modify.update(nome=nome)
             if cognome:
                 page = page.replace('*cognome*', cognome)
+                modify.update(cognome=cognome)
             if email:
                 page = page.replace('*email*', email)
+                modify.update(email=email)
             if telegram:
                 page = page.replace('*telegram*', telegram)
+                modify.update(telegram=telegram)
             if (
-                (
-                    (email!=session['userid']) and
-                    (telegram!=session['userid'])
-                ) and
-                (email and self._model.user_exists(email)) or
-                (telegram and self._model.user_exists(telegram))
+                email and self._model.user_exists(email) or
+                telegram and self._model.user_exists(telegram)
             ):
                 page = page.replace(
                     '*modifyuser*',
-                    '<p>I dati inseriti confliggono con altri già esistenti.</p>'
+                    '<p>I dati inseriti confliggono con altri già\
+                     esistenti.</p>'
                 )
             else:
                 page = page.replace(
                     '*modifyuser*',
                     '<p>Utente modificato correttamente.</p>'
                 )
-#                self._model.insert_user(
-#                    name=nome,
-#                    surname=cognome,
-#                    email=email,
-#                    telegram=telegram
-#                )
+                if('nome' in modify):
+                    self._model.update_user_name(
+                        session['userid'],
+                        modify['nome']
+                    )
+                if('cognome' in modify):
+                    self._model.update_user_surname(
+                        session['userid'],
+                        modify['cognome']
+                    )
+                if('email' in modify):
+                    self._model.update_user_email(
+                        session['userid'],
+                        modify['email']
+                    )
+                if('telegram' in modify):
+                    self._model.update_user_telegram(
+                        session['userid'],
+                        modify['telegram']
+                    )
+        if request.values.get('modifyuser'):
+            page = page.replace(
+                    '*modifyuser*',
+                    '<p>Si prega di inserire almeno email o telegram\
+                    per modificare l\'utente.</p>')
         page = page.replace('*nome*', '')
         page = page.replace('*cognome*', '')
         page = page.replace('*email*', '')
