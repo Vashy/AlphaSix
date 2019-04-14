@@ -214,7 +214,6 @@ class Controller(Observer):
                     email=email,
                     telegram=telegram
                 )
-        print(request.values)
         if request.values.get('adduser'):
             page = page.replace(
                     '*adduser*',

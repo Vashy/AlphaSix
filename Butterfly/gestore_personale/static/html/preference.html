@@ -129,9 +129,9 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                             calendario.innerHTML += '<label for="'+i+'">'+i+'</label><input type="checkbox" name="'+i+'">'
                         }
                     </script>
-                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Mese precedente"/>
-                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Mese successivo"/>
-                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Modifica indisponibilità"/>
+                    <input name="indisponibilita" type="button" value="Mese precedente"/>
+                    <input name="indisponibilita" type="button" value="Mese successivo"/>
+                    <input id="indisponibilita" name="indisponibilita" type="button" value="Modifica indisponibilità"/>
                 </fieldset>
             </form>
             <form action="/favouriteplatform" method="post">
@@ -141,7 +141,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                     <input name="platform" id="email" type="radio" checked="checked"/>
                     <label for="telegram">Telegram</label>
                     <input name="platform" id="telegram" type="radio" />
-                    <input id="favouriteplatform" name="favouriteplatform" type="submit" value="Modifica piattaforma preferita"/>
+                    <input id="favouriteplatform" name="favouriteplatform" type="button" value="Modifica piattaforma preferita"/>
                 </fieldset>
             </form>
         </div>
