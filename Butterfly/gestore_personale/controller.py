@@ -339,10 +339,47 @@ class Controller(Observer):
         else:
             return self.access()
 
+    def load_preference_topic(self):
+        # prendere preferenze da db
+        # user_projects = self._model.get_user_projects(session['userid'])
+        form = '<form id="topics"><table><tr><th>Url</th><th>Priorità</th><th>Labels</th><th>Keywords</th></tr>'
+        for user_project in user_projects:
+            # project_labels = self._model.get_project_labels(user_project)
+            row = '<tr>'
+            row += '<th>' + user_project['name'] + '</th>'
+            row += '<td><select id="priorita">'
+            for priority in range(1,4):
+                row += '<option'
+                if priority == user_project['priorita']:
+                    row += ' selected="selected"'
+                row += ' value="' + i + '">' + priority + '</option>'
+            row += '</select></td><td>'
+            for label in project_labels:
+                row += '<label>' + label + '</label>'
+                row += '<input type="checkbox" name="labels"'
+                if label == user_project['labels']:
+                    row += ' checked="checked"'
+                row += ' value="' + label + '">'
+            row += '</td><td><textarea id="textkeywords" name="keywords">'
+            for keyword in user_project['keywords']:
+                row += keyword
+                row += ','
+            row = row[:-1] # elimino l'ultima virgola
+            row += '</textarea></td></tr>'
+            result += row
+        result += '</table><input id="modifytopics" name="modifytopics" type="button" value="Modifica preferenze di progetti e topic"></form>'
+        return form
+
     def modify_preference(self):
         fileHtml = html / 'preference.html'
         page = fileHtml.read_text()
-        return page
+        if request.values.get('preference'):
+            page = page.replace('*topics*', self.load_preference_topic())
+        elif request.values.get('modifytopics'):
+        elif request.values.get('addproject'):
+        elif request.values.get('removeproject'):
+        elif request.values.get('indisponibilita'):
+        elif request.values.get('piattaforma'):
 
     def web_preference(self):
         if self._check_session():

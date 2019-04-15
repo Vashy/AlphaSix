@@ -35,6 +35,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
     <body lang="it">
         <div>
             <h1>Butterfly</h1>
+            *topics*
             <form id="topics">
                 <table border="1">
                     <tr>
@@ -108,6 +109,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                 </table>
                 <input id="modifytopics" name="modifytopics" type="button" value="Modifica preferenze di progetti e topic">
             </form>
+            *projects*
             <form id="projects">
                 <select>
                     <option value="1">Butterfly</option>
@@ -119,15 +121,16 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                 <input id="addproject" name="addproject" type="button" value="Aggiungi il progetto">
                 <input id="removeproject" name="removeproject" type="button" value="Rimuovi il progetto">
             </form>
+            *availability*
             <form id="availability">
                 <fieldset>
                     <legend>Giorni di indisponibilità</legend>
-                    <div id="calendario">
+                    <div id="calendario"></div>
                     <p>Aprile 2019</p>
                     <script>
-                        c = document.getElementById("calendario");
+                        var c = document.getElementById("calendario");
                         for(i=1;i<31;i++){
-                            calendario.innerHTML += '<label for="'+i+'">'+i+'</label><input type="checkbox" name="'+i+'">'
+                            c.innerHTML += '<label for="'+i+'">'+i+'</label><input type="checkbox" name="'+i+'">'
                         }
                     </script>
                     <input type="button" value="Mese precedente"/>
@@ -135,6 +138,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
                     <input id="indisponibilita" name="indisponibilita" type="button" value="Modifica indisponibilità"/>
                 </fieldset>
             </form>
+            *platform*
             <form id="platform">
                 <fieldset>
                     <legend>Piattaforma preferita</legend>

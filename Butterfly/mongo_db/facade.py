@@ -18,9 +18,6 @@ class MongoFacade():
     def read_user(self, user: str):
         return self._users.read(user)
 
-    def users(self, mongofilter={}):
-        return self._users.users(mongofilter)
-
     def delete_user(self, user: str):
         return self._users.delete(user)
 
@@ -47,9 +44,6 @@ class MongoFacade():
 
     def delete_project(self, project: str):
         self._projects.delete(project)
-
-    def projects(self, mongofilter={}):
-        return self._projects.projects(mongofilter)
 
     def insert_label_by_project(self, label: str, project: str):
         self._projects.insert_label_by_project(label, project)

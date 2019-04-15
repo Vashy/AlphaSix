@@ -14,11 +14,11 @@ function panel(request, url, method, formId, requestId, outputId){
                 addListener('removeuser', function (){removeUserPanel(request, 'removeuser', 'html')});
                 addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser', 'html')});
                 addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html')});
-                addListener('modifytopics', function (){modifyPreferencePanel(request, 'preference', 'topics')});
-                addListener('addproject', function (){modifyPreferencePanel(request, 'preference', 'projects')});
-                addListener('removeproject', function (){modifyPreferencePanel(request, 'preference', 'projects')});
-                addListener('indisponibilita', function (){modifyPreferencePanel(request, 'preference', 'availability')});
-                addListener('piattaforma', function (){modifyPreferencePanel(request, 'preference', 'platform')});
+                addListener('modifytopics', function (){modifyPreferencePanel(request, 'modifytopics', 'topics')});
+                addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'projects')});
+                addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'projects')});
+                addListener('indisponibilita', function (){modifyPreferencePanel(request, 'indisponibilita', 'availability')});
+                addListener('piattaforma', function (){modifyPreferencePanel(request, 'piattaforma', 'platform')});
             }
         }
     };
