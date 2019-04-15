@@ -27,11 +27,11 @@ class MongoUsers:
 
     def exists(self, user: str) -> bool:
         """Restituisce `True` se l'`id` di un utente
-        (che può essere Telegram o Email) è salvato nel DB.
+        (che può essere Telegram, Email o _id) è salvato nel DB.
         """
         count = self._mongo.read('users').count_documents({
             '$or': [
-                # {'_id': mongoid},
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -325,7 +325,7 @@ class MongoUsers:
             f'Selezione {preference} non valida: scegli tra Telegram o Email'
 
         # Controllo esistenza user user
-        assert self.user_exists(user), f'User {user} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         count = self._mongo.read('users').count_documents({
             '$or': [  # Confronta user sia con telegram che con email
@@ -334,6 +334,7 @@ class MongoUsers:
             ],
             preference: None,
         })
+
 
         # Controllo su preferenza non su un campo null
         assert count == 0, f'Il campo "{preference}" non è impostato'
@@ -346,6 +347,33 @@ class MongoUsers:
             {
                 '$set': {
                     'preferenza': preference
+                }
+            }
+        )
+
+    def add_project(
+        self,
+        user: str,
+        project: str,
+        priority: int,
+        topics: list,
+        keywords: list,
+    ):
+        assert self.exists(user), f'User {user} inesistente'
+        return self._mongo.read('users').find_one_and_update(
+            {'$or': [  # Confronta user sia con telegram che con email
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ]},
+            {
+                '$addToSet': {  # Aggiunge all'array projects, senza duplicare
+                    'projects': {
+                        'url': project,
+                        'priority': priority,
+                        'topics': topics,
+                        'keywords': keywords,
+                    }
                 }
             }
         )
@@ -376,6 +404,8 @@ class MongoUsers:
         """Restituisce una lista contenente le parole chiave corrispondenti
         a `project` di `user`: esso può essere sia il contatto Telegram che Email.
         """
+        assert self.exists(user), f'User {user} inesistente'
+
         cursor = self.users({
             {'_id': user}
         })
@@ -389,7 +419,9 @@ class MongoUsers:
         Raises:
         `AssertionError` -- se `user` non è presente nel DB.
         """
-        cursor = self._mongo.read('users').update({
+        assert self.exists(user), f'User {user} inesistente'
+
+        cursor = self._mongo.read('users').update_one({
             '$or': [
                 {'_id': user},
                 {'telegram': user},
@@ -399,8 +431,25 @@ class MongoUsers:
         },
         {
             '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
-                f'{project}.$.topics': {
+                f'projects.$.topics': {
                     '$each': [*new_labels]  # Per ogni elemento
+                }
+            }
+        })
+
+    def remove_labels(self, user: str, project: str, *labels_to_remove):
+        cursor = self._mongo.read('users').update_one({
+            '$or': [
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ],
+            "projects.url": project,
+        },
+        {
+            '$pull': {  # Aggiunge all'array keywords, senza duplicare
+                f'projects.$.topics': {
+                    '$in': [*labels_to_remove]  # Per ogni elemento
                 }
             }
         })

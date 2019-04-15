@@ -25,6 +25,9 @@ Creatore: Timoty Granziero, timoty.granziero@gmail.com
 """
 
 import unittest
+
+import pytest
+
 from mongo_db.singleton import MongoSingleton
 from mongo_db.users import MongoUsers
 
@@ -196,6 +199,45 @@ class TestMongoUsers(unittest.TestCase):
             res = self.client.delete('aa@email.it').deleted_count
             assert res == 1
 
+    def test_add_project(self):
+        res = self.client.create(
+            _id=900,
+            name='Timoty',
+            surname='Granziero',
+            telegram='900').inserted_id
+        assert res == 900
+
+        res = self.client.add_project(
+            '900',  # id telegram/email
+            'http://..',  # url
+            1,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
+        assert res['email'] is None
+        user = self.client.read('900')
+
+        res = self.client.add_project(
+            '900',  # id telegram/email
+            'http://lol',  # url
+            3,  # priority
+            ['topic1'],  # topics
+            ['kw1'],  # keywords
+        )
+        assert res['name'] == 'Timoty'
+
+        for project in user['projects']:
+            # Cerca il progetto inserito e lo testa
+            if project['url'] == 'http://..':
+                assert project['priority'] == 1
+                assert project['topics'][0] == 'topic1'
+                assert 'topic2' in project['topics']
+                assert project['keywords'][0] == 'kw1'
+                assert 'kw2' in project['keywords']
+                assert 'kw2' not in project['topics']
+            if project['url'] == 'http://lol':
+                assert project['priority'] == 3
+
     def test_match_labels_issue(self):
         assert self.client.match_labels_issue(
             [1, 2, 4],
@@ -233,6 +275,7 @@ class TestMongoUsers(unittest.TestCase):
             case=False,
         ) is True
 
+    # @pytest.mark.skip()
     def test_add_labels(self):
         res = self.client.create(
             _id=1000,
@@ -241,8 +284,32 @@ class TestMongoUsers(unittest.TestCase):
             telegram='111').inserted_id
         assert res == 1000
 
-        self.client.add_labels('111', 'PROJECT', 'label1', 'label2')
+        self.client.add_project(
+            '111',
+            'PROJECT',  # url
+            3,  # priority
+            ['topic1'],  # topics
+            ['kw1'],  # keywords
+            )
 
+        self.client.add_labels('111', 'PROJECT', 'label1', 'label2')
         user = self.client.read('111')
-        assert user['surname'] == 'Granziero'
-        assert 'label1' in user['projects'][0]['topics']
+
+        for project in user['projects']:
+            if project['url'] == 'PROJECT':
+                assert 'topic1' in project['topics']
+                assert 'label1' in project['topics']
+                assert 'label2' in project['topics']
+
+        self.client.remove_labels('111', 'PROJECT', 'label1')
+        user = self.client.read('111')
+
+        for project in user['projects']:
+            if project['url'] == 'PROJECT':
+                assert 'topic1' in project['topics']
+                assert 'label1' not in project['topics']
+                assert 'label2' in project['topics']
+
+        # user = self.client.read('111')
+        # assert user['surname'] == 'Granziero'
+        # assert 'label1' in user['projects'][0]['topics']
