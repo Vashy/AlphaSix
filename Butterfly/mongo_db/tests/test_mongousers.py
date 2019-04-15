@@ -277,39 +277,62 @@ class TestMongoUsers(unittest.TestCase):
 
     # @pytest.mark.skip()
     def test_add_labels(self):
-        res = self.client.create(
-            _id=1000,
-            name='Timoty',
-            surname='Granziero',
-            telegram='111').inserted_id
-        assert res == 1000
+        self.assertRaises(
+            AssertionError,
+            self.client.add_project,
+            '11111111111', '', '', [], [])
 
-        self.client.add_project(
-            '111',
-            'PROJECT',  # url
-            3,  # priority
-            ['topic1'],  # topics
-            ['kw1'],  # keywords
+        with self.subTest('add_labels'):
+            res = self.client.create(
+                _id=1000,
+                name='Timoty',
+                surname='Granziero',
+                telegram='111').inserted_id
+            assert res == 1000
+
+            self.client.add_project(
+                '111',
+                'PROJECT',  # url
+                3,  # priority
+                ['topic1'],  # topics
+                ['kw1'],  # keywords
+                )
+
+            self.client.add_labels('111', 'PROJECT', 'label1', 'label2')
+            user = self.client.read('111')
+
+            for project in user['projects']:
+                if project['url'] == 'PROJECT':
+                    assert 'topic1' in project['topics']
+                    assert 'label1' in project['topics']
+                    assert 'label2' in project['topics']
+
+        with self.subTest('remove_labels'):
+            self.client.remove_labels('111', 'PROJECT', 'label1')
+            user = self.client.read('111')
+
+            for project in user['projects']:
+                if project['url'] == 'PROJECT':
+                    assert 'topic1' in project['topics']
+                    assert 'label1' not in project['topics']
+                    assert 'label2' in project['topics']
+
+        with self.subTest('user_labels'):
+            # user = self.client.read('111')
+            topics_lst = self.client.user_labels('111', 'PROJECT')
+            assert 'label2' in topics_lst
+            assert 'topic1' in topics_lst
+            assert 'label1' not in topics_lst
+
+            self.assertRaises(
+                AssertionError,
+                self.client.user_labels,
+                '111',
+                'AAAAAa',
             )
-
-        self.client.add_labels('111', 'PROJECT', 'label1', 'label2')
-        user = self.client.read('111')
-
-        for project in user['projects']:
-            if project['url'] == 'PROJECT':
-                assert 'topic1' in project['topics']
-                assert 'label1' in project['topics']
-                assert 'label2' in project['topics']
-
-        self.client.remove_labels('111', 'PROJECT', 'label1')
-        user = self.client.read('111')
-
-        for project in user['projects']:
-            if project['url'] == 'PROJECT':
-                assert 'topic1' in project['topics']
-                assert 'label1' not in project['topics']
-                assert 'label2' in project['topics']
-
-        # user = self.client.read('111')
-        # assert user['surname'] == 'Granziero'
-        # assert 'label1' in user['projects'][0]['topics']
+            self.assertRaises(
+                AssertionError,
+                self.client.user_labels,
+                'AAAAAa',
+                'PROJECT',
+            )

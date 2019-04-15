@@ -210,7 +210,7 @@ class MongoUsers:
         """Restituisce `True` se lo user corrispondente a `user`
         ha il campo `telegram` impostato.
         """
-        assert self.user_exists(user), f'User {user} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         count = self.collection('users').count_documents({
             '$or': [
@@ -225,7 +225,7 @@ class MongoUsers:
         """Restituisce `True` se lo user corrispondente a `user`
         ha il campo `email` impostato.
         """
-        assert self.user_exists(user), f'User {user} inesistente'
+        assert self.exists(user), f'User {user} inesistente'
 
         count = self.collection('users').count_documents({
             '$or': [
@@ -235,6 +235,22 @@ class MongoUsers:
             'email': None,
         })
         return count != 1
+
+    def _user_has_project(self, user: str, project: str) -> bool:
+        """Restituisce True se `user` ha il progetto con valore
+        `url == project`.
+        """
+        assert self.exists(user), f'User {user} inesistente'
+
+        count = self._mongo.read('users').count_documents({
+            '$or': [
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ],
+            'projects.url': project,
+        })
+        return count != 0
 
     def update_telegram(self, user: str, telegram: str):
         """Aggiorna lo user ID di Telegram dell'utente corrispondente a
@@ -335,7 +351,6 @@ class MongoUsers:
             preference: None,
         })
 
-
         # Controllo su preferenza non su un campo null
         assert count == 0, f'Il campo "{preference}" non è impostato'
 
@@ -411,7 +426,6 @@ class MongoUsers:
         })
         return cursor.next()['keywords']
 
-    # TODO
     def add_labels(self, user: str, project: str, *new_labels):
         """Aggiunge le labels passate come argomento all'user
         corrispondente a `user` nel progetto `project`.
@@ -429,7 +443,7 @@ class MongoUsers:
             ],
             "projects.url": project,
         },
-        {
+            {
             '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
                 f'projects.$.topics': {
                     '$each': [*new_labels]  # Per ogni elemento
@@ -438,6 +452,7 @@ class MongoUsers:
         })
 
     def remove_labels(self, user: str, project: str, *labels_to_remove):
+        assert self.exists(user), f'User {user} inesistente'
         cursor = self._mongo.read('users').update_one({
             '$or': [
                 {'_id': user},
@@ -446,7 +461,7 @@ class MongoUsers:
             ],
             "projects.url": project,
         },
-        {
+            {
             '$pull': {  # Aggiunge all'array keywords, senza duplicare
                 f'projects.$.topics': {
                     '$in': [*labels_to_remove]  # Per ogni elemento
@@ -459,13 +474,26 @@ class MongoUsers:
         """Restituisce una lista contenente le label corrispondenti
         a `project` di `user`: esso può essere sia il contatto Telegram che Email.
         """
-        cursor = self.users({
+
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
+
+        cursor = self._mongo.read('users').find({
             '$or': [
                 {'telegram': user},
                 {'email': user},
-            ]
+            ],
+            'projects.url': project,
+        },
+            {
+                '_id': 0,
+                'projects.$.topics': 1,
         })
-        return cursor.next()['labels']
+
+        try:
+            return cursor.next()['projects'][0]['topics']
+        except Exception:
+            print('xdd')
 
     def _get_users_by_priority(self, project: str, priority: int):
         """Restituisce gli utenti con priorità specificata iscritti
