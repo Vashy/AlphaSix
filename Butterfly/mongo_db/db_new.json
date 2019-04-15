@@ -11,7 +11,7 @@
       "name": "Timoty",
       "telegram": 12312,
       "email": null,
-      "priorities": [
+      "projects": [
         {
           "url": "http://localhost/gitlab/gitlab-2",
           "priority": 3,
@@ -39,7 +39,7 @@
       "name": "Simone",
       "telegram": 123432,
       "email": "simone.granziero@email.it",
-      "priorities": [
+      "projects": [
         {
           "url": "http://localhost/redmine/project-1",
           "priority": 1,

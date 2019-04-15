@@ -195,3 +195,54 @@ class TestMongoUsers(unittest.TestCase):
 
             res = self.client.delete('aa@email.it').deleted_count
             assert res == 1
+
+    def test_match_labels_issue(self):
+        assert self.client.match_labels_issue(
+            [1, 2, 4],
+            [4, 5, 6],
+        ) is True
+        assert self.client.match_labels_issue(
+            [4],
+            ['str', 'aaa', 'b', 4],
+        ) is True
+        assert self.client.match_labels_issue(
+            [1, 2, 3, 16],
+            [4, 5, 6],
+        ) is False
+        assert self.client.match_labels_issue(
+            [1, 2, 3, 16],
+            [],
+        ) is False
+        assert self.client.match_labels_issue(
+            [],
+            [1, 2, 3, 16],
+        ) is False
+
+    def test_match_keyword_commit(self):
+        assert self.client.match_keyword_commit(
+            ['CI', 'java'],
+            'Stringa contenente CI.',
+        ) is True
+        assert self.client.match_keyword_commit(
+            ['CI', 'java'],
+            'Stringa non contenente keywords. JAVA case sensitive',
+        ) is False
+        assert self.client.match_keyword_commit(
+            ['CI', 'java'],
+            'Stringa non contenente keywords. JAVA case insensitive',
+            case=False,
+        ) is True
+
+    def test_add_labels(self):
+        res = self.client.create(
+            _id=1000,
+            name='Timoty',
+            surname='Granziero',
+            telegram='111').inserted_id
+        assert res == 1000
+
+        self.client.add_labels('111', 'PROJECT', 'label1', 'label2')
+
+        user = self.client.read('111')
+        assert user['surname'] == 'Granziero'
+        assert 'label1' in user['projects'][0]['topics']

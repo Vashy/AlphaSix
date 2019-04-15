@@ -350,7 +350,7 @@ class MongoUsers:
             }
         )
 
-    def add_keywords(self, user: str, *new_keywords):
+    def add_keywords(self, user: str, project: str, *new_keywords):
         """Aggiunge le keywords passate come argomento all'user
         corrispondente a `user`.
 
@@ -372,9 +372,9 @@ class MongoUsers:
             }
         )
 
-    def user_keywords(self, user: str) -> list:
+    def user_keywords(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le parole chiave corrispondenti
-        all'`id`: esso può essere sia il contatto Telegram che Email.
+        a `project` di `user`: esso può essere sia il contatto Telegram che Email.
         """
         cursor = self.users({
             {'_id': user}
@@ -382,19 +382,33 @@ class MongoUsers:
         return cursor.next()['keywords']
 
     # TODO
-    def add_labels(self, user: str, *new_labels):
+    def add_labels(self, user: str, project: str, *new_labels):
         """Aggiunge le labels passate come argomento all'user
-        corrispondente a `user`.
+        corrispondente a `user` nel progetto `project`.
 
         Raises:
         `AssertionError` -- se `user` non è presente nel DB.
         """
-        pass
+        cursor = self._mongo.read('users').update({
+            '$or': [
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ],
+            "projects.url": project,
+        },
+        {
+            '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
+                f'{project}.$.topics': {
+                    '$each': [*new_labels]  # Per ogni elemento
+                }
+            }
+        })
 
     # TODO controllare se è corretta
-    def user_labels(self, user: str) -> list:
+    def user_labels(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le label corrispondenti
-        all'`user`: esso può essere sia il contatto Telegram che Email.
+        a `project` di `user`: esso può essere sia il contatto Telegram che Email.
         """
         cursor = self.users({
             '$or': [
@@ -404,89 +418,148 @@ class MongoUsers:
         })
         return cursor.next()['labels']
 
-    def _get_users_by_priority(self, url: str, priority: int):
+    def _get_users_by_priority(self, project: str, priority: int):
+        """Restituisce gli utenti con priorità specificata iscritti
+        a `project` disponibili in data odierna.
+        """
         return self.users({
             'projects': {
                 '$elemMatch': {
-                    'url': url,
+                    'url': project,
                     'priority': priority
                 },
             },
             '$currentDate': {
-                '$nin': 'irreperibilità'
+                '$nin': 'irreperibilita'
             }
         }, {
-            '_id': 1
+            '_id': 1,
         })
 
-    def get_users_available(self, url: str) -> list:
+    def get_users_available(self, project: str) -> list:
         """Dato un progetto, cerco tutti
         Gli utenti disponibili oggi
         (la lista di ritorno contiene gli ID del DB)
         """
         users = []
-        for priority in range(1, 4):
-            users += self._get_users_by_priority(url, priority)
+        for priority in range(1, 4):  # Cicla da 1 a 3
+            users += self._get_users_by_priority(project, priority)
         return users
 
-    def get_users_max_priority(self, url: str) -> list:
+    def get_users_max_priority(self, project: str) -> list:
         """Dato un progetto, ritorno la lista di
         utenti disponibili oggi di priorità maggiore
         (la lista di ritorno contiene gli ID del DB)
         """
         for priority in range(1, 4):
-            max_priority = self._get_users_by_priority(url, priority)
+            max_priority = self._get_users_by_priority(project, priority)
             if max_priority:
                 return max_priority
-        return None
+        return []
 
-    def filter_max_priority(self, url: str) -> list:
+    def filter_max_priority(self, user_list: list, project: str) -> list:
         """Data una lista di utenti, ritorno la sottolista di
-        utenti con priorità maggiore
+        utenti con priorità maggiore per il progetto specificato
         """
+        users = []
         for priority in range(1, 4):
-            max_priority = self._get_users_by_priority(url, priority)
-            if max_priority:
-                return max_priority
-        return None
+            max_priority = self._get_users_by_priority(project, priority)
+            for user in user_list:
+                if user in max_priority:
+                    users.append(user)
+            if users:
+                return users
+        return []
 
-    def get_user_telegram(self, user: int):
+    def get_user_telegram_from_id(self, user: int):
         return self.users({
             '_id': user
         }).next()['telegram']
 
-    def get_user_email(self, user: int):
+    def get_user_email_from_id(self, user: int):
         return self.users({
             '_id': user
         }).next()['email']
 
-    def get_match_keywords(self, users: list, commit: str) -> list:
+    def get_user_telegram(self, user: str):
+        return self.users({
+            '$or': [
+                {'telegram': user},
+                {'email': user},
+            ]
+        }).next()['telegram']
+
+    def get_user_email(self, user: str):
+        return self.users({
+            '$or': [
+                {'telegram': user},
+                {'email': user},
+            ]
+        }).next()['email']
+
+    def get_match_keywords(
+        self,
+        users: list,
+        project: str,
+        commit: str,
+    ) -> list:
         keyword_user = []
         for user in users:
-            if(
-                self.match_keyword_commit(
-                    self.user_keywords(user),
-                    commit
-                )
+            if self.match_keyword_commit(
+                self.user_keywords(user, project),
+                commit
             ):
                 keyword_user.append(user)
 
         return keyword_user
 
-    def get_match_labels(self, users: list, labels: list) -> list:
+    @staticmethod
+    def match_keyword_commit(
+        keywords: list,
+        commit_msg: str,
+        case=True
+    ) -> bool:
+        """Restituisce `True` se `commit_msg` contiene una
+        o più keyword contenute in `keywords`.
+        `case` è `True` se la ricerca è case sensitive, `False`
+        altrimenti.
+        """
+        if case is True:
+            for keyword in keywords:
+                if keyword in commit_msg:
+                    return True
+            return False
+
+        # Case insensitive
+        for keyword in keywords:
+            if keyword.lower() in commit_msg.lower():
+                return True
+        return False
+
+    def get_match_labels(
+        self,
+        users: list,
+        project: str,
+        labels: list,
+    ) -> list:
         """Guarda se almeno una label di un user (chiamando get_user_labels) è
         presente nelle label della issue
         Per redmine c'è una sola label, per gitlab una lista
-        Ritorna true se è presente almeno una label dell'utente nelle label
-        della issue
+        Ritorna true se è presente almeno una label dell'utente
+        nelle label della issue
         """
         label_user = []
         for user in users:
-            if(
-                self.match_labels_issue(
-                    self.user_labels(user),
-                    labels
-                )
+            if self.match_labels_issue(
+                self.user_labels(user, project),
+                labels,
             ):
                 label_user.append(user)
         return label_user
+
+    @staticmethod
+    def match_labels_issue(user_labels: list, labels: list) -> bool:
+        for label in user_labels:
+            if label in labels:
+                return True
+        return False

@@ -69,10 +69,10 @@ class MongoFacade():
         return self._projects.exists(url)
 
     def get_user_telegram(self, userID: str) -> str:
-        return self._users.get_user_telegram(userID)
+        return self._users.get_user_telegram_from_id(userID)
 
     def get_user_email(self, userID: str) -> str:
-        return self._users.get_user_email(userID)
+        return self._users.get_user_email_from_id(userID)
 
     def get_match_keywords(self, users: list, commit: str) -> list:
         return self._users.get_match_keywords(users, commit)
