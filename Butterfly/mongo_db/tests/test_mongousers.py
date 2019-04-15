@@ -295,7 +295,7 @@ class TestMongoUsers(unittest.TestCase):
                 3,  # priority
                 ['topic1'],  # topics
                 ['kw1'],  # keywords
-                )
+            )
 
             self.client.add_labels('111', 'PROJECT', 'label1', 'label2')
             user = self.client.read('111')
@@ -336,6 +336,92 @@ class TestMongoUsers(unittest.TestCase):
                 'PROJECT',
             )
 
+    def test_add_keywords(self):
+        self.assertRaises(
+            AssertionError,
+            self.client.add_project,
+            '11111111111', '', '', [], [])
+
+        with self.subTest('add_keywords'):
+            res = self.client.create(
+                _id=1100,
+                name='Timoty',
+                surname='Granziero',
+                telegram='222').inserted_id
+            assert res == 1100
+
+            self.client.add_project(
+                '222',
+                'PROJECT',  # url
+                3,  # priority
+                ['topic1'],  # topics
+                ['kw1'],  # keywords
+            )
+
+            self.client.add_keywords('222', 'PROJECT', 'kw3', 'kw2')
+            user = self.client.read('222')
+
+            self.assertRaises(
+                AssertionError,
+                self.client.add_keywords,
+                '2222',
+                'PROJECT',
+            )
+            self.assertRaises(
+                AssertionError,
+                self.client.user_keywords,
+                '222',
+                'AAAAAa',
+            )
+
+            for project in user['projects']:
+                if project['url'] == 'PROJECT':
+                    assert 'kw1' in project['keywords']
+                    assert 'kw2' in project['keywords']
+                    assert 'kw3' in project['keywords']
+
+        with self.subTest('remove_keywords'):
+            self.client.remove_keywords('222', 'PROJECT', 'kw2')
+            user = self.client.read('222')
+
+            self.assertRaises(
+                AssertionError,
+                self.client.remove_keywords,
+                '2222',
+                'PROJECT',
+            )
+            self.assertRaises(
+                AssertionError,
+                self.client.remove_keywords,
+                '222',
+                'AAAAAa',
+            )
+
+            for project in user['projects']:
+                if project['url'] == 'PROJECT':
+                    assert 'kw1' in project['keywords']
+                    assert 'kw2' not in project['keywords']
+                    assert 'kw3' in project['keywords']
+
+        with self.subTest('user_keywords'):
+            kw_lst = self.client.user_keywords('222', 'PROJECT')
+            assert 'kw1' in kw_lst
+            assert 'kw3' in kw_lst
+            assert 'kw2' not in kw_lst
+
+            self.assertRaises(
+                AssertionError,
+                self.client.user_keywords,
+                '222',
+                'AAAAAa',
+            )
+            self.assertRaises(
+                AssertionError,
+                self.client.user_keywords,
+                'AAAAAa',
+                'PROJECT',
+            )
+
     def test_get_projects(self):
         res = self.client.create(
             _id=901,
@@ -352,6 +438,16 @@ class TestMongoUsers(unittest.TestCase):
             ['kw1', 'kw2'],  # keywords
         )
         assert res['email'] is None
+
+        self.assertRaises(  # Test project già presente
+            AssertionError,
+            self.client.add_project,
+            '42',  # id telegram/email
+            'http://..',  # url
+            1,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
 
         res = self.client.add_project(
             '42',  # id telegram/email
@@ -375,3 +471,133 @@ class TestMongoUsers(unittest.TestCase):
                 assert 'kw2' not in project['topics']
             if project['url'] == 'http://lol':
                 assert project['priority'] == 3
+
+    def test_get_user_telegram_email(self):
+        res = self.client.create(
+            _id=1200,
+            name='Timoty',
+            surname='Granziero',
+            telegram='2223',
+            email='aaa@aaa.aaa').inserted_id
+        assert res == 1200
+
+        with self.subTest('telegram'):
+            res = self.client.get_user_telegram('2223')
+            assert res == '2223'
+            res = self.client.get_user_telegram('aaa@aaa.aaa')
+            assert res == '2223'
+            res = self.client.get_user_telegram('22222222222')
+            assert res is None
+
+        with self.subTest('email'):
+            res = self.client.get_user_email('2223')
+            assert res == 'aaa@aaa.aaa'
+            res = self.client.get_user_email('aaa@aaa.aaa')
+            assert res == 'aaa@aaa.aaa'
+            res = self.client.get_user_email('22222222222')
+            assert res is None
+
+    def test_match_keywords(self):
+        res = self.client.create(
+            _id=1300,
+            name='Timoty',
+            surname='Granziero',
+            telegram='2332').inserted_id
+        assert res == 1300
+
+        res = self.client.add_project(
+            '2332',  # id telegram/email
+            'http://..',  # url
+            1,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2', 'kw3'],  # keywords
+        )
+        assert res['telegram'] == '2332'
+
+        res = self.client.create(
+            _id=1301,
+            name='Timotyy',
+            surname='Granziero',
+            telegram='2333').inserted_id
+        assert res == 1301
+
+        res = self.client.add_project(
+            '2333',  # id telegram/email
+            'http://..',  # url
+            1,  # priority
+            ['topic3', 'topic4'],  # topics
+            ['kw8', 'kw9', 'kw7'],  # keywords
+        )
+        assert res['telegram'] == '2333'
+
+        res = self.client.create(
+            _id=1302,
+            name='Timoty',
+            surname='Granziero',
+            telegram='2334').inserted_id
+        assert res == 1302
+
+        res = self.client.create(
+            _id=1303,
+            name='Timoty',
+            surname='Granziero',
+            email='b@b.b').inserted_id
+        assert res == 1303
+
+        res = self.client.add_project(
+            'b@b.b',  # id telegram/email
+            'http://..',  # url
+            1,  # priority
+            ['topic5', 'topic6'],  # topics
+            ['kw1', 'kw6', 'kw3'],  # keywords
+        )
+        assert res['email'] == 'b@b.b'
+
+        with self.subTest('match_kws'):
+            user_list = self.client.get_match_keywords(
+                ['2332', '2333', 'b@b.b'],
+                'http://..',
+                'kw1, aaa, kw2'
+            )
+            assert '2332' in user_list
+            assert '2333' not in user_list
+            assert 'b@b.b' in user_list
+            assert '2334' not in user_list
+
+        with self.subTest('match_labels'):
+            user_list = self.client.get_match_labels(
+                ['2332', '2333', 'b@b.b'],
+                'http://..',
+                ['topic5', 'topic3', 'topic4']
+            )
+            assert '2332' not in user_list
+            assert '2333' in user_list
+            assert 'b@b.b' in user_list
+            assert '2334' not in user_list
+
+    def test_add_giorno_irreperibilita(self):
+        res = self.client.create(
+            _id=1310,
+            name='Timoty',
+            surname='Granziero',
+            email='b@b.bbb').inserted_id
+        assert res == 1310
+        res = self.client.add_giorno_irreperibilita(
+            1310,
+            '2019/04/16',
+            '2019/04/17',
+        )
+
+        user = self.client.users({'email': 'b@b.bbb'}).next()
+        assert '2019/04/16' in user['irreperibilita']
+        assert '2019/04/17' in user['irreperibilita']
+        assert '2019/04/18' not in user['irreperibilita']
+
+        res = self.client.add_giorno_irreperibilita(
+            1310,
+            '2019/04/16',
+            '2019/04/18',
+        )
+        user = self.client.users({'email': 'b@b.bbb'}).next()
+        assert '2019/04/17' in user['irreperibilita']
+        assert '2019/04/18' in user['irreperibilita']

@@ -48,7 +48,9 @@ class MongoUsers:
             'name': None,
             'surname': None,
             'telegram': None,
-            'email': None
+            'email': None,
+            # 'irreperibilita': [],
+            # 'projects': [],
         }
 
         new_user = copy.copy(defaultfields)  # Copia profonda del dict default
@@ -327,6 +329,7 @@ class MongoUsers:
             }
         )
 
+    # TODO: Da testare, NON fatta da Tim
     def update_user_preference(self, user: str, preference: str):
         """Aggiorna la preferenza (tra Telegram e Email) dell'utente
         corrispondente all'`user` (Telegram o Email).
@@ -371,10 +374,16 @@ class MongoUsers:
         user: str,
         project: str,
         priority: int,
-        topics: list,
-        keywords: list,
+        topics: list = [],
+        keywords: list = [],
     ):
+        """Aggiunge un progetto all'utente `user` il progetto con i campi
+        passati come parametro.
+        """
         assert self.exists(user), f'User {user} inesistente'
+        assert not self._user_has_project(user, project), \
+            f'{user} ha già il progetto {project}'
+
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email
                 {'_id': user},
@@ -400,32 +409,71 @@ class MongoUsers:
         Raises:
         `AssertionError` -- se `user` non è presente nel DB.
         """
-        assert self.user_exists(user), f'User {user} inesistente'
-        return self._mongo.read('users').find_one_and_update(
-            {'$or': [  # Confronta user sia con telegram che con email
+
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
+
+        return self._mongo.read('users').update_one({
+            '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
-            ]},
+            ],
+            "projects.url": project,
+        },
             {
-                '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
-                    'keywords': {
-                        '$each': [*new_keywords]  # Per ogni elemento
-                    }
+            '$addToSet': {  # Aggiunge all'array keywords, senza duplicare
+                f'projects.$.keywords': {
+                    '$each': [*new_keywords]  # Per ogni elemento
                 }
             }
-        )
+        })
+
+    def remove_keywords(self, user: str, project: str, *kw_to_remove):
+
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
+
+        self._mongo.read('users').update_one({
+            '$or': [
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ],
+            "projects.url": project,
+        },
+            {
+            '$pull': {  # Rimuove dall'array gli elementi in kw_to_remove
+                f'projects.$.keywords': {
+                    '$in': [*kw_to_remove]  # Per ogni elemento
+                }
+            }
+        })
 
     def user_keywords(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le parole chiave corrispondenti
         a `project` di `user`: esso può essere sia il contatto Telegram
         che Email.
         """
-        assert self.exists(user), f'User {user} inesistente'
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
 
-        cursor = self.users({
-            {'_id': user}
+        cursor = self._mongo.read('users').find({
+            '$or': [
+                {'telegram': user},
+                {'email': user},
+            ],
+            'projects.url': project,
+        },
+            {
+                '_id': 0,
+                'projects.$.keywords': 1,
         })
-        return cursor.next()['keywords']
+
+        try:
+            return cursor.next()['projects'][0]['keywords']
+        except Exception:
+            return []
 
     def add_labels(self, user: str, project: str, *new_labels):
         """Aggiunge le labels passate come argomento all'user
@@ -434,9 +482,11 @@ class MongoUsers:
         Raises:
         `AssertionError` -- se `user` non è presente nel DB.
         """
-        assert self.exists(user), f'User {user} inesistente'
 
-        self._mongo.read('users').update_one({
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
+
+        return self._mongo.read('users').update_one({
             '$or': [
                 {'_id': user},
                 {'telegram': user},
@@ -453,8 +503,10 @@ class MongoUsers:
         })
 
     def remove_labels(self, user: str, project: str, *labels_to_remove):
-        assert self.exists(user), f'User {user} inesistente'
-        self._mongo.read('users').update_one({
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
+
+        return self._mongo.read('users').update_one({
             '$or': [
                 {'_id': user},
                 {'telegram': user},
@@ -463,14 +515,13 @@ class MongoUsers:
             "projects.url": project,
         },
             {
-            '$pull': {  # Aggiunge all'array keywords, senza duplicare
+            '$pull': {  # Rimuove dall'array labels_to_remove
                 f'projects.$.topics': {
                     '$in': [*labels_to_remove]  # Per ogni elemento
                 }
             }
         })
 
-    # TODO controllare se è corretta
     def user_labels(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le label corrispondenti
         a `project` di `user`: esso può essere sia il contatto Telegram
@@ -497,6 +548,7 @@ class MongoUsers:
         except Exception:
             return []
 
+    # TODO: da testare
     def _get_users_by_priority(self, project: str, priority: int):
         """Restituisce gli utenti con priorità specificata iscritti
         a `project` disponibili in data odierna.
@@ -515,6 +567,7 @@ class MongoUsers:
             '_id': 1,
         })
 
+    # TODO: da testare
     def get_users_available(self, project: str) -> list:
         """Dato un progetto, cerco tutti
         Gli utenti disponibili oggi
@@ -525,6 +578,7 @@ class MongoUsers:
             users += self._get_users_by_priority(project, priority)
         return users
 
+    # TODO: da testare
     def get_users_max_priority(self, project: str) -> list:
         """Dato un progetto, ritorno la lista di
         utenti disponibili oggi di priorità maggiore
@@ -536,6 +590,7 @@ class MongoUsers:
                 return max_priority
         return []
 
+    # TODO: da testare
     def filter_max_priority(self, user_list: list, project: str) -> list:
         """Data una lista di utenti, ritorno la sottolista di
         utenti con priorità maggiore per il progetto specificato
@@ -550,31 +605,39 @@ class MongoUsers:
                 return users
         return []
 
-    def get_user_telegram_from_id(self, user: int):
-        return self.users({
-            '_id': user
-        }).next()['telegram']
+    # def get_user_telegram_from_id(self, user: int):
+    #     return self.users({
+    #         '_id': user
+    #     }).next()['telegram']
 
-    def get_user_email_from_id(self, user: int):
-        return self.users({
-            '_id': user
-        }).next()['email']
+    # def get_user_email_from_id(self, user: int):
+    #     return self.users({
+    #         '_id': user
+    #     }).next()['email']
 
     def get_user_telegram(self, user: str):
-        return self.users({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ]
-        }).next()['telegram']
+        try:
+            return self.users({
+                '$or': [
+                    {'_id': user},
+                    {'telegram': user},
+                    {'email': user},
+                ]
+            }).next()['telegram']
+        except StopIteration:
+            return None
 
     def get_user_email(self, user: str):
-        return self.users({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ]
-        }).next()['email']
+        try:
+            return self.users({
+                '$or': [
+                    {'_id': user},
+                    {'telegram': user},
+                    {'email': user},
+                ]
+            }).next()['email']
+        except StopIteration:
+            return None
 
     def get_match_keywords(
         self,
@@ -660,3 +723,21 @@ class MongoUsers:
         }, {
             'projects': 1,
         }).next()['projects']
+
+    def add_giorno_irreperibilita(self, user: str, *dates: str) -> str:
+        assert self.exists(user), f'User {user} inesistente'
+        return self._mongo.read('users').find_one_and_update(
+            {'$or': [  # Confronta user sia con telegram che con email o _id
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ]},
+            {
+                # Aggiunge all'array irreperibilita, senza duplicare
+                '$addToSet': {
+                    'irreperibilita': {
+                        '$each': [*dates]
+                    },
+                }
+            }
+        )
