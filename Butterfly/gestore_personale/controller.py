@@ -13,7 +13,7 @@ from mongo_db.users import MongoUsers
 from mongo_db.projects import MongoProjects
 from mongo_db.singleton import MongoSingleton
 
-html = (pathlib.Path(__file__).parent / 'static/html').resolve()
+html = (pathlib.Path(__file__).parent / 'static' / 'html').resolve()
 
 
 class Observer(ABC):

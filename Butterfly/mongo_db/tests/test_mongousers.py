@@ -187,7 +187,6 @@ class TestMongoUsers(unittest.TestCase):
             assert user['surname'] == 'Tanenbaum'
             assert user['email'] == 'aa@email.it'
 
-
         with self.subTest('Delete'):
             res = self.client.delete_from_id(123).deleted_count
             assert res == 1
@@ -336,3 +335,43 @@ class TestMongoUsers(unittest.TestCase):
                 'AAAAAa',
                 'PROJECT',
             )
+
+    def test_get_projects(self):
+        res = self.client.create(
+            _id=900,
+            name='Matteo',
+            surname='Marchiori',
+            telegram='42').inserted_id
+        assert res == 42
+
+        res = self.client.add_project(
+            '42',  # id telegram/email
+            'http://..',  # url
+            1,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
+        assert res['email'] is None
+
+        res = self.client.add_project(
+            '42',  # id telegram/email
+            'http://lol',  # url
+            3,  # priority
+            ['topic1'],  # topics
+            ['kw1'],  # keywords
+        )
+        assert res['name'] == 'Matteo'
+
+        res = self.client.get_projects('42')
+        assert res[0]['url'] == "http://.."
+        for project in res:
+            # Testa i progetti
+            if project['url'] == 'http://..':
+                assert project['priority'] == 1
+                assert project['topics'][0] == 'topic1'
+                assert 'topic2' in project['topics']
+                assert project['keywords'][0] == 'kw1'
+                assert 'kw2' in project['keywords']
+                assert 'kw2' not in project['topics']
+            if project['url'] == 'http://lol':
+                assert project['priority'] == 3

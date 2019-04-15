@@ -435,7 +435,7 @@ class MongoUsers:
         """
         assert self.exists(user), f'User {user} inesistente'
 
-        cursor = self._mongo.read('users').update_one({
+        self._mongo.read('users').update_one({
             '$or': [
                 {'_id': user},
                 {'telegram': user},
@@ -453,7 +453,7 @@ class MongoUsers:
 
     def remove_labels(self, user: str, project: str, *labels_to_remove):
         assert self.exists(user), f'User {user} inesistente'
-        cursor = self._mongo.read('users').update_one({
+        self._mongo.read('users').update_one({
             '$or': [
                 {'_id': user},
                 {'telegram': user},
@@ -478,7 +478,7 @@ class MongoUsers:
         assert self._user_has_project(user, project), \
             f'{user} non ha in lista il progetto {project}'
 
-        cursor = self._mongo.read('users').find({
+        cursor = self._mongo.users({
             '$or': [
                 {'telegram': user},
                 {'email': user},
@@ -640,3 +640,22 @@ class MongoUsers:
             if label in labels:
                 return True
         return False
+
+    def get_projects(self, user: str) -> dict:
+        """Restituisce una mappa contenente i progetti a cui è iscritto un
+        utente e i relativi dati.
+
+        Raises:
+        `AssertionError` -- se `user` non è presente nel DB.
+        """
+        assert self.exists(user), f'User {user} inesistente'
+
+        return self._mongo.users({
+            '$or': [
+                {'telegram': user},
+                {'email': user},
+            ]
+        },
+        {
+                'projects': 1,
+        }).next()

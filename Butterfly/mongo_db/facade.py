@@ -54,9 +54,6 @@ class MongoFacade():
     def user_exists(self, userid: str):
         return self._users.exists(userid)
 
-#    def user_has_email(self, email: str):
-#        return self._users.user_has_email(email)
-
 # Metodi per la ricerca dei dati
 
     def get_users_available(self, url: str) -> list:
@@ -89,3 +86,8 @@ class MongoFacade():
 
     def get_label_project(self, project: str) -> list:
         return self._projects.labels(project)
+
+# Metodi per la parte gestibile dall' utente
+
+    def get_user_projects(user) -> dict:
+        return self._users.get_projects(user)
