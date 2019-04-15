@@ -575,14 +575,14 @@ class TestMongoUsers(unittest.TestCase):
             assert 'b@b.b' in user_list
             assert '2334' not in user_list
 
-    def test_add_giorno_irreperibilita(self):
+    def test_add_giorni_irreperibilita(self):
         res = self.client.create(
             _id=1310,
             name='Timoty',
             surname='Granziero',
             email='b@b.bbb').inserted_id
         assert res == 1310
-        res = self.client.add_giorno_irreperibilita(
+        res = self.client.add_giorni_irreperibilita(
             1310,
             '2019/04/16',
             '2019/04/17',
@@ -593,7 +593,7 @@ class TestMongoUsers(unittest.TestCase):
         assert '2019/04/17' in user['irreperibilita']
         assert '2019/04/18' not in user['irreperibilita']
 
-        res = self.client.add_giorno_irreperibilita(
+        res = self.client.add_giorni_irreperibilita(
             1310,
             '2019/04/16',
             '2019/04/18',

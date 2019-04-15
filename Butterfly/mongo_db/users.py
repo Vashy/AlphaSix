@@ -724,7 +724,7 @@ class MongoUsers:
             'projects': 1,
         }).next()['projects']
 
-    def add_giorno_irreperibilita(self, user: str, *dates: str) -> str:
+    def add_giorni_irreperibilita(self, user: str, *dates: str) -> str:
         assert self.exists(user), f'User {user} inesistente'
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email o _id
