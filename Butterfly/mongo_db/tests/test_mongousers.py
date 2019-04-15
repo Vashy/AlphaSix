@@ -338,11 +338,11 @@ class TestMongoUsers(unittest.TestCase):
 
     def test_get_projects(self):
         res = self.client.create(
-            _id=900,
+            _id=901,
             name='Matteo',
             surname='Marchiori',
             telegram='42').inserted_id
-        assert res == 42
+        assert res == 901
 
         res = self.client.add_project(
             '42',  # id telegram/email

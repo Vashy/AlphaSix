@@ -480,7 +480,7 @@ class MongoUsers:
         assert self._user_has_project(user, project), \
             f'{user} non ha in lista il progetto {project}'
 
-        cursor = self.users({
+        cursor = self._mongo.read('users').find({
             '$or': [
                 {'telegram': user},
                 {'email': user},
@@ -495,7 +495,7 @@ class MongoUsers:
         try:
             return cursor.next()['projects'][0]['topics']
         except Exception:
-            print('xdd')
+            return []
 
     def _get_users_by_priority(self, project: str, priority: int):
         """Restituisce gli utenti con priorità specificata iscritti
