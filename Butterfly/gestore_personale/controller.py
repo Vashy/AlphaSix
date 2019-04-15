@@ -341,18 +341,22 @@ class Controller(Observer):
 
     def load_preference_topic(self):
         # prendere preferenze da db
-        # user_projects = self._model.get_user_projects(session['userid'])
-        form = '<form id="topics"><table><tr><th>Url</th><th>Priorità</th><th>Labels</th><th>Keywords</th></tr>'
+        user_projects = self._model.get_user_projects(session['userid'])
+        form = '<form id="topics">\
+        <table><tr><th>Url</th><th>Priorità</th>\
+        <th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
-            # project_labels = self._model.get_project_labels(user_project)
+            project_labels = self._model.get_label_project(
+                user_project['url']
+            )
             row = '<tr>'
             row += '<th>' + user_project['name'] + '</th>'
             row += '<td><select id="priorita">'
-            for priority in range(1,4):
+            for priority in range(1, 4):
                 row += '<option'
                 if priority == user_project['priorita']:
                     row += ' selected="selected"'
-                row += ' value="' + i + '">' + priority + '</option>'
+                row += ' value="' + priority + '">' + priority + '</option>'
             row += '</select></td><td>'
             for label in project_labels:
                 row += '<label>' + label + '</label>'
@@ -364,10 +368,12 @@ class Controller(Observer):
             for keyword in user_project['keywords']:
                 row += keyword
                 row += ','
-            row = row[:-1] # elimino l'ultima virgola
+            row = row[:-1]  # elimino l'ultima virgola
             row += '</textarea></td></tr>'
-            result += row
-        result += '</table><input id="modifytopics" name="modifytopics" type="button" value="Modifica preferenze di progetti e topic"></form>'
+            form += row
+        form += '</table><input id="modifytopics"\
+         name="modifytopics" type="button" \
+         value="Modifica preferenze di progetti e topic"></form>'
         return form
 
     def modify_preference(self):
@@ -376,10 +382,16 @@ class Controller(Observer):
         if request.values.get('preference'):
             page = page.replace('*topics*', self.load_preference_topic())
         elif request.values.get('modifytopics'):
+            pass
         elif request.values.get('addproject'):
+            pass
         elif request.values.get('removeproject'):
+            pass
         elif request.values.get('indisponibilita'):
+            pass
         elif request.values.get('piattaforma'):
+            pass
+        return page
 
     def web_preference(self):
         if self._check_session():

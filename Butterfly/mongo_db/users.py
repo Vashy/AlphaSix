@@ -417,7 +417,8 @@ class MongoUsers:
 
     def user_keywords(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le parole chiave corrispondenti
-        a `project` di `user`: esso può essere sia il contatto Telegram che Email.
+        a `project` di `user`: esso può essere sia il contatto Telegram
+        che Email.
         """
         assert self.exists(user), f'User {user} inesistente'
 
@@ -472,13 +473,14 @@ class MongoUsers:
     # TODO controllare se è corretta
     def user_labels(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le label corrispondenti
-        a `project` di `user`: esso può essere sia il contatto Telegram che Email.
+        a `project` di `user`: esso può essere sia il contatto Telegram
+        che Email.
         """
 
         assert self._user_has_project(user, project), \
             f'{user} non ha in lista il progetto {project}'
 
-        cursor = self._mongo.users({
+        cursor = self.users({
             '$or': [
                 {'telegram': user},
                 {'email': user},
@@ -650,12 +652,11 @@ class MongoUsers:
         """
         assert self.exists(user), f'User {user} inesistente'
 
-        return self._mongo.users({
+        return self._mongo.read('users').find({
             '$or': [
                 {'telegram': user},
                 {'email': user},
             ]
-        },
-        {
-                'projects': 1,
-        }).next()
+        }, {
+            'projects': 1,
+        }).next()['projects']

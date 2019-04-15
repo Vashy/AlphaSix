@@ -52,5 +52,5 @@ window.onload = function () {
     addListener('adduser', function (){addUserPanel(request, null, 'html')});
     addListener('removeuser', function (){removeUserPanel(request, null, 'html')});
     addListener('modifyuser', function (){modifyUserPanel(request, null, 'html')});
-    addListener('preference', function (){modifyPreferencePanel(request, null, 'html')});
+    addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html')});
 };

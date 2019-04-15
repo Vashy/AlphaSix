@@ -87,7 +87,5 @@ class MongoFacade():
     def get_label_project(self, project: str) -> list:
         return self._projects.labels(project)
 
-# Metodi per la parte gestibile dall' utente
-
-    def get_user_projects(user) -> dict:
+    def get_user_projects(self, user) -> dict:
         return self._users.get_projects(user)
