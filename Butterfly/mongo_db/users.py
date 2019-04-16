@@ -549,7 +549,6 @@ class MongoUsers:
         except Exception:
             return []
 
-    # TODO: da testare
     def _get_users_by_priority(self, project: str, priority: int):
         """Restituisce gli utenti con priorità specificata iscritti
         a `project` disponibili in data odierna.
@@ -578,7 +577,6 @@ class MongoUsers:
             user_list.append(identifier['_id'])
         return user_list
 
-    # TODO: da testare
     def get_users_available(self, project: str) -> list:
         """Dato un progetto, cerco tutti
         Gli utenti disponibili oggi

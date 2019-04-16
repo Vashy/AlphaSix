@@ -647,7 +647,7 @@ class TestMongoUsers(unittest.TestCase):
         assert user['preference'] == 'email'
 
     # @pytest.mark.skip()
-    def test_get_users_by_priority(self):
+    def test_get_users_by_priority_available(self):
         res = self.client.create(
             _id=1901,
             name='Matteo',
@@ -716,24 +716,46 @@ class TestMongoUsers(unittest.TestCase):
         )
         res['name'] = 'Mattia'
 
-        users = self.client._get_users_by_priority('http://project', 2)
+        with self.subTest('_get_users_by_priority'):
 
-        assert 1901 not in users
-        assert 1902 in users
-        assert 1903 in users
-        assert 1904 not in users
+            users = self.client._get_users_by_priority('http://project', 2)
 
-        # Test con giorno di irreperibilità
+            assert 1901 not in users
+            assert 1902 in users
+            assert 1903 in users
+            assert 1904 not in users
 
-        date = datetime.datetime.today()  # today, compreso time
-        self.client.add_giorno_irreperibilita(
-            1902,
-            date.year, date.month, date.day,
-        )
+            # Test con giorno di irreperibilità
 
-        users = self.client._get_users_by_priority('http://project', 2)
+            date = datetime.datetime.today()  # today, compreso time
+            self.client.add_giorno_irreperibilita(
+                1902,
+                date.year, date.month, date.day,
+            )
 
-        assert 1901 not in users
-        assert 1902 not in users
-        assert 1903 in users
-        assert 1904 not in users
+            users = self.client._get_users_by_priority('http://project', 2)
+
+            assert 1901 not in users
+            assert 1902 not in users
+            assert 1903 in users
+            assert 1904 not in users
+
+        with self.subTest('get_users_available'):
+            users = self.client.get_users_available('http://project')
+
+            assert 1901 in users
+            assert 1902 not in users
+            assert 1903 in users
+            assert 1904 in users
+
+            date = datetime.datetime.today()  # today, compreso time
+            self.client.add_giorno_irreperibilita(
+                1904,
+                date.year, date.month, date.day,
+            )
+
+            users = self.client.get_users_available('http://project')
+            assert 1901 in users
+            assert 1902 not in users
+            assert 1903 in users
+            assert 1904 not in users
