@@ -4,6 +4,7 @@ function panel(request, url, method, formId, requestId, outputId){
     if(requestId){
         formData.append(requestId, requestId)
     }
+
     request.open(method, url);
     request.send(formData);
     request.onreadystatechange = function(){
@@ -13,12 +14,12 @@ function panel(request, url, method, formId, requestId, outputId){
                 addListener('adduser', function (){addUserPanel(request, 'adduser', 'html')});
                 addListener('removeuser', function (){removeUserPanel(request, 'removeuser', 'html')});
                 addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser', 'html')});
-                addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html')});
-                addListener('modifytopics', function (){modifyPreferencePanel(request, 'modifytopics', 'topics')});
-                addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'projects')});
-                addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'projects')});
-                addListener('indisponibilita', function (){modifyPreferencePanel(request, 'indisponibilita', 'availability')});
-                addListener('piattaforma', function (){modifyPreferencePanel(request, 'piattaforma', 'platform')});
+                addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
+                addListener('modifytopics', function (){modifyPreferencePanel(request, 'modifytopics', 'topics', 'topics')});
+                addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'projects', 'projects')});
+                addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'projects', 'projects')});
+                addListener('indisponibilita', function (){modifyPreferencePanel(request, 'indisponibilita', 'availability', 'availability')});
+                addListener('piattaforma', function (){modifyPreferencePanel(request, 'piattaforma', 'platform', 'platform')});
             }
         }
     };
@@ -36,8 +37,8 @@ function modifyUserPanel(request, id, outputId){
     panel(request, 'web_user', 'PUT', 'data', id, outputId)
 }
 
-function modifyPreferencePanel(request, id, outputId){
-    panel(request, 'web_preference', 'POST', 'data', id, outputId)
+function modifyPreferencePanel(request, requestId, outputId, formId){
+    panel(request, 'web_preference', 'POST', formId, requestId, outputId, formId)
 }
 
 function addListener(id, listener) {
@@ -52,5 +53,5 @@ window.onload = function () {
     addListener('adduser', function (){addUserPanel(request, null, 'html')});
     addListener('removeuser', function (){removeUserPanel(request, null, 'html')});
     addListener('modifyuser', function (){modifyUserPanel(request, null, 'html')});
-    addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html')});
+    addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
 };

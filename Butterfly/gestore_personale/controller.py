@@ -171,7 +171,7 @@ class Controller(Observer):
             page = page.replace(
                     '*access*',
                     '<p>Si prega di inserire un identificativo\
-                    per eseguire l\'accesso.</p>')
+per eseguire l\'accesso.</p>')
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
         return page
@@ -222,7 +222,7 @@ class Controller(Observer):
             page = page.replace(
                     '*adduser*',
                     '<p>Si prega di inserire almeno email o telegram\
-                    per inserire l\'utente.</p>')
+per inserire l\'utente.</p>')
         page = page.replace('*nome*', '')
         page = page.replace('*cognome*', '')
         page = page.replace('*email*', '')
@@ -263,8 +263,8 @@ class Controller(Observer):
             ):
                 page = page.replace(
                     '*modifyuser*',
-                    '<p>I dati inseriti confliggono con altri già\
-                     esistenti.</p>'
+                    '<p>I dati inseriti confliggono\
+con altri già esistenti.</p>'
                 )
             else:
                 page = page.replace(
@@ -303,7 +303,7 @@ class Controller(Observer):
             page = page.replace(
                     '*modifyuser*',
                     '<p>Si prega di inserire almeno email o telegram\
-                    per modificare l\'utente.</p>')
+per modificare l\'utente.</p>')
         user = self._model.read_user(session['userid'])
         page = page.replace('*nome*', user['name'])
         page = page.replace('*cognome*', user['surname'])
@@ -362,28 +362,32 @@ class Controller(Observer):
         user_projects = self._model.get_user_projects(session['userid'])
         form = '<form id="topics">\
         <table border="1"><tr><th>Url</th><th>Priorità</th>\
-        <th>Labels</th><th>Keywords</th></tr>'
+<th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
             project_data = self._model.read_project(
                 user_project['url']
             )
+            project_data['url'] = project_data['url'].lstrip().rstrip()
             row = '<tr>'
-            row += '<th>' + project_data['name'] + '</th>'
-            row += '<td><select id="priority">'
+            row += '<th>' + project_data['url'] + '</th>'
+            row += '<td><select id="priority" name="\
+' + project_data['url'] + '-priority">'
             for priority in range(1, 4):
                 row += '<option'
                 if priority == user_project['priority']:
                     row += ' selected="selected"'
                 row += ' value="' + str(priority) + '">\
-                ' + str(priority) + '</option>'
+' + str(priority) + '</option>'
             row += '</select></td><td>'
             for topic in project_data['topics']:
                 row += '<label>' + topic + '</label>'
-                row += '<input type="checkbox" name="topics"'
+                row += '<input type="checkbox" name="\
+' + project_data['url'] + '-topics"'
                 if topic in user_project['topics']:
                     row += ' checked="checked"'
                 row += ' value="' + topic + '">'
-            row += '</td><td><textarea id="textkeywords" name="keywords">'
+            row += '</td><td><textarea id="textkeywords" name="\
+' + project_data['url'] + '-keywords">'
             for keyword in user_project['keywords']:
                 row += keyword
                 row += ','
@@ -391,8 +395,8 @@ class Controller(Observer):
             row += '</textarea></td></tr>'
             form += row
         form += '</table><input id="modifytopics"\
-         name="modifytopics" type="button" \
-         value="Modifica preferenze di progetti e topic"></form>'
+name="modifytopics" type="button" \
+value="Modifica preferenze di progetti e topic"></form>'
         return form
 
     def load_preference_project(self):
@@ -400,13 +404,13 @@ class Controller(Observer):
         form = '<form id="projects"><select name="projects">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
-            ' + project['name'] + '</option>'
+' + project['name'] + '</option>'
         form += '</select> <input id="addproject"\
-         name="addproject" type="button" \
-         value="Aggiungi il progetto">\
-         <input id="removeproject"\
-         name="removeproject" type="button" \
-         value="Rimuovi il progetto"></form>'
+name="addproject" type="button" \
+value="Aggiungi il progetto">\
+<input id="removeproject"\
+name="removeproject" type="button" \
+value="Rimuovi il progetto"></form>'
         return form
 
     def load_preference_availability(
@@ -420,8 +424,8 @@ class Controller(Observer):
         ).get('irreperibilita')
         form = '<form id="availability">\
         <fieldset><legend>Giorni di indisponibilità</legend>\
-        <div id="calendario"></div><p>' + date.strftime("%B") + ' \
-        ' + date.strftime('%Y') + '</p>'
+<div id="calendario"></div><p>' + date.strftime("%B") + ' \
+' + date.strftime('%Y') + '</p>'
         month_with_0 = str(month)
         if len(month_with_0) < 2:
                 month_with_0 = '0' + month_with_0
@@ -431,32 +435,72 @@ class Controller(Observer):
                 day = '0' + day
             date = str(year) + '-' + month_with_0 + '-' + day
             form += '<label for="' + date + '\
-            ">' + day + '</label><input type="checkbox" name="' + date + '"'
+            ">' + day + '</label><input type="checkbox"\
+name="indisponibilita[]" value="' + date + '"'
             if date in irreperibilita:
                 form += ' checked="checked"'
             form += '>'
         form += '<input type="button" value="Mese precedente"/>\
-        <input type="button" value="Mese successivo"/>\
-        <input id="irreperibilita" name="irreperibilita" type="button"\
-        value="Modifica irreperibilità"/></fieldset></form>'
+<input type="button" value="Mese successivo"/>\
+<input id="irreperibilita" name="irreperibilita" type="button"\
+value="Modifica irreperibilità"/></fieldset></form>'
         return form
 
     def load_preference_platform(self):
         platform = self._model.read_user(session['userid'])['preference']
         form = '<form id="platform"><fieldset>\
-                    <legend>Piattaforma preferita</legend>\
-                    <label for="email">Email</label>\
-                    <input name="platform" id="email"\
-                    type="radio"'
+<legend>Piattaforma preferita</legend>\
+<label for="email">Email</label>\
+<input name="platform" id="email"\
+type="radio"'
         if(platform == 'email'):
             form += ' checked = "checked"'
         form += '/><label for="telegram">Telegram</label>\
-                    <input name="platform" id="telegram" type="radio"'
+<input name="platform" id="telegram" type="radio"'
         if(platform == 'telegram'):
             form += ' checked = "checked"'
         form += '/><input id="piattaforma" name="piattaforma" type="button"\
-                    value="Modifica piattaforma preferita"/></fieldset></form>'
+value="Modifica piattaforma preferita"/></fieldset></form>'
         return form
+
+    def modifytopics(self):
+        user_projects = self._model.get_user_projects(session['userid'])
+        for key, value in request.values.items():
+            for project in user_projects:
+                if project['url'] in key:
+                    if 'priority' in key:
+                        # TODO : set_priority(user,project)
+                    elif 'topics' in key:
+                        # TODO : get_topics(user,project)
+                        # TODO : remove_topics(user,project,topics-value)
+                        # TODO : add_topics(user,project,value-topics)
+                    elif 'keywords' in key:
+                        # TODO : get_keywords(user,project)
+                        # TODO : remove_keywords(user,project,keywords-value)
+                        # TODO : add_topics(user,project,value-topics)
+        return self.load_preference_topic()
+
+    def addproject(self):
+        project = request.values['project']
+        # TODO : add_project(user,project)
+        return self.load_preference_project()
+
+    def removeproject(self):
+        project = request.values['project']
+        # TODO : remove_project(user,project)
+        return self.load_preference_project()
+
+    def indisponibilita(self):
+        giorni = request.values['indisponibilita']
+        # TODO : get_indisponibilita(user)
+        # TODO : remove_indisponibilita(user,user_indis-indis)
+        # TODO : add_indisponibilita(user,indis-user_indis)
+        return self.load_preference_availability()
+
+    def piattaforma(self):
+        platform = request.values['platform']
+        # TODO : setplatform(user, platform)
+        return self.load_preference_platform()
 
     def modify_preference(self):
         fileHtml = html / 'preference.html'
@@ -470,15 +514,15 @@ class Controller(Observer):
             )
             page = page.replace('*platform*', self.load_preference_platform())
         elif request.values.get('modifytopics'):
-            pass
+            return self.modifytopics()
         elif request.values.get('addproject'):
-            pass
+            return self.addproject()
         elif request.values.get('removeproject'):
-            pass
+            return self.removeproject()
         elif request.values.get('indisponibilita'):
-            pass
+            return self.indisponibilita()
         elif request.values.get('piattaforma'):
-            pass
+            return self.piattaforma()
         return page
 
     def web_preference(self):
