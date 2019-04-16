@@ -647,7 +647,7 @@ class TestMongoUsers(unittest.TestCase):
         assert user['preference'] == 'email'
 
     # @pytest.mark.skip()
-    def test_get_users_by_priority_available(self):
+    def test_get_users_by_priority_available_priority(self):
         res = self.client.create(
             _id=1901,
             name='Matteo',
@@ -759,3 +759,113 @@ class TestMongoUsers(unittest.TestCase):
             assert 1902 not in users
             assert 1903 in users
             assert 1904 not in users
+            assert len(users) == 2
+
+        with self.subTest('get_users_max_priority'):
+            res = self.client.create(
+                _id=1905,
+                name='Mattia',
+                surname='Marchionni',
+                telegram='430').inserted_id
+            assert res == 1905
+            res = self.client.add_project(
+                '430',  # id telegram/email
+                'http://project',  # url
+                2,  # priority
+                ['topic1', 'topic2'],  # topics
+                ['kw1', 'kw2'],  # keywords
+            )
+
+            users = self.client.get_users_max_priority('http://project')
+            assert 1901 in users
+            assert 1902 not in users
+            assert 1903 not in users
+            assert 1904 not in users
+            assert 1905 not in users
+            assert len(users) == 1
+
+            date = datetime.datetime.today()  # today, compreso time
+            self.client.add_giorno_irreperibilita(
+                1901,
+                date.year, date.month, date.day,
+            )
+            users = self.client.get_users_max_priority('http://project')
+            assert 1901 not in users
+            assert 1902 not in users
+            assert 1903 in users
+            assert 1904 not in users
+            assert 1905 in users
+            assert len(users) == 2
+            users = self.client.get_users_max_priority('http://projectsss')
+            assert users == []
+
+        with self.subTest('filter_max_priority'):
+            users = self.client.filter_max_priority(
+                [1903, 1905, 1906, 2000],
+                'http://project',
+            )
+            assert 1901 not in users
+            assert 1902 not in users
+            assert 1903 in users
+            assert 1904 not in users
+            assert 1905 in users
+            assert 2000 not in users
+            assert 1906 not in users
+            assert len(users) == 2
+
+            users = self.client.filter_max_priority(
+                [1905, 1906, 2000],
+                'http://project',
+            )
+            assert 1901 not in users
+            assert 1902 not in users
+            assert 1903 not in users
+            assert 1904 not in users
+            assert 1905 in users
+            assert 2000 not in users
+            assert 1906 not in users
+            assert len(users) == 1
+
+    def test_remove_giorno_irreperibilita(self):
+        res = self.client.create(
+            _id=90,
+            name='Timoty',
+            surname='Granziero',
+            telegram='123322').inserted_id
+        assert res == 90
+        self.client.add_giorno_irreperibilita(
+            '123322',
+            2020, 6, 16,
+        )
+        # Doppione
+        self.client.add_giorno_irreperibilita(
+            '123322',
+            2020, 6, 16,
+        )
+        self.client.add_giorno_irreperibilita(
+            '123322',
+            2021, 6, 16,
+        )
+
+        user = self.client.users({'telegram': '123322'}).next()
+        assert 2020 == user['irreperibilita'][0].year
+        assert 6 == user['irreperibilita'][0].month
+        assert 16 == user['irreperibilita'][0].day
+        assert datetime.datetime(2020, 6, 16) in user['irreperibilita']
+        assert datetime.datetime(2021, 6, 16) in user['irreperibilita']
+        assert datetime.datetime(2020, 7, 16) not in user['irreperibilita']
+        assert len(user['irreperibilita']) == 2
+
+        self.client.remove_giorno_irreperibilita(
+            '123322',
+            2020, 6, 16,
+        )
+        self.client.remove_giorno_irreperibilita(  # Rimuozione fallita
+            '123322',
+            2020, 11, 16,
+        )
+
+        user = self.client.users({'telegram': '123322'}).next()
+        assert datetime.datetime(2020, 6, 16) not in user['irreperibilita']
+        assert datetime.datetime(2021, 6, 16) in user['irreperibilita']
+        assert len(user['irreperibilita']) == 1

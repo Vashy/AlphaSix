@@ -143,6 +143,7 @@ class MongoUsers:
 
         return self.users({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -162,6 +163,7 @@ class MongoUsers:
         """
         return self._mongo.delete({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -178,6 +180,7 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -199,6 +202,7 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -217,6 +221,7 @@ class MongoUsers:
 
         count = self.collection('users').count_documents({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -232,6 +237,7 @@ class MongoUsers:
 
         count = self.collection('users').count_documents({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -283,6 +289,7 @@ class MongoUsers:
         # print(new_telegram)
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -320,6 +327,7 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -360,6 +368,7 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -461,6 +470,7 @@ class MongoUsers:
 
         cursor = self._mongo.read('users').find({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -534,6 +544,7 @@ class MongoUsers:
 
         cursor = self._mongo.read('users').find({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -587,7 +598,6 @@ class MongoUsers:
             users += self._get_users_by_priority(project, priority)
         return users
 
-    # TODO: da testare
     def get_users_max_priority(self, project: str) -> list:
         """Dato un progetto, ritorno la lista di
         utenti disponibili oggi di priorità maggiore
@@ -599,7 +609,6 @@ class MongoUsers:
                 return max_priority
         return []
 
-    # TODO: da testare
     def filter_max_priority(self, user_list: list, project: str) -> list:
         """Data una lista di utenti, ritorno la sottolista di
         utenti con priorità maggiore per il progetto specificato
@@ -726,6 +735,7 @@ class MongoUsers:
 
         projects = self._mongo.read('users').find({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -739,8 +749,11 @@ class MongoUsers:
     def add_giorno_irreperibilita(
         self,
         user: str,
-        year, month, day,
+        year: int, month: int, day: int,
     ):
+        """Aggiunge il giorno di irreperibilità specificato all'utente `user`.
+        `user` può corrispondere ai campi `_id`, `telegram` o `email`.
+        """
         assert self.exists(user), f'User {user} inesistente'
         date = datetime.datetime(year, month, day, 0, 0)
         return self._mongo.read('users').find_one_and_update(
@@ -752,6 +765,31 @@ class MongoUsers:
             {
                 # Aggiunge all'array irreperibilita, senza duplicare
                 '$addToSet': {
+                    'irreperibilita': date,
+                }
+            }
+        )
+
+    def remove_giorno_irreperibilita(
+        self,
+        user: str,
+        year: int, month: int, day: int,
+    ):
+        """Rimuove il giorno di irreperibilità specificato all'utente `user`,
+        se presente.
+        `user` può corrispondere ai campi `_id`, `telegram` o `email`.
+        """
+        assert self.exists(user), f'User {user} inesistente'
+        date = datetime.datetime(year, month, day, 0, 0)
+        return self._mongo.read('users').find_one_and_update(
+            {'$or': [  # Confronta user sia con telegram che con email o _id
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ]},
+            {
+                # Rimuove dall'array irreperibilita
+                '$pull': {
                     'irreperibilita': date,
                 }
             }
