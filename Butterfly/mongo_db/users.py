@@ -329,7 +329,6 @@ class MongoUsers:
             }
         )
 
-    # TODO: Da testare, NON fatta da Tim
     def update_user_preference(self, user: str, preference: str):
         """Aggiorna la preferenza (tra Telegram e Email) dell'utente
         corrispondente all'`user` (Telegram o Email).
@@ -348,6 +347,7 @@ class MongoUsers:
 
         count = self._mongo.read('users').count_documents({
             '$or': [  # Confronta user sia con telegram che con email
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -364,7 +364,7 @@ class MongoUsers:
             ]},
             {
                 '$set': {
-                    'preferenza': preference
+                    'preference': preference
                 }
             }
         )

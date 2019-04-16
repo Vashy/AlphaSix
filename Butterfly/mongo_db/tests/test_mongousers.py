@@ -601,3 +601,38 @@ class TestMongoUsers(unittest.TestCase):
         user = self.client.users({'email': 'b@b.bbb'}).next()
         assert '2019/04/17' in user['irreperibilita']
         assert '2019/04/18' in user['irreperibilita']
+
+    def test_update_user_preference(self):
+        res = self.client.create(
+            _id=1315,
+            name='Timoty',
+            surname='Granziero',
+            telegram='12').inserted_id
+        assert res == 1315
+
+        self.assertRaises(
+            AssertionError,
+            self.client.update_user_preference,
+            '999',  # User inesistente
+            'telegram',
+        )
+        self.assertRaises(
+            AssertionError,
+            self.client.update_user_preference,
+            '12',
+            'eemail',  # no email o telegram
+        )
+        self.assertRaises(
+            AssertionError,
+            self.client.update_user_preference,
+            '12',
+            'email',  # campo non impostato
+        )
+
+        self.client.update_user_preference('12', 'telegram')
+        user = self.client.read('12')
+        assert user['preference'] == 'telegram'
+        self.client.update_email('12', 'cret@cret.a')
+        self.client.update_user_preference('12', 'email')
+        user = self.client.read('12')
+        assert user['preference'] == 'email'
