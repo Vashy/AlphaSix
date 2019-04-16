@@ -4,6 +4,8 @@ from os import urandom
 from abc import ABC, abstractmethod
 import pathlib
 import json
+import datetime
+import calendar
 
 from flask import Flask, request, session, make_response, redirect, url_for, render_template_string
 import flask_restful
@@ -145,7 +147,7 @@ class Controller(Observer):
         return ids
 
     def _check_session(self):
-        return 'userid' in session
+        return 'email' in session or 'telegram' in session
 
     def _check_values(self):
         return len(request.values) != 0
@@ -156,7 +158,9 @@ class Controller(Observer):
         userid = request.values.get('userid')
         if userid:
             if self._model.user_exists(userid):
-                session['userid'] = userid
+                session['email'] = self._model.get_user_email(userid)
+                session['telegram'] = self._model.get_user_telegram(userid)
+                session['userid'] = session['email'] if 'email' in session else session['telegram']
                 return redirect(url_for('panel'), code=303)
             else:
                 page = page.replace(
@@ -247,9 +251,15 @@ class Controller(Observer):
             if telegram:
                 page = page.replace('*telegram*', telegram)
                 modify.update(telegram=telegram)
-            if (
-                email and self._model.user_exists(email) or
-                telegram and self._model.user_exists(telegram)
+            if ((
+                email and
+                self._model.user_exists(email) and
+                email != session['email']
+            )or(
+                telegram and
+                self._model.user_exists(telegram) and
+                telegram != session['telegram']
+                )
             ):
                 page = page.replace(
                     '*modifyuser*',
@@ -271,25 +281,34 @@ class Controller(Observer):
                         session['userid'],
                         modify['cognome']
                     )
-                if('email' in modify):
+                if('email' in modify and
+                    ('email' not in session) or
+                    (modify['email'] != session['email'])
+                ):
                     self._model.update_user_email(
                         session['userid'],
                         modify['email']
                     )
-                if('telegram' in modify):
+                    session['email'] = modify['email']
+                if('telegram' in modify and
+                    ('telegram' not in session) or
+                    (modify['telegram'] != session['telegram'])
+                ):
                     self._model.update_user_telegram(
                         session['userid'],
                         modify['telegram']
                     )
+                    session['telegram'] = modify['telegram']
         if request.values.get('modifyuser'):
             page = page.replace(
                     '*modifyuser*',
                     '<p>Si prega di inserire almeno email o telegram\
                     per modificare l\'utente.</p>')
-        page = page.replace('*nome*', '')
-        page = page.replace('*cognome*', '')
-        page = page.replace('*email*', '')
-        page = page.replace('*telegram*', '')
+        user = self._model.read_user(session['userid'])
+        page = page.replace('*nome*', user['name'])
+        page = page.replace('*cognome*', user['surname'])
+        page = page.replace('*email*', user['email'])
+        page = page.replace('*telegram*', user['telegram'])
         page = page.replace('*modifyuser*', '')
         return page
 
@@ -340,30 +359,30 @@ class Controller(Observer):
             return self.access()
 
     def load_preference_topic(self):
-        # prendere preferenze da db
         user_projects = self._model.get_user_projects(session['userid'])
         form = '<form id="topics">\
-        <table><tr><th>Url</th><th>Priorità</th>\
+        <table border="1"><tr><th>Url</th><th>Priorità</th>\
         <th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
-            project_labels = self._model.get_label_project(
+            project_data = self._model.read_project(
                 user_project['url']
             )
             row = '<tr>'
-            row += '<th>' + user_project['name'] + '</th>'
-            row += '<td><select id="priorita">'
+            row += '<th>' + project_data['name'] + '</th>'
+            row += '<td><select id="priority">'
             for priority in range(1, 4):
                 row += '<option'
-                if priority == user_project['priorita']:
+                if priority == user_project['priority']:
                     row += ' selected="selected"'
-                row += ' value="' + priority + '">' + priority + '</option>'
+                row += ' value="' + str(priority) + '">\
+                ' + str(priority) + '</option>'
             row += '</select></td><td>'
-            for label in project_labels:
-                row += '<label>' + label + '</label>'
-                row += '<input type="checkbox" name="labels"'
-                if label == user_project['labels']:
+            for topic in project_data['topics']:
+                row += '<label>' + topic + '</label>'
+                row += '<input type="checkbox" name="topics"'
+                if topic in user_project['topics']:
                     row += ' checked="checked"'
-                row += ' value="' + label + '">'
+                row += ' value="' + topic + '">'
             row += '</td><td><textarea id="textkeywords" name="keywords">'
             for keyword in user_project['keywords']:
                 row += keyword
@@ -376,11 +395,80 @@ class Controller(Observer):
          value="Modifica preferenze di progetti e topic"></form>'
         return form
 
+    def load_preference_project(self):
+        projects = self._model.projects()
+        form = '<form id="projects"><select name="projects">'
+        for project in projects:
+            form += '<option value="' + project['url'] + '">\
+            ' + project['name'] + '</option>'
+        form += '</select> <input id="addproject"\
+         name="addproject" type="button" \
+         value="Aggiungi il progetto">\
+         <input id="removeproject"\
+         name="removeproject" type="button" \
+         value="Rimuovi il progetto"></form>'
+        return form
+
+    def load_preference_availability(
+        self,
+        year=datetime.datetime.now().year,
+        month=datetime.datetime.now().month
+    ):
+        date = datetime.datetime(year, month, 1)
+        irreperibilita = self._model.read_user(
+            session['userid']
+        ).get('irreperibilita')
+        form = '<form id="availability">\
+        <fieldset><legend>Giorni di indisponibilità</legend>\
+        <div id="calendario"></div><p>' + date.strftime("%B") + ' \
+        ' + date.strftime('%Y') + '</p>'
+        month_with_0 = str(month)
+        if len(month_with_0) < 2:
+                month_with_0 = '0' + month_with_0
+        for day in range(1, calendar.monthrange(year, month)[1]+1):
+            day = str(day)
+            if len(day) < 2:
+                day = '0' + day
+            date = str(year) + '-' + month_with_0 + '-' + day
+            form += '<label for="' + date + '\
+            ">' + day + '</label><input type="checkbox" name="' + date + '"'
+            if date in irreperibilita:
+                form += ' checked="checked"'
+            form += '>'
+        form += '<input type="button" value="Mese precedente"/>\
+        <input type="button" value="Mese successivo"/>\
+        <input id="irreperibilita" name="irreperibilita" type="button"\
+        value="Modifica irreperibilità"/></fieldset></form>'
+        return form
+
+    def load_preference_platform(self):
+        platform = self._model.read_user(session['userid'])['preference']
+        form = '<form id="platform"><fieldset>\
+                    <legend>Piattaforma preferita</legend>\
+                    <label for="email">Email</label>\
+                    <input name="platform" id="email"\
+                    type="radio"'
+        if(platform == 'email'):
+            form += ' checked = "checked"'
+        form += '/><label for="telegram">Telegram</label>\
+                    <input name="platform" id="telegram" type="radio"'
+        if(platform == 'telegram'):
+            form += ' checked = "checked"'
+        form += '/><input id="piattaforma" name="piattaforma" type="button"\
+                    value="Modifica piattaforma preferita"/></fieldset></form>'
+        return form
+
     def modify_preference(self):
         fileHtml = html / 'preference.html'
         page = fileHtml.read_text()
         if request.values.get('preference'):
             page = page.replace('*topics*', self.load_preference_topic())
+            page = page.replace('*projects*', self.load_preference_project())
+            page = page.replace(
+                '*availability*',
+                self.load_preference_availability()
+            )
+            page = page.replace('*platform*', self.load_preference_platform())
         elif request.values.get('modifytopics'):
             pass
         elif request.values.get('addproject'):

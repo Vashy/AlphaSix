@@ -18,9 +18,9 @@ class MongoProjects:
         """Restituisce `True` se l'`id` di un utente
         (che può essere Telegram o Email) è salvato nel DB.
         """
-        count = self._mongo.read('projects').count_documents({
+        count = self._mongo.read('projects').count_documents(
             {'url': project}
-        })
+        )
         return count != 0
 
     def create(self, project: dict):
@@ -51,7 +51,7 @@ class MongoProjects:
 
     def read(
         self, url: str
-    ) -> bool:
+    ) -> dict:
         """Restituisce il progetto corrispondente a `url`.
 
         Raises:
@@ -59,27 +59,27 @@ class MongoProjects:
         """
         assert self.exists(url), f'Project {id} inesistente'
 
-        return self.projects({
+        return self.projects(
             {'url': url},
-        })[0]
+        ).next()
 
     def keywords(self, project: str) -> list:
         """Restituisce una lista contenente le parole chiave corrispondenti
         all'`id`: url del progetto
         """
-        cursor = self.projects({
+        cursor = self.projects(
             {'url': project}
-        })
+        )
         return cursor[0]['keywords']
 
     def labels(self, project: str) -> list:
         """Restituisce una lista contenente le labels corrispondenti
         all'`id`: url del progetto
         """
-        cursor = self.projects({
+        cursor = self.projects(
             {'url': project}
-        })
-        return cursor[0]['labels']
+        )
+        return cursor.next()['topics']
 
     def insert_keyword_by_project(self, keyword: str, project: str):
         """Inserisce una nuova keyword nel progetto
@@ -103,6 +103,6 @@ class MongoProjects:
             {'url': project},
             {
                 '$set':
-                {'labels': labels}
+                {'topics': labels}
             }
         )

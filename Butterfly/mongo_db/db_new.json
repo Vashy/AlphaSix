@@ -1,16 +1,17 @@
 {
   "users": [
     {
-      "irreperibilita": [
-        "2018/12/05",
-        "2019/04/05",
-        "2019/04/06",
-        "2019/04/07"
-      ],
-      "surname": "Granziero",
       "name": "Timoty",
-      "telegram": 12312,
+      "surname": "Granziero",
       "email": null,
+      "telegram": "12312",
+      "preference": "telegram",
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-05",
+        "2019-04-06",
+        "2019-04-07"
+      ],
       "projects": [
         {
           "url": "http://localhost/gitlab/gitlab-2",
@@ -25,20 +26,20 @@
             "kw3"
           ]
         }
-      ],
-      "preference": "telegram"
+      ]
     },
     {
-      "irreperibilita": [
-        "2018/12/05",
-        "2019/04/05",
-        "2019/04/06",
-        "2019/04/07"
-      ],
-      "surname": "Granziero",
       "name": "Simone",
-      "telegram": 123432,
+      "surname": "Granziero",
       "email": "simone.granziero@email.it",
+      "telegram": "123432",
+      "preference": "email",
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-05",
+        "2019-04-06",
+        "2019-04-07"
+      ],
       "projects": [
         {
           "url": "http://localhost/redmine/project-1",
@@ -66,15 +67,14 @@
             "kw3"
           ]
         }
-      ],
-      "preference": "email"
+      ]
     }
   ],
   "projects": [
     {
       "url": "http://localhost/redmine/project-1",
-      "app": "redmine",
       "name": "Project-1",
+      "app": "redmine",
       "topics": [
         "enhancement",
         "bug",
@@ -83,8 +83,8 @@
     },
     {
       "url": "http://localhost/gitlab/gitlab-1",
-      "app": "gitlab",
       "name": "Gitlab-1",
+      "app": "gitlab",
       "topics": [
         "python",
         "coding",
@@ -94,8 +94,8 @@
     },
     {
       "url": "http://localhost/gitlab/gitlab-2",
-      "app": "gitlab",
       "name": "Gitlab-2",
+      "app": "gitlab",
       "topics": [
         "java",
         "coding",
@@ -105,8 +105,8 @@
     },
     {
       "url": "http://localhost/redmine/project-2",
-      "app": "redmine",
       "name": "Project-2",
+      "app": "redmine",
       "topics": [
         "golang",
         "bug",
@@ -115,8 +115,8 @@
     },
     {
       "url": "http://localhost/redmine/project-4",
-      "app": "redmine",
       "name": "Project-4",
+      "app": "redmine",
       "topics": [
         "bug",
         "python",

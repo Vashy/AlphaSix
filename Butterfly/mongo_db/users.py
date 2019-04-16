@@ -605,15 +605,15 @@ class MongoUsers:
                 return users
         return []
 
-    # def get_user_telegram_from_id(self, user: int):
-    #     return self.users({
-    #         '_id': user
-    #     }).next()['telegram']
+    def get_user_telegram_from_id(self, user: int):
+        return self.users({
+            '_id': user
+        }).next()['telegram']
 
-    # def get_user_email_from_id(self, user: int):
-    #     return self.users({
-    #         '_id': user
-    #     }).next()['email']
+    def get_user_email_from_id(self, user: int):
+        return self.users({
+            '_id': user
+        }).next()['email']
 
     def get_user_telegram(self, user: str):
         try:
@@ -715,14 +715,17 @@ class MongoUsers:
         """
         assert self.exists(user), f'User {user} inesistente'
 
-        return self._mongo.read('users').find({
+        projects = self._mongo.read('users').find({
             '$or': [
                 {'telegram': user},
                 {'email': user},
             ]
         }, {
             'projects': 1,
-        }).next()['projects']
+        }).next()
+        if 'projects' in projects:
+            return projects['projects']
+        return {}
 
     def add_giorni_irreperibilita(self, user: str, *dates: str) -> str:
         assert self.exists(user), f'User {user} inesistente'

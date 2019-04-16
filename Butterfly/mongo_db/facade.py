@@ -18,6 +18,15 @@ class MongoFacade():
     def read_user(self, user: str):
         return self._users.read(user)
 
+    def read_project(self, project: str):
+        return self._projects.read(project)
+
+    def users(self):
+        return self._users.users()
+
+    def projects(self):
+        return self._projects.projects()
+
     def delete_user(self, user: str):
         return self._users.delete(user)
 
@@ -65,11 +74,17 @@ class MongoFacade():
     def get_project_by_url(self, url: str) -> bool:
         return self._projects.exists(url)
 
-    def get_user_telegram(self, userID: str) -> str:
+    def get_user_telegram_from_id(self, userID: str) -> str:
         return self._users.get_user_telegram_from_id(userID)
 
-    def get_user_email(self, userID: str) -> str:
+    def get_user_email_from_id(self, userID: str) -> str:
         return self._users.get_user_email_from_id(userID)
+
+    def get_user_telegram(self, user: str) -> str:
+        return self._users.get_user_telegram(user)
+
+    def get_user_email(self, user: str) -> str:
+        return self._users.get_user_email(user)
 
     def get_match_keywords(self, users: list, commit: str) -> list:
         return self._users.get_match_keywords(users, commit)
@@ -87,5 +102,5 @@ class MongoFacade():
     def get_label_project(self, project: str) -> list:
         return self._projects.labels(project)
 
-    def get_user_projects(self, user) -> dict:
+    def get_user_projects(self, user: str) -> dict:
         return self._users.get_projects(user)

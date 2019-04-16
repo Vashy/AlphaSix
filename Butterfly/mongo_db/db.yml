@@ -3,16 +3,16 @@ users:
     name: Timoty
     surname: Granziero
     email: null
-    telegram: 12312
+    telegram: "12312"
     preference: telegram
     irreperibilita:
-      - 2018/12/05
-      - 2019/04/05
-      - 2019/04/06
-      - 2019/04/07
+      - 2018-12-05
+      - 2019-04-05
+      - 2019-04-06
+      - 2019-04-07
     projects:
       -
-        url: http://localhost/gitlab/gitlab-2
+        url: "http://localhost/gitlab/gitlab-2"
         priority: 3
         topics:
           - java
@@ -25,13 +25,13 @@ users:
     name: Simone
     surname: Granziero
     email: simone.granziero@email.it
-    telegram: 123432
+    telegram: "123432"
     preference: email
     irreperibilita:
-      - 2018/12/05
-      - 2019/04/05
-      - 2019/04/06
-      - 2019/04/07
+      - 2018-12-05
+      - 2019-04-05
+      - 2019-04-06
+      - 2019-04-07
     projects:
       -
         url: http://localhost/redmine/project-1
