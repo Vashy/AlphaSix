@@ -9,8 +9,8 @@ class MongoUsers:
     def __init__(self, mongo: MongoSingleton):
         self._mongo = mongo
 
-    @classmethod
-    def _user_dict_no_id(cls, obj: dict):
+    @staticmethod
+    def _user_dict_no_id(obj: dict):
         return {
             'name': obj['name'],
             'surname': obj['surname'],
@@ -86,51 +86,14 @@ class MongoUsers:
                 users.find_one({'email': new_user['email']})):
             raise AssertionError(f'Email {new_user["email"]} già presente')
 
-        # Ottiene un id valido
-        # if new_user['telegram'] is None:
-        #     identifier = new_user['email']
-        # else:
-        #     identifier = new_user['telegram']
-
         # Via libera all'aggiunta al DB
         if new_user['_id'] is None:  # Per non mettere _id = None sul DB
-            partial_result = self._user_dict_no_id(new_user)
-            result = self._mongo.create(
-                partial_result,
-                'users'
-            )
+            del new_user['_id']
 
-        else:
-            partial_result = self._user_dict_no_id(new_user)
-            partial_result['_id'] = new_user['_id']
-            result = self._mongo.create(
-                partial_result,
-                'users'
-            )
-
-        # NOTE: Se i dati precedenti sono validi, a questo punto sono
-        # già inseriti nel DB. I dati successivi vengono inseriti
-        # mano a mano che vengono considerati validi. AssertionError
-        # verrà lanciata se qualcosa lo è
-
-#        # Valida e aggiunge la preferenza
-#        if new_user['preferenza'] is not None:
-#            self.update_user_preference(
-#                new_user[new_user['preferenza']],
-#                new_user['preferenza']
-#            )
-
-#        # Valida e aggiunge i topic
-#        for topic in new_user['topics']:
-#            self.add_user_topic_from_id(id, topic)
-
-#        # Aggiunge le kw
-#        self.add_keywords(id, *new_user['keywords'])
-
-#        # Valida e aggiunge il sostituto
-#        self.update_user_sostituto(id, new_user['sostituto'])
-
-        return result
+        return self._mongo.create(
+            new_user,
+            'users'
+        )
 
     def read(self, user: str):
         """Restituisce un oggetto Python corrispondente all'`user`
