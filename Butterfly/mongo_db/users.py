@@ -446,7 +446,7 @@ class MongoUsers:
 
         try:
             return cursor.next()['projects'][0]['keywords']
-        except Exception:
+        except StopIteration:
             return []
 
     def add_labels(self, user: str, project: str, *new_labels):
@@ -520,7 +520,7 @@ class MongoUsers:
 
         try:
             return cursor.next()['projects'][0]['topics']
-        except Exception:
+        except StopIteration:
             return []
 
     def _get_users_by_priority(self, project: str, priority: int):

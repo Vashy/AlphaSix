@@ -152,14 +152,14 @@ class TestMongoProjects(unittest.TestCase):
 
     def test_update_app(self):
         res = self.client.create(
-                _id=15,
-                url='http://project1',  # url
-                name='Project',  # name
-                app='gitlab',  # app
-                topics=[
-                    1, 2, 'abc',
-                ],  # topics
-            )
+            _id=15,
+            url='http://project1',  # url
+            name='Project',  # name
+            app='gitlab',  # app
+            topics=[
+                1, 2, 'abc',
+            ],  # topics
+        )
         project = self.client.read(15)
         assert project['url'] == 'http://project1'
         assert project['app'] == 'gitlab'
@@ -181,3 +181,143 @@ class TestMongoProjects(unittest.TestCase):
             'httpsss://project1',
             'redmane',
         )
+
+    def test_update_url(self):
+        res = self.client.create(
+            _id=20,
+            url='http://project2',  # url
+            name='ProjectA',  # name
+            app='redmine',  # app
+            topics=[
+                1, 2, 'abc', 4,
+            ],  # topics
+        )
+        assert res.inserted_id == 20
+        project = self.client.read(20)
+        assert project['url'] == 'http://project2'
+        assert project['name'] == 'ProjectA'
+        assert project['app'] == 'redmine'
+
+        self.client.update_url('http://project2', 'http://projectAA')
+        project = self.client.read(20)
+        assert project['app'] == 'redmine'
+        assert project['url'] == 'http://projectAA'
+        res = self.client.create(
+            _id=21,
+            url='a',  # url
+            name='ProjectB',  # name
+            app='redmine',  # app
+            topics=[
+                1, 2, 'abc', 4,
+            ],  # topics
+        )
+        assert res.inserted_id == 21
+        self.assertRaises(  # nuovo url Progetto già esistente
+            AssertionError,
+            self.client.update_url,
+            'http://projectAA',
+            'a',
+        )
+
+        self.assertRaises(  # Progetto non esistente
+            AssertionError,
+            self.client.update_app,
+            'httpsss://projectsssssssssssss',
+            'http://projectAaaaA',
+        )
+
+    def test_update_name(self):
+        res = self.client.create(
+            _id=25,
+            url='http://project5',  # url
+            name='ProjectA',  # name
+            app='redmine',  # app
+            topics=[
+                1, 2, 'abc', 4,
+            ],  # topics
+        )
+        assert res.inserted_id == 25
+        project = self.client.read(25)
+        assert project['url'] == 'http://project5'
+        assert project['name'] == 'ProjectA'
+        assert project['app'] == 'redmine'
+
+        self.client.update_name('http://project5', 'ProjectB')
+        project = self.client.read(25)
+        assert project['app'] == 'redmine'
+        assert project['name'] == 'ProjectB'
+        assert project['url'] == 'http://project5'
+
+    def test_topics(self):
+        res = self.client.create(
+            _id=27,
+            url='http://project6.5',  # url
+            name='ProjectA',  # name
+            app='redmine',  # app
+            topics=[
+                1, 2, 'abc', 4,
+            ],  # topics
+        )
+        res.inserted_id == 27
+
+        topics = self.client.topics('http://project6.5')
+        assert 1 in topics
+        assert 2 in topics
+        assert 4 in topics
+        assert 'abc' in topics
+        assert len(topics) == 4
+        self.assertRaises(
+            AssertionError,
+            self.client.topics,
+            'AAA',
+        )
+
+    # @pytest.mark.skip()
+    def test_add_remove_topics(self):
+        with self.subTest('add_topics'):
+            res = self.client.create(
+                _id=30,
+                url='http://project6',  # url
+                name='ProjectA',  # name
+                app='redmine',  # app
+                topics=[
+                    1, 2, 'abc', 4,
+                ],  # topics
+            )
+            res.inserted_id == 30
+            project = self.client.read(30)
+            assert len(project['topics']) == 4
+
+            self.client.add_topics(
+                30,
+                'a',
+                'b',
+                1,  # topic già presente
+            )
+            project = self.client.read(30)
+            assert len(project['topics']) == 6
+
+            self.assertRaises(
+                AssertionError,
+                self.client.add_topics,
+                'AAA',
+            )
+
+        with self.subTest('remove_topics'):
+            self.client.remove_topics(
+                30,
+                'aaaaaaaa',  # topic non presente
+                1,
+                'b'
+            )
+            project = self.client.read(30)
+            assert len(project['topics']) == 4
+            assert 1 not in project['topics']
+            assert 'b' not in project['topics']
+            assert 'a' in project['topics']
+
+            self.assertRaises(
+                AssertionError,
+                self.client.remove_topics,
+                'AAA',
+            )

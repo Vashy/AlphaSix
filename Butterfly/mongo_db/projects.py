@@ -124,7 +124,7 @@ class MongoProjects:
 
     def update_app(self, project: str, app: str) -> dict:
         """Aggiorna il campo `app` del progetto corrispondente a
-        `url` con il valore `app`.
+        `project` con il valore `app`.
         """
         assert self.exists(project), f'Project {project} inesistente'
         assert app in apps, f'app "{app}" non riconosciuta'
@@ -142,46 +142,121 @@ class MongoProjects:
             }
         )
 
-    def keywords(self, project: str) -> list:
-        """Restituisce una lista contenente le parole chiave corrispondenti
-        all'`id`: url del progetto
+    def update_url(self, project: str, new_url: str) -> dict:
+        """Aggiorna il campo `url` del progetto corrispondente a
+        `project` con il valore `new_url`.
         """
-        cursor = self.projects(
-            {'url': project}
-        )
-        return cursor[0]['keywords']
+        assert self.exists(project), f'Project {project} inesistente'
+        assert not self.exists(new_url), f'Project "{new_url}" già esistente'
 
-    def labels(self, project: str) -> list:
-        """Restituisce una lista contenente le labels corrispondenti
-        all'`id`: url del progetto
-        """
-        cursor = self.projects(
-            {'url': project}
-        )
-        return cursor.next()['topics']
-
-    def insert_keyword_by_project(self, keyword: str, project: str):
-        """Inserisce una nuova keyword nel progetto
-        """
-        keywords = self.keywords(project)
-        keywords.append(keyword)
-        self._mongo.db['projects'].update(
-            {'url': project},
+        return self.collection.find_one_and_update(
             {
-                '$set':
-                {'keywords': keywords}
+                '$or': [
+                    {'_id': project},
+                    {'url': project},
+                ]},
+            {
+                '$set': {
+                    'url': new_url,
+                }
             }
         )
 
-    def insert_label_by_project(self, label: str, project: str):
-        """Inserisce una nuova label nel progetto
+    def update_name(self, project: str, new_name: str) -> dict:
+        """Aggiorna il campo `name` del progetto corrispondente a
+        `project` con il valore `new_name`.
         """
-        labels = self.labels(project)
-        labels.append(label)
-        self._mongo.db['projects'].update(
-            {'url': project},
+        assert self.exists(project), f'Project {project} inesistente'
+
+        return self.collection.find_one_and_update(
             {
-                '$set':
-                {'topics': labels}
+                '$or': [
+                    {'_id': project},
+                    {'url': project},
+                ]},
+            {
+                '$set': {
+                    'name': new_name,
+                }
+            }
+        )
+
+    # def keywords(self, project: str) -> list:
+    #     """Restituisce una lista contenente le parole chiave corrispondenti
+    #     all'`id`: url del progetto
+    #     """
+    #     cursor = self.projects(
+    #         {'url': project}
+    #     )
+    #     return cursor[0]['keywords']
+
+    def topics(self, project: str) -> list:
+        """Restituisce una lista contenente i topics corrispondenti
+        a '`project`: `url` o `_id` del progetto
+        """
+        assert self.exists(project), f'Project {project} inesistente'
+
+        cursor = self.projects(
+            {
+                '$or': [
+                    {'_id': project},
+                    {'url': project},
+                ]},
+        )
+        try:
+            return cursor.next()['topics']
+        except StopIteration:
+            return []
+
+    # def insert_keyword_by_project(self, keyword: str, project: str):
+    #     """Inserisce una nuova keyword nel progetto
+    #     """
+    #     keywords = self.keywords(project)
+    #     keywords.append(keyword)
+    #     self._mongo.db['projects'].update(
+    #         {'url': project},
+    #         {
+    #             '$set':
+    #             {'keywords': keywords}
+    #         }
+    #     )
+
+    def add_topics(self, project: str, *topics: str):
+        """Inserisce nuovi `topics` nel progetto `project`.
+        """
+        assert self.exists(project), f'Project {project} inesistente'
+
+        return self.collection.find_one_and_update(
+            {
+                '$or': [
+                    {'_id': project},
+                    {'url': project},
+                ]},
+            {
+                '$addToSet': {
+                    'topics': {
+                        '$each': topics,
+                    }
+                }
+            }
+        )
+
+    def remove_topics(self, project: str, *topics: str):
+        """Rimuove i `topics` dal progetto `project`.
+        """
+        assert self.exists(project), f'Project {project} inesistente'
+
+        return self.collection.find_one_and_update(
+            {
+                '$or': [
+                    {'_id': project},
+                    {'url': project},
+                ]},
+            {
+                '$pull': {
+                    'topics': {
+                        '$in': topics,
+                    }
+                }
             }
         )
