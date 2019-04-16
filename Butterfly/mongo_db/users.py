@@ -1,4 +1,5 @@
 import copy
+import datetime
 
 from mongo_db.singleton import MongoSingleton
 
@@ -553,19 +554,29 @@ class MongoUsers:
         """Restituisce gli utenti con priorità specificata iscritti
         a `project` disponibili in data odierna.
         """
-        return self.users({
+        date = datetime.datetime.today()  # today, compreso time
+
+        # today, esclusi i valori time
+        date = datetime.datetime(date.year, date.month, date.day)
+
+        cursor = self._mongo.read('users').find({
             'projects': {
                 '$elemMatch': {
                     'url': project,
                     'priority': priority
                 },
             },
-            '$currentDate': {
-                '$nin': 'irreperibilita'
+            'irreperibilita': {
+                '$nin': [date]
             }
         }, {
             '_id': 1,
         })
+
+        user_list = []
+        for identifier in cursor:
+            user_list.append(identifier['_id'])
+        return user_list
 
     # TODO: da testare
     def get_users_available(self, project: str) -> list:
@@ -727,8 +738,13 @@ class MongoUsers:
             return projects['projects']
         return {}
 
-    def add_giorni_irreperibilita(self, user: str, *dates: str) -> str:
+    def add_giorno_irreperibilita(
+        self,
+        user: str,
+        year, month, day,
+    ):
         assert self.exists(user), f'User {user} inesistente'
+        date = datetime.datetime(year, month, day, 0, 0)
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email o _id
                 {'_id': user},
@@ -738,9 +754,7 @@ class MongoUsers:
             {
                 # Aggiunge all'array irreperibilita, senza duplicare
                 '$addToSet': {
-                    'irreperibilita': {
-                        '$each': [*dates]
-                    },
+                    'irreperibilita': date,
                 }
             }
         )

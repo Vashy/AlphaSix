@@ -25,6 +25,7 @@ Creatore: Timoty Granziero, timoty.granziero@gmail.com
 """
 
 import unittest
+import datetime
 
 import pytest
 
@@ -575,32 +576,40 @@ class TestMongoUsers(unittest.TestCase):
             assert 'b@b.b' in user_list
             assert '2334' not in user_list
 
-    def test_add_giorni_irreperibilita(self):
+    def test_add_giorno_irreperibilita(self):
         res = self.client.create(
             _id=1310,
             name='Timoty',
             surname='Granziero',
             email='b@b.bbb').inserted_id
         assert res == 1310
-        res = self.client.add_giorni_irreperibilita(
+        res = self.client.add_giorno_irreperibilita(
             1310,
-            '2019/04/16',
-            '2019/04/17',
+            2019, 4, 16,
+        )
+        res = self.client.add_giorno_irreperibilita(
+            1310,
+            2019, 4, 17,
         )
 
         user = self.client.users({'email': 'b@b.bbb'}).next()
-        assert '2019/04/16' in user['irreperibilita']
-        assert '2019/04/17' in user['irreperibilita']
-        assert '2019/04/18' not in user['irreperibilita']
+        assert 2019 == user['irreperibilita'][0].year
+        assert 4 == user['irreperibilita'][0].month
+        assert 16 == user['irreperibilita'][0].day
+        assert datetime.datetime(2019, 4, 16) in user['irreperibilita']
 
-        res = self.client.add_giorni_irreperibilita(
+        res = self.client.add_giorno_irreperibilita(
             1310,
-            '2019/04/16',
-            '2019/04/18',
+            2019, 4, 16,
+        )
+        res = self.client.add_giorno_irreperibilita(
+            1310,
+            2019, 4, 18,
         )
         user = self.client.users({'email': 'b@b.bbb'}).next()
-        assert '2019/04/17' in user['irreperibilita']
-        assert '2019/04/18' in user['irreperibilita']
+        assert datetime.datetime(2019, 4, 17) in user['irreperibilita']
+        assert datetime.datetime(2019, 4, 18) in user['irreperibilita']
+        assert datetime.datetime(2019, 4, 10) not in user['irreperibilita']
 
     def test_update_user_preference(self):
         res = self.client.create(
@@ -636,3 +645,95 @@ class TestMongoUsers(unittest.TestCase):
         self.client.update_user_preference('12', 'email')
         user = self.client.read('12')
         assert user['preference'] == 'email'
+
+    # @pytest.mark.skip()
+    def test_get_users_by_priority(self):
+        res = self.client.create(
+            _id=1901,
+            name='Matteo',
+            surname='Marchioni',
+            telegram='420').inserted_id
+        assert res == 1901
+
+        res = self.client.add_project(
+            '420',  # id telegram/email
+            'http://project',  # url
+            1,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
+        assert res['email'] is None
+
+        self.assertRaises(  # Test project già presente
+            AssertionError,
+            self.client.add_project,
+            '420',  # id telegram/email
+            'http://project',  # url
+            1,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
+
+        res = self.client.create(
+            _id=1902,
+            name='Matteo',
+            surname='Marchionni',
+            telegram='421').inserted_id
+        assert res == 1902
+        res = self.client.add_project(
+            '421',  # id telegram/email
+            'http://project',  # url
+            2,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
+
+        res = self.client.create(
+            _id=1903,
+            name='Mattia',
+            surname='Marchionni',
+            telegram='422').inserted_id
+        assert res == 1903
+        res = self.client.add_project(
+            '422',  # id telegram/email
+            'http://project',  # url
+            2,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
+        res = self.client.create(
+            _id=1904,
+            name='Mattia',
+            surname='Marchionni',
+            telegram='423').inserted_id
+        assert res == 1904
+        res = self.client.add_project(
+            '423',  # id telegram/email
+            'http://project',  # url
+            3,  # priority
+            ['topic1', 'topic2'],  # topics
+            ['kw1', 'kw2'],  # keywords
+        )
+        res['name'] = 'Mattia'
+
+        users = self.client._get_users_by_priority('http://project', 2)
+
+        assert 1901 not in users
+        assert 1902 in users
+        assert 1903 in users
+        assert 1904 not in users
+
+        # Test con giorno di irreperibilità
+
+        date = datetime.datetime.today()  # today, compreso time
+        self.client.add_giorno_irreperibilita(
+            1902,
+            date.year, date.month, date.day,
+        )
+
+        users = self.client._get_users_by_priority('http://project', 2)
+
+        assert 1901 not in users
+        assert 1902 not in users
+        assert 1903 in users
+        assert 1904 not in users
