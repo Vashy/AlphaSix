@@ -551,6 +551,28 @@ class MongoUsers:
             user_list.append(identifier['_id'])
         return user_list
 
+    def set_priority(self, user: str, project: str, priority: int):
+        """Modifica la priorità di un progetto per l'utente specificato.
+        """
+        assert self.exists(user), f'User {user} inesistente'
+        return self._mongo.read('users').find_one_and_update(
+            {
+                '$and': [
+                    {'$or': [
+                        {'_id': user},
+                        {'telegram': user},
+                        {'email': user},
+                    ]},
+                    {'projects.url': project}
+                ]
+            },
+            {
+                '$set': {
+                    "projects.0.priority": priority
+                }
+            }
+        )
+
     def get_users_available(self, project: str) -> list:
         """Dato un progetto, cerco tutti
         Gli utenti disponibili oggi

@@ -71,6 +71,11 @@ class MongoFacade():
     def get_users_max_priority(self, url: str) -> list:
         return self._users.get_users_max_priority(url)
 
+    def set_user_priority(
+        self, user: str, project: str, priority: int
+    ) -> dict:
+        return self._users.set_priority(user, project, priority)
+
     def get_project_by_url(self, url: str) -> bool:
         return self._projects.exists(url)
 
@@ -93,7 +98,9 @@ class MongoFacade():
         return self._users.get_match_labels(users, labels)
 
     # TODO : relativamente a quel progetto
-    def get_users_from_list_with_max_priority(self, users: list, url: str) -> list:
+    def get_users_from_list_with_max_priority(
+        self, users: list, url: str
+    ) -> list:
         # filtra, tra gli utenti dati, solo quelli che hanno la priorità
         # maggiore
         # (è diverso da 'get_users_max_priority' perchè non li vogliamo tutti)

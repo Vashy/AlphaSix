@@ -428,7 +428,7 @@ value="Rimuovi il progetto"></form>'
 ' + date.strftime('%Y') + '</p>'
         month_with_0 = str(month)
         if len(month_with_0) < 2:
-                month_with_0 = '0' + month_with_0
+            month_with_0 = '0' + month_with_0
         for day in range(1, calendar.monthrange(year, month)[1]+1):
             day = str(day)
             if len(day) < 2:
@@ -469,12 +469,16 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
             for project in user_projects:
                 if project['url'] in key:
                     if 'priority' in key:
-                        # TODO : set_priority(user,project)
+                        self._model.set_user_priority(
+                            session['userid'], project['url'], value
+                        )
                     elif 'topics' in key:
+                        pass
                         # TODO : get_topics(user,project)
                         # TODO : remove_topics(user,project,topics-value)
                         # TODO : add_topics(user,project,value-topics)
                     elif 'keywords' in key:
+                        pass
                         # TODO : get_keywords(user,project)
                         # TODO : remove_keywords(user,project,keywords-value)
                         # TODO : add_topics(user,project,value-topics)

@@ -38,7 +38,7 @@ function modifyUserPanel(request, id, outputId){
 }
 
 function modifyPreferencePanel(request, requestId, outputId, formId){
-    panel(request, 'web_preference', 'POST', formId, requestId, outputId, formId)
+    panel(request, 'web_preference', 'POST', formId, requestId, outputId)
 }
 
 function addListener(id, listener) {
