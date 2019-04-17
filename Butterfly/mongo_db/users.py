@@ -446,6 +446,25 @@ class MongoUsers:
             }
         })
 
+    def reset_keywords(self, user: str, project: str):
+
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
+
+        self._mongo.read('users').update_one({
+            '$or': [
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ],
+            "projects.url": project,
+        },
+            {
+            '$set': {
+                'keywords' : []
+            }
+        })
+
     def user_keywords(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le parole chiave corrispondenti
         a `project` di `user`: esso può essere sia il contatto Telegram
@@ -516,6 +535,25 @@ class MongoUsers:
                 f'projects.$.topics': {
                     '$in': [*labels_to_remove]  # Per ogni elemento
                 }
+            }
+        })
+
+    def reset_labels(self, user: str, project: str):
+
+        assert self._user_has_project(user, project), \
+            f'{user} non ha in lista il progetto {project}'
+
+        self._mongo.read('users').update_one({
+            '$or': [
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ],
+            "projects.url": project,
+        },
+            {
+            '$set': {
+                'topics' : []
             }
         })
 
