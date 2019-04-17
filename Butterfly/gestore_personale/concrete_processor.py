@@ -12,15 +12,29 @@ class GitlabProcessor(Processor):
         :param kind: tipologia della segnalazione per GitLab
         :return: lista di utenti iscritti a quel topic
         """
-        # Se la segnalazione consiste in un push o nel commento di un commit.
-        # Le due segnazioni vengono considerate allo stesso modo
-        if kind == 'push' or kind == 'commit-note':
+
+        if kind == 'push':
+            full_string = ''
+            # Concatena i messaggi di tutti i commit
+            for commit in self._message['commits']:
+                full_string = ' '.join([
+                    full_string,
+                    commit['message'],
+                ])
             return self._mongofacade.get_match_keywords(
                 users,
                 self._message['project_id'],
-                # self._message['title'],
-                ''  # TODO: unificare i titoli per le kw
+                full_string,
             )
+
+        if kind == 'commit-note':
+            return self._mongofacade.get_match_keywords(
+                users,
+                self._message['project_id'],
+                self._message['description'],
+            )
+
+
         # Se la segnalazione consiste in una issue
         elif kind == 'issue':
             self._check_labels(self._message['labels'])
