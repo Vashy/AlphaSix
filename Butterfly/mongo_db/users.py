@@ -1,6 +1,8 @@
 import copy
 import datetime
 
+import bson
+
 from mongo_db.singleton import MongoSingleton
 
 
@@ -568,7 +570,7 @@ class MongoUsers:
             },
             {
                 '$set': {
-                    "projects.$.priority": priority
+                    "projects.$.priority": bson.Int64(priority)
                 }
             }
         )

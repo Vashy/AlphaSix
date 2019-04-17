@@ -374,7 +374,7 @@ per modificare l\'utente.</p>')
 ' + project_data['url'] + '-priority">'
             for priority in range(1, 4):
                 row += '<option'
-                if str(priority) == user_project['priority']:
+                if priority == user_project['priority']:
                     row += ' selected="selected"'
                 row += ' value="' + str(priority) + '">\
 ' + str(priority) + '</option>'
