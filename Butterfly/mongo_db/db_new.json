@@ -1,17 +1,16 @@
 {
   "users": [
     {
-      "name": "Timoty",
-      "surname": "Granziero",
-      "email": null,
-      "telegram": "12312",
-      "preference": "telegram",
       "irreperibilita": [
         "2018-12-05",
         "2019-04-05",
         "2019-04-06",
         "2019-04-07"
       ],
+      "surname": "Granziero",
+      "name": "Timoty",
+      "telegram": "12312",
+      "email": null,
       "projects": [
         {
           "url": "http://localhost/gitlab/gitlab-2",
@@ -26,20 +25,20 @@
             "kw3"
           ]
         }
-      ]
+      ],
+      "preference": "telegram"
     },
     {
-      "name": "Simone",
-      "surname": "Granziero",
-      "email": "simone.granziero@email.it",
-      "telegram": "123432",
-      "preference": "email",
       "irreperibilita": [
         "2018-12-05",
         "2019-04-05",
         "2019-04-06",
         "2019-04-07"
       ],
+      "surname": "Granziero",
+      "name": "Simone",
+      "telegram": "123432",
+      "email": "simone.granziero@email.it",
       "projects": [
         {
           "url": "http://localhost/redmine/project-1",
@@ -67,14 +66,47 @@
             "kw3"
           ]
         }
-      ]
+      ],
+      "preference": "email"
+    },
+    {
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-08",
+        "2019-04-15",
+        "2019-04-07",
+        "2019-06-07",
+        "2019-06-08",
+        "2019-06-09"
+      ],
+      "surname": "Cruciani",
+      "name": "Mattia",
+      "telegram": "1234",
+      "email": "abcd@bc.it",
+      "projects": [
+        {
+          "url": "http://localhost/gitlab/gitlab-2",
+          "priority": 2,
+          "topics": [
+            "java",
+            "coding",
+            "criptovaluta"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
+        }
+      ],
+      "preference": "email"
     }
   ],
   "projects": [
     {
       "url": "http://localhost/redmine/project-1",
-      "name": "Project-1",
       "app": "redmine",
+      "name": "Project-1",
       "topics": [
         "enhancement",
         "bug",
@@ -83,8 +115,8 @@
     },
     {
       "url": "http://localhost/gitlab/gitlab-1",
-      "name": "Gitlab-1",
       "app": "gitlab",
+      "name": "Gitlab-1",
       "topics": [
         "python",
         "coding",
@@ -94,8 +126,8 @@
     },
     {
       "url": "http://localhost/gitlab/gitlab-2",
-      "name": "Gitlab-2",
       "app": "gitlab",
+      "name": "Gitlab-2",
       "topics": [
         "java",
         "coding",
@@ -105,8 +137,8 @@
     },
     {
       "url": "http://localhost/redmine/project-2",
-      "name": "Project-2",
       "app": "redmine",
+      "name": "Project-2",
       "topics": [
         "golang",
         "bug",
@@ -115,8 +147,8 @@
     },
     {
       "url": "http://localhost/redmine/project-4",
-      "name": "Project-4",
       "app": "redmine",
+      "name": "Project-4",
       "topics": [
         "bug",
         "python",
