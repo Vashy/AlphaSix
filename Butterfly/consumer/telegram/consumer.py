@@ -69,8 +69,8 @@ class TelegramConsumer(Consumer):
 
             return True
 
-        print(f'({response.status_code}) '
-              'Errore: il messaggio non è stato inviato')
+        print(f'({response.status_code})\n'
+              f'{response.json()}')
         return False
 
     def format(self, msg: dict) -> str:
@@ -111,18 +111,19 @@ class TelegramConsumer(Consumer):
             raise KeyError
 
         emph = '`'
-        bold = '**'
-
+        bold = '*'
+        # import pdb; pdb.set_trace()
         res += ''.join([
-            f' nel progetto {bold}{msg["project_name"]}{bold} ',
+            f'nel progetto {bold}{msg["project_name"]}{bold} ',
             f'({emph}{msg["project_id"]}{emph})',
-            f' su {msg["app"].capitalize()}',
-            f'\n\n{bold}Informazioni:{bold} '
+            f' su {msg["app"].capitalize()}\n',
+            # f'\n\n{bold}Informazioni:{bold} '
             f'\n - {bold}Autore:{bold} {msg["author"]}'
             f'\n - {bold}Title:{bold} {msg["title"]}',
             f'\n - {bold}Description:{bold}\n'
             f'  {msg["description"]}',
-            f'\n - {bold}Action:{bold} {msg["action"]}'
         ])
+        if 'action' in msg:
+            res += f'\n - {bold}Action:{bold} {msg["action"]}'
 
         return res

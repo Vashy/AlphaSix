@@ -38,6 +38,7 @@ class GitlabPushWebhook(Webhook):
         """
 
         assert whook is not None
+        import pdb; pdb.set_trace()
 
         webhook = {}
         webhook['app'] = 'gitlab'

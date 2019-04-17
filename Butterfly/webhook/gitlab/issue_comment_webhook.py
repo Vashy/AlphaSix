@@ -23,6 +23,9 @@ limitations under the License.
 Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 """
+from pathlib import Path
+import json
+
 import requests
 
 from webhook.webhook import Webhook
@@ -32,6 +35,7 @@ class GitlabIssueCommentWebhook(Webhook):
     """`GitLabIssueCommentWebhook` implementa `Webhook`.
     Parse degli eventi di commento di una Issue di Gitlab.
     """
+    _config_path = Path(__file__).parent / 'config.json'
 
     def parse(self, whook: dict = None):
         """Parsing del file JSON. Restituisce un riferimento al dizionario
@@ -39,11 +43,6 @@ class GitlabIssueCommentWebhook(Webhook):
         """
 
         assert whook is not None
-        # p_id = whook['project']['id']
-        # result = requests.get(
-        #     f'http://localhost:80/api/v4/projects/{p_id}/labels',
-        #     headers={'PRIVATE-TOKEN': 'ChqrHpxfCsFsCY1N28Wx'}
-        # )
 
         webhook = {}
         webhook['app'] = 'gitlab'
@@ -52,23 +51,30 @@ class GitlabIssueCommentWebhook(Webhook):
         webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
-        webhook['comment'] = whook['object_attributes']['description']
+        webhook['description'] = whook['object_attributes']['description']
+        webhook['action'] = 'comment'
+
+        with open(GitlabIssueCommentWebhook._config_path, 'r') as f:
+            configs = json.load(f)
 
         labels = self.project_labels(
-            'http://localhost:80',
+            configs['base_url'],
             whook['project']['id'],
-            'ChqrHpxfCsFsCY1N28Wx',
+            configs['PRIVATE-TOKEN'],  # Token privato di GitLab
         )
         webhook['labels'] = labels
         return webhook
 
-    def project_labels(self, home_url: str, project_id: str, token: str):
+    def project_labels(self, base_url: str, project_id: str, token: str):
+        """Restituisce i nomi delle labels relative al progetto `project_id`.
+        """
         result = requests.get(
-            f'{home_url}/api/v4/projects/{project_id}/labels',
+            f'{base_url}/api/v4/projects/{project_id}/labels',
             headers={'PRIVATE-TOKEN': token}
         )
         labels = []
-        if result.ok:
+        if result.ok:  # 200
+            # Salva solo i nomi delle label
             for label in result.json():
                 labels.append(label['name'])
         return labels

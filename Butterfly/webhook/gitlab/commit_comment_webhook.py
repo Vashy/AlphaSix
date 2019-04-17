@@ -46,6 +46,7 @@ class GitlabCommitCommentWebhook(Webhook):
         webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
-        webhook['comment'] = whook['object_attributes']['note']
+        webhook['description'] = whook['object_attributes']['note']
+        webhook['action'] = 'comment'
 
         return webhook
