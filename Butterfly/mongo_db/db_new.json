@@ -100,6 +100,87 @@
         }
       ],
       "preference": "email"
+    },
+    {
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-05",
+        "2019-04-06",
+        "2019-04-17"
+      ],
+      "surname": "Granziero",
+      "name": "Timoty",
+      "telegram": "123432123",
+      "email": "timoty.granziero@gmail.com",
+      "projects": [
+        {
+          "url": "http://localhost/vashy/a",
+          "priority": 1,
+          "topics": [
+            "bug"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
+        },
+        {
+          "url": "http://localhost/gitlab/gitlab-2",
+          "priority": 2,
+          "topics": [
+            "java",
+            "coding"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
+        }
+      ],
+      "preference": "email"
+    },
+    {
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-05",
+        "2019-04-06",
+        "2019-04-07"
+      ],
+      "surname": "Granziero",
+      "name": "Simone",
+      "telegram": "38883960",
+      "email": "simoneeee.granziero@email.it",
+      "projects": [
+        {
+          "url": "http://localhost/vashy/a",
+          "priority": 2,
+          "topics": [
+            "bug",
+            "aaaa"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
+        },
+        {
+          "url": "http://localhost/gitlab/gitlab-2",
+          "priority": 3,
+          "topics": [
+            "java",
+            "coding"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
+        }
+      ],
+      "preference": "telegram"
     }
   ],
   "projects": [

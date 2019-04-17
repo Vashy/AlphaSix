@@ -50,16 +50,15 @@ class ClientGP():
             )
         # processore_messaggio = Processor(message, self._mongo.instantiate())
         mappa_contatto_messaggio = processore_messaggio.prepare_message()
-        # import pdb; pdb.set_trace()
         self.send_all(mappa_contatto_messaggio, message)
 
     def send_all(self, map_message_contact: dict, message: dict):
         # app_ricevente sarà telegram o email (chiave,valore)
         for app_ricevente, contact_list in map_message_contact.items():
+            # import pdb; pdb.set_trace()
             for contact in contact_list:
                 try:
                     message['receiver'] = contact
-                    # import pdb; pdb.set_trace()
                     # Inserisce il messaggio in Kafka, serializzato in formato JSON
                     self._producer.send(
                         app_ricevente, message
@@ -72,6 +71,8 @@ class ClientGP():
                     print('Impossibile inviare il messaggio\n')
 
     def close(self):
+        """Chiude la connessione con Producer e Consumer associati.
+        """
         print('\nClosing Producer ...')
         self._producer.close()
 
@@ -82,7 +83,6 @@ class ClientGP():
 
 
 if __name__ == "__main__":
-    # producer = self._creator.create(configs['kafka'])  # O senza il campo
     kafka_consumer = KafkaConsumerCreator().create()
     kafka_producer = KafkaProducerCreator().create()
     mongo = MongoFacade(

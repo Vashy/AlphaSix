@@ -58,10 +58,10 @@ class Producer(ABC):
         )
         # Parse del JSON associato al webhook ottenendo un oggetto Python
         webhook = webhook.parse(whook)
-
         try:
             # Inserisce il messaggio in Kafka, serializzato in formato JSON
             self._producer.send(webhook['app'], webhook)
+
             self._producer.flush(10)  # Attesa 10 secondi
         # Se non riesce a mandare il messaggio in 10 secondi
         except KafkaTimeoutError:

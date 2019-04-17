@@ -14,7 +14,7 @@ class GitlabProcessor(Processor):
         """
         # Se la segnalazione consiste in un push o nel commento di un commit.
         # Le due segnazioni vengono considerate allo stesso modo
-        if kind == 'push' or kind == 'note_commit':
+        if kind == 'push' or kind == 'commit-note':
             return self._mongofacade.get_match_keywords(
                 users,
                 self._message['project_id'],
@@ -29,7 +29,7 @@ class GitlabProcessor(Processor):
                 self._message['labels'],
             )
         # Se la segnalazione consiste nel commento di una issue
-        elif kind == 'note_issue':
+        elif kind == 'issue-note':
             self._check_labels(self._message['labels'])
             labels = []
             # codice con richiesta http per recuperare le label della issue commentata

@@ -43,7 +43,7 @@ class FlaskServer:
 
             try:
                 self._producer.produce(webhook)
-                print('Messaggio inviato.\n\n')
+                print(f'Messaggio inviato.\n\n')
             except KeyError:
                 print('Warning: messaggio malformato. '
                       'Non è stato possibile effettuare il parsing.\n'

@@ -1,6 +1,8 @@
 import copy
 import datetime
 
+import bson
+
 from mongo_db.singleton import MongoSingleton
 
 
@@ -568,7 +570,7 @@ class MongoUsers:
             },
             {
                 '$set': {
-                    "projects.$.priority": priority
+                    "projects.$.priority": bson.Int64(priority)
                 }
             }
         )
@@ -621,10 +623,16 @@ class MongoUsers:
     def get_user_telegram(self, user: str):
         try:
             return self.users({
-                '$or': [
-                    {'_id': user},
-                    {'telegram': user},
-                    {'email': user},
+                '$and': [
+                    {'$or': [
+                        {'_id': user},
+                        {'telegram': user},
+                        {'email': user},
+                    ]},
+                    {'$or': [
+                        {'preference': 'telegram'},
+                        {'email': None},
+                    ]},
                 ]
             }).next()['telegram']
         except StopIteration:
@@ -633,10 +641,16 @@ class MongoUsers:
     def get_user_email(self, user: str):
         try:
             return self.users({
-                '$or': [
-                    {'_id': user},
-                    {'telegram': user},
-                    {'email': user},
+                '$and': [
+                    {'$or': [
+                        {'_id': user},
+                        {'telegram': user},
+                        {'email': user},
+                    ]},
+                    {'$or': [
+                        {'preference': 'email'},
+                        {'telegram': None},
+                    ]},
                 ]
             }).next()['email']
         except StopIteration:
