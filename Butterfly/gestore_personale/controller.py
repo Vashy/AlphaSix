@@ -474,6 +474,7 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
                         )
                     elif 'topics' in key:
                         pass
+                        # mi sembra non esista un self._model.delete_user_topics()
                         # erase_topics(user,project)
                         # TODO : add_topics(user,project,topics)
                     elif 'keywords' in key:
