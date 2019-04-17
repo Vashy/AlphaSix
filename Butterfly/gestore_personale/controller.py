@@ -401,7 +401,7 @@ value="Modifica preferenze di progetti e topic"></form>'
 
     def load_preference_project(self):
         projects = self._model.projects()
-        form = '<form id="projects"><select name="projects">'
+        form = '<form id="projects"><select name="project">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
 ' + project['name'] + '</option>'
@@ -484,13 +484,13 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def addproject(self):
         project = request.values['project']
-        self._model.add_user_project(session['userid'], project):
-        return self.load_preference_()
+        self._model.add_user_project(session['userid'], project)
+        return self.load_preference_topic()
 
     def removeproject(self):
         project = request.values['project']
-        # TODO : remove_project(user,project)
-        return self.load_preference_project()
+        self._model.remove_user_project(session['userid'], project)
+        return self.load_preference_topic()
 
     def indisponibilita(self):
         giorni = request.values['indisponibilita']

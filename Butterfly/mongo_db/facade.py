@@ -45,6 +45,9 @@ class MongoFacade():
     def add_user_project(self, user: str, project: str):
         self._users.add_project(user, project)
 
+    def remove_user_project(self, user: str, project: str):
+        self._users.remove_project(user, project)
+
     def delete_user_project(self, user: str, project: str):
         self._users.delete_user_project(user, project)
 

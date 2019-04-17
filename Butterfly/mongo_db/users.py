@@ -377,6 +377,27 @@ class MongoUsers:
             }
         )
 
+    def remove_project(self, user: str, project: str):
+        """Rimuove un progetto all'utente `user`"""
+        assert self.exists(user), f'User {user} inesistente'
+        return self._mongo.read('users').find_one_and_update(
+            {'$or': [  # Confronta user sia con telegram che con email o _id
+                {'_id': user},
+                {'telegram': user},
+                {'email': user},
+            ]},
+            {
+                # Rimuove dall'array il progetto
+                '$pull': {
+                    'projects': {
+                        'url': project
+                    }
+                }
+            }
+        )
+
+
+
     def add_keywords(self, user: str, project: str, *new_keywords):
         """Aggiunge le keywords passate come argomento all'user
         corrispondente a `user`.
@@ -744,6 +765,7 @@ class MongoUsers:
         if 'projects' in projects:
             return projects['projects']
         return {}
+
 
     def add_giorno_irreperibilita(
         self,
