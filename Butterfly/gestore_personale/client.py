@@ -50,6 +50,7 @@ class ClientGP():
             )
         # processore_messaggio = Processor(message, self._mongo.instantiate())
         mappa_contatto_messaggio = processore_messaggio.prepare_message()
+        # import pdb; pdb.set_trace()
         self.send_all(mappa_contatto_messaggio, message)
 
     def send_all(self, map_message_contact: dict, message: dict):
@@ -57,13 +58,14 @@ class ClientGP():
         for app_ricevente, contact_list in map_message_contact.items():
             for contact in contact_list:
                 try:
-                    message['receiver'] = contact  # da ricontrollare
-                    import pdb; pdb.set_trace()
+                    message['receiver'] = contact
+                    # import pdb; pdb.set_trace()
                     # Inserisce il messaggio in Kafka, serializzato in formato JSON
                     self._producer.send(
                         app_ricevente, message
                     )
-                    print(f'inviato msg sul topic {app_ricevente}')
+                    print(f'Inviato `msg` sul topic {app_ricevente} '
+                          f'a "{contact}"')
                     self._producer.flush(10)  # Attesa 10 secondi
                 # Se non riesce a mandare il messaggio in 10 secondi
                 except KafkaTimeoutError:
