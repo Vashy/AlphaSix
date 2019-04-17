@@ -42,11 +42,40 @@ class MongoFacade():
     def update_user_email(self, user: str, email: str):
         self._users.update_email(user, email)
 
+    def update_user_preference(self, user: str, preference: str):
+        self._users.update_user_preference(user, preference)
+
     def add_user_project(self, user: str, project: str):
         self._users.add_project(user, project)
 
+    def add_user_topics(self, user: str, project: str, topics: list):
+        self._users.add_labels(user, project, topics)
+
+    def add_user_keywords(self, user: str, project: str, *keywords):
+        self._users.add_keywords(user, project, *keywords)
+
     def remove_user_project(self, user: str, project: str):
         self._users.remove_project(user, project)
+
+    def add_giorno_irreperibilita(
+        self,
+        user: str,
+        year: int, month: int, day: int,
+    ):
+        self._users.add_giorno_irreperibilita(user, year, month, day)
+
+    def remove_giorno_irreperibilita(
+        self,
+        user: str,
+        year: int, month: int, day: int,
+    ):
+        self._users.remove_giorno_irreperibilita(user, year, month, day)
+
+    def reset_user_topics(self, user: str, project: str):
+        self._users.reset_labels(user, project)
+
+    def reset_user_keywords(self, user: str, project: str):
+        self._users.reset_keywords(user, project)
 
     def delete_user_project(self, user: str, project: str):
         self._users.delete_user_project(user, project)

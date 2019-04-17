@@ -451,19 +451,23 @@ class MongoUsers:
         assert self._user_has_project(user, project), \
             f'{user} non ha in lista il progetto {project}'
 
-        self._mongo.read('users').update_one({
-            '$or': [
-                {'_id': user},
-                {'telegram': user},
-                {'email': user},
-            ],
-            "projects.url": project,
-        },
+        self._mongo.read('users').update_one(
             {
-            '$set': {
-                'keywords' : []
+                '$and': [
+                    {'$or': [
+                        {'_id': user},
+                        {'telegram': user},
+                        {'email': user},
+                    ]},
+                    {'projects.url': project}
+                ]
+            },
+            {
+                '$set': {
+                    "projects.$.keywords": []
+                }
             }
-        })
+        )
 
     def user_keywords(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le parole chiave corrispondenti
@@ -543,19 +547,23 @@ class MongoUsers:
         assert self._user_has_project(user, project), \
             f'{user} non ha in lista il progetto {project}'
 
-        self._mongo.read('users').update_one({
-            '$or': [
-                {'_id': user},
-                {'telegram': user},
-                {'email': user},
-            ],
-            "projects.url": project,
-        },
+        self._mongo.read('users').update(
             {
-            '$set': {
-                'topics' : []
+                '$and': [
+                    {'$or': [
+                        {'_id': user},
+                        {'telegram': user},
+                        {'email': user},
+                    ]},
+                    {'projects.url': project}
+                ]
+            },
+            {
+                '$set': {
+                    "projects.$.topics": []
+                }
             }
-        })
+        )
 
     def user_labels(self, user: str, project: str) -> list:
         """Restituisce una lista contenente le label corrispondenti

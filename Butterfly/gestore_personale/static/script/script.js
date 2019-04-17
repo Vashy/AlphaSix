@@ -4,7 +4,6 @@ function panel(request, url, method, formId, requestId, outputId){
     if(requestId){
         formData.append(requestId, requestId)
     }
-
     request.open(method, url);
     request.send(formData);
     request.onreadystatechange = function(){
@@ -18,7 +17,9 @@ function panel(request, url, method, formId, requestId, outputId){
                 addListener('modifytopics', function (){modifyPreferencePanel(request, 'modifytopics', 'topics', 'topics')});
                 addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'topics', 'projects')});
                 addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'topics', 'projects')});
-                addListener('indisponibilita', function (){modifyPreferencePanel(request, 'indisponibilita', 'availability', 'availability')});
+                addListener('irreperibilita', function (){modifyPreferencePanel(request, 'irreperibilita', 'availability', 'availability')});
+                addListener('previousmonth', function (){modifyPreferencePanel(request, 'previousmonth', 'availability', 'availability')});
+                addListener('nextmonth', function (){modifyPreferencePanel(request, 'nextmonth', 'availability', 'availability')});
                 addListener('piattaforma', function (){modifyPreferencePanel(request, 'piattaforma', 'platform', 'platform')});
             }
         }

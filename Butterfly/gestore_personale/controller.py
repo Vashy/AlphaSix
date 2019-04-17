@@ -415,33 +415,30 @@ value="Rimuovi il progetto"></form>'
 
     def load_preference_availability(
         self,
-        year=datetime.datetime.now().year,
-        month=datetime.datetime.now().month
+        year = datetime.datetime.now().year,
+        month = datetime.datetime.now().month
     ):
         date = datetime.datetime(year, month, 1)
         irreperibilita = self._model.read_user(
             session['userid']
         ).get('irreperibilita')
         form = '<form id="availability">\
-        <fieldset><legend>Giorni di indisponibilità</legend>\
+<fieldset><legend>Giorni di indisponibilità</legend>\
 <div id="calendario"></div><p>' + date.strftime("%B") + ' \
 ' + date.strftime('%Y') + '</p>'
-        month_with_0 = str(month)
-        if len(month_with_0) < 2:
-            month_with_0 = '0' + month_with_0
         for day in range(1, calendar.monthrange(year, month)[1]+1):
-            day = str(day)
-            if len(day) < 2:
-                day = '0' + day
-            date = str(year) + '-' + month_with_0 + '-' + day
-            form += '<label for="' + date + '\
-            ">' + day + '</label><input type="checkbox"\
-name="indisponibilita[]" value="' + date + '"'
+            date = datetime.datetime(year, month, day)
+            form += '<label for="' + str(date) + '\
+">' + str(day) + '</label><input type="checkbox"\
+name="indisponibilita[]" value="' + str(date) + '"'
             if date in irreperibilita:
                 form += ' checked="checked"'
             form += '>'
-        form += '<input type="button" value="Mese precedente"/>\
-<input type="button" value="Mese successivo"/>\
+        form += '<input type="button" id="previousmonth"\
+value="Mese precedente"/>\
+<input type="button" id="nextmonth" value="Mese successivo"/>\
+<input type="hidden" name="mese" value="' + date.strftime("%m") + '">\
+<input type="hidden" name="anno" value="' + date.strftime("%Y") + '">\
 <input id="irreperibilita" name="irreperibilita" type="button"\
 value="Modifica irreperibilità"/></fieldset></form>'
         return form
@@ -452,11 +449,11 @@ value="Modifica irreperibilità"/></fieldset></form>'
 <legend>Piattaforma preferita</legend>\
 <label for="email">Email</label>\
 <input name="platform" id="email"\
-type="radio"'
+type="radio" value="email"'
         if(platform == 'email'):
             form += ' checked = "checked"'
         form += '/><label for="telegram">Telegram</label>\
-<input name="platform" id="telegram" type="radio"'
+<input name="platform" id="telegram" type="radio" value="telegram"'
         if(platform == 'telegram'):
             form += ' checked = "checked"'
         form += '/><input id="piattaforma" name="piattaforma" type="button"\
@@ -465,21 +462,49 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def modifytopics(self):
         user_projects = self._model.get_user_projects(session['userid'])
-        for key, value in request.values.items():
-            for project in user_projects:
-                if project['url'] in key:
-                    if 'priority' in key:
-                        self._model.set_user_priority(
-                            session['userid'], project['url'], value
+        firstTopic = True
+        old = None
+        for key, value in request.values.items(multi = True):
+            url = key.replace('-priority', '')
+            url = url.replace('-topics', '')
+            url = url.replace('-keywords', '')
+            print(url)
+            if not old:
+                old = url
+            elif url != old:
+                firstTopic = True
+                old = url
+            if url != 'modifytopics':
+                if 'priority' in key:
+                    self._model.set_user_priority(
+                        session['userid'], url, value
+                    )
+                elif 'topics' in key:
+                    if firstTopic:
+                        self._model.reset_user_topics(
+                            session['userid'],
+                            url
                         )
-                    elif 'topics' in key:
-                        pass
-                        # erase_topics(user,project)
-                        # TODO : add_topics(user,project,topics)
-                    elif 'keywords' in key:
-                        pass
-                        # erase_keywords(user,project)
-                        # TODO : add_keywords(user,project,keywords)
+                        print('orco')
+                    self._model.add_user_topics(
+                        session['userid'],
+                        url,
+                        value
+                    )
+                    firstTopic = False
+                elif 'keywords' in key:
+                    value = value.strip()
+                    keywords = value.split(',')
+                    print(keywords)
+                    self._model.reset_user_keywords(
+                        session['userid'],
+                        url
+                    )
+                    self._model.add_user_keywords(
+                        session['userid'],
+                        url,
+                        *keywords
+                    )
         return self.load_preference_topic()
 
     def addproject(self):
@@ -493,14 +518,57 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         return self.load_preference_topic()
 
     def indisponibilita(self):
-        giorni = request.values['indisponibilita']
-        # erase_indisponibilita(user,project)
-        # TODO : add_indisponibilita(user,indis)
+        giorni = request.values.getlist('indisponibilita[]')
+        giorni_old = self._model.read_user(
+            session['userid']
+        ).get('irreperibilita')
+        giorni_new = []
+        for giorno in giorni:
+            giorni_new.append(
+                datetime.datetime.strptime(giorno, '%Y-%m-%d %H:%M:%S')
+            )
+        if giorni_new:
+            year = giorni_new[0].strftime('%Y')
+            month = giorni_new[0].strftime('%m')
+        for giorno in giorni_old:
+            if giorno.strftime('%Y') == year and giorno.strftime('%m') == month:
+                if giorno not in giorni_new:
+                    self._model.remove_giorno_irreperibilita(
+                        session['userid'],
+                        int(year),
+                        int(month),
+                        int(giorno.strftime('%d'))
+                    )
+        for giorno in giorni_new:
+            self._model.add_giorno_irreperibilita(
+                session['userid'],
+                int(year),
+                int(month),
+                int(giorno.strftime('%d'))
+            )
         return self.load_preference_availability()
+
+    def previous_indisponibilita(self):
+        mese = request.values['mese']
+        anno = request.values['anno']
+        if (mese == 1):
+            anno = anno - 1
+            mese = 12
+        self.indisponibilita()
+        return self.load_preference_availability(int(anno), int(mese))
+
+    def next_indisponibilita(self):
+        mese = int(request.values['mese'])
+        anno = int(request.values['anno'])
+        if (mese == 12):
+            anno = anno + 1
+            mese = 1
+        self.indisponibilita()
+        return self.load_preference_availability(anno, mese)
 
     def piattaforma(self):
         platform = request.values['platform']
-        # TODO : setplatform(user, platform)
+        self._model.update_user_preference(session['userid'], platform)
         return self.load_preference_platform()
 
     def modify_preference(self):
@@ -520,8 +588,12 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
             return self.addproject()
         elif request.values.get('removeproject'):
             return self.removeproject()
-        elif request.values.get('indisponibilita'):
+        elif request.values.get('irreperibilita'):
             return self.indisponibilita()
+        elif request.values.get('previousmonth'):
+            return self.previous_indisponibilita()
+        elif request.values.get('nextmonth'):
+            return self.next_indisponibilita()
         elif request.values.get('piattaforma'):
             return self.piattaforma()
         return page
