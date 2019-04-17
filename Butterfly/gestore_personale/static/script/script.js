@@ -16,8 +16,8 @@ function panel(request, url, method, formId, requestId, outputId){
                 addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser', 'html')});
                 addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
                 addListener('modifytopics', function (){modifyPreferencePanel(request, 'modifytopics', 'topics', 'topics')});
-                addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'projects', 'projects')});
-                addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'projects', 'projects')});
+                addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'topics', 'projects')});
+                addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'topics', 'projects')});
                 addListener('indisponibilita', function (){modifyPreferencePanel(request, 'indisponibilita', 'availability', 'availability')});
                 addListener('piattaforma', function (){modifyPreferencePanel(request, 'piattaforma', 'platform', 'platform')});
             }

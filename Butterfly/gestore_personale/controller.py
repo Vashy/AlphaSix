@@ -474,20 +474,18 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
                         )
                     elif 'topics' in key:
                         pass
-                        # TODO : get_topics(user,project) riceve i topic del pro.getto a cui l'utente e' iscritto (lista)
-                        # TODO : remove_topics(user,project,topics-value) elabora una lista che contiene i topics a cui l'utente era iscritto ed elimina i nuovi da tale lista, poi passa la lista risultante al db per rimuoverla dai topic dell'utente nel progetto specificato.
-                        # TODO : add_topics(user,project,value-topics) elabora una lista che contiene i topics a cui l'utente deve iscriversi ed elimina i vecchi da tale lista, poi passa la lista risultante al db per aggiungere i nuovi topic dell'utente nel progetto specificato.
+                        # erase_topics(user,project)
+                        # TODO : add_topics(user,project,topics)
                     elif 'keywords' in key:
                         pass
-                        # TODO : get_keywords(user,project)
-                        # TODO : remove_keywords(user,project,keywords-value)
-                        # TODO : add_topics(user,project,value-topics)
+                        # erase_keywords(user,project)
+                        # TODO : add_keywords(user,project,keywords)
         return self.load_preference_topic()
 
     def addproject(self):
-        project = request.values['project']
+        # project = request.values['project']
         # TODO : add_project(user,project)
-        return self.load_preference_project()
+        return self.load_preference_topic()
 
     def removeproject(self):
         project = request.values['project']
@@ -496,9 +494,8 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def indisponibilita(self):
         giorni = request.values['indisponibilita']
-        # TODO : get_indisponibilita(user)
-        # TODO : remove_indisponibilita(user,user_indis-indis)
-        # TODO : add_indisponibilita(user,indis-user_indis)
+        # erase_indisponibilita(user,project)
+        # TODO : add_indisponibilita(user,indis)
         return self.load_preference_availability()
 
     def piattaforma(self):
