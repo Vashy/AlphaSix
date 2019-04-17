@@ -164,8 +164,11 @@ class TelegramConsumer(Consumer):
         id_precision: int = 5,
         commits_count: int = 3
     ):
+        """Formatta un messaggio di push in markdown
+        e restituisce il risultato.
+        """
         res = ''.join([
-            f'È stata fatto un push '
+            f'È stato fatto un push '
             f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
             f'({cls._code}{msg["project_id"]}{cls._code})',
             f' su {msg["app"].capitalize()}\n\n',
