@@ -48,9 +48,6 @@ class KafkaConsumerCreator(ConsumerCreator):
         notify = False
         while True:  # Attende una connessione con il Broker
             try:
-                # Il parametro value_deserializer tornerà probabilmente
-                # utile successivamente, per ora lasciamo il controllo
-                # del tipo a listen()
                 kafka_consumer = KafkaConsumer(
                     topic,  # Chiamata polimorfa
                     # Deserializza i messaggi dal formato JSON a oggetti Python
@@ -67,11 +64,8 @@ class KafkaConsumerCreator(ConsumerCreator):
             except KeyboardInterrupt:
                 print(' Closing Consumer ...')
                 # exit(1)
+
         print('Connessione con il Broker stabilita')
-
-        # Chiamata polimorfa
-        # consumer = self.instantiate(kafka_consumer)
-
         return kafka_consumer
 
     # @abstractmethod

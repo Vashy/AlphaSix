@@ -79,9 +79,9 @@ class Consumer(ABC):
             except json.decoder.JSONDecodeError:
                 print(f'\n-----\n"{value}" '
                       'non è in formato JSON\n-----\n')
-            except Exception:
-                print('Errore nella formattazione del messaggio finale:')
-                # print(e.with_traceback())
+            except Exception as e:
+                print('Errore nella formattazione del messaggio finale')
+                print(repr(e))
 
     @abstractmethod
     def send(self, receiver: str, msg: dict) -> bool:

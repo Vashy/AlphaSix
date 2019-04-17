@@ -1,43 +1,46 @@
-from gestore_personale.Processor import Processor
+from gestore_personale.processor import Processor
 
 
 class GitlabProcessor(Processor):
 
-    def _filter_users_by_topic(self, users: list, obj: str) -> list:
+    def _filter_users_by_topic(self, users: list, kind: str) -> list:
         """
         Cerca gli utenti disponibili nella data della notifica iscritti ai
         topic della segnalazione
         :param users: lista di utenti appartenenti al progetto della
             segnalazione e disponibili nel giorno della segnalazione
-        :param obj: tipologia della segnalazione per GitLab
+        :param kind: tipologia della segnalazione per GitLab
         :return: lista di utenti iscritti a quel topic
         """
         # Se la segnalazione consiste in un push o nel commento di un commit.
         # Le due segnazioni vengono considerate allo stesso modo
-        if obj == 'push' or obj == 'note_commit':
+        if kind == 'push' or kind == 'note_commit':
             return self._mongofacade.get_match_keywords(
                 users,
-                self._message['title']
+                self._message['project_id'],
+                self._message['title'],
             )
         # Se la segnalazione consiste in una issue
-        elif obj == 'issue':
+        elif kind == 'issue':
             self._check_labels(self._message['labels'])
             return self._mongofacade.get_match_labels(
                 users,
-                self._message['labels']
+                self._message['project_id'],
+                self._message['labels'],
             )
         # Se la segnalazione consiste nel commento di una issue
-        elif obj == 'note_issue':
+        elif kind == 'note_issue':
             self._check_labels(self._message['labels'])
             labels = []
             # codice con richiesta http per recuperare le label della issue commentata
 
             return self._mongofacade.get_match_labels(
                 users,
-                labels
+                self._message['project_id'],
+                labels,
             )
         else:
-            raise NameError('Type not exists')
+            raise NameError('Type doesn\'t exist')
 
     def _check_labels(self, labels: list):
         """
@@ -49,8 +52,7 @@ class GitlabProcessor(Processor):
         label_project = self._mongofacade.get_label_project(project)
         for label in labels:
             if label not in label_project:
-                self._mongofacade.insert_label_by_project(label, project)
-
+                self._mongofacade.insert_label_by_project(project, label)
 
 
 class RedmineProcessor(Processor):

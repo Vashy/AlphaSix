@@ -25,13 +25,13 @@ Creatore: Timoty Granziero, timoty.granziero@gmail.com
 """
 
 import json
+import datetime
 from pprint import pprint
 import pymongo
 from pathlib import Path
 
 from mongo_db.db_connection import DBConnection
 from mongo_db.db_controller import DBController
-
 
 
 def populateA():
@@ -90,6 +90,17 @@ def populateB():
 
     users = db.users
     for user in users_json:
+        # Converte stringa YYYY-MM-DD in formato ISO usato da MongoDB
+        if 'irreperibilita' in user:
+            dates = []
+            for irr in user['irreperibilita']:
+                irr = irr.split('-')
+                dates.append(datetime.datetime(
+                    int(irr[0]),
+                    int(irr[1]),
+                    int(irr[2]),
+                ))
+            user['irreperibilita'] = dates
         result = users.insert_one(user)
         print(result.inserted_id)
 

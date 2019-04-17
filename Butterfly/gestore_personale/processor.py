@@ -12,14 +12,18 @@ class Processor():
     # Metodo che chiama a ruota tutti quelli dopo per processare il messaggio
     # ex template_method
     def prepare_message(self) -> dict:
+
         progetto = self._check_project()  # URL progetto
         obj = self._message['object_kind']  # Issue o push ecc
+
         # Dict di tutti gli utenti disponibili oggi nel progetto
         utenti_disponibili = self.get_involved_users(progetto)
+
         # Lista di tutti gli utenti interessati e disponibili
         utenti_interessati = self._filter_users_by_topic(
             utenti_disponibili, obj
         )
+
         # Se non c'è nessuno, vedo la persona di priorità
         # più alta disponibile oggi per quel progetto
         if utenti_interessati == []:
@@ -49,7 +53,11 @@ class Processor():
         exists_project = self._mongofacade.get_project_by_url(urlProgetto)
         # Se non c'è lo aggiungiamo
         if not exists_project:
-            self._mongofacade.insert_project(urlProgetto)
+            self._mongofacade.insert_project(
+                url=urlProgetto,
+                name=self._message['project_name'],
+                app=self._message['app'],
+            )
         return urlProgetto
 
     # def get_users_from_project(self, project: str) -> dict:
@@ -61,7 +69,7 @@ class Processor():
     # Metodo astratto che delega alle sottoclassi concrete
     # il filtraggio degli utenti in base a quelli iscritti ai topic
     @abstractmethod
-    def _filter_users_by_topic(self, users: list, obj: str) -> list:
+    def _filter_users_by_topic(self, users: list, kind: str) -> list:
         pass
 
     # Lista di tutti gli utenti disponibili e più interessati del progetto

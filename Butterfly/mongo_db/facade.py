@@ -48,14 +48,14 @@ class MongoFacade():
     def delete_user_project(self, user: str, project: str):
         self._users.delete_user_project(user, project)
 
-    def insert_project(self, project: str):
-        self._projects.create(project)
+    def insert_project(self, **project):
+        self._projects.create(**project)
 
     def delete_project(self, project: str):
         self._projects.delete(project)
 
-    def insert_label_by_project(self, label: str, project: str):
-        self._projects.insert_label_by_project(label, project)
+    def insert_label_by_project(self, project: str, label: str):
+        self._projects.add_topics(project, label)
 
     def insert_keyword_by_project(self, keyword: str, project: str):
         self._projects.insert_keyword(keyword, project)
@@ -86,21 +86,34 @@ class MongoFacade():
     def get_user_email(self, user: str) -> str:
         return self._users.get_user_email(user)
 
-    def get_match_keywords(self, users: list, commit: str) -> list:
-        return self._users.get_match_keywords(users, commit)
+    def get_match_keywords(
+        self,
+        users: list,
+        project: str,
+        commit: str,
+    ) -> list:
+        return self._users.get_match_keywords(users, project, commit)
 
-    def get_match_labels(self, users: list, labels: list) -> list:
-        return self._users.get_match_labels(users, labels)
+    def get_match_labels(
+        self,
+        users: list,
+        project: str,
+        labels: list,
+    ) -> list:
+        return self._users.get_match_labels(users, project, labels)
 
-    # TODO : relativamente a quel progetto
-    def get_users_from_list_with_max_priority(self, users: list, url: str) -> list:
+    def get_users_from_list_with_max_priority(
+        self,
+        users: list,
+        url: str,
+    ) -> list:
         # filtra, tra gli utenti dati, solo quelli che hanno la priorità
         # maggiore
         # (è diverso da 'get_users_max_priority' perchè non li vogliamo tutti)
-        pass
+        self._users.filter_max_priority(users, url)
 
     def get_label_project(self, project: str) -> list:
-        return self._projects.labels(project)
+        return self._projects.topics(project)
 
     def get_user_projects(self, user: str) -> dict:
         return self._users.get_projects(user)
