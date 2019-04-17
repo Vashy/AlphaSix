@@ -486,8 +486,8 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def addproject(self):
         project = request.values['project']
-        # TODO : add_project(user,project)
-        return self.load_preference_project()
+        self._model.add_user_project(session['userid'], project):
+        return self.load_preference_()
 
     def removeproject(self):
         project = request.values['project']

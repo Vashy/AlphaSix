@@ -42,8 +42,8 @@ class MongoFacade():
     def update_user_email(self, user: str, email: str):
         self._users.update_email(user, email)
 
-    def insert_user_project(self, user: str, project: str):
-        self._users.insert_user_project(user, project)
+    def add_user_project(self, user: str, project: str):
+        self._users.add_project(user, project)
 
     def delete_user_project(self, user: str, project: str):
         self._users.delete_user_project(user, project)

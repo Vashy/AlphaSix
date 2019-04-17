@@ -346,7 +346,7 @@ class MongoUsers:
         self,
         user: str,
         project: str,
-        priority: int,
+        priority: int = 3,
         topics: list = [],
         keywords: list = [],
     ):
