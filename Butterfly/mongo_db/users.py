@@ -559,7 +559,7 @@ class MongoUsers:
             {
                 '$and': [
                     {'$or': [
-                        {'_id': user},
+                        # {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -568,7 +568,7 @@ class MongoUsers:
             },
             {
                 '$set': {
-                    "projects.0.priority": priority
+                    "projects.$.priority": priority
                 }
             }
         )

@@ -321,7 +321,7 @@ per modificare l\'utente.</p>')
                 '*removeuser*',
                 '<p>Utente rimosso correttamente.</p>'
             )
-            print(self._model.delete_user(userid).deleted_count)
+            self._model.delete_user(userid)
         page = page.replace('*removeuser*', '')
 
         values = self._users_id()
@@ -374,7 +374,7 @@ per modificare l\'utente.</p>')
 ' + project_data['url'] + '-priority">'
             for priority in range(1, 4):
                 row += '<option'
-                if priority == user_project['priority']:
+                if str(priority) == user_project['priority']:
                     row += ' selected="selected"'
                 row += ' value="' + str(priority) + '">\
 ' + str(priority) + '</option>'
@@ -474,9 +474,9 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
                         )
                     elif 'topics' in key:
                         pass
-                        # TODO : get_topics(user,project)
-                        # TODO : remove_topics(user,project,topics-value)
-                        # TODO : add_topics(user,project,value-topics)
+                        # TODO : get_topics(user,project) riceve i topic del pro.getto a cui l'utente e' iscritto (lista)
+                        # TODO : remove_topics(user,project,topics-value) elabora una lista che contiene i topics a cui l'utente era iscritto ed elimina i nuovi da tale lista, poi passa la lista risultante al db per rimuoverla dai topic dell'utente nel progetto specificato.
+                        # TODO : add_topics(user,project,value-topics) elabora una lista che contiene i topics a cui l'utente deve iscriversi ed elimina i vecchi da tale lista, poi passa la lista risultante al db per aggiungere i nuovi topic dell'utente nel progetto specificato.
                     elif 'keywords' in key:
                         pass
                         # TODO : get_keywords(user,project)
