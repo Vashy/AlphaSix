@@ -147,7 +147,7 @@ class MongoFacade():
         # filtra, tra gli utenti dati, solo quelli che hanno la priorità
         # maggiore
         # (è diverso da 'get_users_max_priority' perchè non li vogliamo tutti)
-        self._users.filter_max_priority(users, url)
+        return self._users.filter_max_priority(users, url)
 
     def get_label_project(self, project: str) -> list:
         return self._projects.topics(project)

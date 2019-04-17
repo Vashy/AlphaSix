@@ -106,7 +106,7 @@
         "2018-12-05",
         "2019-04-05",
         "2019-04-06",
-        "2019-04-17"
+        "2019-04-07"
       ],
       "surname": "Granziero",
       "name": "Timoty",
@@ -120,7 +120,6 @@
             "bug"
           ],
           "keywords": [
-            "kw1",
             "kw2",
             "kw3"
           ]
@@ -155,7 +154,7 @@
       "projects": [
         {
           "url": "http://localhost/vashy/a",
-          "priority": 2,
+          "priority": 3,
           "topics": [
             "bug",
             "aaaa"

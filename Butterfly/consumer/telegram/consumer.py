@@ -36,6 +36,10 @@ from consumer.consumer import Consumer
 
 
 class TelegramConsumer(Consumer):
+
+    _bold = '*'
+    _code = '`'
+
     """Implementa Consumer"""
     _CONFIG_PATH = Path(__file__).parent / 'config.json'
 
@@ -69,11 +73,12 @@ class TelegramConsumer(Consumer):
 
             return True
 
-        print(f'({response.status_code}) '
-              'Errore: il messaggio non è stato inviato')
+        print(f'({response.status_code})\n'
+              f'{response.json()}')
         return False
 
-    def format(self, msg: dict) -> str:
+    @classmethod
+    def format(cls, msg: dict) -> str:
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
 
@@ -96,10 +101,10 @@ class TelegramConsumer(Consumer):
         res = ''
 
         if msg['object_kind'] == 'issue':
-            res += f'È stata aperta una issue '
+            return cls._format_issue(msg)
 
         elif msg['object_kind'] == 'push':
-            res += f'È stata fatto un push '
+            return cls._format_push(msg)
 
         elif msg['object_kind'] == 'issue-note':
             res += f'È stata commentata una issue '
@@ -110,19 +115,71 @@ class TelegramConsumer(Consumer):
         else:
             raise KeyError
 
-        emph = '`'
-        bold = '**'
-
         res += ''.join([
-            f' nel progetto {bold}{msg["project_name"]}{bold} ',
-            f'({emph}{msg["project_id"]}{emph})',
-            f' su {msg["app"].capitalize()}',
-            f'\n\n{bold}Informazioni:{bold} '
-            f'\n - {bold}Autore:{bold} {msg["author"]}'
-            f'\n - {bold}Title:{bold} {msg["title"]}',
-            f'\n - {bold}Description:{bold}\n'
-            f'  {msg["description"]}',
-            f'\n - {bold}Action:{bold} {msg["action"]}'
+            f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
+            f'({cls._code}{msg["project_id"]}{cls._code})',
+            f' su {msg["app"].capitalize()}\n',
+            # f'\n\n{cls._bold}Informazioni:{cls._bold} '
+            f'\n - {cls._bold}Autore:{cls._bold} {msg["author"]}'
+            f'\n - {cls._bold}Title:{cls._bold} {msg["title"]}',
+            f'\n - {cls._bold}Description:{cls._bold} '
+            f'{msg["description"]}',
         ])
+        if 'action' in msg:
+            res += f'\n - {cls._bold}Action:{cls._bold} {msg["action"]}'
 
+        return res
+
+    @classmethod
+    def _format_issue(
+        cls,
+        msg: dict,
+    ):
+        if msg['action'] == 'open':
+            action_text = 'aperta'
+        elif msg['action'] == 'update':
+            action_text = 'modificata'
+        elif msg['action'] == 'close':
+            action_text = 'chiusa'
+        elif msg['action'] == 'reopen':
+            action_text = 'riaperta'
+
+        res = ''.join([
+            f'È stata {action_text} una issue ',
+            f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
+            f'({cls._code}{msg["project_id"]}{cls._code})',
+            f' su {msg["app"].capitalize()}\n',
+            # f'\n\n{cls._bold}Informazioni:{cls._bold} '
+            f'\n - {cls._bold}Autore:{cls._bold} {msg["author"]}'
+            f'\n - {cls._bold}Title:{cls._bold} {msg["title"]}',
+            f'\n - {cls._bold}Description:{cls._bold} '
+            f'{msg["description"]}',
+        ])
+        return res
+
+    @classmethod
+    def _format_push(
+        cls,
+        msg: dict,
+        id_precision: int = 5,
+        commits_count: int = 3
+    ):
+        """Formatta un messaggio di push in markdown
+        e restituisce il risultato.
+        """
+        res = ''.join([
+            f'È stato fatto un push '
+            f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
+            f'({cls._code}{msg["project_id"]}{cls._code})',
+            f' su {msg["app"].capitalize()}\n\n',
+            f'{msg["commits_count"]} nuovi commit da {msg["author"]}:\n'
+        ])
+        for commit in msg['commits']:
+            res += (f'- {commit["message"]} '
+                    f'({cls._code}{commit["id"][:id_precision]}{cls._code}..)'
+                    '\n')
+            commits_count -= 1
+            if commits_count == 0:
+                res += '- ...\n'
+                break
         return res

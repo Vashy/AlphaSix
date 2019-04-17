@@ -55,7 +55,6 @@ class ClientGP():
     def send_all(self, map_message_contact: dict, message: dict):
         # app_ricevente sarà telegram o email (chiave,valore)
         for app_ricevente, contact_list in map_message_contact.items():
-            # import pdb; pdb.set_trace()
             for contact in contact_list:
                 try:
                     message['receiver'] = contact

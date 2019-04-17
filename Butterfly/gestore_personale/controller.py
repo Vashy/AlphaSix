@@ -468,7 +468,6 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
             url = key.replace('-priority', '')
             url = url.replace('-topics', '')
             url = url.replace('-keywords', '')
-            print(url)
             if not old:
                 old = url
             elif url != old:
@@ -485,7 +484,6 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
                             session['userid'],
                             url
                         )
-                        print('orco')
                     self._model.add_user_topics(
                         session['userid'],
                         url,
@@ -495,7 +493,6 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
                 elif 'keywords' in key:
                     value = value.strip()
                     keywords = value.split(',')
-                    print(keywords)
                     self._model.reset_user_keywords(
                         session['userid'],
                         url
