@@ -18,7 +18,8 @@ class GitlabProcessor(Processor):
             return self._mongofacade.get_match_keywords(
                 users,
                 self._message['project_id'],
-                self._message['title'],
+                # self._message['title'],
+                ''  # TODO: unificare i titoli per le kw
             )
         # Se la segnalazione consiste in una issue
         elif kind == 'issue':
@@ -43,9 +44,10 @@ class GitlabProcessor(Processor):
             raise NameError('Type doesn\'t exist')
 
     def _check_labels(self, labels: list):
-        """
-        Guarda se le label della segnalazione legate al progetto indicati esistono.
-        Funzione ausiliaria per _filter_user_by_project. Lavora come RedmineProcessor._check_label
+        """Guarda se le label della segnalazione
+        legate al progetto indicati esistono.
+        Funzione ausiliaria per `_filter_user_by_project`.
+        Lavora come RedmineProcessor._check_label
         :param labels: lista delle label della segnalazione
         """
         project = self._message['project_id']
