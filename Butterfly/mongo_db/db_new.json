@@ -8,34 +8,6 @@
         "2019-04-07"
       ],
       "surname": "Granziero",
-      "name": "Timoty",
-      "telegram": "12312",
-      "email": null,
-      "projects": [
-        {
-          "url": "http://localhost/gitlab/gitlab-2",
-          "priority": 3,
-          "topics": [
-            "java",
-            "coding"
-          ],
-          "keywords": [
-            "kw1",
-            "kw2",
-            "kw3"
-          ]
-        }
-      ],
-      "preference": "telegram"
-    },
-    {
-      "irreperibilita": [
-        "2018-12-05",
-        "2019-04-05",
-        "2019-04-06",
-        "2019-04-07"
-      ],
-      "surname": "Granziero",
       "name": "Simone",
       "telegram": "123432",
       "email": "simone.granziero@email.it",
@@ -46,19 +18,6 @@
           "topics": [
             "CI",
             "bug"
-          ],
-          "keywords": [
-            "kw1",
-            "kw2",
-            "kw3"
-          ]
-        },
-        {
-          "url": "http://localhost/gitlab/gitlab-2",
-          "priority": 3,
-          "topics": [
-            "java",
-            "coding"
           ],
           "keywords": [
             "kw1",
@@ -83,22 +42,7 @@
       "name": "Mattia",
       "telegram": "1234",
       "email": "abcd@bc.it",
-      "projects": [
-        {
-          "url": "http://localhost/gitlab/gitlab-2",
-          "priority": 2,
-          "topics": [
-            "java",
-            "coding",
-            "criptovaluta"
-          ],
-          "keywords": [
-            "kw1",
-            "kw2",
-            "kw3"
-          ]
-        }
-      ],
+      "projects": [],
       "preference": "email"
     },
     {
@@ -108,10 +52,10 @@
         "2019-04-06",
         "2019-04-07"
       ],
-      "surname": "Granziero",
-      "name": "Timoty",
+      "surname": "Alpha",
+      "name": "Six",
       "telegram": "123432123",
-      "email": "timoty.granziero@gmail.com",
+      "email": "alfa.six.unipd@gmail.com",
       "projects": [
         {
           "url": "http://localhost/vashy/a",
@@ -138,20 +82,72 @@
           ]
         },
         {
-          "url": "http://localhost/gitlab/gitlab-2",
-          "priority": 2,
+          "url": "https://gitlab.com/AlphaSix/testproject",
+          "priority": 1,
           "topics": [
-            "java",
-            "coding"
+            "bug",
+            "fix"
           ],
           "keywords": [
-            "kw1",
             "kw2",
-            "kw3"
+            "kw3",
+            "bug"
           ]
         }
       ],
       "preference": "email"
+    },
+    {
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-05",
+        "2019-04-06",
+        "2019-04-07"
+      ],
+      "surname": "Alpha 2",
+      "name": "Six",
+      "telegram": "278271623",
+      "email": null,
+      "projects": [
+        {
+          "url": "http://localhost/vashy/a",
+          "priority": 1,
+          "topics": [
+            "bug"
+          ],
+          "keywords": [
+            "kw2",
+            "kw3"
+          ]
+        },
+        {
+          "url": "http://gitlab/root/demoproject",
+          "priority": 2,
+          "topics": [
+            "bug",
+            "fix"
+          ],
+          "keywords": [
+            "kw2",
+            "kw3",
+            "bug"
+          ]
+        },
+        {
+          "url": "https://gitlab.com/AlphaSix/testproject",
+          "priority": 1,
+          "topics": [
+            "bug",
+            "fix"
+          ],
+          "keywords": [
+            "kw2",
+            "kw3",
+            "bug"
+          ]
+        }
+      ],
+      "preference": "telegram"
     },
     {
       "irreperibilita": [
@@ -187,19 +183,6 @@
             "ciao",
             "polpetta",
             "bug"
-          ]
-        },
-        {
-          "url": "http://localhost/gitlab/gitlab-2",
-          "priority": 2,
-          "topics": [
-            "java",
-            "coding"
-          ],
-          "keywords": [
-            "kw1",
-            "kw2",
-            "kw3"
           ]
         }
       ],
@@ -240,19 +223,6 @@
             "muu",
             "bug"
           ]
-        },
-        {
-          "url": "http://localhost/gitlab/gitlab-2",
-          "priority": 2,
-          "topics": [
-            "java",
-            "coding"
-          ],
-          "keywords": [
-            "kw1",
-            "kw2",
-            "kw3"
-          ]
         }
       ],
       "preference": "telegram"
@@ -275,19 +245,6 @@
           "topics": [
             "bug",
             "aaaa"
-          ],
-          "keywords": [
-            "kw1",
-            "kw2",
-            "kw3"
-          ]
-        },
-        {
-          "url": "http://localhost/gitlab/gitlab-2",
-          "priority": 3,
-          "topics": [
-            "java",
-            "coding"
           ],
           "keywords": [
             "kw1",
@@ -322,34 +279,14 @@
       ]
     },
     {
-      "url": "http://localhost/gitlab/gitlab-2",
+      "url": "https://gitlab.com/AlphaSix/testproject",
       "app": "gitlab",
-      "name": "Gitlab-2",
+      "name": "TestProject",
       "topics": [
         "java",
         "coding",
         "enhancement",
         "bug"
-      ]
-    },
-    {
-      "url": "http://localhost/redmine/project-2",
-      "app": "redmine",
-      "name": "Project-2",
-      "topics": [
-        "golang",
-        "bug",
-        "wontfix"
-      ]
-    },
-    {
-      "url": "http://localhost/redmine/project-4",
-      "app": "redmine",
-      "name": "Project-4",
-      "topics": [
-        "bug",
-        "python",
-        "docker"
       ]
     }
   ]
