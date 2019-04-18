@@ -288,6 +288,26 @@
         "enhancement",
         "bug"
       ]
+    },
+    {
+      "url": "http://localhost/vashy/a",
+      "app": "redmine",
+      "name": "a",
+      "topics": [
+        "bug",
+        "python",
+        "docker"
+      ]
+    },
+    {
+      "url": "http://gitlab/root/demoproject",
+      "app": "redmine",
+      "name": "DemoProject",
+      "topics": [
+        "bug",
+        "python",
+        "docker"
+      ]
     }
   ]
 }

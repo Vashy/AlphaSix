@@ -677,7 +677,7 @@ class MongoUsers:
                 return users
         return []
 
-    def get_user_telegram_from_id(self, user: int):
+    def get_user_telegram_from_id(self, user: str):
         try:
             return self.users({
                 '_id': bson.objectid.ObjectId(user)
@@ -685,7 +685,7 @@ class MongoUsers:
         except StopIteration:
             return None
 
-    def get_user_email_from_id(self, user: int):
+    def get_user_email_from_id(self, user: str):
         try:
             return self.users({
                 '_id': bson.objectid.ObjectId(user)
@@ -711,6 +711,18 @@ class MongoUsers:
         except StopIteration:
             return None
 
+    def get_user_telegram_web(self, user: str):
+        try:
+            return self.users({
+                '$or': [
+                    {'_id': user},
+                    {'telegram': user},
+                    {'email': user},
+                ]
+            }).next()['telegram']
+        except StopIteration:
+            return None
+
     def get_user_email(self, user: str):
         try:
             return self.users({
@@ -724,6 +736,18 @@ class MongoUsers:
                         {'preference': 'email'},
                         {'telegram': None},
                     ]},
+                ]
+            }).next()['email']
+        except StopIteration:
+            return None
+
+    def get_user_email_web(self, user: str):
+        try:
+            return self.users({
+                '$or': [
+                    {'_id': user},
+                    {'telegram': user},
+                    {'email': user},
                 ]
             }).next()['email']
         except StopIteration:
@@ -796,7 +820,7 @@ class MongoUsers:
                 return True
         return False
 
-    def get_projects(self, user: str) -> dict:
+    def get_projects(self, user: str) -> list:
         """Restituisce una mappa contenente i progetti a cui è iscritto un
         utente e i relativi dati.
 
@@ -804,8 +828,7 @@ class MongoUsers:
         `AssertionError` -- se `user` non è presente nel DB.
         """
         assert self.exists(user), f'User {user} inesistente'
-
-        projects = self._mongo.read('users').find({
+        user = self._mongo.read('users').find({
             '$or': [
                 {'_id': user},
                 {'telegram': user},
@@ -814,9 +837,9 @@ class MongoUsers:
         }, {
             'projects': 1,
         }).next()
-        if 'projects' in projects:
-            return projects['projects']
-        return {}
+        if 'projects' in user:
+            return user['projects']
+        return []
 
 
     def add_giorno_irreperibilita(
