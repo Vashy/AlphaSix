@@ -82,11 +82,10 @@
           ]
         },
         {
-          "url": "https://gitlab.com/AlphaSix/testproject",
+          "url": "https://gitlab.com/AlphaSix/butterflydemo",
           "priority": 1,
           "topics": [
-            "bug",
-            "fix"
+            "bug"
           ],
           "keywords": [
             "kw2",
@@ -134,11 +133,10 @@
           ]
         },
         {
-          "url": "https://gitlab.com/AlphaSix/testproject",
-          "priority": 1,
+          "url": "https://gitlab.com/AlphaSix/butterflydemo",
+          "priority": 2,
           "topics": [
-            "bug",
-            "fix"
+            "bug"
           ],
           "keywords": [
             "kw2",
@@ -279,9 +277,9 @@
       ]
     },
     {
-      "url": "https://gitlab.com/AlphaSix/testproject",
+      "url": "https://gitlab.com/AlphaSix/butterflydemo",
       "app": "gitlab",
-      "name": "TestProject",
+      "name": "ButterflyDemo",
       "topics": [
         "java",
         "coding",
