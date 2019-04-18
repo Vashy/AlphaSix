@@ -176,10 +176,12 @@ per eseguire l\'accesso.</p>')
         page = page.replace('*userid*', '')
         return page
 
-    def panel(self):
+    def panel(self, error=''):
         if self._check_session():
             fileHtml = html / 'panel.html'
-            return render_template_string(fileHtml.read_text())
+            page = fileHtml.read_text()
+            page = page.replace('*panel*', error)
+            return render_template_string(page)
         else:
             return self.access()
 
@@ -231,86 +233,89 @@ per inserire l\'utente.</p>')
         return page
 
     def modify_user(self):
-        fileHtml = html / 'modifyuser.html'
-        page = fileHtml.read_text()
-        nome = request.values.get('nome')
-        cognome = request.values.get('cognome')
-        email = request.values.get('email')
-        telegram = request.values.get('telegram')
-        modify = {}
-        if email or telegram:
-            if nome:
-                page = page.replace('*nome*', nome)
-                modify.update(nome=nome)
-            if cognome:
-                page = page.replace('*cognome*', cognome)
-                modify.update(cognome=cognome)
-            if email:
-                page = page.replace('*email*', email)
-                modify.update(email=email)
-            if telegram:
-                page = page.replace('*telegram*', telegram)
-                modify.update(telegram=telegram)
-            if ((
-                email and
-                self._model.user_exists(email) and
-                email != session['email']
-            )or(
-                telegram and
-                self._model.user_exists(telegram) and
-                telegram != session['telegram']
-                )
-            ):
-                page = page.replace(
-                    '*modifyuser*',
-                    '<p>I dati inseriti confliggono\
-con altri già esistenti.</p>'
-                )
-            else:
-                page = page.replace(
-                    '*modifyuser*',
-                    '<p>Utente modificato correttamente.</p>'
-                )
-                if('nome' in modify):
-                    self._model.update_user_name(
-                        session['userid'],
-                        modify['nome']
+        try:
+            fileHtml = html / 'modifyuser.html'
+            page = fileHtml.read_text()
+            nome = request.values.get('nome')
+            cognome = request.values.get('cognome')
+            email = request.values.get('email')
+            telegram = request.values.get('telegram')
+            modify = {}
+            if email or telegram:
+                if nome:
+                    page = page.replace('*nome*', nome)
+                    modify.update(nome=nome)
+                if cognome:
+                    page = page.replace('*cognome*', cognome)
+                    modify.update(cognome=cognome)
+                if email:
+                    page = page.replace('*email*', email)
+                    modify.update(email=email)
+                if telegram:
+                    page = page.replace('*telegram*', telegram)
+                    modify.update(telegram=telegram)
+                if ((
+                    email and
+                    self._model.user_exists(email) and
+                    email != session['email']
+                )or(
+                    telegram and
+                    self._model.user_exists(telegram) and
+                    telegram != session['telegram']
                     )
-                if('cognome' in modify):
-                    self._model.update_user_surname(
-                        session['userid'],
-                        modify['cognome']
-                    )
-                if('email' in modify and
-                    ('email' not in session) or
-                    (modify['email'] != session['email'])
                 ):
-                    self._model.update_user_email(
-                        session['userid'],
-                        modify['email']
+                    page = page.replace(
+                        '*modifyuser*',
+                        '<p>I dati inseriti confliggono\
+    con altri già esistenti.</p>'
                     )
-                    session['email'] = modify['email']
-                if('telegram' in modify and
-                    ('telegram' not in session) or
-                    (modify['telegram'] != session['telegram'])
-                ):
-                    self._model.update_user_telegram(
-                        session['userid'],
-                        modify['telegram']
+                else:
+                    page = page.replace(
+                        '*modifyuser*',
+                        '<p>Utente modificato correttamente.</p>'
                     )
-                    session['telegram'] = modify['telegram']
-        if request.values.get('modifyuser'):
-            page = page.replace(
-                    '*modifyuser*',
-                    '<p>Si prega di inserire almeno email o telegram\
-per modificare l\'utente.</p>')
-        user = self._model.read_user(session['userid'])
-        page = page.replace('*nome*', user['name'])
-        page = page.replace('*cognome*', user['surname'])
-        page = page.replace('*email*', user['email'])
-        page = page.replace('*telegram*', user['telegram'])
-        page = page.replace('*modifyuser*', '')
-        return page
+                    if('nome' in modify):
+                        self._model.update_user_name(
+                            session['userid'],
+                            modify['nome']
+                        )
+                    if('cognome' in modify):
+                        self._model.update_user_surname(
+                            session['userid'],
+                            modify['cognome']
+                        )
+                    if('email' in modify and
+                        ('email' not in session) or
+                        (modify['email'] != session['email'])
+                    ):
+                        self._model.update_user_email(
+                            session['userid'],
+                            modify['email']
+                        )
+                        session['email'] = modify['email']
+                    if('telegram' in modify and
+                        ('telegram' not in session) or
+                        (modify['telegram'] != session['telegram'])
+                    ):
+                        self._model.update_user_telegram(
+                            session['userid'],
+                            modify['telegram']
+                        )
+                        session['telegram'] = modify['telegram']
+            if request.values.get('modifyuser'):
+                page = page.replace(
+                        '*modifyuser*',
+                        '<p>Si prega di inserire almeno email o telegram\
+    per modificare l\'utente.</p>')
+            user = self._model.read_user(session['userid'])
+            page = page.replace('*nome*', user['name'] if user['name'] else '')
+            page = page.replace('*cognome*', user['surname'] if user['surname'] else '')
+            page = page.replace('*email*', user['email'] if user['email'] else '')
+            page = page.replace('*telegram*', user['telegram'] if user['telegram'] else '')
+            page = page.replace('*modifyuser*', '')
+            return page
+        except AssertionError:
+                return self.panel(error='Non sei più iscritto alla piattaforma.')
 
     def remove_user(self):
         fileHtml = html / 'removeuser.html'
@@ -388,10 +393,11 @@ per modificare l\'utente.</p>')
                 row += ' value="' + topic + '">'
             row += '</td><td><textarea id="textkeywords" name="\
 ' + project_data['url'] + '-keywords">'
-            for keyword in user_project['keywords']:
-                row += keyword
-                row += ','
-            row = row[:-1]  # elimino l'ultima virgola
+            if user_project['keywords']:
+                for keyword in user_project['keywords']:
+                    row += keyword
+                    row += ','
+                row = row[:-1]  # elimino l'ultima virgola
             row += '</textarea></td></tr>'
             form += row
         form += '</table><input id="modifytopics"\
@@ -415,8 +421,8 @@ value="Rimuovi il progetto"></form>'
 
     def load_preference_availability(
         self,
-        year = datetime.datetime.now().year,
-        month = datetime.datetime.now().month
+        year=datetime.datetime.now().year,
+        month=datetime.datetime.now().month
     ):
         date = datetime.datetime(year, month, 1)
         irreperibilita = self._model.read_user(
@@ -461,10 +467,9 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         return form
 
     def modifytopics(self):
-        user_projects = self._model.get_user_projects(session['userid'])
         firstTopic = True
         old = None
-        for key, value in request.values.items(multi = True):
+        for key, value in request.values.items(multi=True):
             url = key.replace('-priority', '')
             url = url.replace('-topics', '')
             url = url.replace('-keywords', '')
@@ -527,32 +532,35 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         if giorni_new:
             year = giorni_new[0].strftime('%Y')
             month = giorni_new[0].strftime('%m')
-        for giorno in giorni_old:
-            if giorno.strftime('%Y') == year and giorno.strftime('%m') == month:
-                if giorno not in giorni_new:
-                    self._model.remove_giorno_irreperibilita(
-                        session['userid'],
-                        int(year),
-                        int(month),
-                        int(giorno.strftime('%d'))
-                    )
-        for giorno in giorni_new:
-            self._model.add_giorno_irreperibilita(
-                session['userid'],
-                int(year),
-                int(month),
-                int(giorno.strftime('%d'))
-            )
+            for giorno in giorni_old:
+                if (giorno.strftime('%Y') == year and
+                giorno.strftime('%m') == month):
+                    if giorno not in giorni_new:
+                        self._model.remove_giorno_irreperibilita(
+                            session['userid'],
+                            int(year),
+                            int(month),
+                            int(giorno.strftime('%d'))
+                        )
+            for giorno in giorni_new:
+                self._model.add_giorno_irreperibilita(
+                    session['userid'],
+                    int(year),
+                    int(month),
+                    int(giorno.strftime('%d'))
+                )
         return self.load_preference_availability()
 
     def previous_indisponibilita(self):
-        mese = request.values['mese']
-        anno = request.values['anno']
+        mese = int(request.values['mese'])
+        anno = int(request.values['anno'])
         if (mese == 1):
             anno = anno - 1
             mese = 12
+        else:
+            mese = mese - 1
         self.indisponibilita()
-        return self.load_preference_availability(int(anno), int(mese))
+        return self.load_preference_availability(anno, mese)
 
     def next_indisponibilita(self):
         mese = int(request.values['mese'])
@@ -560,6 +568,8 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         if (mese == 12):
             anno = anno + 1
             mese = 1
+        else:
+            mese = mese + 1
         self.indisponibilita()
         return self.load_preference_availability(anno, mese)
 
@@ -572,13 +582,16 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         fileHtml = html / 'preference.html'
         page = fileHtml.read_text()
         if request.values.get('preference'):
-            page = page.replace('*topics*', self.load_preference_topic())
-            page = page.replace('*projects*', self.load_preference_project())
-            page = page.replace(
-                '*availability*',
-                self.load_preference_availability()
-            )
-            page = page.replace('*platform*', self.load_preference_platform())
+            try:
+                page = page.replace('*topics*', self.load_preference_topic())
+                page = page.replace('*projects*', self.load_preference_project())
+                page = page.replace(
+                    '*availability*',
+                    self.load_preference_availability()
+                )
+                page = page.replace('*platform*', self.load_preference_platform())
+            except AssertionError:
+                return self.panel(error='Non sei più iscritto alla piattaforma.')
         elif request.values.get('modifytopics'):
             return self.modifytopics()
         elif request.values.get('addproject'):

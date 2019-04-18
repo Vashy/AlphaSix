@@ -119,7 +119,7 @@ class MongoUsers:
         `user`, se presente. `user` è l'identificativo nel db
         """
         return self._mongo.delete(
-            {'_id': user}, 'users'
+            {'_id': bson.objectid.ObjectId(user)}, 'users'
         )
 
     def delete(self, user: str):
@@ -128,7 +128,7 @@ class MongoUsers:
         """
         return self._mongo.delete({
             '$or': [
-                {'_id': user},
+                {'_id': bson.objectid.ObjectId(user)},
                 {'telegram': user},
                 {'email': user},
             ]
