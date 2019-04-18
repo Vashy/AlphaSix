@@ -189,7 +189,10 @@ per eseguire l\'accesso.</p>')
             except TypeError:
                 return page
         else:
-            return self.access()
+            try:
+                return render_template_string(self.access())
+            except TypeError:
+                return page
 
     def add_user(self):
         fileHtml = html / 'adduser.html'
@@ -470,7 +473,7 @@ value="Mese precedente"/>\
 value="Modifica irreperibilità"/></fieldset></form>'
         return form
 
-    def load_preference_platform(self):
+    def load_preference_platform(self, error=''):
         platform = self._model.read_user(session['userid'])['preference']
         form = '<form id="platform"><fieldset>\
 <legend>Piattaforma preferita</legend>\
@@ -485,6 +488,7 @@ type="radio" value="email"'
             form += ' checked = "checked"'
         form += '/><input id="piattaforma" name="piattaforma" type="button"\
 value="Modifica piattaforma preferita"/></fieldset></form>'
+        form += error
         return form
 
     def modifytopics(self):
@@ -596,6 +600,14 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def piattaforma(self):
         platform = request.values['platform']
+        if platform=="telegram":
+            telegram = self._model.get_user_telegram(session['userid'])
+            if not telegram:
+                return self.load_preference_platform(error='<p>Non hai memorizato la piattaforma telegram nel sistema.</p>')
+        if platform=="email":
+            email = self._model.get_user_email(session['userid'])
+            if not email:
+                return self.load_preference_platform(error='<p>Non hai memorizato la piattaforma email nel sistema.</p>')
         self._model.update_user_preference(session['userid'], platform)
         return self.load_preference_platform()
 
