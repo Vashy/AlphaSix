@@ -58,30 +58,6 @@
       "email": "alpha.six.unipd@gmail.com",
       "projects": [
         {
-          "url": "http://localhost/vashy/a",
-          "priority": 1,
-          "topics": [
-            "bug"
-          ],
-          "keywords": [
-            "kw2",
-            "kw3"
-          ]
-        },
-        {
-          "url": "http://gitlab/root/demoproject",
-          "priority": 2,
-          "topics": [
-            "bug",
-            "fix"
-          ],
-          "keywords": [
-            "kw2",
-            "kw3",
-            "bug"
-          ]
-        },
-        {
           "url": "https://gitlab.com/AlphaSix/butterflydemo",
           "priority": 1,
           "topics": [
@@ -108,30 +84,6 @@
       "telegram": "278271623",
       "email": null,
       "projects": [
-        {
-          "url": "http://localhost/vashy/a",
-          "priority": 1,
-          "topics": [
-            "bug"
-          ],
-          "keywords": [
-            "kw2",
-            "kw3"
-          ]
-        },
-        {
-          "url": "http://gitlab/root/demoproject",
-          "priority": 2,
-          "topics": [
-            "bug",
-            "fix"
-          ],
-          "keywords": [
-            "kw2",
-            "kw3",
-            "bug"
-          ]
-        },
         {
           "url": "https://gitlab.com/AlphaSix/butterflydemo",
           "priority": 2,
@@ -179,7 +131,6 @@
           ],
           "keywords": [
             "ciao",
-            "polpetta",
             "bug"
           ]
         }
@@ -217,37 +168,7 @@
             "bug"
           ],
           "keywords": [
-            "cretino",
-            "muu",
             "bug"
-          ]
-        }
-      ],
-      "preference": "telegram"
-    },
-    {
-      "irreperibilita": [
-        "2018-12-05",
-        "2019-04-05",
-        "2019-04-06",
-        "2019-04-07"
-      ],
-      "surname": "Granziero",
-      "name": "Simone",
-      "telegram": "38883960",
-      "email": "simoneeee.granziero@email.it",
-      "projects": [
-        {
-          "url": "http://localhost/vashy/a",
-          "priority": 3,
-          "topics": [
-            "bug",
-            "aaaa"
-          ],
-          "keywords": [
-            "kw1",
-            "kw2",
-            "kw3"
           ]
         }
       ],
@@ -283,18 +204,8 @@
       "topics": [
         "java",
         "coding",
-        "enhancement",
+        "fix",
         "bug"
-      ]
-    },
-    {
-      "url": "http://localhost/vashy/a",
-      "app": "redmine",
-      "name": "a",
-      "topics": [
-        "bug",
-        "python",
-        "docker"
       ]
     },
     {
