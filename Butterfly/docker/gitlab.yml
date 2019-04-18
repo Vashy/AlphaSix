@@ -24,6 +24,9 @@
 
 version: '3.3'
 
+networks:
+  host:
+
 services:
 
   gitlab:

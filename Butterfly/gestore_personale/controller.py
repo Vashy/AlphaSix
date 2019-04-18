@@ -308,8 +308,8 @@ per inserire l\'utente.</p>')
             if request.values.get('modifyuser'):
                 page = page.replace(
                         '*modifyuser*',
-                        '<p>Si prega di inserire almeno email o telegram\
-    per modificare l\'utente.</p>')
+                        '<p>Si prega di inserire almeno email o telegram \
+per modificare l\'utente.</p>')
             user = self._model.read_user(session['userid'])
             page = page.replace('*nome*', user['name'] if user['name'] else '')
             page = page.replace('*cognome*', user['surname'] if user['surname'] else '')

@@ -14,8 +14,8 @@ function panel(request, url, method, formId, requestId, outputId){
                 addListener('removeuser', function (){removeUserPanel(request, 'removeuser', 'html')});
                 addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser', 'html')});
                 addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
-                addListener('logout', function (){logout(request, 'logout', 'html', 'data')});
-                addListener('back', function (){back(request, 'back', 'html', 'data')});
+                addListener('logout', function (){logout(request, 'logout', 'html')});
+                addListener('back', function (){back(request, 'back', 'html')});
                 addListener('modifytopics', function (){modifyPreferencePanel(request, 'modifytopics', 'topics', 'topics')});
                 addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'topics', 'projects')});
                 addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'topics', 'projects')});
