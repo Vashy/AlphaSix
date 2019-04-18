@@ -192,7 +192,7 @@ per eseguire l\'accesso.</p>')
             try:
                 return render_template_string(self.access())
             except TypeError:
-                return page
+                return self.access()
 
     def add_user(self):
         fileHtml = html / 'adduser.html'
