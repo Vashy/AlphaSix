@@ -33,7 +33,6 @@ class FlaskServer:
             messaggio
         """
         if request.headers['Content-Type'] == 'application/json':
-            import pdb; pdb.set_trace()
             webhook = request.get_json()
             print(
                 f'\n\n\nMessaggio da {self._topic}:\n'

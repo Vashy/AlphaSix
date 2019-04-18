@@ -125,6 +125,19 @@
           ]
         },
         {
+          "url": "http://gitlab/root/demoproject",
+          "priority": 2,
+          "topics": [
+            "bug",
+            "fix"
+          ],
+          "keywords": [
+            "kw2",
+            "kw3",
+            "bug"
+          ]
+        },
+        {
           "url": "http://localhost/gitlab/gitlab-2",
           "priority": 2,
           "topics": [
@@ -139,6 +152,109 @@
         }
       ],
       "preference": "email"
+    },
+    {
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-05",
+        "2019-04-06",
+        "2019-04-07"
+      ],
+      "surname": "L",
+      "name": "C",
+      "telegram": "265266555",
+      "email": "lauracameran@gmail.com",
+      "projects": [
+        {
+          "url": "http://localhost/vashy/a",
+          "priority": 1,
+          "topics": [
+            "bug"
+          ],
+          "keywords": [
+            "kw2",
+            "kw3"
+          ]
+        },
+        {
+          "url": "http://gitlab/root/demoproject",
+          "priority": 1,
+          "topics": [
+            "fix"
+          ],
+          "keywords": [
+            "ciao",
+            "polpetta",
+            "bug"
+          ]
+        },
+        {
+          "url": "http://localhost/gitlab/gitlab-2",
+          "priority": 2,
+          "topics": [
+            "java",
+            "coding"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
+        }
+      ],
+      "preference": "telegram"
+    },
+    {
+      "irreperibilita": [
+        "2018-12-05",
+        "2019-04-05",
+        "2019-04-06",
+        "2019-04-07"
+      ],
+      "surname": "Samu",
+      "name": "G",
+      "telegram": "279916459",
+      "email": "samuelegardin1997@gmail.com",
+      "projects": [
+        {
+          "url": "http://localhost/vashy/a",
+          "priority": 1,
+          "topics": [
+            "bug"
+          ],
+          "keywords": [
+            "kw2",
+            "kw3"
+          ]
+        },
+        {
+          "url": "http://gitlab/root/demoproject",
+          "priority": 1,
+          "topics": [
+            "fix",
+            "bug"
+          ],
+          "keywords": [
+            "cretino",
+            "muu",
+            "bug"
+          ]
+        },
+        {
+          "url": "http://localhost/gitlab/gitlab-2",
+          "priority": 2,
+          "topics": [
+            "java",
+            "coding"
+          ],
+          "keywords": [
+            "kw1",
+            "kw2",
+            "kw3"
+          ]
+        }
+      ],
+      "preference": "telegram"
     },
     {
       "irreperibilita": [

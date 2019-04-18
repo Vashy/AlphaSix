@@ -18,12 +18,10 @@ class Processor():
 
         # Dict di tutti gli utenti disponibili oggi nel progetto
         utenti_disponibili = self.get_involved_users(progetto)
-
         # Lista di tutti gli utenti interessati e disponibili
         utenti_interessati = self._filter_users_by_topic(
             utenti_disponibili, obj
         )
-
         # Se non c'è nessuno, vedo la persona di priorità
         # più alta disponibile oggi per quel progetto
         if utenti_interessati == []:

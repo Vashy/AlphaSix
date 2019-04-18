@@ -170,7 +170,7 @@ class TelegramConsumer(Consumer):
         res = ''.join([
             f'È stato fatto un push '
             f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
-            f'({cls._code}{msg["project_id"]}{cls._code})',
+            # f'({cls._code}{msg["project_id"]}{cls._code})',
             f' su {msg["app"].capitalize()}\n\n',
             f'{msg["commits_count"]} nuovi commit da {msg["author"]}:\n'
         ])
