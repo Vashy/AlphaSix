@@ -158,9 +158,12 @@ class Controller(Observer):
         userid = request.values.get('userid')
         if userid:
             if self._model.user_exists(userid):
-                session['email'] = self._model.get_user_email(userid)
-                session['telegram'] = self._model.get_user_telegram(userid)
-                session['userid'] = session['email'] if 'email' in session else session['telegram']
+                session['email'] = self._model.get_user_email_web(userid)
+                session['telegram'] = self._model.get_user_telegram_web(userid)
+                if 'email' in session:
+                    session['userid'] = session['email']
+                else:
+                    session['userid'] = session['telegram']
                 return redirect(url_for('panel'), code=303)
             else:
                 page = page.replace(
@@ -315,7 +318,7 @@ per inserire l\'utente.</p>')
                 page = page.replace(
                         '*modifyuser*',
                         '<p>Si prega di inserire almeno email o telegram \
-per modificare l\'utente.</p>')
+    per modificare l\'utente.</p>')
             user = self._model.read_user(session['userid'])
             page = page.replace('*nome*', user['name'] if user['name'] else '')
             page = page.replace('*cognome*', user['surname'] if user['surname'] else '')
@@ -335,10 +338,10 @@ per modificare l\'utente.</p>')
                 '*removeuser*',
                 '<p>Utente rimosso correttamente.</p>'
             )
-            self._model.delete_user(userid)
             email = self._model.get_user_email_from_id(userid)
             telegram = self._model.get_user_telegram_from_id(userid)
             user = email if email else telegram
+            self._model.delete_user(userid)
             if user == session['email'] or user == session['telegram']:
                 self.logout()
                 return redirect(url_for('panel'), code=303)
@@ -347,8 +350,8 @@ per modificare l\'utente.</p>')
         values = self._users_id()
         display = []
         for user in values:
-            telegram = self._model.get_user_telegram(user)
-            email = self._model.get_user_email(user)
+            telegram = self._model.get_user_telegram_from_id(user)
+            email = self._model.get_user_email_from_id(user)
             if telegram is None:
                 telegram = ''
             if email is None:

@@ -123,6 +123,12 @@ class MongoFacade():
     def get_user_email(self, user: str) -> str:
         return self._users.get_user_email(user)
 
+    def get_user_telegram_web(self, user: str):
+        return self._users.get_user_telegram_web(user)
+
+    def get_user_email_web(self, user: str):
+        return self._users.get_user_email_web(user)
+
     def get_match_keywords(
         self,
         users: list,

@@ -351,6 +351,26 @@
         "python",
         "docker"
       ]
+    },
+    {
+      "url": "http://localhost/vashy/a",
+      "app": "redmine",
+      "name": "Project-4",
+      "topics": [
+        "bug",
+        "python",
+        "docker"
+      ]
+    },
+    {
+      "url": "http://gitlab/root/demoproject",
+      "app": "redmine",
+      "name": "Project-4",
+      "topics": [
+        "bug",
+        "python",
+        "docker"
+      ]
     }
   ]
 }
