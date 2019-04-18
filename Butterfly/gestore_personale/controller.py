@@ -184,7 +184,10 @@ per eseguire l\'accesso.</p>')
             fileHtml = html / 'panel.html'
             page = fileHtml.read_text()
             page = page.replace('*panel*', error)
-            return render_template_string(page)
+            try:
+                return render_template_string(page)
+            except TypeError:
+                return page
         else:
             return self.access()
 
@@ -226,7 +229,7 @@ per eseguire l\'accesso.</p>')
         if request.values.get('adduser'):
             page = page.replace(
                     '*adduser*',
-                    '<p>Si prega di inserire almeno email o telegram\
+                    '<p>Si prega di inserire almeno email o telegram \
 per inserire l\'utente.</p>')
         page = page.replace('*nome*', '')
         page = page.replace('*cognome*', '')
@@ -330,6 +333,12 @@ per modificare l\'utente.</p>')
                 '<p>Utente rimosso correttamente.</p>'
             )
             self._model.delete_user(userid)
+            email = self._model.get_user_email_from_id(userid)
+            telegram = self._model.get_user_telegram_from_id(userid)
+            user = email if email else telegram
+            if user == session['email'] or user == session['telegram']:
+                self.logout()
+                return redirect(url_for('panel'), code=303)
         page = page.replace('*removeuser*', '')
 
         values = self._users_id()
@@ -368,7 +377,10 @@ per modificare l\'utente.</p>')
                 page = self.modify_user()
             elif request.method == 'DELETE':
                 page = self.remove_user()
-            return render_template_string(page)
+            try:
+                return render_template_string(page)
+            except TypeError:
+                return page
         else:
             return self.access()
 
@@ -620,7 +632,10 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
     def web_preference(self):
         if self._check_session():
             page = self.modify_preference()
-            return render_template_string(page)
+            try:
+                return render_template_string(page)
+            except TypeError:
+                return page
         else:
             return self.access()
 

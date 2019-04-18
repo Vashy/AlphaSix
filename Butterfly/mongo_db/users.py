@@ -678,14 +678,20 @@ class MongoUsers:
         return []
 
     def get_user_telegram_from_id(self, user: int):
-        return self.users({
-            '_id': user
-        }).next()['telegram']
+        try:
+            return self.users({
+                '_id': bson.objectid.ObjectId(user)
+            }).next()['telegram']
+        except StopIteration:
+            return None
 
     def get_user_email_from_id(self, user: int):
-        return self.users({
-            '_id': user
-        }).next()['email']
+        try:
+            return self.users({
+                '_id': bson.objectid.ObjectId(user)
+            }).next()['email']
+        except StopIteration:
+            return None
 
     def get_user_telegram(self, user: str):
         try:

@@ -11,8 +11,11 @@ function panel(request, url, method, formId, requestId, outputId){
             if (request.responseText){
                 document.getElementById(outputId).innerHTML = request.responseText;
                 addListener('adduser', function (){addUserPanel(request, 'adduser', 'html')});
+                addListener('adduserpanel', function (){addUserPanel(request, 'adduserpanel', 'html')});
                 addListener('removeuser', function (){removeUserPanel(request, 'removeuser', 'html')});
+                addListener('removeuserpanel', function (){removeUserPanel(request, 'removeuserpanel', 'html')});
                 addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser', 'html')});
+                addListener('modifyuserpanel', function (){modifyUserPanel(request, 'modifyuserpanel', 'html')});
                 addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
                 addListener('logout', function (){logout(request, 'logout', 'html')});
                 addListener('back', function (){back(request, 'back', 'html')});
@@ -61,9 +64,9 @@ function addListener(id, listener) {
 
 window.onload = function () {
     var request = new XMLHttpRequest();
-    addListener('adduser', function (){addUserPanel(request, null, 'html')});
-    addListener('removeuser', function (){removeUserPanel(request, null, 'html')});
-    addListener('modifyuser', function (){modifyUserPanel(request, null, 'html')});
+    addListener('adduserpanel', function (){addUserPanel(request, null, 'html')});
+    addListener('removeuserpanel', function (){removeUserPanel(request, null, 'html')});
+    addListener('modifyuserpanel', function (){modifyUserPanel(request, null, 'html')});
     addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
     addListener('logout', function (){logout(request, 'logout', 'html', 'data')});
 };
