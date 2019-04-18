@@ -390,7 +390,7 @@ per modificare l\'utente.</p>')
     def load_preference_topic(self):
         user_projects = self._model.get_user_projects(session['userid'])
         form = '<form id="topics">\
-        <table border="1"><tr><th>Url</th><th>Priorità</th>\
+        <table id="topics-table"><tr><th>Url</th><th>Priorità</th>\
 <th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
             project_data = self._model.read_project(
@@ -409,7 +409,7 @@ per modificare l\'utente.</p>')
 ' + str(priority) + '</option>'
             row += '</select></td><td>'
             for topic in project_data['topics']:
-                row += '<label>' + topic + '</label>'
+                row += '<br/><label>' + topic + '</label>'
                 row += '<input type="checkbox" name="\
 ' + project_data['url'] + '-topics"'
                 if topic in user_project['topics']:
@@ -464,12 +464,12 @@ name="indisponibilita[]" value="' + str(date) + '"'
             if date in irreperibilita:
                 form += ' checked="checked"'
             form += '>'
-        form += '<input type="button" id="previousmonth"\
+        form += '<br/><input type="button" id="previousmonth"\
 value="Mese precedente"/>\
 <input type="button" id="nextmonth" value="Mese successivo"/>\
 <input type="hidden" name="mese" value="' + date.strftime("%m") + '">\
 <input type="hidden" name="anno" value="' + date.strftime("%Y") + '">\
-<input id="irreperibilita" name="irreperibilita" type="button"\
+<br/><input id="irreperibilita" name="irreperibilita" type="button"\
 value="Modifica irreperibilità"/></fieldset></form>'
         return form
 
@@ -482,11 +482,11 @@ value="Modifica irreperibilità"/></fieldset></form>'
 type="radio" value="email"'
         if(platform == 'email'):
             form += ' checked = "checked"'
-        form += '/><label for="telegram">Telegram</label>\
+        form += '/><br/><label for="telegram">Telegram</label>\
 <input name="platform" id="telegram" type="radio" value="telegram"'
         if(platform == 'telegram'):
             form += ' checked = "checked"'
-        form += '/><input id="piattaforma" name="piattaforma" type="button"\
+        form += '/><br/><input id="piattaforma" name="piattaforma" type="button"\
 value="Modifica piattaforma preferita"/></fieldset></form>'
         form += error
         return form
