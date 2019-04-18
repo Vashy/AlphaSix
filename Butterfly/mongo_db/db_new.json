@@ -355,7 +355,7 @@
     {
       "url": "http://localhost/vashy/a",
       "app": "redmine",
-      "name": "Project-4",
+      "name": "a",
       "topics": [
         "bug",
         "python",
@@ -365,7 +365,7 @@
     {
       "url": "http://gitlab/root/demoproject",
       "app": "redmine",
-      "name": "Project-4",
+      "name": "DemoProject",
       "topics": [
         "bug",
         "python",
