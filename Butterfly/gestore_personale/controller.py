@@ -604,13 +604,13 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
     def piattaforma(self):
         platform = request.values['platform']
         if platform=="telegram":
-            telegram = self._model.get_user_telegram(session['userid'])
+            telegram = self._model.get_user_telegram_web(session['userid'])
             if not telegram:
-                return self.load_preference_platform(error='<p>Non hai memorizato la piattaforma telegram nel sistema.</p>')
+                return self.load_preference_platform(error='<p>Non hai memorizzato la piattaforma telegram nel sistema.</p>')
         if platform=="email":
-            email = self._model.get_user_email(session['userid'])
+            email = self._model.get_user_email_web(session['userid'])
             if not email:
-                return self.load_preference_platform(error='<p>Non hai memorizato la piattaforma email nel sistema.</p>')
+                return self.load_preference_platform(error='<p>Non hai memorizzato la piattaforma email nel sistema.</p>')
         self._model.update_user_preference(session['userid'], platform)
         return self.load_preference_platform()
 
