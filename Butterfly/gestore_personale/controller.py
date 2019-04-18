@@ -176,6 +176,9 @@ per eseguire l\'accesso.</p>')
         page = page.replace('*userid*', '')
         return page
 
+    def logout(self):
+        session.clear()
+
     def panel(self, error=''):
         if self._check_session():
             fileHtml = html / 'panel.html'
@@ -353,8 +356,14 @@ per inserire l\'utente.</p>')
 
     def web_user(self):
         if self._check_session():
-            if request.method == 'POST':
-                page = self.add_user()
+            if request.method == 'GET':
+                page = self.panel()
+            elif request.method == 'POST':
+                if 'logout' in request.values:
+                    self.logout()
+                    page = self.panel()
+                else:
+                    page = self.add_user()
             elif request.method == 'PUT':
                 page = self.modify_user()
             elif request.method == 'DELETE':

@@ -14,6 +14,8 @@ function panel(request, url, method, formId, requestId, outputId){
                 addListener('removeuser', function (){removeUserPanel(request, 'removeuser', 'html')});
                 addListener('modifyuser', function (){modifyUserPanel(request, 'modifyuser', 'html')});
                 addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
+                addListener('logout', function (){logout(request, 'logout', 'html', 'data')});
+                addListener('back', function (){back(request, 'back', 'html', 'data')});
                 addListener('modifytopics', function (){modifyPreferencePanel(request, 'modifytopics', 'topics', 'topics')});
                 addListener('addproject', function (){modifyPreferencePanel(request, 'addproject', 'topics', 'projects')});
                 addListener('removeproject', function (){modifyPreferencePanel(request, 'removeproject', 'topics', 'projects')});
@@ -38,6 +40,14 @@ function modifyUserPanel(request, id, outputId){
     panel(request, 'web_user', 'PUT', 'data', id, outputId)
 }
 
+function logout(request, id, outputId){
+    panel(request, 'web_user', 'POST', 'data', id, outputId)
+}
+
+function back(request, id, outputId){
+    panel(request, 'web_user', 'GET', 'data', id, outputId)
+}
+
 function modifyPreferencePanel(request, requestId, outputId, formId){
     panel(request, 'web_preference', 'POST', formId, requestId, outputId)
 }
@@ -55,4 +65,5 @@ window.onload = function () {
     addListener('removeuser', function (){removeUserPanel(request, null, 'html')});
     addListener('modifyuser', function (){modifyUserPanel(request, null, 'html')});
     addListener('preference', function (){modifyPreferencePanel(request, 'preference', 'html', 'data')});
+    addListener('logout', function (){logout(request, 'logout', 'html', 'data')});
 };
