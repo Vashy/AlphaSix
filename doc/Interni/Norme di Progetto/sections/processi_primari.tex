@@ -226,7 +226,7 @@
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
 
         \subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}
-        La progettazione è l'attività svolta dai progettisti con il fine di dare una soluzione soddisfacente per tutti gli stakeholder coinvolti nel rispetto delle best practice e dei design pattern scelti, attraverso la descrizione dell'architettura del software.
+        La progettazione è l'attività svolta dai progettisti con il fine di dare una soluzione soddisfacente per tutti gli stakeholder coinvolti nel rispetto delle \gloss{best practice} e dei design pattern scelti, attraverso la descrizione dell'architettura del software.
 
 		\paragraph{Obiettivi}\label{PP:Sviluppo:Progettazione:Obiettivi}
         Gli obiettivi dell'attività di progettazione sono:
@@ -235,8 +235,10 @@
 			\item Organizzare le responsabilità di realizzazione.
 			\item Garantire la qualità del prodotto finale.
 		\end{itemize}
+    
+        \paragraph{Strumenti}
 
-		\paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
+		\subparagraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
         Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio UML 2.0.\par
         Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
         Rappresentiamo i package con un rettangolo che contiene altri package o classi, e un'etichetta con il nome del package.
@@ -251,7 +253,7 @@
             \item Vediamo quali elementi dovrebbero essere più stabili (avendo più dipendenze entranti)
         \end{itemize}
 
-		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
+		\subparagraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
 		Per i diagrammi delle classi utilizziamo lo strumento \gloss{Draw.io} e il linguaggio UML 2.0.\par
         Questi diagrammi strutturali descrivono ad alto livello i tipi di oggetto presenti nel sistema e le relazioni che intercorrono tra essi.
 		I diagrammi delle classi sono composti dalle seguenti proprietà:
@@ -339,7 +341,7 @@
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
 
 
-		\paragraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza}
+		\subparagraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza}
 		Per i diagrammi di sequenza utilizziamo lo strumento \gloss{Draw.io} e il linguaggio UML 2.0.\par
         Usiamo questi diagrammi per descrivere come la collaborazione tramite messaggi di un gruppo di oggetti realizza un comportamento.\par
         Essi mostrano come gli oggetti interagiscono nel tempo, leggendo il diagramma dall'alto al basso.\par
@@ -370,20 +372,37 @@
         I diagrammi di sequenza sono inoltre utili per modellare la collaborazione tra entità.\par
         In caso di controllo centralizzato vi sarà un'entità che gestisce i messaggi verso tutte le altre, mentre in caso di controllo distribuito ogni entità avrà compiti ben delineati, quindi avrà la responsabilità della chiamata dei messaggi verso le altre entità coinvolte.\par
         Cerchiamo di usare per quanto possibile la modellazione a controllo distribuito, per non dare troppe responsabilità a una singola entità che diventerebbe il punto critico dell'architettura.
-
+        
+        \subparagraph{Architettura} \label{PP:progettazione:architettura}
+        L'architettura può essere considerata la ``strategia'' che si occupa della parte più esterna del software. L'architettura si deve occupare di come si relazionano i vali elementi del software, non come questi sono formati. Anche l'architettura deve essere costruita secondo una best practise, che può cambiare in base al tipo di software che deve essere sviluppato. \par
+        Un'architettura non si inventa ma si sceglie, e tra le più utilizzate troviamo:
+        \begin{itemize}
+            \item \textbf{Layer}: architettura che rispecchia la struttura di un'azienda e che vede il software sviluppato in più livelli disposti uno sopra l'altro. Un livello è dipendente esclusivamente da quello sottostante e comunica con esso. Generalmente i livelli sono Presentation layer, Business layer, Persisten layer e Database layer.
+            \item \textbf{Event-driven}: architettura utile per la creazione di software che lavorano con messaggi asincroni elaborati in modo indipendente. Quest'architettura può essere sviluppata secondo la Mediator topology dove i messaggi vengono inseriti in una cosa e smistati attraverso un apposito ``mediator'', oppure secondo la Broker topology dove i messaggi viaggiano attraverso un \gloss{broker} entrando ed uscendo dai vari canali.
+            \item \textbf{Microservizi}: architettura usata per quei software destinati a possedere un incremento costante e controllato. Il software viene diviso in moduli indipendenti tra loro che comunicano verso l'esterno attraverso \gloss{API REST}. I moduli al loro interno sono costruiti attraverso un'architettura a Layer.
+        \end{itemize}
+        
+        \subparagraph{Design Pattern}
+        I \gloss{design pattern} aiutano a creare le singole parti di un software in base ai compiti che queste hanno. Dato che un design pattern non è altro che una buona pratica di sviluppo, non è scontato che la loro presenza implichi una buona struttura del software, perciò è consigliato non abusarne. \par
+        I design pattern si dividono in tre tipologie approfonditili in \S\ref{rifinfo} ai punti 25, 26, 27 e 28:
+        \begin{itemize}
+            \item \textbf{Strutturali}: aiutano ad organizzare la struttura delle classi favorendo la loro comunicazione attraverso interfacce. Questi sono l'Adapter, il Decorator il Façade e il Proxy.
+            \item \textbf{Creazionali}: aiutano a dividere gli oggetti dalla loro costruzione e implementazione favorendo l'\gloss{information hiding}. Questi sono il Singleton, il Builder, e l'Abstract Factory.
+            \item \textbf{Comportamentali}: applicabili nel momento in cui un componente deve eseguire una specifica funzione per cui il design pattern è stato costruito. Questi sono il Command, l'Iterator, l'Observer, lo Strategy e il Template Method.
+            \item \textbf{Architturali}: utili per strutturare il software con una visione ad un livello più alto degli altri design pattern, ma non alto come la visione per stabilire l'architettura software. Questi sono il Dpendency Injection e i Model-view pattern.
+        \end{itemize}
 
 		%\subparagraph{Semantica}
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
 
-		\newpage
 
-		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione}
+		\paragraph{Qualità}\label{PP:Sviluppo:QualitàProgettazione}
 		Per garantire una progettazione che rispetti gli standard di qualità posti nel {\PdQd}, seguiamo le linee guida date dalle best practice.
 
-        \paragraph{Qualità dei diagrammi dei package}
+        \subparagraph{Qualità dei diagrammi dei package}
         Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.
 
-		\paragraph{Qualità dei diagrammi delle classi}
+		\subparagraph{Qualità dei diagrammi delle classi}
 		Teniamo gli attributi delle classi privati per quanto possibile.
         Evitiamo ove possibile di usare attributi modificabili dai metodi delle classi, in quanto ostacolano la scrittura dei test ed è meno comprensibile la responsabilità sull'attributo.\par
         Evitiamo le relazioni bidirezionali perché si crea confusione su quale classe ha la responsabilità sulla relazione.\par
@@ -393,7 +412,7 @@
 %		Poiché descrivono gli aspetti dinamici dei casi d'uso, non devono risultare eccesivamente complessi, ma descrivere quanto riportato da casi d'uso e requisiti.\par
 %        Li usiamo in modo da aggiungere comprensibilità, non per toglierne.
 
-		\paragraph{Qualità dei diagrammi di sequenza}
+		\subparagraph{Qualità dei diagrammi di sequenza}
 		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\par
         Per modellare la logica di controllo è meglio usare i diagrammi di attività perché di più semplice lettura.
 
@@ -402,7 +421,70 @@
 
 		%manuale utente da presentare in RQ, quindi da fare più avanti
 		%\subsubsection{Produzione del manuale utente}
-
+        
+        \subparagraph{Qualità dell'architettura}
+        L'architettura è una delle scelte fondamentali da fare durante il processo della progettazione, perché essa stabilirà poi la natura dell'intero software.
+        La scielta di un'architettura ha lo scopo di:
+        \begin{itemize}
+            \item ridurre l'accoppiamento
+            \item ridurre la duplicazione di codice
+            \item semplificare lo sviluppo
+            \item semplificare il mantenimento del software
+        \end{itemize}
+        Bisogna dunque capire quale architettura si addice di più ai propri scopi in base alle qualità e i difetti di ognuna. \par
+        Gli aggettivi che definiscono un'architettura sono:
+        \begin{itemize}
+            \item \textbf{Agilità}: con che facilità e velocità riesco a modificare il software.
+            \item \textbf{Rilasciabile}: con che facilità riesco ad aggiornare o installare il software.
+            \item \textbf{Verificabile}: con che facilità riesco a creare ed eseguire i vari tipi di test.
+            \item \textbf{Performance}: con che velocità riesco ad ottenere le informazioni richieste.
+            \item \textbf{Scalabilità}: con che facilità riesco a gestire la crescita del numero di utenti.
+            \item \textbf{Sviluppabile}: con che facilità riesco a sviluppare il software applicando tale architettura.
+        \end{itemize}
+        
+        Analizzando le architetture in \S\ref{PP:progettazione:architettura}, le loro qualità e difetti sono:
+        \begin{itemize}
+            \item \textbf{Layer}:
+                \begin{itemize}
+                    \item \textbf{Agilità}: poca, dato che il software tende a diventare un monolite.
+                    \item \textbf{Rilasciabile}: poca, dato che ad ogni aggiornamento tutto il software deve essere reinstallato.
+                    \item \textbf{Verificabile}: buona, dato che ottenere il \gloss{Mock} dei vari livelli non è complesso.
+                    \item \textbf{Performance}: poca, dato che un'informazione, per essere recuperata, deve passare per i vari livelli.
+                    \item \textbf{Scalabilità}: poca, dato che la grande granularità rende laboriosa l'aggiunta di utenti.
+                    \item \textbf{Sviluppabile}: buona, dato che è un'architettura molto conosciuta e che rispecchia la struttura di un'azienda.
+                \end{itemize}
+            \item \textbf{Event-driven}:
+                \begin{itemize}
+                    \item \textbf{Agilità}: buona, dato che le varie componenti sono tutte isolate.
+                    \item \textbf{Rilasciabile}: buona, dato che si può installare un componente alla volta.
+                    \item \textbf{Verificabile}: poca, dato i molti tipi di messaggi da generare per eseguire i test.
+                    \item \textbf{Performance}: buona, dato che i messaggi sono asincroni.
+                    \item \textbf{Scalabilità}: buona, dato che si posseggono canali separati che possono aggiungere facilmente.
+                    \item \textbf{Sviluppabile}: poca, dato che coi messaggi asincroni bisogna lavorare con \gloss{interfacce} che non possono cambiare nel tempo.
+                \end{itemize}
+            \item \textbf{Microservizi}:
+                \begin{itemize}
+                    \item \textbf{Agilità}: buona, dato che ogni microservizio è autonomo.
+                    \item \textbf{Rilasciabile}: buono, perché i microservizi possono essere installati singolarmente.
+                    \item \textbf{Verificabile}: buono, perché i microservizi lavorano in modo autonomo.
+                    \item \textbf{Performance}: poca, dato che il numero di chiamate delle API REST può essere alto.
+                    \item \textbf{Scalabilità}: buona, dato che i microservisi possono essere aggiunti velocemente.
+                    \item \textbf{Sviluppabile}: buona, dato che i microservizi vengono sviluppati da gruppi di persone poco numerosi e dunque più facilmente organizzati.
+                \end{itemize}
+        \end{itemize}
+        
+        \subparagraph{Qualità dei design pattern} \label{PP:progettazione:designPattern}
+        L'uso dei design pattern non deve essere abusato per evitare complessità inutile nel software. Per questo la loro applicazione deve seguite tali step per comprendere se applicarne uno o meno:
+        \begin{enumerate}
+            \item comprendere lo scopo del componente
+            \item analizzarne la complessità strutturale
+            \item elencare i bisogni di tale componente in termini di struttura del software
+            \item vedere se un design pattern strutturale è utile per semplificare la struttura del componente
+            \item vedere se la creazione del componente può essere semplificata con l'uso di un design pattern creazionale
+            \item vedere se la funzione del componente corrisponde alla funzionalità descritta da un design pattern comportamentale, nel caso vedere se la sua applicazione rende più flessibile il componente
+        \end{enumerate}
+        
+        \paragraph{Applicazione}
 
         \newpage
 
