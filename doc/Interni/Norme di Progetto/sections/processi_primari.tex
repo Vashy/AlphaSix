@@ -479,15 +479,32 @@
         \subparagraph{Qualità dei design pattern} \label{PP:progettazione:designPattern}
         L'uso dei design pattern non deve essere abusato per evitare complessità inutile nel software. Per questo la loro applicazione deve seguite tali step per comprendere se applicarne uno o meno:
         \begin{enumerate}
-            \item comprendere lo scopo del componente
-            \item analizzarne la complessità strutturale
-            \item elencare i bisogni di tale componente in termini di struttura del software
-            \item vedere se un design pattern strutturale è utile per semplificare la struttura del componente
-            \item vedere se la creazione del componente può essere semplificata con l'uso di un design pattern creazionale
-            \item vedere se la funzione del componente corrisponde alla funzionalità descritta da un design pattern comportamentale, nel caso vedere se la sua applicazione rende più flessibile il componente
+            \item Comprendere lo scopo del componente
+            \item Analizzarne la complessità strutturale
+            \item Elencare i bisogni di tale componente in termini di struttura del software
+            \item Vedere se un design pattern strutturale è utile per semplificare la struttura del componente
+            \item Vedere se la creazione del componente può essere semplificata con l'uso di un design pattern creazionale
+            \item Vedere se la funzione del componente corrisponde alla funzionalità descritta da un design pattern comportamentale, nel caso vedere se la sua applicazione rende più flessibile il componente
         \end{enumerate}
-
-        \paragraph{Applicazione}
+        
+        \paragraph{Applicazione} \label{PP:progettazione:applicazione}
+        Per effettuare una buona progettazione è utile seguire una procedura prestabilita, in modo tale da non rendere il risultato confuso o non tracciabile. \'E bene ricordare che all'interno della progettazione non si sviluppa codice, tale passaggio avviene durante il processo di codifica che segue il quello di progettazione. \par
+        La progettazione ha il compito di far sintesi dei requisiti, provenienti dal processo di analisi, attraverso il software applicando prima una strategia top-down e successivamente botton-up. I passi da seguire durante la fase di top-down sono i seguenti:
+        \begin{enumerate}
+            \item Analizzare nell'insieme i requisiti del prodotto finale in termini di qualità architetturali (performance, scalabilità, ecc\dots)
+            \item Individuare l'architettura che più si addice al software da realizzare
+            \item Rappresentare l'architettura attraverso un diagramma. Questo mostrerà solo la struttura del software ad alto livello
+        \end{enumerate}
+        Ora per ogni requisito troviamo la giusta struttura seguendo una strategia bottom-up:
+        \begin{enumerate}
+            \item Scegliere un requisito proveniente dal processo di analisi
+            \item Pensare a come potrebbe essere soddisfatto attraverso il software
+            \item Analizzare se per tale requisito esistono delle tecnologie preesistenti da poter usare
+            \item Dopo aver compreso il ruolo del componente software, pensare a come questo possa costruire i suoi oggetti o come si deve comportare
+            \item Analizzare se un design patter può semplificare la struttura o il comportamento del componente precedentemente ideato ed applicarlo
+            \item Riportare la struttura del componente in UML2.0
+        \end{enumerate}
+        Dopo aver preparato i diagrammi dei vari componenti, osservando l'architettura scelta, vedere come questi possono essere uniti per garantire coesione, flessibilità, manutenibiltà, modularità e affidabilità.
 
         \newpage
 
