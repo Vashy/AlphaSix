@@ -61,7 +61,7 @@
 		% 5.2.6.4 The supplier shall make available to the acquirer the reports of evaluation, reviews, audits,testing, and problem resolutions as specified in the contract.
 		\paragraph{Accessibilità del materiale necessario da contratto} \label{AccessibilitaMateriale}
 		Tutta la documentazione richiesta dall'acquirente come resoconti dei problemi riscontrati, \gloss{bug} reporting, istruzioni per l'avvio del prodotto, ecc\dots\ devono essere resi accessibili al cliente. \par
-		Questo può avvenire attraverso email, Drive \footnote{Per ulteriori informazioni su Drive vedere \S\ref{GoogleDrive}} o repository pubblica su GitHub.
+		Questo può avvenire attraverso email, Drive \footnote{Riferirsi alla voce 13 in \S\ref{rifinfo} per ulteriori informazioni su Drive} o repository pubblica su GitHub.
 		% 5.2.7.1 The supp lier shall deliver the software product or service as specified in the contract.
 		Oltre alla documentazione, anche il prodotto software deve essere rilasciato come specificato nel contratto.
 
@@ -96,7 +96,10 @@
 				\item Test definiti dalle norme di \gloss{qualità}
 			\end{itemize}
 		\end{itemize}
-		Lo standard ISO/IEC 12207:1995\footnote{Riferirsi alla voce ``ISO/IEC 12207'' in \S\ref{rifnorma}} definisce il processo di
+		Lo standard ISO/IEC 12207:1995\footnote{Riferirsi alla voce
+		%``ISO/IEC 12207''
+		2
+		 in \S\ref{rifinfo}} definisce il processo di
 		sviluppo quel processo contenente tutte le attività relative al prodotto finale, quali:
 		\begin{itemize} % [noitemsep]
 			\item Analisi dei requisiti
@@ -235,7 +238,7 @@
 			\item Organizzare le responsabilità di realizzazione.
 			\item Garantire la qualità del prodotto finale.
 		\end{itemize}
-    
+
         \paragraph{Strumenti}
 
 		\subparagraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
@@ -372,7 +375,7 @@
         I diagrammi di sequenza sono inoltre utili per modellare la collaborazione tra entità.\par
         In caso di controllo centralizzato vi sarà un'entità che gestisce i messaggi verso tutte le altre, mentre in caso di controllo distribuito ogni entità avrà compiti ben delineati, quindi avrà la responsabilità della chiamata dei messaggi verso le altre entità coinvolte.\par
         Cerchiamo di usare per quanto possibile la modellazione a controllo distribuito, per non dare troppe responsabilità a una singola entità che diventerebbe il punto critico dell'architettura.
-        
+
         \subparagraph{Architettura} \label{PP:progettazione:architettura}
         L'architettura può essere considerata la ``strategia'' che si occupa della parte più esterna del software. L'architettura si deve occupare di come si relazionano i vali elementi del software, non come questi sono formati. Anche l'architettura deve essere costruita secondo una best practise, che può cambiare in base al tipo di software che deve essere sviluppato. \par
         Un'architettura non si inventa ma si sceglie, e tra le più utilizzate troviamo:
@@ -381,7 +384,7 @@
             \item \textbf{Event-driven}: architettura utile per la creazione di software che lavorano con messaggi asincroni elaborati in modo indipendente. Quest'architettura può essere sviluppata secondo la Mediator topology dove i messaggi vengono inseriti in una cosa e smistati attraverso un apposito ``mediator'', oppure secondo la Broker topology dove i messaggi viaggiano attraverso un \gloss{broker} entrando ed uscendo dai vari canali.
             \item \textbf{Microservizi}: architettura usata per quei software destinati a possedere un incremento costante e controllato. Il software viene diviso in moduli indipendenti tra loro che comunicano verso l'esterno attraverso \gloss{API REST}. I moduli al loro interno sono costruiti attraverso un'architettura a Layer.
         \end{itemize}
-        
+
         \subparagraph{Design Pattern}
         I \gloss{design pattern} aiutano a creare le singole parti di un software in base ai compiti che queste hanno. Dato che un design pattern non è altro che una buona pratica di sviluppo, non è scontato che la loro presenza implichi una buona struttura del software, perciò è consigliato non abusarne. \par
         I design pattern si dividono in tre tipologie approfonditili in \S\ref{rifinfo} ai punti 25, 26, 27 e 28:
@@ -421,7 +424,7 @@
 
 		%manuale utente da presentare in RQ, quindi da fare più avanti
 		%\subsubsection{Produzione del manuale utente}
-        
+
         \subparagraph{Qualità dell'architettura}
         L'architettura è una delle scelte fondamentali da fare durante il processo della progettazione, perché essa stabilirà poi la natura dell'intero software.
         La scielta di un'architettura ha lo scopo di:
@@ -441,7 +444,7 @@
             \item \textbf{Scalabilità}: con che facilità riesco a gestire la crescita del numero di utenti.
             \item \textbf{Sviluppabile}: con che facilità riesco a sviluppare il software applicando tale architettura.
         \end{itemize}
-        
+
         Analizzando le architetture in \S\ref{PP:progettazione:architettura}, le loro qualità e difetti sono:
         \begin{itemize}
             \item \textbf{Layer}:
@@ -472,7 +475,7 @@
                     \item \textbf{Sviluppabile}: buona, dato che i microservizi vengono sviluppati da gruppi di persone poco numerosi e dunque più facilmente organizzati.
                 \end{itemize}
         \end{itemize}
-        
+
         \subparagraph{Qualità dei design pattern} \label{PP:progettazione:designPattern}
         L'uso dei design pattern non deve essere abusato per evitare complessità inutile nel software. Per questo la loro applicazione deve seguite tali step per comprendere se applicarne uno o meno:
         \begin{enumerate}
@@ -483,7 +486,7 @@
             \item vedere se la creazione del componente può essere semplificata con l'uso di un design pattern creazionale
             \item vedere se la funzione del componente corrisponde alla funzionalità descritta da un design pattern comportamentale, nel caso vedere se la sua applicazione rende più flessibile il componente
         \end{enumerate}
-        
+
         \paragraph{Applicazione}
 
         \newpage
@@ -495,7 +498,10 @@
 		evitare qualsiasi tipo di inconsistenza e rendere il codice il quanto più omogeneo possibile.
 
 		Il progetto sarà sviluppato utilizzando il linguaggio \gloss{Python}.
-		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce ``PEP 8'' in \S\ref{rifnorma}},
+		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce
+		% ``PEP 8''
+		32
+		  in \S\ref{rifinfo}},
 		lo standard Python che definisce lo stile da seguire nella codifica e in attività correlate ad essa.
 
         \paragraph{Intestazione}\label{PP:Sviluppo:Codifica:Intestazione}
@@ -524,7 +530,10 @@
 
 		\paragraph{Convenzioni di nominazione}\label{PP:Sviluppo:Codifica:ConvenzioniDiNominazione}
 		\begin{itemize}
-			\item Per i nomi delle classi, viene usato \texttt{PascalCase}\footnote{Riferirsi alla voce ``Naming convention'' in \S\ref{rifinfo}}
+			\item Per i nomi delle classi, viene usato \texttt{PascalCase}\footnote{Riferirsi alla voce
+			% ``Naming convention''
+			15
+			  in \S\ref{rifinfo}}
 			\item Per le costanti, viene usato \texttt{MACRO\_CASE}
 			\item Per denominare tutto il resto, ad esempio variabili e metodi, si usa \texttt{snake\_case}
 		\end{itemize}
@@ -602,8 +611,10 @@ def cheeseshop(kind, *arguments, **keywords):
 		Evitare l'ereditarietà tra classi concrete. È invece possibile che una classe derivi da un'altra se quest'ultima è
 		un'\gloss{interfaccia} o una classe astratta.
 
-		Viene adottato, per ovviare all'ereditarietà tra classi concrete, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce %
-		``Composition over inheritance'' in \S\ref{rifnorma}.}.
+		Viene adottato, per ovviare all'ereditarietà tra classi concrete, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce
+		%``Composition over inheritance''
+		29
+		 in \S\ref{rifinfo}.}.
 
 		Va limitato, ove possibile, la dipendenza tra classi concrete: dipendere quindi sulle astrazioni (interfacce e classi astratte).
 
@@ -735,8 +746,14 @@ def complex(real=0.0, imag=0.0):
 
 	    \subparagraph{IDE}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:IDE} % NOTE: controllare la sezione relativa a VSC sui processi di supporto
 		Gli IDE principali scelti per lo sviluppo di codice Python sono
-		{PyCharm}\footnote{Riferirsi alla voce ``Pycharm'' in \S\ref{rifinfo}} e
-		{Visual Studio Code}\footnote{Riferirsi alla voce ``Visual Studio Code'' in \S\ref{rifinfo}}.
+		{PyCharm}\footnote{Riferirsi alla voce
+		%``Pycharm''
+		16
+		 in \S\ref{rifinfo}} e
+		{Visual Studio Code}\footnote{Riferirsi alla voce
+		% ``Visual Studio Code''
+		23
+		  in \S\ref{rifinfo}}.
 		Il primo è proprietario e supportato dal team di IntelliJ, il secondo è un progetto \gloss{open source} di Microsoft, che ha
 		per questo il supporto della comunità open source.\par
 		Entrambi offrono la maggior parte dei vantaggi utili al processo di sviluppo di \progetto, tra cui:

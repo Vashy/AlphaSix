@@ -115,7 +115,10 @@
 
 			\subparagraph{Altri formati testuali comuni} \label{PS:Documentazione:Design:NormeT:AltriFormati}
 			\begin{itemize}
-				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601\footnote{Riferirsi alla voce ``ISO 8601'' in \S\ref{rifnorma}}
+				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601\footnote{Riferirsi alla voce
+				%``ISO 8601''
+				1
+				in \S\ref{rifinfo}}
 				nel formato 24 ore dove:
 				\begin{itemize}
 					\item \texttt{HH} indica le ore, da 00 a 23
@@ -309,7 +312,10 @@
 			\begin{itemize}
 				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
 				\item \textbf{Build}: build del codice su docker container.
-				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce ``Pytest'' in \S\ref{rifinfo}}.
+				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce
+				% ``Pytest''
+				17
+				in \S\ref{rifinfo}}.
 				\item \textbf{Integration Test}: test di integrazione tramite Pytest.
 				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite \gloss{tox}.
 			\end{itemize}
@@ -318,7 +324,10 @@
 
 			\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
 			Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creiamo dei container specifici per ogni componente. Per fare ciò, utilizziamo
-			\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
+			\gloss{Docker}\footnote{Riferirsi alla voce
+			%``Docker''
+			5
+			in \S\ref{rifinfo}.},
 			un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
 			\begin{itemize}
 				\item Producer Redmine
@@ -612,9 +621,13 @@
 			\centering
 			\includegraphics[width=\textwidth]{img/tdd.png}\\
 			\caption[Test Driven Development]{Test Driven Development\protect\footnotemark}
+			\label{TDDfigure}
 		\end{figure}
 
-		\footnotetext{Riferirsi alla voce ``Fonte Figura 3'' in \S\ref{rifinfo}}
+		\footnotetext{Riferirsi alla voce
+		%``Fonte Figura 3''
+		7
+		 in \S\ref{rifinfo}}
 
 		\subsubsection{Analisi statica}\label{AnalisiStatica}
 		L'analisi statica attua una verifica non dinamica, ovvero senza eseguire codice.
@@ -815,7 +828,8 @@
 
 			\begin{itemize}
 				\item \textbf{T}: si riferisce a ``Test''.
-				\item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}, può essere:
+				\item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V%\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}
+				, può essere:
 				\begin{itemize}
 					\item \textbf{V}: validazione.
 					\item \textbf{S}: sistema
