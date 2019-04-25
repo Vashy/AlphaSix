@@ -54,8 +54,8 @@ class Resource(Subject, flask_restful.Resource, metaclass=SubjectResource):
 
 class User(Resource):
 
-    def get(self):
-        return self.notify('user', 'GET', None)
+    def get(self, data: str):
+        return self.notify('user', 'GET', data)
 
     def post(self) -> dict:
         """
@@ -108,7 +108,7 @@ class Controller(Observer):
         self._preference = Preference
 
         self._api.add_resource(
-            self._user, '/api/v1/user'
+            self._user, '/api/v1/user/<data>'
         )
 
         self._api.add_resource(
@@ -666,7 +666,7 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def _api_user(self, request_type: str, msg: str):
         if request_type == 'GET':
-            pass
+            return self._model.read_user(msg)
         elif request_type == 'POST':
             pass
         elif request_type == 'PUT':
