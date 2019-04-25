@@ -46,7 +46,6 @@ class Resource(Subject, flask_restful.Resource, metaclass=SubjectResource):
 
     def __init__(self):
         super(Resource, self).__init__()
-        self._response = None
 
     def notify(self, request_type: str, resource: str, msg: str):
         for obs in self._lst:
@@ -56,41 +55,41 @@ class Resource(Subject, flask_restful.Resource, metaclass=SubjectResource):
 class User(Resource):
 
     def get(self):
-        """Restituisce lo user con l'id specificato
-
-        Usage example:
-            `curl http://localhost:5000/user/1`
-        """
-        return self.notify('user', 'GET', self._response)
+        return self.notify('user', 'GET', None)
 
     def post(self) -> dict:
-        """Modifica un user
-
+        """
         Usage example:
             `curl http://localhost:5000/users -X POST -d "data=some data"`
         """
         data = request.get_json(force=True)
         return self.notify('user', 'POST', data)
 
+    def put(self) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('user', 'PUT', data)
+
+    def delete(self) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('user', 'DELETE', data)
+
 
 class Preference(Resource):
 
     def get(self):
-        """Restituisce le preferenze dello user con l'id specificato
-
-        Usage example:
-            `curl http://localhost:5000/api/preference/1`
-        """
-        return self.notify('preference', 'GET', self._response)
+        return self.notify('preference', 'GET', None)
 
     def post(self) -> dict:
-        """Modifica le preferenze dello user indicato nel corpo della request
-
-        Usage example:
-        `curl http://localhost:5000/api/preference -X POST -d "data=some data"`
-        """
         data = request.get_json(force=True)
         return self.notify('preference', 'POST', data)
+
+    def put(self) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('preference', 'PUT', data)
+
+    def delete(self) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('preference', 'DELETE', data)
 
 
 class Controller(Observer):
@@ -109,11 +108,11 @@ class Controller(Observer):
         self._preference = Preference
 
         self._api.add_resource(
-            self._user, '/api/user'
+            self._user, '/api/v1/user'
         )
 
         self._api.add_resource(
-            self._preference, '/api/preference'
+            self._preference, '/api/v1/preference'
         )
 
         self._user.addObserver(self._user, obs=self)
@@ -327,7 +326,7 @@ per inserire l\'utente.</p>')
             page = page.replace('*modifyuser*', '')
             return page
         except AssertionError:
-                return self.panel(error='Non sei più iscritto alla piattaforma.')
+            return self.panel(error='Non sei più iscritto alla piattaforma.')
 
     def remove_user(self):
         fileHtml = html / 'removeuser.html'
@@ -561,8 +560,10 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
             year = giorni_new[0].strftime('%Y')
             month = giorni_new[0].strftime('%m')
             for giorno in giorni_old:
-                if (giorno.strftime('%Y') == year and
-                giorno.strftime('%m') == month):
+                if (
+                    giorno.strftime('%Y') == year and
+                    giorno.strftime('%m') == month
+                ):
                     if giorno not in giorni_new:
                         self._model.remove_giorno_irreperibilita(
                             session['userid'],
@@ -603,14 +604,16 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def piattaforma(self):
         platform = request.values['platform']
-        if platform=="telegram":
+        if platform == "telegram":
             telegram = self._model.get_user_telegram_web(session['userid'])
             if not telegram:
-                return self.load_preference_platform(error='<p>Non hai memorizzato la piattaforma telegram nel sistema.</p>')
-        if platform=="email":
+                return self.load_preference_platform(error='<p>Non hai\
+ memorizzato la piattaforma telegram nel sistema.</p>')
+        if platform == "email":
             email = self._model.get_user_email_web(session['userid'])
             if not email:
-                return self.load_preference_platform(error='<p>Non hai memorizzato la piattaforma email nel sistema.</p>')
+                return self.load_preference_platform(error='<p>Non hai\
+ memorizzato la piattaforma email nel sistema.</p>')
         self._model.update_user_preference(session['userid'], platform)
         return self.load_preference_platform()
 
@@ -620,14 +623,21 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         if request.values.get('preference'):
             try:
                 page = page.replace('*topics*', self.load_preference_topic())
-                page = page.replace('*projects*', self.load_preference_project())
+                page = page.replace(
+                    '*projects*',
+                    self.load_preference_project()
+                )
                 page = page.replace(
                     '*availability*',
                     self.load_preference_availability()
                 )
-                page = page.replace('*platform*', self.load_preference_platform())
+                page = page.replace(
+                    '*platform*',
+                    self.load_preference_platform()
+                )
             except AssertionError:
-                return self.panel(error='Non sei più iscritto alla piattaforma.')
+                return self.panel(error='Non sei più iscritto alla\
+ piattaforma.')
         elif request.values.get('modifytopics'):
             return self.modifytopics()
         elif request.values.get('addproject'):
@@ -654,16 +664,24 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         else:
             return self.access()
 
-    def api_user(self, request_type: str, msg: str):
+    def _api_user(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
+            pass
+        elif request_type == 'PUT':
+            pass
+        elif request_type == 'DELETE':
             pass
 
-    def api_preference(self, request_type: str, msg: str):
+    def _api_preference(self, request_type: str, msg: str):
         if request_type == 'GET':
             pass
         elif request_type == 'POST':
+            pass
+        elif request_type == 'PUT':
+            pass
+        elif request_type == 'DELETE':
             pass
 
     def update(self, resource: str, request_type: str, msg: str):
