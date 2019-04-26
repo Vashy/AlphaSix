@@ -947,3 +947,11 @@
 			\item Al fallimento di un test
 		\end{itemize}
 		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
+        
+        %TODO da inserire nella sezione di validazione quando verrà divisa verifica e validazione
+        \subsubsection{MPR013 Percentuale soddisfacimento metriche}\label{percentualeSoddisfacimentoMetriche}
+        Al momento della consegna del prodotto al cliente è bene fare un'analisi retrospettiva del lavoro svolto, in modo da capire se il gruppo ha lavorato bene o meno, in modo da migliorarsi per i progetti futuri. \par
+        Per calcolare tale metrica è necessario usare tutte le altre metriche:
+        \[{\sum_{i=1} \frac{x_i}{y_i}}100\] $x_i=$ numero di volte che il valore della i-esima metrica è sopra il valore della soglia minima e sotto il valore della soglia massima. \par
+        $y_i=$ numero di volte in cui ho misurato la i-esima metrica.
+        \textbf{Metrica}: percentuale delle volte in cui l'insieme dei valori attesi di tutte le altre metriche vengono rispettati.
