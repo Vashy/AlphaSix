@@ -9,6 +9,7 @@ import calendar
 
 from flask import Flask, request, session, make_response, redirect, url_for, render_template_string
 import flask_restful
+from bson.json_util import dumps
 
 from mongo_db.facade import MongoFacade
 from mongo_db.users import MongoUsers
@@ -21,7 +22,7 @@ html = (pathlib.Path(__file__).parent / 'static' / 'html').resolve()
 class Observer(ABC):
 
     @abstractmethod
-    def update(self, resource: str, request_type: str, msg: str):
+    def update(self, resource: str, request_type: str, url: str, msg: str):
         pass
 
 
@@ -34,7 +35,7 @@ class Subject(ABC):
             self._lst.append(obs)
 
     @abstractmethod
-    def notify(self, request_type: str, resource: str, msg: str):
+    def notify(self, request_type: str, resource: str, url: str, msg: str):
         pass
 
 
@@ -47,15 +48,26 @@ class Resource(Subject, flask_restful.Resource, metaclass=SubjectResource):
     def __init__(self):
         super(Resource, self).__init__()
 
-    def notify(self, request_type: str, resource: str, msg: str):
+    def notify(self, request_type: str, resource: str, url: str, msg: str):
         for obs in self._lst:
-            return obs.update(request_type, resource, msg)
+            return obs.update(request_type, resource, url, msg)
 
 
 class User(Resource):
 
-    def get(self, data: str):
-        return self.notify('user', 'GET', data)
+    def get(self, url: str):
+        return self.notify('user', 'GET', url, None)
+
+    def put(self, url: str) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('user', 'PUT', url, data)
+
+    def delete(self, url: str) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('user', 'DELETE', url, data)
+
+
+class PostUser(Resource):
 
     def post(self) -> dict:
         """
@@ -63,25 +75,13 @@ class User(Resource):
             `curl http://localhost:5000/users -X POST -d "data=some data"`
         """
         data = request.get_json(force=True)
-        return self.notify('user', 'POST', data)
-
-    def put(self) -> dict:
-        data = request.get_json(force=True)
-        return self.notify('user', 'PUT', data)
-
-    def delete(self) -> dict:
-        data = request.get_json(force=True)
-        return self.notify('user', 'DELETE', data)
+        return self.notify('user', 'POST', None, data)
 
 
 class Preference(Resource):
 
-    def get(self):
+    def get(self, url: str):
         return self.notify('preference', 'GET', None)
-
-    def post(self) -> dict:
-        data = request.get_json(force=True)
-        return self.notify('preference', 'POST', data)
 
     def put(self) -> dict:
         data = request.get_json(force=True)
@@ -90,6 +90,13 @@ class Preference(Resource):
     def delete(self) -> dict:
         data = request.get_json(force=True)
         return self.notify('preference', 'DELETE', data)
+
+
+class PostPreference(Resource):
+
+    def post(self) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('preference', 'POST', data)
 
 
 class Controller(Observer):
@@ -105,18 +112,30 @@ class Controller(Observer):
         self._api = api
 
         self._user = User
+        self._post_user = PostUser
         self._preference = Preference
+        self._post_preference = PostPreference
 
         self._api.add_resource(
-            self._user, '/api/v1/user/<data>'
+            self._user, '/api/v1/user/<url>'
         )
 
         self._api.add_resource(
-            self._preference, '/api/v1/preference'
+            self._post_user, '/api/v1/user'
+        )
+
+        self._api.add_resource(
+            self._preference, '/api/v1/preference/<url>'
+        )
+
+        self._api.add_resource(
+            self._post_preference, '/api/v1/preference'
         )
 
         self._user.addObserver(self._user, obs=self)
+        self._post_user.addObserver(self._post_user, obs=self)
         self._preference.addObserver(self._preference, obs=self)
+        self._post_preference.addObserver(self._post_preference, obs=self)
 
         self._server.add_url_rule(
             '/',
@@ -340,7 +359,7 @@ per inserire l\'utente.</p>')
             email = self._model.get_user_email_from_id(userid)
             telegram = self._model.get_user_telegram_from_id(userid)
             user = email if email else telegram
-            self._model.delete_user(userid)
+            self._model.delete_user_from_id(userid)
             if user == session['email'] or user == session['telegram']:
                 self.logout()
                 return redirect(url_for('panel'), code=303)
@@ -488,8 +507,8 @@ type="radio" value="email"'
 <input name="platform" id="telegram" type="radio" value="telegram"'
         if(platform == 'telegram'):
             form += ' checked = "checked"'
-        form += '/><br/><input id="piattaforma" name="piattaforma" type="button"\
-value="Modifica piattaforma preferita"/></fieldset></form>'
+        form += '/><br/><input id="piattaforma" name="piattaforma"\
+type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         form += error
         return form
 
@@ -664,31 +683,95 @@ value="Modifica piattaforma preferita"/></fieldset></form>'
         else:
             return self.access()
 
-    def _api_user(self, request_type: str, msg: str):
+    def _api_user(self, request_type: str, url: str, msg: str):
         if request_type == 'GET':
-            return self._model.read_user(msg)
+            user = self._model.read_user(url)
+            userjson = json.loads(dumps(user))
+            for i, data in enumerate(userjson['irreperibilita']):
+                userjson['irreperibilita'][i]['$date'] = datetime.datetime.strftime(
+                    datetime.datetime.fromtimestamp(
+                        userjson['irreperibilita'][i]['$date']/1000
+                    ),
+                    format="%Y-%m-%d"
+                )
+            return userjson
+        elif request_type == 'PUT':
+            nome = msg.get('nome')
+            cognome = msg.get('cognome')
+            email = msg.get('email')
+            telegram = msg.get('telegram')
+            modify = {}
+            if url:
+                if(nome):
+                    self._model.update_user_name(
+                        url,
+                        nome
+                    )
+                if(cognome):
+                    self._model.update_user_surname(
+                        url,
+                        cognome
+                    )
+                if email and email != url:
+                    self._model.update_user_email(
+                        url,
+                        email
+                    )
+                if telegram and telegram != url:
+                    self._model.update_user_telegram(
+                        url,
+                        telegram
+                    )
+                return {'ok': 'Utente modificato correttamente'}, 200
+            else:
+                return {'error': 'Si prega di inserire almeno email o telegram \
+per modificare l\'utente.'}, 409
+        elif request_type == 'DELETE':
+            if url:
+                email = self._model.get_user_email(url)
+                telegram = self._model.get_user_telegram(url)
+                self._model.delete_user(url)
+                return {'ok': 'Utente rimosso correttamente'}, 200
+            return {'error': 'Si prega di inserire almeno email o telegram \
+per rimuovere l\'utente.'}, 409
         elif request_type == 'POST':
+            nome = msg.get('nome')
+            cognome = msg.get('cognome')
+            email = msg.get('email')
+            telegram = msg.get('telegram')
+            if email or telegram:
+                if (
+                    (email and self._model.user_exists(email)) or
+                    (telegram and self._model.user_exists(telegram))
+                ):
+                    return {'error': 'L\'utente inserito esiste già.'}, 409
+                else:
+                    self._model.insert_user(
+                        name=nome,
+                        surname=cognome,
+                        email=email,
+                        telegram=telegram
+                    )
+                    return {'ok': 'Utente inserito correttamente'}, 200
+            else:
+                return {'error': 'Si prega di inserire almeno email o telegram \
+per inserire l\'utente.'}, 409
+
+    def _api_preference(self, request_type: str, url: str, msg: str):
+        if request_type == 'GET':
             pass
         elif request_type == 'PUT':
             pass
         elif request_type == 'DELETE':
             pass
-
-    def _api_preference(self, request_type: str, msg: str):
-        if request_type == 'GET':
-            pass
         elif request_type == 'POST':
             pass
-        elif request_type == 'PUT':
-            pass
-        elif request_type == 'DELETE':
-            pass
 
-    def update(self, resource: str, request_type: str, msg: str):
+    def update(self, resource: str, request_type: str, url: str, msg: str):
         if resource == 'user':
-            return self._api_user(request_type, msg)
+            return self._api_user(request_type, url, msg)
         elif resource == 'preference':
-            return self._api_preference(request_type, msg)
+            return self._api_preference(request_type, url, msg)
 
 
 def main():

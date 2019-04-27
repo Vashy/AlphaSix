@@ -128,7 +128,6 @@ class MongoUsers:
         """
         return self._mongo.delete({
             '$or': [
-                {'_id': bson.objectid.ObjectId(user)},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -698,7 +697,6 @@ class MongoUsers:
             return self.users({
                 '$and': [
                     {'$or': [
-                        {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -715,7 +713,6 @@ class MongoUsers:
         try:
             return self.users({
                 '$or': [
-                    {'_id': user},
                     {'telegram': user},
                     {'email': user},
                 ]

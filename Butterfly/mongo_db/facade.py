@@ -30,6 +30,9 @@ class MongoFacade():
     def delete_user(self, user: str):
         return self._users.delete(user)
 
+    def delete_user_from_id(self, user: str):
+        return self._users.delete_from_id(user)
+
     def update_user_name(self, user: str, name: str):
         self._users.update_name(user, name)
 
