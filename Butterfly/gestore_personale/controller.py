@@ -81,15 +81,16 @@ class PostUser(Resource):
 class Preference(Resource):
 
     def get(self, url: str):
-        return self.notify('preference', 'GET', None)
-
-    def put(self) -> dict:
         data = request.get_json(force=True)
-        return self.notify('preference', 'PUT', data)
+        return self.notify('preference', 'GET', url, data)
 
-    def delete(self) -> dict:
+    def put(self, url: str) -> dict:
         data = request.get_json(force=True)
-        return self.notify('preference', 'DELETE', data)
+        return self.notify('preference', 'PUT', url, data)
+
+    def delete(self, url: str) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('preference', 'DELETE', url, data)
 
 
 class PostPreference(Resource):
@@ -759,7 +760,30 @@ per inserire l\'utente.'}, 409
 
     def _api_preference(self, request_type: str, url: str, msg: str):
         if request_type == 'GET':
-            pass
+            tipo = msg.get('tipo')
+            if tipo == 'progetto':
+                user_projects = self._model.get_user_projects(url)
+                project = msg.get('project')
+                for user_project in user_projects:
+                    if project == user_project['url']:
+                        return json.loads(dumps(user_project))
+                return {'error': 'Preferenza non trovata'}, 404
+            elif tipo == 'irreperibilita':
+                irreperibilita = self._model.read_user(
+                    url
+                ).get('irreperibilita')
+                irreperibilita = json.loads(dumps(irreperibilita))
+                for i, data in enumerate(irreperibilita):
+                    irreperibilita[i]['$date'] = datetime.datetime.strftime(
+                    datetime.datetime.fromtimestamp(
+                        irreperibilita[i]['$date']/1000
+                    ),
+                    format="%Y-%m-%d"
+                )
+                return irreperibilita
+            elif tipo == 'piattaforma':
+                platform = self._model.read_user(url).get('preference')
+                return json.loads(dumps(platform))
         elif request_type == 'PUT':
             pass
         elif request_type == 'DELETE':
