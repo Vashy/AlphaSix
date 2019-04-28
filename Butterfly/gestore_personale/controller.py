@@ -80,24 +80,9 @@ class PostUser(Resource):
 
 class Preference(Resource):
 
-    def get(self, url: str):
-        data = request.get_json(force=True)
-        return self.notify('preference', 'GET', url, data)
-
     def put(self, url: str) -> dict:
         data = request.get_json(force=True)
         return self.notify('preference', 'PUT', url, data)
-
-    def delete(self, url: str) -> dict:
-        data = request.get_json(force=True)
-        return self.notify('preference', 'DELETE', url, data)
-
-
-class PostPreference(Resource):
-
-    def post(self) -> dict:
-        data = request.get_json(force=True)
-        return self.notify('preference', 'POST', data)
 
 
 class Controller(Observer):
@@ -115,7 +100,6 @@ class Controller(Observer):
         self._user = User
         self._post_user = PostUser
         self._preference = Preference
-        self._post_preference = PostPreference
 
         self._api.add_resource(
             self._user, '/api/v1/user/<url>'
@@ -129,14 +113,9 @@ class Controller(Observer):
             self._preference, '/api/v1/preference/<url>'
         )
 
-        self._api.add_resource(
-            self._post_preference, '/api/v1/preference'
-        )
-
         self._user.addObserver(self._user, obs=self)
         self._post_user.addObserver(self._post_user, obs=self)
         self._preference.addObserver(self._preference, obs=self)
-        self._post_preference.addObserver(self._post_preference, obs=self)
 
         self._server.add_url_rule(
             '/',
@@ -156,7 +135,7 @@ class Controller(Observer):
             '/web_preference',
             'web_preference',
             self.web_preference,
-            methods=['POST']
+            methods=['PUT']
         )
 
     def _users_id(self):
@@ -251,6 +230,10 @@ per eseguire l\'accesso.</p>')
                     email=email,
                     telegram=telegram
                 )
+                if email:
+                    self._model.update_user_preference(email, 'email')
+                elif telegram:
+                    self._model.update_user_preference(telegram, 'telegram')
         if request.values.get('adduser'):
             page = page.replace(
                     '*adduser*',
@@ -483,7 +466,7 @@ value="Rimuovi il progetto"></form>'
             form += '<label for="' + str(date) + '\
 ">' + str(day) + '</label><input type="checkbox"\
 name="indisponibilita[]" value="' + str(date) + '"'
-            if date in irreperibilita:
+            if irreperibilita and date in irreperibilita:
                 form += ' checked="checked"'
             form += '>'
         form += '<br/><input type="button" id="previousmonth"\
@@ -496,7 +479,7 @@ value="Modifica irreperibilità"/></fieldset></form>'
         return form
 
     def load_preference_platform(self, error=''):
-        platform = self._model.read_user(session['userid'])['preference']
+        platform = self._model.read_user(session['userid']).get('preference')
         form = '<form id="platform"><fieldset>\
 <legend>Piattaforma preferita</legend>\
 <label for="email">Email</label>\
@@ -753,43 +736,89 @@ per rimuovere l\'utente.'}, 409
                         email=email,
                         telegram=telegram
                     )
+                    if email:
+                        self._model.update_user_preference(email, 'email')
+                    elif telegram:
+                        self._model.update_user_preference(telegram, 'telegram')
                     return {'ok': 'Utente inserito correttamente'}, 200
             else:
                 return {'error': 'Si prega di inserire almeno email o telegram \
 per inserire l\'utente.'}, 409
 
     def _api_preference(self, request_type: str, url: str, msg: str):
-        if request_type == 'GET':
-            tipo = msg.get('tipo')
-            if tipo == 'progetto':
-                user_projects = self._model.get_user_projects(url)
-                project = msg.get('project')
-                for user_project in user_projects:
-                    if project == user_project['url']:
-                        return json.loads(dumps(user_project))
-                return {'error': 'Preferenza non trovata'}, 404
-            elif tipo == 'irreperibilita':
-                irreperibilita = self._model.read_user(
-                    url
-                ).get('irreperibilita')
-                irreperibilita = json.loads(dumps(irreperibilita))
-                for i, data in enumerate(irreperibilita):
-                    irreperibilita[i]['$date'] = datetime.datetime.strftime(
-                    datetime.datetime.fromtimestamp(
-                        irreperibilita[i]['$date']/1000
-                    ),
-                    format="%Y-%m-%d"
+        tipo = msg.get('tipo')
+        if tipo == 'progetto':
+            project = msg.get('project')
+            priority = msg.get('priority')
+            topics = msg.get('topics')
+            keywords = msg.get('keywords')
+            self._model.set_user_priority(
+                url, project, priority
+            )
+            self._model.reset_user_topics(
+                url,
+                project
+            )
+            self._model.add_user_topics(
+                url,
+                project,
+                topics
+            )
+            self._model.reset_user_keywords(
+                url,
+                project
+            )
+            self._model.add_user_keywords(
+                url,
+                project,
+                keywords
+            )
+            return {'ok': 'Preferenza modificata correttamente'}, 200
+        elif tipo == 'irreperibilita':
+            giorni = msg.get('giorni')
+            giorni_old = self._model.read_user(
+                url
+            ).get('irreperibilita')
+            giorni_new = []
+            for giorno in giorni:
+                giorni_new.append(
+                    datetime.datetime.strptime(giorno, '%Y-%m-%d %H:%M:%S')
                 )
-                return irreperibilita
-            elif tipo == 'piattaforma':
-                platform = self._model.read_user(url).get('preference')
-                return json.loads(dumps(platform))
-        elif request_type == 'PUT':
-            pass
-        elif request_type == 'DELETE':
-            pass
-        elif request_type == 'POST':
-            pass
+            if giorni_new:
+                year = giorni_new[0].strftime('%Y')
+                month = giorni_new[0].strftime('%m')
+                for giorno in giorni_old:
+                    if (
+                        giorno.strftime('%Y') == year and
+                        giorno.strftime('%m') == month
+                    ):
+                        if giorno not in giorni_new:
+                            self._model.remove_giorno_irreperibilita(
+                                url,
+                                int(year),
+                                int(month),
+                                int(giorno.strftime('%d'))
+                            )
+                for giorno in giorni_new:
+                    self._model.add_giorno_irreperibilita(
+                        url,
+                        int(year),
+                        int(month),
+                        int(giorno.strftime('%d'))
+                    )
+            return {'ok': 'Preferenza modificata correttamente'}, 200
+        elif tipo == 'piattaforma':
+            platform = msg.get('platform')
+            if platform == "telegram":
+                telegram = self._model.get_user_telegram_web(url)
+                if not telegram:
+                    return {'error': 'Telegram non presente nel sistema.'}, 404
+            if platform == "email":
+                email = self._model.get_user_email_web(url)
+                if not email:
+                    return {'error': 'Email non presente nel sistema.'}, 404
+            self._model.update_user_preference(url, platform)
+            return {'ok': 'Preferenza modificata correttamente'}, 200
 
     def update(self, resource: str, request_type: str, url: str, msg: str):
         if resource == 'user':

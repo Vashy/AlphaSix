@@ -52,7 +52,7 @@ function back(request, id, outputId){
 }
 
 function modifyPreferencePanel(request, requestId, outputId, formId){
-    panel(request, 'web_preference', 'POST', formId, requestId, outputId)
+    panel(request, 'web_preference', 'PUT', formId, requestId, outputId)
 }
 
 function addListener(id, listener) {
