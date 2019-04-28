@@ -1,0 +1,82 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_2019-04-26.pdf}
+\newcommand{\redazione}{\NC}
+\newcommand{\verifica}{\SG}
+\newcommand{\approvazione}{\NC}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{26 aprile 2019}
+\newcommand{\datamodifica}{27 aprile 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VE_2019-04-26/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+
+    \section{Informazioni incontro}
+    	\begin{itemize}
+    		\item \textbf{Luogo}: l'incontro è stato effettuato da remoto tramite chiamata telefonica.
+    		\item \textbf{Data}: 2019-03-26.
+    		\item \textbf{Ora inizio}: 14:00.
+    		\item \textbf{Ora fine}: 14:45.
+    		\item \textbf{Partecipanti di AlphaSix}: team al completo.
+    		\item \textbf{Partecipanti esterni}: \DZ~di \II.
+    		\item \textbf{Ordine del giorno}: dimostrazione della demo presentata alla revisione RQ.
+
+    	\end{itemize}
+
+    \section{Argomenti}
+    Dopo aver mostrato a \DZ~la demo presentata alla revisione RQ, ci sono state fatte notare dei punti deboli e di miglioramento della nostra applicazione:
+    \begin{enumerate}
+        \item L'interfaccia utente deve essere migliorata
+        \item Dovrebbe essere presente una sezione specifica per visualizzare con chiarezza tutti gli utenti dell'applicazione
+        \item L'utilizzo delle variabili d'ambiente all'interno di \gloss{Rancher} per configurare l'applicazione non è corretto
+        \item Con le informazioni già dentro l'applicazione potrebbe essere più chiaro suddividere i compiti tra un utente admin ed un normale
+        \item Sono ancora presenti alcune casistiche all'interno dell'applicazione dove i messaggi vengono persi. Dato che ogni messaggio è importante, questo non deve assolutamente accadere
+        \item Se dovesse rimanere ancora tempo dopo aver completato i punti precedenti, è possibile aggiungere il \gloss{Consumer} per \gloss{Slack} all'interno di \progetto
+    \end{enumerate} 
+
+    Inoltre, in data 17 Maggio 2019 si terrà la revisione RA a cui \DZ~dovrebbe presenziare. Dato che quest'ultimo non potrà essere presente per motivi di lavoro, per le comunicazioni riguardanti la revisione RA dobbiamo comunicare anche con \LuC, sempre di \II.
+
+    \section{Tracciamento delle decisioni}
+
+    \newcounter{tracc}
+    \begin{table}[H]
+        \centering
+        %\rowcolors{2}{white}{\tablegray}
+        {\def\arraystretch{1.5}
+            \begin{tabularx}{\textwidth}{cX}
+                \rowcolor{gray!15}
+                \textbf{Codice} & \textbf{Descrizione}\\
+                \toprule%\rowcolor{}
+                \stepcounter{tracc}
+                \texttt{VE\_2019-04-26.\thetracc} & Migliorare interfaccia utente\\
+                \texttt{VE\_2019-04-26.\thetracc} & Inserire la figura dell'utente admin\\
+                \texttt{VE\_2019-04-26.\thetracc} & Rimuovere le variabili d'ambiente in Rancher, inserendo invece file di configurazione nei volumi\\
+                \texttt{VE\_2019-04-26.\thetracc} & Fare in modo di conservare ogni messaggio\\
+                \texttt{VE\_2019-04-26.\thetracc} & Comunicare a \LuC~le informazioni riguardanti la revisione RA\\
+                \texttt{VE\_2019-04-26.\thetracc} & Se è possibile aggiungere il Consumer Slack\\
+                \bottomrule
+        \end{tabularx}}
+        \caption{Tracciamento decisioni}
+    \end{table}
+
+
+\end{document}
