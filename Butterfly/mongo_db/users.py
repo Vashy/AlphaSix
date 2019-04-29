@@ -396,7 +396,6 @@ class MongoUsers:
         )
 
 
-
     def add_keywords(self, user: str, project: str, *new_keywords):
         """Aggiunge le keywords passate come argomento all'user
         corrispondente a `user`.

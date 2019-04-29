@@ -20,8 +20,6 @@ class ClientGP():
             producer: KafkaProducer,
             mongo: MongoFacade
     ):
-        # print(type(kafka_producer))
-        # print(KafkaProducer)
         assert isinstance(producer, KafkaProducer)
         assert isinstance(consumer, KafkaConsumer)
         self._consumer = consumer
@@ -48,9 +46,14 @@ class ClientGP():
             processore_messaggio = RedmineProcessor(
                 message, self._mongo
             )
+
         # processore_messaggio = Processor(message, self._mongo.instantiate())
         mappa_contatto_messaggio = processore_messaggio.prepare_message()
-        self.send_all(mappa_contatto_messaggio, message)
+        if (mappa_contatto_messaggio['telegram'] == []
+                and mappa_contatto_messaggio['email'] == []):
+            self.generate_dead_message(message)
+        else:
+            self.send_all(mappa_contatto_messaggio, message)
 
     def send_all(self, map_message_contact: dict, message: dict):
         # app_ricevente sarà telegram o email (chiave,valore)
@@ -58,7 +61,8 @@ class ClientGP():
             for contact in contact_list:
                 try:
                     message['receiver'] = contact
-                    # Inserisce il messaggio in Kafka, serializzato in formato JSON
+                    # Inserisce il messaggio in Kafka,
+                    # serializzato in formato JSON
                     self._producer.send(
                         app_ricevente, message
                     )
@@ -68,6 +72,14 @@ class ClientGP():
                 # Se non riesce a mandare il messaggio in 10 secondi
                 except KafkaTimeoutError:
                     print('Impossibile inviare il messaggio\n')
+
+    def generate_lost_message(self, message: dict):
+        """Produce nella coda `lostmessages` il messaggio che non ha destinatari.
+        """
+        self._producer.send(
+            'lostmessages',
+            message,
+        )
 
     def close(self):
         """Chiude la connessione con Producer e Consumer associati.

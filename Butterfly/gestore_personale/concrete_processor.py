@@ -97,6 +97,7 @@ class RedmineProcessor(Processor):
         Guarda se le label della segnalazione legate al progetto indicati esistono
         :param labels: lista delle label della segnalazione
         """
+        import pdb; pdb.set_trace()
         project = self._message['project_id']
         label_project = self._mongofacade.get_label_project(project)
         for label in labels:

@@ -18,10 +18,14 @@ class Processor():
 
         # Dict di tutti gli utenti disponibili oggi nel progetto
         utenti_disponibili = self.get_involved_users(progetto)
+
+
         # Lista di tutti gli utenti interessati e disponibili
         utenti_interessati = self._filter_users_by_topic(
             utenti_disponibili, obj
         )
+        import pdb; pdb.set_trace()
+
         # Se non c'è nessuno, vedo la persona di priorità
         # più alta disponibile oggi per quel progetto
         if utenti_interessati == []:
@@ -34,6 +38,7 @@ class Processor():
             utenti_interessati = self.filter_users_with_max_priority(
                 utenti_interessati, progetto
             )
+            pdb.set_trace()
         self.__list_telegram = self.get_telegram_contacts(utenti_interessati)
         self.__list_email = self.get_email_contacts(utenti_interessati)
         final_map = {}
