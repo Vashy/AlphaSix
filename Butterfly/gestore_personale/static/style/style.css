@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     font-family: Verdana;
+    cursor: url('../image/butterfly-cursor.png'), auto;
 }
 
 body {
@@ -37,7 +38,23 @@ input {
     border-radius: 10px;
 }
 
+input[type="button"]:hover {
+  cursor: pointer;
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+}
+
+input[type="button"] {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+
 /* preferences */
+
 
 #topics, #projects, #availability, #platform{
     margin-top:50px;
@@ -48,6 +65,10 @@ input {
 
 table{
     width:100%;
+
+    /*da boot*/
+    margin-bottom: 1rem;
+    background-color: transparent;
 }
 
 table, td, th{
@@ -67,4 +88,3 @@ input[type="checkbox"], input[type="radio"]{
     margin: 10px;
     margin-bottom: 0px;
 }
-
