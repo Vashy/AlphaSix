@@ -952,7 +952,7 @@
     	Questo processo serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il ritorno ad una fase stabile del progetto
     	per poi ripartire da lì, prendendo in considerazione i risultati della precedente verifica.
     
-	    \subsubsection{Analisi dinamica}\label{AnalisiDinamica}
+	    \subsubsection{Analisi dinamica}\label{validazione:AnalisiDinamica}
 	    L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
 	    Vengono presi in esame i prodotti software e i processi.
 	    
@@ -974,52 +974,8 @@
 	    
 	    Per effettuare analisi dinamica è necessario sviluppare dei dei test che verifichino l'integrità dei prodotti. Questi sono classificati attraverso un identificativo univoco descritto nel prossimo paragrafo e suddivisi per tipo in base alla tipologia dell'oggetto di test.
 	    
-	    \paragraph{Classificazione dei test}\label{ClassificazioneTest}
-	    Ogni test viene classificato identificato univocamente da tale codice:
-	    
-	    \begin{center}
-	    	\texttt{T[Tipo][ID]}
-	    \end{center}
-	    
-	    \begin{itemize}
-	    	\item \textbf{T}: si riferisce a ``Test''.
-	    	\item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V%\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}
-	    	, può essere:
-	    	\begin{itemize}
-	    		\item \textbf{V}: validazione.
-	    		\item \textbf{S}: sistema
-	    		\item \textbf{I}: integrazione.
-	    		\item \textbf{U}: unità.
-	    	\end{itemize}
-	    	%per la corrispondenza con i requisiti, non vanno bene le "tre cifre"
-	    	\item \textbf{ID}: numero incrementale che rispetta una struttura gerarchica.
-	    \end{itemize}
-	    
-	    
-	    Le tabelle che raccolgono i test di una determinata tipologia presentano i campi:
-	    \begin{itemize}
-	    	\item \textbf{Codice}: comprendente il codice identificativo del test.
-	    	\item \textbf{Test}: descrive cosa il test deve verificare.
-	    	\item \textbf{Stato}: indica lo stato del test e può essere:
-	    	\begin{itemize}
-	    		\item \TNI: non implementato.
-	    		\item \TI: implementato ma non ancora avviato.
-	    		\item \TNS: avviato e fallito.
-	    		\item \TS: avviato e superato.
-	    	\end{itemize}
-	    \end{itemize}
-	    
-	    Ad esempio:
-	    
-	    \begin{table}[H]
-	    	\begin{VTtable}[1.7]{\textwidth}{cXc}
-	    		\rowcolor{\tablegray}
-	    		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
-	    		\addtotv & Verifica la segnalazione dell'apertura di una issue in Redmine \dots
-	    		& \TNI \\
-	    		\bottomrule
-	    	\end{VTtable}
-	    \end{table}
+	    \paragraph{Classificazione dei test}\label{Validazione:ClassificazioneTest}
+	    Ogni test viene classificato identificato univocamente da un codice come già riportato in \ref{ClassificazioneTest}.
 	    
     
     \paragraph{Test di sistema} \label{testsistema}
