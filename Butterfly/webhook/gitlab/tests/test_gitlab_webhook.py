@@ -87,11 +87,11 @@ def test_gitlab_commit_comment_webhook():
     webhook = webhook.parse(whook)
 
     assert webhook['app'] == 'gitlab'
-    assert webhook['object_kind'] == 'note'
+    assert webhook['object_kind'] == 'commit-note'
     assert webhook['title'] == 'Files added\n'
     assert webhook['project_id'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1'
     assert webhook['author'] == 'Administrator'
-    assert webhook['comment'] == 'Just commenting a commit, don\'t bother with me'
+    assert webhook['description'] == 'Just commenting a commit, don\'t bother with me'
 
 
 def test_gitlab_issue_comment_webhook():
@@ -110,8 +110,8 @@ def test_gitlab_issue_comment_webhook():
     webhook = webhook.parse(whook)
 
     assert webhook['app'] == 'gitlab'
-    assert webhook['object_kind'] == 'note'
+    assert webhook['object_kind'] == 'issue-note'
     assert webhook['title'] == 'Test Issue 1'
     assert webhook['project_id'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1'
     assert webhook['author'] == 'Administrator'
-    assert webhook['comment'] == 'This issue has been successfully commented'
+    assert webhook['description'] == 'This issue has been successfully commented'
