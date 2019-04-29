@@ -3,7 +3,8 @@
     \subsection{Processo di fornitura}\label{PP:Fornitura}	%istanziare Management Process, Infrastructure Process e Improvement Process
 
         \subsubsection{Scopo}\label{PP:Fornitura:Scopo}
-		La sezione corrente ha lo scopo di riportare le attività principali che ci impegniamo ad attuare come \gloss{fornitori} per la proponente \II.
+		La sezione corrente ha lo scopo di riportare le attività principali che ci impegniamo ad attuare come \gloss{fornitori} per la proponente \II. \par
+        Il processo si fornitura ha lo scopo di curare e mantenere i rapporti con le figure esterne al gruppo \gruppo. Questi perciò devono essere costanti, sensati e che sappiano dare un valore aggiunto al progetto.
 
 		\subsubsection{Ricerca delle tecnologie}
 		Ognuno di noi deve approfondire la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono quelli di interesse comune e di utilità per il progetto. Questo prevede in seguito l'auto-formazione di quelle scelte in comune accordo per acquisirne una buona padronanza.
@@ -11,8 +12,22 @@
 		\subsubsection{Normazione}\label{Normazione}
 		L'attività di normazione prevede l'incremento del documento corrente ogni qual volta lo si ritiene necessario.
 		Essendo infatti un documento incrementale, è possibile che vengano aggiunte delle nuove regole o aggiornate quelle già presenti.
-		Facendo un esempio: arrivati al momento di riscrittura dei casi d'uso, dopo la prima revisione, abbiamo dovuto suddividere i casi in categorie ben distinte, in modo che fosse evidente il sottosistema di riferimento di Butterfly.
-		Di conseguenza, cambiare il codice identificativo di ognuno e cambiare la relativa norma nel paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
+		Facendo un esempio: arrivati al momento di riscrittura dei casi d'uso, dopo la prima revisione, abbiamo dovuto suddividere i casi in categorie ben distinte, in modo che fosse evidente il sottosistema di riferimento di \progetto.
+		Di conseguenza è necessario cambiare il codice identificativo dei casi d'uso e la relativa norma nel paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
+        
+        \subsubsection{Strumenti forniti}
+        Il proponente e il \TV~ ci hanno messo a disposizione diversi strumenti per la realizzazione del progetto e come raggiungere una buona qualità nei prodotti. \par
+        Il \TV~ è a disposizione per:
+        \begin{itemize}
+            \item Chiarire eventuali dubbi relativi alla realizzazione del progetto in termini di buone pratiche e regole per la sua realizzazione
+            \item Mettere a disposizione materiale didattico per il corretto sviluppo delle varie fasi del progetto, e la stesura della documentazione
+        \end{itemize}
+        Il proponente \DZ~ di \II ci mette a disposizione:
+        \begin{itemize}
+            \item Un \gloss{cluster} dell'azienda su cui è installato \gloss{Rancher} per installare in remoto i \gloss{container} necessari a \progetto
+            \item Un indirizzo Email col dominio di \II~per inviare i messaggi da \progetto
+        \end{itemize}
+        Anche \DZ~ è disponibile a degli incontri via \gloss{Hangounts} per eventuali chiarimenti tecnici sullo sviluppo del progetto.
 
         \subsubsection{Studio di fattibilità}\label{PP:Fornitura:SdF}
         In quest'attività viene prodotto il documento \Doc{\SdFv} al fine di analizzare ogni \gloss{capitolato} e scegliere quale contratto accettare.
@@ -23,56 +38,71 @@
         		\item \textbf{Tecnologie coinvolte}: elenco delle tecnologie direttamente coinvolte esplicitate nel capitolato.
         		\item \textbf{Valutazione conclusiva}: giudizio finale del team di sviluppo.
         	\end{itemize}
+        Tale documento è fondamentale per chiarire ai vari proponenti la scelta di un capitolato, chiarendone i punti di forza e quelli deboli secondo il nostro punto di vista. In questo modo il cliente può già osservare quali possono essere le nostre competenze ed abilità.
+        
+        
+        % DA ISO12207
+        % 5.2.6.1 The suppli er should coordina te contract review activities, interfaces, and communi cation with the acqui rer’s organi zation.
+        \subsubsection{Coinvolgimento dell'acquirente} \label{ConivolgimentoAcquirente}
+        Data la natura del progetto, riteniamo essenziale la comunicazione con il cliente per qualunque tipo di aggiornamento rilevante, come ad esempio una \gloss{baseline}.
+        In particolare, avere un \gloss{feedback} da parte del cliente ci è molto utile ai fini del proseguimento del progetto.
+        Per esempio, un feedback del nostro \gloss{Proof of Concept} ci aiuta a capire se stiamo realizzando il prodotto come \II\ lo aveva ideato.
+        Per ricevere questo feedback e procedere ad uno scambio di idee e opinioni, preferiamo staibilire un colloquio.
+        Questo colloquio può avvenire tramite:
+        \begin{itemize}
+            \item Un incontro di persona in un luogo fissato insieme (e.g. aula universitaria, bar, ecc.)
+            \item Una videochiamata con una tecnologia scelta (e.g. \gloss{Hangouts})
+        \end{itemize}
+        In alternativa al colloquio, nel caso di brevi domande volte al chiarimento di piccoli dubbi, è possibile combinare una serie di Email o messaggi Telegram.
+        
+        % 5.2.3
+        % Contract. This activity consists of the foll owing tasks:
+        % 5.2.3.1 The supplier shall negotiate and enter into a contract with the acquirer organ ization to provide
+        % the software product or service.
+        % 5.2.3.2 The supplier may request modification to the contract as part of the chang e control
+        % mechanism.
+        \paragraph{Negoziazione} \label{Negoziazione}
+        Talvolta, in corso d'opera, è necessario negoziare gli accordi da contratto precedentemente presi con il cliente.
+        Questo può accadere per più motivi, principalmente in momenti in cui noi fornitori realizziamo di non poter soddisfare qualche requisito nel modo in cui lo vorrebbe il nostro cliente.
+        In seguito ad un inconveniente come questo, riteniamo necessario richiedere un colloquio con il cliente per poter esporre la nostra proposta alternativa e definire dei cambiamenti tali da assecondare i bisogni di entrambe le parti. \par
+        A seguito di un cambiamento in accordo col committente è d'obbligo riportare i cambiamenti all'interno dell'\AdRd~ che risulta essere il contratto che tutela il fornitore e il committente per quanto riguarda i requisiti che il prodotto finale deve soddisfare.
+        
+        % 5.2.6.4 The supplier shall make available to the acquirer the reports of evaluation, reviews, audits,testing, and problem resolutions as specified in the contract.
+        \paragraph{Accessibilità del materiale necessario da contratto} \label{AccessibilitaMateriale}
+        Tutta la documentazione richiesta dall'acquirente come resoconti dei problemi riscontrati, \gloss{bug} reporting, istruzioni per l'avvio del prodotto, ecc\dots\ devono essere resi accessibili al cliente. \par
+        Questo può avvenire attraverso email, Drive \footnote{Riferirsi alla voce 13 in \S\ref{rifinfo} per ulteriori informazioni su Drive} o repository pubblica su GitHub.
+        % 5.2.7.1 The supp lier shall deliver the software product or service as specified in the contract.
+        Oltre alla documentazione, anche il prodotto software deve essere rilasciato come specificato nel contratto.
+        
+        % User involvement; by such means demonstrations and evaluations;
+        \subsubsection{Coinvolgimento del committente} \label{CoinvolgimentoCommittente}
+        % Nel corso del progetto abbiamo posto delle milestone al fine di
+        Durante alcune baseline, ad esempio le revisioni,
+        illustriamo al committente delle dimostrazioni del nostro prodotto in modo da ottenere anche da esso una valutazione utile per noi all'avanzamento del progetto.
+        
+        \paragraph{Accessibilità del materiale relativo alle revisioni} \label{AccessibilitaMaterialeRevisioni}
+        Per ogni revisione di avanzamento e accettazione rendiamo disponibile il materiale richiesto dal committente tramite:
+        \begin{itemize}
+            \item \textbf{Drive}: per ogni revisione rendiamo disponibile su \gloss{Google Drive} l'ultima versione dei documenti relativi a \progetto
+            \item \textbf{GitHub}: il codice del prodotto è disponibile in una \gloss{repository} pubblica. Tale repository non risulta essere il luogo dove il software viene sviluppato, ma solo il codice prodotto dopo una data revisione
+            \item \textbf{CD-ROM}: il prodotto finale e  installabile viene consegnato al committente all'interno di un CD-ROM per motivi di sicurezza
+        \end{itemize}
 
         \subsubsection{Preparazione in vista della revisione}
 		In questa attività prepariamo tutto il materiale necessario per il buon superamento della revisione:
 		\begin{itemize}
 			\item I vari documenti, i verbali e la lettera di presentazione per quanto riguarda la documentazione in ingresso
-			\item I diagrammi dei package e il codice necessario per la realizzazione del \gloss{Proof of Concept}
+			\item I diagrammi \gloss{UML} e il codice necessario per il superamento delle varie revisioni del progetto
 			\item Le diapositive per l'esposizione
+            \item Demo di dimostrazione del prodotto
 		\end{itemize}
+    
+        \paragraph{Collaudo finale}
+        In vista del collaudo finale, grazie ai vari confronti con il \TV~ e \DZ, tutti i documenti dovranno essere corretti nella forma e nei contenuti, almeno per quanto riguardano le correzioni fatte in sede di revisione. I requisiti richiesti dal capitola ed inseriti in \AdRd dovranno essere totalmente soddisfatti, insieme anche ad eventuali richieste marginali di \DZ. \par
+        La presentazione di \progetto~ attraverso una demo deve poter essere efficacie mostrando la maggior parte delle funzionalità del progetto in modo chiaro e veloce, e poter far fronte ad eventuali richieste del committente. \par
+        In sede di collaudo dobbiamo mostrare i possibili upgrade e miglioramenti di \progetto, in modo da trasmettere il potenziale dell'applicazione.
 
 
-		% DA ISO12207
-		% 5.2.6.1 The suppli er should coordina te contract review activities, interfaces, and communi cation with the acqui rer’s organi zation.
-		\subsubsection{Coinvolgimento dell'acquirente} \label{ConivolgimentoAcquirente}
-		Data la natura del progetto, riteniamo essenziale la comunicazione con il cliente per qualunque tipo di aggiornamento rilevante, come ad esempio una \gloss{baseline}.
-		In particolare, avere un \gloss{feedback} da parte del cliente ci è molto utile ai fini del proseguimento del progetto.
-		Per esempio, un feedback del nostro \gloss{Proof of Concept} ci aiuta a capire se stiamo realizzando il prodotto come \II\ lo aveva ideato.
-		Per ricevere questo feedback e procedere ad uno scambio di idee e opinioni, preferiamo staibilire un colloquio.
-		Questo colloquio può avvenire tramite:
-		\begin{itemize}
-			\item Un incontro di persona in un luogo fissato insieme (e.g. aula universitaria, bar, ecc.)
-			\item Una videochiamata con una tecnologia scelta (e.g. \gloss{Hangouts})
-		\end{itemize}
-		In alternativa al colloquio, nel caso di brevi domande volte al chiarimento di piccoli dubbi, è possibile combinare una serie di Email o messaggi Telegram.
-
-		% 5.2.3
-		% Contract. This activity consists of the foll owing tasks:
-		% 5.2.3.1 The supplier shall negotiate and enter into a contract with the acquirer organ ization to provide
-		% the software product or service.
-		% 5.2.3.2 The supplier may request modification to the contract as part of the chang e control
-		% mechanism.
-		\paragraph{Negoziazione} \label{Negoziazione}
-		Talvolta, in corso d'opera, è necessario negoziare gli accordi da contratto precedentemente presi con il cliente.
-		Questo può accadere per più motivi, principalmente in momenti in cui noi fornitori realizziamo di non poter soddisfare qualche requisito nel modo in cui lo vorrebbe il nostro cliente.
-		In seguito ad un inconveniente come questo, riteniamo necessario richiedere un colloquio con il cliente per poter esporre la nostra proposta alternativa e definire dei cambiamenti tali da assecondare i bisogni di entrambe le parti.
-
-		% 5.2.6.4 The supplier shall make available to the acquirer the reports of evaluation, reviews, audits,testing, and problem resolutions as specified in the contract.
-		\paragraph{Accessibilità del materiale necessario da contratto} \label{AccessibilitaMateriale}
-		Tutta la documentazione richiesta dall'acquirente come resoconti dei problemi riscontrati, \gloss{bug} reporting, istruzioni per l'avvio del prodotto, ecc\dots\ devono essere resi accessibili al cliente. \par
-		Questo può avvenire attraverso email, Drive \footnote{Riferirsi alla voce 13 in \S\ref{rifinfo} per ulteriori informazioni su Drive} o repository pubblica su GitHub.
-		% 5.2.7.1 The supp lier shall deliver the software product or service as specified in the contract.
-		Oltre alla documentazione, anche il prodotto software deve essere rilasciato come specificato nel contratto.
-
-		% User involvement; by such means demonstrations and evaluations;
-		\subsubsection{Coinvolgimento del committente} \label{CoinvolgimentoCommittente}
-		% Nel corso del progetto abbiamo posto delle milestone al fine di
-		Durante alcune baseline, ad esempio le revisioni,
-		illustriamo al committente delle dimostrazioni del nostro prodotto in modo da ottenere anche da esso una valutazione utile per noi all'avanzamento del progetto.
-
-		\paragraph{Accessibilità del materiale relativo alle revisioni} \label{AccessibilitaMaterialeRevisioni}
-		Per ogni revisione di avanzamento e accettazione rendiamo disponibile il materiale richiesto dal committente tramite cartella condivisa su Drive.
 
 		\subsubsection{Verifica post revisione} \label{verificapostrevisione}
         In seguito alla valutazione di ogni revisione riteniamo necessario conoscere i motivi negativi, ma anche positivi, di tale giudizio. In tal modo possiamo correggere meglio i difetti dei nostri prodotti e migliorarne i punti di forza. \par
@@ -81,6 +111,10 @@
             \item \textbf{Proponente}: \DZ\ di \II.
             \item \textbf{Committente}: \TV\ e \RC.
 		\end{itemize}
+    
+        \subsubsection{Circoscrizione dei rischi}
+        Nell'eventualità che si possa presentare un problema all'interno del gruppo o con i prodotti di \progetto, può essere necessario comunicarlo a \DZ~ o a il \TV~. Tale comunicazione deve presentare in modo chiaro il problema e, se possibile, allegare un'eventuale soluzione. \par
+        Ad esempio: durante il periodo di progettazione ci siamo accorti che la metodologia di inoltro dei messaggi risultava incoerente in alcuni aspetti, questo ci ha portato a pensare ad una diversa gestione delle priorità dei progetti. Subito dopo abbiamo contattato \DZ~ per mostrare il problema e la possibile soluzione che l'ha approvata con qualche modifica.
 
 
     \subsection{Processo di sviluppo}\label{PP:Sviluppo}
