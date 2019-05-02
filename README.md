@@ -131,9 +131,9 @@ Le credenziali richieste sono:
 		username: alpha6
 		password: emuoOn2O
 		
-3. Lasciare il terminale aperto ed entrare con ssh (tramite shell o applicazioni come *FileZilla* o *Nautilus*) all'indirizzo `alpha6-rancher-node.imolab.it` con le seguenti credenziali:
+3. Lasciare il terminale aperto ed entrare con ssh (tramite shell o applicazioni come *FileZilla* o *Nautilus*) all'indirizzo `alpha6-rancher-master.imolab.it` con le seguenti credenziali:
 	
 		username: root
 		password: emuoOn2O
 
-4. I servizi dei container sono accessibili da browser con l'indirizzo: `alpha6-rancher-node.imolab.it:PORT`
+4. I servizi dei container sono accessibili da browser con l'indirizzo: `alpha6-rancher-master.imolab.it:PORT`
