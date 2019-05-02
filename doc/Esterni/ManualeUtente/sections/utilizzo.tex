@@ -44,8 +44,8 @@ Le sezioni a cui si può navigare dal Pannello di controllo sono:
 	\caption{Interfaccia modifica preferenze}
 \end{figure}
 
-\subsubsection{Iscrizione a Butterfly}
-L'iscrizione al sistema \progetto\ è permessa, secondo i requisiti del capitolato, solamente tramite l'utilizzo delle API Rest (come descritto in \S\ref{APIRest}) oppure è permesso agli utenti già registrati di inserirne altri.
+\subsubsection{Iscrizione a Butterfly}\label{Iscrizione}
+L'iscrizione di un nuovo utente al sistema \progetto\ è permessa solamente all'utente amministratore.
 La sezione di inserimento di un nuovo utente è raggiungibile dal Pannello di controllo e prevede l'inserimento dei seguenti dati:
 \begin{itemize}
 	\item Nome
@@ -84,26 +84,25 @@ Le ``keyword'' invece, sono formate da una lista di parole che possono essere co
 
 \subsubsection{Modifica dei propri dati}
 La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi dati'' accessibile dal Pannello di Controllo.
-Qui un utente può modificare i dati forniti in fase di registrazione.
+Qui un utente può modificare i dati inseriti dall'amministratore in fase di registrazione.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/modifica_1.png}
 	\caption{Modifica dei dati di un utente}
 \end{figure}
-Come nella registrazione di un nuovo utente, nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore.
+Nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore.
 
 \subsubsection{Uscita dal sistema}
 Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente in alto a destra di ciascuna pagina.
 
-\subsubsection{Rimozione di un utente dal sistema}
-Viene data la possibilità di rimuovere un utente dal sistema eliminando quindi i suoi dati precedentemente salvati nel database.
+\subsubsection{Rimozione di un utente dal sistema}\label{Rimozione}
+Viene data la possibilità di rimuovere un utente dal sistema solamente all'amministratore.
 La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibile dal Pannello di Controllo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{img/rimozione_1.png}
 	\caption{Interfaccia rimozione di un utente}
 \end{figure}
-Nel caso in cui un utente desideri eliminare il proprio profilo dal sistema, dopo aver selezionato il proprio identificativo e cliccato il pulsante ``Rimuovi utente'', verrà effettuato il logout automatico.
 
 \subsection{API Rest}\label{APIRest}
 \newcommand{\homeUrl}{home\_url}
