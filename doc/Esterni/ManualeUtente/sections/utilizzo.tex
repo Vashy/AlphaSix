@@ -5,13 +5,20 @@
 Il Gestore Personale è la componente principale di \progetto\ e si può suddividere in due sotto-componenti principali:
 
 \begin{itemize}
-    \item Interfaccia utente
+    \item Interfaccia utente a sua volta divisa in
+    \begin{itemize}
+    	\item Interfaccia Admin
+    	\item Interfaccia Utente (senza permessi admin)
+    \end{itemize}
     \item Message processor, che contiene la logica di business di \progetto
 \end{itemize}
 
 Il secondo non è di pertinenza di questo manuale (ma del \MSd), in quanto l'utente non lo utilizza direttamente, per cui verrà solamente discusso l'utilizzo del sistema tramite l'interfaccia utente.
 
-\subsubsection{Accesso}
+\subsubsection{Interfaccia Utente}
+Le seguenti opzioni del Gestore Personale sono accessibili da ogni tipo utente, perciò anche da quelli coi privilegi di admin.
+
+\paragraph{Accesso}
 È possibile effettuare l'accesso all'interno del sistema tramite il link del container sul quale è in esecuzione, specificato nella configurazione effettuata precedentemente.
 Per effettuare correttamente l'accesso è necessario l'inserimento del proprio ID Telegram o Email con il quale si è iscritti nel sistema.
 \begin{figure}[H]
@@ -29,7 +36,7 @@ In caso l'identificativo inserito non fosse valido, e non corrispondesse quindi 
 Nel caso in cui un utente cerchi di accedere ad una sezione, ma senza aver effettuato l'accesso, questo verrà rimandato alla pagina di accesso.\par
 Se un utente iscritto correttamente nel sistema ha registrato precedentemente sia indirizzo Email che ID Telegram, allora può accedere utilizzando indipendentemente il primo o il secondo.
 
-\subsubsection{Pannello di controllo}
+\paragraph{Pannello di controllo}
 Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
 Le sezioni a cui si può navigare dal Pannello di controllo sono:
 \begin{itemize}
@@ -44,26 +51,7 @@ Le sezioni a cui si può navigare dal Pannello di controllo sono:
 	\caption{Interfaccia modifica preferenze}
 \end{figure}
 
-\subsubsection{Iscrizione a Butterfly}\label{Iscrizione}
-L'iscrizione di un nuovo utente al sistema \progetto\ è permessa solamente all'utente amministratore.
-La sezione di inserimento di un nuovo utente è raggiungibile dal Pannello di controllo e prevede l'inserimento dei seguenti dati:
-\begin{itemize}
-	\item Nome
-	\item Cognome
-	\item Email
-	\item Telegram
-\end{itemize}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{img/inserimento_1.png}
-	\caption{Interfaccia inserimento nuovo utente}
-\end{figure}
-Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
-
-È necessario inserire almeno un campo a scelta tra Email e Telegram.
-Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
-
-\subsubsection{Modifica preferenze}\label{preferenze}
+\paragraph{Modifica preferenze}\label{preferenze}
 La modifica delle preferenze è possibile solamente per utenti già iscritti ed autenticati nel sistema.
 È raggiungibile tramite il Pannello di Controllo sotto la voce ``Modifica le tue preferenze''.
 In questa sezione si possono trovare le principali impostazioni del sistema dal punto di vista dell'utente finale:
@@ -82,7 +70,7 @@ Le ``keyword'' invece, sono formate da una lista di parole che possono essere co
 	\caption{Interfaccia modifica preferenze}
 \end{figure}
 
-\subsubsection{Modifica dei propri dati}
+\paragraph{Modifica dei propri dati}
 La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi dati'' accessibile dal Pannello di Controllo.
 Qui un utente può modificare i dati inseriti dall'amministratore in fase di registrazione.
 \begin{figure}[H]
@@ -92,16 +80,46 @@ Qui un utente può modificare i dati inseriti dall'amministratore in fase di reg
 \end{figure}
 Nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore.
 
-\subsubsection{Uscita dal sistema}
+\paragraph{Uscita dal sistema}
 Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente in alto a destra di ciascuna pagina.
 
-\subsubsection{Rimozione di un utente dal sistema}\label{Rimozione}
+\subsubsection{Interfaccia Admin}
+All'interno dell'applicazione \progetto, gli utenti coi permesso di admin potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Per un utente admin (o amministratore) non esiste un particolare sistema di accesso, infatti accede come ogni altro utente. 
+
+\paragraph{Iscrizione a Butterfly}\label{Iscrizione}
+L'iscrizione di un nuovo utente al sistema \progetto\ è permessa solamente all'utente amministratore.
+La sezione di inserimento di un nuovo utente è raggiungibile dal Pannello di controllo e prevede l'inserimento dei seguenti dati:
+\begin{itemize}
+	\item Nome
+	\item Cognome
+	\item Email
+	\item Telegram
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/inserimento_1.png}
+	\caption{Interfaccia inserimento nuovo utente}
+\end{figure}
+Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
+
+È necessario inserire almeno un campo a scelta tra Email e Telegram.
+Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
+
+\paragraph{Rimozione di un utente dal sistema}\label{Rimozione}
 Viene data la possibilità di rimuovere un utente dal sistema solamente all'amministratore.
 La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibile dal Pannello di Controllo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{img/rimozione_1.png}
 	\caption{Interfaccia rimozione di un utente}
+\end{figure}
+
+\paragraph{Visualizzazione lista di utenti}
+Un utente amministratore ha la possibilità di vedere la lista di tutti gli utenti iscritti al sistema e i relativi progetti a cui sono interessati.
+La visualizzazione avviene attraverso la sezione ``Lista utenti'' accessibile dal Pannello di Controllo.
+\begin{figure}[H]
+	\centering
+	\caption{Interfaccia lista degli utenti}
 \end{figure}
 
 \subsection{API Rest}\label{APIRest}
