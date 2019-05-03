@@ -84,7 +84,7 @@ Nel caso questi fossero già associati ad una persona iscritta a \progetto, verr
 Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente in alto a destra di ciascuna pagina.
 
 \subsubsection{Interfaccia Admin}
-All'interno dell'applicazione \progetto, gli utenti coi permesso di admin potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Per un utente admin (o amministratore) non esiste un particolare sistema di accesso, infatti accede come ogni altro utente. 
+All'interno dell'applicazione \progetto, gli utenti coi permesso di admin potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Per un utente admin (o amministratore) non esiste un particolare sistema di accesso, infatti accede come ogni altro utente.
 
 \paragraph{Iscrizione a Butterfly}\label{Iscrizione}
 L'iscrizione di un nuovo utente al sistema \progetto\ è permessa solamente all'utente amministratore.
@@ -201,108 +201,78 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 \end{table}
 
 
-\subsubsection{Preference}
-Preference è la risorsa preferenza. È possibile visualizzare, aggiungere, modificare o rimuovere le preferenze di un utente tramite una semplice richiesta HTTP.
+\subsubsection{Project}
+Project è la risorsa relativa ai progetti. È possibile visualizzare, aggiungere, modificare o rimuovere i progetti di un utente tramite una semplice richiesta HTTP.
 
 \paragraph{Visualizzazione}
-È possibile visualizzare le preferenze di un utente tramite la richiesta
+È possibile visualizzare i progetti tramite la richiesta
     \begin{center}
-        \texttt{GET  /preference/<id>}
+        \texttt{GET /project/<id>}
     \end{center}
-Se il campo \texttt{<id>} corrisponde a una preferenza, verranno mostrati i dati relativi a tale preferenza.
+Se il campo \texttt{<id>} corrisponde a un progetto, verranno mostrati i dati relativi a tale progetto.
 
-I tipi di preferenza disponibili sono:
-\begin{itemize}[noitemsep]
-    \item \texttt{progetto}
-    \item \texttt{disponibilità}
-    \item \texttt{piattaforma}
-\end{itemize}
+% I tipi di progetto disponibili sono:
+% \begin{itemize}[noitemsep]
+%     \item \texttt{progetto}
+%     \item \texttt{disponibilità}
+%     \item \texttt{piattaforma}
+% \end{itemize}
 
 \paragraph{Inserimento}
-È possibile inserire una nuova preferenza tramite la richiesta
+È possibile inserire un nuovo progetto tramite la richiesta
     \begin{center}
-        \texttt{POST /preference}
+        \texttt{POST /project}
     \end{center}
 
 È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
-In base al tipo della preferenza, i campi sono:
+I campi sono:
 \begin{itemize}[noitemsep]
-    \item Utente:
-        \begin{itemize}[noitemsep]
-            \item \texttt{id}
-        \end{itemize}
-    \item Progetto:
-        \begin{itemize}[noitemsep]
-            \item \texttt{nome}
-            \item \texttt{priorità}
-            \item \texttt{labels}
-            \item \texttt{keywords}
-        \end{itemize}
-    \item Disponibilità:
-        \begin{itemize}[noitemsep]
-            \item \texttt{data}
-        \end{itemize}
-    \item Piattaforma:
-        \begin{itemize}[noitemsep]
-            \item \texttt{piattaforma}
-        \end{itemize}
+    \item \texttt{url}
+    \item \texttt{app}
+    \item \texttt{name}
+    \item \texttt{topics}, una lista
 \end{itemize}
 
 
 \paragraph{Modifica}
 
-È possibile modificare una preferenza tramite la richiesta
+È possibile modificare un progetto tramite la richiesta
 \begin{center}
-    \texttt{PUT /preference/<id>}
+    \texttt{PUT /project/<id>}
 \end{center}
 
 
 È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
-In base al tipo della preferenza, i campi sono:
+I campi sono:
 \begin{itemize}[noitemsep]
-    \item Utente:
-        \begin{itemize}[noitemsep]
-            \item \texttt{id}
-        \end{itemize}
-    \item Progetto:
-        \begin{itemize}[noitemsep]
-            \item \texttt{nome}
-            \item \texttt{priorità}
-            \item \texttt{labels}
-            \item \texttt{keywords}
-        \end{itemize}
-    \item Disponibilità:
-        \begin{itemize}[noitemsep]
-            \item \texttt{data}
-        \end{itemize}
-    \item Piattaforma:
-        \begin{itemize}[noitemsep]
-            \item \texttt{piattaforma}
-        \end{itemize}
+    \item \texttt{url}
+    \item \texttt{app}
+    \item \texttt{name}
+    \item \texttt{topics}, una lista
 \end{itemize}
 
 
 \paragraph{Rimozione}
 
-È possibile rimuovere una preferenza dal sistema Butterfly con la richiesta
+È possibile rimuovere un progetto dal sistema Butterfly con la richiesta
 \begin{center}
-    \texttt{DELETE /preference/<id>}
+    \texttt{DELETE /project/<id>}
 \end{center}
 
-Se il campo \texttt{<id>} corrisponde a una preferenza, essa verrà rimossa dal sistema.
+Se il campo \texttt{<id>} corrisponde a un progetto, essa verrà rimossa dal sistema.
 
 \paragraph{Riepilogo}
 
 \begin{table}[H]
     \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
-        \texttt{GET} & \texttt{/preference/<id>} & Restituisce un payload in JSON della preferenza corrispondente a \texttt{<id>}\\
-        \texttt{POST} & \texttt{/preference} & Inserisce una nuova preferenza \\
-        \texttt{PUT} & \texttt{/preference/<id>} & Modifica la preferenza corrispondente a \texttt{<id>} con i campi passati nel payload \\
-        \texttt{DELETE} & \texttt{/preference/<id>} & Elimina la preferenza corrispondente a \texttt{<id>} dal sistema \\
+        \texttt{GET} & \texttt{/project/<id>} & Restituisce un payload in JSON del progetto corrispondente a \texttt{<id>}\\
+        \texttt{POST} & \texttt{/project} & Inserisce un nuovo progetto \\
+        \texttt{PUT} & \texttt{/project/<id>} & Modifica il progetto corrispondente a \texttt{<id>} con i campi passati nel payload \\
+        \texttt{DELETE} & \texttt{/project/<id>} & Elimina il progetto corrispondente a \texttt{<id>} dal sistema \\
         \bottomrule
     \end{paddedtablex}
-    \caption{Riepilogo delle Rest API per le preferenze}
+    \caption{Riepilogo delle Rest API per la risorsa project}
 \end{table}
 
 \newpage
