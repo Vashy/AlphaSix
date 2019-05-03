@@ -28,6 +28,9 @@ class Web:
     def _check_session(self):
         return 'email' in session or 'telegram' in session
 
+    def _check_admin(self):
+        return 'admin' in session
+
     def _check_values(self):
         return len(request.values) != 0
 
@@ -43,6 +46,9 @@ class Web:
                     session['userid'] = session['email']
                 else:
                     session['userid'] = session['telegram']
+                user = self._model.read_user(userid)
+                if 'admin' in user and user['admin'] == 1:
+                    session['admin'] = 1
                 return redirect(url_for('panel'), code=303)
             else:
                 page = page.replace(
@@ -63,7 +69,10 @@ per eseguire l\'accesso.</p>')
 
     def panel(self, error=''):
         if self._check_session():
-            fileHtml = html / 'panel.html'
+            if self._check_admin():
+                fileHtml = html / 'adminpanel.html'
+            else:
+                fileHtml = html / 'panel.html'
             page = fileHtml.read_text()
             page = page.replace('*panel*', error)
             try:
@@ -261,12 +270,77 @@ per inserire l\'utente.</p>')
         options += '</select>'
         return page.replace('*userids*', options)
 
+    def show_user(self):
+        fileHtml = html / 'showuser.html'
+        page = fileHtml.read_text()
+        userid = request.values.get('userid')
+        if userid:
+            email = self._model.get_user_email_from_id(userid)
+            telegram = self._model.get_user_telegram_from_id(userid)
+            user = email if email else telegram
+            page = page.replace('*showuser*', self.load_web_user(user))
+        page = page.replace('*showuser*', '')
+
+        values = self._users_id()
+        display = []
+        for user in values:
+            telegram = self._model.get_user_telegram_from_id(user)
+            email = self._model.get_user_email_from_id(user)
+            if telegram is None:
+                telegram = ''
+            if email is None:
+                email = ''
+            display.append(
+                telegram +
+                ' ' +
+                email
+            )
+        options = '<select id="userid" name="userid">'
+        for i, voice in enumerate(display):
+            options += '<option value="' + str(values[i]) + '"'
+            if str(values[i]) == userid:
+                options += ' selected="selected"'
+            options += '>'
+            options += display[i]
+            options += '</option>'
+        options += '</select>'
+        return page.replace('*userids*', options)
+
+    def load_web_user(self, user: str):
+        user_projects = self._model.get_user_projects(user)
+        form = '<table id="topics-table"><tr><th>Url</th><th>Priorità</th>\
+<th>Labels</th><th>Keywords</th></tr>'
+        for user_project in user_projects:
+            project_data = self._model.read_project(
+                user_project['url']
+            )
+            project_data['url'] = project_data['url'].lstrip().rstrip()
+            row = '<tr>'
+            row += '<th>' + project_data['url'] + '</th>'
+            row += '<td>' + str(user_project['priority']) + '</td><td>'
+            for topic in project_data['topics']:
+                if topic in user_project['topics']:
+                    row += topic + ','
+            row = row[:-1]  # elimino l'ultima virgola
+            row += '</td><td>'
+            if user_project['keywords']:
+                for keyword in user_project['keywords']:
+                    row += keyword
+                    row += ','
+                row = row[:-1]  # elimino l'ultima virgola
+            row += '</td></tr>'
+            form += row
+        form += '</table>'
+        return form
+
     def web_user(self):
         if self._check_session():
             if request.method == 'GET':
                 page = self.panel()
             elif request.method == 'POST':
-                if 'logout' in request.values:
+                if 'showuser' in request.values:
+                    page = self.show_user()
+                elif 'logout' in request.values:
                     self.logout()
                     page = self.panel()
                 else:

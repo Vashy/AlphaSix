@@ -1,5 +1,5 @@
 <!--
-File: panel.html
+File: removeuser.html
 Data creazione: 2019-02-20
 
 <descrizione>
@@ -28,19 +28,22 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
 <!DOCTYPE html>
 <html id="html">
     <head>
-        <title>Pannello | Butterfly</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename = 'style/style.css') }}">
+        <title>Dettagli utenti | Butterfly</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style/style.css') }}">
     </head>
     <body lang="it">
-        <h1>Pannello di controllo</h1>
-        <form id="data">
-            <input id='modifyuserpanel' class="buttonpanel" type='button' value='Modifica i tuoi dati'><br/>
-            <input id='preference' class="buttonpanel" type='button' value='Modifica le tue preferenze'><br/>
-            <input id='logout' class="buttonpanel" type='button' value='Logout'>
-            *panel*
-        </form>
-        <script src='{{ url_for('static', filename = 'script/script.js') }}'></script>
+        <div>
+            <h1>Dettagli utenti | Butterfly</h1>
+            <form id="data">
+                <label for="userid">Email o ID Telegram:</label>
+                *userids*
+                <br/>
+                <input id="showuser" name="showuser" type="button" value="Mostra dettagli utente"/><br/>
+                <input id="back" name="back" type="button" value="Torna al pannello"/>
+                *showuser*
+            </form>
+        </div>
     </body>
 </html>

@@ -4,6 +4,7 @@ users:
     surname: Granziero
     email: null
     telegram: "12312"
+    admin: false
     preference: telegram
     irreperibilita:
       - 2018-12-05
@@ -26,6 +27,7 @@ users:
     surname: Granziero
     email: simone.granziero@email.it
     telegram: "123432"
+    admin: true
     preference: email
     irreperibilita:
       - 2018-12-05
@@ -58,6 +60,7 @@ users:
     surname: Cruciani
     email: abcd@bc.it
     telegram: "1234"
+    admin: false
     preference: email
     irreperibilita:
       - 2018-12-05
@@ -84,6 +87,7 @@ users:
     surname: Granziero
     email: timoty.granziero@gmail.com
     telegram: "123432123"
+    admin: false
     preference: email
     irreperibilita:
       - 2018-12-05
@@ -115,6 +119,7 @@ users:
     surname: Granziero
     email: simoneeee.granziero@email.it
     telegram: "38883960"
+    admin: false
     preference: telegram
     irreperibilita:
       - 2018-12-05

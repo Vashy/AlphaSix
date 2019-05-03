@@ -28,7 +28,7 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
 <!DOCTYPE html>
 <html id="html">
     <head>
-        <title>Pannello | Butterfly</title>
+        <title>Pannello Admin | Butterfly</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename = 'style/style.css') }}">
@@ -36,6 +36,9 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
     <body lang="it">
         <h1>Pannello di controllo</h1>
         <form id="data">
+            <input id='adduserpanel' class="buttonpanel" type='button' value='Inserisci nuovo utente'><br/>
+            <input id='removeuserpanel' class="buttonpanel" type='button' value='Rimuovi un utente'><br/>
+            <input id='showuser' class="buttonpanel" type='button' value='Visualizza gli utenti'><br/>
             <input id='modifyuserpanel' class="buttonpanel" type='button' value='Modifica i tuoi dati'><br/>
             <input id='preference' class="buttonpanel" type='button' value='Modifica le tue preferenze'><br/>
             <input id='logout' class="buttonpanel" type='button' value='Logout'>
