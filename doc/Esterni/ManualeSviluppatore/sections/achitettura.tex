@@ -209,7 +209,7 @@ Per analizzare il messaggio il Client opera in questo modo:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.90\textwidth]{img/Client_attivita.png}\\
+    \includegraphics[width=0.80\textwidth]{img/Client_attivita.png}\\
     \caption{Diagramma di attività del Client}
     % \label{fig:GP-Processor}
 \end{figure}
@@ -322,4 +322,4 @@ consumer ecc.).
 
 Vedendo \progetto\ ad alto livello, si possono identificare sei componenti. Redmine e GitLab, per comunicare con i relativi Producer, utilizzano dei webhook in formato JSON,
 mettendosi in ascolto su determinate porte utilizzando il webserver Flask. Per quanto riguarda la comunicazione tra i Producer e Kafka utilizziamo delle istanze
-di KafkaProucer. Per far comunicare Kafka con i vari Consumer utilizziamo istanze di KafkaConsumer. Nell'ultimo passo, quello che riguarda i Consumer e le applicazioni finali, quali Telegram e Email, usiamo le API messe a disposizione dagli applicativi.
+di KafkaProducer. Per far comunicare Kafka con i vari Consumer utilizziamo istanze di KafkaConsumer. Nell'ultimo passo, quello che riguarda i Consumer e le applicazioni finali, quali Telegram e Email, usiamo le API messe a disposizione dagli applicativi.
