@@ -76,6 +76,7 @@ def main():
     finally:
         consumer.close()
         print(' Closing Consumer ...')
+        exit(-1)
 
 
 if __name__ == '__main__':

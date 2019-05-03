@@ -50,6 +50,23 @@ class EmailConsumer(Consumer):
             configs = json.load(file)
         self._sender = configs['email']['sender']
 
+        try:
+            # Psw, prima da config.json poi da var d'ambiente
+            self._psw = configs['email']['psw']
+            if self._psw == '':
+                self._psw = None
+        except KeyError:
+            self._psw = None
+
+        # venv BUTTERFLY_EMAIL_PSW
+        if self._psw == None:
+            try:
+                self._psw = os.environ['BUTTERFLY_EMAIL_PSW']
+            except KeyError as e:
+                print('Assegna la password a BUTTERFLY_EMAIL_PSW')
+                print(repr(e))
+                exit(1)
+
     def send(self, receiver: str, mail_text: str):
         """Manda il messaggio finale, tramite il server mail,
         all'utente finale.
@@ -58,18 +75,10 @@ class EmailConsumer(Consumer):
             mailserver.ehlo()
             mailserver.starttls()
 
-            # Autenticazione
             try:
-                psw = os.environ['BUTTERFLY_EMAIL_PSW']
-                mailserver.login(self._sender, psw)  # Login al server SMTP
-            except KeyError as e:
-                print('Assegna la password a BUTTERFLY_EMAIL_PSW')
-                print(repr(e))
-                mailserver.quit()
-                return
+                # Autenticazione
+                mailserver.login(self._sender, self._psw)  # Login al server SMTP
 
-            # Login riuscito
-            try:
                 msg = EmailMessage()
                 msg['Subject'] = (
                     "[Butterfly] Segnalazione progetto "
