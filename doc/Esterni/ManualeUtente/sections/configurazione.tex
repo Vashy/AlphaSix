@@ -203,12 +203,26 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 
 	\subsubsection{Consumer}\label{var_consumer}
 	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker.
-	Queste sono:
+	Queste sono, per il Consumer di Telegram:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
-		\item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: \gloss{ID} del Bot di Telegram che inoltra la notifica.
-		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: email che manda inoltra la notifica.
-		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SUBJECT}: oggetto della mail da spedire.
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"telegram":\{"token\_bot"\}}: \gloss{ID} del Bot di Telegram che inoltra la notifica.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: \gloss{ID} del Bot di Telegram che inoltra la notifica.
+	\end{itemize}
+
+	Per il Consumer Email, invece:
+	\begin{itemize}
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"email":\{"sender"\}}: indirizzo email che inoltra l'email.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: email che inoltra la notifica.
+		\item\texttt{"email":\{"psw"\}}: password della casella email.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
+	\end{itemize}
+
+	È inoltre possibile impostare la password dell'indirizzo email tramite variabile d'ambiente (il file di configurazione avrà priorità sulla variabile d'ambiente):
+	\begin{itemize}
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
