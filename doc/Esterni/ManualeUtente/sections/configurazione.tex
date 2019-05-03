@@ -179,13 +179,26 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 \subsection{Configurazione servizi \progetto}\label{var}
 
 	\subsubsection{Producer}
-	Per i Producer è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono:
+	Per i Producer è possibile impostare nel proprio file di configurazione le varie configurazioni. I campi sono:
+
+	Per il Producer di Redmine i campi sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP}: indirizzo dell'istanza di Redmine disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT}: porta dell'istanza di Redmine disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_IP}: indirizzo dell'istanza di GitLab disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: porta dell'istanza di GitLab disponibile.
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"redmine":\{"ip"\}}: indirizzo dell'istanza di Redmine disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP}: indirizzo dell'istanza di Redmine disponibile.
+		\item\texttt{"redmine":\{"port"\}}: porta dell'istanza di Redmine disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT}: porta dell'istanza di Redmine disponibile.
+	\end{itemize}
+
+	Per il Producer di GitLab i campi sono:
+	\begin{itemize}
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"gitlab":\{"ip"\}}: indirizzo dell'istanza di GitLab disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_IP}: indirizzo dell'istanza di GitLab disponibile.
+		\item\texttt{"gitlab":\{"port"\}}: porta dell'istanza di GitLab disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: porta dell'istanza di GitLab disponibile.
 	\end{itemize}
 
 	\subsubsection{Consumer}\label{var_consumer}
