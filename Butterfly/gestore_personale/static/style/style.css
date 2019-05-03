@@ -1,9 +1,11 @@
 
+/* https://codepen.io/jpI/pen/gWJRpb?editors=1101 */
+
 * {
     padding: 0;
     margin: 0;
-    font-family: Verdana;
-    cursor: url('../image/butterfly-cursor.png'), auto;
+    /* font-family: Verdana; */
+    /* cursor: url('../image/butterfly-cursor.png'), auto;  */
 }
 
 body {
@@ -40,7 +42,7 @@ input {
 
 input[type="button"]:hover,  input[type="submit"]:hover {
   /* cursor: pointer; */
-  cursor: url('../image/b.png'), auto;
+  /* cursor: url('../image/b.png'), auto;  */
   color: #007bff;
   background-color: transparent;
   background-image: none;
@@ -97,7 +99,6 @@ select:focus {
 }
 
 /* preferences */
-
 
 #topics, #projects, #availability, #platform{
     margin-top:50px;
