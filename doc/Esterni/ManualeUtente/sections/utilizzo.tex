@@ -7,8 +7,8 @@ Il Gestore Personale è la componente principale di \progetto\ e si può suddivi
 \begin{itemize}
     \item Interfaccia utente a sua volta divisa in
     \begin{itemize}
-    	\item Interfaccia Admin
-    	\item Interfaccia Utente (senza permessi admin)
+    	\item Interfaccia amministratore
+    	\item Interfaccia Utente (senza permessi amministratore)
     \end{itemize}
     \item Message processor, che contiene la logica di business di \progetto
 \end{itemize}
@@ -16,7 +16,7 @@ Il Gestore Personale è la componente principale di \progetto\ e si può suddivi
 Il secondo non è di pertinenza di questo manuale (ma del \MSd), in quanto l'utente non lo utilizza direttamente, per cui verrà solamente discusso l'utilizzo del sistema tramite l'interfaccia utente.
 
 \subsubsection{Interfaccia Utente}
-Le seguenti opzioni del Gestore Personale sono accessibili da ogni tipo utente, perciò anche da quelli coi privilegi di admin.
+Le seguenti opzioni del Gestore Personale sono accessibili da ogni tipo utente, perciò anche da quelli coi privilegi di amministratore.
 
 \paragraph{Accesso}
 È possibile effettuare l'accesso all'interno del sistema tramite il link del container sul quale è in esecuzione, specificato nella configurazione effettuata precedentemente.
@@ -40,16 +40,9 @@ Se un utente iscritto correttamente nel sistema ha registrato precedentemente si
 Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
 Le sezioni a cui si può navigare dal Pannello di controllo sono:
 \begin{itemize}
-	\item Inserimento di un nuovo utente
-	\item Rimozione di un utente
 	\item Modifica dei propri dati
 	\item Modifica delle proprie preferenze
 \end{itemize}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=14cm]{img/pannello_1.png}
-	\caption{Interfaccia modifica preferenze}
-\end{figure}
 
 \paragraph{Modifica preferenze}\label{preferenze}
 La modifica delle preferenze è possibile solamente per utenti già iscritti ed autenticati nel sistema.
@@ -83,8 +76,23 @@ Nel caso questi fossero già associati ad una persona iscritta a \progetto, verr
 \paragraph{Uscita dal sistema}
 Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente in alto a destra di ciascuna pagina.
 
-\subsubsection{Interfaccia Admin}
-All'interno dell'applicazione \progetto, gli utenti coi permesso di admin potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Per un utente admin (o amministratore) non esiste un particolare sistema di accesso, infatti accede come ogni altro utente.
+\subsubsection{Interfaccia amministratore}
+All'interno dell'applicazione \progetto, gli utenti coi permesso di amministratore potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Per un utente amministratore non esiste un particolare sistema di accesso, infatti accede come ogni altro utente.
+
+\paragraph{Pannello di controllo}
+Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
+Le sezioni a cui si può navigare dal Pannello di controllo sono:
+\begin{itemize}
+    \item Inserimento di un nuovo utente
+    \item Rimozione di un utente
+    \item Modifica dei propri dati
+    \item Modifica delle proprie preferenze
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{img/pannello_1.png}
+    \caption{Interfaccia modifica preferenze}
+\end{figure}
 
 \paragraph{Iscrizione a Butterfly}\label{Iscrizione}
 L'iscrizione di un nuovo utente al sistema \progetto\ è permessa solamente all'utente amministratore.
