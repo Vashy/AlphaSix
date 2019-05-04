@@ -51,7 +51,7 @@ class ClientGP():
         mappa_contatto_messaggio = processore_messaggio.prepare_message()
         if (mappa_contatto_messaggio['telegram'] == []
                 and mappa_contatto_messaggio['email'] == []):
-            self.generate_dead_message(message)
+            self.generate_lost_message(message)
         else:
             self.send_all(mappa_contatto_messaggio, message)
 

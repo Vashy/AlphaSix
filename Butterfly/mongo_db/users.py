@@ -128,6 +128,7 @@ class MongoUsers:
         """
         return self._mongo.delete({
             '$or': [
+                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -626,7 +627,7 @@ class MongoUsers:
             {
                 '$and': [
                     {'$or': [
-                        # {'_id': user},
+                        {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -696,6 +697,7 @@ class MongoUsers:
             return self.users({
                 '$and': [
                     {'$or': [
+                        {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -712,6 +714,7 @@ class MongoUsers:
         try:
             return self.users({
                 '$or': [
+                    {'_id': user},
                     {'telegram': user},
                     {'email': user},
                 ]

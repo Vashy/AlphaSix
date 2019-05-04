@@ -135,6 +135,7 @@ class TelegramConsumer(Consumer):
         cls,
         msg: dict,
     ):
+
         if msg['action'] == 'open':
             action_text = 'aperta'
         elif msg['action'] == 'update':

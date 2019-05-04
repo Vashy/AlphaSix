@@ -58,12 +58,12 @@ class GitlabIssueCommentWebhook(Webhook):
         with open(GitlabIssueCommentWebhook._config_path, 'r') as f:
             configs = json.load(f)
 
-        labels = self.project_labels(
-            configs['base_url'],
-            whook['project']['id'],
-            configs['PRIVATE-TOKEN'],  # Token privato di GitLab
+        webhook['labels'] = self.project_labels(
+            configs['base_url'],  # url dell'istanza Gitlab
+            whook['project']['id'],  # id del progetto
+            # Token privato di GitLab di un utente che ha accesso al progetto
+            configs['PRIVATE-TOKEN'],
         )
-        webhook['labels'] = labels
         return webhook
 
     def project_labels(self, base_url: str, project_id: str, token: str):

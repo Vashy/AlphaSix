@@ -100,9 +100,6 @@ def test_process():
 def test_read_message():
     client.process = MagicMock()
 
-    import pdb
-    pdb.set_trace()
-
     client.read_messages()  # Metodo da testare
 
     # Verifichiamo che venga chiamato 2 volte per i 2 messaggi

@@ -26,6 +26,8 @@ Autori:
     Samuele Gardin, samuelegardin@gmail.com
 """
 
+import re
+
 from webhook.webhook import Webhook
 
 
@@ -42,14 +44,23 @@ class RedmineIssueWebhook(Webhook):
         webhook['object_kind'] = 'issue'
         webhook['title'] = whook['payload']['issue']['subject']
         webhook['description'] = whook['payload']['issue']['description']
+
         webhook['project_id'] = whook['payload']['issue']['project']['id']
+        webhook['project_id'] = self.project_url(
+            whook['payload']['url'],
+            whook['payload']['issue']['project']['id'],
+        )
+
         webhook['project_name'] = whook['payload']['issue']['project']['name']
-        webhook['action'] = whook["payload"]["action"]
+        webhook['action'] = self.convert_action(whook["payload"]["action"])
         webhook['author'] = whook['payload']['issue']['author']['firstname']
         # webhook['assignees'] = (
         #     whook['payload']['issue']['assignee']['firstname']
         # )
-        webhook['labels'] = whook['payload']['issue']['tracker']['name']
+        webhook['labels'] = []
+        webhook['labels'].append(
+            whook['payload']['issue']['tracker']['name']
+        )
 
         webhook['update'] = {}
 
@@ -66,3 +77,30 @@ class RedmineIssueWebhook(Webhook):
                 )
 
         return webhook
+
+    @staticmethod
+    def project_url(url, project_id):
+        """Restituisce l'url del progetto partendo da un URL generico
+        relativo all'istanza di Redmine e l'ID numerico del progetto.
+        """
+
+        base_url = re.findall(r'\w+:?//.*?/', url)
+
+        url = ''.join([
+            base_url[0],
+            'projects',
+            f'/{project_id}',
+        ])
+        return url
+
+    @classmethod
+    def convert_action(cls, action: str) -> str:
+        """Usa il presente per `action`.
+        Restituisce una stringa corrispondente al presente dell'azione.
+        """
+        return cls._UNIFORM_ACTION[action]
+
+    _UNIFORM_ACTION = {
+        'opened': 'open',
+        'updated': 'update',
+    }
