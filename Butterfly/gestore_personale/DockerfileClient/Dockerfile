@@ -47,7 +47,10 @@ COPY topics.json ./Butterfly/
 WORKDIR /Butterfly
 
 # Installing dependencies
-RUN pip3 install --upgrade pip ; pip3 install -r gestore_personale/requirements.txt
+# TODO: NON VEDE REQUIREMENTS.TXT
+# RUN pip3 install --upgrade pip ; pip3 install -r gestore_personale/requirements.txt
+RUN pip3 install --upgrade pip ; pip3 install kafka-python ; pip3 install argparse ; pip3 install Flask ; pip3 install flask_restful ; pip3 install requests ; pip3 install bson ; pip3 install pymongo ;
+
 
 # Run after the dependencies have been installed
 CMD python3 -m gestore_personale.client
