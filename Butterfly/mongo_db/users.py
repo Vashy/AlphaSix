@@ -250,8 +250,6 @@ class MongoUsers:
             raise AssertionError('Operazione fallita. Impostare prima '
                                  'una Email')
 
-        # self._print_user(user)
-        # print(new_telegram)
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
                 {'_id': user},
@@ -395,7 +393,6 @@ class MongoUsers:
                 }
             }
         )
-
 
     def add_keywords(self, user: str, project: str, *new_keywords):
         """Aggiunge le keywords passate come argomento all'user
@@ -627,7 +624,7 @@ class MongoUsers:
             {
                 '$and': [
                     {'$or': [
-                        {'_id': user},
+                        # {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -714,7 +711,6 @@ class MongoUsers:
         try:
             return self.users({
                 '$or': [
-                    {'_id': user},
                     {'telegram': user},
                     {'email': user},
                 ]
@@ -839,7 +835,6 @@ class MongoUsers:
         if 'projects' in user:
             return user['projects']
         return []
-
 
     def add_giorno_irreperibilita(
         self,
