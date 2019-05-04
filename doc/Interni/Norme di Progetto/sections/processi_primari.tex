@@ -415,18 +415,18 @@
         Un'architettura non si inventa ma si sceglie, e tra le più utilizzate troviamo:
         \begin{itemize}
             \item \textbf{Layer}: architettura che rispecchia la struttura di un'azienda e che vede il software sviluppato in più livelli disposti uno sopra l'altro. Un livello è dipendente esclusivamente da quello sottostante e comunica con esso. Generalmente i livelli sono Presentation layer, Business layer, Persisten layer e Database layer.
-            \item \textbf{Event-driven}: architettura utile per la creazione di software che lavorano con messaggi asincroni elaborati in modo indipendente. Quest'architettura può essere sviluppata secondo la Mediator topology dove i messaggi vengono inseriti in una cosa e smistati attraverso un apposito ``mediator'', oppure secondo la Broker topology dove i messaggi viaggiano attraverso un \gloss{broker} entrando ed uscendo dai vari canali.
+            \item \textbf{Event-driven}: architettura utile per la creazione di software che lavorano con messaggi asincroni elaborati in modo indipendente. Quest'architettura può essere sviluppata secondo la Mediator topology dove i messaggi vengono inseriti in un ``contenitore'' e smistati attraverso un apposito ``mediator'', oppure secondo la Broker topology dove i messaggi viaggiano attraverso un \gloss{broker} entrando ed uscendo dai vari canali.
             \item \textbf{Microservizi}: architettura usata per quei software destinati a possedere un incremento costante e controllato. Il software viene diviso in moduli indipendenti tra loro che comunicano verso l'esterno attraverso \gloss{API REST}. I moduli al loro interno sono costruiti attraverso un'architettura a Layer.
         \end{itemize}
 
-        \subparagraph{Design Pattern}
+        \subparagraph{Design Pattern}\label{StrumentiDP}
         I \gloss{design pattern} aiutano a creare le singole parti di un software in base ai compiti che queste hanno. Dato che un design pattern non è altro che una buona pratica di sviluppo, non è scontato che la loro presenza implichi una buona struttura del software, perciò è consigliato non abusarne. \par
-        I design pattern si dividono in tre tipologie approfonditili in \S\ref{rifinfo} ai punti 25, 26, 27 e 28:
+        I design pattern si dividono in tre tipologie approfonditi in \S\ref{rifinfo} ai punti 25, 26, 27 e 28:
         \begin{itemize}
             \item \textbf{Strutturali}: aiutano ad organizzare la struttura delle classi favorendo la loro comunicazione attraverso interfacce. Questi sono l'Adapter, il Decorator il Façade e il Proxy.
             \item \textbf{Creazionali}: aiutano a dividere gli oggetti dalla loro costruzione e implementazione favorendo l'\gloss{information hiding}. Questi sono il Singleton, il Builder, e l'Abstract Factory.
             \item \textbf{Comportamentali}: applicabili nel momento in cui un componente deve eseguire una specifica funzione per cui il design pattern è stato costruito. Questi sono il Command, l'Iterator, l'Observer, lo Strategy e il Template Method.
-            \item \textbf{Architturali}: utili per strutturare il software con una visione ad un livello più alto degli altri design pattern, ma non alto come la visione per stabilire l'architettura software. Questi sono il Dpendency Injection e i Model-view pattern.
+            \item \textbf{Architetturali}: utili per strutturare il software con una visione ad un livello più alto degli altri design pattern, ma non alto come la visione per stabilire l'architettura software. Questi sono il Dependency Injection e i Model-View pattern.
         \end{itemize}
 
 		%\subparagraph{Semantica}
@@ -459,16 +459,16 @@
 		%manuale utente da presentare in RQ, quindi da fare più avanti
 		%\subsubsection{Produzione del manuale utente}
 
-        \subparagraph{Qualità dell'architettura}
+        \subparagraph{Qualità dell'architettura}\label{QualitaArchitettura}
         L'architettura è una delle scelte fondamentali da fare durante il processo della progettazione, perché essa stabilirà poi la natura dell'intero software.
-        La scielta di un'architettura ha lo scopo di:
+        La scelta di un'architettura ha lo scopo di:
         \begin{itemize}
             \item ridurre l'accoppiamento
             \item ridurre la duplicazione di codice
             \item semplificare lo sviluppo
             \item semplificare il mantenimento del software
         \end{itemize}
-        Bisogna dunque capire quale architettura si addice di più ai propri scopi in base alle qualità e i difetti di ognuna. \par
+        Bisogna dunque capire quale architettura si addice di più ai propri scopi in base alle qualità e ai difetti di ognuna. \par
         Gli aggettivi che definiscono un'architettura sono:
         \begin{itemize}
             \item \textbf{Agilità}: con che facilità e velocità riesco a modificare il software.
@@ -494,7 +494,7 @@
                 \begin{itemize}
                     \item \textbf{Agilità}: buona, dato che le varie componenti sono tutte isolate.
                     \item \textbf{Rilasciabile}: buona, dato che si può installare un componente alla volta.
-                    \item \textbf{Verificabile}: poca, dato i molti tipi di messaggi da generare per eseguire i test.
+                    \item \textbf{Verificabile}: poco, dato i molti tipi di messaggi da generare per eseguire i test.
                     \item \textbf{Performance}: buona, dato che i messaggi sono asincroni.
                     \item \textbf{Scalabilità}: buona, dato che si posseggono canali separati che possono aggiungere facilmente.
                     \item \textbf{Sviluppabile}: poca, dato che coi messaggi asincroni bisogna lavorare con \gloss{interfacce} che non possono cambiare nel tempo.
@@ -505,13 +505,13 @@
                     \item \textbf{Rilasciabile}: buono, perché i microservizi possono essere installati singolarmente.
                     \item \textbf{Verificabile}: buono, perché i microservizi lavorano in modo autonomo.
                     \item \textbf{Performance}: poca, dato che il numero di chiamate delle API REST può essere alto.
-                    \item \textbf{Scalabilità}: buona, dato che i microservisi possono essere aggiunti velocemente.
+                    \item \textbf{Scalabilità}: buona, dato che i microservizi possono essere aggiunti velocemente.
                     \item \textbf{Sviluppabile}: buona, dato che i microservizi vengono sviluppati da gruppi di persone poco numerosi e dunque più facilmente organizzati.
                 \end{itemize}
         \end{itemize}
 
         \subparagraph{Qualità dei design pattern} \label{PP:progettazione:designPattern}
-        L'uso dei design pattern non deve essere abusato per evitare complessità inutile nel software. Per questo la loro applicazione deve seguite tali step per comprendere se applicarne uno o meno:
+        L'uso dei design pattern non deve essere abusato per evitare complessità inutile nel software. Per questo la loro applicazione deve seguire tali step per comprendere se applicarne uno o meno:
         \begin{enumerate}
             \item Comprendere lo scopo del componente
             \item Analizzarne la complessità strutturale
@@ -523,7 +523,7 @@
         
         \paragraph{Applicazione} \label{PP:progettazione:applicazione}
         Per effettuare una buona progettazione è utile seguire una procedura prestabilita, in modo tale da non rendere il risultato confuso o non tracciabile. \'E bene ricordare che all'interno della progettazione non si sviluppa codice, tale passaggio avviene durante il processo di codifica che segue il quello di progettazione. \par
-        La progettazione ha il compito di far sintesi dei requisiti, provenienti dal processo di analisi, attraverso il software applicando prima una strategia top-down e successivamente botton-up. I passi da seguire durante la fase di top-down sono i seguenti:
+        La progettazione ha il compito di far sintesi dei requisiti, provenienti dal processo di analisi, attraverso il software applicando prima una strategia top-down e successivamente bottom-up. I passi da seguire durante la fase di top-down sono i seguenti:
         \begin{enumerate}
             \item Analizzare nell'insieme i requisiti del prodotto finale in termini di qualità architetturali (performance, scalabilità, ecc\dots)
             \item Individuare l'architettura che più si addice al software da realizzare
@@ -538,7 +538,7 @@
             \item Analizzare se un design patter può semplificare la struttura o il comportamento del componente precedentemente ideato ed applicarlo
             \item Riportare la struttura del componente in UML2.0
         \end{enumerate}
-        Dopo aver preparato i diagrammi dei vari componenti, osservando l'architettura scelta, vedere come questi possono essere uniti per garantire coesione, flessibilità, manutenibiltà, modularità e affidabilità.
+        Dopo aver preparato i diagrammi dei vari componenti, osservando l'architettura scelta, studiare come questi possono essere uniti per garantire coesione, flessibilità, manutenibilità, modularità e affidabilità.
 
         \newpage
 
