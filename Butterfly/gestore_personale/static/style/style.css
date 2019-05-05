@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     font-family: Verdana;
+    box-sizing: border-box;
 }
 
 body {
@@ -22,19 +23,19 @@ body {
 h1{
   text-align:center;
   font-weight:900;
-  margin-bottom: 1.5rem;
-  margin-top: 1rem;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 
 /* Login */
 
 #login{
-  width: 600px;
-  height: 260px;
+  max-width: 600px;
+  max-height: 260px;
 }
 
-#login #login-btn,
+#login input[type="submit"],
 #login #userid {
   width: 70%;
   margin-top: 10px;
@@ -56,7 +57,7 @@ h1{
 
 #adduser-div{
   width: 800px;
-  height: 500px; 
+  height: 500px;
 }
 
 #adduser-div #nome,
@@ -80,14 +81,14 @@ h1{
 
 #removeuser-div{
   width: 800px;
-  height: 270px; 
+  height: 270px;
 }
 
 /* Modifica */
 
 #modifyuser-div{
   width: 800px;
-  height: 500px; 
+  height: 500px;
 }
 
 #modifyuser-div #nome,
@@ -121,7 +122,7 @@ input{
 }
 
 input[type="button"]:hover,  input[type="submit"]:hover {
-  cursor: pointer; 
+  cursor: pointer;
   color: #2c2e31;
   background-color: #80bdff;
   background-image: none;
@@ -135,21 +136,13 @@ input[type="button"], input[type="submit"]{
   border-color: #007bff;
 }
 
-#adduser,
-#back {
-  margin: 1.5rem;
-}
-
 #removeuser {
   margin-top: 2rem;
 }
 
-#adduserpanel,
-#removeuserpanel,
-#modifyuserpanel,
-#preference,
-#logout {
+.buttonpanel {
   margin-bottom: 1.5rem;
+  min-width:175px;
 }
 
 select {

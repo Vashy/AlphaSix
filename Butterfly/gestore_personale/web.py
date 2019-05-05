@@ -124,7 +124,7 @@ per eseguire l\'accesso.</p>')
                     self._model.update_user_preference(email, 'email')
                 elif telegram:
                     self._model.update_user_preference(telegram, 'telegram')
-        if request.values.get('adduser'):
+        if request.values.get('postuser'):
             page = page.replace(
                     '*adduser*',
                     '<p>Si prega di inserire almeno email o telegram \
@@ -206,7 +206,7 @@ per inserire l\'utente.</p>')
                             modify['telegram']
                         )
                         session['telegram'] = modify['telegram']
-            if request.values.get('modifyuser'):
+            if request.values.get('putuser'):
                 page = page.replace(
                         '*modifyuser*',
                         '<p>Si prega di inserire almeno email o telegram \
@@ -338,17 +338,18 @@ per inserire l\'utente.</p>')
             if request.method == 'GET':
                 page = self.panel()
             elif request.method == 'POST':
-                if 'showuser' in request.values:
-                    page = self.show_user()
-                elif 'logout' in request.values:
+                if 'postlogout' in request.values:
                     self.logout()
                     page = self.panel()
+                elif 'panel' in request.values:
+                    page = self.show_user()
                 else:
                     page = self.add_user()
             elif request.method == 'PUT':
                 page = self.modify_user()
             elif request.method == 'DELETE':
                 page = self.remove_user()
+            page = self.removehtml(page)
             try:
                 return render_template_string(page)
             except TypeError:
@@ -393,23 +394,20 @@ per inserire l\'utente.</p>')
                 row = row[:-1]  # elimino l'ultima virgola
             row += '</textarea></td></tr>'
             form += row
-        form += '</table><input id="modifytopics"\
-name="modifytopics" type="button" \
+        form += '</table><input id="putpreferencetopics" type="button" \
 value="Modifica preferenze di progetti e topic"></form>'
         form += message
         return form
 
     def load_preference_project(self, message=''):
         projects = self._model.projects()
-        form = '<form id="projects"><select name="project" id="projects-select">'
+        form = '<form id="project"><select name="project" id="projects-select">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
 ' + project['name'] + '</option>'
-        form += '</select> <input id="addproject"\
-name="addproject" type="button" \
+        form += '</select> <input id="putpreferenceprojectadd" type="button" \
 value="Aggiungi il progetto">\
-<input id="removeproject"\
-name="removeproject" type="button" \
+<input id="putpreferenceprojectremove" type="button" \
 value="Rimuovi il progetto"></form>'
         form += message
         return form
@@ -436,13 +434,14 @@ name="indisponibilita[]" id="day_' + str(date.day) + '" value="' + str(date) + '
                 form += ' checked="checked"'
             form += '/><label class="day_label" for="day_' + str(date.day) + '\
 ">' + str(day) + '</label>'
-        form += '<br/><input type="button" id="previousmonth"\
-value="Mese precedente"/>\
-<input type="button" id="nextmonth" value="Mese successivo"/>\
+        form += '<br/><input type="button"\
+ id="putpreferenceavailabilityprevious" value="Mese precedente"/>\
+<input type="button"\
+ id="putpreferenceavailabilitynext" value="Mese successivo"/>\
 <input type="hidden" name="mese" value="' + date.strftime("%m") + '"/>\
 <input type="hidden" name="anno" value="' + date.strftime("%Y") + '"/>\
-<br/><input id="irreperibilita" name="irreperibilita" type="button"\
-value="Modifica irreperibilità"/></fieldset></form>'
+<br/><input id="putpreferenceavailability" type="button"\
+ value="Modifica irreperibilità"/></fieldset></form>'
         form += message
         return form
 
@@ -459,7 +458,7 @@ type="radio" value="email"'
 <input name="platform" id="telegram" type="radio" value="telegram"'
         if(platform == 'telegram'):
             form += ' checked = "checked"'
-        form += '/><input id="piattaforma" name="piattaforma"\
+        form += '/><input id="putpreferenceplatform" \
 type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         form += message
         return form
@@ -476,7 +475,7 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
             elif url != old:
                 firstTopic = True
                 old = url
-            if url != 'modifytopics':
+            if url != 'putpreferencetopics':
                 if 'priority' in key:
                     self._model.set_user_priority(
                         session['userid'], url, value
@@ -604,7 +603,7 @@ aggiornata correttamente.</p>')
     def modify_preference(self):
         fileHtml = html / 'preference.html'
         page = fileHtml.read_text()
-        if request.values.get('preference'):
+        if request.values.get('panel'):
             try:
                 page = page.replace('*topics*', self.load_preference_topic())
                 page = page.replace(
@@ -622,28 +621,36 @@ aggiornata correttamente.</p>')
             except AssertionError:
                 return self.panel(error='Non sei più iscritto alla\
  piattaforma.')
-        elif request.values.get('modifytopics'):
+        elif request.values.get('putpreferencetopics'):
             return self.modifytopics()
-        elif request.values.get('addproject'):
+        elif request.values.get('putpreferenceprojectadd'):
             return self.addproject()
-        elif request.values.get('removeproject'):
+        elif request.values.get('putpreferenceprojectremove'):
             return self.removeproject()
-        elif request.values.get('irreperibilita'):
+        elif request.values.get('putpreferenceavailability'):
             return self.indisponibilita()
-        elif request.values.get('previousmonth'):
+        elif request.values.get('putpreferenceavailabilityprevious'):
             return self.previous_indisponibilita()
-        elif request.values.get('nextmonth'):
+        elif request.values.get('putpreferenceavailabilitynext'):
             return self.next_indisponibilita()
-        elif request.values.get('piattaforma'):
+        elif request.values.get('putpreferenceplatform'):
             return self.piattaforma()
         return page
 
     def web_preference(self):
         if self._check_session():
             page = self.modify_preference()
+            page = self.removehtml(page)
             try:
                 return render_template_string(page)
             except TypeError:
                 return page
         else:
             return self.access()
+
+    def removehtml(self, page: str):
+        if request.values.get("panel"):
+            page = page.replace("<!DOCTYPE html>", "")
+            page = page.replace("<html id=\"html\">", "")
+            page = page.replace("</html>", "")
+        return page
