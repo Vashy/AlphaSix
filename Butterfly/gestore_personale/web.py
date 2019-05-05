@@ -356,7 +356,7 @@ per inserire l\'utente.</p>')
         else:
             return self.access()
 
-    def load_preference_topic(self):
+    def load_preference_topic(self, message=''):
         user_projects = self._model.get_user_projects(session['userid'])
         form = '<form id="topics">\
         <table id="topics-table"><tr><th>Url</th><th>Priorità</th>\
@@ -396,9 +396,10 @@ per inserire l\'utente.</p>')
         form += '</table><input id="modifytopics"\
 name="modifytopics" type="button" \
 value="Modifica preferenze di progetti e topic"></form>'
+        form += message
         return form
 
-    def load_preference_project(self):
+    def load_preference_project(self, message=''):
         projects = self._model.projects()
         form = '<form id="projects"><select name="project">'
         for project in projects:
@@ -410,10 +411,12 @@ value="Aggiungi il progetto">\
 <input id="removeproject"\
 name="removeproject" type="button" \
 value="Rimuovi il progetto"></form>'
+        form += message
         return form
 
     def load_preference_availability(
         self,
+        message='',
         year=datetime.datetime.now().year,
         month=datetime.datetime.now().month
     ):
@@ -440,9 +443,10 @@ value="Mese precedente"/>\
 <input type="hidden" name="anno" value="' + date.strftime("%Y") + '">\
 <br/><input id="irreperibilita" name="irreperibilita" type="button"\
 value="Modifica irreperibilità"/></fieldset></form>'
+        form += message
         return form
 
-    def load_preference_platform(self, error=''):
+    def load_preference_platform(self, message=''):
         platform = self._model.read_user(session['userid']).get('preference')
         form = '<form id="platform"><fieldset>\
 <legend>Piattaforma preferita</legend>\
@@ -457,7 +461,7 @@ type="radio" value="email"'
             form += ' checked = "checked"'
         form += '/><br/><input id="piattaforma" name="piattaforma"\
 type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
-        form += error
+        form += message
         return form
 
     def modifytopics(self):
@@ -501,17 +505,26 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                         url,
                         *keywords
                     )
-        return self.load_preference_topic()
+        return self.load_preference_topic('<p>Preferenze dei topic aggiornate.\
+        </p>')
 
     def addproject(self):
+        message = '<p>Progetto aggiunto correttamente.</p>'
         project = request.values['project']
-        self._model.add_user_project(session['userid'], project)
-        return self.load_preference_topic()
+        try:
+            self._model.add_user_project(session['userid'], project)
+        except AssertionError:
+            message = '<p>Il progetto è già presente in lista.</p>'
+        return self.load_preference_topic(message)
 
     def removeproject(self):
+        message = '<p>Progetto rimosso correttamente.</p>'
         project = request.values['project']
-        self._model.remove_user_project(session['userid'], project)
-        return self.load_preference_topic()
+        try:
+            self._model.remove_user_project(session['userid'], project)
+        except AssertionError:
+            message = '<p>Il progetto non è presente in lista.</p>'
+        return self.load_preference_topic(message)
 
     def indisponibilita(self):
         giorni = request.values.getlist('indisponibilita[]')
@@ -545,7 +558,8 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                     int(month),
                     int(giorno.strftime('%d'))
                 )
-        return self.load_preference_availability()
+        return self.load_preference_availability('<p>Giorni di indisponibilità\
+ aggiornati.</p>')
 
     def previous_indisponibilita(self):
         mese = int(request.values['mese'])
@@ -556,7 +570,8 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         else:
             mese = mese - 1
         self.indisponibilita()
-        return self.load_preference_availability(anno, mese)
+        return self.load_preference_availability('<p>Giorni di indisponibilità\
+ aggiornati, mese cambiato.</p>', anno, mese)
 
     def next_indisponibilita(self):
         mese = int(request.values['mese'])
@@ -567,22 +582,24 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         else:
             mese = mese + 1
         self.indisponibilita()
-        return self.load_preference_availability(anno, mese)
+        return self.load_preference_availability('<p>Giorni di indisponibilità\
+ aggiornati, mese cambiato.</p>', anno, mese)
 
     def piattaforma(self):
         platform = request.values['platform']
         if platform == "telegram":
             telegram = self._model.get_user_telegram_web(session['userid'])
             if not telegram:
-                return self.load_preference_platform(error='<p>Non hai\
+                return self.load_preference_platform('<p>Non hai\
  memorizzato la piattaforma telegram nel sistema.</p>')
         if platform == "email":
             email = self._model.get_user_email_web(session['userid'])
             if not email:
-                return self.load_preference_platform(error='<p>Non hai\
+                return self.load_preference_platform('<p>Non hai\
  memorizzato la piattaforma email nel sistema.</p>')
         self._model.update_user_preference(session['userid'], platform)
-        return self.load_preference_platform()
+        return self.load_preference_platform('<p>Piattaforma preferita \
+aggiornata correttamente.</p>')
 
     def modify_preference(self):
         fileHtml = html / 'preference.html'

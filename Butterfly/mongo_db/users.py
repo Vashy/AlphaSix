@@ -378,6 +378,9 @@ class MongoUsers:
     def remove_project(self, user: str, project: str):
         """Rimuove un progetto all'utente `user`"""
         assert self.exists(user), f'User {user} inesistente'
+        assert self._user_has_project(user, project), \
+            f'{user} non ha già il progetto {project}'
+
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email o _id
                 {'_id': user},

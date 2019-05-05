@@ -190,6 +190,14 @@
    ],
    "projects": [
       {
+        "url": "http://localhost/vashy/a",
+        "name": "Vashy",
+        "topics": [
+            "bug",
+            "aaaa"
+        ]
+      },
+      {
          "url": "http://localhost/redmine/project-1",
          "name": "Project-1",
          "app": "redmine",
