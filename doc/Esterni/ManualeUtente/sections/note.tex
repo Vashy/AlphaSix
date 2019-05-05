@@ -6,6 +6,8 @@ Considerando che un messaggio appartiene ad un progetto e possiede un  Topic, un
     \item L'utente è disponibile il giorno di invio del messaggio
 \end{itemize}
 
+Nel momento in cui viene inviata la segnalazione di un progetto o di una label non ancora registrato nel sistema, tale segnalazione non viene inviata a nessuno, dato che non c'è ancora la possibilità di iscriversi al nuovo Topic o al nuovo progetto. Bisogna dunque tenere presente che la prima segnalazione di un nuovo progetto o label di una Issue non verrà inviata ad alcun utente. Tali messaggi vengono però conservati all'interno di una specifica coda in Kafka chiamata ``lostmessages''. Questi non possono essere direttamente letti dall'interfaccia del Gestore Personale, ma solo attraverso un Consumer apposito che l'attuale versione di \progetto\ non possiede.
+
 \subsection{Caso di persona non disponibile}
 Nel caso in cui una persona a cui dovrebbe arrivare una notifica non sia disponibile (e quindi lo abbia precedentemente notificato nel calendario come descritto in \S\ref{preferenze}), la procedura del possibile inoltro del messaggio avviene nel seguente modo:
 \begin{itemize}
