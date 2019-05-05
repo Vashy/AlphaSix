@@ -58,7 +58,7 @@ class Web:
         if request.values.get('access'):
             page = page.replace(
                     '*access*',
-                    '<p>Si prega di inserire un identificativo\
+                    '<p>Si prega di inserire un identificativo \
 per eseguire l\'accesso.</p>')
         page = page.replace('*access*', '')
         page = page.replace('*userid*', '')
@@ -367,7 +367,7 @@ per inserire l\'utente.</p>')
             )
             project_data['url'] = project_data['url'].lstrip().rstrip()
             row = '<tr>'
-            row += '<th>' + project_data['url'] + '</th>'
+            row += '<td><a href="' + project_data['url'] + '" target="_blank">' + project_data['url'] + '</a></td>'
             row += '<td><select id="priority" name="\
 ' + project_data['url'] + '-priority">'
             for priority in range(1, 4):
@@ -401,7 +401,7 @@ value="Modifica preferenze di progetti e topic"></form>'
 
     def load_preference_project(self, message=''):
         projects = self._model.projects()
-        form = '<form id="projects"><select name="project">'
+        form = '<form id="projects"><select name="project" id="projects-select">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
 ' + project['name'] + '</option>'
@@ -425,22 +425,22 @@ value="Rimuovi il progetto"></form>'
             session['userid']
         ).get('irreperibilita')
         form = '<form id="availability">\
-<fieldset><legend>Giorni di indisponibilità</legend>\
+<fieldset id="availability-fieldset"><legend>Giorni di indisponibilità</legend>\
 <div id="calendario"></div><p>' + date.strftime("%B") + ' \
 ' + date.strftime('%Y') + '</p>'
         for day in range(1, calendar.monthrange(year, month)[1]+1):
             date = datetime.datetime(year, month, day)
-            form += '<label for="' + str(date) + '\
-">' + str(day) + '</label><input type="checkbox"\
-name="indisponibilita[]" value="' + str(date) + '"'
+            form += '<input class="day_checkbox" type="checkbox"\
+name="indisponibilita[]" id="day_' + str(date.day) + '" value="' + str(date) + '"'
             if irreperibilita and date in irreperibilita:
                 form += ' checked="checked"'
-            form += '>'
+            form += '/><label class="day_label" for="day_' + str(date.day) + '\
+">' + str(day) + '</label>'
         form += '<br/><input type="button" id="previousmonth"\
 value="Mese precedente"/>\
 <input type="button" id="nextmonth" value="Mese successivo"/>\
-<input type="hidden" name="mese" value="' + date.strftime("%m") + '">\
-<input type="hidden" name="anno" value="' + date.strftime("%Y") + '">\
+<input type="hidden" name="mese" value="' + date.strftime("%m") + '"/>\
+<input type="hidden" name="anno" value="' + date.strftime("%Y") + '"/>\
 <br/><input id="irreperibilita" name="irreperibilita" type="button"\
 value="Modifica irreperibilità"/></fieldset></form>'
         form += message
@@ -448,18 +448,18 @@ value="Modifica irreperibilità"/></fieldset></form>'
 
     def load_preference_platform(self, message=''):
         platform = self._model.read_user(session['userid']).get('preference')
-        form = '<form id="platform"><fieldset>\
+        form = '<form id="platform"><fieldset id="platform-fieldset">\
 <legend>Piattaforma preferita</legend>\
 <label for="email">Email</label>\
 <input name="platform" id="email"\
 type="radio" value="email"'
         if(platform == 'email'):
             form += ' checked = "checked"'
-        form += '/><br/><label for="telegram">Telegram</label>\
+        form += '/><label for="telegram">Telegram</label>\
 <input name="platform" id="telegram" type="radio" value="telegram"'
         if(platform == 'telegram'):
             form += ' checked = "checked"'
-        form += '/><br/><input id="piattaforma" name="piattaforma"\
+        form += '/><input id="piattaforma" name="piattaforma"\
 type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         form += message
         return form

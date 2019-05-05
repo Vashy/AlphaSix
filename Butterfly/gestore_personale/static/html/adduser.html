@@ -33,17 +33,19 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style/style.css') }}">
     </head>
     <body lang="it">
-        <div>
-            <h1>Butterfly</h1>
+        <div class="centered" id="adduser-div">
+            <h1>Inserimento nuovo utente</h1>
             <form id="data">
-                <label for="nome">Nome:</label>
+                <label for="nome" id="nome-label">Nome:</label>
                 <input id="nome" name="nome" type="text" placeholder="Inserire nome" value = "*nome*"/>
-                <label for="cognome">Cognome:</label>
+                <br/>
+                <label for="cognome" id="cognome-label">Cognome:</label>
                 <input id="cognome" name="cognome" type="text" placeholder="Inserire cognome" value="*cognome*">
                 <br/>
-                <label for="email">Email:</label>
+                <label for="email" id="email-label">Email:</label>
                 <input id="email" name="email" type="email" placeholder="Inserire email" value="*email*"/>
-                <label for="telegram">Telegram:</label>
+                <br/>
+                <label for="telegram" id="telegram-label">Telegram:</label>
                 <input id="telegram" name="telegram" type="text" placeholder="Inserire Telegram ID" value="*telegram*"/>
                 <br/>
                 <input id="adduser" name="adduser" type="button" value="Inserisci nuovo utente"/>

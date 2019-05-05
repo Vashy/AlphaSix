@@ -32,13 +32,13 @@ Creatore: Matteo Marchiori, matteomarchiori@gmail.com
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style/style.css') }}">
     </head>
     <body lang="it">
-        <div>
-            <h1>Butterfly</h1>
+        <div id="login" class="centered">
+            <h1>Accesso Butterfly</h1>
             <form action="/" method="POST">
-                <label for="userid">Email o ID Telegram:</label>
-                <input id="userid" class="buttonpanel" name="userid" value="*userid*" type="text" placeholder="Inserire email o telegram"/>
+                <!-- <label for="userid">Email o ID Telegram:</label> -->
+                <input id="userid" name="userid" value="*userid*" type="text" placeholder="Inserire Email o ID Telegram"/>
                 <br/>
-                <input class="submit" name="access" type="submit" value="Accedi"/>
+                <input id="login-btn" class="submit" name="access" type="submit" value="Accedi"/>
             </form>
             *access*
         </div>
