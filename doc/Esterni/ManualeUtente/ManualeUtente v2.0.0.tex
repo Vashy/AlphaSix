@@ -1,14 +1,15 @@
 % Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
-\newcommand{\documento}{\MS}
-\newcommand{\nomedocumentofisico}{\MSv.pdf}
-\newcommand{\redazione}{\TG \\ & \CV}
+
+\newcommand{\documento}{\MU}
+\newcommand{\nomedocumentofisico}{\MUv.pdf}
+\newcommand{\redazione}{\TG \\ & \CV \\ & \LC}
 \newcommand{\verifica}{\SG \\ & \MM}
-\newcommand{\approvazione}{\NC}
-\newcommand{\versione}{1.0.0}
+\newcommand{\approvazione}{\TG}
+\newcommand{\versione}{2.0.0}
 \newcommand{\uso}{Esterno}
 \newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
-\newcommand{\datacreazione}{23 marzo 2019}
-\newcommand{\datamodifica}{09 aprile 2019}
+\newcommand{\datacreazione}{24 marzo 2019}
+\newcommand{\datamodifica}{14 maggio 2019}
 \newcommand{\stato}{Approvato}
 
 \def\TABELLE{true}	% abilita - disabilita l'indice delle tabelle
@@ -21,7 +22,6 @@
 \input{commands} % Comandi del documento
 
 \input{sections/diario} % Entries diario
-
 
 \begin{document}
 	% \sloppy
@@ -36,10 +36,10 @@
 
     % Sezioni documento
     \include{sections/introduzione}
-    \include{sections/tecnologie}
-    \include{sections/achitettura}
-    \include{sections/estensibilita}
-    \include{sections/test}
+    \include{sections/configurazione}
+    \include{sections/utilizzo}
+    \include{sections/note}
+    \include{sections/segnalazione}
 
     \appendix
     \include{sections/glossario}
