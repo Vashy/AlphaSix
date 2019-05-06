@@ -179,7 +179,7 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 \subsection{Configurazione servizi \progetto}\label{var}
 
 	\subsubsection{Producer}
-	Per i Producer è possibile impostare nel proprio file di configurazione le varie configurazioni. I campi sono:
+	Per i Producer è possibile impostare nell'apposito file di configurazione le variabili relative.
 
 	Per il Producer di Redmine i campi sono:
 	\begin{itemize}
@@ -202,7 +202,7 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 	\end{itemize}
 
 	\subsubsection{Consumer}\label{var_consumer}
-	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker.
+	Per i Consumer, come per i Producer, è possibile impostare le variabili tramite un file di configurazione.
 	Queste sono, per il Consumer di Telegram:
 	\begin{itemize}
 		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
@@ -221,13 +221,13 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 		% \item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
-	È inoltre possibile impostare la password dell'indirizzo email tramite variabile d'ambiente (il file di configurazione avrà priorità sulla variabile d'ambiente):
+	È inoltre possibile impostare la password dell'indirizzo email tramite la variabile:
 	\begin{itemize}
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
 	\subsubsection{Gestore Personale}
-	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. \par
+	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di file di configurazione. \par
 
 	Per la componente Producer del Gestore Personale queste sono:
 	\begin{itemize}
