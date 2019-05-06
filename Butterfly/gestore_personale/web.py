@@ -317,7 +317,7 @@ per inserire l\'utente.</p>')
             )
             project_data['url'] = project_data['url'].lstrip().rstrip()
             row = '<tr>'
-            row += '<th>' + project_data['url'] + '</th>'
+            row += '<td><a href="' + project_data['url'] + '" target="_blank">' + project_data['url'] + '</a></td>'
             row += '<td>' + str(user_project['priority']) + '</td><td>'
             for topic in project_data['topics']:
                 if topic in user_project['topics']:

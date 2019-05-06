@@ -7,13 +7,13 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style/style.css') }}">
     </head>
     <body lang="it">
-        <div>
-            <h1>Dettagli utenti | Butterfly</h1>
+        <div class="centered" id="showuser-div">
+            <h1>Visualizzazione dettagli utente</h1>
             <form id="data">
-                <label for="userid">Email o ID Telegram:</label>
+                <label for="userid" id="userid-label">Email o ID Telegram:</label>
                 *userids*
                 <br/>
-                <input id="postuserpanelshow" type="button" value="Mostra dettagli utente"/><br/>
+                <input id="postuserpanelshow" type="button" value="Mostra dettagli utente"/>
                 <input id="back" name="back" type="button" value="Torna al pannello"/>
                 *showuser*
             </form>

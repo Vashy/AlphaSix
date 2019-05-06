@@ -49,6 +49,12 @@ h1{
   height: 500px;
 }
 
+#admin-panel{
+  width: 500px;
+  height: 600px;
+}
+
+#admin-panel input[type="button"],
 #panel input[type="button"]{
   width: 100%;
 }
@@ -84,6 +90,34 @@ h1{
   height: 270px;
 }
 
+#removeuser-div #userid{
+  margin: 10px;
+  width: 60%;
+}
+
+#removeuser-div #userid-label{
+  width: 800px;
+  height: 270px;
+}
+
+/* Visualizza utenti */
+
+#showuser-div{
+  width: 800px;
+  height: 500px;
+}
+
+#showuser-div #userid{
+  margin: 10px;
+  width: 60%;
+}
+
+#showuser-div #userid-label{
+  width: 800px;
+  height: 270px;
+}
+
+
 /* Modifica */
 
 #modifyuser-div{
@@ -103,10 +137,7 @@ h1{
 #modifyuser-div #nome-label,
 #modifyuser-div #cognome-label,
 #modifyuser-div #email-label,
-#modifyuser-div #telegram-label{
-  width: 10%;
-  display: inline-block;
-}
+c
 
 /* Generali */
 
@@ -287,13 +318,13 @@ background: #209bec;
 color: white;
 }
 
-#availability #nextmonth,
-#availability #previousmonth,
-#availability #irreperibilita{
+#availability #putpreferenceavailabilitynext,
+#availability #putpreferenceavailabilityprevious,
+#availability #putpreferenceavailability{
   margin: 10px;
 }
 
-#availability #irreperibilita{
+#availability #putpreferenceavailability{
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -305,8 +336,8 @@ color: white;
 }
 
 #projects-select,
-#addproject,
-#removeproject{
+#putpreferenceprojectadd,
+#putpreferenceprojectremove{
   width:300px;
   margin: 0px 10px 0px 10px;
 }
@@ -320,4 +351,8 @@ color: white;
   margin-right: 50px;
   margin-top: -1px;
   vertical-align: middle;
+}
+
+#back{
+  margin-bottom: 30px;
 }
