@@ -9,6 +9,7 @@ body {
     margin: auto;
     height: 100vh;
     text-align:center;
+    max-width:1200px;
 }
 
 .centered{
@@ -33,6 +34,7 @@ h1{
 #login{
   max-width: 600px;
   max-height: 260px;
+  width:100%;
 }
 
 #login input[type="submit"],
@@ -50,8 +52,7 @@ h1{
 }
 
 #admin-panel{
-  width: 500px;
-  height: 600px;
+  max-width: 371px;
 }
 
 #admin-panel input[type="button"],
@@ -100,6 +101,21 @@ h1{
   height: 270px;
 }
 
+#removeproject-div{
+  width: 800px;
+  height: 270px;
+}
+
+#removeproject-div #projectid{
+  margin: 10px;
+  width: 60%;
+}
+
+#removeproject-div #projectid-label{
+  width: 800px;
+  height: 270px;
+}
+
 /* Visualizza utenti */
 
 #showuser-div{
@@ -113,6 +129,21 @@ h1{
 }
 
 #showuser-div #userid-label{
+  width: 800px;
+  height: 270px;
+}
+
+#showproject-div{
+  width: 800px;
+  height: 500px;
+}
+
+#showproject-div #projectid{
+  margin: 10px;
+  width: 60%;
+}
+
+#showproject-div #projectid-label{
   width: 800px;
   height: 270px;
 }
@@ -170,6 +201,10 @@ input[type="button"], input[type="submit"]{
 }
 
 #removeuser {
+  margin-top: 2rem;
+}
+
+#removeproject {
   margin-top: 2rem;
 }
 
