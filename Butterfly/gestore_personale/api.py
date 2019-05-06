@@ -101,16 +101,19 @@ class ApiHandler:
 
     def api_user(self, request_type: str, url: str, msg: str):
         if request_type == 'GET':
-            user = self._model.read_user(url)
-            userjson = json.loads(dumps(user))
-            for i, data in enumerate(userjson['irreperibilita']):
-                userjson['irreperibilita'][i]['$date'] = datetime.datetime.strftime(
-                    datetime.datetime.fromtimestamp(
-                        userjson['irreperibilita'][i]['$date']/1000
-                    ),
-                    format="%Y-%m-%d"
-                )
-            return userjson
+            try:
+                user = self._model.read_user(url)
+                userjson = json.loads(dumps(user))
+                for i, data in enumerate(userjson['irreperibilita']):
+                    userjson['irreperibilita'][i]['$date'] = datetime.datetime.strftime(
+                        datetime.datetime.fromtimestamp(
+                            userjson['irreperibilita'][i]['$date']/1000
+                        ),
+                        format="%Y-%m-%d"
+                    )
+                return userjson
+            except AssertionError:
+                return {'error': 'Utente inesistente.'}, 404
         elif request_type == 'PUT':
             nome = msg.get('nome')
             cognome = msg.get('cognome')
