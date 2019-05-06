@@ -124,7 +124,8 @@ per eseguire l\'accesso.</p>')
                     self._model.update_user_preference(email, 'email')
                 elif telegram:
                     self._model.update_user_preference(telegram, 'telegram')
-        if request.values.get('postuser'):
+        if 'postuser' in request.values:
+            print(request.values)
             page = page.replace(
                     '*adduser*',
                     '<p>Si prega di inserire almeno email o telegram \
@@ -206,7 +207,7 @@ per inserire l\'utente.</p>')
                             modify['telegram']
                         )
                         session['telegram'] = modify['telegram']
-            if request.values.get('putuser'):
+            if 'putuser' in request.values:
                 page = page.replace(
                         '*modifyuser*',
                         '<p>Si prega di inserire almeno email o telegram \
@@ -341,7 +342,7 @@ per inserire l\'utente.</p>')
                 if 'postlogout' in request.values:
                     self.logout()
                     page = self.panel()
-                elif 'panel' in request.values:
+                elif 'postuserpanelshow' in request.values:
                     page = self.show_user()
                 else:
                     page = self.add_user()
@@ -603,7 +604,7 @@ aggiornata correttamente.</p>')
     def modify_preference(self):
         fileHtml = html / 'preference.html'
         page = fileHtml.read_text()
-        if request.values.get('panel'):
+        if 'putpreferencepanel' in request.values:
             try:
                 page = page.replace('*topics*', self.load_preference_topic())
                 page = page.replace(
@@ -649,7 +650,7 @@ aggiornata correttamente.</p>')
             return self.access()
 
     def removehtml(self, page: str):
-        if request.values.get("panel"):
+        if 'panel' in request.values:
             page = page.replace("<!DOCTYPE html>", "")
             page = page.replace("<html id=\"html\">", "")
             page = page.replace("</html>", "")

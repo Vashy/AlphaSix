@@ -28,10 +28,10 @@ function makeRequest(request, url, method, id){
     var io = getIo(id);
     var form = document.getElementById(io)
     var formData = new FormData(form);
-    if(id.indexOf("panel")!=-1) idAppend = "panel";
-    else idAppend = id;
-    if(idAppend) formData.append(idAppend, idAppend);
+    if(id.indexOf("panel")!=-1) formData.append("panel", "panel");
+    if(id) formData.append(id, id);
     if(io=="data") io = "html";
+    else if(io=="project") io = "topics";
     request.open(method, url);
     request.send(formData);
     request.onreadystatechange = function(){
@@ -41,7 +41,6 @@ function makeRequest(request, url, method, id){
         }
     }
 }
-
 
 function getRequestType(id){
     if(id.indexOf("post")!=-1) return "POST";
