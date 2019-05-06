@@ -36,6 +36,8 @@ COPY /gestore_personale/client.py ./Butterfly/gestore_personale/
 COPY /gestore_personale/config_consumer.json ./Butterfly/gestore_personale/
 COPY /gestore_personale/config_producer.json ./Butterfly/gestore_personale/
 
+COPY /gestore_personale/requirements.txt ./Butterfly/gestore_personale/
+
 COPY /mongo_db/facade.py ./Butterfly/mongo_db/
 COPY /mongo_db/users.py ./Butterfly/mongo_db/
 COPY /mongo_db/projects.py ./Butterfly/mongo_db/
@@ -47,10 +49,7 @@ COPY topics.json ./Butterfly/
 WORKDIR /Butterfly
 
 # Installing dependencies
-# TODO: NON VEDE REQUIREMENTS.TXT
-# RUN pip3 install --upgrade pip ; pip3 install -r gestore_personale/requirements.txt
-RUN pip3 install --upgrade pip ; pip3 install kafka-python ; pip3 install argparse ; pip3 install Flask ; pip3 install flask_restful ; pip3 install requests ; pip3 install bson ; pip3 install pymongo ;
-
+RUN pip3 install --upgrade pip ; pip3 install -r gestore_personale/requirements.txt
 
 # Run after the dependencies have been installed
 CMD python3 -m gestore_personale.client
