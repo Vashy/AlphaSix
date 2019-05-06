@@ -7,13 +7,13 @@ Il Gestore Personale è la componente principale di \progetto\ e si può suddivi
 \begin{itemize}
     \item Interfaccia utente a sua volta divisa in
     \begin{itemize}
-    	\item Interfaccia amministratore
-    	\item Interfaccia Utente (senza permessi amministratore)
+    	\item Interfaccia per amministratore
+    	\item Interfaccia per utente normale
     \end{itemize}
     \item Message processor, che contiene la logica di business di \progetto
 \end{itemize}
 
-Il secondo non è di pertinenza di questo manuale (ma del \MSd), in quanto l'utente non lo utilizza direttamente, per cui verrà solamente discusso l'utilizzo del sistema tramite l'interfaccia utente.
+Il secondo non è di pertinenza di questo manuale (ma del \MSd), in quanto l'utente non lo usa direttamente, per cui verrà solamente discusso l'utilizzo del sistema tramite l'interfaccia utente.
 
 \subsubsection{Interfaccia Utente}
 Le seguenti opzioni del Gestore Personale sono accessibili da ogni tipo utente, perciò anche da quelli coi privilegi di amministratore.
@@ -38,11 +38,17 @@ Se un utente iscritto correttamente nel sistema ha registrato precedentemente si
 
 \paragraph{Pannello di controllo}
 Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
-Le sezioni a cui si può navigare dal Pannello di controllo sono:
+Le sezioni a cui si può navigare dal Pannello di Controllo sono:
 \begin{itemize}
 	\item Modifica dei propri dati
 	\item Modifica delle proprie preferenze
+	\item Uscita dal sistema (Logout)
 \end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{img/user_panel_1.png}
+	\caption{Pannello di controllo per utente generico}
+\end{figure}
 
 \paragraph{Modifica preferenze}\label{preferenze}
 La modifica delle preferenze è possibile solamente per utenti già iscritti ed autenticati nel sistema.
@@ -59,7 +65,7 @@ Le ``label'' non sono modificabili in quanto vengono aggiornate solamente da una
 Le ``keyword'' invece, sono formate da una lista di parole che possono essere contenute nei messaggi di push di GitLab e di cui si è interessati a ricevere notifiche.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{img/preferenze_1.png}
+	\includegraphics[width=16cm]{img/preferenze_1.png}
 	\caption{Interfaccia modifica preferenze}
 \end{figure}
 
@@ -68,29 +74,31 @@ La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi
 Qui un utente può modificare i dati inseriti dall'amministratore in fase di registrazione.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/modifica_1.png}
+	\includegraphics[width=10cm]{img/modifica_1.png}
 	\caption{Modifica dei dati di un utente}
 \end{figure}
 Nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore.
 
 \paragraph{Uscita dal sistema}
-Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente in alto a destra di ciascuna pagina.
+Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente nel Pannello di Controllo.
 
 \subsubsection{Interfaccia amministratore}
-All'interno dell'applicazione \progetto, gli utenti coi permesso di amministratore potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Per un utente amministratore non esiste un particolare sistema di accesso, infatti accede come ogni altro utente.
+All'interno dell'applicazione \progetto, gli utenti con i permessi di amministratore potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Il sistema di accesso pe l'utente amministratore non differisce da quello per gli altri utenti.
 
 \paragraph{Pannello di controllo}
-Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
+Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di Controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
 Le sezioni a cui si può navigare dal Pannello di controllo sono:
 \begin{itemize}
     \item Inserimento di un nuovo utente
     \item Rimozione di un utente
+    \item Visualizzazione degli utenti iscritti
     \item Modifica dei propri dati
     \item Modifica delle proprie preferenze
+	\item Uscita dal sistema (Logout)
 \end{itemize}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=14cm]{img/pannello_1.png}
+    \includegraphics[width=10cm]{img/admin_panel_1.png}
     \caption{Interfaccia modifica preferenze}
 \end{figure}
 
@@ -105,7 +113,7 @@ La sezione di inserimento di un nuovo utente è raggiungibile dal Pannello di co
 \end{itemize}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{img/inserimento_1.png}
+	\includegraphics[width=13cm]{img/inserimento_1.png}
 	\caption{Interfaccia inserimento nuovo utente}
 \end{figure}
 Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà visualizzato un messaggio di errore.
@@ -125,6 +133,15 @@ La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibil
 \paragraph{Visualizzazione lista di utenti}
 Un utente amministratore ha la possibilità di vedere la lista di tutti gli utenti iscritti al sistema e i relativi progetti a cui sono interessati.
 La visualizzazione avviene attraverso la sezione ``Lista utenti'' accessibile dal Pannello di Controllo.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{img/user_details.png}
+	\caption{Interfaccia lista degli utenti}
+\end{figure}
+
+\paragraph{Rimozione progetto}
+I progetti provenienti da GitLab o Redmine vengono aggiunti in automatico al sistema e la loro gestione, intesa come creazione e modifica, non è competenza degli utenti. Perciò i progetti possono solo essere aggiunti o rimossi dalle preferenze di un utente, oppure rimossi completamente dal sistema nel momento in cui questi, ad esempio, vengono chiusi nelle relative applicazioni di provenienza. \par
+Per rimuovere un progetto dal sistema, l'interfaccia dell'amministratore possiede un'apposita pagina chiamata ``Rimozione progetti'' dove è possibile selezionare i progetti da rimuovere.
 \begin{figure}[H]
 	\centering
 	\caption{Interfaccia lista degli utenti}

@@ -25,6 +25,14 @@ Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software pe
 
 	\subsubsection{Hardware}
 	Per \progetto\ non sono necessari ulteriori requisiti a livello hardware particolari se non quelli di cui hanno bisogno i software precedentemente elencati.
+	Unicamente per \progetto, senza tenere conto di servizi di terze parti, i requisiti sono:
+	\begin{itemize}
+		\item OS: Ubuntu 16.04 (o successive versioni)
+		\item RAM: 3GB
+		\item CPU: IntelCore i3 con 2.1 GHz (o processori con potenza analoga o superiore)
+		\item Spazio su disco: 2GB
+		\item Completa possibilità di comunicazione in rete dei container
+	\end{itemize}
 
 \subsection{Mappatura delle porte}
 Per la configurazione di ciascun tipo servizio abbiamo deciso di dare un range di porte da poter esporre in modo tale da effettuare una separazione logica.\\
@@ -179,7 +187,7 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 \subsection{Configurazione servizi \progetto}\label{var}
 
 	\subsubsection{Producer}
-	Per i Producer è possibile impostare nel proprio file di configurazione le varie configurazioni. I campi sono:
+	Per i Producer è possibile impostare nell'apposito file di configurazione le variabili relative.
 
 	Per il Producer di Redmine i campi sono:
 	\begin{itemize}
@@ -202,7 +210,7 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 	\end{itemize}
 
 	\subsubsection{Consumer}\label{var_consumer}
-	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker.
+	Per i Consumer, come per i Producer, è possibile impostare le variabili tramite un file di configurazione.
 	Queste sono, per il Consumer di Telegram:
 	\begin{itemize}
 		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
@@ -221,13 +229,13 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 		% \item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
-	È inoltre possibile impostare la password dell'indirizzo email tramite variabile d'ambiente (il file di configurazione avrà priorità sulla variabile d'ambiente):
+	È inoltre possibile impostare la password dell'indirizzo email tramite la variabile:
 	\begin{itemize}
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
 	\subsubsection{Gestore Personale}
-	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. \par
+	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di file di configurazione. \par
 
 	Per la componente Producer del Gestore Personale queste sono:
 	\begin{itemize}

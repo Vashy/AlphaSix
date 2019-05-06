@@ -1,14 +1,14 @@
 % Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
-\newcommand{\documento}{\PdP}
-\newcommand{\nomedocumentofisico}{\PdPv.pdf}
-\newcommand{\redazione}{\LC \\ & \MM}
+\newcommand{\documento}{\MS}
+\newcommand{\nomedocumentofisico}{\MSv.pdf}
+\newcommand{\redazione}{\TG \\ & \CV \\ & \LC}
 \newcommand{\verifica}{\SG \\ & \MM}
-\newcommand{\approvazione}{\NC}
-\newcommand{\versione}{3.0.0}
+\newcommand{\approvazione}{\TG}
+\newcommand{\versione}{2.0.0}
 \newcommand{\uso}{Esterno}
 \newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
-\newcommand{\datacreazione}{28 novembre 2018}
-\newcommand{\datamodifica}{10 aprile 2019}
+\newcommand{\datacreazione}{23 marzo 2019}
+\newcommand{\datamodifica}{13 maggio 2019}
 \newcommand{\stato}{Approvato}
 
 \def\TABELLE{true}	% abilita - disabilita l'indice delle tabelle
@@ -18,33 +18,30 @@
 \input{template/layout} % Layout del documento
 \input{template/comandi} % Comandi generali
 
+\input{commands} % Comandi del documento
+
 \input{sections/diario} % Entries diario
 
-% \includeonly{sections/organigramma}
 
 \begin{document}
-	\sloppy
+	% \sloppy
     % Inclusione template HomePage
     \input{template/HomePage}
 
     % Registro delle modifiche e indice
     % si usa la numerazione romana per gli indici e la tabella delle modifiche
     \pagenumbering{Roman}
-    \input{template/diario_due_pag}
+    \input{template/diario}
     \input{template/index}
 
     % Sezioni documento
     \include{sections/introduzione}
-    \include{sections/analisi_dei_rischi}
-    \include{sections/pianificazione}
-    \include{sections/suddivisione_del_lavoro}
-    \include{sections/prospetto_economico}
-    \include{sections/preventivo}
-    %\include{sections/consuntivo}
-    \include{sections/organigramma}
+    \include{sections/tecnologie}
+    \include{sections/achitettura}
+    \include{sections/estensibilita}
+    \include{sections/test}
 
     \appendix
-    \include{sections/consuntivo}
-    \include{sections/attualizzazione_rischi}
+    \include{sections/glossario}
 
 \end{document}
