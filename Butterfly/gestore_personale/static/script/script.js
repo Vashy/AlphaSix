@@ -17,7 +17,7 @@ function isrequestReady(request){
 
 function getIo(id){
     if(id.indexOf("topics")!=-1) return "topics";
-    if(id.indexOf("project")!=-1) return "project";
+    if(id.indexOf("projects")!=-1) return "projects";
     if(id.indexOf("availability")!=-1) return "availability";
     if(id.indexOf("platform")!=-1) return "platform";
     return "data";
@@ -26,12 +26,12 @@ function getIo(id){
 
 function makeRequest(request, url, method, id){
     var io = getIo(id);
-    var form = document.getElementById(io)
+    var form = document.getElementById(io);
     var formData = new FormData(form);
     if(id.indexOf("panel")!=-1) formData.append("panel", "panel");
     if(id) formData.append(id, id);
     if(io=="data") io = "html";
-    else if(io=="project") io = "topics";
+    else if(io=="projects") io = "topics";
     request.open(method, url);
     request.send(formData);
     request.onreadystatechange = function(){
@@ -51,6 +51,7 @@ function getRequestType(id){
 
 function getRequestUrl(id){
     if(id.indexOf("preference")!=-1) return "web_preference";
+    else if(id.indexOf("project")!=-1) return "web_project";
     return "web_user";
 }
 

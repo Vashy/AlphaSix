@@ -25,6 +25,12 @@ class Web:
             ids.append(user['_id'])
         return ids
 
+    def _projects_id(self):
+        ids = []
+        for project in self._model.projects():
+            ids.append(project['url'])
+        return ids
+
     def _check_session(self):
         return 'email' in session or 'telegram' in session
 
@@ -125,7 +131,6 @@ per eseguire l\'accesso.</p>')
                 elif telegram:
                     self._model.update_user_preference(telegram, 'telegram')
         if 'postuser' in request.values:
-            print(request.values)
             page = page.replace(
                     '*adduser*',
                     '<p>Si prega di inserire almeno email o telegram \
@@ -281,7 +286,6 @@ per inserire l\'utente.</p>')
             user = email if email else telegram
             page = page.replace('*showuser*', self.load_web_user(user))
         page = page.replace('*showuser*', '')
-
         values = self._users_id()
         display = []
         for user in values:
@@ -307,9 +311,62 @@ per inserire l\'utente.</p>')
         options += '</select>'
         return page.replace('*userids*', options)
 
+    def remove_project(self):
+        fileHtml = html / 'removeproject.html'
+        page = fileHtml.read_text()
+        project = request.values.get('projectid')
+        if project:
+            page = page.replace(
+                '*removeuser*',
+                '<p>Progetto rimosso correttamente.</p>'
+            )
+            users = self._model.get_project_users(project)
+            for user in users:
+                if user.get('email'):
+                    userid = user['email']
+                elif user.get('telegram'):
+                    userid = user['telegram']
+                self._model.remove_user_project(userid, project)
+            self._model.delete_project(project)
+        page = page.replace('*removeproject*', '')
+        values = self._projects_id()
+        options = '<select id="projectid" name="projectid">'
+        for value in values:
+            options += '<option value="' + str(value) + '"'
+            if str(value) == project:
+                options += ' selected="selected"'
+            options += '>'
+            options += value
+            options += '</option>'
+        options += '</select>'
+        return page.replace('*projectids*', options)
+
+
+    def show_project(self):
+        fileHtml = html / 'showproject.html'
+        page = fileHtml.read_text()
+        project = request.values.get('projectid')
+        if project:
+            page = page.replace(
+                '*showproject*',
+                self.load_web_project(project)
+            )
+        page = page.replace('*showproject*', '')
+        values = self._projects_id()
+        options = '<select id="projectid" name="projectid">'
+        for value in values:
+            options += '<option value="' + str(value) + '"'
+            if str(value) == project:
+                options += ' selected="selected"'
+            options += '>'
+            options += value
+            options += '</option>'
+        options += '</select>'
+        return page.replace('*projectids*', options)
+
     def load_web_user(self, user: str):
         user_projects = self._model.get_user_projects(user)
-        form = '<table id="topics-table"><tr><th>Url</th><th>Priorità</th>\
+        table = '<table id="topics-table"><tr><th>Url</th><th>Priorità</th>\
 <th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
             project_data = self._model.read_project(
@@ -330,9 +387,20 @@ per inserire l\'utente.</p>')
                     row += ','
                 row = row[:-1]  # elimino l'ultima virgola
             row += '</td></tr>'
-            form += row
-        form += '</table>'
-        return form
+            table += row
+        table += '</table>'
+        return table
+
+    def load_web_project(self, project: str):
+        project = self._model.read_project(project)
+        table = '<table id="projects-table"><tr><th>Url</th><th>Name</th>\
+<th>App</th><th>Topics</th></tr><tr><td>' + project['url'] + '</td>\
+<td>' + project['name'] + '</td><td>' + project['app'] + '</td><td>'
+        for topic in project['topics']:
+            table += topic + ','
+        table = table[:-1]  # elimino l'ultima virgola
+        table += '</td></tr></table>'
+        return table
 
     def web_user(self):
         if self._check_session():
@@ -350,6 +418,20 @@ per inserire l\'utente.</p>')
                 page = self.modify_user()
             elif request.method == 'DELETE':
                 page = self.remove_user()
+            page = self.removehtml(page)
+            try:
+                return render_template_string(page)
+            except TypeError:
+                return page
+        else:
+            return self.access()
+
+    def web_project(self):
+        if self._check_session():
+            if request.method == 'POST':
+                page = self.show_project()
+            elif request.method == 'DELETE':
+                page = self.remove_project()
             page = self.removehtml(page)
             try:
                 return render_template_string(page)
@@ -402,13 +484,13 @@ value="Modifica preferenze di progetti e topic"></form>'
 
     def load_preference_project(self, message=''):
         projects = self._model.projects()
-        form = '<form id="project"><select name="project" id="projects-select">'
+        form = '<form id="projects"><select name="project" id="projects-select">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
 ' + project['name'] + '</option>'
-        form += '</select> <input id="putpreferenceprojectadd" type="button" \
+        form += '</select> <input id="putpreferenceprojectsadd" type="button" \
 value="Aggiungi il progetto">\
-<input id="putpreferenceprojectremove" type="button" \
+<input id="putpreferenceprojectsremove" type="button" \
 value="Rimuovi il progetto"></form>'
         form += message
         return form
@@ -510,18 +592,24 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def addproject(self):
         message = '<p>Progetto aggiunto correttamente.</p>'
-        project = request.values['project']
+        project = request.values.get('project')
         try:
-            self._model.add_user_project(session['userid'], project)
+            if project:
+                self._model.add_user_project(session['userid'], project)
+            else:
+                message = '<p>Nessun progetto selezionato.</p>'
         except AssertionError:
             message = '<p>Il progetto è già presente in lista.</p>'
         return self.load_preference_topic(message)
 
     def removeproject(self):
         message = '<p>Progetto rimosso correttamente.</p>'
-        project = request.values['project']
+        project = request.values.get('project')
         try:
-            self._model.remove_user_project(session['userid'], project)
+            if project:
+                self._model.remove_user_project(session['userid'], project)
+            else:
+                message = '<p>Nessun progetto selezionato.</p>'
         except AssertionError:
             message = '<p>Il progetto non è presente in lista.</p>'
         return self.load_preference_topic(message)
@@ -624,9 +712,9 @@ aggiornata correttamente.</p>')
  piattaforma.')
         elif request.values.get('putpreferencetopics'):
             return self.modifytopics()
-        elif request.values.get('putpreferenceprojectadd'):
+        elif request.values.get('putpreferenceprojectsadd'):
             return self.addproject()
-        elif request.values.get('putpreferenceprojectremove'):
+        elif request.values.get('putpreferenceprojectsremove'):
             return self.removeproject()
         elif request.values.get('putpreferenceavailability'):
             return self.indisponibilita()

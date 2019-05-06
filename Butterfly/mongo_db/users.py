@@ -114,6 +114,14 @@ class MongoUsers:
             ]
         }).next()
 
+    def read_by_project(self, project: str):
+        """Restituisce una lista corrispondente al `project`
+        passato come argomento.
+        """
+        return self.users({
+            'projects.url': project
+        })
+
     def delete_from_id(self, user: str):
         """Rimuove un documento che corrisponde a
         `user`, se presente. `user` è l'identificativo nel db

@@ -29,24 +29,32 @@ class User(Resource):
     def get(self, url: str):
         return self.notify('user', 'GET', url, None)
 
-    def put(self, url: str) -> dict:
+    def put(self, url: str):
         data = request.get_json(force=True)
         return self.notify('user', 'PUT', url, data)
 
-    def delete(self, url: str) -> dict:
-        data = request.get_json(force=True)
-        return self.notify('user', 'DELETE', url, data)
+    def delete(self, url: str):
+        return self.notify('user', 'DELETE', url, None)
 
 
 class PostUser(Resource):
 
-    def post(self) -> dict:
+    def post(self):
         """
         Usage example:
             `curl http://localhost:5000/users -X POST -d "data=some data"`
         """
         data = request.get_json(force=True)
         return self.notify('user', 'POST', None, data)
+
+
+class Project(Resource):
+
+    def get(self, url: str):
+        return self.notify('project', 'GET', url, None)
+
+    def delete(self, url: str):
+        return self.notify('project', 'DELETE', url, None)
 
 
 class Preference(Resource):
@@ -108,8 +116,6 @@ class ApiHandler:
 per modificare l\'utente.'}, 409
         elif request_type == 'DELETE':
             if url:
-                email = self._model.get_user_email(url)
-                telegram = self._model.get_user_telegram(url)
                 self._model.delete_user(url)
                 return {'ok': 'Utente rimosso correttamente'}, 200
             return {'error': 'Si prega di inserire almeno email o telegram \
@@ -143,6 +149,26 @@ per rimuovere l\'utente.'}, 409
             else:
                 return {'error': 'Si prega di inserire almeno email o telegram\
 per inserire l\'utente.'}, 409
+
+
+    def api_project(self, request_type: str, url: str, msg: str):
+        if request_type == 'GET':
+            project = self._model.read_project(url)
+            projectjson = json.loads(dumps(project))
+            return projectjson
+        elif request_type == 'DELETE':
+            if url:
+                users = self._model.get_project_users(url)
+                for user in users:
+                    if user.get('email'):
+                        userid = user['email']
+                    elif user.get('telegram'):
+                        userid = user['telegram']
+                    self._model.remove_user_project(userid, url)
+                self._model.delete_project(url)
+                return {'ok': 'Progetto rimosso correttamente'}, 200
+            return {'error': 'Si prega di inserire l\'url \
+per rimuovere il progetto.'}, 409
 
     def api_preference(self, request_type: str, url: str, msg: str):
         tipo = msg.get('tipo')

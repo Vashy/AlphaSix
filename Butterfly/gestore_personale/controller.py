@@ -10,7 +10,8 @@ from mongo_db.users import MongoUsers
 from mongo_db.projects import MongoProjects
 from mongo_db.singleton import MongoSingleton
 from gestore_personale.observer import Observer
-from gestore_personale.api import User, PostUser, Preference, ApiHandler
+from gestore_personale.api import User, PostUser, Project
+from gestore_personale.api import Preference, ApiHandler
 from gestore_personale.web import Web
 
 
@@ -30,6 +31,7 @@ class Controller(Observer):
         self._web = web
         self._user = User
         self._post_user = PostUser
+        self._project = Project
         self._preference = Preference
 
         self._api.add_resource(
@@ -45,6 +47,12 @@ class Controller(Observer):
         )
 
         self._api.add_resource(
+            self._project,
+            '/api/v1/project/<path:url>',
+            resource_class_kwargs={'model': model}
+        )
+
+        self._api.add_resource(
             self._preference,
             '/api/v1/preference/<url>',
             resource_class_kwargs={'model': model}
@@ -52,6 +60,7 @@ class Controller(Observer):
 
         self._user.addObserver(self._user, obs=self)
         self._post_user.addObserver(self._post_user, obs=self)
+        self._user.addObserver(self._project, obs=self)
         self._preference.addObserver(self._preference, obs=self)
 
         self._server.add_url_rule(
@@ -69,6 +78,13 @@ class Controller(Observer):
         )
 
         self._server.add_url_rule(
+            '/web_project',
+            'web_project',
+            self._web.web_project,
+            methods=['POST', 'DELETE']
+        )
+
+        self._server.add_url_rule(
             '/web_preference',
             'web_preference',
             self._web.web_preference,
@@ -78,6 +94,8 @@ class Controller(Observer):
     def update(self, resource: str, request_type: str, url: str, msg: str):
         if resource == 'user':
             return self._handler.api_user(request_type, url, msg)
+        elif resource == 'project':
+            return self._handler.api_project(request_type, url, msg)
         elif resource == 'preference':
             return self._handler.api_preference(request_type, url, msg)
 

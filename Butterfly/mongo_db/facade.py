@@ -80,9 +80,6 @@ class MongoFacade():
     def reset_user_keywords(self, user: str, project: str):
         self._users.reset_keywords(user, project)
 
-    def delete_user_project(self, user: str, project: str):
-        self._users.delete_user_project(user, project)
-
     def insert_project(self, **project):
         self._projects.create(**project)
 
@@ -163,3 +160,6 @@ class MongoFacade():
 
     def get_user_projects(self, user: str) -> dict:
         return self._users.get_projects(user)
+
+    def get_project_users(self, project: str) -> list:
+        return self._users.read_by_project(project)
