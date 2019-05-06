@@ -1,0 +1,81 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VI}
+\newcommand{\nomedocumentofisico}{VI\_2019-05-6.pdf}
+\newcommand{\redazione}{\NC}
+\newcommand{\verifica}{\SG}
+\newcommand{\approvazione}{\CV}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Interno}
+\newcommand{\destinateTo}{\gruppo}
+\newcommand{\datacreazione}{6 maggio 2019}
+\newcommand{\datamodifica}{7 maggio 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VI_2019-05-06/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{arabic}
+    \input{template/diario}
+
+    \section{Informazioni generali}
+		\subsection{Informazioni incontro}
+			% - INSERT INFORMAZIONI INCONTRO
+			\begin{itemize}
+				\item \textbf{Luogo}: Torre Archimede, 2BC30.
+				\item \textbf{Data}: 2019-05-06.
+				\item \textbf{Ora inizio}: 9:30.
+				\item \textbf{Ora fine}: 10:30.
+				\item \textbf{Partecipanti di AlphaSix}: team al completo.
+				\item \textbf{Ordine del giorno}: Analisi dei possibili update di \progetto\ e dei suoi difetti.
+			\end{itemize}
+
+        \subsection{Argomenti}
+            % - INSERT ARGOMENTI
+            Questo incontro è stato organizzato per discutere del progresso effettuato nell'ultimo periodo e dei possibili miglioramenti che \progetto\ potrebbe avere nel periodo successivo all'RA. Gli update discussi sono:
+            \begin{enumerate}
+            	\item É a disposizione la coda ``lostmessages'' in \gloss{Kafka} che conserva tutti i messaggi persi, in particolare la prima segnalazione di ogni nuovo progetto ed ogni nuovo tipo di issue. In futuro è possibile creare un \gloss{Consumer} che legga questi messaggi e li invii a chi di dovere
+            	\item É possibile aggiungere il \gloss{Producer} di \gloss{SonarQube}
+            	\item É possibile aggiungere il Consumer di \gloss{Slack}. Come per il Producer di SonarQube, l'aggiunta può essere svolta in modo semplice data la natura modulare dell’integrazione dei questi componenti col sistema
+            	\item Oltre alle tecnologie suggerite dal proponente, è possibile collegare al sistema altri tipi di tecnologie con segnalazioni di natura completamente diversa, a patto che che queste mettano a disposizione dei \gloss{Webhook} per segnalare le sue azioni. Ad esempio l’applicazione TrackingTime\footnote{\url{https://pro.trackingtime.co}}, usata misurare le proprie ore di lavoro, può essere aggiunta al nostro sistema per segnalare ad un altro utente quanto o se ha lavorato un collega di lavoro.
+            	\item Al momento esistono soltanto gli utenti senza particolari permessi che si iscrivono e disiscrivono ai Topic, e gli utenti amministratori che possono anche aggiungere o rimuovere gli utente dal sistema. In futuro è possibile aggiungere anche altri tipi di utente, ad esempio il responsabile di un dato progetto che possiede particolari permessi su di esso.          	
+            \end{enumerate}
+
+        \section{Tracciamento delle decisioni}
+
+        \newcounter{tracc}
+        \begin{table}[H]
+            \centering
+            \rowcolors{2}{white}{\tablegray}
+            {\def\arraystretch{1.5}
+                \begin{tabularx}{\textwidth}{cX}
+                    \rowcolor{gray!30}
+                    \textbf{Codice} & \textbf{Descrizione}\\
+                    \toprule\rowcolor{white}
+                    \stepcounter{tracc}
+                    \texttt{VI\_2019-05-06.\thetracc} & Possibile aggiunta di un Consumer per la coda ``lostmessges''.\\\rowcolor{gray!15}
+                    \stepcounter{tracc}
+                    \texttt{VI\_2019-05-06.\thetracc} & Possibile creazione del Producer SonarQube.\\
+                    \stepcounter{tracc}
+                    \texttt{VI\_2019-05-06.\thetracc} & Possibile creazione del Consuer Slack.\\\rowcolor{gray!15}
+                    \stepcounter{tracc}
+                    \texttt{VI\_2019-05-06.\thetracc} & Possibile aggiunta di altre tecnologie con segnalazioni di natura diversa da GitLab o Redmine.\\
+                    \stepcounter{tracc}
+                    \texttt{VI\_2019-05-06.\thetracc} & Possibile creazione di altri tipi di utenti.\\\rowcolor{gray!15}
+                    \bottomrule
+            \end{tabularx}}
+            \caption{Tracciamento decisioni}
+        \end{table}
+\end{document}
