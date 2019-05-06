@@ -24,7 +24,7 @@ Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
     Matteo Marchiori, matteo.marchiori@gmail.com
-    Nicola Carlesso
+    Nicola Carlesso, nicolacarlesso@outlook.it
 """
 
 from pathlib import Path
