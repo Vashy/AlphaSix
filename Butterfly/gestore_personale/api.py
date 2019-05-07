@@ -138,7 +138,9 @@ class ApiHandler:
                             url,
                             email
                         )
-
+                    else:
+                        return {'error': 'Esiste già un utente con questa\
+ email.'}, 400
                 if telegram and telegram != url:
                     oldtelegram = self._model.get_user_telegram_web(telegram)
                     if not oldtelegram:
@@ -146,6 +148,9 @@ class ApiHandler:
                             url,
                             telegram
                         )
+                    else:
+                        return {'error': 'Esiste già un utente con questo\
+ id telegram.'}, 400
                 return {'ok': 'Utente modificato correttamente'}, 200
             else:
                 return {'error': 'Si prega di inserire almeno email o telegram\
