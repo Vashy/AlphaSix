@@ -131,19 +131,23 @@ class ApiHandler:
                         cognome
                     )
                 if email and email != url:
-                    self._model.update_user_email(
-                        url,
-                        email
-                    )
+                    oldmail = self._model.get_user_email_web(email)
+                    if email != oldmail:
+                        self._model.update_user_email(
+                            url,
+                            email
+                        )
                 if telegram and telegram != url:
-                    self._model.update_user_telegram(
-                        url,
-                        telegram
-                    )
+                    oldtelegram = self._model.get_user_telegram_web(telegram)
+                    if telegram != oldtelegram:
+                        self._model.update_user_telegram(
+                            url,
+                            telegram
+                        )
                 return {'ok': 'Utente modificato correttamente'}, 200
             else:
                 return {'error': 'Si prega di inserire almeno email o telegram\
-per modificare l\'utente.'}, 409
+ per modificare l\'utente.'}, 409
         elif request_type == 'DELETE':
             if url:
                 self._model.delete_user(url)
@@ -178,7 +182,7 @@ per rimuovere l\'utente.'}, 409
                     return {'ok': 'Utente inserito correttamente'}, 200
             else:
                 return {'error': 'Si prega di inserire almeno email o telegram\
-per inserire l\'utente.'}, 409
+ per inserire l\'utente.'}, 409
 
 
     def api_project(self, request_type: str, url: str, msg: str):
