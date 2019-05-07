@@ -299,7 +299,7 @@ Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme 
     \texttt{PUT /user/<id>}
 \end{center}
 
-È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
+È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di modifica i dati:
 \begin{itemize}[noitemsep]
     \item \texttt{name}
     \item \texttt{surname}
@@ -384,7 +384,7 @@ Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà 
 
 
 \subsubsection{Project}
-Project è la risorsa relativa ai progetti. È possibile visualizzare, aggiungere, modificare o rimuovere i progetti di un utente tramite una semplice richiesta HTTP.
+Project è la risorsa relativa ai progetti. È possibile visualizzare o rimuovere i progetti tramite una semplice richiesta HTTP.
 
 \paragraph{Visualizzazione}
 È possibile visualizzare i progetti tramite la richiesta
@@ -393,45 +393,38 @@ Project è la risorsa relativa ai progetti. È possibile visualizzare, aggiunger
     \end{center}
 Se il campo \texttt{<id>} corrisponde a un progetto, verranno mostrati i dati relativi a tale progetto.
 
-% I tipi di progetto disponibili sono:
-% \begin{itemize}[noitemsep]
-%     \item \texttt{progetto}
-%     \item \texttt{disponibilità}
-%     \item \texttt{piattaforma}
-% \end{itemize}
+    \subparagraph{Esempio di input}
+    Un esempio di richiesta è
+        \begin{center}
+            \texttt{GET /project/http://localhost/gitlab/gitlab-2}
+        \end{center}
+    senza alcun dato nel \gloss{payload} della richiesta.
 
-\paragraph{Inserimento}
-È possibile inserire un nuovo progetto tramite la richiesta
-    \begin{center}
-        \texttt{POST /project}
-    \end{center}
+    \subparagraph{Esempio di output}
+    In caso la richiesta vada a buon fine, un esempio di output è
+    \begin{lstlisting}[language = json]
+{
+    "_id": {
+        "$oid": "5cd1b509c331756598e9c00b"
+    },
+    "url": "http://localhost/gitlab/gitlab-2",
+    "name": "Gitlab-2",
+    "app": "gitlab",
+    "topics": [
+        "java",
+        "coding",
+        "enhancement",
+        "bug"
+    ]
+}
+	\end{lstlisting}
 
-È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
-I campi sono:
-\begin{itemize}[noitemsep]
-    \item \texttt{url}
-    \item \texttt{app}
-    \item \texttt{name}
-    \item \texttt{topics}, una lista
-\end{itemize}
-
-
-\paragraph{Modifica}
-
-È possibile modificare un progetto tramite la richiesta
-\begin{center}
-    \texttt{PUT /project/<id>}
-\end{center}
-
-
-È possibile fornire dei campi di tipo stringa alla richiesta, in base al tipo della risorsa, per aggiungere dati in fase di creazione.
-I campi sono:
-\begin{itemize}[noitemsep]
-    \item \texttt{url}
-    \item \texttt{app}
-    \item \texttt{name}
-    \item \texttt{topics}, una lista
-\end{itemize}
+	In caso il progetto richiesto non esista, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
+{
+    "error": "Progetto inesistente."
+}
+	\end{lstlisting}
 
 
 \paragraph{Rimozione}
@@ -441,21 +434,21 @@ I campi sono:
     \texttt{DELETE /project/<id>}
 \end{center}
 
-Se il campo \texttt{<id>} corrisponde a un progetto, essa verrà rimossa dal sistema.
+Se il campo \texttt{<id>} corrisponde a un progetto, esso verrà rimossa dal sistema.
 
     \subparagraph{Esempio di input}
     Un esempio di richiesta è
     \begin{center}
-	    \texttt{DELETE  /user/1234}
+	    \texttt{DELETE /project/http://localhost/gitlab/gitlab-2}
     \end{center}
     senza alcun dato nel \gloss{payload} della richiesta.
 
     \subparagraph{Esempio output}
-    In caso la richiesta vada a buon fine, un esempio di output è
+    In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
     \begin{lstlisting}[language = json]
-    {
-	    "ok": "Utente rimosso correttamente"
-    }
+{
+    "ok": "Progetto rimosso correttamente"
+}
     \end{lstlisting}
 
 \paragraph{Riepilogo}
@@ -464,13 +457,88 @@ Se il campo \texttt{<id>} corrisponde a un progetto, essa verrà rimossa dal sis
     \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
         \texttt{GET} & \texttt{/project/<id>} & Restituisce un payload in JSON del progetto corrispondente a \texttt{<id>}\\
-        \texttt{POST} & \texttt{/project} & Inserisce un nuovo progetto \\
-        \texttt{PUT} & \texttt{/project/<id>} & Modifica il progetto corrispondente a \texttt{<id>} con i campi passati nel payload \\
         \texttt{DELETE} & \texttt{/project/<id>} & Elimina il progetto corrispondente a \texttt{<id>} dal sistema \\
         \bottomrule
     \end{paddedtablex}
-    \caption{Riepilogo delle Rest API per la risorsa project}
+    \caption{Riepilogo delle Rest API per la risorsa Project}
 \end{table}
+
+
+\subsubsection{Preference}
+
+\texttt{Preference} è la risorsa preferenza.
+È possibile modificare le preferenze degli utenti tramite questa risorsa.
+
+\paragraph{Modifica}
+
+È possibile modificare le preferenze di un utente tramite la richiesta
+\begin{center}
+    \texttt{PUT /preference/<id>}
+\end{center}
+
+Le preferenze hanno i seguenti tipi:
+\begin{itemize}[noitemsep]
+    \item \texttt{name}
+    \item \texttt{surname}
+    \item \texttt{telegram}
+    \item \texttt{email}
+\end{itemize}
+
+È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di modifica i dati:
+\begin{itemize}[noitemsep]
+    \item \texttt{topics}
+    \item \texttt{progetto}
+    \item \texttt{irreperibilita}
+    \item \texttt{piattaforma}
+\end{itemize}
+
+    \subparagraph{Esempio di input}
+    Un esempio di richiesta è
+    \begin{center}
+	    \texttt{PUT /user/1234}
+    \end{center}
+    con i seguenti dati nel corpo della richiesta
+	\begin{lstlisting}[language = json]
+{
+    "name": "Marco",
+    "surname": "Rossi",
+    "telegram": "1235"
+}
+    \end{lstlisting}
+
+    \subparagraph{Esempio di output}
+    In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
+	\begin{lstlisting}[language = json]
+{
+    "ok": "Utente modificato correttamente"
+}
+	\end{lstlisting}
+
+	In caso non vengano forniti almeno email o telegram, verrà restituito il seguente messaggio
+	\begin{lstlisting}[language = json]
+{
+    "error": "Si prega di inserire almeno email o telegram per modificare l'utente."
+}
+	\end{lstlisting}
+
+	In caso almeno uno degli identificativi forniti coincida con quello di un altro utente, verrà restituito il seguente messaggio
+	\begin{lstlisting}[language = json]
+{
+    "error": "I dati inseriti confliggono con altri già esistenti."
+}
+	\end{lstlisting}
+
+\paragraph{Riepilogo}
+
+\begin{table}[H]
+    \begin{paddedtablex}[1.3]{\textwidth}{cYY}
+        \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
+        \texttt{PUT} & \texttt{/user/<id>} & Modifica l'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
+        \bottomrule
+    \end{paddedtablex}
+    \caption{Riepilogo delle Rest API per la risorsa Preference}
+\end{table}
+
 
 \newpage
 

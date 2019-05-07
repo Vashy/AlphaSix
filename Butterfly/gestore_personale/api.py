@@ -236,9 +236,12 @@ class ApiHandler:
 
     def api_project(self, request_type: str, url: str, msg: str):
         if request_type == 'GET':
-            project = self._model.read_project(url)
-            projectjson = json.loads(dumps(project))
-            return projectjson
+            try:
+                project = self._model.read_project(url)
+                projectjson = json.loads(dumps(project))
+                return projectjson
+            except AssertionError:
+                return {'error': 'Progetto inesistente.'}, 404
         elif request_type == 'DELETE':
             if url:
                 users = self._model.get_project_users(url)
@@ -250,12 +253,10 @@ class ApiHandler:
                     self._model.remove_user_project(userid, url)
                 self._model.delete_project(url)
                 return {'ok': 'Progetto rimosso correttamente'}, 200
-            return {'error': 'Si prega di inserire l\'url \
-per rimuovere il progetto.'}, 409
 
     def api_preference(self, request_type: str, url: str, msg: str):
         tipo = msg.get('tipo')
-        if tipo == 'progetto':
+        if tipo == 'topics':
             project = msg.get('project')
             priority = msg.get('priority')
             topics = msg.get('topics')
