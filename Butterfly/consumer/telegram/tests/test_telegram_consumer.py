@@ -1,5 +1,5 @@
 """
-File: TelegramConsumer.py
+File: test_telegram_consumer.py
 Data creazione: 2019-02-18
 
 <descrizione>

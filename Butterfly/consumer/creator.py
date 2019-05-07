@@ -1,5 +1,5 @@
 """
-File: consumer.py
+File: ConsumerCreator.py
 Data creazione: 2019-03-29
 
 <descrizione>

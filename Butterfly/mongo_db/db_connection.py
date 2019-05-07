@@ -1,5 +1,5 @@
 """
-File: RedmineIssueWebhook.py
+File: db_connection.py
 Data creazione: 2019-02-20
 
 <descrizione>

@@ -1,5 +1,5 @@
 """
-File: consumer.py
+File: concrete_processor.py
 Data creazione: 2019-03-15
 
 <descrizione>
