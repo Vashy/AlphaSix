@@ -220,7 +220,7 @@ class MongoUsers:
         """
         assert self.exists(user), f'User {user} inesistente'
 
-        count = self.collection('users').count_documents({
+        count = self._mongo.read('users').count_documents({
             '$or': [
                 {'_id': user},
                 {'telegram': user},
@@ -236,7 +236,7 @@ class MongoUsers:
         """
         assert self.exists(user), f'User {user} inesistente'
 
-        count = self.collection('users').count_documents({
+        count = self._mongo.read('users').count_documents({
             '$or': [
                 {'_id': user},
                 {'telegram': user},

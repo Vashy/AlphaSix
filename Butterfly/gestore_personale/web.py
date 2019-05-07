@@ -75,7 +75,7 @@ class Web:
             if self._model.user_exists(userid):
                 session['email'] = self._model.get_user_email_web(userid)
                 session['telegram'] = self._model.get_user_telegram_web(userid)
-                if 'email' in session:
+                if 'email' in session and session['email']:
                     session['userid'] = session['email']
                 else:
                     session['userid'] = session['telegram']
@@ -170,98 +170,113 @@ per inserire l\'utente.</p>')
         return page
 
     def modify_user(self):
-        try:
-            fileHtml = html / 'modifyuser.html'
-            page = fileHtml.read_text()
-            nome = request.values.get('nome')
-            cognome = request.values.get('cognome')
-            email = request.values.get('email')
-            telegram = request.values.get('telegram')
-            modify = {}
-            if email or telegram:
-                if nome:
-                    page = page.replace('*nome*', nome)
-                    modify.update(nome=nome)
-                if cognome:
-                    page = page.replace('*cognome*', cognome)
-                    modify.update(cognome=cognome)
-                if email:
-                    page = page.replace('*email*', email)
-                    modify.update(email=email)
-                if telegram:
-                    page = page.replace('*telegram*', telegram)
-                    modify.update(telegram=telegram)
-                if ((
-                    email and
-                    self._model.user_exists(email) and
-                    email != session['email']
-                )or(
-                    telegram and
-                    self._model.user_exists(telegram) and
-                    telegram != session['telegram']
-                    )
-                ):
-                    page = page.replace(
-                        '*modifyuser*',
-                        '<p>I dati inseriti confliggono\
-    con altri già esistenti.</p>'
-                    )
-                else:
-                    page = page.replace(
-                        '*modifyuser*',
-                        '<p>Utente modificato correttamente.</p>'
-                    )
-                    if('nome' in modify):
-                        self._model.update_user_name(
-                            session['userid'],
-                            modify['nome']
-                        )
-                    if('cognome' in modify):
-                        self._model.update_user_surname(
-                            session['userid'],
-                            modify['cognome']
-                        )
-                    if('email' in modify and
-                        ('email' not in session) or
-                        (modify['email'] != session['email'])
-                    ):
-                        self._model.update_user_email(
-                            session['userid'],
-                            modify['email']
-                        )
-                        session['email'] = modify['email']
-                    if('telegram' in modify and
-                        ('telegram' not in session) or
-                        (modify['telegram'] != session['telegram'])
-                    ):
-                        self._model.update_user_telegram(
-                            session['userid'],
-                            modify['telegram']
-                        )
-                        session['telegram'] = modify['telegram']
-            if 'putuser' in request.values:
+        #try:
+        fileHtml = html / 'modifyuser.html'
+        page = fileHtml.read_text()
+        nome = request.values.get('nome')
+        cognome = request.values.get('cognome')
+        email = request.values.get('email')
+        telegram = request.values.get('telegram')
+        modify = {}
+        if email or telegram:
+            if nome:
+                page = page.replace('*nome*', nome)
+                modify.update(nome=nome)
+            if cognome:
+                page = page.replace('*cognome*', cognome)
+                modify.update(cognome=cognome)
+            if email:
+                page = page.replace('*email*', email)
+                modify.update(email=email)
+            if telegram:
+                page = page.replace('*telegram*', telegram)
+                modify.update(telegram=telegram)
+            if ((
+                email and
+                self._model.user_exists(email) and
+                email != session['email']
+            )or(
+                telegram and
+                self._model.user_exists(telegram) and
+                telegram != session['telegram']
+                )
+            ):
                 page = page.replace(
-                        '*modifyuser*',
-                        '<p>Si prega di inserire almeno email o telegram \
-    per modificare l\'utente.</p>')
-            user = self._model.read_user(session['userid'])
-            page = page.replace('*nome*', user['name'] if user['name'] else '')
+                    '*modifyuser*',
+                    '<p>I dati inseriti confliggono\
+con altri già esistenti.</p>'
+                )
+            else:
+                page = page.replace(
+                    '*modifyuser*',
+                    '<p>Utente modificato correttamente.</p>'
+                )
+                if('nome' in modify):
+                    self._model.update_user_name(
+                        session['userid'],
+                        modify['nome']
+                    )
+                if('cognome' in modify):
+                    self._model.update_user_surname(
+                        session['userid'],
+                        modify['cognome']
+                    )
+                if(
+                    'email' in modify and (
+                    ('email' not in session) or
+                    (modify['email'] != session['email'])
+                )):
+                    self._model.update_user_email(
+                        session['userid'],
+                        modify.get('email')
+                    )
+                    session['email'] = modify['email']
+                    session['userid'] = modify['email']
+                if('telegram' in modify and (
+                    ('telegram' not in session) or
+                    (modify['telegram'] != session['telegram'])
+                )):
+                    self._model.update_user_telegram(
+                        session['userid'],
+                        modify.get('telegram')
+                    )
+                    session['telegram'] = modify['telegram']
+                    session['userid'] = modify['telegram']
+                if('email' not in modify):
+                    self._model.update_user_email(
+                        session['userid'],
+                        ''
+                    )
+                    session.pop('email')
+                if('telegram' not in modify):
+                    self._model.update_user_telegram(
+                        session['userid'],
+                        ''
+                    )
+                    session.pop('telegram')
+        if 'putuser' in request.values:
             page = page.replace(
-                '*cognome*',
-                user['surname'] if user['surname'] else ''
-            )
-            page = page.replace(
-                '*email*',
-                user['email'] if user['email'] else ''
-            )
-            page = page.replace(
-                '*telegram*',
-                user['telegram'] if user['telegram'] else ''
-            )
-            page = page.replace('*modifyuser*', '')
-            return page
-        except AssertionError:
-            return self.panel(error='Non sei più iscritto alla piattaforma.')
+                    '*modifyuser*',
+                    '<p>Si prega di inserire almeno email o telegram \
+per modificare l\'utente.</p>')
+        user = self._model.read_user(session['userid'])
+        page = page.replace('*nome*', user['name'] if user['name'] else '')
+        page = page.replace(
+            '*cognome*',
+            user['surname'] if user['surname'] else ''
+        )
+        page = page.replace(
+            '*email*',
+            user['email'] if user['email'] else ''
+        )
+        page = page.replace(
+            '*telegram*',
+            user['telegram'] if user['telegram'] else ''
+        )
+        page = page.replace('*modifyuser*', '')
+        return page
+        #except AssertionError:
+        #    return self.panel(error='Non sei più iscritto alla piattaforma.')
 
     def remove_user(self):
         fileHtml = html / 'removeuser.html'
