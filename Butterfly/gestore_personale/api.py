@@ -67,10 +67,6 @@ class User(Resource):
 class PostUser(Resource):
 
     def post(self):
-        """
-        Usage example:
-            `curl http://localhost:5000/users -X POST -d "data=some data"`
-        """
         data = request.get_json(force=True)
         return self.notify('user', 'POST', None, data)
 
@@ -89,6 +85,16 @@ class Preference(Resource):
     def put(self, url: str) -> dict:
         data = request.get_json(force=True)
         return self.notify('preference', 'PUT', url, data)
+
+    def delete(self, url: str) -> dict:
+        data = request.get_json(force=True)
+        return self.notify('preference', 'DELETE', url, data)
+
+class PostPreference(Resource):
+
+    def post(self):
+        data = request.get_json(force=True)
+        return self.notify('preference', 'POST', None, data)
 
 
 class ApiHandler:
@@ -255,81 +261,105 @@ class ApiHandler:
                 return {'ok': 'Progetto rimosso correttamente'}, 200
 
     def api_preference(self, request_type: str, url: str, msg: str):
-        tipo = msg.get('tipo')
-        if tipo == 'topics':
-            project = msg.get('project')
-            priority = msg.get('priority')
-            topics = msg.get('topics')
-            keywords = msg.get('keywords')
-            self._model.set_user_priority(
-                url, project, priority
-            )
-            self._model.reset_user_topics(
-                url,
-                project
-            )
-            for topic in topics:
-                self._model.add_user_topics(
+        if request_type == 'PUT':
+            tipo = msg.get('tipo')
+            if tipo == 'topics':
+                project = msg.get('project')
+                priority = msg.get('priority')
+                topics = msg.get('topics')
+                keywords = msg.get('keywords')
+                self._model.set_user_priority(
+                    url, project, priority
+                )
+                self._model.reset_user_topics(
                     url,
-                    project,
-                    topic
+                    project
                 )
-            self._model.reset_user_keywords(
-                url,
-                project
-            )
-            for keyword in keywords:
-                self._model.add_user_keywords(
-                    url,
-                    project,
-                    keyword
-                )
-            return {'ok': 'Preferenza modificata correttamente'}, 200
-        elif tipo == 'irreperibilita':
-            giorni = msg.get('giorni')
-            giorni_old = self._model.read_user(
-                url
-            ).get('irreperibilita')
-            giorni_new = []
-            for giorno in giorni:
-                giorni_new.append(
-                    datetime.datetime.strptime(giorno, '%Y-%m-%d')
-                )
-            if giorni_new:
-                year = giorni_new[0].strftime('%Y')
-                month = giorni_new[0].strftime('%m')
-                for giorno in giorni_old:
-                    if (
-                        giorno.strftime('%Y') == year and
-                        giorno.strftime('%m') == month
-                    ):
-                        if giorno not in giorni_new:
-                            self._model.remove_giorno_irreperibilita(
-                                url,
-                                int(year),
-                                int(month),
-                                int(giorno.strftime('%d'))
-                            )
-                for giorno in giorni_new:
-                    self._model.add_giorno_irreperibilita(
+                for topic in topics:
+                    self._model.add_user_topics(
                         url,
-                        int(year),
-                        int(month),
-                        int(giorno.strftime('%d'))
+                        project,
+                        topic
                     )
-            return {'ok': 'Preferenza modificata correttamente'}, 200
-        elif tipo == 'piattaforma':
-            platform = msg.get('platform')
-            if platform == "telegram":
-                telegram = self._model.get_user_telegram_web(url)
-                if not telegram:
-                    return {'error': 'Telegram non presente nel sistema.'}, 404
-            elif platform == "email":
-                email = self._model.get_user_email_web(url)
-                if not email:
-                    return {'error': 'Email non presente nel sistema.'}, 404
-            else:
-                return {'error': 'La piattaforma deve essere telegram\
- o email.'}, 400
-            self._model.update_user_preference(url, platform)
-            return {'ok': 'Preferenza modificata correttamente'}, 200
+                self._model.reset_user_keywords(
+                    url,
+                    project
+                )
+                for keyword in keywords:
+                    self._model.add_user_keywords(
+                        url,
+                        project,
+                        keyword
+                    )
+                return {'ok': 'Preferenza modificata correttamente'}, 200
+            elif tipo == 'irreperibilita':
+                giorni = msg.get('giorni')
+                giorni_old = self._model.read_user(
+                    url
+                ).get('irreperibilita')
+                giorni_new = []
+                for giorno in giorni:
+                    giorni_new.append(
+                        datetime.datetime.strptime(giorno, '%Y-%m-%d')
+                    )
+                if giorni_new:
+                    year = giorni_new[0].strftime('%Y')
+                    month = giorni_new[0].strftime('%m')
+                    for giorno in giorni_old:
+                        if (
+                            giorno.strftime('%Y') == year and
+                            giorno.strftime('%m') == month
+                        ):
+                            if giorno not in giorni_new:
+                                self._model.remove_giorno_irreperibilita(
+                                    url,
+                                    int(year),
+                                    int(month),
+                                    int(giorno.strftime('%d'))
+                                )
+                    for giorno in giorni_new:
+                        self._model.add_giorno_irreperibilita(
+                            url,
+                            int(year),
+                            int(month),
+                            int(giorno.strftime('%d'))
+                        )
+                return {'ok': 'Preferenza modificata correttamente'}, 200
+            elif tipo == 'piattaforma':
+                platform = msg.get('platform')
+                if platform == "telegram":
+                    telegram = self._model.get_user_telegram_web(url)
+                    if not telegram:
+                        return {'error': 'Telegram non presente nel sistema.'}, 404
+                elif platform == "email":
+                    email = self._model.get_user_email_web(url)
+                    if not email:
+                        return {'error': 'Email non presente nel sistema.'}, 404
+                else:
+                    return {'error': 'La piattaforma deve essere telegram\
+     o email.'}, 400
+                self._model.update_user_preference(url, platform)
+                return {'ok': 'Preferenza modificata correttamente'}, 200
+        elif request_type == 'DELETE':
+            project = msg.get('project')
+            try:
+                if project:
+                    self._model.remove_user_project(url, project)
+                    return {'ok': 'Preferenza rimossa correttamente'}, 200
+                else:
+                    return {'error': 'Nessun progetto selezionato'}, 400
+            except AssertionError:
+                return {'error': 'Progetto non presente nelle preferenze o\
+ utente inesistente'}, 400
+        elif request_type == 'POST':
+            user = msg.get('user')
+            project = msg.get('project')
+            try:
+                if project:
+                    self._model.add_user_project(user, project)
+                    return {'ok': 'Preferenza aggiunta correttamente'}, 200
+                else:
+                    return {'error': 'Nessun progetto selezionato'}, 400
+            except AssertionError:
+                return {'error': 'Progetto già presente o\
+ utente inesistente'}, 400

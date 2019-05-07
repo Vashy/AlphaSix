@@ -38,7 +38,7 @@ from mongo_db.projects import MongoProjects
 from mongo_db.singleton import MongoSingleton
 from gestore_personale.observer import Observer
 from gestore_personale.api import User, PostUser, Project
-from gestore_personale.api import Preference, ApiHandler
+from gestore_personale.api import Preference, PostPreference, ApiHandler
 from gestore_personale.web import Web
 
 
@@ -60,6 +60,7 @@ class Controller(Observer):
         self._post_user = PostUser
         self._project = Project
         self._preference = Preference
+        self._post_preference = PostPreference
 
         self._api.add_resource(
             self._user,
@@ -85,10 +86,17 @@ class Controller(Observer):
             resource_class_kwargs={'model': model}
         )
 
+        self._api.add_resource(
+            self._post_preference,
+            '/api/v1/preference',
+            resource_class_kwargs={'model': model}
+        )
+
         self._user.addObserver(self._user, obs=self)
         self._post_user.addObserver(self._post_user, obs=self)
         self._user.addObserver(self._project, obs=self)
         self._preference.addObserver(self._preference, obs=self)
+        self._post_preference.addObserver(self._post_preference, obs=self)
 
         self._server.add_url_rule(
             '/',
