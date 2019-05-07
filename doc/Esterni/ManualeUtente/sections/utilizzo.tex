@@ -170,6 +170,76 @@ richiesta HTTP.
         \texttt{GET  /user/<id>}
     \end{center}
 
+    \subparagraph{Esempio di input}
+        Un esempio di richiesta è
+            \begin{center}
+                \texttt{GET  /user/abcd@bc.it}
+            \end{center}
+        senza alcun dato nel \gloss{payload} della richiesta.
+
+    \subparagraph{Esempio di output}
+        In caso la richiesta vada a buon fine, un esempio di output è
+            \begin{lstlisting}[language = json]
+{
+    "_id": {
+        "$oid": "5cd07bb9c331755af7f5ea00"
+    },
+    "name": "Mattia",
+    "surname": "Cruciani",
+    "email": "abcd@bc.it",
+    "telegram": "1234",
+    "admin": false,
+    "preference": "email",
+    "irreperibilita": [
+        {
+            "$date": "2018-12-05"
+        },
+        {
+            "$date": "2019-04-08"
+        },
+        {
+            "$date": "2019-04-15"
+        },
+        {
+            "$date": "2019-04-07"
+        },
+        {
+            "$date": "2019-06-07"
+        },
+        {
+            "$date": "2019-06-08"
+        },
+        {
+            "$date": "2019-06-09"
+        }
+    ],
+    "projects": [
+        {
+            "url": "http://localhost/gitlab/gitlab-2",
+            "priority": 2,
+            "topics": [
+                "java",
+                "coding",
+                "criptovaluta"
+            ],
+            "keywords": [
+                "kw1",
+                "kw2",
+                "kw3"
+            ]
+        }
+    ]
+}
+            \end{lstlisting}
+
+        Nel caso l'utente richiesto non venga trovato, verrà restituito il seguente messaggio
+        \begin{lstlisting}[language = json]
+{
+    "error": "Utente inesistente."
+}
+        \end{lstlisting}
+
+
 \paragraph{Inserimento}
 È possibile inserire un nuovo utente tramite la richiesta:
     \begin{center}
@@ -183,7 +253,31 @@ richiesta HTTP.
     \item \texttt{telegram}
     \item \texttt{email}
 \end{itemize}
-Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al \gloss{payload}.
+Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al payload.
+
+\subparagraph{Esempio di input}
+    Un esempio di richiesta è
+        \begin{center}
+            \texttt{POST  /user}
+        \end{center}
+    con i seguenti dati nel corpo della richiesta
+    \begin{lstlisting}[language = json]
+{
+    "name": "Matteo",
+    "surname": "Marchiori",
+    "email": "matteo.marchiori97@gmail.com",
+    "telegram": "123456"
+}
+    \end{lstlisting}
+
+
+    \subparagraph{Esempio di output}
+        In caso la richiesta vada a buon fine, un esempio di output è
+        \begin{lstlisting}[language = json]
+{
+    "ok": "Utente inserito correttamente"
+}
+        \end{lstlisting}
 
 \paragraph{Modifica}
 
