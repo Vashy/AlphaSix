@@ -27,6 +27,7 @@ Autori:
 """
 
 # from abc import ABC, abstractmethod
+import os
 from pathlib import Path
 import json
 
@@ -88,6 +89,9 @@ class KafkaConsumerCreator:
         with open(KafkaConsumerCreator._config_path, 'r') as f:
             configs = json.load(f)
         configs = configs['kafka']
+
+        if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
+            configs['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
         if ('consumer_timeout_ms' in configs
                 and configs['consumer_timeout_ms'] == 'inf'):
