@@ -115,46 +115,82 @@ class ApiHandler:
             except AssertionError:
                 return {'error': 'Utente inesistente.'}, 404
         elif request_type == 'PUT':
-            nome = msg.get('nome')
-            cognome = msg.get('cognome')
+            nome = msg.get('name')
+            cognome = msg.get('surname')
             email = msg.get('email')
             telegram = msg.get('telegram')
-            user = self._model.user_exists(url)
-            if user:
-                if(nome):
+            modify = {}
+            oldmail = self._model.get_user_email_web(url)
+            oldtelegram = self._model.get_user_telegram_web(url)
+            userid = oldmail if oldmail else oldtelegram
+            if email or telegram:
+                if nome:
+                    modify.update(nome=nome)
+                if cognome:
+                    modify.update(cognome=cognome)
+                if email:
+                    modify.update(email=email)
+                if telegram:
+                    modify.update(telegram=telegram)
+                if ((
+                    email and
+                    self._model.user_exists(email) and
+                    email != oldmail
+                )or(
+                    telegram and
+                    self._model.user_exists(telegram) and
+                    telegram != oldtelegram
+                    )
+                ):
+                    return {'error': 'I dati inseriti confliggono\
+ con altri già esistenti.'}, 409
+                if('nome' in modify):
                     self._model.update_user_name(
-                        url,
-                        nome
+                        userid,
+                        modify['nome']
                     )
-                if(cognome):
+                if('cognome' in modify):
                     self._model.update_user_surname(
-                        url,
-                        cognome
+                        userid,
+                        modify['cognome']
                     )
-                if email and email != url:
-                    oldmail = self._model.get_user_email_web(email)
-                    if not oldmail:
-                        self._model.update_user_email(
-                            url,
-                            email
-                        )
-                    else:
-                        return {'error': 'Esiste già un utente con questa\
- email.'}, 400
-                if telegram and telegram != url:
-                    oldtelegram = self._model.get_user_telegram_web(telegram)
-                    if not oldtelegram:
-                        self._model.update_user_telegram(
-                            url,
-                            telegram
-                        )
-                    else:
-                        return {'error': 'Esiste già un utente con questo\
- id telegram.'}, 400
-                return {'ok': 'Utente modificato correttamente'}, 200
+                if(
+                    'email' in modify and (
+                    (not oldmail) or
+                    (modify['email'] != oldmail)
+                )):
+                    self._model.update_user_email(
+                        userid,
+                        modify.get('email')
+                    )
+                    userid = modify['email']
+                if('telegram' in modify and (
+                    (not oldtelegram) or
+                    (modify['telegram'] != oldtelegram)
+                )):
+                    self._model.update_user_telegram(
+                        userid,
+                        modify.get('telegram')
+                    )
+                    userid = modify['telegram']
+                if('email' not in modify):
+                    self._model.update_user_email(
+                        userid,
+                        ''
+                    )
+                    if oldmail:
+                        userid = oldtelegram
+                if('telegram' not in modify):
+                    self._model.update_user_telegram(
+                        userid,
+                        ''
+                    )
+                    if oldtelegram:
+                        userid = oldmail
+                return {'ok': 'Utente modificato correttamente.'}, 200
             else:
-                return {'error': 'Si prega di inserire almeno email o telegram\
- corretto per modificare l\'utente corrispondente.'}, 409
+                return {'error': 'Si prega di inserire almeno email o\
+ telegram per modificare l\'utente.'}, 400
         elif request_type == 'DELETE':
             if url:
                 self._model.delete_user(url)
@@ -162,8 +198,8 @@ class ApiHandler:
             return {'error': 'Si prega di inserire almeno email o telegram \
 per rimuovere l\'utente.'}, 409
         elif request_type == 'POST':
-            nome = msg.get('nome')
-            cognome = msg.get('cognome')
+            nome = msg.get('name')
+            cognome = msg.get('surname')
             email = msg.get('email')
             telegram = msg.get('telegram')
             if email or telegram:
