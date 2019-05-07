@@ -82,7 +82,7 @@ def populateB():
 
     db = client.butterfly
 
-    with open(Path(__file__).parent / 'db_new.json') as f:
+    with open(Path(__file__).parent / 'db.json') as f:
         data = json.load(f)
 
     projects_json = data['projects']
