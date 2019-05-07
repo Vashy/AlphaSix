@@ -261,12 +261,12 @@ Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme 
         \end{center}
     con i seguenti dati nel corpo della richiesta
     \begin{lstlisting}[language = json]
-    {
-        "name": "Matteo",
-        "surname": "Marchiori",
-        "email": "matteo.marchiori97@gmail.com",
-        "telegram": "123456"
-    }
+{
+    "name": "Matteo",
+    "surname": "Marchiori",
+    "email": "matteo.marchiori97@gmail.com",
+    "telegram": "123456"
+}
     \end{lstlisting}
 
 
@@ -469,6 +469,55 @@ Se il campo \texttt{<id>} corrisponde a un progetto, esso verrà rimossa dal sis
 \texttt{Preference} è la risorsa preferenza.
 È possibile modificare le preferenze degli utenti tramite questa risorsa.
 
+\paragraph{Inserimento}
+È possibile inserire un nuovo progetto tra le preferenze tramite la richiesta:
+    \begin{center}
+        \texttt{POST /preference}
+    \end{center}
+
+È inoltre richiesto dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di creazione i dati:
+\begin{itemize}[noitemsep]
+    \item \texttt{user}
+    \item \texttt{project}
+\end{itemize}
+
+    \subparagraph{Esempio di input}
+    Un esempio di richiesta è
+        \begin{center}
+            \texttt{POST  /preference}
+        \end{center}
+    con i seguenti dati nel corpo della richiesta
+    \begin{lstlisting}[language = json]
+{
+    "user": "1234",
+    "project": "http://localhost/redmine/project-2"
+}
+    \end{lstlisting}
+
+
+    \subparagraph{Esempio di output}
+    In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
+{
+    "ok": "Preferenza aggiunta correttamente"
+}
+    \end{lstlisting}
+
+    Nel caso il progetto esista già tra le preferenze, o non esista l'utente specificato, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
+{
+    "error": "Progetto già presente o utente inesistente."
+}
+    \end{lstlisting}
+
+    Nel caso non venga specificato il progetto, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
+{
+    "error": "Nessun progetto selezionato."
+}
+    \end{lstlisting}
+
+
 \paragraph{Modifica}
 
 È possibile modificare le preferenze di un utente tramite la richiesta
@@ -478,31 +527,70 @@ Se il campo \texttt{<id>} corrisponde a un progetto, esso verrà rimossa dal sis
 
 Le preferenze hanno i seguenti tipi:
 \begin{itemize}[noitemsep]
-    \item \texttt{name}
-    \item \texttt{surname}
-    \item \texttt{telegram}
-    \item \texttt{email}
-\end{itemize}
-
-È possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di modifica i dati:
-\begin{itemize}[noitemsep]
     \item \texttt{topics}
-    \item \texttt{progetto}
     \item \texttt{irreperibilita}
     \item \texttt{piattaforma}
+\end{itemize}
+
+Il tipo di preferenza va indicato nel payload usando il campo ``tipo''.
+
+In base al tipo di preferenza è possibile dare i seguenti campi di tipo stringa alla richiesta, per aggiungere in fase di modifica i dati:
+
+\begin{itemize}[noitemsep]
+    \item \texttt{topics}
+    \begin{itemize}
+        \item \texttt{project}
+        \item \texttt{priority}
+        \item \texttt{topics}
+        \item \texttt{keywords}
+    \end{itemize}
+    \item \texttt{irreperibilita}
+    \begin{itemize}
+        \item \texttt{giorni}
+    \end{itemize}
+    \item \texttt{piattaforma}
+    \begin{itemize}
+        \item \texttt{platform}
+    \end{itemize}
 \end{itemize}
 
     \subparagraph{Esempio di input}
     Un esempio di richiesta è
     \begin{center}
-	    \texttt{PUT /user/1234}
+	    \texttt{PUT /preference/1234}
     \end{center}
     con i seguenti dati nel corpo della richiesta
 	\begin{lstlisting}[language = json]
 {
-    "name": "Marco",
-    "surname": "Rossi",
-    "telegram": "1235"
+    "tipo": "topics",
+    "project": "http://localhost/redmine/project-2",
+    "priority": "2",
+    "topics": "['bug','feature','banana']",
+    "keywords": "['keyword','42']"
+}
+    \end{lstlisting}
+
+    Un esempio per l'irreperibilità è
+    \begin{center}
+	    \texttt{PUT /preference/1234}
+    \end{center}
+    con i seguenti dati nel corpo della richiesta
+	\begin{lstlisting}[language = json]
+{
+    "tipo": "irreperibilita",
+    "giorni": "['2019-05-25','2019-05-26','2019-06-01']"
+}
+    \end{lstlisting}
+
+    Invece un esempio per modificare la piattaforma preferita di ricezione dei messaggi è
+    \begin{center}
+	    \texttt{PUT /preference/1234}
+    \end{center}
+    con i seguenti dati nel corpo della richiesta
+	\begin{lstlisting}[language = json]
+{
+    "tipo": "piattaforma",
+    "platform": "email"
 }
     \end{lstlisting}
 
@@ -510,30 +598,76 @@ Le preferenze hanno i seguenti tipi:
     In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
 	\begin{lstlisting}[language = json]
 {
-    "ok": "Utente modificato correttamente"
+    "ok": "Preferenza modificata correttamente"
 }
 	\end{lstlisting}
 
-	In caso non vengano forniti almeno email o telegram, verrà restituito il seguente messaggio
+	Nel caso si stia cercando di impostare la piattaforma preferita non avendo registrato l'account verrà restituito uno dei seguenti messaggi
 	\begin{lstlisting}[language = json]
 {
-    "error": "Si prega di inserire almeno email o telegram per modificare l'utente."
+    "error": "Telegram non presente nel sistema."
 }
 	\end{lstlisting}
 
-	In caso almeno uno degli identificativi forniti coincida con quello di un altro utente, verrà restituito il seguente messaggio
+	oppure
+
 	\begin{lstlisting}[language = json]
 {
-    "error": "I dati inseriti confliggono con altri già esistenti."
+    "error": "Email non presente nel sistema."
 }
 	\end{lstlisting}
+
+\paragraph{Rimozione}
+
+È possibile rimuovere un progetto dalle preferenze di un utente con la richiesta
+\begin{center}
+    \texttt{DELETE /preference/<id>}
+\end{center}
+
+Se il campo \texttt{<id>} corrisponde a un utente, il progetto verrà rimosso dalle sue preferenze.
+
+    \subparagraph{Esempio di input}
+    Un esempio di richiesta è
+    \begin{center}
+	    \texttt{DELETE /preference/1234}
+    \end{center}
+    con i seguenti dati nel corpo della richiesta
+	\begin{lstlisting}[language = json]
+{
+    "project": "http://localhost/redmine/project-2"
+}
+    \end{lstlisting}
+
+    \subparagraph{Esempio output}
+    In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
+{
+    "ok": "Preferenza rimossa correttamente."
+}
+    \end{lstlisting}
+
+    In caso non venga fornito un progetto nella richiesta, verrà restituito il messaggio
+    \begin{lstlisting}[language = json]
+{
+    "error": "Nessun progetto selezionato."
+}
+    \end{lstlisting}
+
+    In caso l'utente non abbia il progetto specificato tra le preferenze o non esista l'utente specificato verrà restituito il messaggio
+    \begin{lstlisting}[language = json]
+{
+    "error": "Progetto non presente nelle preferenze o utente inesistente."
+}
+    \end{lstlisting}
 
 \paragraph{Riepilogo}
 
 \begin{table}[H]
     \begin{paddedtablex}[1.3]{\textwidth}{cYY}
         \thead{Metodo HTTP} & \thead{URI} & \thead{Action}\\\toprule
-        \texttt{PUT} & \texttt{/user/<id>} & Modifica l'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
+        \texttt{POST} & \texttt{/preference} & Aggiunge la preferenza all'utente specificato nella richiesta con i campi passati nella richiesta\\
+        \texttt{PUT} & \texttt{/preference/<id>} & Modifica la preferenza dell'utente corrispondente a \texttt{<id>} con i campi passati nella richiesta\\
+        \texttt{DELETE} & \texttt{/preference/<id>} & Rimuove la preferenza dell'utente corrispondente a \texttt{<id>}\\
         \bottomrule
     \end{paddedtablex}
     \caption{Riepilogo delle Rest API per la risorsa Preference}
