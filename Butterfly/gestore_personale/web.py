@@ -170,7 +170,6 @@ per inserire l\'utente.</p>')
         return page
 
     def modify_user(self):
-        #try:
         fileHtml = html / 'modifyuser.html'
         page = fileHtml.read_text()
         nome = request.values.get('nome')
@@ -279,8 +278,6 @@ per modificare l\'utente.</p>')
         )
         page = page.replace('*modifyuser*', '')
         return page
-        #except AssertionError:
-        #    return self.panel(error='Non sei più iscritto alla piattaforma.')
 
     def remove_user(self):
         fileHtml = html / 'removeuser.html'
