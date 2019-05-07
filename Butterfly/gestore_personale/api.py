@@ -119,7 +119,8 @@ class ApiHandler:
             cognome = msg.get('cognome')
             email = msg.get('email')
             telegram = msg.get('telegram')
-            if url:
+            user = self._model.user_exists(url)
+            if user:
                 if(nome):
                     self._model.update_user_name(
                         url,
@@ -132,14 +133,15 @@ class ApiHandler:
                     )
                 if email and email != url:
                     oldmail = self._model.get_user_email_web(email)
-                    if email != oldmail:
+                    if not oldmail:
                         self._model.update_user_email(
                             url,
                             email
                         )
+
                 if telegram and telegram != url:
                     oldtelegram = self._model.get_user_telegram_web(telegram)
-                    if telegram != oldtelegram:
+                    if not oldtelegram:
                         self._model.update_user_telegram(
                             url,
                             telegram
@@ -147,7 +149,7 @@ class ApiHandler:
                 return {'ok': 'Utente modificato correttamente'}, 200
             else:
                 return {'error': 'Si prega di inserire almeno email o telegram\
- per modificare l\'utente.'}, 409
+ corretto per modificare l\'utente corrispondente.'}, 409
         elif request_type == 'DELETE':
             if url:
                 self._model.delete_user(url)
