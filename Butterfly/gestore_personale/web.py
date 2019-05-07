@@ -194,17 +194,17 @@ per inserire l\'utente.</p>')
             if ((
                 email and
                 self._model.user_exists(email) and
-                email != session['email']
+                email != session.get('email')
             )or(
                 telegram and
                 self._model.user_exists(telegram) and
-                telegram != session['telegram']
+                telegram != session.get('telegram')
                 )
             ):
                 page = page.replace(
                     '*modifyuser*',
                     '<p>I dati inseriti confliggono\
-con altri già esistenti.</p>'
+ con altri già esistenti.</p>'
                 )
             else:
                 page = page.replace(
@@ -247,13 +247,17 @@ con altri già esistenti.</p>'
                         session['userid'],
                         ''
                     )
-                    session.pop('email')
+                    if session.get('email'):
+                        session.pop('email')
+                        session['userid'] = session['telegram']
                 if('telegram' not in modify):
                     self._model.update_user_telegram(
                         session['userid'],
                         ''
                     )
-                    session.pop('telegram')
+                    if session.get('telegram'):
+                        session.pop('telegram')
+                        session['userid'] = session['email']
         if 'putuser' in request.values:
             page = page.replace(
                     '*modifyuser*',
