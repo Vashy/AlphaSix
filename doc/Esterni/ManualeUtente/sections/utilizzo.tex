@@ -238,16 +238,16 @@ richiesta HTTP.
     "error": "Utente inesistente."
 }
         \end{lstlisting}
-        
+
 \subparagraph{Esempio di errore}
 Le possibili richieste errate sono:
 \begin{itemize}
 	\item \textbf{Visualizzare un utente non presente nel sistema}\\
 	\begin{lstlisting}[language = json]
-		{
-			"error": "Utente inesistente."
-		}
-		
+{
+	"error": "Utente inesistente."
+}
+
 	\end{lstlisting}
 \end{itemize}
 
@@ -290,15 +290,15 @@ Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme 
     "ok": "Utente inserito correttamente"
 }
         \end{lstlisting}
-        
+
 \subparagraph{Esempio di errore}
 Le possibili richieste errate sono:
 \begin{itemize}
 	\item \textbf{Inserimento di un utente già esistente}\\
 	\begin{lstlisting}[language = json]
-	{
-		"error": "L'utente inserito esiste già."
-	}
+{
+	"error": "L'utente inserito esiste già."
+}
 	\end{lstlisting}
 \end{itemize}
 
@@ -322,42 +322,39 @@ Un esempio di richiesta è
 	\begin{center}
 		\texttt{PUT /user/1234}
 	\end{center}
-con i seguenti dati nel coro della richiesta
+con i seguenti dati nel corpo della richiesta
 	\begin{lstlisting}[language = json]
-		{
-			"name": "Marco",
-			"surname": "Rossi",
-			"telegram": "1235"
-		}
+{
+	"name": "Marco",
+	"surname": "Rossi",
+	"telegram": "1235"
+}
 	\end{lstlisting}
-	
+
 \subparagraph{Esempio di output}
-In caso la richiesta vada a buon fine, un esempio di uotput è
+In caso la richiesta vada a buon fine, un esempio di output è
 	\begin{lstlisting}[language = json]
-		{
-			"ok": "Utente modificato correttamente"
-		}
-		
+{
+	"ok": "Utente modificato correttamente"
+}
 	\end{lstlisting}
-	
+
 \subparagraph{Esempio di errori}
 Le possibili richieste errate sono:
 \begin{itemize}
 	\item \textbf{Modifica di un utente non registrato nel sistema}\\
 	\begin{lstlisting}[language = json]
-		{
-			"error": "Si prega di inserire almeno email o telegram corretto per modificare l'utente corrispondente."
-		}
-		
+{
+	"error": "Si prega di inserire almeno email o telegram corretto per modificare l'utente corrispondente."
+}
 	\end{lstlisting}
 	\item \textbf{Le modifiche effettuate corrispondono ad un utente già esistente}\\
 	\begin{lstlisting}[language = json]
-		{
-			"error": "Esiste già un utente con questo id telegram."
-		}
-		
+{
+	"error": "Esiste già un utente con questo id telegram."
+}
 	\end{lstlisting}
-\end{itemize} 
+\end{itemize}
 
 
 \paragraph{Rimozione}
@@ -455,9 +452,9 @@ senza alcun dato nel \gloss{payload} della richiesta.
 \subparagraph{Esempio output}
 In caso la richiesta vada a buon fine, un esempio di output è
 \begin{lstlisting}[language = json]
-	{
-		"ok": "Utente rimosso correttamente"
-	}
+{
+	"ok": "Utente rimosso correttamente"
+}
 \end{lstlisting}
 
 \paragraph{Riepilogo}
