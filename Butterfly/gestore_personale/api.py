@@ -203,8 +203,6 @@ class ApiHandler:
             if url:
                 self._model.delete_user(url)
                 return {'ok': 'Utente rimosso correttamente'}, 200
-            return {'error': 'Si prega di inserire almeno email o telegram \
-per rimuovere l\'utente.'}, 409
         elif request_type == 'POST':
             nome = msg.get('name')
             cognome = msg.get('surname')

@@ -171,15 +171,15 @@ richiesta HTTP.
     \end{center}
 
     \subparagraph{Esempio di input}
-        Un esempio di richiesta è
-            \begin{center}
-                \texttt{GET  /user/abcd@bc.it}
-            \end{center}
-        senza alcun dato nel \gloss{payload} della richiesta.
+    Un esempio di richiesta è
+        \begin{center}
+            \texttt{GET  /user/abcd@bc.it}
+        \end{center}
+    senza alcun dato nel \gloss{payload} della richiesta.
 
     \subparagraph{Esempio di output}
-        In caso la richiesta vada a buon fine, un esempio di output è
-            \begin{lstlisting}[language = json]
+    In caso la richiesta vada a buon fine, un esempio di output è
+    \begin{lstlisting}[language = json]
 {
     "_id": {
         "$oid": "5cd07bb9c331755af7f5ea00"
@@ -230,27 +230,14 @@ richiesta HTTP.
         }
     ]
 }
-            \end{lstlisting}
+    \end{lstlisting}
 
-        Nel caso l'utente richiesto non venga trovato, verrà restituito il seguente messaggio
-        \begin{lstlisting}[language = json]
+    Nel caso l'utente richiesto non venga trovato, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
 {
     "error": "Utente inesistente."
 }
-        \end{lstlisting}
-
-\subparagraph{Esempio di errore}
-Le possibili richieste errate sono:
-\begin{itemize}
-	\item \textbf{Visualizzare un utente non presente nel sistema}\\
-	\begin{lstlisting}[language = json]
-{
-	"error": "Utente inesistente."
-}
-
-	\end{lstlisting}
-\end{itemize}
-
+    \end{lstlisting}
 
 \paragraph{Inserimento}
 È possibile inserire un nuovo utente tramite la richiesta:
@@ -267,40 +254,43 @@ Le possibili richieste errate sono:
 \end{itemize}
 Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al payload.
 
-\subparagraph{Esempio di input}
+    \subparagraph{Esempio di input}
     Un esempio di richiesta è
         \begin{center}
             \texttt{POST  /user}
         \end{center}
     con i seguenti dati nel corpo della richiesta
     \begin{lstlisting}[language = json]
-{
-    "name": "Matteo",
-    "surname": "Marchiori",
-    "email": "matteo.marchiori97@gmail.com",
-    "telegram": "123456"
-}
+    {
+        "name": "Matteo",
+        "surname": "Marchiori",
+        "email": "matteo.marchiori97@gmail.com",
+        "telegram": "123456"
+    }
     \end{lstlisting}
 
 
     \subparagraph{Esempio di output}
-        In caso la richiesta vada a buon fine, un esempio di output è
-        \begin{lstlisting}[language = json]
+    In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
 {
     "ok": "Utente inserito correttamente"
 }
-        \end{lstlisting}
+    \end{lstlisting}
 
-\subparagraph{Esempio di errore}
-Le possibili richieste errate sono:
-\begin{itemize}
-	\item \textbf{Inserimento di un utente già esistente}\\
-	\begin{lstlisting}[language = json]
+    Nel caso l'utente da inserire esista già, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
 {
-	"error": "L'utente inserito esiste già."
+    "error": "L'utente inserito esiste già."
 }
-	\end{lstlisting}
-\end{itemize}
+    \end{lstlisting}
+
+    Nel caso non vengano inseriti almeno email o telegram, verrà restituito il seguente messaggio
+    \begin{lstlisting}[language = json]
+{
+    "error": "Si prega di inserire almeno email o telegram per inserire l'utente."
+}
+    \end{lstlisting}
 
 \paragraph{Modifica}
 
@@ -317,45 +307,41 @@ Le possibili richieste errate sono:
     \item \texttt{email}
 \end{itemize}
 
-\subparagraph{Esempio di input}
-Un esempio di richiesta è
-	\begin{center}
-		\texttt{PUT /user/1234}
-	\end{center}
-con i seguenti dati nel corpo della richiesta
+    \subparagraph{Esempio di input}
+    Un esempio di richiesta è
+    \begin{center}
+	    \texttt{PUT /user/1234}
+    \end{center}
+    con i seguenti dati nel corpo della richiesta
 	\begin{lstlisting}[language = json]
 {
-	"name": "Marco",
-	"surname": "Rossi",
-	"telegram": "1235"
+    "name": "Marco",
+    "surname": "Rossi",
+    "telegram": "1235"
+}
+    \end{lstlisting}
+
+    \subparagraph{Esempio di output}
+    In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
+	\begin{lstlisting}[language = json]
+{
+    "ok": "Utente modificato correttamente"
 }
 	\end{lstlisting}
 
-\subparagraph{Esempio di output}
-In caso la richiesta vada a buon fine, un esempio di output è
+	In caso non vengano forniti almeno email o telegram, verrà restituito il seguente messaggio
 	\begin{lstlisting}[language = json]
 {
-	"ok": "Utente modificato correttamente"
+    "error": "Si prega di inserire almeno email o telegram per modificare l'utente."
 }
 	\end{lstlisting}
 
-\subparagraph{Esempio di errori}
-Le possibili richieste errate sono:
-\begin{itemize}
-	\item \textbf{Modifica di un utente non registrato nel sistema}\\
+	In caso almeno uno degli identificativi forniti coincida con quello di un altro utente, verrà restituito il seguente messaggio
 	\begin{lstlisting}[language = json]
 {
-	"error": "Si prega di inserire almeno email o telegram corretto per modificare l'utente corrispondente."
+    "error": "I dati inseriti confliggono con altri già esistenti."
 }
 	\end{lstlisting}
-	\item \textbf{Le modifiche effettuate corrispondono ad un utente già esistente}\\
-	\begin{lstlisting}[language = json]
-{
-	"error": "Esiste già un utente con questo id telegram."
-}
-	\end{lstlisting}
-\end{itemize}
-
 
 \paragraph{Rimozione}
 
@@ -365,6 +351,21 @@ Le possibili richieste errate sono:
 \end{center}
 
 Se il campo \texttt{<id>} corrisponde a un ID presente nel sistema, esso verrà rimosso.
+
+    \subparagraph{Esempio di input}
+    Un esempio di richiesta è
+    \begin{center}
+        \texttt{DELETE  /user/abcd@bc.it}
+    \end{center}
+    senza alcun dato nel \gloss{payload} della richiesta.
+
+    \subparagraph{Esempio di output}
+    In caso la richiesta vada a buon fine, verrà restituito il seguente messaggio
+	\begin{lstlisting}[language = json]
+{
+    "ok": "Utente rimosso correttamente"
+}
+	\end{lstlisting}
 
 
 \paragraph{Riepilogo}
@@ -442,20 +443,20 @@ I campi sono:
 
 Se il campo \texttt{<id>} corrisponde a un progetto, essa verrà rimossa dal sistema.
 
-\subparagraph{Esempio di input}
-Un esempio di richiesta è
-\begin{center}
-	\texttt{DELETE  /user/1234}
-\end{center}
-senza alcun dato nel \gloss{payload} della richiesta.
+    \subparagraph{Esempio di input}
+    Un esempio di richiesta è
+    \begin{center}
+	    \texttt{DELETE  /user/1234}
+    \end{center}
+    senza alcun dato nel \gloss{payload} della richiesta.
 
-\subparagraph{Esempio output}
-In caso la richiesta vada a buon fine, un esempio di output è
-\begin{lstlisting}[language = json]
-{
-	"ok": "Utente rimosso correttamente"
-}
-\end{lstlisting}
+    \subparagraph{Esempio output}
+    In caso la richiesta vada a buon fine, un esempio di output è
+    \begin{lstlisting}[language = json]
+    {
+	    "ok": "Utente rimosso correttamente"
+    }
+    \end{lstlisting}
 
 \paragraph{Riepilogo}
 
