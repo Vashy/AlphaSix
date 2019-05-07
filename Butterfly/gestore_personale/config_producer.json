@@ -1,6 +1,6 @@
 {
     "kafka": {
-        "bootstrap_servers": "localhost:9092"
+        "bootstrap_servers": "10.42.0.142:30120"
     },
     "redmine": {
         "ip": "0.0.0.0",
