@@ -179,14 +179,22 @@ class ApiHandler:
                         ''
                     )
                     if oldmail:
-                        userid = oldtelegram
+                        userid = modify['telegram']
+                    self._model.update_user_preference(
+                        userid,
+                        'telegram'
+                    )
                 if('telegram' not in modify):
                     self._model.update_user_telegram(
                         userid,
                         ''
                     )
                     if oldtelegram:
-                        userid = oldmail
+                        userid = modify['email']
+                    self._model.update_user_preference(
+                        userid,
+                        'email'
+                    )
                 return {'ok': 'Utente modificato correttamente.'}, 200
             else:
                 return {'error': 'Si prega di inserire almeno email o\
@@ -261,20 +269,22 @@ per rimuovere il progetto.'}, 409
                 url,
                 project
             )
-            self._model.add_user_topics(
-                url,
-                project,
-                topics
-            )
+            for topic in topics:
+                self._model.add_user_topics(
+                    url,
+                    project,
+                    topic
+                )
             self._model.reset_user_keywords(
                 url,
                 project
             )
-            self._model.add_user_keywords(
-                url,
-                project,
-                keywords
-            )
+            for keyword in keywords:
+                self._model.add_user_keywords(
+                    url,
+                    project,
+                    keyword
+                )
             return {'ok': 'Preferenza modificata correttamente'}, 200
         elif tipo == 'irreperibilita':
             giorni = msg.get('giorni')
@@ -284,7 +294,7 @@ per rimuovere il progetto.'}, 409
             giorni_new = []
             for giorno in giorni:
                 giorni_new.append(
-                    datetime.datetime.strptime(giorno, '%Y-%m-%d %H:%M:%S')
+                    datetime.datetime.strptime(giorno, '%Y-%m-%d')
                 )
             if giorni_new:
                 year = giorni_new[0].strftime('%Y')
@@ -315,9 +325,12 @@ per rimuovere il progetto.'}, 409
                 telegram = self._model.get_user_telegram_web(url)
                 if not telegram:
                     return {'error': 'Telegram non presente nel sistema.'}, 404
-            if platform == "email":
+            elif platform == "email":
                 email = self._model.get_user_email_web(url)
                 if not email:
                     return {'error': 'Email non presente nel sistema.'}, 404
+            else:
+                return {'error': 'La piattaforma deve essere telegram\
+ o email.'}, 400
             self._model.update_user_preference(url, platform)
             return {'ok': 'Preferenza modificata correttamente'}, 200

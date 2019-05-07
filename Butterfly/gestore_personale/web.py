@@ -249,6 +249,10 @@ per inserire l\'utente.</p>')
                     if session.get('email'):
                         session.pop('email')
                         session['userid'] = session['telegram']
+                    self._model.update_user_preference(
+                        session['userid'],
+                        'telegram'
+                    )
                 if('telegram' not in modify):
                     self._model.update_user_telegram(
                         session['userid'],
@@ -257,6 +261,10 @@ per inserire l\'utente.</p>')
                     if session.get('telegram'):
                         session.pop('telegram')
                         session['userid'] = session['email']
+                    self._model.update_user_preference(
+                        session['userid'],
+                        'email'
+                    )
         if 'putuser' in request.values:
             page = page.replace(
                     '*modifyuser*',
