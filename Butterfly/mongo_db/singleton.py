@@ -37,7 +37,7 @@ class MongoSingleton:
         def __init__(
                 self,
                 db: str,
-                mongo_client=pymongo.MongoClient('localhost', 27017)
+                mongo_client=pymongo.MongoClient('10.42.0.194', 27017)
         ):
             self._client = mongo_client
             print('Connessione con il DB stabilita.')
