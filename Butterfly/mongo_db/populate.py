@@ -44,7 +44,7 @@ def _open_configs(path: Path):
     return config
 
 def populateA():
-    with DBConnection(_open_configs(_CONFIG_PATH)['daabase']) as client:
+    with DBConnection(_open_configs(_CONFIG_PATH)['database']) as client:
         # print(client._db.collection_names())
 
         client.drop_collections('users', 'projects', 'topics')
@@ -119,4 +119,4 @@ def populateB():
         print(result.inserted_id)
 
 
-populateB()
+# populateB()

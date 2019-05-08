@@ -44,7 +44,8 @@ COPY topics.json ./Butterfly/
 WORKDIR /Butterfly
 
 ENV KAFKA_IP=10.42.0.142
-ENV KAFKA_PORT=30120
+ENV KAFKA_PORT=9092
+ENV BUTTERFLY_EMAIL_PSW=alfaswe6
 
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r consumer/email/requirements.txt

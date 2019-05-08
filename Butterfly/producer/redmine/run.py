@@ -46,7 +46,7 @@ def _open_configs(path: Path):
         config = json.load(file)
 
     if (os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
-        config['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+        config['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
     return config
 

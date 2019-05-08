@@ -28,6 +28,7 @@ Autori:
 
 from pathlib import Path
 import json
+import os 
 
 from consumer.telegram.consumer import TelegramConsumer
 from consumer.creator import KafkaConsumerCreator
@@ -42,6 +43,9 @@ def _open_kafka_configs(path: Path = _config_path):
 
     with open(path) as file:
         configs = json.load(file)
+
+    if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
+        configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
     configs = configs['kafka']
     timeout = 'consumer_timeout_ms'

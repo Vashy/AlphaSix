@@ -54,6 +54,9 @@ class KafkaProducerCreator:
         with open(KafkaProducerCreator._config_path, 'r') as f:
             configs = json.load(f)
 
+        if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
+            configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+
         configs = configs['kafka']
         # if (configs['consumer_timeout_ms'] is not None
         #         and configs['consumer_timeout_ms'] == 'inf'):
@@ -88,10 +91,11 @@ class KafkaConsumerCreator:
 
         with open(KafkaConsumerCreator._config_path, 'r') as f:
             configs = json.load(f)
-        configs = configs['kafka']
-
+        
         if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
-            configs['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+            configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+
+        configs = configs['kafka']
 
         if ('consumer_timeout_ms' in configs
                 and configs['consumer_timeout_ms'] == 'inf'):
