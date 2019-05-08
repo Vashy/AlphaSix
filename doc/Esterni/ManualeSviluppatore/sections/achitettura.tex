@@ -248,7 +248,7 @@ di Kafka all'invio del messaggio all'utente finale su Telegram.
 
 \paragraph{Diagramma dei package}
 
-Il TelegramConsumer ha 2 dipendenze esterne:
+Il TelegramConsumer ha due dipendenze esterne:
 \begin{itemize}
     \item \texttt{KafkaConsumer} dalla libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto
         di una o più code specifiche. È costruito su di esso un adapter, per adattare \texttt{KafkaConsumer} alle funzionalità
@@ -279,7 +279,7 @@ Il metodo \texttt{format()} costruisce il testo del messaggio finale utilizzando
 \subsubsection{EmailConsumer}
 \paragraph{Diagramma dei package}
 
-L'EmailConsumer ha 2 dipendenze esterne:
+L'EmailConsumer ha due dipendenze esterne:
 \begin{itemize}
     \item \texttt{KafkaConsumer} della libreria esterna \texttt{kafka-python}: offre le funzionalità di ascolto dei messaggi
         proveniente da una o più code specifiche. È costruito su di esso un adapter, per adattare le funzionalità di \texttt{KafkaConsumer} a
