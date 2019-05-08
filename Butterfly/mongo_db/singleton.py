@@ -26,9 +26,18 @@ Autori:
     Timoty Granziero, timoty.granziero@gmail.com
 """
 
-import pymongo
+from pathlib import Path
+import pymongo, json, os
 #import bson.objectid.ObjectId
 
+_CONFIG_PATH = Path(__file__).parents[0] / 'config.json'
+
+def _open_configs(path: Path):
+    with open(path) as file:
+        config = json.load(file)['mongo']
+    if(os.environ['MONGO_IP']):
+            config['ip'] = os.environ['MONGO_IP']
+    return config
 
 class MongoSingleton:
 
@@ -37,7 +46,7 @@ class MongoSingleton:
         def __init__(
                 self,
                 db: str,
-                mongo_client=pymongo.MongoClient('10.42.0.194', 27017)
+                mongo_client
         ):
             self._client = mongo_client
             print('Connessione con il DB stabilita.')
@@ -69,11 +78,24 @@ class MongoSingleton:
             # return self._db[collection].delete_one({'_id':ObjectId('')})
             return self._db[collection].delete_one(mongofilter)
 
+        def drop(
+                self
+        ):
+            """Rimuove il database specificato nelle configurazioni
+            dell'oggetto.
+            """
+            configs = _open_configs(_CONFIG_PATH)
+            self._client.drop(configs['database'])
+
 #    try:
 #        _INSTANCE = Singleton('butterfly')
 #    except pymongo.errors.PyMongoError as e:
 #        print('Si prega di avviare mongo usando il comando "service mongod start"')
-    _INSTANCE = Singleton('butterfly')
+    configs = _open_configs(_CONFIG_PATH)
+    _INSTANCE = Singleton(
+        configs['database'],
+        pymongo.MongoClient(configs['ip'], configs['port'])
+    )
 
     # def __new__(cls):
     #     if not MongoSingleton._INSTANCE:

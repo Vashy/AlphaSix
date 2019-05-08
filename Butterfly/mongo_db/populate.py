@@ -29,13 +29,22 @@ import datetime
 from pprint import pprint
 import pymongo
 from pathlib import Path
+import os
 
 from mongo_db.db_connection import DBConnection
 from mongo_db.db_controller import DBController
 
+_CONFIG_PATH = Path(__file__).parents[0] / 'config.json'
+
+def _open_configs(path: Path):
+    with open(path) as file:
+        config = json.load(file)['mongo']
+    if(os.environ['MONGO_IP']):
+            config['ip'] = os.environ['MONGO_IP']
+    return config
 
 def populateA():
-    with DBConnection('butterfly') as client:
+    with DBConnection(_open_configs(_CONFIG_PATH)['daabase']) as client:
         # print(client._db.collection_names())
 
         client.drop_collections('users', 'projects', 'topics')
