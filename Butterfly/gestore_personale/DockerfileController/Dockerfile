@@ -59,6 +59,8 @@ COPY /mongo_db/users.py ./Butterfly/mongo_db/
 COPY /mongo_db/projects.py ./Butterfly/mongo_db/
 COPY /mongo_db/singleton.py ./Butterfly/mongo_db/
 COPY /mongo_db/db.json ./Butterfly/mongo_db/
+COPY /mongo_db/populate.py ./Butterfly/mongo_db/
+COPY /mongo_db/__init__.py ./Butterfly/mongo_db/
 
 COPY topics.json ./Butterfly/
 
@@ -68,9 +70,7 @@ WORKDIR /Butterfly
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r gestore_personale/requirements.txt
 
-ENV KAFKA_IP=10.42.0.142
-ENV KAFKA_PORT=30120
+ENV MONGO_IP=10.42.0.194
 
 # Run after the dependencies have been installed
-CMD python3 -m mongo_db.populate
 CMD python3 -m gestore_personale.controller

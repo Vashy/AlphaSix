@@ -29,6 +29,7 @@ Autori:
 
 from pathlib import Path
 import json
+import os
 
 from flask import Flask
 
@@ -43,6 +44,10 @@ _CONFIG_PATH = Path(__file__).parents[1] / 'config.json'
 def _open_configs(path: Path):
     with open(path) as file:
         config = json.load(file)
+
+    if (os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
+        config['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+
     return config
 
 
