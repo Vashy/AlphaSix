@@ -53,7 +53,7 @@ COPY topics.json ./Butterfly/
 WORKDIR /Butterfly
 
 ENV KAFKA_IP='10.42.0.230'
-ENV KAFKA_PORT='9092'
+ENV KAFKA_PORT=9092
 
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r producer/gitlab/requirements.txt

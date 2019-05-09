@@ -50,7 +50,7 @@ COPY topics.json ./Butterfly/
 # Change current directory
 WORKDIR /Butterfly
 
-ENV KAFKA_IP=10.42.0.142
+ENV KAFKA_IP='10.42.0.142'
 ENV KAFKA_PORT=9092
 
 # Installing dependencies
