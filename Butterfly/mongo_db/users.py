@@ -254,7 +254,7 @@ class MongoUsers:
 
         count = self._mongo.read('users').count_documents({
             '$or': [
-                {'_id': user},
+                {'_id': bson.objectid.ObjectId(user)},
                 {'telegram': user},
                 {'email': user},
             ],
