@@ -302,15 +302,23 @@ class ApiHandler:
                     giorni_new.append(
                         datetime.datetime.strptime(giorno, '%Y-%m-%d')
                     )
-                if giorni_new:
-                    year = giorni_new[0].strftime('%Y')
-                    month = giorni_new[0].strftime('%m')
-                    for giorno in giorni_old:
-                        if (
-                            giorno.strftime('%Y') == year and
-                            giorno.strftime('%m') == month
-                        ):
-                            if giorno not in giorni_new:
+                to_remove=[]
+                if giorni_old and giorni_new:
+                    for giorno in giorni_new:
+                        to_remove.append(
+                            datetime.datetime.strptime(
+                                giorno.strftime('%Y') + '-' + giorno.strftime('%m'),
+                                '%Y-%m'
+                            )
+                        )
+                    for mese in to_remove:
+                        month = mese.strftime('%m')
+                        year = mese.strftime('%Y')
+                        for giorno in giorni_old:
+                            if(
+                                giorno.strftime('%Y') == year and
+                                giorno.strftime('%m') == month
+                            ):
                                 self._model.remove_giorno_irreperibilita(
                                     url,
                                     int(year),
@@ -320,8 +328,8 @@ class ApiHandler:
                     for giorno in giorni_new:
                         self._model.add_giorno_irreperibilita(
                             url,
-                            int(year),
-                            int(month),
+                            int(giorno.strftime('%Y')),
+                            int(giorno.strftime('%m')),
                             int(giorno.strftime('%d'))
                         )
                 return {'ok': 'Preferenza modificata correttamente'}, 200
