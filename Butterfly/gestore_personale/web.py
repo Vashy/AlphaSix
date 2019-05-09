@@ -667,6 +667,8 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
 
     def indisponibilita(self):
         giorni = request.values.getlist('indisponibilita[]')
+        month = request.values['mese']
+        year = request.values['anno']
         giorni_old = self._model.read_user(
             session['userid']
         ).get('irreperibilita')
@@ -675,21 +677,23 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
             giorni_new.append(
                 datetime.datetime.strptime(giorno, '%Y-%m-%d %H:%M:%S')
             )
-        if giorni_new:
-            year = giorni_new[0].strftime('%Y')
-            month = giorni_new[0].strftime('%m')
-            for giorno in giorni_old:
+        if giorni_old:
+            for giorno_old in giorni_old:
                 if (
-                    giorno.strftime('%Y') == year and
-                    giorno.strftime('%m') == month
+                    giorno_old.strftime('%Y') == year and
+                    giorno_old.strftime('%m') == month
                 ):
-                    if giorno not in giorni_new:
+                    if (
+                        (giorni_new and giorno_old not in giorni_new) or
+                        not giorni_new
+                    ):
                         self._model.remove_giorno_irreperibilita(
                             session['userid'],
                             int(year),
                             int(month),
-                            int(giorno.strftime('%d'))
+                            int(giorno_old.strftime('%d'))
                         )
+        if giorni_new:
             for giorno in giorni_new:
                 self._model.add_giorno_irreperibilita(
                     session['userid'],
