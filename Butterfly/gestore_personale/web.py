@@ -607,6 +607,11 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
             if not old:
                 old = url
             elif url != old:
+                if firstTopic:
+                    self._model.reset_user_topics(
+                        session['userid'],
+                        old
+                    )
                 firstTopic = True
                 old = url
             if url != 'putpreferencetopics':
