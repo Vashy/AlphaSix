@@ -86,8 +86,9 @@ def populateA():
 
 
 def populateB():
-    client = pymongo.MongoClient()
-    client.drop_database('butterfly')
+    configs = _open_configs(_CONFIG_PATH)
+    client = pymongo.MongoClient(configs['ip'], configs['port'])
+    client.drop_database(configs['database'])
 
     db = client.butterfly
 
