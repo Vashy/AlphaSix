@@ -52,7 +52,8 @@ h1{
 }
 
 #admin-panel{
-  max-width: 371px;
+  width: 500px;
+  height: 800px;
 }
 
 #admin-panel input[type="button"],
@@ -147,7 +148,6 @@ h1{
   width: 800px;
   height: 270px;
 }
-
 
 /* Modifica */
 
@@ -373,8 +373,8 @@ color: white;
 }
 
 #projects-select,
-#putpreferenceprojectadd,
-#putpreferenceprojectremove{
+#putpreferenceprojectsadd,
+#putpreferenceprojectsremove{
   width:300px;
   margin: 0px 10px 0px 10px;
 }
@@ -388,6 +388,10 @@ color: white;
   margin-right: 50px;
   margin-top: -1px;
   vertical-align: middle;
+}
+
+#preference-div{
+  width:100%;
 }
 
 #back{
