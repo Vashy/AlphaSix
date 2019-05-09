@@ -37,10 +37,11 @@ COPY /gestore_personale/static/html/panel.html ./Butterfly/gestore_personale/sta
 COPY /gestore_personale/static/html/preference.html ./Butterfly/gestore_personale/static/html/
 COPY /gestore_personale/static/html/removeuser.html ./Butterfly/gestore_personale/static/html/
 COPY /gestore_personale/static/html/showuser.html ./Butterfly/gestore_personale/static/html/
+COPY /gestore_personale/static/html/showproject.html ./Butterfly/gestore_personale/static/html/
+COPY /gestore_personale/static/html/removeproject.html ./Butterfly/gestore_personale/static/html/
+
 COPY /gestore_personale/static/image/a6.png ./Butterfly/gestore_personale/static/image/
 COPY /gestore_personale/static/image/b.png ./Butterfly/gestore_personale/static/image/
-COPY /gestore_personale/static/image/butterfly-cursor.png ./Butterfly/gestore_personale/static/image/
-COPY /gestore_personale/static/image/butterfly-selection2.png ./Butterfly/gestore_personale/static/image/
 COPY /gestore_personale/static/image/favicon.ico ./Butterfly/gestore_personale/static/image/
 
 COPY /gestore_personale/static/script/script.js  ./Butterfly/gestore_personale/static/script/
