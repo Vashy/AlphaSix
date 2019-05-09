@@ -56,10 +56,7 @@ class MongoProjects:
         (che può essere Telegram o Email) è salvato nel DB.
         """
         count = self.collection.count_documents({
-            '$or': [
-                {'_id': project},
-                {'url': project},
-            ]
+            'url': project
         })
         return count != 0
 
@@ -125,10 +122,7 @@ class MongoProjects:
         se presente, e restituisce il risultato.
         """
         return self._mongo.delete({
-            '$or': [
-                {'_id': url},
-                {'url': url},
-            ],
+            'url': url
         },
             'projects'
         )
@@ -144,10 +138,7 @@ class MongoProjects:
         assert self.exists(project), f'Project {project} inesistente'
 
         return self.projects({
-            '$or': [
-                {'_id': project},
-                {'url': project},
-            ]
+            'url': project
         }).next()
 
     def update_app(self, project: str, app: str) -> dict:
@@ -159,10 +150,8 @@ class MongoProjects:
 
         return self.collection.find_one_and_update(
             {
-                '$or': [
-                    {'_id': project},
-                    {'url': project},
-                ]},
+                'url': project
+            },
             {
                 '$set': {
                     'app': app,
@@ -179,10 +168,8 @@ class MongoProjects:
 
         return self.collection.find_one_and_update(
             {
-                '$or': [
-                    {'_id': project},
-                    {'url': project},
-                ]},
+                'url': project
+            },
             {
                 '$set': {
                     'url': new_url,
@@ -198,10 +185,8 @@ class MongoProjects:
 
         return self.collection.find_one_and_update(
             {
-                '$or': [
-                    {'_id': project},
-                    {'url': project},
-                ]},
+                'url': project
+            },
             {
                 '$set': {
                     'name': new_name,
@@ -226,10 +211,8 @@ class MongoProjects:
 
         cursor = self.projects(
             {
-                '$or': [
-                    {'_id': project},
-                    {'url': project},
-                ]},
+                'url': project
+            }
         )
         try:
             return cursor.next()['topics']
@@ -255,11 +238,7 @@ class MongoProjects:
         assert self.exists(project), f'Project {project} inesistente'
 
         return self.collection.find_one_and_update(
-            {
-                '$or': [
-                    {'_id': project},
-                    {'url': project},
-                ]},
+            {'url': project},
             {
                 '$addToSet': {
                     'topics': {
@@ -276,10 +255,8 @@ class MongoProjects:
 
         return self.collection.find_one_and_update(
             {
-                '$or': [
-                    {'_id': project},
-                    {'url': project},
-                ]},
+                'url': project
+            },
             {
                 '$pull': {
                     'topics': {

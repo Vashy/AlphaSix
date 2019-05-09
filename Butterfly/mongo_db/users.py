@@ -62,7 +62,6 @@ class MongoUsers:
         """
         count = self._mongo.read('users').count_documents({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -136,7 +135,6 @@ class MongoUsers:
 
         return self.users({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -164,7 +162,6 @@ class MongoUsers:
         """
         return self._mongo.delete({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -181,7 +178,6 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -203,7 +199,6 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -222,7 +217,6 @@ class MongoUsers:
 
         count = self._mongo.read('users').count_documents({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -238,7 +232,6 @@ class MongoUsers:
 
         count = self._mongo.read('users').count_documents({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -254,7 +247,6 @@ class MongoUsers:
 
         count = self._mongo.read('users').count_documents({
             '$or': [
-                {'_id': bson.objectid.ObjectId(user)},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -288,7 +280,6 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -326,7 +317,6 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -355,7 +345,6 @@ class MongoUsers:
 
         count = self._mongo.read('users').count_documents({
             '$or': [  # Confronta user sia con telegram che con email
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -367,7 +356,6 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -395,7 +383,6 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -419,7 +406,6 @@ class MongoUsers:
 
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email o _id
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -446,7 +432,6 @@ class MongoUsers:
 
         return self._mongo.read('users').update_one({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -467,7 +452,6 @@ class MongoUsers:
 
         self._mongo.read('users').update_one({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -490,7 +474,6 @@ class MongoUsers:
             {
                 '$and': [
                     {'$or': [
-                        {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -514,7 +497,7 @@ class MongoUsers:
 
         cursor = self._mongo.read('users').find({
             '$or': [
-                {'_id': user},
+                {'_id': bson.objectid.ObjectId(user)},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -543,7 +526,6 @@ class MongoUsers:
 
         return self._mongo.read('users').update_one({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -563,7 +545,6 @@ class MongoUsers:
 
         return self._mongo.read('users').update_one({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -586,7 +567,6 @@ class MongoUsers:
             {
                 '$and': [
                     {'$or': [
-                        {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -611,7 +591,7 @@ class MongoUsers:
 
         cursor = self._mongo.read('users').find({
             '$or': [
-                {'_id': user},
+                {'_id': bson.objectid.ObjectId(user)},
                 {'telegram': user},
                 {'email': user},
             ],
@@ -663,7 +643,6 @@ class MongoUsers:
             {
                 '$and': [
                     {'$or': [
-                        # {'_id': user},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -733,7 +712,7 @@ class MongoUsers:
             return self.users({
                 '$and': [
                     {'$or': [
-                        {'_id': user},
+                        {'_id': bson.objectid.ObjectId(user)},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -762,7 +741,7 @@ class MongoUsers:
             return self.users({
                 '$and': [
                     {'$or': [
-                        {'_id': user},
+                        {'_id': bson.objectid.ObjectId(user)},
                         {'telegram': user},
                         {'email': user},
                     ]},
@@ -779,7 +758,6 @@ class MongoUsers:
         try:
             return self.users({
                 '$or': [
-                    {'_id': user},
                     {'telegram': user},
                     {'email': user},
                 ]
@@ -864,7 +842,6 @@ class MongoUsers:
         assert self.exists(user), f'User {user} inesistente'
         user = self._mongo.read('users').find({
             '$or': [
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]
@@ -887,7 +864,6 @@ class MongoUsers:
         date = datetime.datetime(year, month, day, 0, 0)
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email o _id
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},
@@ -912,7 +888,6 @@ class MongoUsers:
         date = datetime.datetime(year, month, day, 0, 0)
         return self._mongo.read('users').find_one_and_update(
             {'$or': [  # Confronta user sia con telegram che con email o _id
-                {'_id': user},
                 {'telegram': user},
                 {'email': user},
             ]},

@@ -427,10 +427,11 @@ per modificare l\'utente.</p>')
             row = '<tr>'
             row += '<td><a href="' + project_data['url'] + '" target="_blank">' + project_data['url'] + '</a></td>'
             row += '<td>' + str(user_project['priority']) + '</td><td>'
-            for topic in project_data['topics']:
-                if topic in user_project['topics']:
-                    row += topic + ','
-            row = row[:-1]  # elimino l'ultima virgola
+            if user_project.get('topics'):
+                for topic in project_data['topics']:
+                    if topic in user_project['topics']:
+                        row += topic + ','
+                row = row[:-1]  # elimino l'ultima virgola
             row += '</td><td>'
             if user_project['keywords']:
                 for keyword in user_project['keywords']:
