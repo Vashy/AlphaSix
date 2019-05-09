@@ -42,6 +42,7 @@ COPY /mongo_db/facade.py ./Butterfly/mongo_db/
 COPY /mongo_db/users.py ./Butterfly/mongo_db/
 COPY /mongo_db/projects.py ./Butterfly/mongo_db/
 COPY /mongo_db/singleton.py ./Butterfly/mongo_db/
+COPY /mongo_db/config.json ./Butterfly/mongo_db/
 
 COPY topics.json ./Butterfly/
 

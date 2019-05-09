@@ -64,7 +64,7 @@ class TelegramConsumer(Consumer):
             data={
                 'chat_id': receiver,
                 'text': self.format(msg),
-                'parse_mode': 'markdown',
+                # 'parse_mode': 'markdown',
             })
         if response.ok:
             chat = response.json()["result"]["chat"]
