@@ -119,4 +119,4 @@ def populateB():
         print(result.inserted_id)
 
 
-# populateB()
+populateB()
