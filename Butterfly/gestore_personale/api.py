@@ -268,30 +268,43 @@ class ApiHandler:
                 priority = msg.get('priority')
                 topics = msg.get('topics')
                 keywords = msg.get('keywords')
-                self._model.set_user_priority(
-                    url, project, priority
-                )
-                self._model.reset_user_topics(
-                    url,
-                    project
-                )
-                for topic in topics:
-                    self._model.add_user_topics(
-                        url,
-                        project,
-                        topic
+                user_projects = self._model.get_user_projects(url)
+                if(
+                    user_projects and
+                    any(voice['url'] == project for voice in user_projects)
+                ):
+                    project_data = self._model.read_project(project)
+                    self._model.set_user_priority(
+                        url, project, priority
                     )
-                self._model.reset_user_keywords(
-                    url,
-                    project
-                )
-                for keyword in keywords:
-                    self._model.add_user_keywords(
+                    self._model.reset_user_topics(
                         url,
-                        project,
-                        keyword
+                        project
                     )
-                return {'ok': 'Preferenza modificata correttamente'}, 200
+                    for topic in topics:
+                        if (
+                            project_data and
+                            project_data.get('topics') and
+                            topic in project_data['topics']
+                        ):
+                            self._model.add_user_topics(
+                                url,
+                                project,
+                                topic
+                            )
+                    self._model.reset_user_keywords(
+                        url,
+                        project
+                    )
+                    for keyword in keywords:
+                        self._model.add_user_keywords(
+                            url,
+                            project,
+                            keyword
+                        )
+                    return {'ok': 'Preferenza modificata correttamente.'}, 200
+                return {'error': 'Progetto non presente nelle\
+ preferenze.'}, 404
             elif tipo == 'irreperibilita':
                 giorni = msg.get('giorni')
                 giorni_old = self._model.read_user(
