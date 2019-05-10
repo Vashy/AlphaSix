@@ -60,12 +60,17 @@ class MongoUsers:
         """Restituisce `True` se l'`id` di un utente
         (che può essere Telegram, Email o _id) è salvato nel DB.
         """
-        count = self._mongo.read('users').count_documents({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ]
-        })
+        if bson.objectid.ObjectId.is_valid(user):
+            count = self._mongo.read('users').count_documents(
+                {'_id': bson.objectid.ObjectId(user)}
+            )
+        else:
+            count = self._mongo.read('users').count_documents({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user}
+                ]
+            })
         return count != 0
 
     def create(self, **fields):
@@ -132,13 +137,17 @@ class MongoUsers:
         `AssertionError` -- se `user` non è presente nel DB.
         """
         assert self.exists(user), f'User {user} inesistente'
-
-        return self.users({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ]
-        }).next()
+        if bson.objectid.ObjectId.is_valid(user):
+            return self.users({
+                '_id': bson.objectid.ObjectId(user)
+            }).next()
+        else:
+            return self.users({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ]
+            }).next()
 
     def read_by_project(self, project: str):
         """Restituisce una lista corrispondente al `project`
@@ -214,14 +223,18 @@ class MongoUsers:
         ha il campo `telegram` impostato.
         """
         assert self.exists(user), f'User {user} inesistente'
-
-        count = self._mongo.read('users').count_documents({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ],
-            'telegram': None,
-        })
+        if bson.objectid.ObjectId.is_valid(user):
+            count = self._mongo.read('users').count_documents({
+                '_id': bson.objectid.ObjectId(user)
+            })
+        else:
+            count = self._mongo.read('users').count_documents({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ],
+                'telegram': None,
+            })
         return count != 1
 
     def _user_has_email(self, user: str) -> bool:
@@ -229,14 +242,18 @@ class MongoUsers:
         ha il campo `email` impostato.
         """
         assert self.exists(user), f'User {user} inesistente'
-
-        count = self._mongo.read('users').count_documents({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ],
-            'email': None,
-        })
+        if bson.objectid.ObjectId.is_valid(user):
+            count = self._mongo.read('users').count_documents({
+                '_id': bson.objectid.ObjectId(user)
+            })
+        else:
+            count = self._mongo.read('users').count_documents({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ],
+                'email': None,
+            })
         return count != 1
 
     def _user_has_project(self, user: str, project: str) -> bool:
@@ -244,14 +261,19 @@ class MongoUsers:
         `url == project`.
         """
         assert self.exists(user), f'User {user} inesistente'
-
-        count = self._mongo.read('users').count_documents({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ],
-            'projects.url': project,
-        })
+        if bson.objectid.ObjectId.is_valid(user):
+            count = self._mongo.read('users').count_documents({
+                '_id': bson.objectid.ObjectId(user),
+                'projects.url': project
+            })
+        else:
+            count = self._mongo.read('users').count_documents({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ],
+                'projects.url': project,
+            })
         return count != 0
 
     def update_telegram(self, user: str, telegram: str):
@@ -494,19 +516,27 @@ class MongoUsers:
         """
         assert self._user_has_project(user, project), \
             f'{user} non ha in lista il progetto {project}'
-
-        cursor = self._mongo.read('users').find({
-            '$or': [
-                {'_id': bson.objectid.ObjectId(user)},
-                {'telegram': user},
-                {'email': user},
-            ],
-            'projects.url': project,
-        },
-            {
-                '_id': 0,
-                'projects.$.keywords': 1,
-        })
+        if bson.objectid.ObjectId.is_valid(user):
+            cursor = self._mongo.read('users').find({
+                '_id': bson.objectid.ObjectId(user),
+                'projects.url': project
+            },
+                {
+                    '_id': 0,
+                    'projects.$.keywords': 1,
+            })
+        else:
+            cursor = self._mongo.read('users').find({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ],
+                'projects.url': project,
+            },
+                {
+                    '_id': 0,
+                    'projects.$.keywords': 1,
+            })
 
         try:
             return cursor.next()['projects'][0]['keywords']
@@ -588,19 +618,27 @@ class MongoUsers:
 
         assert self._user_has_project(user, project), \
             f'{user} non ha in lista il progetto {project}'
-
-        cursor = self._mongo.read('users').find({
-            '$or': [
-                {'_id': bson.objectid.ObjectId(user)},
-                {'telegram': user},
-                {'email': user},
-            ],
-            'projects.url': project,
-        },
-            {
-                '_id': 0,
-                'projects.$.topics': 1,
-        })
+        if bson.objectid.ObjectId.is_valid(user):
+            cursor = self._mongo.read('users').find({
+                '_id': bson.objectid.ObjectId(user),
+                'projects.url': project
+            },
+                {
+                    '_id': 0,
+                    'projects.$.topics': 1,
+            })
+        else:
+            cursor = self._mongo.read('users').find({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ],
+                'projects.url': project,
+            },
+                {
+                    '_id': 0,
+                    'projects.$.topics': 1,
+            })
 
         try:
             return cursor.next()['projects'][0]['topics']
@@ -711,11 +749,7 @@ class MongoUsers:
         try:
             return self.users({
                 '$and': [
-                    {'$or': [
-                        {'_id': bson.objectid.ObjectId(user)},
-                        {'telegram': user},
-                        {'email': user},
-                    ]},
+                    {'_id': bson.objectid.ObjectId(user)},
                     {'$or': [
                         {'preference': 'telegram'},
                         {'email': None},
@@ -740,11 +774,7 @@ class MongoUsers:
         try:
             return self.users({
                 '$and': [
-                    {'$or': [
-                        {'_id': bson.objectid.ObjectId(user)},
-                        {'telegram': user},
-                        {'email': user},
-                    ]},
+                    {'_id': bson.objectid.ObjectId(user)},
                     {'$or': [
                         {'preference': 'email'},
                         {'telegram': None},
@@ -840,14 +870,22 @@ class MongoUsers:
         `AssertionError` -- se `user` non è presente nel DB.
         """
         assert self.exists(user), f'User {user} inesistente'
-        user = self._mongo.read('users').find({
-            '$or': [
-                {'telegram': user},
-                {'email': user},
-            ]
-        }, {
-            'projects': 1,
-        }).next()
+
+        if bson.objectid.ObjectId.is_valid(user):
+            user = self._mongo.read('users').find({
+                '_id': bson.objectid.ObjectId(user)
+            }, {
+                'projects': 1,
+            }).next()
+        else:
+            user = self._mongo.read('users').find({
+                '$or': [
+                    {'telegram': user},
+                    {'email': user},
+                ]
+            }, {
+                'projects': 1,
+            }).next()
         if 'projects' in user:
             return user['projects']
         return []
