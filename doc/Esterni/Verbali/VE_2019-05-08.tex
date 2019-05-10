@@ -1,0 +1,71 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\VE}
+\newcommand{\nomedocumentofisico}{VE\_2019-05-08.pdf}
+\newcommand{\redazione}{\NC}
+\newcommand{\verifica}{\CV}
+\newcommand{\approvazione}{\TG}
+\newcommand{\versione}{1.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{9 maggio 2019}
+\newcommand{\datamodifica}{10 maggio 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{VE_2019-05-08/diario} % Entries diario
+
+\begin{document}
+
+	 % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+
+    \section{Informazioni incontro}
+    	\begin{itemize}
+    		\item \textbf{Luogo}: l'incontro è stato effettuato tramite uno scambio di email.
+    		\item \textbf{Data}: 2019-05-08.
+    		\item \textbf{Ora inizio}: 9:30.
+    		\item \textbf{Ora fine}: 9:45.
+    		\item \textbf{Partecipanti di AlphaSix}: team al completo.
+    		\item \textbf{Partecipanti esterni}: \LuC~di \II.
+    		\item \textbf{Ordine del giorno}: invito al collaudo.
+
+    	\end{itemize}
+
+    \section{Argomenti}
+    In questo breve scambio di email in particolare è avvenuto:
+    \begin{enumerate}
+        \item Invito al collaudo del prodotto il giorno 17 maggio 2019
+        \item Conferma della presenza del proponente \LuC al collaudo
+    \end{enumerate}
+
+    \section{Tracciamento delle decisioni}
+
+    \newcounter{tracc}
+    \begin{table}[H]
+        \centering
+        %\rowcolors{2}{white}{\tablegray}
+        {\def\arraystretch{1.5}
+            \begin{tabularx}{\textwidth}{cX}
+                \rowcolor{gray!15}
+                \textbf{Codice} & \textbf{Descrizione}\\
+                \toprule%\rowcolor{}
+                \stepcounter{tracc}
+                \texttt{VE\_2019-05-08.\thetracc} & Partecipazione del proponente alla RA del giorno 17 maggio 2019 \\
+                \bottomrule
+        \end{tabularx}}
+        \caption{Tracciamento decisioni}
+    \end{table}
+
+
+\end{document}
