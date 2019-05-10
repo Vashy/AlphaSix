@@ -39,11 +39,18 @@ class GitlabPushWebhook(Webhook):
 
         assert whook is not None
 
+        with open(GitlabIssueCommentWebhook._config_path, 'r') as f:
+            configs = json.load(f)
+        
+        if os.environ['GITLAB_BASE_URL']:
+            configs['base_url'] = os.environ['GITLAB_BASE_URL']
+
+
         webhook = {}
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
         # webhook['title'] = commit['message']
-        webhook['project_id'] = whook['project']['path_with_namespace']
+        webhook['project_id'] = configs['base_url'] + str(whook['project']['path_with_namespace'])
         #webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user_name']
