@@ -110,13 +110,14 @@ class ApiHandler:
             try:
                 user = self._model.read_user(url)
                 userjson = json.loads(dumps(user))
-                for i, data in enumerate(userjson['irreperibilita']):
-                    userjson['irreperibilita'][i]['$date'] = datetime.datetime.strftime(
-                        datetime.datetime.fromtimestamp(
-                            userjson['irreperibilita'][i]['$date']/1000
-                        ),
-                        format="%Y-%m-%d"
-                    )
+                if userjson.get('irreperibilita'):
+                    for i, data in enumerate(userjson['irreperibilita']):
+                        userjson['irreperibilita'][i]['$date'] = datetime.datetime.strftime(
+                            datetime.datetime.fromtimestamp(
+                                userjson['irreperibilita'][i]['$date']/1000
+                            ),
+                            format="%Y-%m-%d"
+                        )
                 return userjson
             except AssertionError:
                 return {'error': 'Utente inesistente.'}, 404
@@ -306,46 +307,53 @@ class ApiHandler:
                 return {'error': 'Progetto non presente nelle\
  preferenze.'}, 404
             elif tipo == 'irreperibilita':
-                giorni = msg.get('giorni')
-                giorni_old = self._model.read_user(
-                    url
-                ).get('irreperibilita')
-                giorni_new = []
-                for giorno in giorni:
-                    giorni_new.append(
-                        datetime.datetime.strptime(giorno, '%Y-%m-%d')
-                    )
-                to_remove=[]
-                if giorni_old and giorni_new:
-                    for giorno in giorni_new:
-                        to_remove.append(
-                            datetime.datetime.strptime(
-                                giorno.strftime('%Y') + '-' + giorno.strftime('%m'),
-                                '%Y-%m'
+                try:
+                    giorni = msg.get('giorni')
+                    if giorni:
+                        giorni_old = self._model.read_user(
+                            url
+                        ).get('irreperibilita')
+                        giorni_new = []
+                        for giorno in giorni:
+                            giorni_new.append(
+                                datetime.datetime.strptime(giorno, '%Y-%m-%d')
                             )
-                        )
-                    for mese in to_remove:
-                        month = mese.strftime('%m')
-                        year = mese.strftime('%Y')
-                        for giorno in giorni_old:
-                            if(
-                                giorno.strftime('%Y') == year and
-                                giorno.strftime('%m') == month
-                            ):
-                                self._model.remove_giorno_irreperibilita(
+                        to_remove=[]
+                        if giorni_old and giorni_new:
+                            for giorno in giorni_new:
+                                to_remove.append(
+                                    datetime.datetime.strptime(
+                                        giorno.strftime('%Y') + '-\
+' + giorno.strftime('%m'),
+                                        '%Y-%m'
+                                    )
+                                )
+                            for mese in to_remove:
+                                month = mese.strftime('%m')
+                                year = mese.strftime('%Y')
+                                for giorno in giorni_old:
+                                    if(
+                                        giorno.strftime('%Y') == year and
+                                        giorno.strftime('%m') == month
+                                    ):
+                                        self._model.remove_giorno_irreperibilita(
+                                            url,
+                                            int(year),
+                                            int(month),
+                                            int(giorno.strftime('%d'))
+                                        )
+                            for giorno in giorni_new:
+                                self._model.add_giorno_irreperibilita(
                                     url,
-                                    int(year),
-                                    int(month),
+                                    int(giorno.strftime('%Y')),
+                                    int(giorno.strftime('%m')),
                                     int(giorno.strftime('%d'))
                                 )
-                    for giorno in giorni_new:
-                        self._model.add_giorno_irreperibilita(
-                            url,
-                            int(giorno.strftime('%Y')),
-                            int(giorno.strftime('%m')),
-                            int(giorno.strftime('%d'))
-                        )
-                return {'ok': 'Preferenza modificata correttamente'}, 200
+                        return {'ok': 'Preferenza modificata correttamente'}, 200
+                    return {'error': 'Giorni non inseriti.'}, 404
+                except ValueError:
+                    return {'error': 'Le date fornite non sono in formato\
+ corretto.'}, 400
             elif tipo == 'piattaforma':
                 platform = msg.get('platform')
                 if platform == "telegram":
@@ -358,9 +366,11 @@ class ApiHandler:
                         return {'error': 'Email non presente nel sistema.'}, 404
                 else:
                     return {'error': 'La piattaforma deve essere telegram\
-     o email.'}, 400
+ o email.'}, 400
                 self._model.update_user_preference(url, platform)
                 return {'ok': 'Preferenza modificata correttamente'}, 200
+            else:
+                return {'error': 'Tipo di preferenza non trovato.'}, 400
         elif request_type == 'DELETE':
             project = msg.get('project')
             try:
