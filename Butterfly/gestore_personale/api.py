@@ -351,11 +351,12 @@ class ApiHandler:
         elif request_type == 'DELETE':
             project = msg.get('project')
             try:
-                if project:
+                if project and self._model.get_project_by_url(project):
                     self._model.remove_user_project(url, project)
                     return {'ok': 'Preferenza rimossa correttamente.'}, 200
                 else:
-                    return {'error': 'Nessun progetto selezionato.'}, 400
+                    return {'error': 'Nessun progetto selezionato o\
+ progetto inesistente.'}, 400
             except AssertionError:
                 return {'error': 'Progetto non presente nelle preferenze o\
  utente inesistente.'}, 400
@@ -363,11 +364,12 @@ class ApiHandler:
             user = msg.get('user')
             project = msg.get('project')
             try:
-                if project:
+                if project and self._model.get_project_by_url(project):
                     self._model.add_user_project(user, project)
                     return {'ok': 'Preferenza aggiunta correttamente.'}, 200
                 else:
-                    return {'error': 'Nessun progetto selezionato.'}, 400
+                    return {'error': 'Nessun progetto selezionato o\
+ progetto inesistente.'}, 400
             except AssertionError:
                 return {'error': 'Progetto già presente o\
  utente inesistente.'}, 400
