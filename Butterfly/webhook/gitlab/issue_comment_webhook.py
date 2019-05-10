@@ -46,23 +46,23 @@ class GitlabIssueCommentWebhook(Webhook):
 
         assert whook is not None
 
-        webhook = {}
-        webhook['app'] = 'gitlab'
-        webhook['object_kind'] = 'issue-note'
-        webhook['title'] = whook['issue']['title']
-        webhook['project_id'] = whook['project']['path_with_namespace']
-        #webhook['project_id'] = whook['project']['web_url']
-        webhook['project_name'] = whook['project']['name']
-        webhook['author'] = whook['user']['name']
-        webhook['description'] = whook['object_attributes']['description']
-        webhook['action'] = 'comment'
-
         with open(GitlabIssueCommentWebhook._config_path, 'r') as f:
             configs = json.load(f)
 
         if(os.environ['GITLAB_PRIVATE_TOKEN'] and os.environ['GITLAB_BASE_URL']):
             configs['PRIVATE-TOKEN'] = os.environ['GITLAB_PRIVATE_TOKEN']
             configs['base_url'] = os.environ['GITLAB_BASE_URL']
+
+        webhook = {}
+        webhook['app'] = 'gitlab'
+        webhook['object_kind'] = 'issue-note'
+        webhook['title'] = whook['issue']['title']
+        webhook['project_id'] = configs['base_url'] + str(whook['project']['path_with_namespace'])
+        #webhook['project_id'] = whook['project']['web_url']
+        webhook['project_name'] = whook['project']['name']
+        webhook['author'] = whook['user']['name']
+        webhook['description'] = whook['object_attributes']['description']
+        webhook['action'] = 'comment'
 
         webhook['labels'] = self.project_labels(
             configs['base_url'],  # url dell'istanza Gitlab
