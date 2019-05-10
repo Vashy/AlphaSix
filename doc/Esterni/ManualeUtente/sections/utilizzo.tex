@@ -16,7 +16,7 @@ Il Gestore Personale è la componente principale di \progetto\ e si può suddivi
 Il secondo punto non è di pertinenza di questo manuale (ma del \MSd), in quanto l'utente non lo usa direttamente, per cui verrà solamente discusso l'utilizzo del sistema tramite l'interfaccia utente. \par
 L'inserimento della figura dell'amministratore, non presente nel \textit{Manuale Sviluppatore V1.0.0\ped{\tiny{D}}}, è giustificata in \textit{VE\_2019-04-26\ped{\tiny{D}}}.
 
-\subsubsection{Interfaccia Utente}
+\subsubsection{Interfaccia utente}
 Le seguenti opzioni del Gestore Personale sono accessibili da ogni tipo utente, perciò anche da quelli coi privilegi di amministratore.
 
 \paragraph{Accesso}
@@ -38,22 +38,22 @@ Nel caso in cui un utente cerchi di accedere ad una sezione, ma senza aver effet
 Se un utente iscritto correttamente nel sistema ha registrato precedentemente sia indirizzo Email che ID Telegram, allora può accedere utilizzando indipendentemente il primo o il secondo.
 
 \paragraph{Pannello di controllo}
-Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
-Le sezioni a cui si può navigare dal Pannello di Controllo sono:
+Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
+Le sezioni a cui si può navigare dal pannello di controllo sono:
 \begin{itemize}
 	\item Modifica dei propri dati
 	\item Modifica delle proprie preferenze
-	\item Uscita dal sistema (Logout)
+	\item Uscita dal sistema (logout)
 \end{itemize}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{img/user_panel_1.png}
-	\caption{Pannello di Controllo per utente generico}
+	\caption{Pannello di controllo per utente generico}
 \end{figure}
 
 \paragraph{Modifica preferenze}\label{preferenze}
 La modifica delle preferenze è possibile solamente per utenti già iscritti ed autenticati nel sistema.
-È raggiungibile tramite il Pannello di Controllo sotto la voce ``Modifica le tue preferenze''.
+È raggiungibile tramite il pannello di controllo sotto la voce ``Modifica le tue preferenze''.
 In questa sezione si possono trovare le principali impostazioni del sistema dal punto di vista dell'utente finale:
 \begin{itemize}
 	\item Lista dei progetti a cui si è iscritti
@@ -77,7 +77,7 @@ Le ``keyword'' invece, sono formate da una lista di parole che possono essere co
 \end{figure}
 
 \paragraph{Modifica dei propri dati}
-La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi dati'' accessibile dal Pannello di Controllo.
+La modifica dei propri dati è possibile attraverso la sezione ``Modifica i tuoi dati'' accessibile dal pannello di controllo.
 Qui un utente può modificare i dati inseriti dall'amministratore in fase di registrazione.
 \begin{figure}[H]
 	\centering
@@ -87,14 +87,14 @@ Qui un utente può modificare i dati inseriti dall'amministratore in fase di reg
 Nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore.
 
 \paragraph{Uscita dal sistema}
-Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente nel Pannello di Controllo.
+Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente nel pannello di controllo.
 
 \subsubsection{Interfaccia amministratore}
 All'interno dell'applicazione \progetto, gli utenti con i permessi di amministratore potranno eseguire le stesse azioni di un utente normale e in più gestire l'insieme degli utenti iscritti al sistema. Il sistema di accesso per l'utente amministratore non differisce da quello per gli altri utenti.
 
 \paragraph{Pannello di controllo}
-Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al Pannello di Controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
-Le sezioni a cui si può navigare dal Pannello di Controllo sono:
+Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
+Le sezioni a cui si può navigare dal pannello di controllo sono:
 \begin{itemize}
     \item Inserimento di un nuovo utente
     \item Rimozione di un utente
@@ -108,12 +108,12 @@ Le sezioni a cui si può navigare dal Pannello di Controllo sono:
 \begin{figure}[H]
     \centering
     \includegraphics[width=10cm]{img/admin_panel_1.png}
-    \caption{Pannello di Controllo per utente con privilegi di amministratore}
+    \caption{Pannello di controllo per utente con privilegi di amministratore}
 \end{figure}
 
 \paragraph{Iscrizione a Butterfly}\label{Iscrizione}
 L'iscrizione di un nuovo utente al sistema \progetto\ è permessa solamente all'utente amministratore.
-La sezione di inserimento di un nuovo utente è raggiungibile dal Pannello di Controllo e prevede l'inserimento dei seguenti dati:
+La sezione di inserimento di un nuovo utente è raggiungibile dal pannello di controllo e prevede l'inserimento dei seguenti dati:
 \begin{itemize}
 	\item Nome
 	\item Cognome
@@ -131,7 +131,7 @@ Nel caso questi fossero già associati ad un utente iscritto a \progetto\ verrà
 
 \paragraph{Rimozione di un utente}\label{Rimozione}
 Viene data la possibilità di rimuovere un utente dal sistema solamente all'amministratore.
-La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibile dal Pannello di Controllo.
+La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibile dal pannello di controllo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{img/rimozione_1.png}
@@ -141,7 +141,7 @@ La rimozione è possibile attraverso la sezione ``Rimuovi un utente'' accessibil
 \paragraph{Visualizzazione utenti} \label{VisUtenti}
 Un utente amministratore ha la possibilità di vedere la lista di tutti gli utenti iscritti al sistema e i relativi progetti a cui sono interessati.
 Per ogni progetto viene inoltre riportata la priorità che ha per l'utente, le labels e la keywords d'interesse.
-La visualizzazione avviene attraverso la sezione ``Visualizza gli utenti'' accessibile dal Pannello di Controllo.
+La visualizzazione avviene attraverso la sezione ``Visualizza gli utenti'' accessibile dal pannello di controllo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{img/user_details.png}
@@ -159,7 +159,7 @@ Per rimuovere un progetto dal sistema, l'interfaccia dell'amministratore possied
 
 \paragraph{Visualizzazione dei progetti}
 Un utente amministratore ha la possibilità di vedere la lista di tutti i progetti presenti nel sistema. Di ognuno viene mostrata la url identificativa, il nome, l'applicazione di provenienza e i topics rilevati relativi al progetto.
-La visualizzazione avviene attraverso la sezione ``Visualizza i progetti'' accessibile dal Pannello di Controllo.
+La visualizzazione avviene attraverso la sezione ``Visualizza i progetti'' accessibile dal pannello di controllo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{img/visualizzaprog.png}

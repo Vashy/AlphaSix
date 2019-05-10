@@ -51,7 +51,7 @@ class GitlabIssueCommentWebhook(Webhook):
 
         if os.environ['GITLAB_PRIVATE_TOKEN']:
             configs['PRIVATE-TOKEN'] = os.environ['GITLAB_PRIVATE_TOKEN']
-        
+
         if os.environ['GITLAB_BASE_URL']:
             configs['base_url'] = os.environ['GITLAB_BASE_URL']
 
@@ -81,6 +81,9 @@ class GitlabIssueCommentWebhook(Webhook):
             f'{base_url}/api/v4/projects/{project_id}/labels',
             headers={'PRIVATE-TOKEN': token}
         )
+        print(base_url) + "  e poi"
+        print(project_id) + " e poi "
+        print(token) + " ."
         labels = []
         if result.ok:  # 200
             # Salva solo i nomi delle label

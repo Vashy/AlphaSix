@@ -107,9 +107,12 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 	\end{itemize}
 
 	%TODO successivamente da vedere se è in un unico pod oppure se in pod separati
-	\item Namespace: \texttt{gestore-Personale}
+	\item Namespace: \texttt{gestore-personale}
 	\begin{itemize}
 		\item Pod: \texttt{gestore-personale} (immagine: \texttt{alphasix/gestore-personale:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-personale}})
+		\item Pod: \texttt{gestore-personale-client}
+
+		(immagine: \texttt{alphasix/gestore-personale-client:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-personale-client}})
 		\item Pod: \texttt{mongo} (immagine: \texttt{bitnami/mongodb:latest}\footnote{\url{https://hub.docker.com/r/bitnami/mongodb/}})
 	\end{itemize}
 
