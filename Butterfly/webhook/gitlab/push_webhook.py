@@ -24,6 +24,7 @@ Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 """
 
+from pathlib import Path
 from webhook.webhook import Webhook
 import json
 import os
@@ -33,6 +34,8 @@ class GitlabPushWebhook(Webhook):
     Parse degli eventi di Push di Gitlab.
     """
 
+    _config_path = Path(__file__).parent / 'config.json'
+
     def parse(self, whook: dict):
         """Parsing del file JSON. Restituisce un riferimento alla
          lista 'commits' contenente i dizionari ottenuti.
@@ -40,7 +43,7 @@ class GitlabPushWebhook(Webhook):
 
         assert whook is not None
 
-        with open(GitlabIssueCommentWebhook._config_path, 'r') as f:
+        with open(GitlabPushWebhook._config_path, 'r') as f:
             configs = json.load(f)
         
         if os.environ['GITLAB_BASE_URL']:
@@ -51,7 +54,7 @@ class GitlabPushWebhook(Webhook):
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
         # webhook['title'] = commit['message']
-        webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace']))
+        webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace'])).strip('"')
         #webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user_name']
