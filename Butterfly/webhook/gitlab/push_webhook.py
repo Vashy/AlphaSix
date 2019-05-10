@@ -25,7 +25,8 @@ Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 """
 
 from webhook.webhook import Webhook
-
+import json
+import os
 
 class GitlabPushWebhook(Webhook):
     """`GitLabPushWebhook` implementa `Webhook`.
@@ -50,7 +51,7 @@ class GitlabPushWebhook(Webhook):
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
         # webhook['title'] = commit['message']
-        webhook['project_id'] = configs['base_url'] + str(whook['project']['path_with_namespace'])
+        webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace']))
         #webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user_name']
