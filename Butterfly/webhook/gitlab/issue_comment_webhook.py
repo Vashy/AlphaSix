@@ -49,8 +49,10 @@ class GitlabIssueCommentWebhook(Webhook):
         with open(GitlabIssueCommentWebhook._config_path, 'r') as f:
             configs = json.load(f)
 
-        if(os.environ['GITLAB_PRIVATE_TOKEN'] and os.environ['GITLAB_BASE_URL']):
+        if os.environ['GITLAB_PRIVATE_TOKEN']:
             configs['PRIVATE-TOKEN'] = os.environ['GITLAB_PRIVATE_TOKEN']
+        
+        if os.environ['GITLAB_BASE_URL']:
             configs['base_url'] = os.environ['GITLAB_BASE_URL']
 
         webhook = {}
