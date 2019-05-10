@@ -518,7 +518,7 @@ per modificare l\'utente.</p>')
                 for topic in project_data['topics']:
                     row += '<br/><label>' + topic + '</label>'
                     row += '<input type="checkbox" name="\
-    ' + project_data['url'] + '-topics"'
+' + project_data['url'] + '-topics"'
                     if topic in user_project['topics']:
                         row += ' checked="checked"'
                     row += ' value="' + topic + '">'
