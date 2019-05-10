@@ -448,9 +448,10 @@ per modificare l\'utente.</p>')
         table = '<table id="projects-table"><tr><th>Url</th><th>Name</th>\
 <th>App</th><th>Topics</th></tr><tr><td>' + project['url'] + '</td>\
 <td>' + project['name'] + '</td><td>' + project['app'] + '</td><td>'
-        for topic in project['topics']:
-            table += topic + ','
-        table = table[:-1]  # elimino l'ultima virgola
+        if project.get('topics'):
+            for topic in project['topics']:
+                table += topic + ','
+            table = table[:-1]  # elimino l'ultima virgola
         table += '</td></tr></table>'
         return table
 
@@ -513,13 +514,14 @@ per modificare l\'utente.</p>')
                 row += ' value="' + str(priority) + '">\
 ' + str(priority) + '</option>'
             row += '</select></td><td>'
-            for topic in project_data['topics']:
-                row += '<br/><label>' + topic + '</label>'
-                row += '<input type="checkbox" name="\
-' + project_data['url'] + '-topics"'
-                if topic in user_project['topics']:
-                    row += ' checked="checked"'
-                row += ' value="' + topic + '">'
+            if project_data.get('topics'):
+                for topic in project_data['topics']:
+                    row += '<br/><label>' + topic + '</label>'
+                    row += '<input type="checkbox" name="\
+    ' + project_data['url'] + '-topics"'
+                    if topic in user_project['topics']:
+                        row += ' checked="checked"'
+                    row += ' value="' + topic + '">'
             row += '</td><td><textarea id="textkeywords" name="\
 ' + project_data['url'] + '-keywords">'
             if user_project['keywords']:

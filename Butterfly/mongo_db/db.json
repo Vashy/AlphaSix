@@ -11,5 +11,11 @@
          "projects": []
       }
     ],
-    "projects": []
+    "projects": [
+      {
+        "url": "http://localhost/prova",
+        "name": "Prova",
+        "app": "Localhost"
+      }
+    ]
 }
