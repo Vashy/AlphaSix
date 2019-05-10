@@ -37,8 +37,10 @@ from consumer.consumer import Consumer
 
 class TelegramConsumer(Consumer):
 
-    _bold = '*'
-    _code = '`'
+    _bold_open = '<b>'
+    _bold_close = '</b>'
+    _code_open = '<code>'
+    _code_close = '</code>'
 
     """Implementa Consumer"""
     _CONFIG_PATH = Path(__file__).parent / 'config.json'
@@ -64,7 +66,7 @@ class TelegramConsumer(Consumer):
             data={
                 'chat_id': receiver,
                 'text': self.format(msg),
-                # 'parse_mode': 'markdown',
+                'parse_mode': 'html',
             })
         if response.ok:
             chat = response.json()["result"]["chat"]
@@ -85,15 +87,15 @@ class TelegramConsumer(Consumer):
         Arguments:
         msg -- JSON object
 
-        Formato: Markdown
-        *bold text*
-        _italic text_
+        Formato: HTML
+        <b>bold text</b>
+        <i>italic text</i>
         [inline URL](http://www.example.com/)
         [inline mention of a user](tg://user?id=123456789)
-        `inline fixed-width code`
-        ```block_language
+        <code>inline fixed-width code</code>
+        <pre>block_language
         pre-formatted fixed-width code block
-        ```
+        </pre>
         """
 
         # Queste chiamate vanno bene sia per i webhook di rd che per gt
@@ -116,17 +118,17 @@ class TelegramConsumer(Consumer):
             raise KeyError
 
         res += ''.join([
-            f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
-            f'({cls._code}{msg["project_id"]}{cls._code})',
+            f'nel progetto {cls._bold_open}{msg["project_name"]}{cls._bold_close} ',
+            f'({cls._code_open}{msg["project_id"]}{cls._code_close})',
             f' su {msg["app"].capitalize()}\n',
-            # f'\n\n{cls._bold}Informazioni:{cls._bold} '
-            f'\n - {cls._bold}Autore:{cls._bold} {msg["author"]}'
-            f'\n - {cls._bold}Title:{cls._bold} {msg["title"]}',
-            f'\n - {cls._bold}Description:{cls._bold} '
+            # f'\n\n{cls._bold_open}Informazioni:{cls._bold_close} '
+            f'\n - {cls._bold_open}Autore:{cls._bold_close} {msg["author"]}'
+            f'\n - {cls._bold_open}Title:{cls._bold_close} {msg["title"]}',
+            f'\n - {cls._bold_open}Description:{cls._bold_close} '
             f'{msg["description"]}',
         ])
         if 'action' in msg:
-            res += f'\n - {cls._bold}Action:{cls._bold} {msg["action"]}'
+            res += f'\n - {cls._bold_open}Action:{cls._bold_close} {msg["action"]}'
 
         return res
 
@@ -147,13 +149,13 @@ class TelegramConsumer(Consumer):
 
         res = ''.join([
             f'È stata {action_text} una issue ',
-            f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
-            f'({cls._code}{msg["project_id"]}{cls._code})',
+            f'nel progetto {cls._bold_open}{msg["project_name"]}{cls._bold_close} ',
+            f'({cls._code_open}{msg["project_id"]}{cls._code_close})',
             f' su {msg["app"].capitalize()}\n',
-            # f'\n\n{cls._bold}Informazioni:{cls._bold} '
-            f'\n - {cls._bold}Autore:{cls._bold} {msg["author"]}'
-            f'\n - {cls._bold}Title:{cls._bold} {msg["title"]}',
-            f'\n - {cls._bold}Description:{cls._bold} '
+            # f'\n\n{cls._bold_open}Informazioni:{cls._bold_close} '
+            f'\n - {cls._bold_open}Autore:{cls._bold_close} {msg["author"]}'
+            f'\n - {cls._bold_open}Title:{cls._bold_close} {msg["title"]}',
+            f'\n - {cls._bold_open}Description:{cls._bold_close} '
             f'{msg["description"]}',
         ])
         return res
@@ -170,14 +172,14 @@ class TelegramConsumer(Consumer):
         """
         res = ''.join([
             f'È stato fatto un push '
-            f'nel progetto {cls._bold}{msg["project_name"]}{cls._bold} ',
-            # f'({cls._code}{msg["project_id"]}{cls._code})',
+            f'nel progetto {cls._bold_open}{msg["project_name"]}{cls._bold_close} ',
+            # f'({cls._code_open}{msg["project_id"]}{cls._code_close})',
             f' su {msg["app"].capitalize()}\n\n',
             f'{msg["commits_count"]} nuovi commit da {msg["author"]}:\n'
         ])
         for commit in msg['commits']:
             res += (f'- {commit["message"]} '
-                    f'({cls._code}{commit["id"][:id_precision]}{cls._code}..)'
+                    f'({cls._code_open}{commit["id"][:id_precision]}{cls._code_close}..)'
                     '\n')
             commits_count -= 1
             if commits_count == 0:
