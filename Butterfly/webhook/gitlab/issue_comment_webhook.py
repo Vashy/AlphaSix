@@ -25,6 +25,7 @@ Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 """
 from pathlib import Path
 import json
+import os
 
 import requests
 
@@ -58,6 +59,10 @@ class GitlabIssueCommentWebhook(Webhook):
 
         with open(GitlabIssueCommentWebhook._config_path, 'r') as f:
             configs = json.load(f)
+
+        if(os.environ['GITLAB_PRIVATE_TOKEN'] and os.environ['GITLAB_BASE_URL']):
+            configs['PRIVATE-TOKEN'] = os.environ['GITLAB_PRIVATE_TOKEN']
+            configs['base_url'] = os.environ['GITLAB_BASE_URL']
 
         webhook['labels'] = self.project_labels(
             configs['base_url'],  # url dell'istanza Gitlab
