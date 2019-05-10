@@ -45,7 +45,8 @@ class GitlabIssueWebhook(Webhook):
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
         webhook['title'] = whook['object_attributes']['title']
-        webhook['project_id'] = whook['project']['web_url']
+        webhook['project_id'] = whook['project']['path_with_namespace']
+        #webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
 

@@ -43,7 +43,8 @@ class GitlabPushWebhook(Webhook):
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
         # webhook['title'] = commit['message']
-        webhook['project_id'] = whook['project']['web_url']
+        webhook['project_id'] = whook['project']['path_with_namespace']
+        #webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user_name']
         webhook['commits'] = whook['commits']
