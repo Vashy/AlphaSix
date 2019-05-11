@@ -34,7 +34,7 @@ class GitlabPushWebhook(Webhook):
     Parse degli eventi di Push di Gitlab.
     """
 
-    _config_path = Path(__file__).parent / 'config.json'
+    _config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def parse(self, whook: dict):
         """Parsing del file JSON. Restituisce un riferimento alla

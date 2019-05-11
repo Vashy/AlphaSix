@@ -31,11 +31,9 @@ EXPOSE 5000
 # Copying files from the correct folders
 COPY /consumer/email/consumer.py ./Butterfly/consumer/email/
 COPY /consumer/email/run.py ./Butterfly/consumer/email/
-COPY /consumer/email/config.json ./Butterfly/consumer/email/
 COPY /consumer/email/requirements.txt ./Butterfly/consumer/email/
 COPY /consumer/email/__init__.py ./Butterfly/consumer/email/
 COPY /consumer/consumer.py ./Butterfly/consumer/
-COPY /consumer/config.json ./Butterfly/consumer/
 COPY /consumer/creator.py ./Butterfly/consumer/
 COPY /consumer/__init__.py ./Butterfly/consumer/
 COPY topics.json ./Butterfly/
@@ -46,6 +44,9 @@ WORKDIR /Butterfly
 ENV KAFKA_IP='10.42.0.142'
 ENV KAFKA_PORT=9092
 ENV BUTTERFLY_EMAIL_PSW='alfaswe6'
+
+RUN mkdir ./config
+VOLUME ./config
 
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r consumer/email/requirements.txt

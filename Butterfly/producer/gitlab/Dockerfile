@@ -33,11 +33,9 @@ COPY /producer/gitlab/run.py ./Butterfly/producer/gitlab/
 COPY /producer/producer.py ./Butterfly/producer/
 COPY /producer/creator.py ./Butterfly/producer/
 COPY /producer/__init__.py ./Butterfly/producer/
-COPY /producer/config.json ./Butterfly/producer/
 COPY /producer/server.py ./Butterfly/producer/
 
 COPY /webhook/gitlab/commit_comment_webhook.py ./Butterfly/webhook/gitlab/
-COPY /webhook/gitlab/config.json ./Butterfly/webhook/gitlab/
 COPY /webhook/gitlab/factory.py ./Butterfly/webhook/gitlab/
 COPY /webhook/gitlab/issue_comment_webhook.py ./Butterfly/webhook/gitlab/
 COPY /webhook/gitlab/issue_webhook.py ./Butterfly/webhook/gitlab/
@@ -55,8 +53,11 @@ WORKDIR /Butterfly
 ENV KAFKA_IP='10.42.0.230'
 ENV KAFKA_PORT=9092
 
+RUN mkdir ./config
+VOLUME ./config
+
 # Installing dependencies
-RUN pip3 install --upgrade pip ; pip3 install -r producer/gitlab/requirements.txt
+RUN pip3 install --upgrade pip ; pip3 install -r producer/gitlab/requirements.txt ; 
 
 # Run after the dependencies have been installed
 CMD python3 -m producer.gitlab.run

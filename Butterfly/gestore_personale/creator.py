@@ -39,8 +39,9 @@ class KafkaProducerCreator:
     """Interfaccia `ProducerCreator`. Un `ProducerCreator` ha il
     compito di inizializzare un `Producer` concreto.
     """
-    _config_path = Path(__file__).parents[0] / 'config_producer.json'
 
+    _config_path = Path(__file__).parents[1] / 'config' / 'config_producer.json'
+    
     def create(self, configs=_config_path) -> KafkaProducer:
         """Restituisce un'istanza concreta di `Producer`, inizializzando un
         `KafkaProducer` e passandolo come parametro al `Producer`
@@ -84,8 +85,8 @@ class KafkaProducerCreator:
 
 class KafkaConsumerCreator:
 
-    _config_path = Path(__file__).parents[0] / 'config_consumer.json'
-
+    _config_path = Path(__file__).parents[1] / 'config' / 'config_consumer.json'
+    
     def create(self, configs=_config_path) -> KafkaConsumer:
         # Converte stringa 'inf' nel relativo float
 

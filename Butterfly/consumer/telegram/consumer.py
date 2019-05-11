@@ -43,7 +43,7 @@ class TelegramConsumer(Consumer):
     _code_close = '</code>'
 
     """Implementa Consumer"""
-    _CONFIG_PATH = Path(__file__).parent / 'config.json'
+    _CONFIG_PATH = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def __init__(self, consumer: KafkaConsumer):
         super(TelegramConsumer, self).__init__(consumer)

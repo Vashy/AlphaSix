@@ -38,8 +38,7 @@ from producer.creator import KafkaProducerCreator
 from producer.gitlab.producer import GitlabProducer
 from webhook.gitlab.factory import GitlabWebhookFactory
 
-_CONFIG_PATH = Path(__file__).parents[1] / 'config.json'
-
+_CONFIG_PATH = Path(__file__).parents[2] / 'config' / 'config.json'
 
 def _open_configs(path: Path):
     with open(path) as file:

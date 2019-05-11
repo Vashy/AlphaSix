@@ -26,17 +26,17 @@ Autori:
     Laura Cameran, lauracameran@gmail.com
 """
 
+import json
+import os
 from pathlib import Path
 from webhook.webhook import Webhook
-import os
-import json
 
 class GitlabIssueWebhook(Webhook):
     """`GitLabIssueWebhook` implementa `Webhook`.
     Parse degli eventi di Issue di Gitlab.
     """
 
-    _config_path = Path(__file__).parent / 'config.json'
+    _config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def parse(self, whook: dict = None):
         """Parsing del file JSON. Restituisce un riferimento al dizionario

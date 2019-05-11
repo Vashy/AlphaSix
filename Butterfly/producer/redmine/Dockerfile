@@ -31,7 +31,6 @@ COPY /producer/redmine/producer.py ./Butterfly/producer/redmine/
 COPY /producer/redmine/requirements.txt ./Butterfly/producer/redmine/
 COPY /producer/redmine/run.py ./Butterfly/producer/redmine/
 
-COPY /producer/config.json ./Butterfly/producer/
 COPY /producer/creator.py ./Butterfly/producer/
 COPY /producer/__init__.py ./Butterfly/producer/
 COPY /producer/producer.py ./Butterfly/producer/
@@ -52,6 +51,9 @@ WORKDIR /Butterfly
 
 ENV KAFKA_IP='10.42.0.142'
 ENV KAFKA_PORT=9092
+
+RUN mkdir ./config
+VOLUME ./config
 
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r producer/redmine/requirements.txt

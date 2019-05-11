@@ -34,7 +34,7 @@ from consumer.telegram.consumer import TelegramConsumer
 from consumer.creator import KafkaConsumerCreator
 
 
-_config_path = Path(__file__).parents[1] / 'config.json'
+_config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
 
 def _open_kafka_configs(path: Path = _config_path):

@@ -37,7 +37,6 @@ COPY /consumer/telegram/run.py ./Butterfly/consumer/telegram/
 COPY /consumer/consumer.py ./Butterfly/consumer/
 COPY /consumer/creator.py ./Butterfly/consumer/
 COPY /consumer/__init__.py ./Butterfly/consumer/
-COPY /consumer/config.json ./Butterfly/consumer/
 COPY topics.json ./Butterfly/
  
 # Change current directory
@@ -45,6 +44,9 @@ WORKDIR /Butterfly
 
 ENV KAFKA_IP='10.42.0.142'
 ENV KAFKA_PORT=9092
+
+RUN mkdir ./config
+VOLUME ./config
 
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r consumer/telegram/requirements.txt

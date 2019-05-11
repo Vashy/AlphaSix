@@ -36,9 +36,7 @@ import kafka.errors
 from consumer.email.consumer import EmailConsumer
 from consumer.creator import KafkaConsumerCreator
 
-
-_config_path = Path(__file__).parents[0] / 'config.json'
-
+_config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
 def _open_kafka_configs(path: Path = _config_path):
     """Apre il file di configurazione per Kafka.

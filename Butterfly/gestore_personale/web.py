@@ -417,7 +417,7 @@ per modificare l\'utente.</p>')
 
     def load_web_user(self, user: str):
         user_projects = self._model.get_user_projects(user)
-        table = '<table id="topics-table"><tr><th>Url</th><th>Priorità</th>\
+        table = '<table id="topics-table"><tr><th>URL</th><th>Priorità</th>\
 <th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
             project_data = self._model.read_project(
@@ -445,8 +445,8 @@ per modificare l\'utente.</p>')
 
     def load_web_project(self, project: str):
         project = self._model.read_project(project)
-        table = '<table id="projects-table"><tr><th>Url</th><th>Name</th>\
-<th>App</th><th>Topics</th></tr><tr><td>' + project['url'] + '</td>\
+        table = '<table id="projects-table"><tr><th>URL</th><th>Name</th>\
+<th>App</th><th>Topics</th></tr><tr><td><a href="' + project['url'] + '" target="_blank">' + project['url'] + '</a></td>\
 <td>' + project['name'] + '</td><td>' + project['app'] + '</td><td>'
         if project.get('topics'):
             for topic in project['topics']:
@@ -496,7 +496,7 @@ per modificare l\'utente.</p>')
     def load_preference_topic(self, message=''):
         user_projects = self._model.get_user_projects(session['userid'])
         form = '<form id="topics">\
-        <table id="topics-table"><tr><th>Url</th><th>Priorità</th>\
+        <table id="topics-table"><tr><th>URL</th><th>Priorità</th>\
 <th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
             project_data = self._model.read_project(

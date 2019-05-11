@@ -39,7 +39,6 @@ class GitlabProducer(Producer):
         """
 
         if whook['object_kind'] == 'note' and 'issue' in whook:
-            print("qui c'è un issue note")
             return 'issue-note'
         elif whook['object_kind'] == 'note' and 'commit' in whook:
             return 'commit-note'

@@ -37,7 +37,7 @@ class GitlabIssueCommentWebhook(Webhook):
     """`GitLabIssueCommentWebhook` implementa `Webhook`.
     Parse degli eventi di commento di una Issue di Gitlab.
     """
-    _config_path = Path(__file__).parent / 'config.json'
+    _config_path = Path(__file__).parent / 'config' / 'config.json'
 
     def parse(self, whook: dict = None):
         """Parsing del file JSON. Restituisce un riferimento al dizionario
@@ -66,6 +66,8 @@ class GitlabIssueCommentWebhook(Webhook):
         webhook['description'] = whook['object_attributes']['description']
         webhook['action'] = 'comment'
 
+        print(configs['base_url'])
+
         webhook['labels'] = self.project_labels(
             configs['base_url'],  # url dell'istanza Gitlab
             whook['project']['id'],  # id del progetto
@@ -81,9 +83,9 @@ class GitlabIssueCommentWebhook(Webhook):
             f'{base_url}/api/v4/projects/{project_id}/labels',
             headers={'PRIVATE-TOKEN': token}
         )
-        print(base_url) + "  e poi"
-        print(project_id) + " e poi "
-        print(token) + " ."
+        # print(base_url) + "  e poi"
+        # print(project_id) + " e poi "
+        # print(token) + " ."
         labels = []
         if result.ok:  # 200
             # Salva solo i nomi delle label
