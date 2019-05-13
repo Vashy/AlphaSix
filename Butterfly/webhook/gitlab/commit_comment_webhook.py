@@ -24,8 +24,6 @@ Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 """
 
-import os
-import json
 from pathlib import Path
 from webhook.webhook import Webhook
 import json
@@ -53,7 +51,7 @@ class GitlabCommitCommentWebhook(Webhook):
 
         webhook = {}
         webhook['app'] = 'gitlab'
-        webhook['object_kind'] = 'commit-note'  # whook['object_kind']
+        webhook['object_kind'] = 'commit-note'
         webhook['title'] = whook['commit']['message']
         webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace'])).strip('"')
         webhook['project_name'] = whook['project']['name']

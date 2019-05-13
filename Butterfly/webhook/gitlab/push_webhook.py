@@ -53,31 +53,10 @@ class GitlabPushWebhook(Webhook):
         webhook = {}
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
-        # webhook['title'] = commit['message']
         webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace'])).strip('"')
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user_name']
         webhook['commits'] = whook['commits']
         webhook['commits_count'] = whook['total_commits_count']
         webhook['repository'] = whook['repository']['name']
-
-        # commits = []
-        # for commit in whook['commits']:
-
-
-        #     webhook['added'] = []
-        #     for content in commit['added']:
-        #         webhook['added'].append(content)
-        #     commits.append(webhook)
-
-        #     webhook['modified'] = []
-        #     for content in commit['modified']:
-        #         webhook['modified'].append(content)
-        #     commits.append(webhook)
-
-        #     webhook['removed'] = []
-        #     for content in commit['removed']:
-        #         webhook['removed'].append(content)
-        #     commits.append(webhook)
-
         return webhook
