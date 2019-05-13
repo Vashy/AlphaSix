@@ -1,12 +1,12 @@
 # Butterfly
 
-**Butterfly** è un software che permette la configurazione dell'inoltro dei messaggi da parte di **Redmine** e **Gitlab** agli utenti tramite **Telegram** ed **Email**, passando per il Broker **Apache Kafka** che comunica con un **Gestore Personale** che contiene tutte le preferenze degli utenti e quindi la logica degli inoltri. Questo prodotto è stato sviluppato come progetto di gruppo per il progetto della materia **Ingegneria del Software** dell'Anno Accademico 2018/2019 dei professori [Tullio vardanege](https://www.math.unipd.it/~tullio/) e [Riccardo Cardin](https://www.math.unipd.it/~rcardin/).
+**Butterfly** è un software che permette la configurazione dell'inoltro dei messaggi da parte di **Redmine** e **Gitlab** agli utenti tramite **Telegram** ed **Email**, passando per il Broker **Apache Kafka** che comunica con un **Gestore Personale** che contiene tutte le preferenze degli utenti e quindi la logica degli inoltri. Questo prodotto è stato sviluppato come progetto di gruppo per il progetto della materia **Ingegneria del Software** dell'Anno Accademico 2018/2019 dei professori [Tullio Vardanega](https://www.math.unipd.it/~tullio/) e [Riccardo Cardin](https://www.math.unipd.it/~rcardin/).
 Il gruppo che lo ha sviluppato si chiama **AlphaSix** ed è composto da:
 - [Ciprian Voinea](https://www.linkedin.com/in/cvoinea/)
-- [Timoty Granziero]() 
+- [Timoty Granziero]()
 - [Laura Cameran]()
 - [Samuele Gardin](www.linkedin.com/in/samuele-gardin)
-- [Matteo Marchiori]()
+- [Matteo Marchiori](www.linkedin.com/in/matteo-marchiori-882143bb)
 - [Nicola Carlesso]()
 
 La figura proponente di questo progetto è [Imola Informatica](https://www.imolainformatica.it/home/) che ha fornito il seguente capitolato che descrive i requisiti richiesti per il Butterfly:
@@ -18,7 +18,7 @@ La figura proponente di questo progetto è [Imola Informatica](https://www.imola
 Butterfly utilizza l'architettura **Publisher Subscriber** ed è stato pensato in maniera da suddividerlo in più sottosistemi: quello dei Producer, dei Consumer, del Gestore Personale e del Broker.
 
 # Docker e Rancher
-Sotto richiesta dell'azienda proponente, Butterfly è stato sviluppato in maniera tale che funzioni su container **Docker** e la loro istanziazione venga fatta tramite un gestore di oggetti Kubernetes come **Rancher**. Il seguente README fa riferimento ad un sistema su quale questi due sono correttamente installati e configurati.
+Sotto richiesta dell'azienda proponente, Butterfly è stato sviluppato in maniera tale che funzioni su container **Docker** e la loro istanziazione venga fatta tramite un gestore di oggetti Kubernetes come **Rancher**. Il seguente README fa riferimento ad un sistema nel quale questi due sono correttamente installati e configurati.
 
 ## DockerHub:
 
@@ -54,4 +54,4 @@ Su Rancher abbiamo pensato di suddividere un nodo che ci è stato fornito dall'a
 
 È possibile configurare il prodotto tramite file di configurazione oppure variabili di ambiente (le seconde hanno la priorità) descritte per ciascuno dei servizi.
 
-Per vedere l'installazione e la configurazione che è stata effettuata per la proponente vi rimandiamo ai documenti Manuale Utente e Manuale Sviluppatore rilasciati insieme al prodptto.
+Per vedere l'installazione e la configurazione che è stata effettuata per la proponente vi rimandiamo ai documenti Manuale Utente e Manuale Sviluppatore rilasciati insieme al prodotto.
