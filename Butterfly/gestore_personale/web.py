@@ -108,6 +108,7 @@ per eseguire l\'accesso.</p>')
                 fileHtml = html / 'panel.html'
             page = fileHtml.read_text()
             page = page.replace('*panel*', error)
+            page = page.replace('*user*', session['userid'])
             try:
                 return render_template_string(page)
             except TypeError:
@@ -167,6 +168,7 @@ per inserire l\'utente.</p>')
         page = page.replace('*email*', '')
         page = page.replace('*telegram*', '')
         page = page.replace('*adduser*', '')
+        page = page.replace('*user*', session['userid'])
         return page
 
     def modify_user(self):
@@ -285,6 +287,7 @@ per modificare l\'utente.</p>')
             user['telegram'] if user['telegram'] else ''
         )
         page = page.replace('*modifyuser*', '')
+        page = page.replace('*user*', session['userid'])
         return page
 
     def remove_user(self):
@@ -304,6 +307,7 @@ per modificare l\'utente.</p>')
                 self.logout()
                 return redirect(url_for('panel'), code=303)
         page = page.replace('*removeuser*', '')
+        page = page.replace('*user*', session['userid'])
 
         values = self._users_id()
         display = []
@@ -330,6 +334,7 @@ per modificare l\'utente.</p>')
     def show_user(self):
         fileHtml = html / 'showuser.html'
         page = fileHtml.read_text()
+        page = page.replace('*user*', session['userid'])
         userid = request.values.get('userid')
         if userid:
             email = self._model.get_user_email_from_id(userid)
@@ -380,6 +385,7 @@ per modificare l\'utente.</p>')
                 self._model.remove_user_project(userid, project)
             self._model.delete_project(project)
         page = page.replace('*removeproject*', '')
+        page = page.replace('*user*', session['userid'])
         values = self._projects_id()
         options = '<select id="projectid" name="projectid">'
         for value in values:
@@ -403,6 +409,7 @@ per modificare l\'utente.</p>')
                 self.load_web_project(project)
             )
         page = page.replace('*showproject*', '')
+        page = page.replace('*user*', session['userid'])
         values = self._projects_id()
         options = '<select id="projectid" name="projectid">'
         for value in values:
@@ -788,6 +795,7 @@ aggiornata correttamente.</p>')
             return self.next_indisponibilita()
         elif request.values.get('putpreferenceplatform'):
             return self.piattaforma()
+        page = page.replace('*user*', session['userid'])
         return page
 
     def web_preference(self):
