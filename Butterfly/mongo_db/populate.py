@@ -45,7 +45,6 @@ def _open_configs(path: Path):
 
 def populateA():
     with DBConnection(_open_configs(_CONFIG_PATH)['database']) as client:
-        # print(client._db.collection_names())
 
         client.drop_collections('users', 'projects', 'topics')
 
@@ -81,8 +80,6 @@ def populateA():
             )
             if result is not None:
                 print(result.inserted_id)
-        # for user in users.find({}):
-        #     pprint.pprint(user)
 
 
 def populateB():

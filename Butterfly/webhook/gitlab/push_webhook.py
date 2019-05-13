@@ -55,7 +55,6 @@ class GitlabPushWebhook(Webhook):
         webhook['object_kind'] = whook['object_kind']
         # webhook['title'] = commit['message']
         webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace'])).strip('"')
-        #webhook['project_id'] = whook['project']['web_url']
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user_name']
         webhook['commits'] = whook['commits']

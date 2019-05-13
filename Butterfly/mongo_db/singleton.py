@@ -28,7 +28,6 @@ Autori:
 
 from pathlib import Path
 import pymongo, json, os
-#import bson.objectid.ObjectId
 
 _CONFIG_PATH = Path(__file__).parents[0] / 'config.json'
 
@@ -97,15 +96,6 @@ class MongoSingleton:
         pymongo.MongoClient(configs['ip'], configs['port'])
     )
 
-    # def __new__(cls):
-    #     if not MongoSingleton._INSTANCE:
-    #         MongoSingleton._INSTANCE = MongoSingleton.Singleton(db='butterfly')
-    #     return MongoSingleton._INSTANCE
-
     @staticmethod
     def instance():
         return MongoSingleton._INSTANCE
-
-#    def __init__(self):
-#        if not MongoSingleton._instance:
-#            MongoSingleton._instance = MongoSingleton.Singleton('butterfly')

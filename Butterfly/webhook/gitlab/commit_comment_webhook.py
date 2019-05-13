@@ -28,6 +28,8 @@ import os
 import json
 from pathlib import Path
 from webhook.webhook import Webhook
+import json
+import os
 
 class GitlabCommitCommentWebhook(Webhook):
     """`GitLabCommitCommentWebhook` implementa `Webhook`.

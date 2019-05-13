@@ -71,17 +71,6 @@ class GitlabProcessor(Processor):
                 self._message['labels'],
             )
 
-        # # Se la segnalazione consiste nel commento di una issue
-        # elif kind == 'issue-note':
-        #     self._check_labels(self._message['labels'])
-        #     labels = self._message['labels']
-        #     # codice con richiesta http per recuperare le label della issue commentata
-
-        #     return self._mongofacade.get_match_labels(
-        #         users,
-        #         self._message['project_id'],
-        #         labels,
-        #     )
         else:
             raise NameError('Type doesn\'t exist')
 

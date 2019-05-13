@@ -28,12 +28,10 @@ Autori:
 
 
 from unittest.mock import Mock, patch, MagicMock
-# from mock import Mock
-
 import pytest
 import unittest
 
-from gestore_personale.Processor import Processor
+from gestore_personale.processor import Processor
 
 
 mongofacade = Mock()

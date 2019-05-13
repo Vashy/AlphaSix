@@ -27,12 +27,10 @@ Autori:
 """
 
 from kafka import KafkaProducer, KafkaConsumer
-# from kafka import KafkaConsumer
 from kafka.errors import KafkaTimeoutError
 
 from gestore_personale.creator import KafkaConsumerCreator
 from gestore_personale.creator import KafkaProducerCreator
-# from gestore_personale.processor import Processor
 from gestore_personale.concrete_processor import GitlabProcessor
 from gestore_personale.concrete_processor import RedmineProcessor
 from mongo_db.facade import MongoFacade

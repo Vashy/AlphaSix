@@ -26,7 +26,6 @@ Autori:
     Timoty Granziero, timoty.granziero@gmail.com
 """
 
-# from abc import ABC, abstractmethod
 import os
 from pathlib import Path
 import json
@@ -59,9 +58,6 @@ class KafkaProducerCreator:
             configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
         configs = configs['kafka']
-        # if (configs['consumer_timeout_ms'] is not None
-        #         and configs['consumer_timeout_ms'] == 'inf'):
-        #     configs['consumer_timeout_ms'] = float('inf')
 
         notify = False
         while True:  # Attende una connessione con il Broker

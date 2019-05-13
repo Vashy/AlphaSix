@@ -31,8 +31,6 @@ from unittest.mock import Mock, patch, MagicMock
 import pytest
 
 from kafka import KafkaProducer, KafkaConsumer
-from kafka.errors import KafkaTimeoutError
-# from mongo_db.creator import MongoFacadeCreator
 from mongo_db.facade import MongoFacade
 from gestore_personale.client import ClientGP
 from gestore_personale.processor import Processor

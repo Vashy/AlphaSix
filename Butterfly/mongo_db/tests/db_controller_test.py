@@ -142,7 +142,6 @@ class TestDBController(unittest.TestCase):
 
     # @unittest.skip('debugging')
     def test_insert_delete_user(self):
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
         with self.subTest('Insert user'):
             collection = self.client.db.users
             documents_count = self.client.db.users.count_documents({})
@@ -236,7 +235,6 @@ class TestDBController(unittest.TestCase):
             )
 
         with self.subTest('Delete user'):
-            # pprint(self.controller.users({'telegram': '@user2'})[0])
             collection = self.client.db.users
             documents_count = self.client.db.users.count_documents({})
 
@@ -263,7 +261,6 @@ class TestDBController(unittest.TestCase):
             )
 
     def test_insert_delete_project(self):
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
         with self.subTest('Insert project'):
             collection = self.client.db.projects
             documents_count = self.client.db.projects.count_documents({})
@@ -323,7 +320,6 @@ class TestDBController(unittest.TestCase):
             )
 
     def test_insert_delete_topic(self):
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
         with self.subTest('Insert topic'):
             collection = self.client.db.topics
             documents_count = self.client.db.topics.count_documents({})
@@ -375,8 +371,6 @@ class TestDBController(unittest.TestCase):
 
     # @unittest.expectedFailure
     def test_collection(self):
-
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
         users = self.controller.collection('users')
 
         self.assertEqual(users.count_documents({}), 3)
@@ -399,8 +393,6 @@ class TestDBController(unittest.TestCase):
             index += 1
 
     def test_users(self):
-
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
         users = self.controller.users({
             'name': 'Simone',
             'surname': 'Granziero',
@@ -444,9 +436,6 @@ class TestDBController(unittest.TestCase):
             'topics': {'$size': 2},
         })
         self.assertEqual(count, 1)
-
-        # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
-
         for topic in topics:
             self.assertIsNotNone(topic['_id'])
             self.assertIsNotNone(topic['label'])
@@ -459,8 +448,6 @@ class TestDBController(unittest.TestCase):
         self.controller.add_user_topic_from_id(
             '@user2', 0
         )
-
-        # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
 
         count = self.controller.collection('users').count_documents({
             'telegram': t_id,
@@ -496,8 +483,6 @@ class TestDBController(unittest.TestCase):
         )
 
     def test_exists(self):
-
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
         with self.subTest('projects'):
             self.assertTrue(
                 self.controller.project_exists(
@@ -638,7 +623,6 @@ class TestDBController(unittest.TestCase):
             self.assertEqual(count, 1)
 
         with self.subTest('Update preference'):
-            # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
             self.controller.update_user_preference(
                 '@giovannimastrota', 'email')
 
@@ -660,8 +644,6 @@ class TestDBController(unittest.TestCase):
                 'mattia.ridolfi@gmail.com',
                 'telegram'
             )
-
-            # pprint.pprint(self.controller.users({'telegram': '@user2'})[0])
             count = self.controller.collection('users').count_documents({
                 'email': 'revolver@hotmail.it',
                 "telegram": "@giovannimastrota",

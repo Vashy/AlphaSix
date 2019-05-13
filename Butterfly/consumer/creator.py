@@ -67,12 +67,3 @@ class KafkaConsumerCreator(ConsumerCreator):
 
         print('Connessione con il Broker stabilita')
         return kafka_consumer
-
-    # @abstractmethod
-    # def instantiate(self, kafka_consumer: KafkaConsumer) -> Consumer:
-    #     pass
-
-    # @property
-    # @abstractmethod
-    # def topic(self):
-    #     pass

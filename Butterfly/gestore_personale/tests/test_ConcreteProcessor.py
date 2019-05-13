@@ -27,7 +27,7 @@ Autori:
 """
 
 from unittest.mock import Mock
-from gestore_personale.ConcreteProcessor import GitlabProcessor, RedmineProcessor
+from gestore_personale.concrete_processor import GitlabProcessor, RedmineProcessor
 
 
 mongoFacade = Mock()
