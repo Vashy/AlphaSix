@@ -93,6 +93,8 @@ class Processor():
                 name=self._message['project_name'],
                 app=self._message['app'],
             )
+            print('Nuovo progetto: ')
+            print(urlProgetto)
         return urlProgetto
 
     # def get_users_from_project(self, project: str) -> dict:
