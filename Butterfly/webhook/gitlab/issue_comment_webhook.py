@@ -37,7 +37,7 @@ class GitlabIssueCommentWebhook(Webhook):
     """`GitLabIssueCommentWebhook` implementa `Webhook`.
     Parse degli eventi di commento di una Issue di Gitlab.
     """
-    _config_path = Path(__file__).parent[2] / 'config' / 'config.json'
+    _config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def parse(self, whook: dict = None):
         """Parsing del file JSON. Restituisce un riferimento al dizionario
