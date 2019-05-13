@@ -59,7 +59,7 @@ class GitlabProcessor(Processor):
             return self._mongofacade.get_match_keywords(
                 users,
                 self._message['project_id'],
-                self._message['description'],
+                self._message['title'],
             )
 
         # Se la segnalazione consiste in una issue
