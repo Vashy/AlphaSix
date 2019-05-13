@@ -635,17 +635,18 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                     )
                     firstTopic = False
                 elif 'keywords' in key:
-                    value = value.strip()
-                    keywords = value.split(',')
                     self._model.reset_user_keywords(
                         session['userid'],
                         url
                     )
-                    self._model.add_user_keywords(
-                        session['userid'],
-                        url,
-                        *keywords
-                    )
+                    if value:
+                        value = value.strip()
+                        keywords = value.split(',')
+                        self._model.add_user_keywords(
+                            session['userid'],
+                            url,
+                            *keywords
+                        )
         return self.load_preference_topic('<p>Preferenze dei topic aggiornate.\
         </p>')
 

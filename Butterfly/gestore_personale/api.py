@@ -298,11 +298,12 @@ class ApiHandler:
                         project
                     )
                     for keyword in keywords:
-                        self._model.add_user_keywords(
-                            url,
-                            project,
-                            keyword
-                        )
+                        if keyword:
+                            self._model.add_user_keywords(
+                                url,
+                                project,
+                                keyword
+                            )
                     return {'ok': 'Preferenza modificata correttamente.'}, 200
                 return {'error': 'Progetto non presente nelle\
  preferenze.'}, 404
