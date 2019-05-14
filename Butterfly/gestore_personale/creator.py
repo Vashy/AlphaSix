@@ -39,8 +39,9 @@ class KafkaProducerCreator:
     compito di inizializzare un `Producer` concreto.
     """
 
-    _config_path = Path(__file__).parents[1] / 'config' / 'config_producer.json'
-    
+    _config_path = Path(__file__).parents[1] / 'config' /\
+        'config_producer.json'
+
     def create(self, configs=_config_path) -> KafkaProducer:
         """Restituisce un'istanza concreta di `Producer`, inizializzando un
         `KafkaProducer` e passandolo come parametro al `Producer`
@@ -55,7 +56,8 @@ class KafkaProducerCreator:
             configs = json.load(f)
 
         if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
-            configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+            configs['kafka']['bootstrap_servers'] =\
+                os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
         configs = configs['kafka']
 
@@ -81,16 +83,18 @@ class KafkaProducerCreator:
 
 class KafkaConsumerCreator:
 
-    _config_path = Path(__file__).parents[1] / 'config' / 'config_consumer.json'
-    
+    _config_path = Path(__file__).parents[1] / 'config' /\
+        'config_consumer.json'
+
     def create(self, configs=_config_path) -> KafkaConsumer:
         # Converte stringa 'inf' nel relativo float
 
         with open(KafkaConsumerCreator._config_path, 'r') as f:
             configs = json.load(f)
-        
+
         if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
-            configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+            configs['kafka']['bootstrap_servers'] =\
+                os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
         configs = configs['kafka']
 
