@@ -115,8 +115,15 @@ class Processor():
     # topic, che però hanno dato priorità più alta al progetto
     # (non vogliamo quindi tutte le persone che hanno dato priorità alta
     # al progetto, ma filtrarle tra quelle interessate al topic)
-    def filter_users_with_max_priority(self, users: list, project: str) -> list:
-        return self._mongofacade.get_users_from_list_with_max_priority(users, project)
+    def filter_users_with_max_priority(
+        self,
+        users: list,
+        project: str
+    ) -> list:
+        return self._mongofacade.get_users_from_list_with_max_priority(
+            users,
+            project
+        )
 
     # Crea la lista di contatti telegram a cui inviare il messaggio
     def get_telegram_contacts(self, users: list) -> list:
