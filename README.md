@@ -4,10 +4,10 @@
 Il gruppo che lo ha sviluppato si chiama **AlphaSix** ed è composto da:
 - [Ciprian Voinea](https://www.linkedin.com/in/cvoinea/)
 - [Timoty Granziero]()
-- [Laura Cameran]()
+- [Laura Cameran](mailto:lauracameran@gmail.com)
 - [Samuele Gardin](www.linkedin.com/in/samuele-gardin)
 - [Matteo Marchiori](www.linkedin.com/in/matteo-marchiori-882143bb)
-- [Nicola Carlesso]()
+- [Nicola Carlesso](mailto:nicolacarlesso@outlook.it)
 
 La figura proponente di questo progetto è [Imola Informatica](https://www.imolainformatica.it/home/) che ha fornito il seguente capitolato che descrive i requisiti richiesti per il Butterfly:
 - [capitolato fornito](http://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1.pdf)
@@ -52,6 +52,7 @@ Su Rancher abbiamo pensato di suddividere un nodo che ci è stato fornito dall'a
 - **gitlab** : con istanziato il container di GitLab presente nel [DockerHub](https://hub.docker.com/r/gitlab/gitlab-ce/)
 - **redmine** : con istanziato i container di Redmine e Postgress presenti nel [DockerHub](https://hub.docker.com/_/redmine)
 
-È possibile configurare il prodotto tramite file di configurazione oppure variabili di ambiente (le seconde hanno la priorità) descritte per ciascuno dei servizi.
+Nel container di Redmine è necessario installare correttamente il plugin relativo all'[invio dei webhook](https://github.com/suer/redmine_webhook).
+È possibile configurare ciascun componente del prodotto tramite file di configurazione oppure variabili di ambiente (le seconde hanno la priorità) descritte per ciascuno dei servizi.
 
 Per vedere l'installazione e la configurazione che è stata effettuata per la proponente vi rimandiamo ai documenti Manuale Utente e Manuale Sviluppatore rilasciati insieme al prodotto.

@@ -274,7 +274,7 @@ richiesta HTTP.
     \item \texttt{telegram}
     \item \texttt{email}
 \end{itemize}
-Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme al payload.
+Almeno uno tra i campi \texttt{Email} e \texttt{ID Telegram} vanno fornite insieme al payload.
 
     \subparagraph{Esempio di input}
     Un esempio di richiesta è
@@ -351,7 +351,7 @@ Almeno uno tra i campi \texttt{email} e \texttt{telegram} vanno fornite insieme 
 }
 	\end{lstlisting}
 
-	In caso non vengano forniti almeno email o telegram, verrà restituito il seguente messaggio
+	In caso non vengano forniti almeno Email o ID Telegram, verrà restituito il seguente messaggio
 	\begin{lstlisting}[language = json]
 {
     "error": "Si prega di inserire almeno email o telegram per modificare l'utente."

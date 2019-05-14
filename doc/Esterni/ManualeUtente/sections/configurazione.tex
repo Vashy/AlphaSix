@@ -113,7 +113,7 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 		\item Pod: \texttt{gestore-personale-client}
 
 		(immagine: \texttt{alphasix/gestore-personale-client:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-personale-client}})
-		\item Pod: \texttt{mongo} (immagine: \texttt{bitnami/mongodb:latest}\footnote{\url{https://hub.docker.com/r/bitnami/mongodb/}})
+		\item Pod: \texttt{mongo} (immagine: \texttt{mongo/mongo:4.0.9}\footnote{\url{https://hub.docker.com/_/mongo}})
 	\end{itemize}
 
 	\item Namespace: \texttt{consumer}
@@ -122,6 +122,9 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 		\item Pod: \texttt{consumer-email} (immagine: \texttt{alphasix/consumer-email:master}\footnote{\url{https://hub.docker.com/r/alphasix/consumer-email}})
 	\end{itemize}
 \end{itemize}
+
+È importante quando si utilizza un'istanza non in locale di MongoDB modificare il file \texttt{etc/mongod.conf.orig} in modo tale che si possano effettuare richieste in remoto, impostando quindi la variabile \texttt{bindIp} sia uguale a 0.0.0.0.
+
 
 %TODO lo facciamo? magari per la seconda relase
 % All'interno della repository è possibile trovare un file in formato .yml conforme agli standard del docker compose per poter istanziare l'ambiente. Inoltre sono presenti i Dockerfile che permettono di effettuare la build di ciascuno dei componenti che abbiamo sviluppato.
@@ -212,6 +215,12 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 		% \item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: porta dell'istanza di GitLab disponibile.
 	\end{itemize}
 
+	Sono inoltre disponibili variabili di ambiente configurate tramite Dockerfile oppure definite dall'interno di Rancher.
+	\begin{itemize}
+		\item \texttt{KAFKA\_IP} : indirizzo dell'istanza di Kafka disponibile.
+		\item \texttt{KAFKA\_PORT} : porta dell'istanza di Kafka disponibile.
+	\end{itemize}
+	
 	\subsubsection{Consumer}\label{var_consumer}
 	Per i Consumer, come per i Producer, è possibile impostare le variabili tramite un file di configurazione.
 	Queste sono, per il Consumer di Telegram:
@@ -232,8 +241,10 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 		% \item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
-	È inoltre possibile impostare la password dell'indirizzo email tramite la variabile:
+	È inoltre possibile impostare altre configurazioni tramite le seguenti variabili di ambiente:
 	\begin{itemize}
+		\item \texttt{KAFKA\_IP} : indirizzo dell'istanza di Kafka disponibile.
+		\item \texttt{KAFKA\_PORT} : porta dell'istanza di Kafka disponibile.
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
@@ -252,6 +263,12 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 		% \item\texttt{BUTTERFLY\_GP\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
 	\end{itemize}
 
+	È inoltre possibile impostare altre configurazioni tramite le seguenti variabili di ambiente:
+	\begin{itemize}
+		\item \texttt{KAFKA\_IP} : indirizzo dell'istanza di Kafka disponibile.
+		\item \texttt{KAFKA\_PORT} : porta dell'istanza di Kafka disponibile.
+		\item\texttt{MONGO\_IP}: password della casella email.
+	\end{itemize}
 
 	\subsubsection{Kafka}
 	Per l'utilizzo richiestoci da parte dell'azienda di Kafka non sono state necessarie ulteriori configurazioni oltre a quelle di default successive all'installazione.
