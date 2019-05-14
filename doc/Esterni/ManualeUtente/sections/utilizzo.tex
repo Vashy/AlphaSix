@@ -36,6 +36,7 @@ In caso l'identificativo inserito non fosse valido, e non corrispondesse quindi 
 
 Nel caso in cui un utente cerchi di accedere ad una sezione, ma senza aver effettuato l'accesso, questo verrà rimandato alla pagina di accesso.\par
 Se un utente iscritto correttamente nel sistema ha registrato precedentemente sia indirizzo Email che ID Telegram, allora può accedere utilizzando indipendentemente il primo o il secondo.
+In cima alla pagina, per identificare l'utente che ha acceduto, viene mostrato l'ID Telegram o la mail con cui si ha acceduto.
 
 \paragraph{Pannello di controllo}
 Dopo aver effettuato l'accesso al sistema, si viene rimandati alla pagina relativa al pannello di controllo che contiene i comandi principali per la navigazione del sito e le operazioni che un utente può eseguire.
@@ -63,10 +64,10 @@ In questa sezione si possono trovare le principali impostazioni del sistema dal 
         \item \textbf{Media}: 2
         \item \textbf{Bassa}: 3
     \end{itemize}
-	\item Lista dei Topic (formati dall'insieme di label e keyword) disponibili e iscrizione o disiscrizione da questi, che vengono mostrati dinamicamente in base ai progetti a cui si è iscritti
+	\item Lista dei Topic (formati dall'insieme di label e keyword) disponibili e iscrizione o disiscrizione da questi, che vengono mostrati dinamicamente in base ai progetti a cui si è iscritti. L'inserimento per keyword d'interesse deve essere fatta in modo testuale e la loro divisione viene riconosciuta attraverso una ``,'' 
 	\item Modifica dei progetti d'interesse (aggiunta o rimozione dei progetti dalle proprie preferenze)
 	\item Inserimento dei giorni di indisponibilità da calendario
-	\item Impostazione delle due piattaforme di messaggistica (Email o Telegram) su cui ricevere le notifiche
+	\item Impostazione delle due piattaforme di messaggistica (Email o Telegram) su cui ricevere le notifiche. \'E possibile scegliere solo una delle due piattaforme di messaggistica
 \end{itemize}
 Le ``label'' non sono modificabili in quanto vengono aggiornate solamente da una componente del Gestore Personale che le memorizza quando avvengono \gloss{update} alle issue relative ai progetti.
 Le ``keyword'' invece, sono formate da una lista di parole che possono essere contenute nei messaggi di push di GitLab e di cui si è interessati a ricevere notifiche.
@@ -84,7 +85,8 @@ Qui un utente può modificare i dati inseriti dall'amministratore in fase di reg
 	\includegraphics[width=10cm]{img/modifica_1.png}
 	\caption{Modifica dei dati di un utente}
 \end{figure}
-Nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore.
+Nel caso questi fossero già associati ad una persona iscritta a \progetto, verrà visualizzato un messaggio di errore. \par
+Per quanto riguarda l'inserimento dell'ID Telegram, questo non deve essere nella forma \texttt{@nome\_utente}, ma bensì numerico. Per poterlo ottenere consigliamo l'utilizzo del bot Telegram ``MyIDBot\footnote{\url{https://telegram.me/storebot?start=myidbot}}'' dandogli il comando \texttt{/getid}.
 
 \paragraph{Uscita dal sistema}
 Per effettuare il logout dal sistema, cliccare sul bottone ``Logout'' presente nel pannello di controllo.
