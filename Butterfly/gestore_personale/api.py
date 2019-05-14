@@ -146,12 +146,13 @@ class ApiHandler:
                 if userjson.get('irreperibilita'):
                     # rendo leggibile l'irreperibilita
                     for i, data in enumerate(userjson['irreperibilita']):
-                        userjson['irreperibilita'][i]['$date'] = datetime.datetime.strftime(
-                            datetime.datetime.fromtimestamp(
-                                userjson['irreperibilita'][i]['$date']/1000
-                            ),
-                            format="%Y-%m-%d"
-                        )
+                        userjson['irreperibilita'][i]['$date'] = \
+                            datetime.datetime.strftime(
+                                datetime.datetime.fromtimestamp(
+                                    userjson['irreperibilita'][i]['$date']/1000
+                                ),
+                                format="%Y-%m-%d"
+                            )
                 return userjson
             except AssertionError:
                 return {'error': 'Utente inesistente.'}, 404
@@ -202,8 +203,9 @@ class ApiHandler:
                     )
                 if(
                     'email' in modify and (
-                    not oldmail or
-                    modify['email'] != oldmail)
+                        not oldmail or
+                        modify['email'] != oldmail
+                    )
                 ):
                     self._model.update_user_email(
                         userid,
@@ -396,12 +398,13 @@ class ApiHandler:
                                         giorno.strftime('%Y') == year and
                                         giorno.strftime('%m') == month
                                     ):
-                                        self._model.remove_giorno_irreperibilita(
-                                            url,
-                                            int(year),
-                                            int(month),
-                                            int(giorno.strftime('%d'))
-                                        )
+                                        self._model.\
+                                            remove_giorno_irreperibilita(
+                                                url,
+                                                int(year),
+                                                int(month),
+                                                int(giorno.strftime('%d'))
+                                            )
                             # aggiungo le nuove irreperibilità
                             for giorno in giorni_new:
                                 self._model.add_giorno_irreperibilita(
