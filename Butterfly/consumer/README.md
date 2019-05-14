@@ -8,6 +8,7 @@ Il Consumer Email si occupa di prelevare i messaggi all'interno della coda "emai
 ## Consumer Telegram [![Automated build](https://img.shields.io/docker/cloud/automated/alphasix/consumer-telegram.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-telegram) [![Build status](https://img.shields.io/docker/cloud/build/alphasix/consumer-email.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-email) [![Pulls](https://img.shields.io/docker/pulls/alphasix/consumer-telegram.svg)](https://cloud.docker.com/u/alphasix/repository/docker/alphasix/consumer-telegram)
 
 Il Consumer Telegram si occupa di prelevare i messaggi all'interno della coda "telegram" in Kafka ed inoltrarli ai destinatari appropriati in base all'ID Telegram dei destinatati.
-Per individurare il proprio ID Telegram è consigliato usare [MyIDBot](tg://resolve?domain=storebot&start=myidbot) ed eseguire il comando `/getid`. 
+
+Per individurare il proprio ID Telegram è consigliato usare [MyIDBot](tg://resolve?domain=storebot&start=myidbot) ed eseguire il comando `/getid`.
 
 Per vedere l'installazione e la configurazione che è stata effettuata per la proponente vi rimandiamo ai documenti Manuale Utente e Manuale Sviluppatore rilasciati insieme al prodotto.
