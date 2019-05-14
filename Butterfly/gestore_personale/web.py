@@ -512,8 +512,10 @@ per modificare l\'utente.</p>')
     def load_preference_topic(self, message=''):
         user_projects = self._model.get_user_projects(session['userid'])
         form = '<form id="topics">\
-        <table id="topics-table"><tr><th>URL</th><th>Priorità</th>\
-<th>Labels</th><th>Keywords</th></tr>'
+<fieldset id="topics-fieldset">\
+<legend>Modifica preferenze dei topics</legend>\
+<table id="topics-table"><tr><th>URL</th><th>Nome progetto</th>\
+<th>Applicazione</th><th>Priorità</th><th>Labels</th><th>Keywords</th></tr>'
         for user_project in user_projects:
             project_data = self._model.read_project(
                 user_project['url']
@@ -522,6 +524,8 @@ per modificare l\'utente.</p>')
             row = '<tr>'
             row += '<td><a href="' + project_data['url'] + '\
 " target="_blank">' + project_data['url'] + '</a></td>'
+            row += '<td>' + project_data['name'] + '</td>'
+            row += '<td>' + project_data['app'] + '</td>'
             row += '<td><select id="priority" name="\
 ' + project_data['url'] + '-priority">'
             for priority in range(1, 4):
@@ -552,21 +556,22 @@ per modificare l\'utente.</p>')
             row += '</textarea></td></tr>'
             form += row
         form += '</table><input id="putpreferencetopics" type="button" \
-value="Modifica preferenze di progetti e topic"></form>'
+value="Modifica preferenze di progetti e topic"></fieldset></form>'
         form += message
         return form
 
     def load_preference_project(self, message=''):
         projects = self._model.projects()
-        form = '<form id="projects"><select name="project" id="projects\
+        form = '<form id="projects"><fieldset id="project-fieldset">\
+<legend>Aggiungi e rimuovi progetti</legend><select name="project" id="projects\
 -select">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
-' + project['name'] + '</option>'
+' + project['name'] + ' - ' + project['url'] + '</option>'
         form += '</select> <input id="putpreferenceprojectsadd" type="button" \
 value="Aggiungi il progetto">\
 <input id="putpreferenceprojectsremove" type="button" \
-value="Rimuovi il progetto"></form>'
+value="Rimuovi il progetto"></fieldset></form>'
         form += message
         return form
 

@@ -128,7 +128,6 @@ class EmailConsumer(Consumer):
 
         res += ''.join([
             f' nel progetto {msg["project_name"]} ',
-            f'({msg["project_id"]})',
             f'\n\nSorgente: {msg["app"].capitalize()}',
             f'\nAutore: {msg["author"]}'
             f'\n\n Information: '
@@ -154,9 +153,8 @@ class EmailConsumer(Consumer):
         res += self._preamble(msg['object_kind'])
 
         res += ''.join([
-            f' nel progetto <strong>{msg["project_name"]}</strong> ',
-            f'(<code>{msg["project_id"]}</code>) su '
-            f'{msg["app"].capitalize()}.</p>',
+            f' nel progetto <strong>{msg["project_name"]}</strong>',
+            f' su {msg["app"].capitalize()}.</p>',
             '<ul>'
             f'<li><strong>Autore:</strong> {msg["author"]}</li>'
             f'<li><strong>Title:</strong> {msg["title"]}</li>',
@@ -175,7 +173,6 @@ class EmailConsumer(Consumer):
         res = ''.join([
             f'È stato fatto un push '
             f'nel progetto {msg["project_name"]} ',
-            f'({msg["project_id"]})',
             f' su {msg["app"].capitalize()}.\n',
             f'{msg["commits_count"]} nuovi commit da {msg["author"]}:\n'
             '\n'
@@ -193,8 +190,7 @@ class EmailConsumer(Consumer):
         """
         res = ''.join([
             f'<p>È stato fatto un push '
-            f'nel progetto <strong>{msg["project_name"]}</strong> ',
-            f'(<code>{msg["project_id"]}</code>)',
+            f'nel progetto <strong>{msg["project_name"]}</strong>',
             f' su {msg["app"].capitalize()}.</p>',
             f'<p>{msg["commits_count"]} nuovi commit da {msg["author"]}:</p>'
             '\n<ul>'
@@ -222,8 +218,7 @@ class EmailConsumer(Consumer):
 
         res = ''.join([
             f'<p>È stata {action_text} una issue ',
-            f'nel progetto <strong>{msg["project_name"]}</strong> ',
-            f'(<code>{msg["project_id"]}</code>)',
+            f'nel progetto <strong>{msg["project_name"]}</strong>',
             f' su {msg["app"].capitalize()}.\n</p>\n<ul>',
             # f'\n\n{cls._bold}Informazioni:{cls._bold} '
             f'\n<li><strong>Autore:</strong> {msg["author"]};</li>'
@@ -252,8 +247,7 @@ class EmailConsumer(Consumer):
 
         res = ''.join([
             f'È stata {action_text} una issue ',
-            f'nel progetto {msg["project_name"]} ',
-            f'({msg["project_id"]})',
+            f'nel progetto {msg["project_name"]}',
             f' su {msg["app"].capitalize()}\n',
             # f'\n\nInformazioni: '
             f'\n - Autore: {msg["author"]}'

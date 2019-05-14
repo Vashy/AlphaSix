@@ -238,8 +238,8 @@ select:focus {
 #topics, #projects, #availability, #platform{
     margin-top:50px;
     margin-bottom:50px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 table{
@@ -367,7 +367,9 @@ color: white;
 }
 
 #availability-fieldset,
-#platform-fieldset{
+#platform-fieldset,
+#project-fieldset,
+#topics-fieldset{
   padding: 20px;
   border-radius: 20px;
 }
