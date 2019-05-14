@@ -30,6 +30,9 @@ from gestore_personale.processor import Processor
 
 
 class GitlabProcessor(Processor):
+    """
+        Classe processore di Gitlab
+    """
 
     def _filter_users_by_topic(self, users: list, kind: str) -> list:
         """
@@ -91,6 +94,9 @@ class GitlabProcessor(Processor):
 
 
 class RedmineProcessor(Processor):
+    """
+        Classe processore di Redmine
+    """
 
     def _filter_users_by_topic(self, users: list, kind: str) -> list:
         """

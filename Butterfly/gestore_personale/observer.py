@@ -30,20 +30,38 @@ from abc import ABC, abstractmethod
 
 
 class Observer(ABC):
+    """
+        Classe per rappresentare un observer.
+    """
 
     @abstractmethod
     def update(self, resource: str, request_type: str, url: str, msg: str):
+        """
+            Metodo astratto per eseguire aggiornare un observer.
+        """
+
         pass
 
 
 class Subject(ABC):
+    """
+        Classe per rappresentare un subject
+    """
 
     def addObserver(self, obs: Observer):
+        """
+            Metodo per aggiungere un observer
+        """
+        # se non ci sono observer, inizializzo la lista
         if not hasattr(self, '_lst'):
             self._lst = []
+        # se l'observer è nuovo, lo aggiungo
         if obs not in self._lst:
             self._lst.append(obs)
 
     @abstractmethod
     def notify(self, request_type: str, resource: str, url: str, msg: str):
+        """
+           Metodo per notificare gli observer
+        """
         pass

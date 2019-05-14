@@ -43,6 +43,9 @@ from gestore_personale.web import Web
 
 
 class Controller(Observer):
+    """
+        Classe controller dell'architettura MVC del gestore personale.
+    """
 
     def __init__(
         self,
@@ -62,6 +65,7 @@ class Controller(Observer):
         self._preference = Preference
         self._post_preference = PostPreference
 
+        # mapping delle risorse con i rispettivi URL
         self._api.add_resource(
             self._user,
             '/api/v1/user/<url>',
@@ -92,12 +96,14 @@ class Controller(Observer):
             resource_class_kwargs={'model': model}
         )
 
+        # mapping delle API REST
         self._user.addObserver(self._user, obs=self)
         self._post_user.addObserver(self._post_user, obs=self)
         self._user.addObserver(self._project, obs=self)
         self._preference.addObserver(self._preference, obs=self)
         self._post_preference.addObserver(self._post_preference, obs=self)
 
+        # mapping degli URL coi metodi
         self._server.add_url_rule(
             '/',
             'panel',
@@ -127,6 +133,9 @@ class Controller(Observer):
         )
 
     def update(self, resource: str, request_type: str, url: str, msg: str):
+        """
+            Metodo update dell'observer
+        """
         if resource == 'user':
             return self._handler.api_user(request_type, url, msg)
         elif resource == 'project':

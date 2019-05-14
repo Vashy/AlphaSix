@@ -808,7 +808,7 @@ class MongoUsers:
                 commit
             ):
                 keyword_user.append(user)
-
+        print(*keyword_user)
         return keyword_user
 
     @staticmethod

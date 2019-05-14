@@ -33,11 +33,11 @@ from mongo_db.facade import MongoFacade
 
 class Processor():
 
-    def __init__(self, message: dict, mongofacade: MongoFacade):  # aggiungere riferimento DB
+    def __init__(self, message: dict, mongofacade: MongoFacade):
         self._message = message
         self._mongofacade = mongofacade
 
-    # Metodo che chiama a ruota tutti quelli dopo per processare il messaggio
+    # Metodo che chiama in ordine quelli dopo per processare il messaggio
     # ex template_method
     def prepare_message(self) -> dict:
 

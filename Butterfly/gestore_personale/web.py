@@ -39,6 +39,9 @@ html = (pathlib.Path(__file__).parent / 'static' / 'html').resolve()
 
 
 class Web:
+    """
+        Gestione delle richieste HTTP da client Web
+    """
 
     def __init__(
         self,
@@ -46,6 +49,7 @@ class Web:
     ):
         self._model = model
 
+    # metodi di utilità
     def _users_id(self):
         ids = []
         for user in self._model.users():
@@ -71,8 +75,11 @@ class Web:
         fileHtml = html / 'access.html'
         page = fileHtml.read_text()
         userid = request.values.get('userid')
+        # se è stato passato un id procedo, altrimenti no
         if userid:
+            # se esiste l'utente procedo
             if self._model.user_exists(userid):
+                # imposto le variabili di sessione
                 session['email'] = self._model.get_user_email_web(userid)
                 session['telegram'] = self._model.get_user_telegram_web(userid)
                 if 'email' in session and session['email']:
@@ -80,6 +87,7 @@ class Web:
                 else:
                     session['userid'] = session['telegram']
                 user = self._model.read_user(userid)
+                # controllo se è amministratore o utente normale
                 if 'admin' in user and user['admin'] == 1:
                     session['admin'] = 1
                 return redirect(url_for('panel'), code=303)
@@ -398,7 +406,6 @@ per modificare l\'utente.</p>')
         options += '</select>'
         return page.replace('*projectids*', options)
 
-
     def show_project(self):
         fileHtml = html / 'showproject.html'
         page = fileHtml.read_text()
@@ -432,7 +439,8 @@ per modificare l\'utente.</p>')
             )
             project_data['url'] = project_data['url'].lstrip().rstrip()
             row = '<tr>'
-            row += '<td><a href="' + project_data['url'] + '" target="_blank">' + project_data['url'] + '</a></td>'
+            row += '<td><a href="' + project_data['url'] + '\
+" target="_blank">' + project_data['url'] + '</a></td>'
             row += '<td>' + str(user_project['priority']) + '</td><td>'
             if user_project.get('topics'):
                 for topic in project_data['topics']:
@@ -453,7 +461,8 @@ per modificare l\'utente.</p>')
     def load_web_project(self, project: str):
         project = self._model.read_project(project)
         table = '<table id="projects-table"><tr><th>URL</th><th>Name</th>\
-<th>App</th><th>Topics</th></tr><tr><td><a href="' + project['url'] + '" target="_blank">' + project['url'] + '</a></td>\
+<th>App</th><th>Topics</th></tr><tr><td><a href="' + project['url'] + '\
+" target="_blank">' + project['url'] + '</a></td>\
 <td>' + project['name'] + '</td><td>' + project['app'] + '</td><td>'
         if project.get('topics'):
             for topic in project['topics']:
@@ -511,7 +520,8 @@ per modificare l\'utente.</p>')
             )
             project_data['url'] = project_data['url'].lstrip().rstrip()
             row = '<tr>'
-            row += '<td><a href="' + project_data['url'] + '" target="_blank">' + project_data['url'] + '</a></td>'
+            row += '<td><a href="' + project_data['url'] + '\
+" target="_blank">' + project_data['url'] + '</a></td>'
             row += '<td><select id="priority" name="\
 ' + project_data['url'] + '-priority">'
             for priority in range(1, 4):
@@ -530,7 +540,10 @@ per modificare l\'utente.</p>')
                         row += ' checked="checked"'
                     row += ' value="' + topic + '">'
             row += '</td><td><textarea id="textkeywords" name="\
-' + project_data['url'] + '-keywords">'
+' + project_data['url'] + '-keywords"'
+            if project_data['app'] == 'redmine':
+                row += 'disabled="disabled"'
+            row += '>'
             if user_project['keywords']:
                 for keyword in user_project['keywords']:
                     row += keyword
@@ -545,7 +558,8 @@ value="Modifica preferenze di progetti e topic"></form>'
 
     def load_preference_project(self, message=''):
         projects = self._model.projects()
-        form = '<form id="projects"><select name="project" id="projects-select">'
+        form = '<form id="projects"><select name="project" id="projects\
+-select">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
 ' + project['name'] + '</option>'
@@ -567,22 +581,22 @@ value="Rimuovi il progetto"></form>'
             session['userid']
         ).get('irreperibilita')
         form = '<form id="availability">\
-<fieldset id="availability-fieldset"><legend>Giorni di indisponibilità</legend>\
-<div id="calendario"></div><p>' + date.strftime("%B") + ' \
+<fieldset id="availability-fieldset"><legend>Giorni di indisponibilità</\
+legend><div id="calendario"></div><p>' + date.strftime("%B") + ' \
 ' + date.strftime('%Y') + '</p>'
         for day in range(1, calendar.monthrange(year, month)[1]+1):
             date = datetime.datetime(year, month, day)
             form += '<input class="day_checkbox" type="checkbox"\
-name="indisponibilita[]" id="day_' + str(date.day) + '" value="' + str(date) + '"'
+name="indisponibilita[]" id="day_' + str(date.day) + '" value="\
+' + str(date) + '"'
             if irreperibilita and date in irreperibilita:
                 form += ' checked="checked"'
             form += '/><label class="day_label" for="day_' + str(date.day) + '\
 ">' + str(day) + '</label>'
         form += '<br/><input type="button"\
  id="putpreferenceavailabilityprevious" value="Mese precedente"/>\
-<input type="button"\
- id="putpreferenceavailabilitynext" value="Mese successivo"/>\
-<input type="hidden" name="mese" value="' + date.strftime("%m") + '"/>\
+<input type="button" id="putpreferenceavailabilitynext" value="Mese successivo\
+"/><input type="hidden" name="mese" value="' + date.strftime("%m") + '"/>\
 <input type="hidden" name="anno" value="' + date.strftime("%Y") + '"/>\
 <br/><input id="putpreferenceavailability" type="button"\
  value="Modifica irreperibilità"/></fieldset></form>'
@@ -642,18 +656,22 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                     )
                     firstTopic = False
                 elif 'keywords' in key:
-                    self._model.reset_user_keywords(
-                        session['userid'],
+                    project_data = self._model.read_project(
                         url
                     )
-                    if value:
-                        value = value.strip()
-                        keywords = value.split(',')
-                        self._model.add_user_keywords(
+                    if project_data['app'] != 'redmine':
+                        self._model.reset_user_keywords(
                             session['userid'],
-                            url,
-                            *keywords
+                            url
                         )
+                        if value:
+                            value = value.strip()
+                            keywords = value.split(',')
+                            self._model.add_user_keywords(
+                                session['userid'],
+                                url,
+                                *keywords
+                            )
         return self.load_preference_topic('<p>Preferenze dei topic aggiornate.\
         </p>')
 

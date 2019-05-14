@@ -40,6 +40,10 @@ from mongo_db.projects import MongoProjects
 
 
 class ClientGP():
+    """
+        Client del gestore personale. Interagisce con kafka
+    """
+
     def __init__(
             self,
             consumer: KafkaConsumer,
@@ -53,6 +57,9 @@ class ClientGP():
         self._mongo = mongo
 
     def read_messages(self):
+        """
+           Metodo in ascolto delle code di kafka
+        """
         print('Listening to messages from topics:')
         for topic in self._consumer.subscription():
             print(f'- {topic}')
@@ -63,6 +70,9 @@ class ClientGP():
             self.process(message.value)
 
     def process(self, message: dict):
+        """
+            Processa i messaggi in entrata
+        """
         tecnology = message['app']
         if tecnology == 'gitlab':
             processore_messaggio = GitlabProcessor(
@@ -73,6 +83,7 @@ class ClientGP():
                 message, self._mongo
             )
 
+        # controllo se è il primo messaggio di un progetto
         # processore_messaggio = Processor(message, self._mongo.instantiate())
         mappa_contatto_messaggio = processore_messaggio.prepare_message()
         if (mappa_contatto_messaggio['telegram'] == []
@@ -82,7 +93,9 @@ class ClientGP():
             self.send_all(mappa_contatto_messaggio, message)
 
     def send_all(self, map_message_contact: dict, message: dict):
-        # app_ricevente sarà telegram o email (chiave,valore)
+        """
+            app_ricevente sarà telegram o email (chiave,valore)
+        """
         for app_ricevente, contact_list in map_message_contact.items():
             for contact in contact_list:
                 try:
@@ -100,7 +113,9 @@ class ClientGP():
                     print('Impossibile inviare il messaggio\n')
 
     def generate_lost_message(self, message: dict):
-        """Produce nella coda `lostmessages` il messaggio che non ha destinatari.
+        """
+            Produce nella coda `lostmessages` il messaggio che non ha
+            destinatari.
         """
         self._producer.send(
             'lostmessages',
@@ -108,7 +123,8 @@ class ClientGP():
         )
 
     def close(self):
-        """Chiude la connessione con Producer e Consumer associati.
+        """
+            Chiude la connessione con Producer e Consumer associati.
         """
         print('\nClosing Producer ...')
         self._producer.close()

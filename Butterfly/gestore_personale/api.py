@@ -347,13 +347,17 @@ class ApiHandler:
                         url,
                         project
                     )
-                    for keyword in keywords:
-                        if keyword:
-                            self._model.add_user_keywords(
-                                url,
-                                project,
-                                keyword
-                            )
+                    project_data = self._model.read_project(
+                        project
+                    )
+                    if project_data['app'] != 'redmine':
+                        for keyword in keywords:
+                            if keyword:
+                                self._model.add_user_keywords(
+                                    url,
+                                    project,
+                                    keyword
+                                )
                     return {'ok': 'Preferenza modificata correttamente.'}, 200
                 return {'error': 'Progetto non presente nelle\
  preferenze.'}, 404
