@@ -1,37 +1,14 @@
-### ConsoleProducer
+# Producer
 
-Prima di lanciare un Producer, dovresti configurare l'[ambiente Kafka](https://github.com/Vashy/AlphaSix/tree/develop/Butterfly/README.md) ed
-eventualmente un [Consumer](https://github.com/Vashy/AlphaSix/tree/develop/Butterfly/consumer/README.md).
+Il Producer è il componente che resta in ascolto degli webhook provenienti dal suo applicativo specifico (e.g. Redmine, GitLab). Ha lo scopo di immettere i messaggi su Kafka in formato JSON, conservando solo i campi di interesse e aggiungendone eventualmente di propri.
 
-Per mandare uno o più messaggi da linea di comando su Kafka in un topic specifico, posizionarsi nella cartella `Butterfly/` e dare il comando:
-
-    $ python3 -m producer.ConsoleProducer -t nometopic msg1 msg2 "messaggio numero 3" ...
-
-Nell'esempio sopra, verranno passati su Kafka 3 messaggi, tutti al topic *nometopic*. Usare preferibilmente i topic `enhancement`, `bug` o `wontfix`, che sono i 3 definiti nel json
-di configurazione dei Consumer.
-
-I messaggi mandati sono:
-* msg1
-* msg2
-* messaggio numero 3
-
-È possibile passare un numero arbitrario di argomenti, per ognuno di essi verrà generato su Kafka un messaggio diverso sul Topic specificato.
-
-La flag `-t` è opzionale, se omessa verrà usato un topic di default.
+Prima di lanciare un Producer bisogna configurare l'ambiente di [Butterfly](https://github.com/Vashy/AlphaSix/blob/master/README.md).
 
 
-### GLProducer
+## GitLab Producer
 
-Per mandare un messaggio come Webhook di GitLab (attualmente il file `webhook.json` contenuto in `webhook/`), dare il comando
+Il Producer di GitLab si occupa di ascoltare gli webhook provenienti dai progetti di GitLab che hanno configurato la porta relativa al componente, e di immettere nella coda "gitlab" di Kafka i messaggi.
 
-    $ python3 -m producer.gitlab.GLProducer -t nometopic
+## Redmine Producer
 
-La flag `-t` è opzionale, se omessa verrà usato un topic di default.
-
-### RedmineProducer
-
-Per mandare un messaggio come Webhook di Redmine (attualmente il file `open_issue_redmine_webhook.json`), dare il comando
-
-    $ python3 -m producer.redmine.RedmineProducer -t nometopic
-
-La flag `-t` è opzionale, se omessa verrà usato un topic di default.
+Il Producer di Redmine si occupa di ascoltare gli webhook provenienti dai progetti di Redmine che hanno configurato la porta relativa al componente, e di immettere nella coda "redmine" di Kafka i messaggi.

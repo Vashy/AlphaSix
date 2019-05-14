@@ -226,7 +226,7 @@ Per analizzare il messaggio il Client opera in questo modo:
     Il Gestore Personale usa ora \texttt{ClientGP} che si interfaccia con Kafka attraverso \texttt{KafkaProducer} e \texttt{KafkaConsumer}, e per elaborare i messaggi che riceve crea un'implementazione di Processor. Questa, in base alle informazioni nel messaggio ricevuto, indica qual è il destinatario e attraverso quale applicazione notificarlo interrogando il database con \texttt{MongoFacade}.
 
 \subsection{Consumers}
-Il Consumer è la componente finale del sistema \progetto. Esso resta in ascolto della sua coda specifica di Kafka per applicativo (e.g. telegram, email).
+Il Consumer è il componente finale del sistema \progetto. Esso resta in ascolto della sua coda specifica di Kafka per applicativo (e.g. telegram, email).
 Si occupa di inoltrare il messaggio al destinatario finale.
 
 Al momento della stesura di questo manuale, i Consumer implementati sono due:

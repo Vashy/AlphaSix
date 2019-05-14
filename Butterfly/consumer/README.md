@@ -1,30 +1,15 @@
-# Lanciare il Consumer Telegram
+# Consumer
 
-Prima di lanciare un Consumer, dovresti configurare l'[ambiente Kafka](https://github.com/Vashy/AlphaSix/tree/develop/Butterfly/README.md).
+Il Consumer è il componente finale del sistema Butterfly. Esso resta in ascolto della sua coda specifica di Kafka per applicativo (e.g. telegram, email). Si occupa di inoltrare il messaggio al destinatario finale.
 
-Il TelegramConsumer si mette in ascolto dei Topic verso cui è configurato in `config.json` (li creerà direttamente su Kafka in caso non siano presenti),
-e li inoltra all'utente Telegram con l'ID definita nello stesso file.
+Prima di lanciare un Consumer bisogna configurare l'ambiente di [Butterfly](https://github.com/Vashy/AlphaSix/blob/master/README.md).
 
-Posizionarsi in `Butterfly/` e lanciare il comando
+## Consumer Email
 
-    $ python3 -m consumer.telegram.TelegramConsumer
+Il Consumer Email si occupa di prelevare i messaggi all'interno della coda "email" in Kafka ed inoltrarli ai destinatari appropriati in base all'indirizzo email indicato dal destinatario. La mail viene inviata dall'account specificato nei file di [configurazione](https://github.com/Vashy/AlphaSix/blob/master/Butterfly/consumer/config.json).
 
-Lasciare il processo in esecuzione per ascoltare e inoltrare i vari messaggi.
+## Consumer Telegram
 
-# Lanciare il Consumer Email
+Il Consumer Telegram si occupa di prelevare i messaggi all'interno della coda "telegram" in Kafka ed inoltrarli ai destinatari appropriati in base all'ID Telegram dei destinatati.
 
-Prima di lanciare un Consumer, dovresti configurare l'[ambiente Kafka](https://github.com/Vashy/AlphaSix/tree/develop/Butterfly/README.md).
-
-L'EmailConsumer si mette in ascolto dei Topic verso cui è configurato in `config.json` (li creerà direttamente su Kafka in caso non siano presenti),
-e li inoltra all'email definita nello stesso file. Apparirà un prompt per l'inserimento della password.
-
-Posizionarsi in `Butterfly/` e lanciare il comando
-
-    $ python3 -m consumer.email.EmailConsumer
-
-Lasciare il processo in esecuzione per ascoltare e inoltrare i vari messaggi.
-
-# Riferimenti
-
-* Lanciare un Producer:  
-https://github.com/Vashy/AlphaSix/tree/develop/Butterfly/producer/README.md
+Per individurare il proprio ID Telegram è consigliato usare [MyIDBot](tg://resolve?domain=storebot&start=myidbot) ed eseguire il comando `/getid`. 
