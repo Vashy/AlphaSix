@@ -198,14 +198,20 @@ per inserire l\'utente.</p>')
         return page
 
     def modify_user(self):
+        """
+            Metodo per modificare un utente
+        """
         fileHtml = html / 'modifyuser.html'
         page = fileHtml.read_text()
+        # ricevo i dati per la modifica
         nome = request.values.get('nome')
         cognome = request.values.get('cognome')
         email = request.values.get('email')
         telegram = request.values.get('telegram')
         modify = {}
+        # controllo ci sia almeno un identificativo
         if email or telegram:
+            # controllo quali dati sostituire
             if nome:
                 page = page.replace('*nome*', nome)
                 modify.update(nome=nome)
@@ -218,6 +224,7 @@ per inserire l\'utente.</p>')
             if telegram:
                 page = page.replace('*telegram*', telegram)
                 modify.update(telegram=telegram)
+            # controllo che i nuovi dati univoci non collidano con altri utenti
             if ((
                 email and
                 self._model.user_exists(email) and
@@ -248,6 +255,8 @@ per inserire l\'utente.</p>')
                         session['userid'],
                         modify['cognome']
                     )
+                # modifico gli identificativi se sono cambiati,
+                # anche in sessione
                 if(
                     'email' in modify and (
                         ('email' not in session) or
@@ -270,6 +279,7 @@ per inserire l\'utente.</p>')
                     )
                     session['telegram'] = modify['telegram']
                     session['userid'] = modify['telegram']
+                # caso in cui gli identificativi si invertano
                 if('email' not in modify):
                     self._model.update_user_email(
                         session['userid'],
@@ -300,6 +310,7 @@ per inserire l\'utente.</p>')
                     '<p>Si prega di inserire almeno email o telegram \
 per modificare l\'utente.</p>')
         user = self._model.read_user(session['userid'])
+        # rimpiazzo i campi per comodità
         page = page.replace('*nome*', user['name'] if user['name'] else '')
         page = page.replace(
             '*cognome*',
@@ -318,8 +329,12 @@ per modificare l\'utente.</p>')
         return page
 
     def remove_user(self):
+        """
+            Metodo per rimuovere un utente
+        """
         fileHtml = html / 'removeuser.html'
         page = fileHtml.read_text()
+        # ricevo l'identificativo dell'utente da rimuovere
         userid = request.values.get('userid')
         if userid:
             page = page.replace(
@@ -330,12 +345,13 @@ per modificare l\'utente.</p>')
             telegram = self._model.get_user_telegram_from_id(userid)
             user = email if email else telegram
             self._model.delete_user_from_id(userid)
+            # controllo se è l'utente corrente
             if user == session['email'] or user == session['telegram']:
                 self.logout()
                 return redirect(url_for('panel'), code=303)
         page = page.replace('*removeuser*', '')
         page = page.replace('*user*', session['userid'])
-
+        # costruisco la lista di utenti memorizzati
         values = self._users_id()
         display = []
         for user in values:
@@ -359,16 +375,22 @@ per modificare l\'utente.</p>')
         return page.replace('*userids*', options)
 
     def show_user(self):
+        """
+            Metodo per mostrare i dati degli utenti
+        """
         fileHtml = html / 'showuser.html'
         page = fileHtml.read_text()
         page = page.replace('*user*', session['userid'])
+        # ricevo l'id dell'utente da mostrare
         userid = request.values.get('userid')
         if userid:
             email = self._model.get_user_email_from_id(userid)
             telegram = self._model.get_user_telegram_from_id(userid)
             user = email if email else telegram
+            # mostro l'utente
             page = page.replace('*showuser*', self.load_web_user(user))
         page = page.replace('*showuser*', '')
+        # preparo la lista con gli utenti memorizzati e la mostro
         values = self._users_id()
         display = []
         for user in values:
@@ -395,14 +417,19 @@ per modificare l\'utente.</p>')
         return page.replace('*userids*', options)
 
     def remove_project(self):
+        """
+            Metodo per rimuovere un progetto
+        """
         fileHtml = html / 'removeproject.html'
         page = fileHtml.read_text()
+        # ricevo l'id del progetto
         project = request.values.get('projectid')
         if project:
             page = page.replace(
                 '*removeuser*',
                 '<p>Progetto rimosso correttamente.</p>'
             )
+            # rimuovo le preferenze associate al progetto
             users = self._model.get_project_users(project)
             for user in users:
                 if user.get('email'):
@@ -410,9 +437,11 @@ per modificare l\'utente.</p>')
                 elif user.get('telegram'):
                     userid = user['telegram']
                 self._model.remove_user_project(userid, project)
+            # rimuovo il progetto
             self._model.delete_project(project)
         page = page.replace('*removeproject*', '')
         page = page.replace('*user*', session['userid'])
+        # costruisco la lista di progetti da rimuovere
         values = self._projects_id()
         options = '<select id="projectid" name="projectid">'
         for value in values:
@@ -426,16 +455,22 @@ per modificare l\'utente.</p>')
         return page.replace('*projectids*', options)
 
     def show_project(self):
+        """
+            Metodo per mostrare i dettagli dei progetti
+        """
         fileHtml = html / 'showproject.html'
         page = fileHtml.read_text()
+        # ricevo l'id del progetto da mostrare
         project = request.values.get('projectid')
         if project:
+            # mostro il progetto
             page = page.replace(
                 '*showproject*',
                 self.load_web_project(project)
             )
         page = page.replace('*showproject*', '')
         page = page.replace('*user*', session['userid'])
+        # mostro la lista dei progetti memorizzati
         values = self._projects_id()
         options = '<select id="projectid" name="projectid">'
         for value in values:
@@ -449,9 +484,14 @@ per modificare l\'utente.</p>')
         return page.replace('*projectids*', options)
 
     def load_web_user(self, user: str):
+        """
+            Metodo per mostare i dettagli di un singolo utente
+        """
+        # carico i dati dell'utente
         user_projects = self._model.get_user_projects(user)
         table = '<table id="topics-table"><tr><th>URL</th><th>Priorità</th>\
 <th>Labels</th><th>Keywords</th></tr>'
+        # per ogni preferenza di progetto, mostro i dettagli
         for user_project in user_projects:
             project_data = self._model.read_project(
                 user_project['url']
@@ -478,7 +518,12 @@ per modificare l\'utente.</p>')
         return table
 
     def load_web_project(self, project: str):
+        """
+            Metodo per mostrare i dettagli di un singolo progetto
+        """
+        # carico i dati del progetto
         project = self._model.read_project(project)
+        # mostro i dati del progetto
         table = '<table id="projects-table"><tr><th>URL</th><th>Name</th>\
 <th>App</th><th>Topics</th></tr><tr><td><a href="' + project['url'] + '\
 " target="_blank">' + project['url'] + '</a></td>\
@@ -491,10 +536,17 @@ per modificare l\'utente.</p>')
         return table
 
     def web_user(self):
+        """
+            Metodo per gestire le chiamate HTTP di un client Web alla risorsa
+            utente
+        """
+        # controllo se l'utente ha acceduto al sistema
         if self._check_session():
+            # controllo il tipo di richiesta
             if request.method == 'GET':
                 page = self.panel()
             elif request.method == 'POST':
+                # controllo da dove proviene la richiesta, quindi un sottotipo
                 if 'postlogout' in request.values:
                     self.logout()
                     page = self.panel()
@@ -515,7 +567,13 @@ per modificare l\'utente.</p>')
             return self.access()
 
     def web_project(self):
+        """
+            Metodo per gestire le chiamate HTTP di un client Web alla risorsa
+            progetto
+        """
+        # controllo se l'utente ha acceduto al sistema
         if self._check_session():
+            # controllo il tipo della richiesta
             if request.method == 'POST':
                 page = self.show_project()
             elif request.method == 'DELETE':
@@ -529,7 +587,12 @@ per modificare l\'utente.</p>')
             return self.access()
 
     def load_preference_topic(self, message=''):
+        """
+            Metodo per caricare l'interfaccia delle preferenze legate ai topic
+        """
+        # carico le preferenze dell'utente
         user_projects = self._model.get_user_projects(session['userid'])
+        # costruisco il form
         form = '<form id="topics">\
 <fieldset id="topics-fieldset">\
 <legend>Modifica preferenze dei topics</legend>\
@@ -580,7 +643,13 @@ value="Modifica preferenze di progetti e topic"></fieldset></form>'
         return form
 
     def load_preference_project(self, message=''):
+        """
+            Metodo per caricare l'interfaccia delle preferenze legate ai
+            progetti
+        """
+        # carico i progetti memorizzati
         projects = self._model.projects()
+        # costruisco il form
         form = '<form id="projects"><fieldset id="project-fieldset">\
 <legend>Aggiungi e rimuovi progetti</legend><select name="project"\
  id="projects-select">'
@@ -600,10 +669,17 @@ value="Rimuovi il progetto"></fieldset></form>'
         year=datetime.datetime.now().year,
         month=datetime.datetime.now().month
     ):
+        """
+            Metodo per caricare l'interfaccia delle preferenze legate ai
+            giorni di irreperibilità
+        """
+        # carico i giorni del mese a parametro
         date = datetime.datetime(year, month, 1)
+        # carico le preferenze dell'utente
         irreperibilita = self._model.read_user(
             session['userid']
         ).get('irreperibilita')
+        # costruisco il form
         form = '<form id="availability">\
 <fieldset id="availability-fieldset"><legend>Giorni di indisponibilità</\
 legend><div id="calendario"></div><p>' + date.strftime("%B") + ' \
@@ -628,7 +704,13 @@ name="indisponibilita[]" id="day_' + str(date.day) + '" value="\
         return form
 
     def load_preference_platform(self, message=''):
+        """
+            Metodo per caricare l'interfaccia delle preferenze legate
+            alla piattaforma
+        """
+        # carico le preferenze dell'utente
         platform = self._model.read_user(session['userid']).get('preference')
+        # costruisco il form
         form = '<form id="platform"><fieldset id="platform-fieldset">\
 <legend>Piattaforma preferita</legend>\
 <label for="email">Email</label>\
@@ -646,48 +728,45 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         return form
 
     def modifytopics(self):
-        firstTopic = True
+        """
+            Metodo per modificare le preferenze legate a labels e keywords
+        """
         old = None
+        # ciclo sui valori passati alla richiesta
         for key, value in request.values.items(multi=True):
             url = key.replace('-priority', '')
             url = url.replace('-topics', '')
             url = url.replace('-keywords', '')
-            if not old:
+            # controllo se è il primo progetto o se
+            # prima label/keyword del nuovo progetto
+            if not old or (url != old and url != 'putpreferencetopics'):
+                self._model.reset_user_topics(
+                    session['userid'],
+                    url
+                )
+                self._model.reset_user_keywords(
+                    session['userid'],
+                    url
+                )
                 old = url
-            elif url != old:
-                if firstTopic:
-                    self._model.reset_user_topics(
-                        session['userid'],
-                        old
-                    )
-                firstTopic = True
-                old = url
+            # controllo sia un valore delle preferenze
             if url != 'putpreferencetopics':
                 if 'priority' in key:
                     self._model.set_user_priority(
                         session['userid'], url, value
                     )
                 elif 'topics' in key:
-                    if firstTopic:
-                        self._model.reset_user_topics(
-                            session['userid'],
-                            url
-                        )
                     self._model.add_user_topics(
                         session['userid'],
                         url,
                         value
                     )
-                    firstTopic = False
                 elif 'keywords' in key:
                     project_data = self._model.read_project(
                         url
                     )
+                    # redmine non ha le keywords
                     if project_data['app'] != 'redmine':
-                        self._model.reset_user_keywords(
-                            session['userid'],
-                            url
-                        )
                         if value:
                             value = value.strip()
                             keywords = value.split(',')
@@ -696,6 +775,7 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                                 url,
                                 *keywords
                             )
+        # costruisco l'interfaccia
         return self.load_preference_topic('<p>Preferenze dei topic aggiornate.\
         </p>')
 
