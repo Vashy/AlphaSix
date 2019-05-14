@@ -34,7 +34,7 @@ from flask import url_for, render_template_string
 
 from mongo_db.facade import MongoFacade
 
-
+# directory per html
 html = (pathlib.Path(__file__).parent / 'static' / 'html').resolve()
 
 
@@ -72,6 +72,9 @@ class Web:
         return len(request.values) != 0
 
     def access(self):
+        """
+            Metodo per gestire l'accesso di un utente
+        """
         fileHtml = html / 'access.html'
         page = fileHtml.read_text()
         userid = request.values.get('userid')
@@ -106,10 +109,18 @@ per eseguire l\'accesso.</p>')
         return page
 
     def logout(self):
+        """
+            Metodo per il logout
+        """
         session.clear()
 
     def panel(self, error=''):
+        """
+            Metodo per la gestione del pannello di controllo
+        """
+        # controllo il login dell'utente
         if self._check_session():
+            # controllo dell'utente amministratore
             if self._check_admin():
                 fileHtml = html / 'adminpanel.html'
             else:
@@ -128,13 +139,19 @@ per eseguire l\'accesso.</p>')
                 return self.access()
 
     def add_user(self):
+        """
+            Metodo per aggiungere un utente
+        """
         fileHtml = html / 'adduser.html'
         page = fileHtml.read_text()
+        # leggo i dati in input
         nome = request.values.get('nome')
         cognome = request.values.get('cognome')
         email = request.values.get('email')
         telegram = request.values.get('telegram')
+        # controllo ci sia almeno un identificativo
         if email or telegram:
+            # rimpiazzo per comodità
             if nome:
                 page = page.replace('*nome*', nome)
             if cognome:
@@ -143,6 +160,7 @@ per eseguire l\'accesso.</p>')
                 page = page.replace('*email*', email)
             if telegram:
                 page = page.replace('*telegram*', telegram)
+            # controllo l'univocità degli identificativi
             if (
                 (email and self._model.user_exists(email)) or
                 (telegram and self._model.user_exists(telegram))
@@ -232,9 +250,10 @@ per inserire l\'utente.</p>')
                     )
                 if(
                     'email' in modify and (
-                    ('email' not in session) or
-                    (modify['email'] != session['email'])
-                )):
+                        ('email' not in session) or
+                        (modify['email'] != session['email'])
+                    )
+                ):
                     self._model.update_user_email(
                         session['userid'],
                         modify.get('email')
@@ -563,8 +582,8 @@ value="Modifica preferenze di progetti e topic"></fieldset></form>'
     def load_preference_project(self, message=''):
         projects = self._model.projects()
         form = '<form id="projects"><fieldset id="project-fieldset">\
-<legend>Aggiungi e rimuovi progetti</legend><select name="project" id="projects\
--select">'
+<legend>Aggiungi e rimuovi progetti</legend><select name="project"\
+ id="projects-select">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
 ' + project['name'] + ' - ' + project['app'] + '</option>'
