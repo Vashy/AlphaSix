@@ -64,10 +64,10 @@ La suddivisione che abbiamo utilizzato, durante lo sviluppo e la consegna del pr
 		Kafka& 9092& 30030\\
 		Producer GitLab& 5000& 30060\\
 		Producer Redmine& 5000& 30061\\
-		Consumer Telegram& 80& 30090\\
-		Consumer Email& 80& 30091\\
-		Producer Gestore Personale& 5000& 30120\\
-		Consumer Gestore Personale& 80& 30121\\\bottomrule
+		%Consumer Telegram& 80& 30090\\
+		%Consumer Email& 80& 30091\\
+		Gestore Personale Client& 5000& 30120\\
+		%Gestore Personale Consumer& 80& 30121\\\bottomrule
 	\end{paddedtablex}
 	\caption{Configurazione delle porte in fase di sviluppo e consegna}
 	\label{TabellaPorteEsposte}
@@ -79,7 +79,7 @@ Le specifiche relative alla configurazione delle porte in Rancher possono essere
 Come detto in precedenza, su consiglio di \II, \progetto\ è stato sviluppato con l'utilizzo di Rancher per la gestione dei container.\\
 I container sono stati suddivisi in modo tale da utilizzare un unico \gloss{Cluster} (nel nostro caso chiamato Butterfly), vari \gloss{Namespace} per separare i servizi fra loro e i \gloss{Pod}, che rappresentano ciascuno un container.
 Le immagini utilizzate sono tutte presenti in DockerHub, incluse quelle dei \gloss{Producer} e dei \gloss{Consumer} che sono state create utilizzando build automatiche innescate ad ogni \gloss{push} nella repository del codice.
-\newpage
+
 La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 \begin{itemize}
 	\item Namespace: \texttt{gitlab}
