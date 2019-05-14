@@ -780,8 +780,13 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         </p>')
 
     def addproject(self):
+        """
+            Metodo per aggiungere un progetto alle preferenze
+        """
         message = '<p>Progetto aggiunto correttamente.</p>'
+        # ricevo l'id del progetto
         project = request.values.get('project')
+        # se è già presente prevengo l'eccezione
         try:
             if project:
                 self._model.add_user_project(session['userid'], project)
@@ -789,11 +794,17 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                 message = '<p>Nessun progetto selezionato.</p>'
         except AssertionError:
             message = '<p>Il progetto è già presente in lista.</p>'
+        # costruisco l'interfaccia
         return self.load_preference_topic(message)
 
     def removeproject(self):
+        """
+            Metodo per rimuovere un progetto dalle preferenze
+        """
         message = '<p>Progetto rimosso correttamente.</p>'
+        # ricevo l'id del progetto
         project = request.values.get('project')
+        # se non è già presente prevengo l'eccezione
         try:
             if project:
                 self._model.remove_user_project(session['userid'], project)
@@ -804,17 +815,24 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
         return self.load_preference_topic(message)
 
     def indisponibilita(self):
+        """
+            Metodo per modificare l'irreperibilità di un utente
+        """
+        # ricevo le date
         giorni = request.values.getlist('indisponibilita[]')
         month = request.values['mese']
         year = request.values['anno']
+        # carico le vecchie date memorizzate
         giorni_old = self._model.read_user(
             session['userid']
         ).get('irreperibilita')
+        # converto i nuovi giorni in lista
         giorni_new = []
         for giorno in giorni:
             giorni_new.append(
                 datetime.datetime.strptime(giorno, '%Y-%m-%d %H:%M:%S')
             )
+        # controllo quali giorni eliminare dai vecchi
         if giorni_old:
             for giorno_old in giorni_old:
                 if (
@@ -831,6 +849,7 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                             int(month),
                             int(giorno_old.strftime('%d'))
                         )
+        # memorizzo i nuovi giorni
         if giorni_new:
             for giorno in giorni_new:
                 self._model.add_giorno_irreperibilita(
@@ -839,41 +858,62 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
                     int(month),
                     int(giorno.strftime('%d'))
                 )
+        # carico l'interfaccia
         return self.load_preference_availability('<p>Giorni di indisponibilità\
  aggiornati.</p>')
 
     def previous_indisponibilita(self):
+        """
+            Metodo per cambiare il mese di irreperibilità al precedente
+        """
+        # controllo il mese in analisi
         mese = int(request.values['mese'])
         anno = int(request.values['anno'])
+        # lo decremento
         if (mese == 1):
             anno = anno - 1
             mese = 12
         else:
             mese = mese - 1
+        # memorizzo l'indisponibilità del mese corrente
         self.indisponibilita()
+        # carico l'interfaccia
         return self.load_preference_availability('<p>Giorni di indisponibilità\
  aggiornati, mese cambiato.</p>', anno, mese)
 
     def next_indisponibilita(self):
+        """
+            Metodo per cambiare il mese di irreperibilità al successivo
+        """
+        # controllo il mese in analisi
         mese = int(request.values['mese'])
         anno = int(request.values['anno'])
+        # lo incremento
         if (mese == 12):
             anno = anno + 1
             mese = 1
         else:
             mese = mese + 1
+        # memorizzo l'indisponibilità del mese corrente
         self.indisponibilita()
+        # carico l'interfaccia
         return self.load_preference_availability('<p>Giorni di indisponibilità\
  aggiornati, mese cambiato.</p>', anno, mese)
 
     def piattaforma(self):
+        """
+            Metodo per modificare la piattaforma di messaggistica preferita
+        """
+        # ricevo la nuova piattaforma
         platform = request.values['platform']
         if platform == "telegram":
+            # controllo se l'id telegram esiste
             telegram = self._model.get_user_telegram_web(session['userid'])
             if not telegram:
                 return self.load_preference_platform('<p>Non hai\
  memorizzato la piattaforma telegram nel sistema.</p>')
         if platform == "email":
+            # controllo se l'email esiste
             email = self._model.get_user_email_web(session['userid'])
             if not email:
                 return self.load_preference_platform('<p>Non hai\
@@ -883,9 +923,14 @@ type="button" value="Modifica piattaforma preferita"/></fieldset></form>'
 aggiornata correttamente.</p>')
 
     def modify_preference(self):
+        """
+            Metodo per modificare una preferenza
+        """
         fileHtml = html / 'preference.html'
         page = fileHtml.read_text()
+        # controllo quale tipo di preferenza bisogna modificare
         if 'putpreferencepanel' in request.values:
+            # controllo l'utente sia iscritto (prevengo logout non effettuati)
             try:
                 page = page.replace('*topics*', self.load_preference_topic())
                 page = page.replace(
@@ -921,6 +966,11 @@ aggiornata correttamente.</p>')
         return page
 
     def web_preference(self):
+        """
+            Metodo per gestire le chiamate HTTP di un client Web alla risorsa
+            preferenza
+        """
+        # controllo se l'utente ha acceduto al sistema
         if self._check_session():
             page = self.modify_preference()
             page = self.removehtml(page)
@@ -932,6 +982,10 @@ aggiornata correttamente.</p>')
             return self.access()
 
     def removehtml(self, page: str):
+        """
+            Metodo ausiliario per rimuovere stringhe non utili al caricamento
+            dei pannelli
+        """
         if 'panel' in request.values:
             page = page.replace("<!DOCTYPE html>", "")
             page = page.replace("<html id=\"html\">", "")
