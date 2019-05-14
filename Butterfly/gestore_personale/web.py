@@ -567,7 +567,7 @@ value="Modifica preferenze di progetti e topic"></fieldset></form>'
 -select">'
         for project in projects:
             form += '<option value="' + project['url'] + '">\
-' + project['name'] + ' - ' + project['url'] + '</option>'
+' + project['name'] + ' - ' + project['app'] + '</option>'
         form += '</select> <input id="putpreferenceprojectsadd" type="button" \
 value="Aggiungi il progetto">\
 <input id="putpreferenceprojectsremove" type="button" \
