@@ -8,11 +8,12 @@ Considerando che un messaggio appartiene ad un progetto e possiede un  Topic, un
 In Kafka è presente una coda chiamata ``lostmessages'' nella quale vengono salvati i seguenti messaggi:
 \begin{itemize}
     \item Nel momento in cui viene inviata la segnalazione di un progetto o di una label non ancora registrato nel sistema, tale segnalazione non viene inviata a nessuno, questo perché il progetto viene salvato nel Gestore Personale solo dopo la prima segnalazione. Bisogna dunque tenere presente che la prima segnalazione di un nuovo progetto o label di una Issue non verrà inviata ad alcun utente
-    \item Nel momento in cui nessun utente è interessato a un dato progetto
+    \item Nel momento in cui nessun utente è interessato o disponibile a un dato progetto il giorno dell'invio della segnalazione 
 \end{itemize}
-Questi non possono essere direttamente letti dall'interfaccia del Gestore Personale, ma solo attraverso un Consumer apposito che l'attuale versione di \progetto\ non possiede.
+I messaggi nella coda ``lostmessages'' non possono essere direttamente letti dall'interfaccia del Gestore Personale, ma solo attraverso un Consumer apposito che l'attuale versione di \progetto\ non possiede.
 
 \subsection{Caso di persona non disponibile}
+Seguendo le tre regole ad inizio paragrafo è comprensibile capire la logica per l'inoltro delle notifiche per indisponibilità. Per chiarezza ne esplichiamo comunque i meccanismi. \par 
 Nel caso in cui una persona a cui dovrebbe arrivare una notifica non sia disponibile (e quindi lo abbia precedentemente notificato nel calendario come descritto in \S\ref{preferenze}), la procedura del possibile inoltro del messaggio avviene nel seguente modo:
 \begin{itemize}
     \item Se è presente almeno un altro utente iscritto al Topic legato alla segnalazione, disponibile
