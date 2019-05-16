@@ -40,7 +40,6 @@ from webhook.redmine.factory import RedmineWebhookFactory
 
 _CONFIG_PATH = Path(__file__).parents[2] / 'config' / 'config.json'
 
-
 def _open_configs(path: Path):
     with open(path) as file:
         config = json.load(file)
