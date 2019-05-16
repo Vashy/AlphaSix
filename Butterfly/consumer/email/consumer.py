@@ -130,11 +130,11 @@ class EmailConsumer(Consumer):
             f' nel progetto {msg["project_name"]} ',
             f'\n\nSorgente: {msg["app"].capitalize()}',
             f'\nAutore: {msg["author"]}'
-            f'\n\n Information: '
-            f'\n - Title: \t\t{msg["title"]}',
-            f'\n - Description: \n'
+            f'\n\n Informazioni: '
+            f'\n - Titolo: \t\t{msg["title"]}',
+            f'\n - Descrizione: \n'
             f'  {msg["description"]}',
-            f'\n - Action: \t{msg["action"]}'
+            f'\n - Azione: \t{msg["action"]}'
         ])
 
         return res
@@ -157,10 +157,10 @@ class EmailConsumer(Consumer):
             f' su {msg["app"].capitalize()}.</p>',
             '<ul>'
             f'<li><strong>Autore:</strong> {msg["author"]}</li>'
-            f'<li><strong>Title:</strong> {msg["title"]}</li>',
-            f'<li><strong>Description:</strong> '
+            f'<li><strong>Titolo:</strong> {msg["title"]}</li>',
+            f'<li><strong>Descrizione:</strong> '
             f'{msg["description"]}</li>',
-            f'<li><strong>Action:</strong> {msg["action"]}</li>'
+            f'<li><strong>Azione:</strong> {msg["action"]}</li>'
             '</ul>'
         ])
         return res
@@ -222,8 +222,8 @@ class EmailConsumer(Consumer):
             f' su {msg["app"].capitalize()}.\n</p>\n<ul>',
             # f'\n\n{cls._bold}Informazioni:{cls._bold} '
             f'\n<li><strong>Autore:</strong> {msg["author"]};</li>'
-            f'\n<li><strong>Title:</strong> {msg["title"]};</li>',
-            f'\n<li><strong>Description:</strong> '
+            f'\n<li><strong>Titolo:</strong> {msg["title"]};</li>',
+            f'\n<li><strong>Descrizione:</strong> '
             f'{msg["description"]};</li></ul>',
         ])
         return res
@@ -251,8 +251,8 @@ class EmailConsumer(Consumer):
             f' su {msg["app"].capitalize()}\n',
             # f'\n\nInformazioni: '
             f'\n - Autore: {msg["author"]}'
-            f'\n - Title: {msg["title"]}',
-            f'\n - Description: '
+            f'\n - Titolo: {msg["title"]}',
+            f'\n - Descrizione: '
             f'{msg["description"]}',
         ])
         return res

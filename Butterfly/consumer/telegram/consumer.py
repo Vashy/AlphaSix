@@ -122,12 +122,12 @@ class TelegramConsumer(Consumer):
             f' su {msg["app"].capitalize()}\n',
             # f'\n\n{cls._bold_open}Informazioni:{cls._bold_close} '
             f'\n - {cls._bold_open}Autore:{cls._bold_close} {msg["author"]}'
-            f'\n - {cls._bold_open}Title:{cls._bold_close} {msg["title"]}',
-            f'\n - {cls._bold_open}Description:{cls._bold_close} '
+            f'\n - {cls._bold_open}Titolo:{cls._bold_close} {msg["title"]}',
+            f'\n - {cls._bold_open}Descrizione:{cls._bold_close} '
             f'{msg["description"]}',
         ])
         if 'action' in msg:
-            res += f'\n - {cls._bold_open}Action:{cls._bold_close} {msg["action"]}'
+            res += f'\n - {cls._bold_open}Azione:{cls._bold_close} {msg["action"]}'
 
         return res
 
@@ -152,8 +152,8 @@ class TelegramConsumer(Consumer):
             f' su {msg["app"].capitalize()}\n',
             # f'\n\n{cls._bold_open}Informazioni:{cls._bold_close} '
             f'\n - {cls._bold_open}Autore:{cls._bold_close} {msg["author"]}'
-            f'\n - {cls._bold_open}Title:{cls._bold_close} {msg["title"]}',
-            f'\n - {cls._bold_open}Description:{cls._bold_close} '
+            f'\n - {cls._bold_open}Titolo:{cls._bold_close} {msg["title"]}',
+            f'\n - {cls._bold_open}Descrizione:{cls._bold_close} '
             f'{msg["description"]}',
         ])
         return res
