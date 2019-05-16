@@ -171,7 +171,7 @@ class EmailConsumer(Consumer):
             f'È stato fatto un push '
             f'nel progetto {msg["project_name"]} ',
             f' su {msg["app"].capitalize()}.\n',
-            f'{msg["commits_count"]} nuovi commit da {msg["author"]}:\n'
+            f'{msg["commits_count"]} nuovo/i commit da {msg["author"]}:\n'
             '\n'
         ])
         for commit in msg['commits']:
@@ -189,7 +189,7 @@ class EmailConsumer(Consumer):
             f'<p>È stato fatto un push '
             f'nel progetto <strong>{msg["project_name"]}</strong>',
             f' su {msg["app"].capitalize()}.</p>',
-            f'<p>{msg["commits_count"]} nuovi commit da {msg["author"]}:</p>'
+            f'<p>{msg["commits_count"]} nuovo/i commit da {msg["author"]}:</p>'
             '\n<ul>'
         ])
         for commit in msg['commits']:
