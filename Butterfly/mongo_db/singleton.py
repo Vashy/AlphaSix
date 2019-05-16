@@ -27,16 +27,20 @@ Autori:
 """
 
 from pathlib import Path
-import pymongo, json, os
+import pymongo
+import json
+import os
 
 _CONFIG_PATH = Path(__file__).parents[0] / 'config.json'
+
 
 def _open_configs(path: Path):
     with open(path) as file:
         config = json.load(file)['mongo']
     if(os.environ['MONGO_IP']):
-            config['ip'] = os.environ['MONGO_IP']
+        config['ip'] = os.environ['MONGO_IP']
     return config
+
 
 class MongoSingleton:
 
@@ -48,7 +52,6 @@ class MongoSingleton:
                 mongo_client
         ):
             self._client = mongo_client
-            print('Connessione con il DB stabilita.')
             self._db = self._client[db]
 
         def create(
@@ -86,10 +89,6 @@ class MongoSingleton:
             configs = _open_configs(_CONFIG_PATH)
             self._client.drop(configs['database'])
 
-#    try:
-#        _INSTANCE = Singleton('butterfly')
-#    except pymongo.errors.PyMongoError as e:
-#        print('Si prega di avviare mongo usando il comando "service mongod start"')
     configs = _open_configs(_CONFIG_PATH)
     _INSTANCE = Singleton(
         configs['database'],

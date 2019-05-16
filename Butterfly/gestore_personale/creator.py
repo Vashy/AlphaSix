@@ -74,11 +74,9 @@ class KafkaProducerCreator:
             except kafka.errors.NoBrokersAvailable:
                 if not notify:
                     notify = True
-                    print('Broker offline. In attesa di una connessione ...')
+
             except KeyboardInterrupt:
-                print(' Closing Producer ...')
                 exit(1)
-        print('Connessione con il Broker stabilita')
 
 
 class KafkaConsumerCreator:
@@ -117,11 +115,9 @@ class KafkaConsumerCreator:
             except kafka.errors.NoBrokersAvailable:
                 if not notify:
                     notify = True
-                    print('Broker offline. In attesa di una connessione ...')
+
             except KeyboardInterrupt:
                 print(' Closing Consumer ...')
-                # exit(1)
-        print('Connessione con il Broker stabilita')
         return consumer
 
     def topics(self) -> list:

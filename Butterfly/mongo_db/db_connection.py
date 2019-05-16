@@ -47,10 +47,8 @@ class DBConnection(object):
         server=_open_configs(_CONFIG_PATH)['ip'],
         port=_open_configs(_CONFIG_PATH)['port']
     ):
-        print('Apertura connessione ...')
         configs = _open_configs(_CONFIG_PATH)
         self._client = pymongo.MongoClient(configs['ip'], configs['port'])
-        print('Connessione stabilita.')
         self._db = self._client[db]
 
     # Entrata nel costrutto with
@@ -68,7 +66,6 @@ class DBConnection(object):
         for collection in collections:
             if collection in self.db.list_collection_names():
                 self.db.drop_collection(collection)
-                print(f'Dropped collection {collection}')
 
     @property
     def db(self):
@@ -77,6 +74,4 @@ class DBConnection(object):
     def close(self):
         """Chiude la connessione col client mongo.
         """
-        print('Chiusura connessione ...')
         self._client.close()
-        print('Connessione chiusa.')

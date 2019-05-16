@@ -59,8 +59,6 @@ class GitlabProcessor(Processor):
             )
 
         if kind == 'commit-note':
-            print('Titolo: ' + self._message['title'])
-            print('Descrizione: ' + self._message['description'])
             return self._mongofacade.get_match_keywords(
                 users,
                 self._message['project_id'],

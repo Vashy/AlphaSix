@@ -62,14 +62,10 @@ def populateA():
             # NON usare questo metodo per inserire utenti! Usare
             # controller.insert_user()
             result = controller.collection('users').insert_one(user)
-            if result is not None:
-                print(result.inserted_id)
 
         # Popola la collezione projects da db.json
         for project in projects_json:
             result = controller.insert_project(project)
-            if result is not None:
-                print(result.inserted_id)
 
         # Popola la collezione topics da db.json
         for topic in topics_json:
@@ -78,9 +74,6 @@ def populateA():
                 topic['label'],
                 topic['project'],
             )
-            if result is not None:
-                print(result.inserted_id)
-
 
 def populateB():
     configs = _open_configs(_CONFIG_PATH)
@@ -109,12 +102,10 @@ def populateB():
                 ))
             user['irreperibilita'] = dates
         result = users.insert_one(user)
-        print(result.inserted_id)
 
     projects = db.projects
     for project in projects_json:
         result = projects.insert_one(project)
-        print(result.inserted_id)
 
 
 populateB()

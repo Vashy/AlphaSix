@@ -253,10 +253,6 @@ class DBController(object):
             })
             return result
 
-        # except pymongo.errors.DuplicateKeyError as err:
-        #     print(err)
-        #     return None
-
     def delete_one_topic(
             self,
             label: str,

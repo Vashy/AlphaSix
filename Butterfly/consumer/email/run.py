@@ -29,7 +29,7 @@ Autori:
 
 from pathlib import Path
 import json
-import os 
+import os
 
 import kafka.errors
 
@@ -65,7 +65,6 @@ def main():
     try:
         kafka = KafkaConsumerCreator().create(configs, topic)
     except kafka.errors.KafkaConfigurationError as e:
-        print(e.with_traceback())
         exit(-1)
 
     # Istanzia EmailConsumer
@@ -77,7 +76,6 @@ def main():
         pass
     finally:
         consumer.close()
-        print(' Closing Consumer ...')
         exit(-1)
 
 

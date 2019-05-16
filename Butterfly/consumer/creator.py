@@ -60,10 +60,9 @@ class KafkaConsumerCreator(ConsumerCreator):
             except kafka.errors.NoBrokersAvailable:
                 if not notify:
                     notify = True
-                    print('Broker offline. In attesa di una connessione ...')
+
             except KeyboardInterrupt:
                 print(' Closing Consumer ...')
                 # exit(1)
 
-        print('Connessione con il Broker stabilita')
         return kafka_consumer

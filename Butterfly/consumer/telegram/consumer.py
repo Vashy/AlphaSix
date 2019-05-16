@@ -70,13 +70,7 @@ class TelegramConsumer(Consumer):
             })
         if response.ok:
             chat = response.json()["result"]["chat"]
-            print(f'({response.status_code}) Inviato un messaggio a '
-                  f'{chat["username"]} ({chat["id"]})')
-
             return True
-
-        print(f'({response.status_code})\n'
-              f'{response.json()}')
         return False
 
     @classmethod

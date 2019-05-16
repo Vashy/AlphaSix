@@ -53,7 +53,6 @@ class TestDBController(unittest.TestCase):
         cls.client.close()
 
     def test_db_instances(self):
-        # pprint(self.controller.users({'telegram': '@user2'})[0])
         collection = self.client.db.users
         # Cerca un documento qualsiasi
         self.assertIsNotNone(collection.find_one({}))
@@ -374,7 +373,6 @@ class TestDBController(unittest.TestCase):
         users = self.controller.collection('users')
 
         self.assertEqual(users.count_documents({}), 3)
-        # pprint.pprint(users)
 
         index = 0
         for value in users.find({}):

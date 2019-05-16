@@ -28,7 +28,7 @@ Autori:
 
 from pathlib import Path
 import json
-import os 
+import os
 
 from consumer.telegram.consumer import TelegramConsumer
 from consumer.creator import KafkaConsumerCreator
@@ -64,7 +64,6 @@ def main():
     try:
         kafka = KafkaConsumerCreator().create(configs, topic)
     except kafka.errors.KafkaConfigurationError as e:
-        print(e.with_traceback())
         exit(-1)
 
     # Istanzia il TelegramConsumer
@@ -76,7 +75,6 @@ def main():
         pass
     finally:
         consumer.close()  # Chiude la connessione
-        print(' Closing Consumer ...')
 
 
 if __name__ == '__main__':

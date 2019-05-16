@@ -46,15 +46,11 @@ class Processor():
 
         # Dict di tutti gli utenti disponibili oggi nel progetto
         utenti_disponibili = self.get_involved_users(progetto)
-        print('Utenti disponibili oggi: ')
-        print(*utenti_disponibili)
 
         # Lista di tutti gli utenti interessati e disponibili
         utenti_interessati = self._filter_users_by_topic(
             utenti_disponibili, obj
         )
-        print('Utenti disponibili interessati oggi: ')
-        print(*utenti_interessati)
 
         # Se non c'è nessuno, vedo la persona di priorità
         # più alta disponibile oggi per quel progetto
@@ -62,8 +58,7 @@ class Processor():
             utenti_interessati = self.select_users_more_interested(
                 progetto
             )
-            print('Utente con priorità più alta in caso non ci sia nessuno: ')
-            print(*utenti_interessati)
+
 
         # Altrimenti vedo le persone che hanno priorità più alta
         # tra quelle disponibili e interessate al topic
@@ -71,8 +66,6 @@ class Processor():
             utenti_interessati = self.filter_users_with_max_priority(
                 utenti_interessati, progetto
             )
-            print('Utente con priorità più alta interessato: ')
-            print(*utenti_interessati)
         self.__list_telegram = self.get_telegram_contacts(utenti_interessati)
         self.__list_email = self.get_email_contacts(utenti_interessati)
         final_map = {}

@@ -60,25 +60,16 @@ class FlaskServer:
         """
         if request.headers['Content-Type'] == 'application/json':
             webhook = request.get_json()
-            print(
-                f'\n\n\nMessaggio da {self._topic}:\n'
-                f'{pformat(webhook)}\n\n\n'
-                'Parsing del messaggio ...'
-            )
 
             try:
                 self._producer.produce(webhook)
                 print(f'Messaggio inviato.\n\n')
             except KeyError:
-                print('Warning: messaggio malformato. '
-                      'Non è stato possibile effettuare il parsing.\n'
-                      'In attesa di altri messaggi...\n\n')
                 return 'Messaggio malformato', 402
             except NameError:
                 # Errore messaggio malformato
                 return 'Tipo di messaggio non riconosciuto', 401
             return 'Ok', 200  # Ok
-
         return '', 400  # Errore, tipo di richiesta non adatta
 
     def run(self, configs: dict):

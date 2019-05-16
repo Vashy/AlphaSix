@@ -63,8 +63,6 @@ class EmailConsumer(Consumer):
             try:
                 self._psw = os.environ['BUTTERFLY_EMAIL_PSW']
             except KeyError as e:
-                print('Assegna la password a BUTTERFLY_EMAIL_PSW')
-                print(repr(e))
                 exit(1)
 
     def send(self, receiver: str, mail_text: str):
@@ -97,7 +95,6 @@ class EmailConsumer(Consumer):
 
                 try:  # Tenta di inviare l'Email
                     mailserver.send_message(msg)
-                    print(f'Email inviata a {receiver}')
                 except smtplib.SMTPException:
                     print('Errore, email non inviata. ')
 

@@ -64,9 +64,6 @@ class GitlabIssueCommentWebhook(Webhook):
         webhook['author'] = whook['user']['name']
         webhook['description'] = whook['object_attributes']['description']
         webhook['action'] = 'comment'
-
-        print(configs['base_url'])
-
         webhook['labels'] = self.project_labels(
             configs['base_url'],  # url dell'istanza Gitlab
             whook['project']['id'],  # id del progetto
@@ -82,9 +79,6 @@ class GitlabIssueCommentWebhook(Webhook):
             f'{base_url}/api/v4/projects/{project_id}/labels',
             headers={'PRIVATE-TOKEN': token}
         )
-        # print(base_url) + "  e poi"
-        # print(project_id) + " e poi "
-        # print(token) + " ."
         labels = []
         if result.ok:  # 200
             # Salva solo i nomi delle label

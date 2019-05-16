@@ -60,7 +60,6 @@ class ClientGP():
         """
            Metodo in ascolto delle code di kafka
         """
-        print('Listening to messages from topics:')
         for topic in self._consumer.subscription():
             print(f'- {topic}')
         print()
@@ -105,8 +104,6 @@ class ClientGP():
                     self._producer.send(
                         app_ricevente, message
                     )
-                    print(f'Inviato `msg` sul topic {app_ricevente} '
-                          f'a "{contact}"')
                     self._producer.flush(10)  # Attesa 10 secondi
                 # Se non riesce a mandare il messaggio in 10 secondi
                 except KafkaTimeoutError:
@@ -126,13 +123,8 @@ class ClientGP():
         """
             Chiude la connessione con Producer e Consumer associati.
         """
-        print('\nClosing Producer ...')
         self._producer.close()
-
-        print('Closing Consumer ...')
         self._consumer.close()
-
-        print('bye')
 
 
 if __name__ == "__main__":
