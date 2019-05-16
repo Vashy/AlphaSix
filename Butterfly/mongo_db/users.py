@@ -71,7 +71,7 @@ class MongoUsers:
                     {'email': user}
                 ]
             })
-        return count != 0
+        return count != 0 and user != ''
 
     def create(self, **fields):
         # Collezione di interesse
