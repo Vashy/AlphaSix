@@ -72,6 +72,7 @@ class RedmineIssueWebhook(Webhook):
 
             for value in whook['payload']['journal']['details']:
                 attribute = value['prop_key'].replace('_id', '')
+                attribute = str(attribute)
                 webhook['update'][attribute] = (
                     whook['payload']['issue'][attribute]['name']
                 )
