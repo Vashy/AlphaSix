@@ -40,7 +40,7 @@ Le immagini di Docker corrispondenti ai vari container sono presenti anche su **
 Abbiamo sviluppato i **Dockerfile** in maniera tale da suddividere il progetto in 6 container:
 - **[Producer](./Butterfly/producer/)**: GitLab e Redmine
 - **[Consumer](./Butterfly/consumer/)**: Telegram e Email
-- **[Gestore Personale](./Butterfly/consumer/)**: un client e un controller
+- **[Gestore Personale](./Butterfly/gestore-personale/)**: un client e un controller
 
 Questi vengono descritti in particolare nelle rispettive cartelle in cui è anche contenuto il codice oltre che nei documenti prodotta insieme al software.
 
