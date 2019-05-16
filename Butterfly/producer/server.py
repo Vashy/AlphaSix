@@ -63,7 +63,6 @@ class FlaskServer:
 
             try:
                 self._producer.produce(webhook)
-                print(f'Messaggio inviato.\n\n')
             except KeyError:
                 return 'Messaggio malformato', 402
             except NameError:

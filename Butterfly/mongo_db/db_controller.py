@@ -443,8 +443,6 @@ class DBController(object):
             raise AssertionError('Operazione fallita. Impostare prima '
                                  'una Email')
 
-        # self._print_user(id)
-        # print(new_telegram)
         return self.collection('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
