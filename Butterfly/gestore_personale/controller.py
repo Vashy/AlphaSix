@@ -1,245 +1,147 @@
+"""
+File: controller.py
+Data creazione: 2019-03-15
+
+<descrizione>
+
+Licenza: Apache 2.0
+
+Copyright 2019 AlphaSix
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Versione: 0.1.0
+Creatore: Matteo Marchiori, matteo.marchiori@gmail.com
+Autori:
+"""
+
 # Usage: python3 __file__.py
 
 from os import urandom
-from abc import ABC, abstractmethod
-import pathlib
-import json
 
-from flask import Flask, request, session, make_response, redirect, url_for, render_template_string
-
+from flask import Flask
 import flask_restful
 
 from mongo_db.facade import MongoFacade
 from mongo_db.users import MongoUsers
 from mongo_db.projects import MongoProjects
 from mongo_db.singleton import MongoSingleton
-
-html = (pathlib.Path(__file__).parent / 'static/html').resolve()
-
-
-class Observer(ABC):
-
-    @abstractmethod
-    def update(self, resource: str, request_type: str, msg: str):
-        pass
-
-
-class Subject(ABC):
-
-    def addObserver(self, obs: Observer):
-        if not hasattr(self, '_lst'):
-            self._lst = []
-        if obs not in self._lst:
-            self._lst.append(obs)
-
-    @abstractmethod
-    def notify(self, request_type: str, resource: str, msg: str):
-        pass
-
-
-class SubjectResource(type(Subject), type(flask_restful.Resource)):
-    pass
-
-
-class Resource(Subject, flask_restful.Resource, metaclass=SubjectResource):
-
-    def __init__(self):
-        super(Resource, self).__init__()
-        self._response = None
-
-    def notify(self, request_type: str, resource: str, msg: str):
-        for obs in self._lst:
-            return obs.update(request_type, resource, msg)
-
-
-class User(Resource):
-
-    def get(self):
-        """Restituisce lo user con l'id specificato
-
-        Usage example:
-            `curl http://localhost:5000/user/1`
-        """
-        return self.notify('user', 'GET', self._response)
-
-    def post(self) -> dict:
-        """Modifica un user
-
-        Usage example:
-            `curl http://localhost:5000/users -X POST -d "data=some data"`
-        """
-        data = request.get_json(force=True)
-        return self.notify('user', 'POST', data)
-
-
-class Preference(Resource):
-
-    def get(self):
-        """Restituisce le preferenze dello user con l'id specificato
-
-        Usage example:
-            `curl http://localhost:5000/api/preference/1`
-        """
-        return self.notify('preference', 'GET', self._response)
-
-    def post(self) -> dict:
-        """Modifica le preferenze dello user indicato nel corpo della request
-
-        Usage example:
-        `curl http://localhost:5000/api/preference -X POST -d "data=some data"`
-        """
-        data = request.get_json(force=True)
-        return self.notify('preference', 'POST', data)
+from gestore_personale.observer import Observer
+from gestore_personale.api import User, PostUser, Project
+from gestore_personale.api import Preference, PostPreference, ApiHandler
+from gestore_personale.web import Web
 
 
 class Controller(Observer):
+    """
+        Classe controller dell'architettura MVC del gestore personale.
+    """
 
     def __init__(
         self,
         server: Flask,
         api: flask_restful.Api,
+        handler: ApiHandler,
+        web: Web,
         model: MongoFacade
     ):
-        self.model = model
-        self.server = server
-        self.api = api
+        self._server = server
+        self._api = api
+        self._handler = handler
+        self._web = web
+        self._user = User
+        self._post_user = PostUser
+        self._project = Project
+        self._preference = Preference
+        self._post_preference = PostPreference
 
-        self.user = User
-        self.preference = Preference
-
-        self.api.add_resource(
-            self.user, '/api/user'
+        # mapping delle risorse con i rispettivi URL
+        self._api.add_resource(
+            self._user,
+            '/api/v1/user/<url>',
+            resource_class_kwargs={'model': model}
         )
 
-        self.api.add_resource(
-            self.preference, '/api/preference'
+        self._api.add_resource(
+            self._post_user,
+            '/api/v1/user',
+            resource_class_kwargs={'model': model}
         )
 
-        self.user.addObserver(self.user, obs=self)
-        self.preference.addObserver(self.preference, obs=self)
+        self._api.add_resource(
+            self._project,
+            '/api/v1/project/<path:url>',
+            resource_class_kwargs={'model': model}
+        )
 
-        self.server.add_url_rule(
+        self._api.add_resource(
+            self._preference,
+            '/api/v1/preference/<url>',
+            resource_class_kwargs={'model': model}
+        )
+
+        self._api.add_resource(
+            self._post_preference,
+            '/api/v1/preference',
+            resource_class_kwargs={'model': model}
+        )
+
+        # mapping delle API REST
+        self._user.addObserver(self._user, obs=self)
+        self._post_user.addObserver(self._post_user, obs=self)
+        self._user.addObserver(self._project, obs=self)
+        self._preference.addObserver(self._preference, obs=self)
+        self._post_preference.addObserver(self._post_preference, obs=self)
+
+        # mapping degli URL coi metodi
+        self._server.add_url_rule(
             '/',
             'panel',
-            self.panel,
+            self._web.panel,
             methods=['GET', 'POST']
         )
 
-        self.server.add_url_rule(
+        self._server.add_url_rule(
             '/web_user',
             'web_user',
-            self.web_user,
+            self._web.web_user,
             methods=['GET', 'POST', 'PUT', 'DELETE']
         )
 
-        self.server.add_url_rule(
+        self._server.add_url_rule(
+            '/web_project',
+            'web_project',
+            self._web.web_project,
+            methods=['POST', 'DELETE']
+        )
+
+        self._server.add_url_rule(
             '/web_preference',
             'web_preference',
-            self.web_preference,
-            methods=['GET', 'POST', 'PUT', 'DELETE']
+            self._web.web_preference,
+            methods=['PUT']
         )
 
-    def _users_id(self, userid: str):
-        ids = []
-        for user in self.model.users():
-            ids.append(user[userid])
-        return ids
-
-    def _check_session(self):
-        return 'userid' in session
-
-    def _check_values(self, request: request):
-        return len(request.values) != 0
-
-    def access(self, request: request):
-        fileHtml = html / 'access.html'
-        page = fileHtml.read_text()
-        userid = request.form.get('userid')
-        if request.form.get('userid'):
-            if self.model.user_exists(request.form['userid']):
-                session['userid'] = request.form['userid']
-                return redirect(url_for('panel'), code=303)
-            else:
-                page = page.replace(
-                    '*access*',
-                    '<p>Accesso non riuscito. ' + userid + ' non trovato.</p>')
-                page = page.replace('*userid*', userid)
-        page = page.replace('*access*', '')
-        page = page.replace('*userid*', '')
-        return page
-
-    def panel(self):
-        if self._check_session():
-            fileHtml = html / 'panel.html'
-            return render_template_string(fileHtml.read_text())
-        else:
-            return self.access(request)
-
-    def remove_user(self):
-        values = self._users_id('_id')
-        display = []
-        for user in values:
-            telegram = self.model.get_user_telegram(user)
-            email = self.model.get_user_email(user)
-            if telegram is None:
-                telegram = ''
-            if email is None:
-                email = ''
-            display.append(
-                telegram +
-                ' ' +
-                email
-            )
-        options = '<select>'
-        for i,voice in enumerate(display):
-            options += '<option value="' + str(values[i]) + '">' + display[i] + '</option>'
-        options += '</select>'
-        fileHtml = html / 'removeuser.html'
-        page = fileHtml.read_text()
-        return page.replace('*userids*', options)
-
-
-    def web_user(self):
-        if self._check_session():
-            if(not self._check_values(request)):
-                if request.method == 'PUT':
-                    fileHtml = html / 'adduser.html'
-                    page = fileHtml.read_text()
-                elif request.method == 'POST':
-                    fileHtml = html / 'modifyuser.html'
-                    page = fileHtml.read_text()
-                elif request.method == 'DELETE':
-                    page = self.remove_user()
-                return render_template_string(page)
-        else:
-            return self.access(request)
-
-    def web_preference(self):
-        if self._check_session():
-            if(not self._check_values(request)):
-                fileHtml = html / 'preference.html'
-                page = fileHtml.read_text()
-                return render_template_string(page)
-        else:
-            return self.access(request)
-
-    def api_user(self, request_type: str, msg: str):
-        if request_type == 'GET':
-            pass
-        elif request_type == 'POST':
-            pass
-
-    def api_preference(self, request_type: str, msg: str):
-        if request_type == 'GET':
-            pass
-        elif request_type == 'POST':
-            pass
-
-    def update(self, resource: str, request_type: str, msg: str):
+    def update(self, resource: str, request_type: str, url: str, msg: str):
+        """
+            Metodo update dell'observer
+        """
         if resource == 'user':
-            return self.api_user(request_type, msg)
+            return self._handler.api_user(request_type, url, msg)
+        elif resource == 'project':
+            return self._handler.api_project(request_type, url, msg)
         elif resource == 'preference':
-            return self.api_preference(request_type, msg)
+            return self._handler.api_preference(request_type, url, msg)
 
 
 def main():
@@ -250,13 +152,16 @@ def main():
     users = MongoUsers(mongo)
     projects = MongoProjects(mongo)
     facade = MongoFacade(users, projects)
+    web = Web(facade)
+    handler = ApiHandler(facade)
     Controller(
         flask,
         api,
+        handler,
+        web,
         facade
     )
-
-    flask.run(debug=True)
+    flask.run(host='0.0.0.0', debug=True)
 
 
 if __name__ == "__main__":

@@ -115,7 +115,10 @@
 
 			\subparagraph{Altri formati testuali comuni} \label{PS:Documentazione:Design:NormeT:AltriFormati}
 			\begin{itemize}
-				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601\footnote{Riferirsi alla voce ``ISO 8601'' in \S\ref{rifnorma}}
+				\item \textbf{Orari}: \texttt{HH:MM} secondo la norma ISO 8601\footnote{Riferirsi alla voce
+				%``ISO 8601''
+				1
+				in \S\ref{rifinfo}}
 				nel formato 24 ore dove:
 				\begin{itemize}
 					\item \texttt{HH} indica le ore, da 00 a 23
@@ -309,7 +312,10 @@
 			\begin{itemize}
 				\item \textbf{SCM checkout}: sincronizzazione del codice con la repository remota.
 				\item \textbf{Build}: build del codice su docker container.
-				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce ``Pytest'' in \S\ref{rifinfo}}.
+				\item \textbf{Unit Test}: test di unità tramite Pytest\footnote{Riferirsi alla voce
+				% ``Pytest''
+				17
+				in \S\ref{rifinfo}}.
 				\item \textbf{Integration Test}: test di integrazione tramite Pytest.
 				\item \textbf{System Test}: test per verificare il comportamento dell'intero sistema tramite \gloss{tox}.
 			\end{itemize}
@@ -318,7 +324,10 @@
 
 			\paragraph{Docker}\label{Docker} % TODO inserire immagine con i container attivi da Dockstation
 			Per rendere il sistema Butterfly completamente isolato dal sistema circostante, creiamo dei container specifici per ogni componente. Per fare ciò, utilizziamo
-			\gloss{Docker}\footnote{Riferirsi alla voce ``Docker'' in \S\ref{rifinfo}.},
+			\gloss{Docker}\footnote{Riferirsi alla voce
+			%``Docker''
+			5
+			in \S\ref{rifinfo}.},
 			un tool che rende questo processo estremamente semplice. Sarà presente un'immagine Docker per ognuna delle seguenti componenti, dalle quali sarà possibile costruire un container:
 			\begin{itemize}
 				\item Producer Redmine
@@ -509,12 +518,11 @@
 
 
 
-	\subsection{Verifica e validazione}\label{Verifica}
+	\subsection{Verifica}\label{Verifica}
 
 		\subsubsection{Scopo}
-		Questa sezione vuole descrivere come eseguiamo la fase di verifica, per capire se i prodotti e i processi sono conformi a quanto ci attendiamo.
-		La fase di verifica serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il
-		ritorno ad una fase stabile del progetto per poi ripartire da lì, prendendo in considerazione i risultati della precedente verifica.
+		Questa sezione vuole descrivere come eseguiamo la fase di verifica, lo scopo è quello di evidenziare
+		ed eliminare la presenza di errori nell’esecuzione di un qualunque processo durante tutto lo sviluppo del prodotto.
 
 		%\subsubsection{Aspettative} %da mettere nel PdQ
 
@@ -612,9 +620,13 @@
 			\centering
 			\includegraphics[width=\textwidth]{img/tdd.png}\\
 			\caption[Test Driven Development]{Test Driven Development\protect\footnotemark}
+			\label{TDDfigure}
 		\end{figure}
 
-		\footnotetext{Riferirsi alla voce ``Fonte Figura 3'' in \S\ref{rifinfo}}
+		\footnotetext{Riferirsi alla voce
+		%``Fonte Figura 3''
+		7
+		 in \S\ref{rifinfo}}
 
 		\subsubsection{Analisi statica}\label{AnalisiStatica}
 		L'analisi statica attua una verifica non dinamica, ovvero senza eseguire codice.
@@ -815,7 +827,8 @@
 
 			\begin{itemize}
 				\item \textbf{T}: si riferisce a ``Test''.
-				\item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}, può essere:
+				\item \textbf{Tipo}: la tipologia a cui il test appartiene che, seguendo il modello a V%\footnote{\url{https://en.wikipedia.org/wiki/V-Model_(software_development)}}
+				, può essere:
 				\begin{itemize}
 					\item \textbf{V}: validazione.
 					\item \textbf{S}: sistema
@@ -832,7 +845,7 @@
 			\newcommand{\TNS}{{\color{red}\textbf{NS}}}
 			\newcommand{\TS}{{\color{green}\textbf{S}}}
 
-			Le tabelle che raccolgno i test di una determinata tipologia presentano i campi:
+			Le tabelle che raccolgono i test di una determinata tipologia presentano i campi:
 			\begin{itemize}
 				\item \textbf{Codice}: comprendente il codice identificativo del test.
 				\item \textbf{Test}: descrive cosa il test deve verificare.
@@ -863,16 +876,6 @@
 					\bottomrule
 				\end{VTtable}
 			\end{table}
-
-
-			\paragraph{Test di sistema} \label{testsistema}
-			I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
-			Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
-
-            \subparagraph{MPS018 Test di sistema}\label{testsistema:met}
-            La qualità di un prodotto si verifica attraverso la percentuale di test di sistema superati.
-
-            \textbf{Metrica}: percentuale di test di sistema superati.
 
 			\paragraph{Test d'integrazione} \label{testintegrazione}
 			I test d'integrazione verificano il residuo mettendo insieme due unità. Queste unità in particolare sono considerati indipendenti, ma realizzate al fine di essere composte per collaborare.
@@ -916,10 +919,6 @@
 			Ciò avviene quando il sistema è altamente accoppiato.
 			La regressione si riduce invece riducendo l'accoppiamento, per esempio tramite \gloss{incapsulamento}.
 
-			\paragraph{Test di accettazione} \label{testaccettazione}
-			Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
-			Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.
-
 			\paragraph{Tracciamento dei test} \label{TracciamentoTest}
 			Tutti i test da noi delineati presentano un tracciamento in forma tabellare con i requisiti o componenti applicativi a loro associati.
 			Questo ci assicura una verifica più accurata e completa.
@@ -933,3 +932,62 @@
 			\item Al fallimento di un test
 		\end{itemize}
 		Ciò ci è utile perché un anomalia ci indica la presenza di errori nel prodotto o nel nostro way of working. Può quindi essere per noi un buon punto di inizio per la rivisitazione dei prodotti.
+
+        %TODO da inserire nella sezione di validazione quando verrà divisa verifica e validazione
+        \subsubsection{MPR013 Percentuale soddisfacimento metriche}\label{percentualeSoddisfacimentoMetriche}
+        Al momento della consegna del prodotto al cliente è bene fare un'analisi retrospettiva del lavoro svolto, in modo da capire se il gruppo ha lavorato bene o meno, in modo da migliorarsi per i progetti futuri. \par
+        Per calcolare tale metrica è necessario usare tutte le altre metriche:
+        \[{\sum_{i=1} \frac{x_i}{y_i}}100\] $x_i=$ numero di volte che il valore della i-esima metrica è maggiore o uguale al valore della soglia minima e minore o uguale al valore della soglia massima. \par
+        $y_i=$ numero di volte in cui abbiamo misurato la i-esima metrica. \par
+        \textbf{Metrica}: percentuale delle volte in cui l'insieme dei valori attesi di tutte le altre metriche vengono rispettati.
+
+    \subsection{Validazione}\label{Validazione}
+
+    	\subsubsection{Scopo}
+    	Il processo di validazione è una conferma finale che accerta la conformità di un prodotto alle
+    	attese. Essa fornisce una prova oggettiva di come le specifiche del prodotto siano conformi al suo
+    	scopo e alle esigenze degli utenti.
+
+    	\subsubsection{Descrizione}
+    	Questo processo serve per stabilire se è opportuno o meno procedere alla fase successiva del progetto, se ciò non fosse possibile sarà necessario il ritorno ad una fase stabile del progetto
+    	per poi ripartire da lì, prendendo in considerazione i risultati della precedente verifica.
+
+	    \subsubsection{Analisi dinamica}\label{validazione:AnalisiDinamica}
+	    L'analisi dinamica valuta il comportamento dei prodotti in esecuzione, verificando se restituiscono i risultati attesi e se operano nel modo stabilito.
+	    Vengono presi in esame i prodotti software e i processi.
+
+	    È oppurtono ricordare che i test devono essere:
+	    \begin{itemize}
+	    	\item Ripetibili
+	    	\item Automatizzati tramite strumenti
+	    	\item Oggettivi e non personalizzati
+	    \end{itemize}
+
+	    Quindi, perché l'analisi dinamica avvenga in modo corretto, è necessario tenere conto di alcuni importanti elementi quali:
+	    \begin{itemize}
+	    	\item \textbf{Ambiente di sviluppo}: il sistema hardware e software adottato durante il test.
+	    	\item \textbf{Stato iniziale}: primo stato del prodotto, antecedente all'inizio del test.
+	    	\item \textbf{Input}: dati inseriti.
+	    	\item \textbf{Output}: dati attesi.
+	    	\item \textbf{Notifica risultato}: notifiche riguardanti il risultato ottenuto dal test (opzionale).
+	    \end{itemize}
+
+	    Per effettuare analisi dinamica è necessario sviluppare dei dei test che verifichino l'integrità dei prodotti. Questi sono classificati attraverso un identificativo univoco descritto nel prossimo paragrafo e suddivisi per tipo in base alla tipologia dell'oggetto di test.
+
+	    \paragraph{Classificazione dei test}\label{Validazione:ClassificazioneTest}
+	    Ogni test viene classificato identificato univocamente da un codice come già riportato in \ref{ClassificazioneTest}.
+
+
+    \paragraph{Test di sistema} \label{testsistema}
+    I test di sistema hanno inizio quando sono completati i test d'integrazione e sono, per definizione, a scatola chiusa, nera, ovvero non è a disposizione il codice sorgente.
+    Ci servono per dimostrare la conformità del prodotto, in particolare controllando che tutti i requisiti siano soddisfatti.
+
+    \subparagraph{MPS018 Test di sistema}\label{testsistema:met}
+    La qualità di un prodotto si verifica attraverso la percentuale di test di sistema superati.
+
+    \textbf{Metrica}: percentuale di test di sistema superati.
+
+
+    \paragraph{Test di accettazione} \label{testaccettazione}
+    Il test di accettazione viene svolto una volta completato il prodotto, immediatamente prima del rilascio, dopo aver testato l'intero sistema.
+    Se il richiedente lo considera superato, allora il prodotto può essere approvato e conseguentemente rilasciato.

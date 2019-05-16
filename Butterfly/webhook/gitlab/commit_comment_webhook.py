@@ -24,13 +24,17 @@ Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 """
 
+from pathlib import Path
 from webhook.webhook import Webhook
-
+import json
+import os
 
 class GitlabCommitCommentWebhook(Webhook):
     """`GitLabCommitCommentWebhook` implementa `Webhook`.
     Parse degli eventi di commento di un Commit di Gitlab.
     """
+
+    _config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def parse(self, whook: dict = None):
         """Parsing del file JSON. Restituisce un riferimento al dizionario
@@ -39,13 +43,20 @@ class GitlabCommitCommentWebhook(Webhook):
 
         assert whook is not None
 
+        with open(GitlabCommitCommentWebhook._config_path, 'r') as f:
+            configs = json.load(f)
+
+        if os.environ['GITLAB_BASE_URL']:
+            configs['base_url'] = os.environ['GITLAB_BASE_URL']
+
         webhook = {}
         webhook['app'] = 'gitlab'
-        webhook['object_kind'] = whook['object_kind']
+        webhook['object_kind'] = 'commit-note'
         webhook['title'] = whook['commit']['message']
-        webhook['project_id'] = whook['project']['web_url']
+        webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace'])).strip('"')
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
-        webhook['comment'] = whook['object_attributes']['note']
+        webhook['description'] = whook['object_attributes']['note']
+        webhook['action'] = 'comment'
 
         return webhook

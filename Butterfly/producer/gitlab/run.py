@@ -29,6 +29,7 @@ Autori:
 
 from pathlib import Path
 import json
+import os
 
 from flask import Flask
 
@@ -37,12 +38,15 @@ from producer.creator import KafkaProducerCreator
 from producer.gitlab.producer import GitlabProducer
 from webhook.gitlab.factory import GitlabWebhookFactory
 
-_CONFIG_PATH = Path(__file__).parents[1] / 'config.json'
-
+_CONFIG_PATH = Path(__file__).parents[2] / 'config' / 'config.json'
 
 def _open_configs(path: Path):
     with open(path) as file:
         config = json.load(file)
+
+    if (os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
+        config['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
+
     return config
 
 

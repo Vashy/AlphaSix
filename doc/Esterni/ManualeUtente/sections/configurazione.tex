@@ -25,6 +25,14 @@ Sempre sotto richiesta di \II\ viene utilizzato \gloss{Rancher} come software pe
 
 	\subsubsection{Hardware}
 	Per \progetto\ non sono necessari ulteriori requisiti a livello hardware particolari se non quelli di cui hanno bisogno i software precedentemente elencati.
+	Unicamente per \progetto, senza tenere conto di servizi di terze parti, i requisiti sono:
+	\begin{itemize}
+		\item OS: Ubuntu 16.04 (o successive versioni)
+		\item RAM: 3GB
+		\item CPU: IntelCore i3 con 2.1 GHz (o processori con potenza analoga o superiore)
+		\item Spazio su disco: 2GB
+		\item Completa possibilità di comunicazione in rete dei container
+	\end{itemize}
 
 \subsection{Mappatura delle porte}
 Per la configurazione di ciascun tipo servizio abbiamo deciso di dare un range di porte da poter esporre in modo tale da effettuare una separazione logica.\\
@@ -56,10 +64,10 @@ La suddivisione che abbiamo utilizzato, durante lo sviluppo e la consegna del pr
 		Kafka& 9092& 30030\\
 		Producer GitLab& 5000& 30060\\
 		Producer Redmine& 5000& 30061\\
-		Consumer Telegram& 80& 30090\\
-		Consumer Email& 80& 30091\\
-		Producer Gestore Personale& 5000& 30120\\
-		Consumer Gestore Personale& 80& 30121\\\bottomrule
+		%Consumer Telegram& 80& 30090\\
+		%Consumer Email& 80& 30091\\
+		Gestore Personale Client& 5000& 30120\\
+		%Gestore Personale Consumer& 80& 30121\\\bottomrule
 	\end{paddedtablex}
 	\caption{Configurazione delle porte in fase di sviluppo e consegna}
 	\label{TabellaPorteEsposte}
@@ -71,7 +79,7 @@ Le specifiche relative alla configurazione delle porte in Rancher possono essere
 Come detto in precedenza, su consiglio di \II, \progetto\ è stato sviluppato con l'utilizzo di Rancher per la gestione dei container.\\
 I container sono stati suddivisi in modo tale da utilizzare un unico \gloss{Cluster} (nel nostro caso chiamato Butterfly), vari \gloss{Namespace} per separare i servizi fra loro e i \gloss{Pod}, che rappresentano ciascuno un container.
 Le immagini utilizzate sono tutte presenti in DockerHub, incluse quelle dei \gloss{Producer} e dei \gloss{Consumer} che sono state create utilizzando build automatiche innescate ad ogni \gloss{push} nella repository del codice.
-\newpage
+
 La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 \begin{itemize}
 	\item Namespace: \texttt{gitlab}
@@ -99,10 +107,13 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 	\end{itemize}
 
 	%TODO successivamente da vedere se è in un unico pod oppure se in pod separati
-	\item Namespace: \texttt{gestore-Personale}
+	\item Namespace: \texttt{gestore-personale}
 	\begin{itemize}
-		\item Pod: \texttt{gestore-Personale} (immagine: \texttt{alphasix/gestore-Personale:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-Personale}})
-		\item Pod: \texttt{mongo} (immagine: \texttt{bitnami/mongodb:latest}\footnote{\url{https://hub.docker.com/r/bitnami/mongodb/}})
+		\item Pod: \texttt{gestore-personale} (immagine: \texttt{alphasix/gestore-personale:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-personale}})
+		\item Pod: \texttt{gestore-personale-client}
+
+		(immagine: \texttt{alphasix/gestore-personale-client:master}\footnote{\url{https://hub.docker.com/r/alphasix/gestore-personale-client}})
+		\item Pod: \texttt{mongo} (immagine: \texttt{mongo/mongo:4.0.9}\footnote{\url{https://hub.docker.com/_/mongo}})
 	\end{itemize}
 
 	\item Namespace: \texttt{consumer}
@@ -111,6 +122,9 @@ La configurazione che abbiamo utilizzato all'interno del Cluster \progetto\ è:
 		\item Pod: \texttt{consumer-email} (immagine: \texttt{alphasix/consumer-email:master}\footnote{\url{https://hub.docker.com/r/alphasix/consumer-email}})
 	\end{itemize}
 \end{itemize}
+
+È importante quando si utilizza un'istanza non in locale di MongoDB modificare il file \texttt{etc/mongod.conf.orig} in modo tale che si possano effettuare richieste in remoto, impostando quindi la variabile \texttt{bindIp} sia uguale a 0.0.0.0.
+
 
 %TODO lo facciamo? magari per la seconda relase
 % All'interno della repository è possibile trovare un file in formato .yml conforme agli standard del docker compose per poter istanziare l'ambiente. Inoltre sono presenti i Dockerfile che permettono di effettuare la build di ciascuno dei componenti che abbiamo sviluppato.
@@ -179,39 +193,82 @@ Per il corretto invio dei \gloss{webhook} (in formato \gloss{JSON}) da parte dei
 \subsection{Configurazione servizi \progetto}\label{var}
 
 	\subsubsection{Producer}
-	Per i Producer è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. Queste sono:
+	Per i Producer è possibile impostare nell'apposito file di configurazione le variabili relative.
+
+	Per il Producer di Redmine i campi sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP}: indirizzo dell'istanza di Redmine disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT}: porta dell'istanza di Redmine disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_IP}: indirizzo dell'istanza di GitLab disponibile.
-		\item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: porta dell'istanza di GitLab disponibile.
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"redmine":\{"ip"\}}: indirizzo dell'istanza di Redmine disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_IP}: indirizzo dell'istanza di Redmine disponibile.
+		\item\texttt{"redmine":\{"port"\}}: porta dell'istanza di Redmine disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_REDMINE\_PORT}: porta dell'istanza di Redmine disponibile.
 	\end{itemize}
 
-	\subsubsection{Consumer}\label{var_consumer}
-	Per i Consumer, come per i Producer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker.
-	Queste sono:
+	Per il Producer di GitLab i campi sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
-		\item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: \gloss{ID} del Bot di Telegram che inoltra la notifica.
-		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: email che manda inoltra la notifica.
-		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SUBJECT}: oggetto della mail da spedire.
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"gitlab":\{"ip"\}}: indirizzo dell'istanza di GitLab disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_IP}: indirizzo dell'istanza di GitLab disponibile.
+		\item\texttt{"gitlab":\{"port"\}}: porta dell'istanza di GitLab disponibile.
+		% \item\texttt{BUTTERFLY\_PRODUCER\_GITLAB\_PORT}: porta dell'istanza di GitLab disponibile.
+	\end{itemize}
+
+	Sono inoltre disponibili variabili di ambiente configurate tramite Dockerfile oppure definite dall'interno di Rancher.
+	\begin{itemize}
+		\item \texttt{KAFKA\_IP} : indirizzo dell'istanza di Kafka disponibile.
+		\item \texttt{KAFKA\_PORT} : porta dell'istanza di Kafka disponibile.
+	\end{itemize}
+	
+	\subsubsection{Consumer}\label{var_consumer}
+	Per i Consumer, come per i Producer, è possibile impostare le variabili tramite un file di configurazione.
+	Queste sono, per il Consumer di Telegram:
+	\begin{itemize}
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"telegram":\{"token\_bot"\}}: \gloss{ID} del Bot di Telegram che inoltra la notifica.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_TELEGRAM\_BOT}: \gloss{ID} del Bot di Telegram che inoltra la notifica.
+	\end{itemize}
+
+	Per il Consumer Email, invece:
+	\begin{itemize}
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"email":\{"sender"\}}: indirizzo email che inoltra l'email.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_SENDER}: email che inoltra la notifica.
+		\item\texttt{"email":\{"psw"\}}: password della casella email.
+		% \item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
+	\end{itemize}
+
+	È inoltre possibile impostare altre configurazioni tramite le seguenti variabili di ambiente:
+	\begin{itemize}
+		\item \texttt{KAFKA\_IP} : indirizzo dell'istanza di Kafka disponibile.
+		\item \texttt{KAFKA\_PORT} : porta dell'istanza di Kafka disponibile.
 		\item\texttt{BUTTERFLY\_CONSUMER\_EMAIL\_PSW}: password della casella email.
 	\end{itemize}
 
 	\subsubsection{Gestore Personale}
-	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di configurazione dell'ambiente tramite variabili d'ambiente di Docker. \par
+	Per il Gestore Personale, come per i Producer e per i Consumer, è possibile impostare le variabili di file di configurazione. \par
 
 	Per la componente Producer del Gestore Personale queste sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_GP\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_GP\_PRODUCER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
 	\end{itemize}
 
 	Per la componente Consumer del Gestore Personale queste sono:
 	\begin{itemize}
-		\item\texttt{BUTTERFLY\_GP\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
+		\item\texttt{"kafka":\{"bootstrap\_servers"\}}: indirizzo e porta dell'istanza di Kafka disponibile.
+		% \item\texttt{BUTTERFLY\_GP\_CONSUMER\_KAFKA\_BOOTSTRAP\_SERVERS}: indirizzo e porta dell'istanza di Kafka disponibile.
 	\end{itemize}
 
+	È inoltre possibile impostare altre configurazioni tramite le seguenti variabili di ambiente:
+	\begin{itemize}
+		\item \texttt{KAFKA\_IP} : indirizzo dell'istanza di Kafka disponibile.
+		\item \texttt{KAFKA\_PORT} : porta dell'istanza di Kafka disponibile.
+		\item\texttt{MONGO\_IP}: password della casella email.
+	\end{itemize}
 
 	\subsubsection{Kafka}
 	Per l'utilizzo richiestoci da parte dell'azienda di Kafka non sono state necessarie ulteriori configurazioni oltre a quelle di default successive all'installazione.

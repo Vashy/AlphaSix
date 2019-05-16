@@ -1,6 +1,6 @@
 \newpage
 \section{Introduzione} \label{Introduzione}
-	
+
 	\input{../../snippets/riferimenti_esterni}
 
 	\subsection{Scopo del documento}
@@ -12,30 +12,27 @@
 
 	\subsection{Riferimenti}
 		\subsubsection{Riferimenti Normativi}\label{rifnorma}
-			\begin{itemize}
+			\begin{enumerate}
 				\item \NdPd
 				\item \gloss{Capitolato} d'appalto C1\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1.pdf}
 				\item Vincoli dell'\gloss{organigramma} e specifiche economiche\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/RO.html}
-			\end{itemize}
+			\end{enumerate}
 
 		\subsubsection{Riferimenti Informativi}\label{rifinfo}
-			\begin{itemize}
+			\begin{enumerate}
 				\item Presentazione capitolato d'appalto C1\\
 				\url{https://www.math.unipd.it/~tullio/IS-1/2018/Progetto/C1p.pdf}
 				\item Software Engineering (Ian Sommerville), 10° edizione, Capitolo 16: Component-based software engineering
-				\item \gloss{Slide} dell’insegnamento Ingegneria del Software
-				\begin{itemize}
-					\item Gestione di progetto:\\
-					\url{https://www.math.unipd.it/~tullio/IS-1/2018/Dispense/L06.pdf} 
-				\end{itemize}
+				\item \gloss{Slide} dell’insegnamento Ingegneria del Software, Gestione di progetto:\\
+					\url{https://www.math.unipd.it/~tullio/IS-1/2018/Dispense/L06.pdf}
 				\item I sistemi per la gestione dei rischi (presentazione rilasciata dalla Bocconi per la gestione dei rischi)\\
 				\url{https://www2.deloitte.com/content/dam/Deloitte/it/Documents/risk/Board\%20Academy\%20Corso\%20C6\%2020\%20dic\%202012\%20SDA\%20Bocconi.pdf}
 				\item Fonte Figura \ref{fig:modello_incrementale}\\
 				\url{https://it.wikipedia.org/wiki/Modello_incrementale}
-			\end{itemize}
-		
+			\end{enumerate}
+
 	\subsection{Scadenze}\label{Scadenze}
 	Abbiamo deciso di rispettare le scadenze indicate dal professor Vardanega, le quali sono riportate di seguito:
 	\begin{itemize}
@@ -44,7 +41,7 @@
 		\item \textbf{Revisione di Qualifica}: 2019-04-19.
 		\item \textbf{Revisione di Accettazione}: 2019-05-17.
 	\end{itemize}
-	
+
 	\subsection{Modello di sviluppo}\label{modello di sviluppo}
 	Data la natura del progetto, composto da più parti modulari e con un basso valore di accoppiamento, abbiamo scelto di adottare un \gloss{modello di
 	sviluppo} ibrido tra quello a \gloss{componenti} e quello \gloss{incrementale}.
@@ -55,12 +52,12 @@
 		\item Il modello a componenti è basato sul riuso di unità software che possono avere diverse dimensioni:
 		\begin{itemize}
 			\item \textbf{System reuse}: un \gloss{sistema} può essere riutilizzato come sottosistema all'interno di uno più ampio.
-			\item \textbf{Application reuse}: un'applicazione può essere riusata incorporandola in altri sistemi senza apportare cambiamenti, 
+			\item \textbf{Application reuse}: un'applicazione può essere riusata incorporandola in altri sistemi senza apportare cambiamenti,
 				oppure configurandola.
 			\item \textbf{Component reuse}: i componenti di un'applicazione, che possono essere da sotto-sistemi a singoli oggetti, risiedono
 				in un \gloss{cloud} o in server privati e possono essere accessibili tramite \gloss{Application Programming Interface} (API).
-			\item \textbf{Object and function reuse}: componenti software che implementano una singola funzione o una classe oggetto. Si 
-				possono riusare collegandole con lo sviluppo di nuovo codice. Molte di queste sono liberamente disponibili. 
+			\item \textbf{Object and function reuse}: componenti software che implementano una singola funzione o una classe oggetto. Si
+				possono riusare collegandole con lo sviluppo di nuovo codice. Molte di queste sono liberamente disponibili.
 		\end{itemize}
 		Oppure, nel caso in cui le componenti siano così specifiche da risultare troppo costose da adattare,
 		è possibile fare ``concept reuse'', ovvero riusare le idee che stanno alla base del \gloss{componente} (e.g. riutilizzare un \gloss{way of working} o un algoritmo). \\
@@ -72,7 +69,7 @@
 			Buona parte dei suoi difetti di progettazione e implementazione dovrebbero già esser stati individuati e corretti.
 			%\item  Ridotto rischio di \gloss{processo}, vero specialmente per grandi componenti software riusate come sottosistemi. È un fattore importante per il Project Manager perché riduce il margine di errore nella stima dei costi di un progetto.
 			\item \textbf{Conformità con gli standard}: alcuni standard
-			%, come gli interface standard, 
+			%, come gli interface standard,
 			possono essere applicati come set di componenti riusabili.
 		\end{itemize}
 		%e prevede che venga riutilizzata una base per lo sviluppo dei vari pezzi che formano il progetto, fra loro indipendenti
@@ -87,5 +84,7 @@
 		\label{fig:modello_incrementale}
 	\end{figure}
 
-	\footnotetext{Riferirsi alla voce ``Fonte Figura 1'' in \S\ref{rifinfo}}
-	
+	\footnotetext{Riferirsi alla voce
+	% ``Fonte Figura 1''
+	5
+	 in \S\ref{rifinfo}}

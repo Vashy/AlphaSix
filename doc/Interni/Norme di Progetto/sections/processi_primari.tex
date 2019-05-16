@@ -3,7 +3,8 @@
     \subsection{Processo di fornitura}\label{PP:Fornitura}	%istanziare Management Process, Infrastructure Process e Improvement Process
 
         \subsubsection{Scopo}\label{PP:Fornitura:Scopo}
-		La sezione corrente ha lo scopo di riportare le attività principali che ci impegniamo ad attuare come \gloss{fornitori} per la proponente \II.
+		La sezione corrente ha lo scopo di riportare le attività principali che ci impegniamo ad attuare come \gloss{fornitori} per la proponente \II. \par
+        Il processo di fornitura ha lo scopo di curare e mantenere i rapporti con le figure esterne al gruppo \gruppo. Questi perciò devono essere costanti, sensati e che sappiano dare un valore aggiunto al progetto.
 
 		\subsubsection{Ricerca delle tecnologie}
 		Ognuno di noi deve approfondire la propria conoscenza su tecnologie e \gloss{framework} vari, in modo da discutere insieme quali sono quelli di interesse comune e di utilità per il progetto. Questo prevede in seguito l'auto-formazione di quelle scelte in comune accordo per acquisirne una buona padronanza.
@@ -11,8 +12,22 @@
 		\subsubsection{Normazione}\label{Normazione}
 		L'attività di normazione prevede l'incremento del documento corrente ogni qual volta lo si ritiene necessario.
 		Essendo infatti un documento incrementale, è possibile che vengano aggiunte delle nuove regole o aggiornate quelle già presenti.
-		Facendo un esempio: arrivati al momento di riscrittura dei casi d'uso, dopo la prima revisione, abbiamo dovuto suddividere i casi in categorie ben distinte, in modo che fosse evidente il sottosistema di riferimento di Butterfly.
-		Di conseguenza, cambiare il codice identificativo di ognuno e cambiare la relativa norma nel paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
+		Facendo un esempio: arrivati al momento di riscrittura dei casi d'uso, dopo la prima revisione, abbiamo dovuto suddividere i casi in categorie ben distinte, in modo che fosse evidente il sottosistema di riferimento di \progetto.
+		Di conseguenza è necessario cambiare il codice identificativo dei casi d'uso e la relativa norma nel paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
+
+        \subsubsection{Strumenti forniti}
+        Il proponente e il \TV~ ci hanno messo a disposizione diversi strumenti per la realizzazione del progetto e come raggiungere una buona qualità nei prodotti. \par
+        Il \TV~ è a disposizione per:
+        \begin{itemize}
+            \item Chiarire eventuali dubbi relativi alla realizzazione del progetto in termini di buone pratiche e regole per la sua realizzazione
+            \item Mettere a disposizione materiale didattico per il corretto sviluppo delle varie fasi del progetto, e la stesura della documentazione
+        \end{itemize}
+        Il proponente \DZ~ di \II\ ci mette a disposizione:
+        \begin{itemize}
+            \item Un \gloss{cluster} dell'azienda su cui è installato \gloss{Rancher} per installare in remoto i \gloss{container} necessari a \progetto
+            \item Un indirizzo Email col dominio di \II~per inviare i messaggi da \progetto
+        \end{itemize}
+        Anche \DZ~ è disponibile a degli incontri via \gloss{Hangounts} per eventuali chiarimenti tecnici sullo sviluppo del progetto.
 
         \subsubsection{Studio di fattibilità}\label{PP:Fornitura:SdF}
         In quest'attività viene prodotto il documento \Doc{\SdFv} al fine di analizzare ogni \gloss{capitolato} e scegliere quale contratto accettare.
@@ -23,56 +38,71 @@
         		\item \textbf{Tecnologie coinvolte}: elenco delle tecnologie direttamente coinvolte esplicitate nel capitolato.
         		\item \textbf{Valutazione conclusiva}: giudizio finale del team di sviluppo.
         	\end{itemize}
+        Tale documento è fondamentale per chiarire ai vari proponenti la scelta di un capitolato, chiarendone i punti di forza e quelli deboli secondo il nostro punto di vista. In questo modo il cliente può già osservare quali possono essere le nostre competenze e abilità.
+
+
+        % DA ISO12207
+        % 5.2.6.1 The suppli er should coordina te contract review activities, interfaces, and communi cation with the acqui rer’s organi zation.
+        \subsubsection{Coinvolgimento dell'acquirente} \label{ConivolgimentoAcquirente}
+        Data la natura del progetto, riteniamo essenziale la comunicazione con il cliente per qualunque tipo di aggiornamento rilevante, come ad esempio una \gloss{baseline}.
+        In particolare, avere un \gloss{feedback} da parte del cliente ci è molto utile ai fini del proseguimento del progetto.
+        Per esempio, un feedback del nostro \gloss{Proof of Concept} ci aiuta a capire se stiamo realizzando il prodotto come \II\ lo aveva ideato.
+        Per ricevere questo feedback e procedere ad uno scambio di idee e opinioni, preferiamo staibilire un colloquio.
+        Questo colloquio può avvenire tramite:
+        \begin{itemize}
+            \item Un incontro di persona in un luogo fissato insieme (e.g. aula universitaria, bar, ecc.)
+            \item Una videochiamata con una tecnologia scelta (e.g. \gloss{Hangouts})
+        \end{itemize}
+        In alternativa al colloquio, nel caso di brevi domande volte al chiarimento di piccoli dubbi, è possibile combinare una serie di Email o messaggi Telegram.
+
+        % 5.2.3
+        % Contract. This activity consists of the foll owing tasks:
+        % 5.2.3.1 The supplier shall negotiate and enter into a contract with the acquirer organ ization to provide
+        % the software product or service.
+        % 5.2.3.2 The supplier may request modification to the contract as part of the chang e control
+        % mechanism.
+        \paragraph{Negoziazione} \label{Negoziazione}
+        Talvolta, in corso d'opera, è necessario negoziare gli accordi da contratto precedentemente presi con il cliente.
+        Questo può accadere per più motivi, principalmente in momenti in cui noi fornitori realizziamo di non poter soddisfare qualche requisito nel modo in cui lo vorrebbe il nostro cliente.
+        In seguito ad un inconveniente come questo, riteniamo necessario richiedere un colloquio con il cliente per poter esporre la nostra proposta alternativa e definire dei cambiamenti tali da assecondare i bisogni di entrambe le parti. \par
+        A seguito di un cambiamento in accordo col committente è d'obbligo riportare i cambiamenti all'interno dell'\AdRd~ che risulta essere il contratto che tutela il fornitore e il committente per quanto riguarda i requisiti che il prodotto finale deve soddisfare.
+
+        % 5.2.6.4 The supplier shall make available to the acquirer the reports of evaluation, reviews, audits,testing, and problem resolutions as specified in the contract.
+        \paragraph{Accessibilità del materiale necessario da contratto} \label{AccessibilitaMateriale}
+        Tutta la documentazione richiesta dall'acquirente come resoconti dei problemi riscontrati, \gloss{bug} reporting, istruzioni per l'avvio del prodotto, ecc\dots\ devono essere resi accessibili al cliente. \par
+        Questo può avvenire attraverso email, Drive \footnote{Riferirsi alla voce 13 in \S\ref{rifinfo} per ulteriori informazioni su Drive} o repository pubblica su GitHub.
+        % 5.2.7.1 The supp lier shall deliver the software product or service as specified in the contract.
+        Oltre alla documentazione, anche il prodotto software deve essere rilasciato come specificato nel contratto.
+
+        % User involvement; by such means demonstrations and evaluations;
+        \subsubsection{Coinvolgimento del committente} \label{CoinvolgimentoCommittente}
+        % Nel corso del progetto abbiamo posto delle milestone al fine di
+        Durante alcune baseline, ad esempio le revisioni,
+        illustriamo al committente delle dimostrazioni del nostro prodotto in modo da ottenere anche da esso una valutazione utile per noi all'avanzamento del progetto.
+
+        \paragraph{Accessibilità del materiale relativo alle revisioni} \label{AccessibilitaMaterialeRevisioni}
+        Per ogni revisione di avanzamento e accettazione rendiamo disponibile il materiale richiesto dal committente tramite:
+        \begin{itemize}
+            \item \textbf{Drive}: per ogni revisione rendiamo disponibile su \gloss{Google Drive} l'ultima versione dei documenti relativi a \progetto
+            \item \textbf{GitHub}: il codice del prodotto è disponibile in una \gloss{repository} pubblica. Tale repository non risulta essere il luogo dove il software viene sviluppato, ma solo il codice prodotto dopo una data revisione
+            \item \textbf{CD-ROM}: il prodotto finale e  installabile viene consegnato al committente all'interno di un dispositivo fisico come da lui richiesto, in particolare di un CD-ROM per motivi di sicurezza
+        \end{itemize}
 
         \subsubsection{Preparazione in vista della revisione}
 		In questa attività prepariamo tutto il materiale necessario per il buon superamento della revisione:
 		\begin{itemize}
 			\item I vari documenti, i verbali e la lettera di presentazione per quanto riguarda la documentazione in ingresso
-			\item I diagrammi dei package e il codice necessario per la realizzazione del \gloss{Proof of Concept}
+			\item I diagrammi \gloss{UML} e il codice necessario per il superamento delle varie revisioni del progetto
 			\item Le diapositive per l'esposizione
+            \item Demo di dimostrazione del prodotto
 		\end{itemize}
 
+        \paragraph{Collaudo finale}
+        In vista del collaudo finale, grazie ai vari confronti con il \TV~ e \DZ, tutti i documenti dovranno essere corretti nella forma e nei contenuti, almeno per quanto riguardano le correzioni fatte in sede di revisione. I requisiti richiesti dal capitolato ed inseriti in \AdRd dovranno essere totalmente soddisfatti, insieme anche ad eventuali richieste marginali di \DZ. \par
+        La presentazione di \progetto\ attraverso una demo deve poter essere efficace mostrando la maggior parte delle funzionalità del progetto in modo chiaro e veloce, e poter far fronte ad eventuali richieste del committente. \par
+        In sede di collaudo dobbiamo mostrare i possibili  miglioramenti di \progetto, in modo da trasmettere il potenziale dell'applicazione e di una possibile futura seconda versione che la proponente potrà sviluppare.
 
-		% DA ISO12207
-		% 5.2.6.1 The suppli er should coordina te contract review activities, interfaces, and communi cation with the acqui rer’s organi zation.
-		\subsubsection{Coinvolgimento dell'acquirente} \label{ConivolgimentoAcquirente}
-		Data la natura del progetto, riteniamo essenziale la comunicazione con il cliente per qualunque tipo di aggiornamento rilevante, come ad esempio una \gloss{baseline}.
-		In particolare, avere un \gloss{feedback} da parte del cliente ci è molto utile ai fini del proseguimento del progetto.
-		Per esempio, un feedback del nostro \gloss{Proof of Concept} ci aiuta a capire se stiamo realizzando il prodotto come \II\ lo aveva ideato.
-		Per ricevere questo feedback e procedere ad uno scambio di idee e opinioni, preferiamo staibilire un colloquio.
-		Questo colloquio può avvenire tramite:
-		\begin{itemize}
-			\item Un incontro di persona in un luogo fissato insieme (e.g. aula universitaria, bar, ecc.)
-			\item Una videochiamata con una tecnologia scelta (e.g. \gloss{Hangouts})
-		\end{itemize}
-		In alternativa al colloquio, nel caso di brevi domande volte al chiarimento di piccoli dubbi, è possibile combinare una serie di Email o messaggi Telegram.
 
-		% 5.2.3
-		% Contract. This activity consists of the foll owing tasks:
-		% 5.2.3.1 The supplier shall negotiate and enter into a contract with the acquirer organ ization to provide
-		% the software product or service.
-		% 5.2.3.2 The supplier may request modification to the contract as part of the chang e control
-		% mechanism.
-		\paragraph{Negoziazione} \label{Negoziazione}
-		Talvolta, in corso d'opera, è necessario negoziare gli accordi da contratto precedentemente presi con il cliente.
-		Questo può accadere per più motivi, principalmente in momenti in cui noi fornitori realizziamo di non poter soddisfare qualche requisito nel modo in cui lo vorrebbe il nostro cliente.
-		In seguito ad un inconveniente come questo, riteniamo necessario richiedere un colloquio con il cliente per poter esporre la nostra proposta alternativa e definire dei cambiamenti tali da assecondare i bisogni di entrambe le parti.
-
-		% 5.2.6.4 The supplier shall make available to the acquirer the reports of evaluation, reviews, audits,testing, and problem resolutions as specified in the contract.
-		\paragraph{Accessibilità del materiale necessario da contratto} \label{AccessibilitaMateriale}
-		Tutta la documentazione richiesta dall'acquirente come resoconti dei problemi riscontrati, \gloss{bug} reporting, istruzioni per l'avvio del prodotto, ecc\dots\ devono essere resi accessibili al cliente. \par
-		Questo può avvenire attraverso email, Drive \footnote{Per ulteriori informazioni su Drive vedere \S\ref{GoogleDrive}} o repository pubblica su GitHub.
-		% 5.2.7.1 The supp lier shall deliver the software product or service as specified in the contract.
-		Oltre alla documentazione, anche il prodotto software deve essere rilasciato come specificato nel contratto.
-
-		% User involvement; by such means demonstrations and evaluations;
-		\subsubsection{Coinvolgimento del committente} \label{CoinvolgimentoCommittente}
-		% Nel corso del progetto abbiamo posto delle milestone al fine di
-		Durante alcune baseline, ad esempio le revisioni,
-		illustriamo al committente delle dimostrazioni del nostro prodotto in modo da ottenere anche da esso una valutazione utile per noi all'avanzamento del progetto.
-
-		\paragraph{Accessibilità del materiale relativo alle revisioni} \label{AccessibilitaMaterialeRevisioni}
-		Per ogni revisione di avanzamento e accettazione rendiamo disponibile il materiale richiesto dal committente tramite cartella condivisa su Drive.
 
 		\subsubsection{Verifica post revisione} \label{verificapostrevisione}
         In seguito alla valutazione di ogni revisione riteniamo necessario conoscere i motivi negativi, ma anche positivi, di tale giudizio. In tal modo possiamo correggere meglio i difetti dei nostri prodotti e migliorarne i punti di forza. \par
@@ -81,6 +111,10 @@
             \item \textbf{Proponente}: \DZ\ di \II.
             \item \textbf{Committente}: \TV\ e \RC.
 		\end{itemize}
+
+        \subsubsection{Circoscrizione dei rischi}
+        Nell'eventualità che si possa presentare un problema  con il prodotto \progetto, può essere necessario comunicarlo a \DZ~ o a il \TV. Tale comunicazione deve presentare in modo chiaro il problema e, se possibile, allegare un'eventuale soluzione. \par
+        Ad esempio: durante il periodo di progettazione ci siamo accorti che la metodologia di inoltro dei messaggi risultava incoerente in alcuni aspetti. Questo ci ha portato a pensare ad una diversa gestione delle priorità dei progetti. Subito dopo abbiamo contattato \DZ~ per mostrare il problema e la possibile soluzione che è stata successivamente approvata con qualche modifica congiuntamente concordata.
 
 
     \subsection{Processo di sviluppo}\label{PP:Sviluppo}
@@ -96,7 +130,10 @@
 				\item Test definiti dalle norme di \gloss{qualità}
 			\end{itemize}
 		\end{itemize}
-		Lo standard ISO/IEC 12207:1995\footnote{Riferirsi alla voce ``ISO/IEC 12207'' in \S\ref{rifnorma}} definisce il processo di
+		Lo standard ISO/IEC 12207:1995\footnote{Riferirsi alla voce
+		%``ISO/IEC 12207''
+		2
+		 in \S\ref{rifinfo}} definisce il processo di
 		sviluppo quel processo contenente tutte le attività relative al prodotto finale, quali:
 		\begin{itemize} % [noitemsep]
 			\item Analisi dei requisiti
@@ -226,7 +263,7 @@
 		Per la specifica di un caso d'uso si fa riferimento al paragrafo \S\ref{PP:Sviluppo:AdR:CasiUso}.
 
         \subsubsection{Progettazione}\label{PP:Sviluppo:Progettazione}
-        La progettazione è l'attività svolta dai progettisti con il fine di dare una soluzione soddisfacente per tutti gli stakeholder coinvolti nel rispetto delle best practice e dei design pattern scelti, attraverso la descrizione dell'architettura del software.
+        La progettazione è l'attività svolta dai progettisti con il fine di dare una soluzione soddisfacente per tutti gli stakeholder coinvolti nel rispetto delle \gloss{best practice} e dei design pattern scelti, attraverso la descrizione dell'architettura del software.
 
 		\paragraph{Obiettivi}\label{PP:Sviluppo:Progettazione:Obiettivi}
         Gli obiettivi dell'attività di progettazione sono:
@@ -236,7 +273,9 @@
 			\item Garantire la qualità del prodotto finale.
 		\end{itemize}
 
-		\paragraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
+        \paragraph{Strumenti}
+
+		\subparagraph{Diagrammi dei package}\label{PP:Sviluppo:DiagrammiPackage}
         Per i diagrammi dei package utilizziamo lo strumento \gloss{Draw.io} e il linguaggio UML 2.0.\par
         Vengono usati insieme ai diagrammi delle classi per raggrupparne gli elementi in un elemento di livello più alto.
         Rappresentiamo i package con un rettangolo che contiene altri package o classi, e un'etichetta con il nome del package.
@@ -251,7 +290,7 @@
             \item Vediamo quali elementi dovrebbero essere più stabili (avendo più dipendenze entranti)
         \end{itemize}
 
-		\paragraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
+		\subparagraph{Diagrammi delle classi}\label{PP:Sviluppo:DiagrammiClassi}
 		Per i diagrammi delle classi utilizziamo lo strumento \gloss{Draw.io} e il linguaggio UML 2.0.\par
         Questi diagrammi strutturali descrivono ad alto livello i tipi di oggetto presenti nel sistema e le relazioni che intercorrono tra essi.
 		I diagrammi delle classi sono composti dalle seguenti proprietà:
@@ -339,7 +378,7 @@
 		%Ogni diagramma inizia con uno stato iniziale segnato con un pallino nero, ogni transizione è una freccia....
 
 
-		\paragraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza}
+		\subparagraph{Diagrammi di sequenza}\label{PP:Sviluppo:DiagrammiSequenza}
 		Per i diagrammi di sequenza utilizziamo lo strumento \gloss{Draw.io} e il linguaggio UML 2.0.\par
         Usiamo questi diagrammi per descrivere come la collaborazione tramite messaggi di un gruppo di oggetti realizza un comportamento.\par
         Essi mostrano come gli oggetti interagiscono nel tempo, leggendo il diagramma dall'alto al basso.\par
@@ -371,19 +410,36 @@
         In caso di controllo centralizzato vi sarà un'entità che gestisce i messaggi verso tutte le altre, mentre in caso di controllo distribuito ogni entità avrà compiti ben delineati, quindi avrà la responsabilità della chiamata dei messaggi verso le altre entità coinvolte.\par
         Cerchiamo di usare per quanto possibile la modellazione a controllo distribuito, per non dare troppe responsabilità a una singola entità che diventerebbe il punto critico dell'architettura.
 
+        \subparagraph{Architettura} \label{PP:progettazione:architettura}
+        L'architettura può essere considerata la ``strategia'' che si occupa della parte più esterna del software. L'architettura si deve occupare di come si relazionano i vali elementi del software, non come questi sono formati. Anche l'architettura deve essere costruita secondo una best practise, che può cambiare in base al tipo di software che deve essere sviluppato. \par
+        Un'architettura non si inventa ma si sceglie, e tra le più utilizzate troviamo:
+        \begin{itemize}
+            \item \textbf{Layer}: architettura che rispecchia la struttura di un'azienda e che vede il software sviluppato in più livelli disposti uno sopra l'altro. Un livello è dipendente esclusivamente da quello sottostante e comunica con esso. Generalmente i livelli sono Presentation layer, Business layer, Persisten layer e Database layer.
+            \item \textbf{Event-driven}: architettura utile per la creazione di software che lavorano con messaggi asincroni elaborati in modo indipendente. Quest'architettura può essere sviluppata secondo la Mediator topology dove i messaggi vengono inseriti in un ``contenitore'' e smistati attraverso un apposito ``mediator'', oppure secondo la Broker topology dove i messaggi viaggiano attraverso un \gloss{broker} entrando ed uscendo dai vari canali.
+            \item \textbf{Microservizi}: architettura usata per quei software destinati a possedere un incremento costante e controllato. Il software viene diviso in moduli indipendenti tra loro che comunicano verso l'esterno attraverso \gloss{API REST}. I moduli al loro interno sono costruiti attraverso un'architettura a Layer.
+        \end{itemize}
+
+        \subparagraph{Design Pattern}\label{StrumentiDP}
+        I \gloss{design pattern} aiutano a creare le singole parti di un software in base ai compiti che queste hanno. Dato che un design pattern non è altro che una buona pratica di sviluppo, non è scontato che la loro presenza implichi una buona struttura del software, perciò è consigliato non abusarne. \par
+        I design pattern si dividono in tre tipologie approfonditi in \S\ref{rifinfo} ai punti 25, 26, 27 e 28:
+        \begin{itemize}
+            \item \textbf{Strutturali}: aiutano ad organizzare la struttura delle classi favorendo la loro comunicazione attraverso interfacce. Questi sono l'Adapter, il Decorator il Façade e il Proxy.
+            \item \textbf{Creazionali}: aiutano a dividere gli oggetti dalla loro costruzione e implementazione favorendo l'\gloss{information hiding}. Questi sono il Singleton, il Builder, e l'Abstract Factory.
+            \item \textbf{Comportamentali}: applicabili nel momento in cui un componente deve eseguire una specifica funzione per cui il design pattern è stato costruito. Questi sono il Command, l'Iterator, l'Observer, lo Strategy e il Template Method.
+            \item \textbf{Architetturali}: utili per strutturare il software con una visione ad un livello più alto degli altri design pattern, ma non alto come la visione per stabilire l'architettura software. Questi sono il Dependency Injection e i Model-View pattern.
+        \end{itemize}
 
 		%\subparagraph{Semantica}
 		%Essendo il diagramma di sequenza composto da una serie di scelte già decise è molto utile ai fini di un chiaro utilizzo la decisione di una serie di partecipanti. La lettura del diagramma avviene dall’alto verso il basso....
 
-		\newpage
 
-		\subsubsection{Qualità della progettazione}\label{PP:Sviluppo:QualitàProgettazione}
+		\paragraph{Qualità}\label{PP:Sviluppo:QualitàProgettazione}
 		Per garantire una progettazione che rispetti gli standard di qualità posti nel {\PdQd}, seguiamo le linee guida date dalle best practice.
 
-        \paragraph{Qualità dei diagrammi dei package}
+        \subparagraph{Qualità dei diagrammi dei package}
         Evitiamo le dipendenze circolari tra le classi osservando le dipendenze tra i package. Ne consegue che vanno evitate le dipendenze circolari tra i package.
 
-		\paragraph{Qualità dei diagrammi delle classi}
+		\subparagraph{Qualità dei diagrammi delle classi}
 		Teniamo gli attributi delle classi privati per quanto possibile.
         Evitiamo ove possibile di usare attributi modificabili dai metodi delle classi, in quanto ostacolano la scrittura dei test ed è meno comprensibile la responsabilità sull'attributo.\par
         Evitiamo le relazioni bidirezionali perché si crea confusione su quale classe ha la responsabilità sulla relazione.\par
@@ -393,7 +449,7 @@
 %		Poiché descrivono gli aspetti dinamici dei casi d'uso, non devono risultare eccesivamente complessi, ma descrivere quanto riportato da casi d'uso e requisiti.\par
 %        Li usiamo in modo da aggiungere comprensibilità, non per toglierne.
 
-		\paragraph{Qualità dei diagrammi di sequenza}
+		\subparagraph{Qualità dei diagrammi di sequenza}
 		Andando più nel dettaglio rispetto ai diagrammi di attività, i diagrammi di sequenza vanno scritti in modo da rispettare quanto descritto dai diagrammi di attività e delle classi.\par
         Per modellare la logica di controllo è meglio usare i diagrammi di attività perché di più semplice lettura.
 
@@ -403,6 +459,86 @@
 		%manuale utente da presentare in RQ, quindi da fare più avanti
 		%\subsubsection{Produzione del manuale utente}
 
+        \subparagraph{Qualità dell'architettura}\label{QualitaArchitettura}
+        L'architettura è una delle scelte fondamentali da fare durante il processo della progettazione, perché essa stabilirà poi la natura dell'intero software.
+        La scelta di un'architettura ha lo scopo di:
+        \begin{itemize}
+            \item ridurre l'accoppiamento
+            \item ridurre la duplicazione di codice
+            \item semplificare lo sviluppo
+            \item semplificare il mantenimento del software
+        \end{itemize}
+        Bisogna dunque capire quale architettura si addice di più ai propri scopi in base alle qualità e ai difetti di ognuna. \par
+        Gli aggettivi che definiscono un'architettura sono:
+        \begin{itemize}
+            \item \textbf{Agilità}: con che facilità e velocità riesco a modificare il software.
+            \item \textbf{Rilasciabile}: con che facilità riesco ad aggiornare o installare il software.
+            \item \textbf{Verificabile}: con che facilità riesco a creare ed eseguire i vari tipi di test.
+            \item \textbf{Performance}: con che velocità riesco ad ottenere le informazioni richieste.
+            \item \textbf{Scalabilità}: con che facilità riesco a gestire la crescita del numero di utenti.
+            \item \textbf{Sviluppabile}: con che facilità riesco a sviluppare il software applicando tale architettura.
+        \end{itemize}
+
+        Analizzando le architetture in \S\ref{PP:progettazione:architettura}, le loro qualità e difetti sono:
+        \begin{itemize}
+            \item \textbf{Layer}:
+                \begin{itemize}
+                    \item \textbf{Agilità}: poca, dato che il software tende a diventare un monolite.
+                    \item \textbf{Rilasciabile}: poca, dato che ad ogni aggiornamento tutto il software deve essere reinstallato.
+                    \item \textbf{Verificabile}: buona, dato che ottenere il \gloss{Mock} dei vari livelli non è complesso.
+                    \item \textbf{Performance}: poca, dato che un'informazione, per essere recuperata, deve passare per i vari livelli.
+                    \item \textbf{Scalabilità}: poca, dato che la grande granularità rende laboriosa l'aggiunta di utenti.
+                    \item \textbf{Sviluppabile}: buona, dato che è un'architettura molto conosciuta e che rispecchia la struttura di un'azienda.
+                \end{itemize}
+            \item \textbf{Event-driven}:
+                \begin{itemize}
+                    \item \textbf{Agilità}: buona, dato che le varie componenti sono tutte isolate.
+                    \item \textbf{Rilasciabile}: buona, dato che si può installare un componente alla volta.
+                    \item \textbf{Verificabile}: poco, dato i molti tipi di messaggi da generare per eseguire i test.
+                    \item \textbf{Performance}: buona, dato che i messaggi sono asincroni.
+                    \item \textbf{Scalabilità}: buona, dato che si posseggono canali separati che possono aggiungere facilmente.
+                    \item \textbf{Sviluppabile}: poca, dato che coi messaggi asincroni bisogna lavorare con \gloss{interfacce} che non possono cambiare nel tempo.
+                \end{itemize}
+            \item \textbf{Microservizi}:
+                \begin{itemize}
+                    \item \textbf{Agilità}: buona, dato che ogni microservizio è autonomo.
+                    \item \textbf{Rilasciabile}: buono, perché i microservizi possono essere installati singolarmente.
+                    \item \textbf{Verificabile}: buono, perché i microservizi lavorano in modo autonomo.
+                    \item \textbf{Performance}: poca, dato che il numero di chiamate delle API REST può essere alto.
+                    \item \textbf{Scalabilità}: buona, dato che i microservizi possono essere aggiunti velocemente.
+                    \item \textbf{Sviluppabile}: buona, dato che i microservizi vengono sviluppati da gruppi di persone poco numerosi e dunque più facilmente organizzati.
+                \end{itemize}
+        \end{itemize}
+
+        \subparagraph{Qualità dei design pattern} \label{PP:progettazione:designPattern}
+        L'uso dei design pattern non deve essere abusato per evitare complessità inutile nel software. Per questo la loro applicazione deve seguire tali step per comprendere se applicarne uno o meno:
+        \begin{enumerate}
+            \item Comprendere lo scopo del componente
+            \item Analizzarne la complessità strutturale
+            \item Elencare i bisogni di tale componente in termini di struttura del software
+            \item Vedere se un design pattern strutturale è utile per semplificare la struttura del componente
+            \item Vedere se la creazione del componente può essere semplificata con l'uso di un design pattern creazionale
+            \item Vedere se la funzione del componente corrisponde alla funzionalità descritta da un design pattern comportamentale, nel caso vedere se la sua applicazione rende più flessibile il componente
+        \end{enumerate}
+
+        \paragraph{Applicazione} \label{PP:progettazione:applicazione}
+        Per effettuare una buona progettazione è utile seguire una procedura prestabilita, in modo tale da non rendere il risultato confuso o non tracciabile. È bene ricordare che all'interno della progettazione non si sviluppa codice, tale passaggio avviene durante il processo di codifica che segue il quello di progettazione. \par
+        La progettazione ha il compito di far sintesi dei requisiti, provenienti dal processo di analisi, attraverso il software applicando prima una strategia top-down e successivamente bottom-up. I passi da seguire durante la prima parte top-down sono i seguenti:
+        \begin{enumerate}
+            \item Analizzare nell'insieme i requisiti del prodotto finale in termini di qualità architetturali (performance, scalabilità, ecc\dots)
+            \item Individuare l'architettura che più si addice al software da realizzare
+            \item Rappresentare l'architettura attraverso un diagramma. Questo mostrerà solo la struttura del software ad alto livello
+        \end{enumerate}
+        Ora per ogni requisito troviamo la giusta struttura seguendo una strategia bottom-up:
+        \begin{enumerate}
+            \item Scegliere un requisito proveniente dal processo di analisi
+            \item Pensare a come potrebbe essere soddisfatto attraverso il software
+            \item Analizzare se per tale requisito esistono delle tecnologie preesistenti da poter usare
+            \item Dopo aver compreso il ruolo del componente software, pensare a come questo possa costruire i suoi oggetti o come si deve comportare
+            \item Analizzare se un design patter può semplificare la struttura o il comportamento del componente precedentemente ideato ed applicarlo
+            \item Riportare la struttura del componente in UML2.0
+        \end{enumerate}
+        Dopo aver preparato i diagrammi dei vari componenti, osservando l'architettura scelta, studiare come questi possono essere uniti per garantire flessibilità, manutenibilità, modularità e affidabilità.
 
         \newpage
 
@@ -413,7 +549,10 @@
 		evitare qualsiasi tipo di inconsistenza e rendere il codice il quanto più omogeneo possibile.
 
 		Il progetto sarà sviluppato utilizzando il linguaggio \gloss{Python}.
-		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce ``PEP 8'' in \S\ref{rifnorma}},
+		Per le norme di stile relative a questo linguaggio, seguiremo il PEP 8\footnote{Riferirsi alla voce
+		% ``PEP 8''
+		32
+		  in \S\ref{rifinfo}},
 		lo standard Python che definisce lo stile da seguire nella codifica e in attività correlate ad essa.
 
         \paragraph{Intestazione}\label{PP:Sviluppo:Codifica:Intestazione}
@@ -442,7 +581,10 @@
 
 		\paragraph{Convenzioni di nominazione}\label{PP:Sviluppo:Codifica:ConvenzioniDiNominazione}
 		\begin{itemize}
-			\item Per i nomi delle classi, viene usato \texttt{PascalCase}\footnote{Riferirsi alla voce ``Naming convention'' in \S\ref{rifinfo}}
+			\item Per i nomi delle classi, viene usato \texttt{PascalCase}\footnote{Riferirsi alla voce
+			% ``Naming convention''
+			15
+			  in \S\ref{rifinfo}}
 			\item Per le costanti, viene usato \texttt{MACRO\_CASE}
 			\item Per denominare tutto il resto, ad esempio variabili e metodi, si usa \texttt{snake\_case}
 		\end{itemize}
@@ -520,8 +662,10 @@ def cheeseshop(kind, *arguments, **keywords):
 		Evitare l'ereditarietà tra classi concrete. È invece possibile che una classe derivi da un'altra se quest'ultima è
 		un'\gloss{interfaccia} o una classe astratta.
 
-		Viene adottato, per ovviare all'ereditarietà tra classi concrete, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce %
-		``Composition over inheritance'' in \S\ref{rifnorma}.}.
+		Viene adottato, per ovviare all'ereditarietà tra classi concrete, il principio di ``Composition over inheritance''\footnote{Riferirsi alla voce
+		%``Composition over inheritance''
+		29
+		 in \S\ref{rifinfo}.}.
 
 		Va limitato, ove possibile, la dipendenza tra classi concrete: dipendere quindi sulle astrazioni (interfacce e classi astratte).
 
@@ -553,7 +697,7 @@ def complex(real=0.0, imag=0.0):
     ...
 \end{verbatim}
 
-        \subsubsection{Metriche per la codifica}\label{PP:Sviluppo:MetricheCodifica}
+        \paragraph{Metriche per la codifica}\label{PP:Sviluppo:MetricheCodifica}
         Tutti i paragrafi sulle norme di codifica precedentemente descritte devono corrispondere ad una metrica in modo tale da tenere traccia dei cambiamenti nella qualità dei prodotti contenenti codice in Python.
 
         La denominazione delle metriche è descritta in \S\ref{Classificazione metriche}.
@@ -581,63 +725,63 @@ def complex(real=0.0, imag=0.0):
             \item \textbf{MPS016 Metodi non documentati}: \S\ref{PP:Sviluppo:Codifica:DocumentazioneDeiMetodi}.
         \end{itemize}
 
-        \paragraph{MPS005 File senza intestazione}
+        \subparagraph{MPS005 File senza intestazione}
         Ogni file deve possedere l'intestazione definita per avere subito l'idea di cosa questo contiene.
 
         \textbf{Metrica:} il numero di file che non possiedono l'intestazione definita.
 
-        \paragraph{MPS006 Righe non formattate}
+        \subparagraph{MPS006 Righe non formattate}
         Il codice, per essere più leggibile deve contenere delle adeguate spaziature.
 
         \textbf{Metrica:} numero adeguato di spaziature non eseguite.
 
-        \paragraph{MPS007 Nomi di variabili, metodi e classi non normati}
+        \subparagraph{MPS007 Nomi di variabili, metodi e classi non normati}
         I nomi delle variabili o i titoli delle classi o dei metodi devono seguire delle specifiche regole per essere il più possibile parlanti.
 
         \textbf{Metrica:} numero di nomi di variabili o di titoli di metodi o classi che non rispettano le norme stabilite.
 
-        \paragraph{MPS008 Righe non indentate}
+        \subparagraph{MPS008 Righe non indentate}
         Per rendere più chiaro l'inizio e la fine di un ciclo, metodo, classe
         o di una condizione è obbligatorio eseguire le dovute tabulazioni.
 
         \textbf{Metrica:} numero di tabulazioni non eseguite.
 
-        \paragraph{MPS009 Stringhe non normate}
+        \subparagraph{MPS009 Stringhe non normate}
         In Python le stringhe possono essere create in vari modi, secondo le norme noi ne scegliamo una in particolare.
 
         \textbf{Metrica:} numero di volte in cui le stringhe non vengono create nel modo stabilito.
 
-        \paragraph{MPS010 Righe troppo lunghe}
+        \subparagraph{MPS010 Righe troppo lunghe}
         Perché del codice sia leggibile, le sue istruzioni non possono essere troppo lunghe. Per questo è stata stabilita una soglia massima di caratteri per istruzione.
 
         \textbf{Metrica:} numero di righe di codice che superano i 79 caratteri.
 
-        \paragraph{MPS011 Metodi troppo lunghi}
+        \subparagraph{MPS011 Metodi troppo lunghi}
         Un metodo trasversale per impedire che un metodo compia troppe azioni è quello di limitarne la lunghezza.
 
         \textbf{Metrica:} il numero di metodi o funzioni che sono più lunghi di 50 righe di codice.
 
-        \paragraph{MPS012 Metodi con troppi parametri}
+        \subparagraph{MPS012 Metodi con troppi parametri}
         Limitare il numero di parametri in un metodo è un altro modo per evitare di caricarlo di troppe mansioni.
 
         \textbf{Metrica:} il numero di metodi con più di 6 parametri.
 
-        \paragraph{MPS013 Metodi con troppa complessità ciclomatica}
+        \subparagraph{MPS013 Metodi con troppa complessità ciclomatica}
         Un metodo che possiede molte istruzioni condizionali o cicli è difficile da testare e nel peggiore dei casi lento da eseguire. Perciò è buona norma limitare l'uso di queste istruzioni.
 
         \textbf{Metrica:} numero di metodi che possiedono più di 3 cicli annidati.
 
-        \paragraph{MPS014 Classi che implementano classi concrete}
+        \subparagraph{MPS014 Classi che implementano classi concrete}
         L'ereditarietà tra classi deve essere evitata perché la presenza di dipendenze tra più componenti ne ostacola la modifica e la verifica.
 
         \textbf{Metrica:} numero di classi che ereditano un'altra classe concreta.
 
-        \paragraph{MPS015 Commenti non normati}
+        \subparagraph{MPS015 Commenti non normati}
         I commenti, per essere significativi devono essere scritti seguendo le norme indicate.
 
         \textbf{Metrica:} numero di commenti che seguono le norme indicate.
 
-        \paragraph{MPS016 Metodi non documentati}
+        \subparagraph{MPS016 Metodi non documentati}
         La documentazione dei metodi, come per i file, serve per far saltare subito all'occhio il loro compito. La loro documentazione deve seguire le norme precedentemente indicate.
 
         \textbf{Metrica:} numero di metodi che non possiede una documentazione a norma.
@@ -653,8 +797,14 @@ def complex(real=0.0, imag=0.0):
 
 	    \subparagraph{IDE}\label{PP:Sviluppo:Strumenti:AmbienteSviluppo:IDE} % NOTE: controllare la sezione relativa a VSC sui processi di supporto
 		Gli IDE principali scelti per lo sviluppo di codice Python sono
-		{PyCharm}\footnote{Riferirsi alla voce ``Pycharm'' in \S\ref{rifinfo}} e
-		{Visual Studio Code}\footnote{Riferirsi alla voce ``Visual Studio Code'' in \S\ref{rifinfo}}.
+		{PyCharm}\footnote{Riferirsi alla voce
+		%``Pycharm''
+		16
+		 in \S\ref{rifinfo}} e
+		{Visual Studio Code}\footnote{Riferirsi alla voce
+		% ``Visual Studio Code''
+		23
+		  in \S\ref{rifinfo}}.
 		Il primo è proprietario e supportato dal team di IntelliJ, il secondo è un progetto \gloss{open source} di Microsoft, che ha
 		per questo il supporto della comunità open source.\par
 		Entrambi offrono la maggior parte dei vantaggi utili al processo di sviluppo di \progetto, tra cui:

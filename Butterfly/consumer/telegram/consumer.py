@@ -1,5 +1,5 @@
 """
-File: TelegramConsumer.py
+File: cnsumer.py
 Data creazione: 2019-02-18
 
 <descrizione>
@@ -36,8 +36,14 @@ from consumer.consumer import Consumer
 
 
 class TelegramConsumer(Consumer):
+
+    _bold_open = '<b>'
+    _bold_close = '</b>'
+    _code_open = '<code>'
+    _code_close = '</code>'
+
     """Implementa Consumer"""
-    _CONFIG_PATH = Path(__file__).parent / 'config.json'
+    _CONFIG_PATH = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def __init__(self, consumer: KafkaConsumer):
         super(TelegramConsumer, self).__init__(consumer)
@@ -60,35 +66,30 @@ class TelegramConsumer(Consumer):
             data={
                 'chat_id': receiver,
                 'text': self.format(msg),
-                'parse_mode': 'markdown',
+                'parse_mode': 'html',
             })
         if response.ok:
             chat = response.json()["result"]["chat"]
-            print(f'({response.status_code}) Inviato un messaggio a '
-                  f'{chat["username"]} ({chat["id"]})')
-
             return True
-
-        print(f'({response.status_code}) '
-              'Errore: il messaggio non è stato inviato')
         return False
 
-    def format(self, msg: dict) -> str:
+    @classmethod
+    def format(cls, msg: dict) -> str:
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
 
         Arguments:
         msg -- JSON object
 
-        Formato: Markdown
-        *bold text*
-        _italic text_
+        Formato: HTML
+        <b>bold text</b>
+        <i>italic text</i>
         [inline URL](http://www.example.com/)
         [inline mention of a user](tg://user?id=123456789)
-        `inline fixed-width code`
-        ```block_language
+        <code>inline fixed-width code</code>
+        <pre>block_language
         pre-formatted fixed-width code block
-        ```
+        </pre>
         """
 
         # Queste chiamate vanno bene sia per i webhook di rd che per gt
@@ -96,10 +97,10 @@ class TelegramConsumer(Consumer):
         res = ''
 
         if msg['object_kind'] == 'issue':
-            res += f'È stata aperta una issue '
+            return cls._format_issue(msg)
 
         elif msg['object_kind'] == 'push':
-            res += f'È stata fatto un push '
+            return cls._format_push(msg)
 
         elif msg['object_kind'] == 'issue-note':
             res += f'È stata commentata una issue '
@@ -110,19 +111,69 @@ class TelegramConsumer(Consumer):
         else:
             raise KeyError
 
-        emph = '`'
-        bold = '**'
-
         res += ''.join([
-            f' nel progetto {bold}{msg["project_name"]}{bold} ',
-            f'({emph}{msg["project_id"]}{emph})',
-            f' su {msg["app"].capitalize()}',
-            f'\n\n{bold}Informazioni:{bold} '
-            f'\n - {bold}Autore:{bold} {msg["author"]}'
-            f'\n - {bold}Title:{bold} {msg["title"]}',
-            f'\n - {bold}Description:{bold}\n'
-            f'  {msg["description"]}',
-            f'\n - {bold}Action:{bold} {msg["action"]}'
+            f'nel progetto {cls._bold_open}{msg["project_name"]}{cls._bold_close} ',
+            f' su {msg["app"].capitalize()}\n',
+            # f'\n\n{cls._bold_open}Informazioni:{cls._bold_close} '
+            f'\n - {cls._bold_open}Autore:{cls._bold_close} {msg["author"]}'
+            f'\n - {cls._bold_open}Titolo:{cls._bold_close} {msg["title"]}',
+            f'\n - {cls._bold_open}Descrizione:{cls._bold_close} '
+            f'{msg["description"]}',
         ])
+        if 'action' in msg:
+            res += f'\n - {cls._bold_open}Azione:{cls._bold_close} {msg["action"]}'
 
+        return res
+
+    @classmethod
+    def _format_issue(
+        cls,
+        msg: dict,
+    ):
+
+        if msg['action'] == 'open':
+            action_text = 'aperta'
+        elif msg['action'] == 'update':
+            action_text = 'modificata'
+        elif msg['action'] == 'close':
+            action_text = 'chiusa'
+        elif msg['action'] == 'reopen':
+            action_text = 'riaperta'
+
+        res = ''.join([
+            f'È stata {action_text} una issue ',
+            f'nel progetto {cls._bold_open}{msg["project_name"]}{cls._bold_close} ',
+            f' su {msg["app"].capitalize()}\n',
+            # f'\n\n{cls._bold_open}Informazioni:{cls._bold_close} '
+            f'\n - {cls._bold_open}Autore:{cls._bold_close} {msg["author"]}'
+            f'\n - {cls._bold_open}Titolo:{cls._bold_close} {msg["title"]}',
+            f'\n - {cls._bold_open}Descrizione:{cls._bold_close} '
+            f'{msg["description"]}',
+        ])
+        return res
+
+    @classmethod
+    def _format_push(
+        cls,
+        msg: dict,
+        id_precision: int = 5,
+        commits_count: int = 3
+    ):
+        """Formatta un messaggio di push in markdown
+        e restituisce il risultato.
+        """
+        res = ''.join([
+            f'È stato fatto un push '
+            f'nel progetto {cls._bold_open}{msg["project_name"]}{cls._bold_close}',
+            f' su {msg["app"].capitalize()}\n\n',
+            f'{msg["commits_count"]} nuovi commit da {msg["author"]}:\n'
+        ])
+        for commit in msg['commits']:
+            res += (f'- {commit["message"]} '
+                    f'({cls._code_open}{commit["id"][:id_precision]}{cls._code_close}..)'
+                    '\n')
+            commits_count -= 1
+            if commits_count == 0:
+                res += '- ...\n'
+                break
         return res

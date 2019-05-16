@@ -1,3 +1,29 @@
+"""
+File: test_gitlab_webhook.py
+Data creazione: 2019-02-12
+
+<descrizione>
+
+Licenza: Apache 2.0
+
+Copyright 2019 AlphaSix
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Versione: 0.4.0
+Creatore: Timoty Granziero, timoty.granziero@gmail.com
+"""
+
 from unittest.mock import patch, MagicMock
 import json
 from pathlib import Path
@@ -87,11 +113,11 @@ def test_gitlab_commit_comment_webhook():
     webhook = webhook.parse(whook)
 
     assert webhook['app'] == 'gitlab'
-    assert webhook['object_kind'] == 'note'
+    assert webhook['object_kind'] == 'commit-note'
     assert webhook['title'] == 'Files added\n'
     assert webhook['project_id'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1'
     assert webhook['author'] == 'Administrator'
-    assert webhook['comment'] == 'Just commenting a commit, don\'t bother with me'
+    assert webhook['description'] == 'Just commenting a commit, don\'t bother with me'
 
 
 def test_gitlab_issue_comment_webhook():
@@ -110,8 +136,8 @@ def test_gitlab_issue_comment_webhook():
     webhook = webhook.parse(whook)
 
     assert webhook['app'] == 'gitlab'
-    assert webhook['object_kind'] == 'note'
+    assert webhook['object_kind'] == 'issue-note'
     assert webhook['title'] == 'Test Issue 1'
     assert webhook['project_id'] == 'http://gitlab-9888b58bf-6qj5c/root/butterfly-test-project-1'
     assert webhook['author'] == 'Administrator'
-    assert webhook['comment'] == 'This issue has been successfully commented'
+    assert webhook['description'] == 'This issue has been successfully commented'

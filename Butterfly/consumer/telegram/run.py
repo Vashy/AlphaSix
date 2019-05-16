@@ -28,12 +28,13 @@ Autori:
 
 from pathlib import Path
 import json
+import os
 
 from consumer.telegram.consumer import TelegramConsumer
 from consumer.creator import KafkaConsumerCreator
 
 
-_config_path = Path(__file__).parents[1] / 'config.json'
+_config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
 
 def _open_kafka_configs(path: Path = _config_path):
@@ -42,6 +43,9 @@ def _open_kafka_configs(path: Path = _config_path):
 
     with open(path) as file:
         configs = json.load(file)
+
+    if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
+        configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
     configs = configs['kafka']
     timeout = 'consumer_timeout_ms'
@@ -60,7 +64,6 @@ def main():
     try:
         kafka = KafkaConsumerCreator().create(configs, topic)
     except kafka.errors.KafkaConfigurationError as e:
-        print(e.with_traceback())
         exit(-1)
 
     # Istanzia il TelegramConsumer
@@ -72,7 +75,6 @@ def main():
         pass
     finally:
         consumer.close()  # Chiude la connessione
-        print(' Closing Consumer ...')
 
 
 if __name__ == '__main__':

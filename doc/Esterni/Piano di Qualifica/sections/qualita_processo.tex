@@ -213,6 +213,37 @@ Per ogni processo sono elencate le sue funzioni principali, gli obiettivi che ci
             \item \textbf{QPR013 I moduli possiedono suite di test}: i moduli codificati devono possedere una suite di test per essere verificati in tutte le loro parti e in correlazione tra di loro.
             \item \textbf{QPR014 Rispetto delle norme di codifica}: il codice, per essere meglio comprensibile e corretto deve essere prodotto seguendo delle norme. Il rispetto di tali norme viene verificato nelle \NdPd.
         \end{itemize}
+    
+    \subsubsection{PROC007 Validazione}\label{proc007}
+    La validazione è l'ultimo processo che precede la consegna ultima del prodotto e il processo di manutenzione. Tale processo è molto simile a quello di verifica, infatti si prefigge scopi simili, solo che consiste nell'essere ``l'ultima verifica'' prima della consegna del prodotto.\par
+    A differenza di un'usuale verifica, la validazione viene effettuata insieme al committente per constatare se questo riceverà il prodotto che si aspettava al momento dell'acquisto. Per questo motivo il processo di validazione è strettamente legato ai requisiti.
+    
+    \paragraph{Funzioni}
+    \begin{itemize}
+        \item \textbf{Soddisfacimento di tutti i requisiti}: al momento della validazione il prodotto deve poter soddisfare le richieste del committente. Per fare questo tutti i requisiti estraibili direttamente e indirettamente dal capitolato devono essere soddisfatti.
+        \item \textbf{Soddisfacimento dei bisogni del committente}: durante la realizzazione del prodotto finale è probabile che, attraverso vari confronti, siano stati cambiamenti alcuni requisiti del progetto per delle esigenze del committente. Anche tali requisiti devono essere soddisfatti.
+        \item \textbf{Svolgimento corretto dell'intero progetto}: trattandosi della verifica finale, nella validazione si effettua un'analisi retrospettiva di tutto il percorso di sviluppo del progetto, se dunque questo è stato sviluppato secondo le norme e i tempi stabiliti.
+    \end{itemize}
+
+    \paragraph{Metriche}
+    \begin{itemize}
+        \item MPR013 Percentuale soddisfacimento metriche
+        %TODO inserire nelle norme la metrica nella validazione. La metrica consiste nell'effettuare una media aritmetica delle volte che, in data di verifica una metrica viene soddisfatta e poi trasportla in percentuale
+    \end{itemize}
+    Il processo osserva inoltre altre importanti metriche già presenti in altri processi:
+    \begin{itemize}
+        \item MPR001
+        \item MPR002
+        \item MPR005
+        \item MPR006
+        \item MPR007
+    \end{itemize}
+
+    \paragraph{Obiettivi}
+    \begin{itemize}
+        \item \textbf{QPR015 Soddisfare tutti i requisiti}: al momento della consegna del prodotto tutti i requisiti devono essere soddisfatti.
+        \item \textbf{QPR016 Possedere un prodotto sviluppato correttamente}: il prodotto, oltre che soddisfare i requisiti, deve essere stato sviluppato anche nel modo corretto. In questo modo è possibile valutare anche la professionalità del team di sviluppo. 
+    \end{itemize}
 
 \subsection{Tabella qualità di processo}
 Le tabelle indicano gli obiettivi di qualità discussi nelle precedenti sezioni che ogni processo deve possedere.
@@ -367,4 +398,24 @@ Ogni obiettivo di qualità è indicato con:
             \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: all'interno del processo di codifica bisogna seguire delle norme per produrre del codice di qualità. Tali norme sono meglio indicate nelle \NdPd.}\\
     \end{tabularx}}
     \caption{Obiettivi di qualità per il PROC006}
+\end{table}
+
+\begin{table}[H]
+    {\def\arraystretch{1.5}
+        \begin{tabularx}{\textwidth}{YYY}
+            \rowcolor{white}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}Y}{\textbf{PROC007 Validazione}}\\
+            \rowcolor{gray!30}
+            \textbf{Obiettivo} &
+            \textbf{Metrica} &
+            \textbf{Valore desiderato}\\\toprule
+            \rowcolor{white}
+            QPR015 Soddisfare tutti i requisiti & - & -\\
+            \rowcolor{\grigiodesc} \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: il prodotto al momento della consegna deve poter soddisfare tutti i requisiti richiesti. A tale obiettivo di qualità non sono associate metriche, perché quelle interessate sono già presenti nel processo di analisi. Queste sono MPR005, MPR006 e MPR007.}\\
+            \rowcolor{white}
+            QPR016 Possedere un prodotto sviluppato correttamente & MPR013 & 60\%\\
+            \rowcolor{\grigiodesc}
+            \multicolumn{3}{>{\hsize=\dimexpr3\hsize+4\tabcolsep}X}{\textbf{Descrizione}: un prodotto deve anche essere sviluppato correttamente seguendo determinate norme tenendosi ad un certo livello di qualità. Per misurarla si utilizzano opportune metriche che insieme attribuiscono un valore di qualità al prodotto.}\\
+    \end{tabularx}}
+    \caption{Obiettivi di qualità per il PROC007}
 \end{table}

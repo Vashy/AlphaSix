@@ -56,7 +56,7 @@
 
 		\subsection{Redmine}
 		Ciascuna istanza di Redmine permette l'utilizzo di webhook%
-        \footnote{Riferirsi alla voce ``Webhook di Redmine'' alla sezione \S\ref{sec:RiferimentiInformativi}}
+        \footnote{Riferirsi alla voce ``3. Webhook di Redmine'' alla sezione \S\ref{sec:RiferimentiInformativi}}
         che inviano segnalazioni al Producer alla modifica del progetto.
         Queste vengono ricevute dal server tramite una componente che resta in ascolto,
         aggiornando in base a ciò che riceve dai dati presenti sul Gestore Personale e inoltrando i messaggi
@@ -64,7 +64,7 @@
 		
 		\subsection{GitLab}
 		Ciascuna istanza di GitLab, online o in un server locale,
-        mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce ``Webhook di GitLab'' alla sezione \S\ref{sec:RiferimentiInformativi}}
+        mette a disposizione la configurazione di webhook\footnote{Riferirsi alla voce ``4. Webhook di GitLab alla sezione'' \S\ref{sec:RiferimentiInformativi}}
         che, alla modifica di una repository, manda un messaggio con le informazioni relative a quell'evento specifico.
         Questo messaggio arriva a una componente applicativa capace di
         aggiornare i dati presenti nel Gestore Personale e, come per Redmine, inoltrare le notifiche ai Consumer interessati.
@@ -79,7 +79,7 @@
         
 		\subsection{Telegram}
 		Telegram permette l'interazione in maniera automatica con gli utenti tramite
-        bot\footnote{Riferirsi alla voce ``Bot di Telegram'' alla sezione \S\ref{sec:RiferimentiInformativi}}
+        bot\footnote{Riferirsi alla voce ``5. Bot di Telegram'' alla sezione \S\ref{sec:RiferimentiInformativi}}
         che possono essere configurati per mandare messaggi ricevuti da strumenti di terze parti, in questo caso \progetto.
         Il Consumer interroga il Broker per acquisire i messaggi da inoltrare e li trasmette al bot di Telegram, che si
         occuperà dell'invio all'utente finale.

@@ -24,20 +24,19 @@ Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
     Matteo Marchiori, matteo.marchiori@gmail.com
-    Nicola Carlesso
+    Nicola Carlesso, nicolacarlesso@outlook.it
 """
 
 from pathlib import Path
 import json
+import os
 
 import kafka.errors
 
 from consumer.email.consumer import EmailConsumer
 from consumer.creator import KafkaConsumerCreator
 
-
-_config_path = Path(__file__).parents[0] / 'config.json'
-
+_config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
 def _open_kafka_configs(path: Path = _config_path):
     """Apre il file di configurazione per Kafka.
@@ -45,6 +44,9 @@ def _open_kafka_configs(path: Path = _config_path):
 
     with open(path) as file:
         configs = json.load(file)
+
+    if(os.environ['KAFKA_IP'] and os.environ['KAFKA_PORT']):
+        configs['kafka']['bootstrap_servers'] = os.environ['KAFKA_IP'] + ':' + os.environ['KAFKA_PORT']
 
     configs = configs['kafka']
     timeout = 'consumer_timeout_ms'
@@ -63,7 +65,6 @@ def main():
     try:
         kafka = KafkaConsumerCreator().create(configs, topic)
     except kafka.errors.KafkaConfigurationError as e:
-        print(e.with_traceback())
         exit(-1)
 
     # Istanzia EmailConsumer
@@ -75,7 +76,7 @@ def main():
         pass
     finally:
         consumer.close()
-        print(' Closing Consumer ...')
+        exit(-1)
 
 
 if __name__ == '__main__':

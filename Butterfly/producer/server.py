@@ -1,3 +1,29 @@
+"""
+File: server.py
+Data creazione: 2019-02-20
+
+<descrizione>
+
+Licenza: Apache 2.0
+
+Copyright 2019 AlphaSix
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Versione: 0.1.1
+Creatore: Timoty Granziero, timoty.granziero@gmail.com
+"""
+
 from pprint import pformat
 
 from flask import Flask
@@ -33,27 +59,16 @@ class FlaskServer:
             messaggio
         """
         if request.headers['Content-Type'] == 'application/json':
-
             webhook = request.get_json()
-            print(
-                '\n\n\nMessaggio da Redmine:\n'
-                f'{pformat(webhook)}\n\n\n'
-                'Parsing del messaggio ...'
-            )
 
             try:
                 self._producer.produce(webhook)
-                print('Messaggio inviato.\n\n')
             except KeyError:
-                print('Warning: messaggio malformato. '
-                      'Non è stato possibile effettuare il parsing.\n'
-                      'In attesa di altri messaggi...\n\n')
                 return 'Messaggio malformato', 402
             except NameError:
                 # Errore messaggio malformato
                 return 'Tipo di messaggio non riconosciuto', 401
             return 'Ok', 200  # Ok
-
         return '', 400  # Errore, tipo di richiesta non adatta
 
     def run(self, configs: dict):

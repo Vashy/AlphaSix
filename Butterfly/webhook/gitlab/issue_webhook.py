@@ -1,5 +1,5 @@
 """
-File: GitlabIssueWebhook.py
+File: issue_webhook.py
 Data creazione: 2019-02-15
 
 <descrizione>
@@ -26,13 +26,17 @@ Autori:
     Laura Cameran, lauracameran@gmail.com
 """
 
+import json
+import os
+from pathlib import Path
 from webhook.webhook import Webhook
-
 
 class GitlabIssueWebhook(Webhook):
     """`GitLabIssueWebhook` implementa `Webhook`.
     Parse degli eventi di Issue di Gitlab.
     """
+
+    _config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def parse(self, whook: dict = None):
         """Parsing del file JSON. Restituisce un riferimento al dizionario
@@ -41,11 +45,17 @@ class GitlabIssueWebhook(Webhook):
 
         assert whook is not None
 
+        with open(GitlabIssueWebhook._config_path, 'r') as f:
+            configs = json.load(f)
+        
+        if os.environ['GITLAB_BASE_URL']:
+            configs['base_url'] = os.environ['GITLAB_BASE_URL']
+
         webhook = {}
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
         webhook['title'] = whook['object_attributes']['title']
-        webhook['project_id'] = whook['project']['web_url']
+        webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace'])).strip('"')
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user']['name']
 

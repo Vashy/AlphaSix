@@ -1,5 +1,5 @@
 """
-File: GitlabIssueWebhook.py
+File: push_webhook.py
 Data creazione: 2019-02-15
 
 <descrizione>
@@ -24,13 +24,17 @@ Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 """
 
+from pathlib import Path
 from webhook.webhook import Webhook
-
+import json
+import os
 
 class GitlabPushWebhook(Webhook):
     """`GitLabPushWebhook` implementa `Webhook`.
     Parse degli eventi di Push di Gitlab.
     """
+
+    _config_path = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def parse(self, whook: dict):
         """Parsing del file JSON. Restituisce un riferimento alla
@@ -39,34 +43,20 @@ class GitlabPushWebhook(Webhook):
 
         assert whook is not None
 
+        with open(GitlabPushWebhook._config_path, 'r') as f:
+            configs = json.load(f)
+        
+        if os.environ['GITLAB_BASE_URL']:
+            configs['base_url'] = os.environ['GITLAB_BASE_URL']
+
+
         webhook = {}
         webhook['app'] = 'gitlab'
         webhook['object_kind'] = whook['object_kind']
-        # webhook['title'] = commit['message']
-        webhook['project_id'] = whook['project']['web_url']
+        webhook['project_id'] = json.dumps(str(configs['base_url']) + str(whook['project']['path_with_namespace'])).strip('"')
         webhook['project_name'] = whook['project']['name']
         webhook['author'] = whook['user_name']
         webhook['commits'] = whook['commits']
         webhook['commits_count'] = whook['total_commits_count']
         webhook['repository'] = whook['repository']['name']
-
-        # commits = []
-        # for commit in whook['commits']:
-
-
-        #     webhook['added'] = []
-        #     for content in commit['added']:
-        #         webhook['added'].append(content)
-        #     commits.append(webhook)
-
-        #     webhook['modified'] = []
-        #     for content in commit['modified']:
-        #         webhook['modified'].append(content)
-        #     commits.append(webhook)
-
-        #     webhook['removed'] = []
-        #     for content in commit['removed']:
-        #         webhook['removed'].append(content)
-        #     commits.append(webhook)
-
         return webhook

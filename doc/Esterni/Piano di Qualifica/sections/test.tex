@@ -15,7 +15,7 @@ Lo scopo del modello a V è quello di mostrare quali tipi di test accompagnano o
 	\label{img:vmodel}
 \end{figure}
 
-\footnotetext{Vedere modello a V in \S\ref{riferimenti informativi}}
+\footnotetext{Riferirsi alla voce ``6. Modello a V'' in  \S\ref{riferimenti informativi}}
 
 \subsubsection{Classificazione e stuttura dei test} \label{classificazionetest}
 Ogni test viene identificato univocamente dal seguente codice:
@@ -82,7 +82,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
 			\item Redmine invia la segnalazione.
             \item Producer Redmine riceve la segnalazione da Redmine.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verifica la segnalazione della modifica di una issue in Redmine:
 		\begin{enumerate}
@@ -90,7 +90,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
 			\item Redmine invia la segnalazione.
             \item Producer Redmine riceve la segnalazione da Redmine.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verificata la segnalazione del commento di una issue in Redmine:
         \begin{enumerate}
@@ -98,7 +98,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Redmine invia la segnalazione.
             \item Il Producer Redmine riceve la segnalazione da Redmine.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica la segnalazione dell'apertura di una issue in GitLab:
 		\begin{enumerate}
@@ -106,7 +106,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
 			\item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
 		\end{enumerate}
-		& \TNI \\
+		& \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -124,7 +124,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Velrifica la segnalazione del commento di una issue in GitLab:
         \begin{enumerate}
@@ -132,7 +132,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di un evento di push in GitLab:
 		\begin{enumerate}
@@ -140,7 +140,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
 			\item GitLab invia la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verifica la segnalazione del commento di un commit:
         \begin{enumerate}
@@ -148,7 +148,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Viene inviata la segnalazione.
             \item Producer GitLab riceve la segnalazione da GitLab.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio di apertura issue dal Producer Redmine al Gestore Personale:
 		\begin{enumerate}
@@ -156,7 +156,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
 			\item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
 		\end{enumerate}
-		& \TNI \\
+		& \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -174,7 +174,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio di commento issue dal Producer Redmine al Gestore Personale:
         \begin{enumerate}
@@ -182,14 +182,14 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Producer Redmine invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
-        & TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica scarto di messaggio non valido nel Producer Redmine:
         \begin{enumerate}
             \item Producer Redmine riceve un messaggio che non è in grado di interpretare.
             \item Producer Redmine scarta il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio di commit dal Producer GitLab al Gestore Personale:
         \begin{enumerate}
@@ -197,7 +197,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio di apertura issue dal Producer GitLab al Gestore Personale:
 		\begin{enumerate}
@@ -205,7 +205,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
 			\item Producer GitLab invia il messaggio.
             \item Gestore Personale riceve il messaggio.
 		\end{enumerate}
-		& \TNI \\
+		& \TI \\
 
        \bottomrule
 	\end{VTtable}
@@ -224,7 +224,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del commento di una issue dal Producer GitLab al Gestore Personale:
         \begin{enumerate}
@@ -232,7 +232,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio del commento di un commit dal Producer GitLab al Gestore Personale:
         \begin{enumerate}
@@ -240,14 +240,14 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Producer GitLab invia il messaggio.
             \item Gestore personale riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica scarto di messaggio non valido nel Producer GitLab:
         \begin{enumerate}
             \item Producer GitLab riceve un messaggio che non è in grado di interpretare.
             \item Producer GitLab scarta il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio dal Gestore Personale al Consumer Telegram:
         \begin{enumerate}
@@ -256,7 +256,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Gestore Personale invia il messaggio elaborato.
             \item Consumer Telegram riceve il messaggio.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -275,7 +275,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Gestore Personale invia il messaggio elaborato.
             \item Consumer Email riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio dal Consumer Telegram al bot Telegram:
         \begin{enumerate}
@@ -283,7 +283,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Consumer Telegram invia il messaggio.
             \item Bot Telegram riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di invio del messaggio dal consumer Email al server Email:
         \begin{enumerate}
@@ -291,7 +291,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Consumer Email invia il messaggio.
             \item Server Email riceve il messaggio.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di accesso di un utente al sistema tramite Email:
         \begin{enumerate}
@@ -299,7 +299,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item L'accesso al sistema è avvenuto correttamente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di accesso di un utente al sistema tramite ID Telegram:
         \begin{enumerate}
@@ -307,7 +307,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item L'accesso al sistema è avvenuto correttamente.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -325,7 +325,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di errore per accesso con ID Telegram inesistente:
         \begin{enumerate}
@@ -333,7 +333,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di uscita dell'utente dal sistema:
         \begin{enumerate}
@@ -341,7 +341,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item L'utente conferma l'uscita dal sistema.
             \item L'utente viene riportato all'accesso al sistema.
         \end{enumerate}
-        & \TNI \\ \midrule
+        & \TI \\ \midrule
 
         \addtotv & Verifica di registrazione di un nuovo utente:
         \begin{enumerate}
@@ -357,7 +357,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item L'utente viene registrato correttamente.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
        \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -383,7 +383,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
              \item Confermare l'invio dei dati.
              \item Viene segnalato un errore per aver inserito un ID Telegram già presente nel sistema.
          \end{enumerate}
-         & \TNI \\\midrule
+         & \TI \\\midrule
 
         \addtotv & Verifica di errore per Email già esistente:
         \begin{enumerate}
@@ -399,7 +399,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore per aver inserito una Email già esistente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di rimozione di un utente dal sistema tramite Email:
         \begin{enumerate}
@@ -408,7 +408,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item L'utente è stato correttamente rimosso dal sistema.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -428,7 +428,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item L'utente è stato correttamente rimosso dal sistema.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di errore nella rimozione di un utente con ID Telegram inesistente dal sistema:
         \begin{enumerate}
@@ -437,7 +437,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore per l'ID Telegram non presente nel sistema.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di errore nella rimozione di un utente con Email inesistente dal sistema:
         \begin{enumerate}
@@ -446,7 +446,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore per la Email non presente nel sistema.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di rimozione dell'utente acceduto dal sistema tramite Email:
         \begin{enumerate}
@@ -455,7 +455,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Si esce dal sistema e si viene riportati alla schermata di accesso.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -474,7 +474,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Si esce dal sistema e si viene riportati alla schermata di accesso.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di modifica dei propri dati utente:
         \begin{enumerate}
@@ -489,7 +489,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item L'utente è stato modificato correttamente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di errore nella modifica di un utente con Email già esistente:
         \begin{enumerate}
@@ -504,7 +504,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore per aver inserito una Email già esistente.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -529,7 +529,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore per aver inserito un ID Telegram già esistente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di iscrizione a un nuovo topic:
 		\begin{enumerate}
@@ -538,7 +538,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Il topic è stato correttamente aggiunto alle preferenze dell'utente.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verifica di aggiunta dei giorni di indisponibilità al calendario:
         \begin{enumerate}
@@ -547,7 +547,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item I giorni sono stati aggiunti correttamente alle preferenze dell'utente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di aggiunta della piattaforma di messaggistica preferita:
         \begin{enumerate}
@@ -556,7 +556,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item La piattaforma è stata correttamente aggiunta alle preferenze dell'utente.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -576,7 +576,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Le keyword di GitLab sono state aggiornate correttamente.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti:
 		\begin{enumerate}
@@ -585,7 +585,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verifica l'aggiunta di progetti di interesse per GitLab o Redmine:
         \begin{enumerate}
@@ -594,7 +594,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Il progetto è stato aggiunto correttamente alle preferenze dell'utente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica l'aggiunta di priorità per i progetti precedentemente selezionati:
         \begin{enumerate}
@@ -604,7 +604,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item La priorità relativa al progetto selezionato è stata aggiunta correttamente alle preferenze dell'utente.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -623,7 +623,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Il topic è stato rimosso correttamente dalle preferenze.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di rimozione dei giorni di indisponibilità dal calendario:
         \begin{enumerate}
@@ -632,7 +632,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item I giorni sono stati rimossi dalle preferenze correttamente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica di rimozione della piattaforma di messaggistica preferita:
 		\begin{enumerate}
@@ -641,7 +641,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item La piattaforma è stata correttamente rimossa dalle preferenze.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verifica di rimozione delle keyword per i push di GitLab:
 		\begin{enumerate}
@@ -650,7 +650,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Le keyword di GitLab sono state aggiornate correttamente.
 		\end{enumerate}
-		& \TNI \\
+		& \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -669,7 +669,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Viene segnalato un errore.
 		\end{enumerate}
-		& \TNI \\\midrule
+		& \TI \\\midrule
 
         \addtotv & Verifica la rimozione di progetti di interesse precedentemente aggiunti:
         \begin{enumerate}
@@ -678,7 +678,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item Il progetto è stato rimosso correttamente alle preferenze dell'utente.
         \end{enumerate}
-        & \TNI \\\midrule
+        & \TI \\\midrule
 
         \addtotv & Verifica la rimozione di priorità per i progetti precedentemente selezionati:
         \begin{enumerate}
@@ -688,7 +688,7 @@ Come si può vedere dal modello a V (figura \ref{img:vmodel}), sono i primi tipi
             \item Confermare l'invio dei dati.
             \item La priorità relativa al progetto selezionato è stata rimossa correttamente alle preferenze dell'utente.
         \end{enumerate}
-        & \TNI \\
+        & \TI \\
         \bottomrule
 	\end{VTtable}
 	\caption{Elenco dei test di validazione (\thetableCounter)}
@@ -806,7 +806,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\addtots & Verifica di invio del messaggio di apertura issue dal Producer Redmine al Gestore Personale & \TS \\
 		\addtots & Verifica di invio del messaggio di modifica issue dal Producer Redmine al Gestore Personale & \TS \\
         \addtots & Verifica di invio del messaggio di commento issue dal Producer Redmine al Gestore Personale & \TS \\
-		\addtots & Verifica scarto di messaggio non valido nel Producer Redmine & \TI \\
+		\addtots & Verifica scarto di messaggio non valido nel Producer Redmine & \TS \\
 		\addtots & Verifica di invio del messaggio di commit dal Producer GitLab al Gestore Personale & \TS \\
         \addtots & Verifica di invio del messaggio di apertura issue dal Producer GitLab al Gestore Personale & \TS \\
         \addtots & Verifica di invio del messaggio di modifica issue dal Producer GitLab al Gestore Personale & \TS \\
@@ -822,7 +822,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
         \addtots & Verifica di invio del messaggio di commento issue dal Producer GitLab al Gestore Personale & \TS \\
         \addtots & Verifica di invio del messaggio di commento di commit dal Producer GitLab al Gestore Personale & \TS \\
-        \addtots & Verifica scarto di messaggio non valido nel Producer GitLab & \TI \\
+        \addtots & Verifica scarto di messaggio non valido nel Producer GitLab & \TS \\
         \addtots & Verifica di invio del messaggio al Consumer Telegram & \TS \\
         \addtots & Verifica di invio del messaggio al Consumer Email & \TS \\
         \addtots & Verifica di invio del messaggio al bot Telegram & \TS \\
@@ -855,17 +855,17 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
     \begin{paddedtablex}[1.7]{\textwidth}{cXc}
         \rowcolor{white}
 		\textbf{Codice} & \centering\textbf{Test} & \textbf{Stato} \\\toprule
-        \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & \TI \\
+        \addtots & Verifica di aggiunta dei giorni di indisponibilità al calendario & \TS \\
 		\addtots & Verifica di aggiunta della piattaforma di messaggistica preferita & \TS \\
-        \addtots & Verifica di aggiunta delle keyword per i push di GitLab & \TI \\
-        \addtots & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti & \TI \\
+        \addtots & Verifica di aggiunta delle keyword per i push di GitLab & \TS \\
+        \addtots & Verifica di errore nell'aggiunta delle keyword per i push di GitLab già esistenti & \TS \\
         \addtots & Verifica di aggiunta progetti d'interesse per GitLab o Redmine & \TS \\
         \addtots & Verifica di aggiunta delle priorità per i progetti d'interesse & \TS \\
         \addtots & Verifica di rimozione di un Topic & \TS \\
-        \addtots & Verifica di rimozione dei giorni di indisponibilità dal calendario & \TI \\
+        \addtots & Verifica di rimozione dei giorni di indisponibilità dal calendario & \TS \\
         \addtots & Verifica di rimozione della piattaforma di messaggistica preferita & \TS \\
-        \addtots & Verifica di rimozione delle keyword per i push di GitLab & \TI \\
-        \addtots & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab & \TI \\
+        \addtots & Verifica di rimozione delle keyword per i push di GitLab & \TS \\
+        \addtots & Verifica di errore nella rimozione delle keyword inesistenti per i push di GitLab & \TS \\
         \addtots & Verifica di rimozione di progetti d'interesse & \TS \\
         \addtots & Verifica di rimozione della priorità per i progetti d'interesse selezionati & \TS \\
 		\bottomrule
@@ -986,7 +986,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			\TIti & Verifica l'integrazione tra GitlabCommitCommentWebhook e GitlabProducer & \TS \\
 		\addtoti & Verifica l'integrazione tra Webhook e RedmineProducer & \TS \\
 			\TIti & Verifica l'integrazione tra RedmineIssueWebhook e RedmineProducer & \TS \\
-		% \addtoti & Verifica l'integrazione del TelegramCosumer con il bot Telegram & \TNI \\
+		% \addtoti & Verifica l'integrazione del TelegramCosumer con il bot Telegram & \TI \\
 		\addtoti & Verifica l'integrazione del EmailConsumer con SMTP & \TS \\
         \addtoti & Verifica l'integrazione del TelegramConsumer con la libreria requests & \TS \\
 		\addtoti & Verifica l'integrazione di KafkaProducer con le componenti Producer & \TS \\
@@ -1172,7 +1172,7 @@ Per questo si creano dei test derivanti dai casi d'uso e dai requisiti funzional
 			% \addtotu & Verifica la creazione di un oggetto RedmineIssueWebhook & \TS \\
 			% \addtotu & Verifica il parsing del file JSON associato al webhook di apertura issue in Redmine & \TS \\
 			% \addtotu & Verifica il parsing del file JSON associato al webhook di modifica issue in Redmine & \TS \\
-			% \TUtu.1 & Verifica l & \TNI \\
+			% \TUtu.1 & Verifica l & \TI \\
 			\bottomrule
 		\end{paddedtablex}
 		\caption{Elenco dei test di unità (2)}

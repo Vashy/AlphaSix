@@ -26,13 +26,23 @@
 FROM python:3.7
 
 # Copying files from the correct folders
-COPY /producer/gitlab/GLProducer.py ./Butterfly/producer/gitlab/
+COPY /producer/gitlab/producer.py ./Butterfly/producer/gitlab/
 COPY /producer/gitlab/requirements.txt ./Butterfly/producer/gitlab/
 COPY /producer/gitlab/__init__.py ./Butterfly/producer/gitlab/
+COPY /producer/gitlab/run.py ./Butterfly/producer/gitlab/
 COPY /producer/producer.py ./Butterfly/producer/
+COPY /producer/creator.py ./Butterfly/producer/
 COPY /producer/__init__.py ./Butterfly/producer/
-COPY /producer/config.json ./Butterfly/producer/
-COPY /webhook/gitlab/GLIssueWebhook.py ./Butterfly/webhook/gitlab/
+COPY /producer/server.py ./Butterfly/producer/
+
+COPY /webhook/gitlab/commit_comment_webhook.py ./Butterfly/webhook/gitlab/
+COPY /webhook/gitlab/factory.py ./Butterfly/webhook/gitlab/
+COPY /webhook/gitlab/issue_comment_webhook.py ./Butterfly/webhook/gitlab/
+COPY /webhook/gitlab/issue_webhook.py ./Butterfly/webhook/gitlab/
+COPY /webhook/gitlab/push_webhook.py ./Butterfly/webhook/gitlab/
+
+COPY /webhook/factory.py ./Butterfly/webhook/
+COPY /webhook/__init__.py ./Butterfly/webhook/
 COPY /webhook/webhook.py ./Butterfly/webhook/
 COPY /webhook/webhook.json ./Butterfly/webhook/
 COPY topics.json ./Butterfly/
@@ -40,8 +50,14 @@ COPY topics.json ./Butterfly/
 # Change current directory
 WORKDIR /Butterfly
 
+ENV KAFKA_IP='10.42.0.230'
+ENV KAFKA_PORT=9092
+
+RUN mkdir ./config
+VOLUME ./config
+
 # Installing dependencies
-RUN pip3 install --upgrade pip ; pip3 install -r producer/gitlab/requirements.txt
+RUN pip3 install --upgrade pip ; pip3 install -r producer/gitlab/requirements.txt ; 
 
 # Run after the dependencies have been installed
-CMD python3 -m producer.gitlab.GLProducer
+CMD python3 -m producer.gitlab.run

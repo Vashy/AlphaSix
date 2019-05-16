@@ -1,25 +1,18 @@
 """
 File: db_controller.py
 Data creazione: 2019-02-22
-
 <descrizione>
-
 Licenza: Apache 2.0
-
 Copyright 2019 AlphaSix
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
 Versione: 0.3.0
 Creatore: Timoty Granziero, timoty.granziero@gmail.com
 """
@@ -76,7 +69,6 @@ class DBController(object):
         Restituisce un `InsertOneResult`.
         L'unico campo obbligatorio è uno qualsiasi tra `telegram`
         e `email`.
-
         Esempio:
 ```
         result = controller.insert_user(
@@ -107,7 +99,6 @@ class DBController(object):
         `keywords` -- (list)
         `preferenza` -- (str)
         `sostituto` -- (str)
-
         Raises:
         `AssertionError`
         """
@@ -231,7 +222,6 @@ class DBController(object):
         `label`-`project`, alla collezione `topics` se
         non già presente e restituisce il risultato, che può essere
         `None` in caso di chiave (`label`-`project`) duplicata.
-
         Raises:
         `pymongo.errors.DuplicateKeyError`
         """
@@ -263,10 +253,6 @@ class DBController(object):
             })
             return result
 
-        # except pymongo.errors.DuplicateKeyError as err:
-        #     print(err)
-        #     return None
-
     def delete_one_topic(
             self,
             label: str,
@@ -290,7 +276,6 @@ class DBController(object):
         """Aggiunge il documento `project` alla collezione `projects`,
         se non già presente, e restituisce il risultato, che può essere
         `None` in caso di chiave duplicata.
-
         Raises:
         `pymongo.errors.DuplicateKeyError`
         """
@@ -402,7 +387,6 @@ class DBController(object):
     def update_user_preference(self, id: str, preference: str):
         """Aggiorna la preferenza (tra Telegram e Email) dell'utente
         corrispondente all'`id` (Telegram o Email).
-
         Raises:
         `AssertionError` -- se preference non è `telegram` o `email`
             oppure se `id` non è presente nel DB.
@@ -441,7 +425,6 @@ class DBController(object):
     def update_user_telegram(self, id: str, new_telegram: str):
         """Aggiorna lo user ID di Telegram dell'utente corrispondente a
         `id` (Telegram o Email).
-
         Raises:
         `AssertionError` -- se `new_telegram` corrisponde a un
             campo `telegram` già esistente,
@@ -460,8 +443,6 @@ class DBController(object):
             raise AssertionError('Operazione fallita. Impostare prima '
                                  'una Email')
 
-        # self._print_user(id)
-        # print(new_telegram)
         return self.collection('users').find_one_and_update(
             {'$or': [
                 {'telegram': id},
@@ -477,7 +458,6 @@ class DBController(object):
     def update_user_email(self, id: str, new_email: str):
         """Aggiorna l'Email dell'utente corrispondente a
         `id` (Telegram o Email).
-
         Raises:
         `AssertionError` -- se `new_email` corrisponde a un
             campo `email` già esistente,
@@ -512,7 +492,6 @@ class DBController(object):
     def update_user_name(self, id: str, new_name: str):
         """Aggiorna il `name` dell'utente corrispondente a
         `id` (Telegram o Email).
-
         Raises:
         `AssertionError` -- se `id` non è presente nel DB
         """
@@ -533,7 +512,6 @@ class DBController(object):
     def update_user_surname(self, id: str, new_surname: str):
         """Aggiorna il `surname` dell'utente corrispondente a
         `id` (Telegram o Email).
-
         Raises:
         `AssertionError` -- se `id` non è presente nel DB
         """
@@ -551,38 +529,10 @@ class DBController(object):
             }
         )
 
-#    def update_user_sostituto(self, id: str, new_sostituto):
-#        """Aggiorna il `sostituto` dell'utente corrispondente a
-#        `id` (`email` o `telegram`).
-
-#        Raises:
-#        `AssertionError` -- se `id` o `new_sostituto` non sono
-#            presenti nel DB.
-#        """
-#        assert self.user_exists(id), f'User {id} inesistente'
-
-#        assert self.user_exists(new_sostituto), \
-#            f'User {new_sostituto} inesistente'
-
-#        new_sostituto_id = self.user(new_sostituto)['_id']
-
-#        return self.collection('users').find_one_and_update(
-#            {'$or': [
-#                {'telegram': id},
-#                {'email': id},
-#            ]},
-#            {
-#                '$set': {
-#                    'sostituto': new_sostituto_id
-#                }
-#            }
-#        )
-
     def add_user_topic(self, id: str, label: str, project: str):
         """Aggiunge il `topic` corrispondente a `label`-`project`
         (NON ne crea uno!) alla lista dei topic dell'user
         corrispondente a `id`.
-
         Raises:
         `AssertionError` -- se `id`, `project` o `topic` non sono
             riconosciuti dal sistema.
@@ -608,7 +558,6 @@ class DBController(object):
         """Aggiunge il `topic` corrispondente a `topic_id`
         (NON ne crea uno!) alla lista dei topic dell'user
         corrispondente a `id`.
-
         Raises:
         `AssertionError` -- se `id`, `project` o `topic_id` non sono
             riconosciuti dal sistema.
@@ -630,7 +579,6 @@ class DBController(object):
     def add_keywords(self, id: str, *new_keywords):
         """Aggiunge le keywords passate come argomento all'user
         corrispondente a `id`.
-
         Raises:
         `AssertionError` -- se `id` non è presente nel DB.
         """
@@ -738,7 +686,6 @@ class DBController(object):
     def user(self, id):
         """Restituisce un oggetto Python corrispondente all'`id`
         passato come argomento.
-
         Raises:
         `AssertionError` -- se `id` non è presente nel DB.
         """

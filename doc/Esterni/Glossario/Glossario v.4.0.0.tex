@@ -1,0 +1,94 @@
+% Generazione delle variabili che andranno a sostituire quelle del template 'HomePage'
+\newcommand{\documento}{\Gl}
+\newcommand{\nomedocumentofisico}{\Glv.pdf}
+\newcommand{\redazione}{\LC \\ & \MM \\ & \CV \\ & \SG \\ & \NC \\ & \TG}
+\newcommand{\verifica}{\MM}
+\newcommand{\versione}{4.0.0}
+\newcommand{\approvazione}{\TG}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV \\ & \RC \\ & \proponente}
+\newcommand{\datacreazione}{26 novembre 2018}
+\newcommand{\datamodifica}{14 maggio 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{false}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{false} 	% abilita - disabilita l'indice delle figure
+
+\input{template/layout}
+\input{template/comandi}
+
+\input{sections/diario}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+\newcommand{\lettera}[1]{
+  \newpage
+  \invisiblesection{#1}
+  \begin{center}
+    {\Huge #1} \\
+  \end{center}
+  \rule{\textwidth}{0.4pt}
+  \vspace{0.9cm}
+}
+
+\newcommand\invisiblesection[1]{%
+  \refstepcounter{section}
+  \addcontentsline{toc}{section}{\protect\numberline{}#1}%
+  \sectionmark{#1}
+}
+
+\newcommand\invisiblesubsection[1]{%
+  \refstepcounter{subsection}%
+  \addcontentsline{toc}{subsection}{\protect\numberline{}#1}%
+  \sectionmark{#1}
+}
+
+\newcommand{\parola}[2]{
+  \invisiblesubsection{#1}
+  \textbf{\large{#1}} \\
+  #2
+  \vspace{0.3cm}
+}
+
+% no indentazione paragrafo
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+  % Inclusione template HomePage
+  \input{template/HomePage}
+
+  % Registro delle modifiche e indice
+  % si usa la numerazione romana per gli indici e la tabella delle modifiche
+  \pagenumbering{Roman}
+  \input{template/diario_due_pag}
+  \input{template/index}
+
+  %  \newpage
+  \include{sections/A}
+  \include{sections/B}
+  \include{sections/C}
+  \include{sections/D}
+  \include{sections/E}
+  \include{sections/F}
+  \include{sections/G}
+  \include{sections/H}
+  \include{sections/I}
+  \include{sections/J}
+  \include{sections/K}
+  \include{sections/L}
+  \include{sections/M}
+  \include{sections/N}
+  \include{sections/O}
+  \include{sections/P}
+  \include{sections/Q}
+  \include{sections/R}
+  \include{sections/S}
+  \include{sections/T}
+  \include{sections/U}
+  \include{sections/V}
+  \include{sections/W}
+  \include{sections/Z}
+
+\end{document}

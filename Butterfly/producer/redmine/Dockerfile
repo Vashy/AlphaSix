@@ -26,21 +26,37 @@
 FROM python:alpine3.7
 
 # Copying files from the correct folders
-COPY /producer/redmine/RedmineProducer.py ./Butterfly/producer/redmine/
-COPY /producer/redmine/requirements.txt ./Butterfly/producer/redmine/
 COPY /producer/redmine/__init__.py ./Butterfly/producer/redmine/
+COPY /producer/redmine/producer.py ./Butterfly/producer/redmine/
+COPY /producer/redmine/requirements.txt ./Butterfly/producer/redmine/
+COPY /producer/redmine/run.py ./Butterfly/producer/redmine/
+
+COPY /producer/creator.py ./Butterfly/producer/
+COPY /producer/__init__.py ./Butterfly/producer/
 COPY /producer/producer.py ./Butterfly/producer/
-COPY /producer/config.json ./Butterfly/producer/
-COPY /webhook/redmine/RedmineIssueWebhook.py ./Butterfly/webhook/redmine/
-COPY /webhook/redmine/open_issue_redmine_webhook.json ./Butterfly/webhook/redmine
+COPY /producer/server.py ./Butterfly/producer/
+
+COPY /webhook/redmine/factory.py ./Butterfly/webhook/redmine/
+COPY /webhook/redmine/__init__.py ./Butterfly/webhook/redmine/
+COPY /webhook/redmine/issue_webhook.py ./Butterfly/webhook/redmine/
+
+COPY /webhook/factory.py ./Butterfly/webhook/
+COPY /webhook/__init__.py ./Butterfly/webhook/
+COPY /webhook/webhook.json ./Butterfly/webhook/
 COPY /webhook/webhook.py ./Butterfly/webhook/
 COPY topics.json ./Butterfly/
- 
+
 # Change current directory
 WORKDIR /Butterfly
+
+ENV KAFKA_IP='10.42.0.142'
+ENV KAFKA_PORT=9092
+
+RUN mkdir ./config
+VOLUME ./config
 
 # Installing dependencies
 RUN pip3 install --upgrade pip ; pip3 install -r producer/redmine/requirements.txt
 
 # Run after the dependencies have been installed
-CMD python3 -m producer.redmine.RedmineProducer
+CMD python3 -m producer.redmine.run

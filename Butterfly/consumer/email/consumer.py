@@ -1,5 +1,5 @@
 """
-File: TelegramConsumer.py
+File: consumer.py
 Data creazione: 2019-02-18
 
 <descrizione>
@@ -24,7 +24,7 @@ Versione: 0.2.0
 Creatore: Samuele Gardin, samuelegardin1997@gmail.com
 Autori:
     Matteo Marchiori, matteo.marchiori@gmail.com
-    Nicola Carlesso
+    Nicola Carlesso, nicolacarlesso@outlook.it
 """
 
 from pathlib import Path
@@ -41,7 +41,7 @@ from consumer.consumer import Consumer
 class EmailConsumer(Consumer):
     """Implementa Consumer"""
 
-    _CONFIG_PATH = Path(__file__).parent / 'config.json'
+    _CONFIG_PATH = Path(__file__).parents[2] / 'config' / 'config.json'
 
     def __init__(self, consumer: KafkaConsumer):
         super(EmailConsumer, self).__init__(consumer)
@@ -49,6 +49,21 @@ class EmailConsumer(Consumer):
         with open(self._CONFIG_PATH) as file:
             configs = json.load(file)
         self._sender = configs['email']['sender']
+
+        try:
+            # Psw, prima da config.json poi da var d'ambiente
+            self._psw = configs['email']['psw']
+            if self._psw == '':
+                self._psw = None
+        except KeyError:
+            self._psw = None
+
+        # venv BUTTERFLY_EMAIL_PSW
+        if self._psw == None:
+            try:
+                self._psw = os.environ['BUTTERFLY_EMAIL_PSW']
+            except KeyError as e:
+                exit(1)
 
     def send(self, receiver: str, mail_text: str):
         """Manda il messaggio finale, tramite il server mail,
@@ -58,12 +73,9 @@ class EmailConsumer(Consumer):
             mailserver.ehlo()
             mailserver.starttls()
 
-            # Autenticazione
             try:
-                psw = os.environ['BUTTERFLY_EMAIL_PSW']
-                mailserver.login(self._sender, psw)  # Login al server SMTP
-
-                # Login riuscito
+                # Autenticazione
+                mailserver.login(self._sender, self._psw)  # Login al server SMTP
 
                 msg = EmailMessage()
                 msg['Subject'] = (
@@ -83,7 +95,6 @@ class EmailConsumer(Consumer):
 
                 try:  # Tenta di inviare l'Email
                     mailserver.send_message(msg)
-                    print(f'Email inviata a {receiver}')
                 except smtplib.SMTPException:
                     print('Errore, email non inviata. ')
 
@@ -103,42 +114,143 @@ class EmailConsumer(Consumer):
         """Restituisce una stringa con una formattazione migliore da un
         oggetto JSON (Webhook).
         """
+        if msg['object_kind'] == 'push':
+            return self._format_push_no_html(msg)
+
+        elif msg['object_kind'] == 'issue':
+            return self._format_issue_no_html(msg)
+
         res = ''
         res = self._preamble(msg['object_kind'])
 
         res += ''.join([
             f' nel progetto {msg["project_name"]} ',
-            f'({msg["project_id"]})',
             f'\n\nSorgente: {msg["app"].capitalize()}',
             f'\nAutore: {msg["author"]}'
-            f'\n\n Information: '
-            f'\n - Title: \t\t{msg["title"]}',
-            f'\n - Description: \n'
+            f'\n\n Informazioni: '
+            f'\n - Titolo: \t\t{msg["title"]}',
+            f'\n - Descrizione: \n'
             f'  {msg["description"]}',
-            f'\n - Action: \t{msg["action"]}'
+            f'\n - Azione: \t{msg["action"]}'
         ])
 
         return res
 
-    def format_html(self, msg):
+    def format_html(self, msg: dict) -> str:
         """Restituisce una stringa in formato HTML da un
         oggetto JSON.
         """
-        res = '<p>'
+        if msg['object_kind'] == 'push':
+            return self._format_push_html(msg)
 
+        elif msg['object_kind'] == 'issue':
+            return self._format_issue_html(msg)
+
+        res = '<p>'
         res += self._preamble(msg['object_kind'])
 
         res += ''.join([
-            f' nel progetto <strong>{msg["project_name"]}</strong> ',
-            f'(<code>{msg["project_id"]}</code>)</p>',
+            f' nel progetto <strong>{msg["project_name"]}</strong>',
+            f' su {msg["app"].capitalize()}.</p>',
             '<ul>'
-            f'<li><strong>Sorgente:</strong> {msg["app"].capitalize()}</li>',
             f'<li><strong>Autore:</strong> {msg["author"]}</li>'
-            f'<li><strong>Title:</strong> {msg["title"]}</li>',
-            f'<li><strong>Description:</strong> '
+            f'<li><strong>Titolo:</strong> {msg["title"]}</li>',
+            f'<li><strong>Descrizione:</strong> '
             f'{msg["description"]}</li>',
-            f'<li><strong>Action:</strong> {msg["action"]}</li>'
+            f'<li><strong>Azione:</strong> {msg["action"]}</li>'
             '</ul>'
+        ])
+        return res
+
+    @classmethod
+    def _format_push_no_html(cls, msg: dict) -> str:
+        """Formatta un messaggio di push
+        e restituisce il risultato.
+        """
+        res = ''.join([
+            f'È stato fatto un push '
+            f'nel progetto {msg["project_name"]} ',
+            f' su {msg["app"].capitalize()}.\n',
+            f'{msg["commits_count"]} nuovo/i commit da {msg["author"]}:\n'
+            '\n'
+        ])
+        for commit in msg['commits']:
+            res += (f'- {commit["message"]} '
+                    f'({commit["id"]});'
+                    '\n')
+        return res
+
+    @classmethod
+    def _format_push_html(cls, msg: dict) -> str:
+        """Formatta un messaggio di push in HTML
+        e restituisce il risultato.
+        """
+        res = ''.join([
+            f'<p>È stato fatto un push '
+            f'nel progetto <strong>{msg["project_name"]}</strong>',
+            f' su {msg["app"].capitalize()}.</p>',
+            f'<p>{msg["commits_count"]} nuovo/i commit da {msg["author"]}:</p>'
+            '\n<ul>'
+        ])
+        for commit in msg['commits']:
+            res += (f'<li>{commit["message"]} '
+                    f'(<code>{commit["id"]}</code>);'
+                    '</li>\n')
+        res += '\n</ul>'
+        return res
+
+    @classmethod
+    def _format_issue_html(cls, msg: dict) -> str:
+        """Formatta un messaggio di issue in HTML
+        e restituisce il risultato.
+        """
+        if msg['action'] == 'open':
+            action_text = 'aperta'
+        elif msg['action'] == 'update':
+            action_text = 'modificata'
+        elif msg['action'] == 'close':
+            action_text = 'chiusa'
+        elif msg['action'] == 'reopen':
+            action_text = 'riaperta'
+
+        res = ''.join([
+            f'<p>È stata {action_text} una issue ',
+            f'nel progetto <strong>{msg["project_name"]}</strong>',
+            f' su {msg["app"].capitalize()}.\n</p>\n<ul>',
+            # f'\n\n{cls._bold}Informazioni:{cls._bold} '
+            f'\n<li><strong>Autore:</strong> {msg["author"]};</li>'
+            f'\n<li><strong>Titolo:</strong> {msg["title"]};</li>',
+            f'\n<li><strong>Descrizione:</strong> '
+            f'{msg["description"]};</li></ul>',
+        ])
+        return res
+
+    @classmethod
+    def _format_issue_no_html(
+        cls,
+        msg: dict,
+    ):
+        """Formatta un messaggio di push
+        e restituisce il risultato.
+        """
+        if msg['action'] == 'open':
+            action_text = 'aperta'
+        elif msg['action'] == 'update':
+            action_text = 'modificata'
+        elif msg['action'] == 'close':
+            action_text = 'chiusa'
+        elif msg['action'] == 'reopen':
+            action_text = 'riaperta'
+
+        res = ''.join([
+            f'È stata {action_text} una issue ',
+            f'nel progetto {msg["project_name"]}',
+            f' su {msg["app"].capitalize()}\n',
+            # f'\n\nInformazioni: '
+            f'\n - Autore: {msg["author"]}'
+            f'\n - Titolo: {msg["title"]}',
+            f'\n - Descrizione: '
+            f'{msg["description"]}',
         ])
         return res
 

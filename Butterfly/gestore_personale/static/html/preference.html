@@ -1,148 +1,24 @@
-<!--
-File: preferences.html
-Data creazione: 2019-02-20
-
-<descrizione>
-
-Licenza: Apache 2.0
-
-Copyright 2019 AlphaSix
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Versione: 0.1.0
-Creatore: Matteo Marchiori, matteomarchiori@gmail.com
--->
-
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modifica preferenze | Butterfly</title>
+        <title>Modifica preferenze | *user* | Butterfly</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style/style.css') }}">
+        <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename = 'image/a6.png') }}"/>
     </head>
     <body lang="it">
-        <div>
-            <h1>Butterfly</h1>
-            <form>
-                <table border="1">
-                    <tr>
-                        <th>
-                            Progetto
-                        </th>
-                        <th>
-                            Priorità
-                        </th>
-                        <th>
-                            Labels
-                        </th>
-                        <th>
-                            Keywords
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>Butterfly</th>
-                        <td>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3" selected="selected">3</option>
-                            </select>
-                        </td>
-                        <td>
-                            <label>Fix</label><input type="checkbox" name="fix" checked="checked">
-                            <label>Bug</label><input type="checkbox" name="bug">
-                            <label>Enhancement</label><input type="checkbox" name="enhancement" checked="checked">
-                        </td>
-                        <td>
-                            <textarea id="textkeywords" name="keywords">banana, alpha, finito</textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Colletta</th>
-                        <td>
-                            <select>
-                                <option value="1">1</option>
-                                <option value="2" selected="selected">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </td>
-                        <td>
-                            <label>Fix</label><input type="checkbox" name="fix">
-                            <label>Bug</label><input type="checkbox" name="bug" checked="checked">
-                            <label>Enhancement</label><input type="checkbox" name="enhancement">
-                        </td>
-                        <td>
-                            <textarea id="textkeywords" name="keywords"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Progetto3</th>
-                        <td>
-                            <select>
-                                <option value="1" selected="selected">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </td>
-                        <td>
-                            <label>Label1</label><input type="checkbox" name="label1">
-                            <label>Label2</label><input type="checkbox" name="label2">
-                            <label>Label3</label><input type="checkbox" name="label3">
-                        </td>
-                        <td>
-                            <textarea id="textkeywords" name="keywords">k1, k2, k3</textarea>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <form>
-                <select>
-                    <option value="1">Butterfly</option>
-                    <option value="2">Colletta</option>
-                    <option value="3">Progetto3</option>
-                    <option value="4">Progetto4</option>
-                    <option value="5">Progetto5</option>
-                </select>
-                <input type="button" value="Aggiungi il progetto">
-                <input type="button" value="Rimuovi il progetto">
-            </form>
-            <form action="/indisponibilita" method="post">
-                <fieldset>
-                    <legend>Giorni di indisponibilità</legend>
-                    <div id="calendario">
-                    <p>Aprile 2019</p>
-                    <script>
-                        c = document.getElementById("calendario");
-                        for(i=1;i<31;i++){
-                            calendario.innerHTML += '<label for="'+i+'">'+i+'</label><input type="checkbox" name="'+i+'">'
-                        }
-                    </script>
-                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Mese precedente"/>
-                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Mese successivo"/>
-                    <input id="indisponibilita" name="indisponibilita" type="submit" value="Modifica indisponibilità"/>
-                </fieldset>
-            </form>
-            <form action="/favouriteplatform" method="post">
-                <fieldset>
-                    <legend>Piattaforma preferita</legend>
-                    <label for="email">Email</label>
-                    <input name="platform" id="email" type="radio" checked="checked"/>
-                    <label for="telegram">Telegram</label>
-                    <input name="platform" id="telegram" type="radio" />
-                    <input id="favouriteplatform" name="favouriteplatform" type="submit" value="Modifica piattaforma preferita"/>
-                </fieldset>
+        <header>
+            <p>User id: *user*</p>
+        </header>
+        <div class="centered" id="preference-div">
+            <h1>Modifica preferenze utente</h1>
+            *topics*
+            *projects*
+            *availability*
+            *platform*
+            <form id="data">
+                <input id="back" name="back" type="button" value="Torna al pannello"/>
             </form>
         </div>
     </body>

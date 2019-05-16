@@ -25,50 +25,87 @@ Creatore: Timoty Granziero, timoty.granziero@gmail.com
 """
 
 import json
-# import pprint
-# import pymongo
+import datetime
+from pprint import pprint
+import pymongo
 from pathlib import Path
+import os
 
 from mongo_db.db_connection import DBConnection
 from mongo_db.db_controller import DBController
 
+_CONFIG_PATH = Path(__file__).parents[0] / 'config.json'
 
-with DBConnection('butterfly') as client:
-    # print(client._db.collection_names())
+def _open_configs(path: Path):
+    with open(path) as file:
+        config = json.load(file)['mongo']
+    if(os.environ['MONGO_IP']):
+            config['ip'] = os.environ['MONGO_IP']
+    return config
 
-    client.drop_collections('users', 'projects', 'topics')
+def populateA():
+    with DBConnection(_open_configs(_CONFIG_PATH)['database']) as client:
 
-    controller = DBController(client)
-    db = client.db
+        client.drop_collections('users', 'projects', 'topics')
+
+        controller = DBController(client)
+        db = client.db
+        with open(Path(__file__).parent / 'db.json') as f:
+            data = json.load(f)
+
+        users_json = data['users']
+        projects_json = data['projects']
+        topics_json = data['topics']
+
+        # Popola la collezione users da db.json
+        for user in users_json:
+            # NON usare questo metodo per inserire utenti! Usare
+            # controller.insert_user()
+            result = controller.collection('users').insert_one(user)
+
+        # Popola la collezione projects da db.json
+        for project in projects_json:
+            result = controller.insert_project(project)
+
+        # Popola la collezione topics da db.json
+        for topic in topics_json:
+            result = controller.insert_topic(
+                # topic['_id'],
+                topic['label'],
+                topic['project'],
+            )
+
+def populateB():
+    configs = _open_configs(_CONFIG_PATH)
+    client = pymongo.MongoClient(configs['ip'], configs['port'])
+    client.drop_database(configs['database'])
+
+    db = client.butterfly
+
     with open(Path(__file__).parent / 'db.json') as f:
         data = json.load(f)
 
-    users_json = data['users']
     projects_json = data['projects']
-    topics_json = data['topics']
+    users_json = data['users']
 
-    # Popola la collezione users da db.json
+    users = db.users
     for user in users_json:
-        # NON usare questo metodo per inserire utenti! Usare
-        # controller.insert_user()
-        result = controller.collection('users').insert_one(user)
-        if result is not None:
-            print(result.inserted_id)
+        # Converte stringa YYYY-MM-DD in formato ISO usato da MongoDB
+        if 'irreperibilita' in user:
+            dates = []
+            for irr in user['irreperibilita']:
+                irr = irr.split('-')
+                dates.append(datetime.datetime(
+                    int(irr[0]),
+                    int(irr[1]),
+                    int(irr[2]),
+                ))
+            user['irreperibilita'] = dates
+        result = users.insert_one(user)
 
-    # Popola la collezione projects da db.json
+    projects = db.projects
     for project in projects_json:
-        result = controller.insert_project(project)
-        if result is not None:
-            print(result.inserted_id)
+        result = projects.insert_one(project)
 
-    # Popola la collezione topics da db.json
-    for topic in topics_json:
-        result = controller.insert_topic(
-            # topic['_id'],
-            topic['label'],
-            topic['project'],
-        )
-        if result is not None:
-            print(result.inserted_id)
-    # for user in users.find({}):
-    #     pprint.pprint(user)
+
+populateB()

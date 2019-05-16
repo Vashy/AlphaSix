@@ -1,0 +1,47 @@
+% Generazione delle variabili che andranno a sostituire quelle del template `HomePage.tex`
+\newcommand{\documento}{\MS}
+\newcommand{\nomedocumentofisico}{\MSv.pdf}
+\newcommand{\redazione}{\TG \\ & \CV \\ & \LC}
+\newcommand{\verifica}{\SG \\ & \MM}
+\newcommand{\approvazione}{\TG}
+\newcommand{\versione}{2.0.0}
+\newcommand{\uso}{Esterno}
+\newcommand{\destinateTo}{\TV, \\ & \RC, \\ & \II}
+\newcommand{\datacreazione}{23 marzo 2019}
+\newcommand{\datamodifica}{13 maggio 2019}
+\newcommand{\stato}{Approvato}
+
+\def\TABELLE{true}	% abilita - disabilita l'indice delle tabelle
+\def\FIGURE{true} 	% abilita - disabilita l'indice delle figure
+
+
+\input{template/layout} % Layout del documento
+\input{template/comandi} % Comandi generali
+
+\input{commands} % Comandi del documento
+
+\input{sections/diario} % Entries diario
+
+
+\begin{document}
+	% \sloppy
+    % Inclusione template HomePage
+    \input{template/HomePage}
+
+    % Registro delle modifiche e indice
+    % si usa la numerazione romana per gli indici e la tabella delle modifiche
+    \pagenumbering{Roman}
+    \input{template/diario}
+    \input{template/index}
+
+    % Sezioni documento
+    \include{sections/introduzione}
+    \include{sections/tecnologie}
+    \include{sections/achitettura}
+    \include{sections/estensibilita}
+    \include{sections/test}
+
+    \appendix
+    \include{sections/glossario}
+
+\end{document}
