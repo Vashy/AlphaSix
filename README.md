@@ -4,7 +4,7 @@
 Il gruppo che lo ha sviluppato si chiama **AlphaSix** ed è composto da:
 - [Ciprian Voinea](https://www.linkedin.com/in/cvoinea/)
 - [Timoty Granziero](https://www.linkedin.com/in/timoty-granziero-44b261179/)
-- [Laura Cameran](mailto:lauracameran@gmail.com)https://www.linkedin.com/in/timoty-granziero-44b261179/
+- [Laura Cameran](mailto:lauracameran@gmail.com)
 - [Samuele Gardin](www.linkedin.com/in/samuele-gardin)
 - [Matteo Marchiori](www.linkedin.com/in/matteo-marchiori-882143bb)
 - [Nicola Carlesso](mailto:nicolacarlesso@outlook.it)
